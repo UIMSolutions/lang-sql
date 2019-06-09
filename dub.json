@@ -1,0 +1,12 @@
+{
+	"name": "uim-sql",
+	"authors": [ "UI Manufaktur UG" ],
+	"description": "D Library for SQL projects",
+	"copyright": "Copyright © 2019, UI Manufaktur UG",
+	"license": "Apache 2.0",
+	"targetType": "library",
+	"dependencies": {
+		"uim-core":"~master",
+		"uim-oop":"~master"
+	}
+}
