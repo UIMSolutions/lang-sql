@@ -11,8 +11,6 @@ class DSQLAlterTable : DSQLUpdateStatement {
 	this(string aTableName) { this(); _tableName = aTableName; }
 	mixin(OProperty!("string", "tableName")); 
 
-	alias this toString;
-
 	override string toSQL() {
 		return "ALTER %s".format(_tableName); // ADD %s %s".format(_tableName, _columnName, _columnDefinition);
 	}

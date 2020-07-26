@@ -40,11 +40,12 @@ class DSQLUpdate : DSQLUpdateStatement  {
 		return this;
 	} 
 
-    override string toSQL() {
+  override string toSQL() {
 		auto sql = "UPDATE "~_table~" SET "~_sets;
 		if (_where.length > 0) sql ~= " WHERE "~_where;
 		return sql;
 	}
+
 }
 auto SQLUpdate() { return new DSQLUpdate(); }
 auto SQLUpdate(string table) { return new DSQLUpdate(table); }
