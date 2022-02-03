@@ -5,7 +5,11 @@ public import std.conv;
 public import std.stdio;
 public import std.string;
 
+// UIM libraries
 public import uim.core;
+public import uim.oop;
+
+// Local packages
 public import uim.sql.statements;
 public import uim.sql.tables;
 public import uim.sql.index;
