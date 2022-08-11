@@ -2,7 +2,7 @@
 	"name": "uim-sql",
 	"authors": [ "UI Manufaktur UG" ],
 	"description": "D Library for SQL projects",
-	"copyright": "Copyright © 2017-2020, UI Manufaktur UG",
+	"copyright": "Copyright © 2017-2022, UI Manufaktur UG",
 	"license": "Apache-2.0",
 	"targetType": "library",
 	"dependencies": {
