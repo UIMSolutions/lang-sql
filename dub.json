@@ -2,11 +2,20 @@
 	"name": "uim-sql",
 	"authors": [ "UI Manufaktur UG" ],
 	"description": "D Library for SQL projects",
-	"copyright": "Copyright © 2019, UI Manufaktur UG",
-	"license": "Apache 2.0",
+	"copyright": "Copyright © 2017-2020, UI Manufaktur UG",
+	"license": "Apache-2.0",
 	"targetType": "library",
 	"dependencies": {
-		"uim-core":"~master",
-		"uim-oop":"~master"
-	}
+		"vibe-d": "~>0.9.4"
+  },
+  "sourcePaths": [
+    "../uim-core",
+    "../uim-oop",
+		"./"
+  ],
+  "importPaths": [
+    "../uim-core",
+    "../uim-oop",
+    "./"
+  ]
 }
