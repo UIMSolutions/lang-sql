@@ -1,6 +1,6 @@
-﻿module uim.sql.tables.altertable;
+﻿module langs.sql.tables.altertable;
 
-import uim.sql;
+import langs.sql;
 
 string sqlAlterTable(string tableName) { return "ALTER "~tableName; }
 string sqlAddColumn(string columnName, string definition) { return "ADD "~columnName~" "~definition; }

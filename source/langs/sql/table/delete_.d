@@ -1,6 +1,6 @@
-module uim.sql.tables.delete_;
+module langs.sql.tables.delete_;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLDelete : DSQLStatement {
     this(string table = "", string condition = "") { from(table).where(condition); }

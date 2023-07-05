@@ -1,6 +1,6 @@
-﻿module uim.sql.tables.altercolumn;
+﻿module langs.sql.tables.altercolumn;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLAlterColumn : DSQLUpdateStatement {
 	this() { super(); }

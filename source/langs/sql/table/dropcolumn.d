@@ -1,6 +1,6 @@
-﻿module uim.sql.tables.dropcolumn;
+﻿module langs.sql.tables.dropcolumn;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLDropColumn : DSQLUpdateStatement {
 	this() { super(); }

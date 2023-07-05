@@ -1,6 +1,6 @@
-﻿module uim.sql.statements.update;
+﻿module langs.sql.statements.update;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLUpdateStatement : DSQLStatement {
 	this() {}

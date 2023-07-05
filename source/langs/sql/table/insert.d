@@ -1,6 +1,6 @@
-﻿module uim.sql.tables.insert;
+﻿module langs.sql.tables.insert;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLInsert : DSQLStatement {
     
