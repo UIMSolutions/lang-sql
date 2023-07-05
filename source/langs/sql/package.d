@@ -1,17 +1,29 @@
-﻿module langs.sql;
+﻿/*********************************************************************************************************
+	Copyright: © 2015-2023 Ozan Nurettin Süel (Sicherheitsschmiede)                                        
+	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
+	Authors: Ozan Nurettin Süel, mailto:ons@sicherheitsschmiede.de                                                      
+**********************************************************************************************************/
+module langs.sql;
 
-public import std.algorithm;
-public import std.conv;
-public import std.stdio;
-public import std.string;
+mixin(ImportPhobos!());
 
-// UIM libraries
-public import uim.core;
-public import uim.oop;
+// Dub
+public {
+	import vibe.d;
+  import vibe.http.session : HttpSession = Session;
+}
+
+public { // uim libraries
+  import uim.core;
+  import uim.oop;
+  import uim.languages;
+}
 
 // Local packages
+public import langs.sql.helpers;
 public import langs.sql.statements;
 public import langs.sql.tables;
+public import langs.sql.tests;
 public import langs.sql.index;
 public import langs.sql.functions;
 
