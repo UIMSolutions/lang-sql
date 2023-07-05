@@ -1,4 +1,4 @@
-﻿module uim.sql;
+﻿module langs.sql;
 
 public import std.algorithm;
 public import std.conv;
@@ -10,10 +10,10 @@ public import uim.core;
 public import uim.oop;
 
 // Local packages
-public import uim.sql.statements;
-public import uim.sql.tables;
-public import uim.sql.index;
-public import uim.sql.functions;
+public import langs.sql.statements;
+public import langs.sql.tables;
+public import langs.sql.index;
+public import langs.sql.functions;
 
 string OR(string[] conditions) {
 	string[] c = new string[conditions.length];

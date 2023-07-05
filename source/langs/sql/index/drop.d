@@ -1,6 +1,6 @@
-﻿module uim.sql.index.drop;
+﻿module langs.sql.index.drop;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLDropIndex : DSQLUpdateStatement {
 	this() { super(); }

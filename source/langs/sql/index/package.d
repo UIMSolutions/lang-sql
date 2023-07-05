@@ -1,4 +1,4 @@
-﻿module uim.sql.index;
+﻿module langs.sql.index;
 
-public import uim.sql.index.create;
-public import uim.sql.index.drop;
+public import langs.sql.index.create;
+public import langs.sql.index.drop;

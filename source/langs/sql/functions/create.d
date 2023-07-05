@@ -1,6 +1,6 @@
-﻿module uim.sql.functions.create_;
+﻿module langs.sql.functions.create_;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLCreateFunction : DSQLStatement {
 	this() {}

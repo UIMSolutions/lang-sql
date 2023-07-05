@@ -1,6 +1,6 @@
-﻿module uim.sql.statements.query;
+﻿module langs.sql.statements.query;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLQueryStatement : DSQLStatement {
 	this() {}

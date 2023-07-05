@@ -1,1 +1,1 @@
-module uim.sql.script;
+module langs.sql.script;

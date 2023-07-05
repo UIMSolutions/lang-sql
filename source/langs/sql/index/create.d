@@ -1,6 +1,6 @@
-﻿module uim.sql.index.create;
+﻿module langs.sql.index.create;
 
-import uim.sql;
+import langs.sql;
 
 class DSQLCreateIndex : DSQLUpdateStatement {
 	this() { super(); }
