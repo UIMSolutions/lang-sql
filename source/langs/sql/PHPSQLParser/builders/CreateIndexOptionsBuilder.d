@@ -54,7 +54,7 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed["options"] == false) {
-            return '';
+            return "";
         }
         mySql = "";
         foreach ($parsed["options"] as $k => $v) {

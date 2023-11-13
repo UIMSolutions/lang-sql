@@ -28,11 +28,11 @@ class CreateIndexTableBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if (!isset($parsed["on"]) || $parsed["on"] == false) {
-            return '';
+            return "";
         }
         $table = $parsed["on"];
         if ($table["expr_type"] != ExpressionType::TABLE) {
-            return '';
+            return "";
         }
         return 'ON ' . $table["name"] . ' ' . this.buildColumnList($table["sub_tree"]);
     }

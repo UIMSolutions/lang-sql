@@ -78,7 +78,7 @@ class TableBuilder : ISqlBuilder {
 
     auto build(array $parsed, $index = 0) {
         if ($parsed["expr_type"] != ExpressionType::TABLE) {
-            return '';
+            return "";
         }
 
         $sql = $parsed["table"];

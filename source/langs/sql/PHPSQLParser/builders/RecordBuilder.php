@@ -74,7 +74,7 @@ class RecordBuilder : ISqlBuilder {
     
     auto build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::RECORD) {
-            return isset($parsed["base_expr"]) ? $parsed["base_expr"] : '';
+            return isset($parsed["base_expr"]) ? $parsed["base_expr"] : "";
         }
         $sql = "";
         foreach ($parsed["data"] as $k => $v) {

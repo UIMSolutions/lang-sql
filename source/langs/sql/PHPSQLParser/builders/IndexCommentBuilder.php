@@ -64,7 +64,7 @@ class IndexCommentBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COMMENT) {
-            return '';
+            return "";
         }
         $sql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {

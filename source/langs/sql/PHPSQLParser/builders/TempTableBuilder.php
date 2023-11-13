@@ -73,7 +73,7 @@ class TempTableBuilder : ISqlBuilder {
 
     auto build(array $parsed, $index = 0) {
         if ($parsed["expr_type"] != ExpressionType::TEMPORARY_TABLE) {
-            return '';
+            return "";
         }
 
         $sql = $parsed["table"];

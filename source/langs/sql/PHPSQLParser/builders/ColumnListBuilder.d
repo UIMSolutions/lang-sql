@@ -34,7 +34,7 @@ class ColumnListBuilder : ISqlBuilder {
     
     string build(array $parsed, $delim = ', ') {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
-            return '';
+            return "";
         }
 
         string mySql = "";

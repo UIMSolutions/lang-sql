@@ -78,7 +78,7 @@ class SubQueryBuilder : ISqlBuilder {
 
     auto build(array $parsed, $index = 0) {
         if ($parsed["expr_type"] != ExpressionType::SUBQUERY) {
-            return '';
+            return "";
         }
 
         // TODO: should we add a numeric level (0) between sub_tree and SELECT?

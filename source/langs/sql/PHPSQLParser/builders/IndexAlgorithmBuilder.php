@@ -69,7 +69,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
     
     auto build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::INDEX_ALGORITHM) {
-            return '';
+            return "";
         }
         $sql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {

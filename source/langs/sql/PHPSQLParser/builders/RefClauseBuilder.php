@@ -93,7 +93,7 @@ class RefClauseBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed == false) {
-            return '';
+            return "";
         }
         $sql = "";
         foreach ($parsed as $k => $v) {

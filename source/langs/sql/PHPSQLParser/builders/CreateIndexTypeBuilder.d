@@ -21,7 +21,7 @@ class CreateIndexTypeBuilder : IndexTypeBuilder {
 
     auto build(array $parsed) {
         if (!isset($parsed["index-type"]) || $parsed["index-type"] == false) {
-            return '';
+            return "";
         }
         return parent::build($parsed["index-type"]);
     }

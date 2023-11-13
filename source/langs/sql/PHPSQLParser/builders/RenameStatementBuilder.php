@@ -58,7 +58,7 @@ class RenameStatementBuilder : ISqlBuilder {
 
     protected auto processSourceAndDestTable($v) {
         if (!isset($v["source"]) || !isset($v["destination"])) {
-            return '';
+            return "";
         }
         return $v["source"]["base_expr"] . ' TO ' . $v["destination"]["base_expr"] . ',';
     }

@@ -78,7 +78,7 @@ class TableExpressionBuilder : ISqlBuilder {
 
     auto build(array $parsed, $index = 0) {
         if ($parsed["expr_type"] != ExpressionType::TABLE_EXPRESSION) {
-            return '';
+            return "";
         }
         $sql = substr(this.buildFROM($parsed["sub_tree"]), 5); // remove FROM keyword
         $sql = '(' . $sql . ')';
