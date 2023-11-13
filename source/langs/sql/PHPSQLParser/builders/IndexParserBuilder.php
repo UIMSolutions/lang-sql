@@ -51,7 +51,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class IndexParserBuilder : Builder {
+class IndexParserBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
         $builder = new ReservedBuilder();

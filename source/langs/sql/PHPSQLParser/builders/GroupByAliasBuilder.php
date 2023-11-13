@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class GroupByAliasBuilder : Builder {
+class GroupByAliasBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed["expr_type"] !== ExpressionType::ALIAS) {

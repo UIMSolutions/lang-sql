@@ -9,7 +9,7 @@ module lang.sql.parsers.builders;
  
  *
  */
-class UnionStatementBuilder : Builder {
+class UnionStatementBuilder : ISqlBuilder {
 
 	auto build(array $parsed)
 	{

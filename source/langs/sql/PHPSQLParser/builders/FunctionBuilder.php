@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class FunctionBuilder : Builder {
+class FunctionBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {
         $builder = new AliasBuilder();

@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class OperatorBuilder : Builder {
+class OperatorBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed["expr_type"] !== ExpressionType::OPERATOR) {

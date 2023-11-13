@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class ColumnTypeBracketExpressionBuilder : Builder {
+class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildSubTree($parsed, $delim) {
         $builder = new SubTreeBuilder();

@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class OrderByBuilder : Builder {
+class OrderByBuilder : ISqlBuilder {
 
     protected auto buildFunction($parsed) {
         $builder = new OrderByFunctionBuilder();

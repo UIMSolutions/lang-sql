@@ -11,7 +11,7 @@ module lang.sql.parsers.builders;
  * This class : the builder for the whole Delete statement. You can overwrite
  * all functions to achieve another handling.
  */
-class DeleteStatementBuilder : Builder {
+class DeleteStatementBuilder : ISqlBuilder {
     protected auto buildWHERE($parsed) {
         $builder = new WhereBuilder();
         return $builder.build($parsed);

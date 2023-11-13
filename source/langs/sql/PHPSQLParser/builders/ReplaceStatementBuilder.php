@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class ReplaceStatementBuilder : Builder {
+class ReplaceStatementBuilder : ISqlBuilder {
 
     protected auto buildVALUES($parsed) {
         $builder = new ValuesBuilder();

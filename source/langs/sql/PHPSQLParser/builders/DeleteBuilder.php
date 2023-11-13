@@ -11,7 +11,7 @@ module lang.sql.parsers.builders;
  * This class : the builder for the [DELETE] part. You can overwrite
  * all functions to achieve another handling.
  */
-class DeleteBuilder : Builder {
+class DeleteBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         $sql = "DELETE ";

@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class LikeBuilder : Builder {
+class LikeBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
         $builder = new TableBuilder();

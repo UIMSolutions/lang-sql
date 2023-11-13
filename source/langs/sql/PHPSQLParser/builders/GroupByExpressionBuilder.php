@@ -51,7 +51,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class GroupByExpressionBuilder : Builder {
+class GroupByExpressionBuilder : ISqlBuilder {
 
 	protected auto buildColRef($parsed) {
 		$builder = new ColumnReferenceBuilder();

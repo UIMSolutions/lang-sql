@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class OrderByAliasBuilder : Builder {
+class OrderByAliasBuilder : ISqlBuilder {
 
     protected auto buildDirection($parsed) {
         $builder = new DirectionBuilder();

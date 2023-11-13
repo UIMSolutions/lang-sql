@@ -52,7 +52,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class LikeExpressionBuilder : Builder {
+class LikeExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
         $builder = new TableBuilder();

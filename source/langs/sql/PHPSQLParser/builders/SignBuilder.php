@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class SignBuilder : Builder {
+class SignBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed["expr_type"] !== ExpressionType::SIGN) {

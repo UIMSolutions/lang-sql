@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class CheckBuilder : Builder {
+class CheckBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {
         $builder = new SelectBracketExpressionBuilder();

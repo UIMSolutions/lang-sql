@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class GroupByBuilder : Builder {
+class GroupByBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
         $builder = new ColumnReferenceBuilder();

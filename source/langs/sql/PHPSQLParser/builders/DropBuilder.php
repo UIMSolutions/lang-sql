@@ -13,7 +13,7 @@ use PHPSQLParser\utils\ExpressionType;
  * This class : the builder for the [DROP] part. You can overwrite
  * all functions to achieve another handling.
  */
-class DropBuilder : Builder {
+class DropBuilder : ISqlBuilder {
 
 	protected auto buildDropIndex( $parsed ) {
 		$builder = new DropIndexBuilder();

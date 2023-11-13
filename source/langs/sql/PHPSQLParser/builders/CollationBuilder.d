@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class CollationBuilder : Builder {
+class CollationBuilder : ISqlBuilder {
 
     protected auto buildOperator($parsed) {
         $builder = new OperatorBuilder();

@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class BracketStatementBuilder : Builder {
+class BracketStatementBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {
         $builder = new SelectBracketExpressionBuilder();

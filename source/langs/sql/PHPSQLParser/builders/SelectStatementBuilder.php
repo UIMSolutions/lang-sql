@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class SelectStatementBuilder : Builder {
+class SelectStatementBuilder : ISqlBuilder {
 
     protected auto buildSELECT($parsed) {
         $builder = new SelectBuilder();

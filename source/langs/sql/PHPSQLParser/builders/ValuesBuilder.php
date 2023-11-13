@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class ValuesBuilder : Builder {
+class ValuesBuilder : ISqlBuilder {
 
     protected auto buildRecord($parsed) {
         $builder = new RecordBuilder();

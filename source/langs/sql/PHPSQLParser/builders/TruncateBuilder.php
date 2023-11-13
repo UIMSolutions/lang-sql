@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class TruncateBuilder : Builder {
+class TruncateBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         $sql = "TRUNCATE TABLE ";

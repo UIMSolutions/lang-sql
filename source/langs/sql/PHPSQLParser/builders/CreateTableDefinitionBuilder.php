@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class CreateTableDefinitionBuilder : Builder {
+class CreateTableDefinitionBuilder : ISqlBuilder {
 
     protected auto buildTableBracketExpression($parsed) {
         $builder = new TableBracketExpressionBuilder();

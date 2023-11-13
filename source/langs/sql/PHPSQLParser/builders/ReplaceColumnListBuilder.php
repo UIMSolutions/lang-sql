@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class ReplaceColumnListBuilder : Builder {
+class ReplaceColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn($parsed) {
         $builder = new ColumnReferenceBuilder();

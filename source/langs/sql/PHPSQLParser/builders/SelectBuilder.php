@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class SelectBuilder : Builder {
+class SelectBuilder : ISqlBuilder {
 
     protected auto buildConstant($parsed) {
         $builder = new ConstantBuilder();

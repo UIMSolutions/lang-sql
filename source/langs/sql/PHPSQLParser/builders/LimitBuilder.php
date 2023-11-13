@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class LimitBuilder : Builder {
+class LimitBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         $sql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");

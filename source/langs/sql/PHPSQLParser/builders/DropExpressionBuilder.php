@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class DropExpressionBuilder : Builder {
+class DropExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
         $builder = new TableBuilder();

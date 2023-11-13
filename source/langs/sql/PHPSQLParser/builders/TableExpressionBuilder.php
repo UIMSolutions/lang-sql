@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class TableExpressionBuilder : Builder {
+class TableExpressionBuilder : ISqlBuilder {
 
     protected auto buildFROM($parsed) {
         $builder = new FromBuilder();

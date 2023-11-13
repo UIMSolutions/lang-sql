@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class UpdateBuilder : Builder {
+class UpdateBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $idx) {
         $builder = new TableBuilder();

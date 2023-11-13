@@ -51,7 +51,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class TableBracketExpressionBuilder : Builder {
+class TableBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildColDef($parsed) {
         $builder = new ColumnDefinitionBuilder();

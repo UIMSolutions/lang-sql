@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class TempTableBuilder : Builder {
+class TempTableBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {
         $builder = new AliasBuilder();

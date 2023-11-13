@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *
  */
-class RefClauseBuilder : Builder {
+class RefClauseBuilder : ISqlBuilder {
 
     protected auto buildInList($parsed) {
         $builder = new InListBuilder();

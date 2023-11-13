@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class CreateStatementBuilder : Builder {
+class CreateStatementBuilder : ISqlBuilder {
 
     protected auto buildLIKE($parsed) {
         $builder = new LikeBuilder();

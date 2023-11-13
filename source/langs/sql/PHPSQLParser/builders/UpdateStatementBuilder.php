@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class UpdateStatementBuilder : Builder {
+class UpdateStatementBuilder : ISqlBuilder {
 
     protected auto buildWHERE($parsed) {
         $builder = new WhereBuilder();

@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class ReservedBuilder : Builder {
+class ReservedBuilder : ISqlBuilder {
 
     auto isReserved($parsed) {
         return (isset($parsed["expr_type"]) && $parsed["expr_type"] == ExpressionType::RESERVED);

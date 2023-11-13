@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class CreateIndexBuilder : Builder {
+class CreateIndexBuilder : ISqlBuilder {
 
     protected auto buildIndexType($parsed) {
         $builder = new CreateIndexTypeBuilder();

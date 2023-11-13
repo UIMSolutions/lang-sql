@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class CreateTableSelectOptionBuilder : Builder {
+class CreateTableSelectOptionBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if (!isset($parsed["select-option"]) || $parsed["select-option"] == false) {

@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class TruncateStatementBuilder : Builder {
+class TruncateStatementBuilder : ISqlBuilder {
 
     protected auto buildTRUNCATE($parsed) {
         $builder = new TruncateBuilder();

@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class IndexHintListBuilder : Builder {
+class IndexHintListBuilder : ISqlBuilder {
 
     auto hasHint($parsed) {
         return isset($parsed["hints"]);

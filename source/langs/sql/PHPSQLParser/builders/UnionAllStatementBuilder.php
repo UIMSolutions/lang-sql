@@ -9,7 +9,7 @@ module lang.sql.parsers.builders;
  
  *
  */
-class UnionAllStatementBuilder : Builder {
+class UnionAllStatementBuilder : ISqlBuilder {
 
 
 

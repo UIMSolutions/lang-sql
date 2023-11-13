@@ -48,7 +48,7 @@ module lang.sql.parsers.builders;
  
  *  
  */
-class CreateTableBuilder : Builder {
+class CreateTableBuilder : ISqlBuilder {
 
     protected auto buildCreateTableDefinition($parsed) {
         $builder = new CreateTableDefinitionBuilder();

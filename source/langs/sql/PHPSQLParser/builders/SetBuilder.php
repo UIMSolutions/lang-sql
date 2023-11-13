@@ -49,7 +49,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class SetBuilder : Builder {
+class SetBuilder : ISqlBuilder {
 
     protected auto buildSetExpression($parsed) {
         $builder = new SetExpressionBuilder();

@@ -50,7 +50,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
  
  *  
  */
-class CreateIndexOptionsBuilder : Builder {
+class CreateIndexOptionsBuilder : ISqlBuilder {
 
     protected auto buildIndexParser($parsed) {
         $builder = new IndexParserBuilder();

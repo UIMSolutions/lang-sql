@@ -51,7 +51,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class ForeignRefBuilder : Builder {
+class ForeignRefBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed) {
         $builder = new TableBuilder();

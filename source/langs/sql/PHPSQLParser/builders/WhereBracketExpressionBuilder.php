@@ -50,7 +50,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *
  */
-class WhereBracketExpressionBuilder : Builder {
+class WhereBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
         $builder = new ColumnReferenceBuilder();

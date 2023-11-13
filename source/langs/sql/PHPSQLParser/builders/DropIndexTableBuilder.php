@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class DropIndexTableBuilder : Builder {
+class DropIndexTableBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if (!isset($parsed["on"]) || $parsed["on"] == false) {

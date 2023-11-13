@@ -49,7 +49,7 @@ use PHPSQLParser\utils\ExpressionType;
  
  *  
  */
-class SubQueryBuilder : Builder {
+class SubQueryBuilder : ISqlBuilder {
 
     protected auto buildRefClause($parsed) {
         $builder = new RefClauseBuilder();
