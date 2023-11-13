@@ -14,6 +14,9 @@
 
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 /**
  * This class : the builder for directions (e.g. of the order-by clause). 
  * You can overwrite all functions to achieve another handling.

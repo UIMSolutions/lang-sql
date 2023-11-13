@@ -3,9 +3,7 @@
  * CreateTableSelectOptionBuilder.php
  *
  * Builds the select-options statement part of CREATE TABLE.
- * 
  */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;

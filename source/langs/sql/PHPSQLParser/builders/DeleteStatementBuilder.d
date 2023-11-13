@@ -28,11 +28,11 @@ class DeleteStatementBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = this.buildDELETE($parsed["DELETE"]) . " " . this.buildFROM($parsed["FROM"]);
+        mySql = this.buildDELETE($parsed["DELETE"]) . " " . this.buildFROM($parsed["FROM"]);
         if (isset($parsed["WHERE"])) {
-            $sql  ~= " " . this.buildWHERE($parsed["WHERE"]);
+            mySql  ~= " " . this.buildWHERE($parsed["WHERE"]);
         }
-        return $sql;
+        return mySql;
     }
 
 }

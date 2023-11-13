@@ -14,8 +14,7 @@ import lang.sql;
 
 /**
  * This class : the builder for a database within SHOW statement. 
- * You can overwrite all functions to achieve another handling.
-
+ * You can overwrite all functions to achieve another handling
  */
 class EngineBuilder : ISqlBuilder {
 

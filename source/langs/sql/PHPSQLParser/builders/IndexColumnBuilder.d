@@ -39,7 +39,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for index column entries of the column-list 
