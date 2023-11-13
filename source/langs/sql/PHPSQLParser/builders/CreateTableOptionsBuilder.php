@@ -6,7 +6,7 @@
  *
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 use PHPSQLParser\exceptions\UnableToCreateSQLException;
 
 /**

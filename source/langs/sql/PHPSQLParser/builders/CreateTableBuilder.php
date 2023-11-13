@@ -38,7 +38,7 @@
  * 
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the CREATE TABLE statement. You can overwrite

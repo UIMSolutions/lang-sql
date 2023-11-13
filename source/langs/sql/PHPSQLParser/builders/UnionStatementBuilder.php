@@ -1,5 +1,5 @@
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Union statement. You can overwrite

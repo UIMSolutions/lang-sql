@@ -38,7 +38,7 @@
  * 
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Create statement. You can overwrite

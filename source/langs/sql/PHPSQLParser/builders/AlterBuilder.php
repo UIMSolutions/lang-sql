@@ -1,5 +1,5 @@
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the [DELETE] part. You can overwrite

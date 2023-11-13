@@ -39,7 +39,7 @@
  * 
  */
 
-module lang.sql.parsersutils;
+module lang.sql.parsers.utils;
 
 /**
  * This class defines all values, which are possible for the [expr_type] field 

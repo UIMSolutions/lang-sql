@@ -38,7 +38,7 @@
  * 
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for functions within the ORDER-BY part. 

@@ -38,7 +38,7 @@
  * 
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for column references within the ORDER-BY part. 

@@ -1,5 +1,5 @@
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 class AlterStatementBuilder : IBuilder {
     protected auto buildSubTree($parsed) {

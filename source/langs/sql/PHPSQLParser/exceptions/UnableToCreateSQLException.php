@@ -36,7 +36,7 @@
  * @version   SVN: $Id$
  * 
  */
-module lang.sql.parsersexceptions;
+module lang.sql.parsers.exceptions;
 use Exception;
 
 /**

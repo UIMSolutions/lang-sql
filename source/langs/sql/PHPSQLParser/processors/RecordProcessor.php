@@ -39,7 +39,7 @@
  *
  */
 
-module lang.sql.parsersprocessors;
+module lang.sql.parsers.processors;
 
 /**
  * This class processes records of an INSERT statement.

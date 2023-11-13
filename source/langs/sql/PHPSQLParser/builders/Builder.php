@@ -38,7 +38,7 @@
  * 
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * A builder can create a part of an SQL statement. The necessary information

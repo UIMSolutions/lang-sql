@@ -5,7 +5,7 @@
  * Builds the DELETE statement
  */
 
-module lang.sql.parsersbuilders;
+module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Delete statement. You can overwrite

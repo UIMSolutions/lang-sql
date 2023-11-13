@@ -38,7 +38,7 @@
  *
  */
 
-module lang.sql.parsersprocessors;
+module lang.sql.parsers.processors;
 
 /**
  * This class processes the SQL chunks.
