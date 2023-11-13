@@ -52,7 +52,7 @@ use SqlParser\utils\ExpressionType;
 class GroupByAliasBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] != ExpressionType::ALIAS) {
             return "";
         }
         return $parsed["base_expr"];

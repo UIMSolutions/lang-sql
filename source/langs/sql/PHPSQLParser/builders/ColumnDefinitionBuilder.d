@@ -63,7 +63,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
     }
 
    auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COLDEF) {
+        if ($parsed["expr_type"] != ExpressionType::COLDEF) {
             return "";
         }
         $sql = "";

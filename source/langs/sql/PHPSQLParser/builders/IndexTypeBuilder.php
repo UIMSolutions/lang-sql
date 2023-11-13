@@ -59,7 +59,7 @@ class IndexTypeBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::INDEX_TYPE) {
+        if ($parsed["expr_type"] != ExpressionType::INDEX_TYPE) {
             return "";
         }
         $sql = "";

@@ -10,7 +10,7 @@ import lang.sql;
 class AliasReferenceBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] != ExpressionType::ALIAS) {
             return "";
         }
         $sql = $parsed["base_expr"];

@@ -69,7 +69,7 @@ class ForeignRefBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::REFERENCE) {
+        if ($parsed["expr_type"] != ExpressionType::REFERENCE) {
             return "";
         }
         $sql = "";

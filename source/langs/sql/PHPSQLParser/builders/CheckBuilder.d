@@ -63,7 +63,7 @@ class CheckBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::CHECK) {
+        if ($parsed["expr_type"] != ExpressionType::CHECK) {
             return "";
         }
         $sql = "";

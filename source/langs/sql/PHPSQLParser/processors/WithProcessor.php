@@ -71,7 +71,7 @@ class WithProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'AS':
-            	if ($prev !== 'TABLENAME') {
+            	if ($prev != 'TABLENAME') {
             		// error or tablename is AS
             		$resultList[] = this.buildTableName($trim);
             		$category = 'TABLENAME';

@@ -64,7 +64,7 @@ class IndexSizeBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::INDEX_SIZE) {
+        if ($parsed["expr_type"] != ExpressionType::INDEX_SIZE) {
             return "";
         }
         $sql = "";

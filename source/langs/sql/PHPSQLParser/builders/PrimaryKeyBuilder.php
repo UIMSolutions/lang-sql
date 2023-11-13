@@ -83,7 +83,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::PRIMARY_KEY) {
+        if ($parsed["expr_type"] != ExpressionType::PRIMARY_KEY) {
             return "";
         }
         $sql = "";

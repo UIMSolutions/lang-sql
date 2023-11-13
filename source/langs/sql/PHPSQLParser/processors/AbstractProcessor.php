@@ -121,7 +121,7 @@ abstract class AbstractProcessor {
                     $start = $i + 1;
                     break;
                 }
-                if ($quote !== $char) {
+                if ($quote != $char) {
                     break;
                 }
                 if (isset($tmp[$i + 1]) && ($quote == $tmp[$i + 1])) {
@@ -140,7 +140,7 @@ abstract class AbstractProcessor {
                 if ($quote == false) {
                     // we have found a separator
                     $char = trim(substr($tmp, $start, $i - $start));
-                    if ($char !== '') {
+                    if ($char != '') {
                         $result[] = $char;
                     }
                     $start = $i + 1;
@@ -156,7 +156,7 @@ abstract class AbstractProcessor {
 
         if ($quote == false && ($start < $len)) {
             $char = trim(substr($tmp, $start, $i - $start));
-            if ($char !== '') {
+            if ($char != '') {
                 $result[] = $char;
             }
         }
@@ -172,7 +172,7 @@ abstract class AbstractProcessor {
         $parenthesisRemoved = 0;
 
         $trim = trim($token);
-        if ($trim !== '' && $trim[0] == '(') { // remove only one parenthesis pair now!
+        if ($trim != '' && $trim[0] == '(') { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
             $trim[0] = ' ';
             $trim = trim($trim);
@@ -224,7 +224,7 @@ abstract class AbstractProcessor {
 
     protected auto getVariableType($expression) {
         // $expression must contain only upper-case characters
-        if ($expression[1] !== '@') {
+        if ($expression[1] != '@') {
             return ExpressionType::USER_VARIABLE;
         }
 

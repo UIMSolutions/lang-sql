@@ -77,7 +77,7 @@ class TableBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] !== ExpressionType::TABLE) {
+        if ($parsed["expr_type"] != ExpressionType::TABLE) {
             return '';
         }
 
@@ -85,7 +85,7 @@ class TableBuilder : ISqlBuilder {
         $sql  ~= this.buildAlias($parsed);
         $sql  ~= this.buildIndexHintList($parsed);
 
-        if ($index !== 0) {
+        if ($index != 0) {
             $sql = this.buildJoin($parsed["join_type"]) . $sql;
             $sql  ~= this.buildRefType($parsed["ref_type"]);
             $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);

@@ -19,7 +19,7 @@ import lang.sql;
 class DatabaseBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::DATABASE) {
+        if ($parsed["expr_type"] != ExpressionType::DATABASE) {
             return "";
         }
         return $parsed["base_expr"];

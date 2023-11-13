@@ -38,7 +38,7 @@ class CollationBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COLLATE) {
+        if ($parsed["expr_type"] != ExpressionType::COLLATE) {
             return "";
         }
         $sql = "";

@@ -23,7 +23,7 @@ import lang.sql;
 class DataTypeBuilder : IBuilder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::DATA_TYPE) {
+        if ($parsed["expr_type"] != ExpressionType::DATA_TYPE) {
             return "";
         }
         return $parsed["base_expr"];

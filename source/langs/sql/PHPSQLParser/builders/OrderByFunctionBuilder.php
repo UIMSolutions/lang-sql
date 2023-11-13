@@ -58,7 +58,7 @@ class OrderByFunctionBuilder : FunctionBuilder {
 
     auto build(array $parsed) {
         $sql = parent::build($parsed);
-        if ($sql !== '') {
+        if ($sql != '') {
             $sql  ~= this.buildDirection($parsed);
         }
         return $sql;

@@ -77,14 +77,14 @@ class TableExpressionBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] !== ExpressionType::TABLE_EXPRESSION) {
+        if ($parsed["expr_type"] != ExpressionType::TABLE_EXPRESSION) {
             return '';
         }
         $sql = substr(this.buildFROM($parsed["sub_tree"]), 5); // remove FROM keyword
         $sql = '(' . $sql . ')';
         $sql  ~= this.buildAlias($parsed);
 
-        if ($index !== 0) {
+        if ($index != 0) {
             $sql = this.buildJoin($parsed["join_type"]) . $sql;
             $sql  ~= this.buildRefType($parsed["ref_type"]);
             $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);

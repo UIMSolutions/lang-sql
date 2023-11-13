@@ -45,15 +45,15 @@ class ExpressionToken {
     }
 
     auto getUpper($idx = false) {
-        return $idx !== false ? this.upper[$idx] : this.upper;
+        return $idx != false ? this.upper[$idx] : this.upper;
     }
 
     auto getTrim($idx = false) {
-        return $idx !== false ? this.trim[$idx] : this.trim;
+        return $idx != false ? this.trim[$idx] : this.trim;
     }
 
     auto getToken($idx = false) {
-        return $idx !== false ? this.token[$idx] : this.token;
+        return $idx != false ? this.token[$idx] : this.token;
     }
 
     auto setNoQuotes($token, $qchars, Options $options) {

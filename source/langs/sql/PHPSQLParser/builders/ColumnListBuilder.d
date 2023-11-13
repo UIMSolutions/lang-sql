@@ -32,23 +32,24 @@ class ColumnListBuilder : ISqlBuilder {
         return $builder.build($parsed);
     }
     
-    auto build(array $parsed, $delim = ', ') {
-        if ($parsed["expr_type"] !== ExpressionType::COLUMN_LIST) {
+    string build(array $parsed, $delim = ', ') {
+        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
             return '';
         }
-        $sql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildIndexColumn($v);
-            $sql  ~= this.buildColumnReference($v);
 
-            if ($len == strlen($sql)) {
+        string mySql = "";
+        foreach ($parsed["sub_tree"] as $k => $v) {
+            $len = strlen(mySql);
+            mySql  ~= this.buildIndexColumn($v);
+            mySql  ~= this.buildColumnReference($v);
+
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE column-list subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= $delim;
+            mySql  ~= $delim;
         }
-        return '(' . substr($sql, 0, -strlen($delim)) . ')';
+        return '(' . substr(mySql, 0, -strlen($delim)) . ')';
     }
 
 }

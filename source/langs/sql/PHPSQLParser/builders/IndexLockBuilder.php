@@ -68,7 +68,7 @@ class IndexLockBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::INDEX_LOCK) {
+        if ($parsed["expr_type"] != ExpressionType::INDEX_LOCK) {
             return "";
         }
         $sql = "";

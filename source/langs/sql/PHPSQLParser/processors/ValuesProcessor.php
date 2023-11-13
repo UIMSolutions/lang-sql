@@ -128,7 +128,7 @@ class ValuesProcessor : AbstractProcessor {
 
         }
 
-        if (trim($base_expr) !== '') {
+        if (trim($base_expr) != '') {
             if ($currCategory == '') {
                 $parsed[] = array('expr_type' => ExpressionType::RECORD, 'base_expr' => trim($base_expr),
                                   'data' => this.processRecord(trim($base_expr)), 'delim' => false);

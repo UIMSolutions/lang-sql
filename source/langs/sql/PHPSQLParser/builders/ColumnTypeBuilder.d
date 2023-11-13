@@ -73,28 +73,28 @@ class ColumnTypeBuilder : ISqlBuilder {
     }
 
     protected auto buildCharacterSet($parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::CHARSET) {
+        if ($parsed["expr_type"] != ExpressionType::CHARSET) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     protected auto buildCollation($parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COLLATE) {
+        if ($parsed["expr_type"] != ExpressionType::COLLATE) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     protected auto buildComment($parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COMMENT) {
+        if ($parsed["expr_type"] != ExpressionType::COMMENT) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COLUMN_TYPE) {
+        if ($parsed["expr_type"] != ExpressionType::COLUMN_TYPE) {
             return "";
         }
         $sql = "";

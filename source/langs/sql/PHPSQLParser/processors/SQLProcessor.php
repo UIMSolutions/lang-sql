@@ -75,7 +75,7 @@ class SQLProcessor : SQLChunkProcessor {
             $trim = trim($token); // this removes also \n and \t!
 
             // if it starts with an "(", it should follow a SELECT
-            if ($trim !== "" && $trim[0] == "(" && $token_category == "") {
+            if ($trim != "" && $trim[0] == "(" && $token_category == "") {
                 $token_category = 'BRACKET';
                 $prev_category = $token_category;
             }
@@ -85,7 +85,7 @@ class SQLProcessor : SQLChunkProcessor {
              */
             if ($skip_next > 0) {
                 if ($trim == "") {
-                    if ($token_category !== "") { // is this correct??
+                    if ($token_category != "") { // is this correct??
                         $out[$token_category][] = $token;
                     }
                     continue;
@@ -137,13 +137,13 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case 'DUPLICATE':
-                if ($token_category !== 'VALUES') {
+                if ($token_category != 'VALUES') {
                     $token_category = $upper;
                 }
                 break;
 
             case 'SET':
-                if ($token_category !== 'TABLE') {
+                if ($token_category != 'TABLE') {
                     $token_category = $upper;
                 }
                 break;
@@ -402,7 +402,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             /* DROP TABLE is different from ALTER TABLE DROP ... */
             case 'DROP':
-                if ($token_category !== 'ALTER') {
+                if ($token_category != 'ALTER') {
                     $token_category = $upper;
                     continue 2;
                 }
@@ -511,7 +511,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             // remove obsolete category after union (empty category because of
             // empty token before select)
-            if ($token_category !== "" && ($prev_category == $token_category)) {
+            if ($token_category != "" && ($prev_category == $token_category)) {
                 $out[$token_category][] = $token;
             }
 

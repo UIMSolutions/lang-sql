@@ -73,7 +73,7 @@ class UniqueIndexBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::UNIQUE_IDX) {
+        if ($parsed["expr_type"] != ExpressionType::UNIQUE_IDX) {
             return "";
         }
         $sql = "";

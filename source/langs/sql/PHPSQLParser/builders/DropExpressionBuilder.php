@@ -78,7 +78,7 @@ class DropExpressionBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return "";
         }
         $sql = "";

@@ -199,13 +199,13 @@ class PositionCalculator {
         if (!is_numeric($key)) {
             if (($key == 'UNION' || $key == 'UNION ALL')
                 || ($key == 'expr_type' && isset(this.flippedBacktrackingTypes[$parsed]))
-                || ($key == 'select-option' && $parsed !== false) || ($key == 'alias' && $parsed !== false)) {
+                || ($key == 'select-option' && $parsed != false) || ($key == 'alias' && $parsed != false)) {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record
                 // and we have to look into it too
                 $backtracking[] = $charPos;
 
-            } elseif (($key == 'ref_clause' || $key == 'columns') && $parsed !== false) {
+            } elseif (($key == 'ref_clause' || $key == 'columns') && $parsed != false) {
                 // we hold the current position and come back after n base_expr(s)
                 // there is an array of sub-elements before (!) the base_expr clause of the current element
                 // so we go through the sub-elements and must come at the end
@@ -213,14 +213,14 @@ class PositionCalculator {
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false; // backtracking only after n base_expr!
                 }
-            } elseif (($key == 'sub_tree' && $parsed !== false) || ($key == 'options' && $parsed !== false)) {
+            } elseif (($key == 'sub_tree' && $parsed != false) || ($key == 'options' && $parsed != false)) {
                 // we prevent wrong backtracking on subtrees (too much array_pop())
                 // there is an array of sub-elements after(!) the base_expr clause of the current element
                 // so we go through the sub-elements and must not come back at the end
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false;
                 }
-            } elseif (($key == 'TABLE') || ($key == 'create-def' && $parsed !== false)) {
+            } elseif (($key == 'TABLE') || ($key == 'create-def' && $parsed != false)) {
                 // do nothing
             } else {
                 // move the current pos after the keyword
@@ -254,7 +254,7 @@ class PositionCalculator {
                 //this.printPos("1", $sql, $charPos, $key, $value, $backtracking);
 
                 $oldPos = array_pop($backtracking);
-                if (isset($oldPos) && $oldPos !== false) {
+                if (isset($oldPos) && $oldPos != false) {
                     $charPos = $oldPos;
                 }
 

@@ -57,7 +57,7 @@ class TruncateBuilder : ISqlBuilder {
         // works for one table only
         $parsed["tables"] = array($parsed["TABLE"]["base_expr"]);
 
-        if ($parsed["tables"] !== false) {
+        if ($parsed["tables"] != false) {
             foreach ($parsed["tables"] as $k => $v) {
                 $sql  ~= $v . ", ";
                 $right = -2;

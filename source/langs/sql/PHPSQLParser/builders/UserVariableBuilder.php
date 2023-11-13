@@ -52,7 +52,7 @@ use SqlParser\utils\ExpressionType;
 class UserVariableBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::USER_VARIABLE) {
+        if ($parsed["expr_type"] != ExpressionType::USER_VARIABLE) {
             return "";
         }
         return $parsed["base_expr"];

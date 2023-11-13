@@ -43,7 +43,7 @@ class ForeignKeyBuilder : IBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::FOREIGN_KEY) {
+        if ($parsed["expr_type"] != ExpressionType::FOREIGN_KEY) {
             return "";
         }
         $sql = "";

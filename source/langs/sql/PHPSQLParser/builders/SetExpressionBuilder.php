@@ -83,7 +83,7 @@ class SetExpressionBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return '';
         }
         $sql = "";
@@ -98,7 +98,7 @@ class SetExpressionBuilder : ISqlBuilder {
                         
             // we don't need whitespace between the sign and 
             // the following part
-            if (this.buildSign($v) !== '') {
+            if (this.buildSign($v) != '') {
                 $delim = "";
             }
             $sql  ~= this.buildSign($v);

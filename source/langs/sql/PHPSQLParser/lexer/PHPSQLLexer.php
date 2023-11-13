@@ -181,10 +181,10 @@ class PHPSQLLexer {
 
             $token = $tokens[$i];
 
-            if ($userdef !== false) {
+            if ($userdef != false) {
                 $tokens[$userdef]  ~= $token;
                 unset($tokens[$i]);
-                if ($token !== "@") {
+                if ($token != "@") {
                     $userdef = false;
                 }
             }
@@ -237,7 +237,7 @@ class PHPSQLLexer {
                 $in_string = !$in_string;
             }
             if(!$in_string) {
-                if ($comment !== false) {
+                if ($comment != false) {
                     if ($inline == true && ($token == "\n" || $token == "\r\n")) {
                         $comment = false;
                     } else {
@@ -401,7 +401,7 @@ class PHPSQLLexer {
         $token_count = count($tokens);
         $i = 0;
         while ($i < $token_count) {
-            if ($tokens[$i] !== '(') {
+            if ($tokens[$i] != '(') {
                 $i++;
                 continue;
             }

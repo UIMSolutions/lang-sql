@@ -84,7 +84,7 @@ class SetProcessor : AbstractProcessor {
 
             case ',':
                 $assignment = this.processAssignment($baseExpr);
-                if (!$isUpdate && $varType !== false) {
+                if (!$isUpdate && $varType != false) {
                     $assignment["sub_tree"][0]["expr_type"] = $varType;
                 }
                 $result[] = $assignment;
@@ -97,9 +97,9 @@ class SetProcessor : AbstractProcessor {
             $baseExpr  ~= $token;
         }
 
-        if (trim($baseExpr) !== "") {
+        if (trim($baseExpr) != "") {
             $assignment = this.processAssignment($baseExpr);
-            if (!$isUpdate && $varType !== false) {
+            if (!$isUpdate && $varType != false) {
                 $assignment["sub_tree"][0]["expr_type"] = $varType;
             }
             $result[] = $assignment;

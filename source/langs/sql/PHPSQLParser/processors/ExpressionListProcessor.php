@@ -118,14 +118,14 @@ class ExpressionListProcessor : AbstractProcessor {
                         default:
                         }
 
-                        if ($match_mode !== false) {
+                        if ($match_mode != false) {
                             unset($localTokenList[$k]);
                         }
                     }
 
                     $tmpToken = this.process($localTokenList);
 
-                    if ($match_mode !== false) {
+                    if ($match_mode != false) {
                         $match_mode = new ExpressionToken(0, $match_mode);
                         $match_mode.setTokenType(ExpressionType::MATCH_MODE);
                         $tmpToken[] = $match_mode.toArray();
@@ -299,7 +299,7 @@ class ExpressionListProcessor : AbstractProcessor {
                 case 'LIKE':
                 case '%':
                 case '!=':
-                case '<>':
+                case '!=':
                 case 'REGEXP':
                 case '!':
                 case '||':

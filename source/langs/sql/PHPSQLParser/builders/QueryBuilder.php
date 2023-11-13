@@ -77,7 +77,7 @@ class QueryBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] !== ExpressionType::QUERY) {
+        if ($parsed["expr_type"] != ExpressionType::QUERY) {
             return '';
         }
 
@@ -85,7 +85,7 @@ class QueryBuilder : ISqlBuilder {
         $sql = this.buildSelectStatement($parsed["sub_tree"]);
         $sql  ~= this.buildAlias($parsed);
 
-        if ($index !== 0) {
+        if ($index != 0) {
             $sql = this.buildJoin($parsed["join_type"]) . $sql;
             $sql  ~= this.buildRefType($parsed["ref_type"]);
             $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);

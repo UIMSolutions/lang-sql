@@ -57,7 +57,7 @@ class InListBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::IN_LIST) {
+        if ($parsed["expr_type"] != ExpressionType::IN_LIST) {
             return "";
         }
         $sql = this.buildSubTree($parsed, ", ");

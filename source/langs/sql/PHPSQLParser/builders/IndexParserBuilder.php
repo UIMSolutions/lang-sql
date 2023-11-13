@@ -64,7 +64,7 @@ class IndexParserBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::INDEX_PARSER) {
+        if ($parsed["expr_type"] != ExpressionType::INDEX_PARSER) {
             return "";
         }
         $sql = "";

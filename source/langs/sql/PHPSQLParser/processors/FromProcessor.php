@@ -92,7 +92,7 @@ class FromProcessor : AbstractProcessor {
         $parseInfo["saved_join_type"] = ($parseInfo["next_join_type"] ? $parseInfo["next_join_type"] : 'JOIN');
 
         // we have a reg_expr, so we have to parse it
-        if ($parseInfo["ref_expr"] !== false) {
+        if ($parseInfo["ref_expr"] != false) {
             $unparsed = this.splitSQLIntoTokens(trim($parseInfo["ref_expr"]));
 
             // here we can get a comma separated list
@@ -162,7 +162,7 @@ class FromProcessor : AbstractProcessor {
         foreach ($tokens as $token) {
             $upper = strtoupper(trim($token));
 
-            if ($skip_next && $token !== "") {
+            if ($skip_next && $token != "") {
                 $parseInfo["token_count"]++;
                 $skip_next = false;
                 continue;
@@ -191,7 +191,7 @@ class FromProcessor : AbstractProcessor {
                     $parseInfo["next_join_type"] = strtoupper(trim($prevToken)); // it seems to be a join
                 } elseif ($token_category == 'IDX_HINT') {
                     $parseInfo["expression"]  ~= $token;
-                    if ($parseInfo["ref_type"] !== false) { // all after ON / USING
+                    if ($parseInfo["ref_type"] != false) { // all after ON / USING
                         $parseInfo["ref_expr"]  ~= $token;
                     }
                 }
@@ -213,14 +213,14 @@ class FromProcessor : AbstractProcessor {
                     } else {
                         $token_category = "";     // it seems to be a function
                         $parseInfo["expression"]  ~= $prevToken;
-                        if ($parseInfo["ref_type"] !== false) { // all after ON / USING
+                        if ($parseInfo["ref_type"] != false) { // all after ON / USING
                             $parseInfo["ref_expr"]  ~= $prevToken;
                         }
                         $prevToken = "";
                     }
                 }
                 $parseInfo["expression"]  ~= $token;
-                if ($parseInfo["ref_type"] !== false) { // all after ON / USING
+                if ($parseInfo["ref_type"] != false) { // all after ON / USING
                     $parseInfo["ref_expr"]  ~= $token;
                 }
                 break;

@@ -98,7 +98,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::BRACKET_EXPRESSION) {
+        if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
         $sql = "";

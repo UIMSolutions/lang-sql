@@ -38,7 +38,7 @@ class CharacterSetBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::CHARSET) {
+        if ($parsed["expr_type"] != ExpressionType::CHARSET) {
             return "";
         }
         $sql = "";

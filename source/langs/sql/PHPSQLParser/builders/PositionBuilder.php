@@ -52,7 +52,7 @@ use SqlParser\utils\ExpressionType;
 class PositionBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::POSITION) {
+        if ($parsed["expr_type"] != ExpressionType::POSITION) {
             return "";
         }
         return $parsed["base_expr"];

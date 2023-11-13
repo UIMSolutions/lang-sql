@@ -98,9 +98,9 @@ class FunctionBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if (($parsed["expr_type"] !== ExpressionType::AGGREGATE_FUNCTION)
-            && ($parsed["expr_type"] !== ExpressionType::SIMPLE_FUNCTION)
-            && ($parsed["expr_type"] !== ExpressionType::CUSTOM_FUNCTION)) {
+        if (($parsed["expr_type"] != ExpressionType::AGGREGATE_FUNCTION)
+            && ($parsed["expr_type"] != ExpressionType::SIMPLE_FUNCTION)
+            && ($parsed["expr_type"] != ExpressionType::CUSTOM_FUNCTION)) {
             return "";
         }
 

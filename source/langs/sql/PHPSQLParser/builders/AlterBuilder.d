@@ -13,7 +13,7 @@ class AlterBuilder : ISqlBuilder {
             }
 
             if (substr($term, 0, 1) == '(' ||
-                strpos($term, "\n") !== false) {
+                strpos($term, "\n") != false) {
                     mySql = rtrim(mySql);
             }
 

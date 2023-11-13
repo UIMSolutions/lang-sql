@@ -111,7 +111,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             $trim = trim($token);
             $base_expr  ~= $token;
 
-            if ($skip !== 0) {
+            if ($skip != 0) {
                 $skip--;
                 continue;
             }

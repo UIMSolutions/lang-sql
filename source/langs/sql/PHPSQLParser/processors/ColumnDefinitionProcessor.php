@@ -58,7 +58,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     protected auto removeComma($tokens) {
         $res = array();
         foreach ($tokens as $token) {
-            if (trim($token) !== ',') {
+            if (trim($token) != ',') {
                 $res[] = $token;
             }
         }
@@ -74,7 +74,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         $expr = array_merge($expr, $options);
 
         // followed by references
-        if (sizeof($refs) !== 0) {
+        if (sizeof($refs) != 0) {
             $expr["sub_tree"] = array_merge($expr["sub_tree"], $refs);
         }
 
@@ -318,7 +318,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case 'KEY':
                 $options["sub_tree"][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
-                if ($currCategory !== 'UNIQUE') {
+                if ($currCategory != 'UNIQUE') {
                     $options["primary"] = true;
                 }
                 continue 2;

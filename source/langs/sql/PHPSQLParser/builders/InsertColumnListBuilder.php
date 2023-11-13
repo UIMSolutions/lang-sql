@@ -58,7 +58,7 @@ class InsertColumnListBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COLUMN_LIST) {
+        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
             return "";
         }
         $sql = "";

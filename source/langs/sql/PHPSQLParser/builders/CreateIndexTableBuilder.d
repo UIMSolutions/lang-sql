@@ -31,7 +31,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
             return '';
         }
         $table = $parsed["on"];
-        if ($table["expr_type"] !== ExpressionType::TABLE) {
+        if ($table["expr_type"] != ExpressionType::TABLE) {
             return '';
         }
         return 'ON ' . $table["name"] . ' ' . this.buildColumnList($table["sub_tree"]);

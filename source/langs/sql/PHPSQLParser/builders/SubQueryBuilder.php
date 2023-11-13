@@ -77,7 +77,7 @@ class SubQueryBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] !== ExpressionType::SUBQUERY) {
+        if ($parsed["expr_type"] != ExpressionType::SUBQUERY) {
             return '';
         }
 
@@ -86,7 +86,7 @@ class SubQueryBuilder : ISqlBuilder {
         $sql = '(' . $sql . ')';
         $sql  ~= this.buildAlias($parsed);
 
-        if ($index !== 0) {
+        if ($index != 0) {
             $sql = this.buildJoin($parsed["join_type"]) . $sql;
             $sql  ~= this.buildRefType($parsed["ref_type"]);
             $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);

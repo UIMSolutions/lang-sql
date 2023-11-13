@@ -63,7 +63,7 @@ class IndexCommentBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::COMMENT) {
+        if ($parsed["expr_type"] != ExpressionType::COMMENT) {
             return '';
         }
         $sql = "";

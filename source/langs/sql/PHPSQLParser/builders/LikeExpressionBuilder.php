@@ -65,7 +65,7 @@ class LikeExpressionBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] !== ExpressionType::LIKE) {
+        if ($parsed["expr_type"] != ExpressionType::LIKE) {
             return "";
         }
         $sql = "";
