@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class DefaultValueBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::DEF_VALUE) {
+        if ($parsed["expr_type'] !== ExpressionType::DEF_VALUE) {
             return "";
         }
-        return $parsed['base_expr'];
+        return $parsed["base_expr'];
     }
 }

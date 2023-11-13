@@ -55,16 +55,16 @@ class HavingProcessor : ExpressionListProcessor {
         $parsed = parent::process($tokens);
 
         foreach ($parsed as $k => $v) {
-            if ($v['expr_type'] == ExpressionType::COLREF) {
+            if ($v["expr_type'] == ExpressionType::COLREF) {
                 foreach ($select as $clause) {
-                    if (!isset($clause['alias'])) {
+                    if (!isset($clause["alias'])) {
                     	continue;
                     }
-                    if (!$clause['alias']) {
+                    if (!$clause["alias']) {
                         continue;
                     }
-                    if ($clause['alias']['no_quotes'] == $v['no_quotes']) {
-                        $parsed[$k]['expr_type'] = ExpressionType::ALIAS;
+                    if ($clause["alias']["no_quotes'] == $v["no_quotes']) {
+                        $parsed[$k]["expr_type'] = ExpressionType::ALIAS;
                         break;
                     }
                 }

@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class OperatorBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::OPERATOR) {
+        if ($parsed["expr_type'] !== ExpressionType::OPERATOR) {
             return "";
         }
-        return $parsed['base_expr'];
+        return $parsed["base_expr'];
     }
 }

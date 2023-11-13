@@ -13,7 +13,7 @@ class AlterStatementBuilder : IBuilder {
     }
 
     auto build(array $parsed) {
-        $alter = $parsed['ALTER'];
+        $alter = $parsed["ALTER'];
         $sql = this.buildAlter($alter);
 
         return $sql;

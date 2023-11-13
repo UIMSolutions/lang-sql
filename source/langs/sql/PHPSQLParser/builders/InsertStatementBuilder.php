@@ -72,14 +72,14 @@ class InsertStatementBuilder : Builder {
     
     auto build(array $parsed) {
         // TODO: are there more than one tables possible (like [INSERT][1])
-        $sql = this.buildINSERT($parsed['INSERT']);
-        if (isset($parsed['VALUES'])) {
-            $sql  ~= ' ' . this.buildVALUES($parsed['VALUES']);
+        $sql = this.buildINSERT($parsed["INSERT']);
+        if (isset($parsed["VALUES'])) {
+            $sql  ~= ' ' . this.buildVALUES($parsed["VALUES']);
         }
-        if (isset($parsed['SET'])) {
-            $sql  ~= ' ' . this.buildSET($parsed['SET']);
+        if (isset($parsed["SET'])) {
+            $sql  ~= ' ' . this.buildSET($parsed["SET']);
         }
-        if (isset($parsed['SELECT'])) {
+        if (isset($parsed["SELECT'])) {
             $sql  ~= ' ' . this.buildSELECT($parsed);
         }
         return $sql;

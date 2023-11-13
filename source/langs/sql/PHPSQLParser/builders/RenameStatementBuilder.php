@@ -57,16 +57,16 @@ class RenameStatementBuilder : Builder {
     }
 
     protected auto processSourceAndDestTable($v) {
-        if (!isset($v['source']) || !isset($v['destination'])) {
+        if (!isset($v["source']) || !isset($v["destination'])) {
             return '';
         }
-        return $v['source']['base_expr'] . ' TO ' . $v['destination']['base_expr'] . ',';
+        return $v["source']["base_expr'] . ' TO ' . $v["destination']["base_expr'] . ',';
     }
 
     auto build(array $parsed) {
-        $rename = $parsed['RENAME'];
+        $rename = $parsed["RENAME'];
         $sql = '';
-        foreach ($rename['sub_tree'] as $k => $v) {
+        foreach ($rename["sub_tree'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);
             $sql  ~= this.processSourceAndDestTable($v);

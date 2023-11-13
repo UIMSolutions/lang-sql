@@ -97,31 +97,31 @@ class SelectStatementBuilder : Builder {
 
     auto build(array $parsed) {
         $sql = "";
-        if (isset($parsed['SELECT'])) {
-            $sql  ~= this.buildSELECT($parsed['SELECT']);
+        if (isset($parsed["SELECT'])) {
+            $sql  ~= this.buildSELECT($parsed["SELECT']);
         }
-        if (isset($parsed['FROM'])) {
-            $sql  ~= " " . this.buildFROM($parsed['FROM']);
+        if (isset($parsed["FROM'])) {
+            $sql  ~= " " . this.buildFROM($parsed["FROM']);
         }
-        if (isset($parsed['WHERE'])) {
-            $sql  ~= " " . this.buildWHERE($parsed['WHERE']);
+        if (isset($parsed["WHERE'])) {
+            $sql  ~= " " . this.buildWHERE($parsed["WHERE']);
         }
-        if (isset($parsed['GROUP'])) {
-            $sql  ~= " " . this.buildGROUP($parsed['GROUP']);
+        if (isset($parsed["GROUP'])) {
+            $sql  ~= " " . this.buildGROUP($parsed["GROUP']);
         }
-        if (isset($parsed['HAVING'])) {
-            $sql  ~= " " . this.buildHAVING($parsed['HAVING']);
+        if (isset($parsed["HAVING'])) {
+            $sql  ~= " " . this.buildHAVING($parsed["HAVING']);
         }
-        if (isset($parsed['ORDER'])) {
-            $sql  ~= " " . this.buildORDER($parsed['ORDER']);
+        if (isset($parsed["ORDER'])) {
+            $sql  ~= " " . this.buildORDER($parsed["ORDER']);
         }
-        if (isset($parsed['LIMIT'])) {
-            $sql  ~= " " . this.buildLIMIT($parsed['LIMIT']);
+        if (isset($parsed["LIMIT'])) {
+            $sql  ~= " " . this.buildLIMIT($parsed["LIMIT']);
         }       
-        if (isset($parsed['UNION'])) {
+        if (isset($parsed["UNION'])) {
             $sql  ~= " " . this.buildUNION($parsed);
         }
-        if (isset($parsed['UNION ALL'])) {
+        if (isset($parsed["UNION ALL'])) {
         	$sql  ~= " " . this.buildUNIONALL($parsed);
         }
         return $sql;

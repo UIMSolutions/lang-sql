@@ -72,16 +72,16 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
     protected auto correctExpressionType(&$expr) {
         $type = ExpressionType::EXPRESSION;
-        if (!isset($expr[0]) || !isset($expr[0]['expr_type'])) {
+        if (!isset($expr[0]) || !isset($expr[0]["expr_type'])) {
             return $type;
         }
 
         // replace the constraint type with a more descriptive one
-        switch ($expr[0]['expr_type']) {
+        switch ($expr[0]["expr_type']) {
 
         case ExpressionType::CONSTRAINT:
-            $type = $expr[1]['expr_type'];
-            $expr[1]['expr_type'] = ExpressionType::RESERVED;
+            $type = $expr[1]["expr_type'];
+            $expr[1]["expr_type'] = ExpressionType::RESERVED;
             break;
 
         case ExpressionType::COLREF:
@@ -89,8 +89,8 @@ class CreateDefinitionProcessor : AbstractProcessor {
             break;
 
         default:
-            $type = $expr[0]['expr_type'];
-            $expr[0]['expr_type'] = ExpressionType::RESERVED;
+            $type = $expr[0]["expr_type'];
+            $expr[0]["expr_type'] = ExpressionType::RESERVED;
             break;
 
         }
@@ -239,8 +239,8 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case 'REFERENCES':
                 if ($currCategory == 'INDEX_COL_LIST' && $prevCategory == 'FOREIGN') {
                     $refs = this.processReferenceDefinition(array_slice($tokens, $k - 1, null, true));
-                    $skip = $refs['till'] - $k;
-                    unset($refs['till']);
+                    $skip = $refs["till'] - $k;
+                    unset($refs["till']);
                     $expr[] = $refs;
                     $currCategory = $upper;
                 }
@@ -251,13 +251,13 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case 'HASH':
                 if ($currCategory == 'INDEX_TYPE') {
                     $last = array_pop($expr);
-                    $last['sub_tree'][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
+                    $last["sub_tree'][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                     $expr[] = array('expr_type' => ExpressionType::INDEX_TYPE, 'base_expr' => $base_expr,
-                                    'sub_tree' => $last['sub_tree']);
-                    $base_expr = $last['base_expr'] . $base_expr;
+                                    'sub_tree' => $last["sub_tree']);
+                    $base_expr = $last["base_expr'] . $base_expr;
 
                     // FIXME: it could be wrong for index_type within index_option
-                    $currCategory = $last['category'];
+                    $currCategory = $last["category'];
                     continue 2;
                 }
                 // else ?
@@ -267,7 +267,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 if ($currCategory == 'INDEX_SIZE') {
                     // the optional character between KEY_BLOCK_SIZE and the numeric constant
                     $last = array_pop($expr);
-                    $last['sub_tree'][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
+                    $last["sub_tree'][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                     $expr[] = $last;
                     continue 2;
                 }
@@ -276,7 +276,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case 'PARSER':
                 if ($currCategory == 'INDEX_PARSER') {
                     $last = array_pop($expr);
-                    $last['sub_tree'][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
+                    $last["sub_tree'][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                     $expr[] = $last;
                     continue 2;
                 }
@@ -286,7 +286,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case ',':
             // this starts the next definition
                 $type = this.correctExpressionType($expr);
-                $result['create-def'][] = array('expr_type' => $type,
+                $result["create-def'][] = array('expr_type' => $type,
                                                 'base_expr' => trim(substr($base_expr, 0, -strlen($token))),
                                                 'sub_tree' => $expr);
                 $base_expr = '';
@@ -346,28 +346,28 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case 'CONSTRAINT':
                 // constraint name
                     $last = array_pop($expr);
-                    $last['base_expr'] = $base_expr;
-                    $last['sub_tree'] = array('expr_type' => ExpressionType::CONSTANT, 'base_expr' => $trim);
+                    $last["base_expr'] = $base_expr;
+                    $last["sub_tree'] = array('expr_type' => ExpressionType::CONSTANT, 'base_expr' => $trim);
                     $expr[] = $last;
                     continue 3;
 
                 case 'INDEX_PARSER':
                 // index parser name
                     $last = array_pop($expr);
-                    $last['sub_tree'][] = array('expr_type' => ExpressionType::CONSTANT, 'base_expr' => $trim);
+                    $last["sub_tree'][] = array('expr_type' => ExpressionType::CONSTANT, 'base_expr' => $trim);
                     $expr[] = array('expr_type' => ExpressionType::INDEX_PARSER, 'base_expr' => $base_expr,
-                                    'sub_tree' => $last['sub_tree']);
-                    $base_expr = $last['base_expr'] . $base_expr;
+                                    'sub_tree' => $last["sub_tree']);
+                    $base_expr = $last["base_expr'] . $base_expr;
                     $currCategory = 'INDEX_COL_LIST';
                     continue 3;
 
                 case 'INDEX_SIZE':
                 // index key block size numeric constant
                     $last = array_pop($expr);
-                    $last['sub_tree'][] = array('expr_type' => ExpressionType::CONSTANT, 'base_expr' => $trim);
+                    $last["sub_tree'][] = array('expr_type' => ExpressionType::CONSTANT, 'base_expr' => $trim);
                     $expr[] = array('expr_type' => ExpressionType::INDEX_SIZE, 'base_expr' => $base_expr,
-                                    'sub_tree' => $last['sub_tree']);
-                    $base_expr = $last['base_expr'] . $base_expr;
+                                    'sub_tree' => $last["sub_tree']);
+                    $base_expr = $last["base_expr'] . $base_expr;
                     $currCategory = 'INDEX_COL_LIST';
                     continue 3;
 
@@ -393,8 +393,8 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 // the column-definition
                 // it stops on a comma or on a parenthesis
                     $parsed = this.processColumnDefinition(array_slice($tokens, $k, null, true));
-                    $skip = $parsed['till'] - $k;
-                    unset($parsed['till']);
+                    $skip = $parsed["till'] - $k;
+                    unset($parsed["till']);
                     $expr[] = $parsed;
                     $currCategory = '';
                     break;
@@ -410,7 +410,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
         }
 
         $type = this.correctExpressionType($expr);
-        $result['create-def'][] = array('expr_type' => $type, 'base_expr' => trim($base_expr), 'sub_tree' => $expr);
+        $result["create-def'][] = array('expr_type' => $type, 'base_expr' => trim($base_expr), 'sub_tree' => $expr);
         return $result;
     }
 }

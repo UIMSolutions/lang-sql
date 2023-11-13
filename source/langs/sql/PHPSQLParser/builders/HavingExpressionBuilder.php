@@ -63,11 +63,11 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type'] !== ExpressionType::EXPRESSION) {
             return "";
         }
         $sql = "";
-        foreach ($parsed['sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildColRef($v);
             $sql  ~= this.buildConstant($v);

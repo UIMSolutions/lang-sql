@@ -72,6 +72,6 @@ class ValuesBuilder : Builder {
     }
 
     protected auto getRecordDelimiter($parsed) {
-        return empty($parsed['delim']) ? ' ' : $parsed['delim'] . ' ';
+        return empty($parsed["delim']) ? ' ' : $parsed["delim'] . ' ';
     }
 }

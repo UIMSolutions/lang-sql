@@ -51,13 +51,13 @@ module lang.sql.parsers.builders;
 class CreateTableSelectOptionBuilder : Builder {
 
     auto build(array $parsed) {
-        if (!isset($parsed['select-option']) || $parsed['select-option'] == false) {
+        if (!isset($parsed["select-option']) || $parsed["select-option'] == false) {
             return "";
         }
-        $option = $parsed['select-option'];
+        $option = $parsed["select-option'];
 
-        $sql = ($option['duplicates'] == false ? '' : (' ' . $option['duplicates']));
-        $sql  ~= ($option['as'] == false ? '' : ' AS');
+        $sql = ($option["duplicates'] == false ? '' : (' ' . $option["duplicates']));
+        $sql  ~= ($option["as'] == false ? '' : ' AS');
         return $sql;
     }
 }

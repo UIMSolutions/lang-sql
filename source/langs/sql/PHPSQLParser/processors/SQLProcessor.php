@@ -295,7 +295,7 @@ class SQLProcessor : SQLChunkProcessor {
                     $out[$token_category][] = $trim;
                     continue 2;
                 }
-                $out['OPTIONS'][] = $upper;
+                $out["OPTIONS'][] = $upper;
                 continue 2;
 
             case 'CHECK':
@@ -385,7 +385,7 @@ class SQLProcessor : SQLChunkProcessor {
                 } else {
                     $trim = 'LOCK IN SHARE MODE';
                     $skip_next = 3;
-                    $out['OPTIONS'][] = $trim;
+                    $out["OPTIONS'][] = $trim;
                 }
                 continue 2;
 
@@ -394,7 +394,7 @@ class SQLProcessor : SQLChunkProcessor {
                     $token_category = $upper;
                     continue 2;
                 }
-                if ($token_category == 'FROM' && !empty($out['DELETE'])) {
+                if ($token_category == 'FROM' && !empty($out["DELETE'])) {
                     $token_category = $upper;
                     continue 2;
                 }
@@ -413,7 +413,7 @@ class SQLProcessor : SQLChunkProcessor {
                     break;
                 }
                 $skip_next = 1;
-                $out['OPTIONS'][] = 'FOR UPDATE'; // TODO: this could be generate problems within the position calculator
+                $out["OPTIONS'][] = 'FOR UPDATE'; // TODO: this could be generate problems within the position calculator
                 continue 2;
 
             case 'UPDATE':
@@ -464,7 +464,7 @@ class SQLProcessor : SQLChunkProcessor {
             case 'DELAYED':
             case 'QUICK':
             case 'HIGH_PRIORITY':
-                $out['OPTIONS'][] = $trim;
+                $out["OPTIONS'][] = $trim;
                 continue 2;
 
             case 'USE':
@@ -484,13 +484,13 @@ class SQLProcessor : SQLChunkProcessor {
                     $out[$token_category][] = $trim;
                     continue 2;
                 }
-                $out['OPTIONS'][] = $trim;
+                $out["OPTIONS'][] = $trim;
                 continue 2;
 
             case 'WITH':
                 if ($token_category == 'GROUP') {
                     $skip_next = 1;
-                    $out['OPTIONS'][] = 'WITH ROLLUP'; // TODO: this could be generate problems within the position calculator
+                    $out["OPTIONS'][] = 'WITH ROLLUP'; // TODO: this could be generate problems within the position calculator
                     continue 2;
                 }
                 if ($token_category == '') {

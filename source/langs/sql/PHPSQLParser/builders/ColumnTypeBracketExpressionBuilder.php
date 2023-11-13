@@ -57,7 +57,7 @@ class ColumnTypeBracketExpressionBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::BRACKET_EXPRESSION) {
+        if ($parsed["expr_type'] !== ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
         $sql = this.buildSubTree($parsed, ",");

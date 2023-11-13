@@ -73,11 +73,11 @@ class RecordBuilder : Builder {
     }
     
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::RECORD) {
-            return isset($parsed['base_expr']) ? $parsed['base_expr'] : '';
+        if ($parsed["expr_type'] !== ExpressionType::RECORD) {
+            return isset($parsed["base_expr']) ? $parsed["base_expr'] : '';
         }
         $sql = "";
-        foreach ($parsed['data'] as $k => $v) {
+        foreach ($parsed["data'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildConstant($v);
             $sql  ~= this.buildFunction($v);

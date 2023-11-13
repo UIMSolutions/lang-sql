@@ -64,11 +64,11 @@ class IndexParserBuilder : Builder {
     }
     
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::INDEX_PARSER) {
+        if ($parsed["expr_type'] !== ExpressionType::INDEX_PARSER) {
             return "";
         }
         $sql = "";
-        foreach ($parsed['sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);
             $sql  ~= this.buildConstant($v);

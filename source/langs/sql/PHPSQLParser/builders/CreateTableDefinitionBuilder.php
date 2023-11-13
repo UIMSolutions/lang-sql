@@ -56,9 +56,9 @@ class CreateTableDefinitionBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if (!isset($parsed) || $parsed['create-def'] == false) {
+        if (!isset($parsed) || $parsed["create-def'] == false) {
             return "";
         }
-        return this.buildTableBracketExpression($parsed['create-def']);
+        return this.buildTableBracketExpression($parsed["create-def']);
     }
 }

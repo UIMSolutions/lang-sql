@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class SignBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::SIGN) {
+        if ($parsed["expr_type'] !== ExpressionType::SIGN) {
             return "";
         }
-        return $parsed['base_expr'];
+        return $parsed["base_expr'];
     }
 }

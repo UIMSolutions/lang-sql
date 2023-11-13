@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class ProcedureBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::PROCEDURE) {
+        if ($parsed["expr_type'] !== ExpressionType::PROCEDURE) {
             return "";
         }
-        return $parsed['base_expr'];
+        return $parsed["base_expr'];
     }
 }

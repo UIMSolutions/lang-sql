@@ -66,7 +66,7 @@ class ValuesProcessor : AbstractProcessor {
         $parsed = array();
         $base_expr = '';
 
-        foreach ($tokens['VALUES'] as $k => $v) {
+        foreach ($tokens["VALUES'] as $k => $v) {
 	        if (this.isCommentToken($v)) {
 		        $parsed[] = parent::processComment($v);
 		        continue;
@@ -140,7 +140,7 @@ class ValuesProcessor : AbstractProcessor {
             }
         }
 
-        $tokens['VALUES'] = $parsed;
+        $tokens["VALUES'] = $parsed;
         return $tokens;
     }
 

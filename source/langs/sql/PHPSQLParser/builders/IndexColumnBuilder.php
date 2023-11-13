@@ -61,12 +61,12 @@ class IndexColumnBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::INDEX_COLUMN) {
+        if ($parsed["expr_type'] !== ExpressionType::INDEX_COLUMN) {
             return "";
         }
-        $sql = $parsed['name'];
-        $sql  ~= this.buildLength($parsed['length']);
-        $sql  ~= this.buildDirection($parsed['dir']);
+        $sql = $parsed["name'];
+        $sql  ~= this.buildLength($parsed["length']);
+        $sql  ~= this.buildDirection($parsed["dir']);
         return $sql;
     }
 

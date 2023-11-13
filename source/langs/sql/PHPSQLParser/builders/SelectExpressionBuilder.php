@@ -62,7 +62,7 @@ class SelectExpressionBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type'] !== ExpressionType::EXPRESSION) {
             return "";
         }
         $sql = this.buildSubTree($parsed, " ");

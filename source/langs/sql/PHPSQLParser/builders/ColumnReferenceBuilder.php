@@ -57,10 +57,10 @@ class ColumnReferenceBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::COLREF) {
+        if ($parsed["expr_type'] !== ExpressionType::COLREF) {
             return "";
         }
-        $sql = $parsed['base_expr'];
+        $sql = $parsed["base_expr'];
         $sql  ~= this.buildAlias($parsed);
         return $sql;
     }

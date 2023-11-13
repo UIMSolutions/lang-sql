@@ -89,10 +89,10 @@ class SelectExpressionProcessor : AbstractProcessor {
             // but also a comment!
             if ($capture) {
                 if (!this.isWhitespaceToken($upper) && !this.isCommentToken($upper)) {
-                    $alias['name']  ~= $token;
+                    $alias["name']  ~= $token;
                     array_pop($stripped);
                 }
-                $alias['base_expr']  ~= $token;
+                $alias["base_expr']  ~= $token;
                 $tokens[$i] = "";
                 continue;
             }
@@ -102,9 +102,9 @@ class SelectExpressionProcessor : AbstractProcessor {
 
         if ($alias) {
             // remove quotation from the alias
-            $alias['no_quotes'] = this.revokeQuotation($alias['name']);
-            $alias['name'] = trim($alias['name']);
-            $alias['base_expr'] = trim($alias['base_expr']);
+            $alias["no_quotes'] = this.revokeQuotation($alias["name']);
+            $alias["name'] = trim($alias["name']);
+            $alias["base_expr'] = trim($alias["base_expr']);
         }
 
         $stripped = this.processExpressionList($stripped);
@@ -125,9 +125,9 @@ class SelectExpressionProcessor : AbstractProcessor {
                     || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
                     || this.isColumnReference($prev) || this.isBracketExpression($prev)|| this.isCustomFunction($prev)) {
 
-                $alias = array('as' => false, 'name' => trim($last['base_expr']),
-                               'no_quotes' => this.revokeQuotation($last['base_expr']),
-                               'base_expr' => trim($last['base_expr']));
+                $alias = array('as' => false, 'name' => trim($last["base_expr']),
+                               'no_quotes' => this.revokeQuotation($last["base_expr']),
+                               'base_expr' => trim($last["base_expr']));
                 // remove the last token
                 array_pop($tokens);
             }
@@ -143,21 +143,21 @@ class SelectExpressionProcessor : AbstractProcessor {
         $type = ExpressionType::EXPRESSION;
         if (count($processed) == 1) {
             if (!this.isSubQuery($processed[0])) {
-                $type = $processed[0]['expr_type'];
-                $base_expr = $processed[0]['base_expr'];
-                $no_quotes = isset($processed[0]['no_quotes']) ? $processed[0]['no_quotes'] : null;
-                $processed = $processed[0]['sub_tree']; // it can be FALSE
+                $type = $processed[0]["expr_type'];
+                $base_expr = $processed[0]["base_expr'];
+                $no_quotes = isset($processed[0]["no_quotes']) ? $processed[0]["no_quotes'] : null;
+                $processed = $processed[0]["sub_tree']; // it can be FALSE
             }
         }
 
         $result = array();
-        $result['expr_type'] = $type;
-        $result['alias'] = $alias;
-        $result['base_expr'] = trim($base_expr);
+        $result["expr_type'] = $type;
+        $result["alias'] = $alias;
+        $result["base_expr'] = trim($base_expr);
         if (!empty($no_quotes)) {
-            $result['no_quotes'] = $no_quotes;
+            $result["no_quotes'] = $no_quotes;
         }
-        $result['sub_tree'] = (empty($processed) ? false : $processed);
+        $result["sub_tree'] = (empty($processed) ? false : $processed);
         return $result;
     }
 

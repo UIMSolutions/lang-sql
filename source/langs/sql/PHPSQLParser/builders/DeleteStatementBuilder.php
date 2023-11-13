@@ -28,9 +28,9 @@ class DeleteStatementBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        $sql = this.buildDELETE($parsed['DELETE']) . " " . this.buildFROM($parsed['FROM']);
-        if (isset($parsed['WHERE'])) {
-            $sql  ~= " " . this.buildWHERE($parsed['WHERE']);
+        $sql = this.buildDELETE($parsed["DELETE']) . " " . this.buildFROM($parsed["FROM']);
+        if (isset($parsed["WHERE'])) {
+            $sql  ~= " " . this.buildWHERE($parsed["WHERE']);
         }
         return $sql;
     }

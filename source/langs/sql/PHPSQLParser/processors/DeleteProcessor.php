@@ -52,30 +52,30 @@ class DeleteProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $tables = array();
-        $del = $tokens['DELETE'];
+        $del = $tokens["DELETE'];
 
-        foreach ($tokens['DELETE'] as $expression) {
+        foreach ($tokens["DELETE'] as $expression) {
             if (strtoupper($expression) !== 'DELETE' && trim($expression, " \t\n\r\0\x0B.*") !== ""
                 && !this.isCommaToken($expression)) {
                 $tables[] = trim($expression, " \t\n\r\0\x0B.*");
             }
         }
 
-        if (empty($tables) && isset($tokens['USING'])) {
-            foreach ($tokens['FROM'] as $table) {
-                $tables[] = trim($table['table'], " \t\n\r\0\x0B.*");
+        if (empty($tables) && isset($tokens["USING'])) {
+            foreach ($tokens["FROM'] as $table) {
+                $tables[] = trim($table["table'], " \t\n\r\0\x0B.*");
             }
-            $tokens['FROM'] = $tokens['USING'];
-            unset($tokens['USING']);
+            $tokens["FROM'] = $tokens["USING'];
+            unset($tokens["USING']);
         }
 
         $options = array();
-        if (isset($tokens['OPTIONS'])) {
-            $options = $tokens['OPTIONS'];
-            unset($tokens['OPTIONS']);
+        if (isset($tokens["OPTIONS'])) {
+            $options = $tokens["OPTIONS'];
+            unset($tokens["OPTIONS']);
         }
 
-        $tokens['DELETE'] = array('options' => (empty($options) ? false : $options),
+        $tokens["DELETE'] = array('options' => (empty($options) ? false : $options),
                                   'tables' => (empty($tables) ? false : $tables));
         return $tokens;
     }

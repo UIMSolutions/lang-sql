@@ -161,8 +161,8 @@ class PartitionOptionsProcessor : AbstractProcessor {
                                 'storage' => substr($base_expr, 0, -strlen($token)));
 
                 $last = array_pop($parsed);
-                $last['by'] = trim($currCategory . ' ' . $upper); // $currCategory will be empty or LINEAR!
-                $last['sub_tree'] = $expr;
+                $last["by'] = trim($currCategory . ' ' . $upper); // $currCategory will be empty or LINEAR!
+                $last["sub_tree'] = $expr;
                 $parsed[] = $last;
 
                 $base_expr = $token;
@@ -178,9 +178,9 @@ class PartitionOptionsProcessor : AbstractProcessor {
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
                     $last = array_pop($parsed);
-                    $subtree = array_pop($last['sub_tree']);
-                    $subtree['sub_tree'] = $expr;
-                    $last['sub_tree'][] = $subtree;
+                    $subtree = array_pop($last["sub_tree']);
+                    $subtree["sub_tree'] = $expr;
+                    $last["sub_tree'][] = $subtree;
                     $parsed[] = $last;
                     unset($subtree);
                     unset($last);
@@ -198,8 +198,8 @@ class PartitionOptionsProcessor : AbstractProcessor {
                                 'sub_tree' => false, 'storage' => substr($base_expr, 0, -strlen($token)));
 
                 $last = array_pop($parsed);
-                $last['by'] = $upper;
-                $last['sub_tree'] = $expr;
+                $last["by'] = $upper;
+                $last["sub_tree'] = $expr;
                 $parsed[] = $last;
                 unset($last);
 
@@ -230,15 +230,15 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                 case 'PARTITION_NUM':
                 // the number behind PARTITIONS or SUBPARTITIONS
-                    $expr['base_expr'] = trim($base_expr);
-                    $expr['sub_tree'][] = this.getConstantType($trim);
-                    $base_expr = $expr['storage'] . $base_expr;
-                    unset($expr['storage']);
+                    $expr["base_expr'] = trim($base_expr);
+                    $expr["sub_tree'][] = this.getConstantType($trim);
+                    $base_expr = $expr["storage'] . $base_expr;
+                    unset($expr["storage']);
 
                     $last = array_pop($parsed);
-                    $last['count'] = $trim;
-                    $last['sub_tree'][] = $expr;
-                    $last['base_expr']  ~= $base_expr;
+                    $last["count'] = $trim;
+                    $last["sub_tree'][] = $expr;
+                    $last["base_expr']  ~= $base_expr;
                     $parsed[] = $last;
                     unset($last);
 
@@ -252,22 +252,22 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     $expr[] = this.getConstantType($trim);
 
                     $last = array_pop($parsed);
-                    $subtree = array_pop($last['sub_tree']);
-                    $key = array_pop($subtree['sub_tree']);
+                    $subtree = array_pop($last["sub_tree']);
+                    $key = array_pop($subtree["sub_tree']);
 
-                    $key['sub_tree'] = $expr;
-                    $key['base_expr'] = trim($base_expr);
+                    $key["sub_tree'] = $expr;
+                    $key["base_expr'] = trim($base_expr);
 
-                    $base_expr = $key['storage'] . $base_expr;
-                    unset($key['storage']);
+                    $base_expr = $key["storage'] . $base_expr;
+                    unset($key["storage']);
 
-                    $subtree['sub_tree'][] = $key;
+                    $subtree["sub_tree'][] = $key;
                     unset($key);
 
-                    $expr = $subtree['sub_tree'];
-                    $subtree['sub_tree'] = false;
-                    $subtree['algorithm'] = $trim;
-                    $last['sub_tree'][] = $subtree;
+                    $expr = $subtree["sub_tree'];
+                    $subtree["sub_tree'] = false;
+                    $subtree["algorithm'] = $trim;
+                    $last["sub_tree'][] = $subtree;
                     unset($subtree);
 
                     $parsed[] = $last;
@@ -281,18 +281,18 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 // parenthesis around an expression
                     $last = this.getBracketExpressionType($trim);
                     $res = this.processExpressionList($trim);
-                    $last['sub_tree'] = (empty($res) ? false : $res);
+                    $last["sub_tree'] = (empty($res) ? false : $res);
                     $expr[] = $last;
 
                     $last = array_pop($parsed);
-                    $subtree = array_pop($last['sub_tree']);
-                    $subtree['base_expr'] = $base_expr;
-                    $subtree['sub_tree'] = $expr;
+                    $subtree = array_pop($last["sub_tree']);
+                    $subtree["base_expr'] = $base_expr;
+                    $subtree["sub_tree'] = $expr;
 
-                    $base_expr = $subtree['storage'] . $base_expr;
-                    unset($subtree['storage']);
-                    $last['sub_tree'][] = $subtree;
-                    $last['base_expr'] = trim($base_expr);
+                    $base_expr = $subtree["storage'] . $base_expr;
+                    unset($subtree["storage']);
+                    $last["sub_tree'][] = $subtree;
+                    $last["base_expr'] = trim($base_expr);
                     $parsed[] = $last;
                     unset($last);
                     unset($subtree);
@@ -310,14 +310,14 @@ class PartitionOptionsProcessor : AbstractProcessor {
                                     'sub_tree' => this.processColumnList($trim));
 
                     $last = array_pop($parsed);
-                    $subtree = array_pop($last['sub_tree']);
-                    $subtree['base_expr'] = $base_expr;
-                    $subtree['sub_tree'] = $expr;
+                    $subtree = array_pop($last["sub_tree']);
+                    $subtree["base_expr'] = $base_expr;
+                    $subtree["sub_tree'] = $expr;
 
-                    $base_expr = $subtree['storage'] . $base_expr;
-                    unset($subtree['storage']);
-                    $last['sub_tree'][] = $subtree;
-                    $last['base_expr'] = trim($base_expr);
+                    $base_expr = $subtree["storage'] . $base_expr;
+                    unset($subtree["storage']);
+                    $last["sub_tree'][] = $subtree;
+                    $last["base_expr'] = trim($base_expr);
                     $parsed[] = $last;
                     unset($last);
                     unset($subtree);
@@ -332,7 +332,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                         if ($upper[0] == '(' && substr($upper, -1) == ')') {
                             // last part to process, it is only one token!
                             $last = this.getBracketExpressionType($trim);
-                            $last['sub_tree'] = this.processPartitionDefinition($trim);
+                            $last["sub_tree'] = this.processPartitionDefinition($trim);
                             $parsed[] = $last;
                             break;
                         }
@@ -350,9 +350,9 @@ class PartitionOptionsProcessor : AbstractProcessor {
             $currCategory = '';
         }
 
-        $result['partition-options'] = $parsed;
-        if ($result['last-parsed'] == false) {
-            $result['last-parsed'] = $tokenKey;
+        $result["partition-options'] = $parsed;
+        if ($result["last-parsed'] == false) {
+            $result["last-parsed'] = $tokenKey;
         }
         return $result;
     }

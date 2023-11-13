@@ -87,7 +87,7 @@ class ShowBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        $show = $parsed['SHOW'];
+        $show = $parsed["SHOW'];
         $sql = "";
         foreach ($show as $k => $v) {
             $len = strlen($sql);

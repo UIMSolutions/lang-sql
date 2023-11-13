@@ -26,10 +26,10 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     protected auto buildIndexKey($parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::INDEX) {
+        if ($parsed["expr_type'] !== ExpressionType::INDEX) {
             return "";
         }
-        return $parsed['base_expr'];
+        return $parsed["base_expr'];
     }
     
     protected auto buildColumnList($parsed) {
@@ -38,11 +38,11 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::FULLTEXT_IDX) {
+        if ($parsed["expr_type'] !== ExpressionType::FULLTEXT_IDX) {
             return "";
         }
         $sql = "";
-        foreach ($parsed['sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);
             $sql  ~= this.buildColumnList($v);

@@ -68,11 +68,11 @@ class CharacterSetBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::CHARSET) {
+        if ($parsed["expr_type'] !== ExpressionType::CHARSET) {
             return "";
         }
         $sql = "";
-        foreach ($parsed['sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildOperator($v);
             $sql  ~= this.buildReserved($v);

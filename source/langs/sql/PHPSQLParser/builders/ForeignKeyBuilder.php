@@ -43,11 +43,11 @@ class ForeignKeyBuilder : IBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed['expr_type'] !== ExpressionType::FOREIGN_KEY) {
+        if ($parsed["expr_type'] !== ExpressionType::FOREIGN_KEY) {
             return "";
         }
         $sql = "";
-        foreach ($parsed['sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree'] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildConstant($v);
             $sql  ~= this.buildReserved($v);

@@ -18,7 +18,7 @@ class UnionAllStatementBuilder : Builder {
 		$sql = '';
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
-		foreach ($parsed['UNION ALL'] as $clause) {
+		foreach ($parsed["UNION ALL'] as $clause) {
 			if (!$first) {
 				$sql  ~= " UNION ALL ";
 			}

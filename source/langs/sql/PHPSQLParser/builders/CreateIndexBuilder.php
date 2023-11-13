@@ -66,7 +66,7 @@ class CreateIndexBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        $sql = $parsed['name'];
+        $sql = $parsed["name'];
         $sql  ~= ' ' . this.buildIndexType($parsed);
         $sql = trim($sql);
         $sql  ~= ' ' . this.buildIndexTable($parsed);

@@ -46,13 +46,13 @@ class IntoProcessor : AbstractProcessor {
      * at the moment
      */
     auto process($tokenList) {
-        $unparsed = $tokenList['INTO'];
+        $unparsed = $tokenList["INTO'];
         foreach ($unparsed as $k => $token) {
             if (this.isWhitespaceToken($token) || this.isCommaToken($token)) {
                 unset($unparsed[$k]);
             }
         }
-        $tokenList['INTO'] = array_values($unparsed);
+        $tokenList["INTO'] = array_values($unparsed);
         return $tokenList;
     }
 }

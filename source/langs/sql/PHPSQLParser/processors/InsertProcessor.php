@@ -51,11 +51,11 @@ use PHPSQLParser\utils\ExpressionType;
 class InsertProcessor : AbstractProcessor {
 
     protected auto processOptions($tokenList) {
-        if (!isset($tokenList['OPTIONS'])) {
+        if (!isset($tokenList["OPTIONS'])) {
             return array();
         }
         $result = array();
-        foreach ($tokenList['OPTIONS'] as $token) {
+        foreach ($tokenList["OPTIONS'] as $token) {
             $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => trim($token));
         }
         return $result;
@@ -113,13 +113,13 @@ class InsertProcessor : AbstractProcessor {
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
             $processor = new DefaultProcessor(this.options);
-            $parsed['sub_tree'] = array(
+            $parsed["sub_tree'] = array(
                     array('expr_type' => ExpressionType::QUERY, 'base_expr' => $cols,
                             'sub_tree' => $processor.process($cols)));
         } else {
             $processor = new ColumnListProcessor(this.options);
-            $parsed['sub_tree'] = $processor.process($cols);
-            $parsed['expr_type'] = ExpressionType::COLUMN_LIST;
+            $parsed["sub_tree'] = $processor.process($cols);
+            $parsed["expr_type'] = ExpressionType::COLUMN_LIST;
         }
         return $parsed;
     }
@@ -142,11 +142,11 @@ class InsertProcessor : AbstractProcessor {
         }
 
         $parsed = this.processOptions($tokenList);
-        unset($tokenList['OPTIONS']);
+        unset($tokenList["OPTIONS']);
 
         list($table, $cols, $key) = this.processKeyword('INTO', $tokenList);
         $parsed = array_merge($parsed, $key);
-        unset($tokenList['INTO']);
+        unset($tokenList["INTO']);
 
         if ($table == '' && in_array($token_category, array('INSERT', 'REPLACE'))) {
             list($table, $cols, $key) = this.processKeyword($token_category, $tokenList);
