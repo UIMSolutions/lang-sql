@@ -84,9 +84,9 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $trim = '';
-        $base_expr = '';
-        $currCategory = '';
+        $trim = "";
+        $base_expr = "";
+        $currCategory = "";
         $expr = array();
         $refs = array();
         $options = array('unique' => false, 'nullable' => true, 'auto_inc' => false, 'primary' => false,
@@ -428,7 +428,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             }
             $prevCategory = $currCategory;
-            $currCategory = '';
+            $currCategory = "";
         }
 
         if (!isset($expr["till"])) {

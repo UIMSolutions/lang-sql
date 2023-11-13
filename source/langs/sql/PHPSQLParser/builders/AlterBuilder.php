@@ -1,19 +1,8 @@
-
 module lang.sql.parsers.builders;
 
-/**
- * This class : the builder for the [DELETE] part. You can overwrite
- * all functions to achieve another handling.
- *
- 
- 
- *  
- */
-class AlterBuilder : Builder
-{
-    auto build(array $parsed)
-    {
-        $sql = '';
+class AlterBuilder : Builder {
+    auto build(array $parsed) {    {
+        auto mySql = "";
 
         foreach ($parsed as $term) {
             if ($term == ' ') {
@@ -22,14 +11,14 @@ class AlterBuilder : Builder
 
             if (substr($term, 0, 1) == '(' ||
                 strpos($term, "\n") !== false) {
-                $sql = rtrim($sql);
+                    mySql = rtrim(mySql);
             }
 
-            $sql  ~= $term . ' ';
+            mySql  ~= $term . ' ';
         }
 
-        $sql = rtrim($sql);
+        mySql = rtrim(mySql);
 
-        return $sql;
+        return mySql;
     }
 }

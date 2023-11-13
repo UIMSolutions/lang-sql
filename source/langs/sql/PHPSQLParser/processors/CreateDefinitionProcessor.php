@@ -99,9 +99,9 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $base_expr = '';
-        $prevCategory = '';
-        $currCategory = '';
+        $base_expr = "";
+        $prevCategory = "";
+        $currCategory = "";
         $expr = array();
         $result = array();
         $skip = 0;
@@ -289,7 +289,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 $result["create-def"][] = array('expr_type' => $type,
                                                 'base_expr' => trim(substr($base_expr, 0, -strlen($token))),
                                                 'sub_tree' => $expr);
-                $base_expr = '';
+                $base_expr = "";
                 $expr = array();
                 break;
 
@@ -396,7 +396,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $skip = $parsed["till"] - $k;
                     unset($parsed["till"]);
                     $expr[] = $parsed;
-                    $currCategory = '';
+                    $currCategory = "";
                     break;
 
                 default:
@@ -406,7 +406,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
             }
             $prevCategory = $currCategory;
-            $currCategory = '';
+            $currCategory = "";
         }
 
         $type = this.correctExpressionType($expr);

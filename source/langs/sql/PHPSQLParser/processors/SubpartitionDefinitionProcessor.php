@@ -70,11 +70,11 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     auto process($tokens) {
 
         $result = array();
-        $prevCategory = '';
-        $currCategory = '';
+        $prevCategory = "";
+        $currCategory = "";
         $parsed = array();
         $expr = array();
-        $base_expr = '';
+        $base_expr = "";
         $skip = 0;
 
         foreach ($tokens as $tokenKey => $token) {
@@ -172,7 +172,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     // it separates the subpartition-definitions
                     $result[] = $parsed;
                     $parsed = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $expr = array();
                 }
                 break;
@@ -262,7 +262,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             }
 
             $prevCategory = $currCategory;
-            $currCategory = '';
+            $currCategory = "";
         }
 
         $result[] = $parsed;

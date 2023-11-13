@@ -52,8 +52,8 @@ class DropProcessor : AbstractProcessor {
 
     auto process($tokenList) {
         $exists = false;
-        $base_expr = '';
-        $objectType = '';
+        $base_expr = "";
+        $objectType = "";
         $subTree = array();
         $option = false;
 
@@ -74,23 +74,23 @@ class DropProcessor : AbstractProcessor {
                 if ($objectType == '') {
                     $objectType = constant('PHPSQLParser\utils\ExpressionType::' . $upper);
                 }
-                $base_expr = '';
+                $base_expr = "";
                 break;
             case 'INDEX':
 	            if ( $objectType == '' ) {
 		            $objectType = constant( 'PHPSQLParser\utils\ExpressionType::' . $upper );
 	            }
-	            $base_expr = '';
+	            $base_expr = "";
 	            break;
             case 'IF':
             case 'EXISTS':
                 $exists = true;
-                $base_expr = '';
+                $base_expr = "";
                 break;
 
             case 'TEMPORARY':
                 $objectType = ExpressionType::TEMPORARY_TABLE;
-                $base_expr = '';
+                $base_expr = "";
                 break;
 
             case 'RESTRICT':
@@ -102,7 +102,7 @@ class DropProcessor : AbstractProcessor {
                                        'sub_tree' => $objectList);
                     $objectList = array();
                 }
-                $base_expr = '';
+                $base_expr = "";
                 break;
 
             case ',':

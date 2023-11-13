@@ -86,7 +86,7 @@ class SetExpressionBuilder : Builder {
         if ($parsed["expr_type"] !== ExpressionType::EXPRESSION) {
             return '';
         }
-        $sql = '';
+        $sql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $delim = ' ';
             $len = strlen($sql);
@@ -99,7 +99,7 @@ class SetExpressionBuilder : Builder {
             // we don't need whitespace between the sign and 
             // the following part
             if (this.buildSign($v) !== '') {
-                $delim = '';
+                $delim = "";
             }
             $sql  ~= this.buildSign($v);
             

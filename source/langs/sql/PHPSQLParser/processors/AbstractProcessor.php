@@ -182,7 +182,7 @@ abstract class AbstractProcessor {
         $i = 0;
         $string = 0;
         // Whether a string was opened or not, and with which character it was open (' or ")
-        $stringOpened = '';
+        $stringOpened = "";
         while ($i < strlen($trim)) {
 
             if ($trim[$i] == "\\") {
@@ -194,7 +194,7 @@ abstract class AbstractProcessor {
                 if ($stringOpened == '') {
                     $stringOpened = "'";
                 } elseif ($stringOpened == "'") {
-                    $stringOpened = '';
+                    $stringOpened = "";
                 }
             }
 
@@ -202,7 +202,7 @@ abstract class AbstractProcessor {
                 if ($stringOpened == '') {
                     $stringOpened = '"';
                 } elseif ($stringOpened == '"') {
-                    $stringOpened = '';
+                    $stringOpened = "";
                 }
             }
 

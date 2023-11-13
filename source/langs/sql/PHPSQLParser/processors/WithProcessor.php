@@ -55,9 +55,9 @@ class WithProcessor : AbstractProcessor {
     auto process($tokens) {
     	$out = array();
         $resultList = array();
-        $category = '';
-        $base_expr = '';
-        $prev = '';
+        $category = "";
+        $base_expr = "";
+        $prev = "";
 
         foreach ($tokens as $token) {
         	$base_expr  ~= $token;
@@ -84,7 +84,7 @@ class WithProcessor : AbstractProcessor {
 
             case ',':
             	// ignore
-            	$base_expr = '';
+            	$base_expr = "";
             	break;
 
             default:
@@ -96,7 +96,7 @@ class WithProcessor : AbstractProcessor {
 
                 		$out[] = array('expr_type' => ExpressionType::SUBQUERY_FACTORING, 'base_expr' => trim($base_expr), 'sub_tree' => $resultList);
                 		$resultList = array();
-                		$category = '';
+                		$category = "";
                 	break;
 
                 	case '':

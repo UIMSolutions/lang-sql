@@ -34,7 +34,7 @@ class DropBuilder : Builder {
 	}
 
 	protected auto buildSubTree( $parsed ) {
-		$sql = '';
+		$sql = "";
 		foreach ( $parsed["sub_tree"] as $k => $v ) {
 			$len = strlen( $sql );
 			$sql  ~= this.buildReserved( $v );

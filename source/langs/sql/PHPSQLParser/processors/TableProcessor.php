@@ -74,7 +74,7 @@ class TableProcessor : AbstractProcessor {
 
     protected auto clear(&$expr, &$base_expr, &$category) {
         $expr = array();
-        $base_expr = '';
+        $base_expr = "";
         $category = 'CREATE_DEF';
     }
 
@@ -84,7 +84,7 @@ class TableProcessor : AbstractProcessor {
         $result = array('base_expr' => false, 'name' => false, 'no_quotes' => false, 'create-def' => false,
                         'options' => array(), 'like' => false, 'select-option' => false);
         $expr = array();
-        $base_expr = '';
+        $base_expr = "";
         $skip = 0;
 
         foreach ($tokens as $tokenKey => $token) {
@@ -113,7 +113,7 @@ class TableProcessor : AbstractProcessor {
                     $last = array_pop($result["options"]);
                     $last["delim"] = ',';
                     $result["options"][] = $last;
-                    $base_expr = '';
+                    $base_expr = "";
                 }
                 continue 2;
 
@@ -325,7 +325,7 @@ class TableProcessor : AbstractProcessor {
                         $result["create-def"] = array('expr_type' => ExpressionType::BRACKET_EXPRESSION,
                                                       'base_expr' => $base_expr, 'sub_tree' => $coldef["create-def"]);
                         $expr = array();
-                        $base_expr = '';
+                        $base_expr = "";
                         $currCategory = 'CREATE_DEF';
                     }
                     break;
@@ -356,7 +356,7 @@ class TableProcessor : AbstractProcessor {
             }
 
             $prevCategory = $currCategory;
-            $currCategory = '';
+            $currCategory = "";
         }
 
         if ($result["like"] == false) {

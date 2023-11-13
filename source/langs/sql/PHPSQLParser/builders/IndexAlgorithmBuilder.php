@@ -71,7 +71,7 @@ class IndexAlgorithmBuilder : Builder {
         if ($parsed["expr_type"] !== ExpressionType::INDEX_ALGORITHM) {
             return '';
         }
-        $sql = '';
+        $sql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);

@@ -50,7 +50,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
     auto process($tokens) {
 
         $expr = array('expr_type' => ExpressionType::REFERENCE, 'base_expr' => false, 'sub_tree' => array());
-        $base_expr = '';
+        $base_expr = "";
 
         foreach ($tokens as $key => $token) {
 

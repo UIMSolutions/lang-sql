@@ -81,7 +81,7 @@ class DropExpressionBuilder : Builder {
         if ($parsed["expr_type"] !== ExpressionType::EXPRESSION) {
             return "";
         }
-        $sql = '';
+        $sql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildTable($v, 0);

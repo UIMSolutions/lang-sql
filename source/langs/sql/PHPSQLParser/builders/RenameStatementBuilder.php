@@ -65,7 +65,7 @@ class RenameStatementBuilder : Builder {
 
     auto build(array $parsed) {
         $rename = $parsed["RENAME"];
-        $sql = '';
+        $sql = "";
         foreach ($rename["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);

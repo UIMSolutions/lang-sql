@@ -66,7 +66,7 @@ class ColumnListBuilder : Builder {
         if ($parsed["expr_type"] !== ExpressionType::COLUMN_LIST) {
             return '';
         }
-        $sql = '';
+        $sql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildIndexColumn($v);

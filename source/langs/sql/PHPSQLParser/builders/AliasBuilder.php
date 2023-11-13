@@ -2,19 +2,20 @@ module lang.sql.parsers.builders;
 
 class AliasBuilder : Builder {
 
-    auto hasAlias($parsed) {
-        return isset($parsed["alias"]);
-    }
+  auto hasAlias(parsed) {
+    return ("alias" in parsed);
+  }
 
-    auto build(array $parsed) {
-        if (!isset($parsed["alias"]) || $parsed["alias"] == false) {
-            return "";
-        }
-        $sql = "";
-        if ($parsed["alias"]["as"]) {
-            $sql  ~= " AS";
-        }
-        $sql  ~= " " . $parsed["alias"]["name"];
-        return $sql;
-    }
+  auto build(array $parsed) {
+      if (!isset($parsed["alias"]) || $parsed["alias"] == false) {
+          return "";
+      }
+
+      auto mySql = "";
+      if ($parsed["alias"]["as"]) {
+          mySql  ~= " AS";
+      }
+      mySql  ~= " " . $parsed["alias"]["name"];
+      return mySql;
+  }
 }

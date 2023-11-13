@@ -66,7 +66,7 @@ class InsertProcessor : AbstractProcessor {
             return array('', false, array());
         }
 
-        $table = '';
+        $table = "";
         $cols = false;
         $result = array();
 
@@ -125,7 +125,7 @@ class InsertProcessor : AbstractProcessor {
     }
 
     auto process($tokenList, $token_category = 'INSERT') {
-        $table = '';
+        $table = "";
         $cols = false;
         $comments = array();
 
@@ -136,7 +136,7 @@ class InsertProcessor : AbstractProcessor {
             foreach ($token as &$value) {
                 if (this.isCommentToken($value)) {
                      $comments[] = parent::processComment($value);
-                     $value = '';
+                     $value = "";
                 }
             }
         }

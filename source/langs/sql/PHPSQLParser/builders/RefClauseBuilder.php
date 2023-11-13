@@ -95,7 +95,7 @@ class RefClauseBuilder : Builder {
         if ($parsed == false) {
             return '';
         }
-        $sql = '';
+        $sql = "";
         foreach ($parsed as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildColRef($v);

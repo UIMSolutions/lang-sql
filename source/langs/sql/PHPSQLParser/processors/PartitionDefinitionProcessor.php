@@ -84,11 +84,11 @@ class PartitionDefinitionProcessor : AbstractProcessor {
     auto process($tokens) {
 
         $result = array();
-        $prevCategory = '';
-        $currCategory = '';
+        $prevCategory = "";
+        $currCategory = "";
         $parsed = array();
         $expr = array();
-        $base_expr = '';
+        $base_expr = "";
         $skip = 0;
 
         foreach ($tokens as $tokenKey => $token) {
@@ -246,7 +246,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     // it separates the partition-definitions
                     $result[] = $parsed;
                     $parsed = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $expr = array();
                 }
                 break;
@@ -379,7 +379,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
             }
 
             $prevCategory = $currCategory;
-            $currCategory = '';
+            $currCategory = "";
         }
 
         $result[] = $parsed;

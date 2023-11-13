@@ -58,7 +58,7 @@ class UpdateBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        $sql = '';
+        $sql = "";
 
         foreach ($parsed as $k => $v) {
             $len = strlen($sql);

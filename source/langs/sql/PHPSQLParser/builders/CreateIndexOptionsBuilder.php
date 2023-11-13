@@ -86,7 +86,7 @@ class CreateIndexOptionsBuilder : Builder {
         if ($parsed["options"] == false) {
             return '';
         }
-        $sql = '';
+        $sql = "";
         foreach ($parsed["options"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildIndexAlgorithm($v);

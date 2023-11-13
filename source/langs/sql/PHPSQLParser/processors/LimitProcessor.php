@@ -61,7 +61,7 @@ class LimitProcessor : AbstractProcessor {
         foreach ($tokens as &$token) {
             if (this.isCommentToken($token)) {
                  $comments[] = parent::processComment($token);
-                 $token = '';
+                 $token = "";
             }
         }
         

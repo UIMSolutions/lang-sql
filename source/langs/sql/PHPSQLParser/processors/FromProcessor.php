@@ -153,8 +153,8 @@ class FromProcessor : AbstractProcessor {
     auto process($tokens) {
         $parseInfo = this.initParseInfo();
         $expr = array();
-        $token_category = '';
-        $prevToken = '';
+        $token_category = "";
+        $prevToken = "";
 
         $skip_next = false;
         $i = 0;
@@ -187,7 +187,7 @@ class FromProcessor : AbstractProcessor {
             case 'OUTER':
             case 'JOIN':
                 if ($token_category == 'LEFT' || $token_category == 'RIGHT' || $token_category == 'NATURAL') {
-                    $token_category = '';
+                    $token_category = "";
                     $parseInfo["next_join_type"] = strtoupper(trim($prevToken)); // it seems to be a join
                 } elseif ($token_category == 'IDX_HINT') {
                     $parseInfo["expression"]  ~= $token;
@@ -211,12 +211,12 @@ class FromProcessor : AbstractProcessor {
                         $prevToken  ~= $token;
                         break;
                     } else {
-                        $token_category = '';     // it seems to be a function
+                        $token_category = "";     // it seems to be a function
                         $parseInfo["expression"]  ~= $prevToken;
                         if ($parseInfo["ref_type"] !== false) { // all after ON / USING
                             $parseInfo["ref_expr"]  ~= $prevToken;
                         }
-                        $prevToken = '';
+                        $prevToken = "";
                     }
                 }
                 $parseInfo["expression"]  ~= $token;
@@ -331,7 +331,7 @@ class FromProcessor : AbstractProcessor {
                 // TODO: enhance it, so we can have base_expr to calculate the position of the keywords
                 // build a subtree under "hints"
                 if ($token_category == 'IDX_HINT') {
-                    $token_category = '';
+                    $token_category = "";
                     $cur_hint = (count($parseInfo["hints"]) - 1);
                     $parseInfo["hints"][$cur_hint]["hint_list"] = $token;
                     break;

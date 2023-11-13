@@ -73,7 +73,7 @@ class IndexProcessor : AbstractProcessor {
         $result = array('base_expr' => false, 'name' => false, 'no_quotes' => false, 'index-type' => false, 'on' => false,
                         'options' => array());
         $expr = array();
-        $base_expr = '';
+        $base_expr = "";
         $skip = 0;
 
         foreach ($tokens as $tokenKey => $token) {
@@ -185,7 +185,7 @@ class IndexProcessor : AbstractProcessor {
                     }
 
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
                     break;
 
@@ -197,7 +197,7 @@ class IndexProcessor : AbstractProcessor {
                                           'name' => $trim, 'no_quotes' => this.revokeQuotation($trim),
                                           'sub_tree' => false);
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'COLUMN_DEF';
                     continue 3;
 
@@ -206,7 +206,7 @@ class IndexProcessor : AbstractProcessor {
                     $result["no_quotes"] = this.revokeQuotation($trim);
 
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'TYPE_DEF';
                     break;
 
@@ -216,7 +216,7 @@ class IndexProcessor : AbstractProcessor {
                     $result["options"][] = array('expr_type' => ExpressionType::INDEX_PARSER,
                                                  'base_expr' => trim($base_expr), 'sub_tree' => $expr);
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
                     break;
@@ -227,7 +227,7 @@ class IndexProcessor : AbstractProcessor {
                     $result["options"][] = array('expr_type' => ExpressionType::COMMENT,
                                                  'base_expr' => trim($base_expr), 'sub_tree' => $expr);
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
                     break;
@@ -239,7 +239,7 @@ class IndexProcessor : AbstractProcessor {
                                                  'base_expr' => trim($base_expr), 'size' => $upper,
                                                  'sub_tree' => $expr);
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
                     break;
@@ -259,7 +259,7 @@ class IndexProcessor : AbstractProcessor {
                     }
 
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
                     break;
 
@@ -271,7 +271,7 @@ class IndexProcessor : AbstractProcessor {
                                                  'sub_tree' => $expr);
 
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
                     break;
 
@@ -283,7 +283,7 @@ class IndexProcessor : AbstractProcessor {
                                                  'sub_tree' => $expr);
 
                     $expr = array();
-                    $base_expr = '';
+                    $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
                     break;
@@ -296,7 +296,7 @@ class IndexProcessor : AbstractProcessor {
             }
 
             $prevCategory = $currCategory;
-            $currCategory = '';
+            $currCategory = "";
         }
 
         if ($result["options"] == array()) {

@@ -62,9 +62,9 @@ class ValuesProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $currCategory = '';
+        $currCategory = "";
         $parsed = array();
-        $base_expr = '';
+        $base_expr = "";
 
         foreach ($tokens["VALUES"] as $k => $v) {
 	        if (this.isCommentToken($v)) {
@@ -88,7 +88,7 @@ class ValuesProcessor : AbstractProcessor {
                     $base_expr = trim(substr($base_expr, 0, -strlen($v)));
                     $parsed[] = array('expr_type' => ExpressionType::RECORD, 'base_expr' => $base_expr,
                                       'data' => this.processRecord($base_expr), 'delim' => false);
-                    $base_expr = '';
+                    $base_expr = "";
 
                     $currCategory = 'DUPLICATE';
                     $parsed[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
@@ -101,7 +101,7 @@ class ValuesProcessor : AbstractProcessor {
             case 'UPDATE':
                 if ($currCategory == 'DUPLICATE') {
                     $parsed[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
-                    $base_expr = '';
+                    $base_expr = "";
                 }
                 // else ?
                 break;
@@ -113,13 +113,13 @@ class ValuesProcessor : AbstractProcessor {
                     $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
                     $parsed[] = array('expr_type' => ExpressionType::EXPRESSION, 'base_expr' => $base_expr,
                                       'sub_tree' => (empty($res) ? false : $res), 'delim' => $trim);
-                    $base_expr = '';
+                    $base_expr = "";
                     continue 2;
                 }
 
                 $parsed[] = array('expr_type' => ExpressionType::RECORD, 'base_expr' => trim($base_expr),
                                   'data' => this.processRecord(trim($base_expr)), 'delim' => $trim);
-                $base_expr = '';
+                $base_expr = "";
                 break;
 
             default:
