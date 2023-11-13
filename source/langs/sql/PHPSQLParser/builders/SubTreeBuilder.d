@@ -38,7 +38,7 @@
  *
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.SubTreeBuilder;
 use SqlParser\exceptions\UnableToCreateSQLException;
 
 /**
