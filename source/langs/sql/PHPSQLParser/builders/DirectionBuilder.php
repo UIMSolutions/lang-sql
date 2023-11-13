@@ -22,9 +22,9 @@ module lang.sql.parsers.builders;
 class DirectionBuilder : IBuilder {
 
     auto build(array $parsed) {
-        if (!isset($parsed["direction']) || $parsed["direction'] == false) {
+        if (!isset($parsed["direction"]) || $parsed["direction"] == false) {
             return "";
         }
-        return (" " . $parsed["direction']);
+        return (" " . $parsed["direction"]);
     }
 }

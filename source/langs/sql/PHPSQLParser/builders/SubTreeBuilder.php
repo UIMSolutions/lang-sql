@@ -107,11 +107,11 @@ class SubTreeBuilder : Builder {
     }
 
     auto build(array $parsed, $delim = " ") {
-        if ($parsed["sub_tree'] == '' || $parsed["sub_tree'] == false) {
+        if ($parsed["sub_tree"] == '' || $parsed["sub_tree"] == false) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildColRef($v);
             $sql  ~= this.buildFunction($v);

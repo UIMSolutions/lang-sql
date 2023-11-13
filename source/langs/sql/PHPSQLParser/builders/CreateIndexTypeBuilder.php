@@ -52,9 +52,9 @@ module lang.sql.parsers.builders;
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
     auto build(array $parsed) {
-        if (!isset($parsed["index-type']) || $parsed["index-type'] == false) {
+        if (!isset($parsed["index-type"]) || $parsed["index-type"] == false) {
             return '';
         }
-        return parent::build($parsed["index-type']);
+        return parent::build($parsed["index-type"]);
     }
 }

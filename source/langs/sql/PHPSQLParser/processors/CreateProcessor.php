@@ -68,21 +68,21 @@ class CreateProcessor : AbstractProcessor {
 
             case 'TEMPORARY':
                 // CREATE TEMPORARY TABLE
-                $result["expr_type'] = ExpressionType::TEMPORARY_TABLE;
-                $result["not-exists'] = false;
+                $result["expr_type"] = ExpressionType::TEMPORARY_TABLE;
+                $result["not-exists"] = false;
                 $expr[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                 break;
 
             case 'TABLE':
                 // CREATE TABLE
-                $result["expr_type'] = ExpressionType::TABLE;
-                $result["not-exists'] = false;
+                $result["expr_type"] = ExpressionType::TABLE;
+                $result["not-exists"] = false;
                 $expr[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                 break;
 
             case 'INDEX':
                 // CREATE INDEX
-                $result["expr_type'] = ExpressionType::INDEX;
+                $result["expr_type"] = ExpressionType::INDEX;
                 $expr[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                 break;
 
@@ -90,8 +90,8 @@ class CreateProcessor : AbstractProcessor {
             case 'FULLTEXT':
             case 'SPATIAL':
                 // options of CREATE INDEX
-                $result["base_expr'] = $result["expr_type'] = false;
-                $result["constraint'] = $upper; 
+                $result["base_expr"] = $result["expr_type"] = false;
+                $result["constraint"] = $upper; 
                 $expr[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                 break;                
                                 
@@ -107,7 +107,7 @@ class CreateProcessor : AbstractProcessor {
 
             case 'EXISTS':
                 // option of CREATE TABLE
-                $result["not-exists'] = true;
+                $result["not-exists"] = true;
                 $expr[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                 break;
 
@@ -115,8 +115,8 @@ class CreateProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result["base_expr'] = trim($base_expr);
-        $result["sub_tree'] = $expr;
+        $result["base_expr"] = trim($base_expr);
+        $result["sub_tree"] = $expr;
         return $result;
     }
 }

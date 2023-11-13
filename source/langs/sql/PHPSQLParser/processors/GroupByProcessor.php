@@ -54,18 +54,18 @@ class GroupByProcessor : OrderByProcessor {
             switch ($trim) {
             case ',':
                 $parsed = this.processOrderExpression($parseInfo, $select);
-                unset($parsed["direction']);
+                unset($parsed["direction"]);
 
                 $out[] = $parsed;
                 $parseInfo = this.initParseInfo();
                 break;
             default:
-                $parseInfo["base_expr']  ~= $token;
+                $parseInfo["base_expr"]  ~= $token;
             }
         }
 
         $parsed = this.processOrderExpression($parseInfo, $select);
-        unset($parsed["direction']);
+        unset($parsed["direction"]);
         $out[] = $parsed;
 
         return $out;

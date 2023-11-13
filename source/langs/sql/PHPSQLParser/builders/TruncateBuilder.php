@@ -55,10 +55,10 @@ class TruncateBuilder : Builder {
         $right = -1;
 
         // works for one table only
-        $parsed["tables'] = array($parsed["TABLE']["base_expr']);
+        $parsed["tables"] = array($parsed["TABLE"]["base_expr"]);
 
-        if ($parsed["tables'] !== false) {
-            foreach ($parsed["tables'] as $k => $v) {
+        if ($parsed["tables"] !== false) {
+            foreach ($parsed["tables"] as $k => $v) {
                 $sql  ~= $v . ", ";
                 $right = -2;
             }

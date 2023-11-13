@@ -16,7 +16,7 @@ class UnionStatementBuilder : Builder {
 		$sql = '';
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
-		foreach ($parsed["UNION'] as $clause) {
+		foreach ($parsed["UNION"] as $clause) {
 			if (!$first) {
 				$sql  ~= " UNION ";
 			}

@@ -57,10 +57,10 @@ class ConstraintBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::CONSTRAINT) {
+        if ($parsed["expr_type"] !== ExpressionType::CONSTRAINT) {
             return '';
         }
-        $sql = $parsed["sub_tree'] == false ? '' : this.buildConstant($parsed["sub_tree']);
+        $sql = $parsed["sub_tree"] == false ? '' : this.buildConstant($parsed["sub_tree"]);
         return "CONSTRAINT" . (empty($sql) ? '' : (' ' . $sql));
     }
 

@@ -52,7 +52,7 @@ use PHPSQLParser\exceptions\UnableToCreateSQLException;
 class LimitBuilder : Builder {
 
     auto build(array $parsed) {
-        $sql = ($parsed["rowcount']) . ($parsed["offset'] ? " OFFSET " . $parsed["offset'] : "");
+        $sql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
         if ($sql == "") {
             throw new UnableToCreateSQLException('LIMIT', 'rowcount', $parsed, 'rowcount');
         }

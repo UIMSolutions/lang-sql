@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class SchemaBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::SCHEMA) {
+        if ($parsed["expr_type"] !== ExpressionType::SCHEMA) {
             return "";
         }
-        return $parsed["base_expr'];
+        return $parsed["base_expr"];
     }
 }

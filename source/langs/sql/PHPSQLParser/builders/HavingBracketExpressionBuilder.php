@@ -59,11 +59,11 @@ class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::BRACKET_EXPRESSION) {
+        if ($parsed["expr_type"] !== ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildColRef($v);
             $sql  ~= this.buildConstant($v);

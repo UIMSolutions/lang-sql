@@ -69,7 +69,7 @@ class IndexColumnListProcessor : AbstractProcessor {
             case 'ASC':
             case 'DESC':
             # the optional order
-                $expr["dir'] = $trim;
+                $expr["dir"] = $trim;
                 break;
 
             case ',':
@@ -83,12 +83,12 @@ class IndexColumnListProcessor : AbstractProcessor {
             default:
                 if ($upper[0] == '(' && substr($upper, -1) == ')') {
                     # the optional length
-                    $expr["length'] = this.removeParenthesisFromStart($trim);
+                    $expr["length"] = this.removeParenthesisFromStart($trim);
                     continue 2;
                 }
                 # the col name
-                $expr["name'] = $trim;
-                $expr["no_quotes'] = this.revokeQuotation($trim);
+                $expr["name"] = $trim;
+                $expr["no_quotes"] = this.revokeQuotation($trim);
                 break;
             }
         }

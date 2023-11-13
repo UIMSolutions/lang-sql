@@ -61,11 +61,11 @@ class BracketProcessor : AbstractProcessor {
 
         $remainingExpressions = this.getRemainingNotBracketExpression($subtree);
 
-        if (isset($subtree["BRACKET'])) {
-            $subtree = $subtree["BRACKET'];
+        if (isset($subtree["BRACKET"])) {
+            $subtree = $subtree["BRACKET"];
         }
 
-        if (isset($subtree["SELECT'])) {
+        if (isset($subtree["SELECT"])) {
             $subtree = array(
                     array('expr_type' => ExpressionType::QUERY, 'base_expr' => $token, 'sub_tree' => $subtree));
         }

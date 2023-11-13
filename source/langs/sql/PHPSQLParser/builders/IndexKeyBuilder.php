@@ -73,11 +73,11 @@ class IndexKeyBuilder : Builder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::INDEX) {
+        if ($parsed["expr_type"] !== ExpressionType::INDEX) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);
             $sql  ~= this.buildColumnList($v);

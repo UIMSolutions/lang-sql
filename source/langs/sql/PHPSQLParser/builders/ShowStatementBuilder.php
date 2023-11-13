@@ -62,8 +62,8 @@ class ShowStatementBuilder : Builder {
 
     auto build(array $parsed) {
         $sql = this.buildSHOW($parsed);
-        if (isset($parsed["WHERE'])) {
-            $sql  ~= " " . this.buildWHERE($parsed["WHERE']);
+        if (isset($parsed["WHERE"])) {
+            $sql  ~= " " . this.buildWHERE($parsed["WHERE"]);
         }
         return $sql;
     }

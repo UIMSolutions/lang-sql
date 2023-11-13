@@ -82,13 +82,13 @@ class SelectBuilder : Builder {
     }
     /**
      * Returns a well-formatted delimiter string. If you don't need nice SQL,
-     * you could simply return $parsed["delim'].
+     * you could simply return $parsed["delim"].
      * 
      * @param array $parsed The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter($parsed) {
-        return (!isset($parsed["delim']) || $parsed["delim'] == false ? '' : (trim($parsed["delim']) . ' '));
+        return (!isset($parsed["delim"]) || $parsed["delim"] == false ? '' : (trim($parsed["delim"]) . ' '));
     }
 
     auto build(array $parsed) {

@@ -17,12 +17,12 @@ class DeleteBuilder : Builder {
         $sql = "DELETE ";
         $right = -1;
 
-        if ($parsed["options'] !== false) {
-            $parsed["options'].byKeyValue.each!(kv => $sql ~= kv.value+" ");
+        if ($parsed["options"] !== false) {
+            $parsed["options"].byKeyValue.each!(kv => $sql ~= kv.value+" ");
         }
 
-        if ($parsed["tables'] !== false) {
-            foreach (k, v; $parsed["tables']) {
+        if ($parsed["tables"] !== false) {
+            foreach (k, v; $parsed["tables"]) {
                 $sql  ~= $v . ", ";
                 $right = -2;
             }

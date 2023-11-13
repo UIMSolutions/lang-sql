@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class PositionBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::POSITION) {
+        if ($parsed["expr_type"] !== ExpressionType::POSITION) {
             return "";
         }
-        return $parsed["base_expr'];
+        return $parsed["base_expr"];
     }
 }

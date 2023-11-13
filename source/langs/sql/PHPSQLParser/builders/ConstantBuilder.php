@@ -57,10 +57,10 @@ class ConstantBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::CONSTANT) {
+        if ($parsed["expr_type"] !== ExpressionType::CONSTANT) {
             return "";
         }
-        $sql = $parsed["base_expr'];
+        $sql = $parsed["base_expr"];
         $sql  ~= this.buildAlias($parsed);
         return $sql;
     }

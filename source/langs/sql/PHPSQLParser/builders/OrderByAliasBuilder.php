@@ -57,9 +57,9 @@ class OrderByAliasBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] !== ExpressionType::ALIAS) {
             return "";
         }
-        return $parsed["base_expr'] . this.buildDirection($parsed);
+        return $parsed["base_expr"] . this.buildDirection($parsed);
     }
 }

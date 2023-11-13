@@ -66,7 +66,7 @@ class CreateTableBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        $sql = $parsed["name'];
+        $sql = $parsed["name"];
         $sql  ~= this.buildCreateTableDefinition($parsed);
         $sql  ~= this.buildCreateTableOptions($parsed);
         $sql  ~= this.buildCreateTableSelectOption($parsed);

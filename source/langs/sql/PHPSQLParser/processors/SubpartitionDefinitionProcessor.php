@@ -113,7 +113,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     $expr[] = array('expr_type' => ExpressionType::SUBPARTITION_COMMENT, 'base_expr' => false,
                                     'sub_tree' => false, 'storage' => substr($base_expr, 0, -strlen($token)));
 
-                    $parsed["sub_tree'] = $expr;
+                    $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
                     $expr = array(this.getReservedType($trim));
 
@@ -129,7 +129,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     $expr[] = array('expr_type' => ExpressionType::ENGINE, 'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
-                    $parsed["sub_tree'] = $expr;
+                    $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
                     $expr = array(this.getReservedType($trim));
 
@@ -149,7 +149,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     $expr[] = array('expr_type' => ExpressionType::ENGINE, 'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
-                    $parsed["sub_tree'] = $expr;
+                    $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
                     $expr = array(this.getReservedType($trim));
                     
@@ -185,7 +185,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                                     'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
-                    $parsed["sub_tree'] = $expr;
+                    $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
                     $expr = array(this.getReservedType($trim));
 
@@ -211,7 +211,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                                     'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
-                    $parsed["sub_tree'] = $expr;
+                    $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
                     $expr = array(this.getReservedType($trim));
 
@@ -231,15 +231,15 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 case 'COMMENT':
                     $expr[] = this.getConstantType($trim);
 
-                    $last = array_pop($parsed["sub_tree']);
-                    $last["sub_tree'] = $expr;
-                    $last["base_expr'] = trim($base_expr);
-                    $base_expr = $last["storage'] . $base_expr;
-                    unset($last["storage']);
+                    $last = array_pop($parsed["sub_tree"]);
+                    $last["sub_tree"] = $expr;
+                    $last["base_expr"] = trim($base_expr);
+                    $base_expr = $last["storage"] . $base_expr;
+                    unset($last["storage"]);
 
-                    $parsed["sub_tree'][] = $last;
-                    $parsed["base_expr'] = trim($base_expr);
-                    $expr = $parsed["sub_tree'];
+                    $parsed["sub_tree"][] = $last;
+                    $parsed["base_expr"] = trim($base_expr);
+                    $expr = $parsed["sub_tree"];
                     unset($last);
 
                     $currCategory = $prevCategory;
@@ -248,11 +248,11 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 case 'SUBPARTITION':
                 // that is the subpartition name
                     $last = array_pop($expr);
-                    $last["name'] = $trim;
+                    $last["name"] = $trim;
                     $expr[] = $last;
                     $expr[] = this.getConstantType($trim);
-                    $parsed["sub_tree'] = $expr;
-                    $parsed["base_expr'] = trim($base_expr);
+                    $parsed["sub_tree"] = $expr;
+                    $parsed["base_expr"] = trim($base_expr);
                     break;
 
                 default:

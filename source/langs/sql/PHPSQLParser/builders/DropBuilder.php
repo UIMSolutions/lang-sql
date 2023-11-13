@@ -35,7 +35,7 @@ class DropBuilder : Builder {
 
 	protected auto buildSubTree( $parsed ) {
 		$sql = '';
-		foreach ( $parsed["sub_tree'] as $k => $v ) {
+		foreach ( $parsed["sub_tree"] as $k => $v ) {
 			$len = strlen( $sql );
 			$sql  ~= this.buildReserved( $v );
 			$sql  ~= this.buildExpression( $v );
@@ -51,11 +51,11 @@ class DropBuilder : Builder {
 	}
 
 	auto build( array $parsed ) {
-		$drop = $parsed["DROP'];
+		$drop = $parsed["DROP"];
 		$sql  = this.buildSubTree( $drop );
 
-		if ( $drop["expr_type'] == ExpressionType::INDEX ) {
-			$sql  ~= '' . this.buildDropIndex( $parsed["INDEX'] ) . ' ';
+		if ( $drop["expr_type"] == ExpressionType::INDEX ) {
+			$sql  ~= '' . this.buildDropIndex( $parsed["INDEX"] ) . ' ';
 		}
 
 		return 'DROP ' . substr( $sql, 0, -1 );

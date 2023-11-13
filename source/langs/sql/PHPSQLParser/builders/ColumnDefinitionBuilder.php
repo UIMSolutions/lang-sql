@@ -63,11 +63,11 @@ class ColumnDefinitionBuilder : Builder {
     }
 
    auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::COLDEF) {
+        if ($parsed["expr_type"] !== ExpressionType::COLDEF) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildColRef($v);
             $sql  ~= this.buildColumnType($v);

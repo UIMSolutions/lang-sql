@@ -110,9 +110,9 @@ class TableProcessor : AbstractProcessor {
             case ',':
             // it is possible to separate the table options with comma!
                 if ($prevCategory == 'CREATE_DEF') {
-                    $last = array_pop($result["options']);
-                    $last["delim'] = ',';
-                    $result["options'][] = $last;
+                    $last = array_pop($result["options"]);
+                    $last["delim"] = ',';
+                    $result["options"][] = $last;
                     $base_expr = '';
                 }
                 continue 2;
@@ -237,7 +237,7 @@ class TableProcessor : AbstractProcessor {
                 if ($prevCategory == 'TABLE_OPTION') {
                     // all assignments with the keywords
                     $expr[] = this.getReservedType($trim);
-                    $result["options'][] = array('expr_type' => ExpressionType::EXPRESSION,
+                    $result["options"][] = array('expr_type' => ExpressionType::EXPRESSION,
                                                  'base_expr' => trim($base_expr), 'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $currCategory);
                 }
@@ -246,25 +246,25 @@ class TableProcessor : AbstractProcessor {
             case 'IGNORE':
             case 'REPLACE':
                 $expr[] = this.getReservedType($trim);
-                $result["select-option'] = array('base_expr' => trim($base_expr), 'duplicates' => $trim, 'as' => false,
+                $result["select-option"] = array('base_expr' => trim($base_expr), 'duplicates' => $trim, 'as' => false,
                                                  'sub_tree' => $expr);
                 continue 2;
 
             case 'AS':
                 $expr[] = this.getReservedType($trim);
-                if (!isset($result["select-option']["duplicates'])) {
-                    $result["select-option']["duplicates'] = false;
+                if (!isset($result["select-option"]["duplicates"])) {
+                    $result["select-option"]["duplicates"] = false;
                 }
-                $result["select-option']["as'] = true;
-                $result["select-option']["base_expr'] = trim($base_expr);
-                $result["select-option']["sub_tree'] = $expr;
+                $result["select-option"]["as"] = true;
+                $result["select-option"]["base_expr"] = trim($base_expr);
+                $result["select-option"]["sub_tree"] = $expr;
                 continue 2;
 
             case 'PARTITION':
                 if ($prevCategory == 'CREATE_DEF') {
                     $part = this.processPartitionOptions(array_slice($tokens, $tokenKey - 1, null, true));
-                    $skip = $part["last-parsed'] - $tokenKey;
-                    $result["partition-options'] = $part["partition-options'];
+                    $skip = $part["last-parsed"] - $tokenKey;
+                    $result["partition-options"] = $part["partition-options"];
                     continue 2;
                 }
                 // else
@@ -276,7 +276,7 @@ class TableProcessor : AbstractProcessor {
                 case 'CHARSET':
                 // the charset name
                     $expr[] = this.getConstantType($trim);
-                    $result["options'][] = array('expr_type' => ExpressionType::CHARSET,
+                    $result["options"][] = array('expr_type' => ExpressionType::CHARSET,
                                                  'base_expr' => trim($base_expr), 'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $currCategory);
                     break;
@@ -284,7 +284,7 @@ class TableProcessor : AbstractProcessor {
                 case 'COLLATE':
                 // the collate name
                     $expr[] = this.getConstantType($trim);
-                    $result["options'][] = array('expr_type' => ExpressionType::COLLATE,
+                    $result["options"][] = array('expr_type' => ExpressionType::COLLATE,
                                                  'base_expr' => trim($base_expr), 'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $currCategory);
                     break;
@@ -292,7 +292,7 @@ class TableProcessor : AbstractProcessor {
                 case 'DATA_DIRECTORY':
                 // we have the directory name
                     $expr[] = this.getConstantType($trim);
-                    $result["options'][] = array('expr_type' => ExpressionType::DIRECTORY, 'kind' => 'DATA',
+                    $result["options"][] = array('expr_type' => ExpressionType::DIRECTORY, 'kind' => 'DATA',
                                                  'base_expr' => trim($base_expr), 'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $prevCategory);
                     continue 3;
@@ -300,19 +300,19 @@ class TableProcessor : AbstractProcessor {
                 case 'INDEX_DIRECTORY':
                 // we have the directory name
                     $expr[] = this.getConstantType($trim);
-                    $result["options'][] = array('expr_type' => ExpressionType::DIRECTORY, 'kind' => 'INDEX',
+                    $result["options"][] = array('expr_type' => ExpressionType::DIRECTORY, 'kind' => 'INDEX',
                                                  'base_expr' => trim($base_expr), 'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $prevCategory);
                     continue 3;
 
                 case 'TABLE_NAME':
-                    $result["base_expr'] = $result["name'] = $trim;
-                    $result["no_quotes'] = this.revokeQuotation($trim);
+                    $result["base_expr"] = $result["name"] = $trim;
+                    $result["no_quotes"] = this.revokeQuotation($trim);
                     this.clear($expr, $base_expr, $prevCategory);
                     break;
 
                 case 'LIKE':
-                    $result["like'] = array('expr_type' => ExpressionType::TABLE, 'table' => $trim,
+                    $result["like"] = array('expr_type' => ExpressionType::TABLE, 'table' => $trim,
                                             'base_expr' => $trim, 'no_quotes' => this.revokeQuotation($trim));
                     this.clear($expr, $base_expr, $currCategory);
                     break;
@@ -322,8 +322,8 @@ class TableProcessor : AbstractProcessor {
                     if ($prevCategory == 'TABLE_NAME' && $upper[0] == '(' && substr($upper, -1) == ')') {
                         $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart($trim));
                         $coldef = this.processCreateDefinition($unparsed);
-                        $result["create-def'] = array('expr_type' => ExpressionType::BRACKET_EXPRESSION,
-                                                      'base_expr' => $base_expr, 'sub_tree' => $coldef["create-def']);
+                        $result["create-def"] = array('expr_type' => ExpressionType::BRACKET_EXPRESSION,
+                                                      'base_expr' => $base_expr, 'sub_tree' => $coldef["create-def"]);
                         $expr = array();
                         $base_expr = '';
                         $currCategory = 'CREATE_DEF';
@@ -339,7 +339,7 @@ class TableProcessor : AbstractProcessor {
                     $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart($trim));
                     $expr[] = array('expr_type' => ExpressionType::BRACKET_EXPRESSION, 'base_expr' => $trim,
                                     'sub_tree' => '***TODO***');
-                    $result["options'][] = array('expr_type' => ExpressionType::UNION, 'base_expr' => trim($base_expr),
+                    $result["options"][] = array('expr_type' => ExpressionType::UNION, 'base_expr' => trim($base_expr),
                                                  'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $currCategory);
                     break;
@@ -347,7 +347,7 @@ class TableProcessor : AbstractProcessor {
                 default:
                 // strings and numeric constants
                     $expr[] = this.getConstantType($trim);
-                    $result["options'][] = array('expr_type' => ExpressionType::EXPRESSION,
+                    $result["options"][] = array('expr_type' => ExpressionType::EXPRESSION,
                                                  'base_expr' => trim($base_expr), 'delim' => ' ', 'sub_tree' => $expr);
                     this.clear($expr, $base_expr, $currCategory);
                     break;
@@ -359,14 +359,14 @@ class TableProcessor : AbstractProcessor {
             $currCategory = '';
         }
 
-        if ($result["like'] == false) {
-            unset($result["like']);
+        if ($result["like"] == false) {
+            unset($result["like"]);
         }
-        if ($result["select-option'] == false) {
-            unset($result["select-option']);
+        if ($result["select-option"] == false) {
+            unset($result["select-option"]);
         }
-        if ($result["options'] == array()) {
-            $result["options'] = false;
+        if ($result["options"] == array()) {
+            $result["options"] = false;
         }
 
         return $result;

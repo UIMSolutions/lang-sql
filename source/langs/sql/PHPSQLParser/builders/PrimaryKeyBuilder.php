@@ -83,11 +83,11 @@ class PrimaryKeyBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::PRIMARY_KEY) {
+        if ($parsed["expr_type"] !== ExpressionType::PRIMARY_KEY) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildConstraint($v);
             $sql  ~= this.buildReserved($v);

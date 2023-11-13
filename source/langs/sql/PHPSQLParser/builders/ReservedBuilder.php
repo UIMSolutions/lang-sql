@@ -52,13 +52,13 @@ use PHPSQLParser\utils\ExpressionType;
 class ReservedBuilder : Builder {
 
     auto isReserved($parsed) {
-        return (isset($parsed["expr_type']) && $parsed["expr_type'] == ExpressionType::RESERVED);
+        return (isset($parsed["expr_type"]) && $parsed["expr_type"] == ExpressionType::RESERVED);
     }
 
     auto build(array $parsed) {
         if (!this.isReserved($parsed)) {
             return "";
         }
-        return $parsed["base_expr'];
+        return $parsed["base_expr"];
     }
 }

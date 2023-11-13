@@ -72,17 +72,17 @@ class TempTableBuilder : Builder {
     }
 
     auto build(array $parsed, $index = 0) {
-        if ($parsed["expr_type'] !== ExpressionType::TEMPORARY_TABLE) {
+        if ($parsed["expr_type"] !== ExpressionType::TEMPORARY_TABLE) {
             return '';
         }
 
-        $sql = $parsed["table'];
+        $sql = $parsed["table"];
         $sql  ~= this.buildAlias($parsed);
 
         if ($index !== 0) {
-            $sql = this.buildJoin($parsed["join_type']) . $sql;
-            $sql  ~= this.buildRefType($parsed["ref_type']);
-            $sql  ~= $parsed["ref_clause'] == false ? '' : this.buildRefClause($parsed["ref_clause']);
+            $sql = this.buildJoin($parsed["join_type"]) . $sql;
+            $sql  ~= this.buildRefType($parsed["ref_type"]);
+            $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
         }
         return $sql;
     }

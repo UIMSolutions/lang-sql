@@ -52,9 +52,9 @@ use PHPSQLParser\utils\ExpressionType;
 class GroupByAliasBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] !== ExpressionType::ALIAS) {
             return "";
         }
-        return $parsed["base_expr'];
+        return $parsed["base_expr"];
     }
 }

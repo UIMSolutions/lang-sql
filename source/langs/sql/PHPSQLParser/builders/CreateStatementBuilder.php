@@ -67,10 +67,10 @@ class CreateStatementBuilder : Builder {
 
     auto build(array $parsed) {
         $sql = this.buildCREATE($parsed);
-        if (isset($parsed["LIKE'])) {
-            $sql  ~= " " . this.buildLIKE($parsed["LIKE']);
+        if (isset($parsed["LIKE"])) {
+            $sql  ~= " " . this.buildLIKE($parsed["LIKE"]);
         }
-        if (isset($parsed["SELECT'])) {
+        if (isset($parsed["SELECT"])) {
             $sql  ~= " " . this.buildSelectStatement($parsed);
         }
         return $sql;

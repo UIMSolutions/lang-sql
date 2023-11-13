@@ -63,11 +63,11 @@ class CheckBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::CHECK) {
+        if ($parsed["expr_type"] !== ExpressionType::CHECK) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildReserved($v);
             $sql  ~= this.buildSelectBracketExpression($v);

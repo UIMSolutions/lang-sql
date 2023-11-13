@@ -51,17 +51,17 @@ module lang.sql.parsers.builders;
 class IndexHintListBuilder : Builder {
 
     auto hasHint($parsed) {
-        return isset($parsed["hints']);
+        return isset($parsed["hints"]);
     }
 
     // TODO: the hint list should be enhanced to get base_expr fro position calculation
     auto build(array $parsed) {
-        if (!isset($parsed["hints']) || $parsed["hints'] == false) {
+        if (!isset($parsed["hints"]) || $parsed["hints"] == false) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["hints'] as $k => $v) {
-            $sql  ~= $v["hint_type'] . " " . $v["hint_list'] . " ";
+        foreach ($parsed["hints"] as $k => $v) {
+            $sql  ~= $v["hint_type"] . " " . $v["hint_list"] . " ";
         }
         return " " . substr($sql, 0, -1);
     }

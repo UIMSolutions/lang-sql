@@ -52,10 +52,10 @@ use PHPSQLParser\utils\ExpressionType;
 class AliasReferenceBuilder : Builder {
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] !== ExpressionType::ALIAS) {
             return "";
         }
-        $sql = $parsed["base_expr'];
+        $sql = $parsed["base_expr"];
         return $sql;
     }
 }

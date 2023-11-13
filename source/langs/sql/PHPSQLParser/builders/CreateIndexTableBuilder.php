@@ -57,14 +57,14 @@ class CreateIndexTableBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if (!isset($parsed["on']) || $parsed["on'] == false) {
+        if (!isset($parsed["on"]) || $parsed["on"] == false) {
             return '';
         }
-        $table = $parsed["on'];
-        if ($table["expr_type'] !== ExpressionType::TABLE) {
+        $table = $parsed["on"];
+        if ($table["expr_type"] !== ExpressionType::TABLE) {
             return '';
         }
-        return 'ON ' . $table["name'] . ' ' . this.buildColumnList($table["sub_tree']);
+        return 'ON ' . $table["name"] . ' ' . this.buildColumnList($table["sub_tree"]);
     }
 
 }

@@ -162,7 +162,7 @@ class ExpressionListProcessor : AbstractProcessor {
                                 $localExpr.setSubTree($localExprList);
                                 $localExpr.setTokenType(ExpressionType::EXPRESSION);
                                 $localExprList = $localExpr.toArray();
-                                $localExprList["alias'] = false;
+                                $localExprList["alias"] = false;
                                 $localExprList = array($localExprList);
                             }
 
@@ -187,7 +187,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         $localExpr.setSubTree($localExprList);
                         $localExpr.setTokenType(ExpressionType::EXPRESSION);
                         $localExprList = $localExpr.toArray();
-                        $localExprList["alias'] = false;
+                        $localExprList["alias"] = false;
                         $localExprList = array($localExprList);
                     }
 

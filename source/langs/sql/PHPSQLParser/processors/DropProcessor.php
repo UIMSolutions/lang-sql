@@ -107,21 +107,21 @@ class DropProcessor : AbstractProcessor {
 
             case ',':
                 $last = array_pop($objectList);
-                $last["delim'] = $trim;
+                $last["delim"] = $trim;
                 $objectList[] = $last;
                 continue 2;
 
             default:
                 $object = array();
-                $object["expr_type'] = $objectType;
+                $object["expr_type"] = $objectType;
                 if ($objectType == ExpressionType::TABLE || $objectType == ExpressionType::TEMPORARY_TABLE) {
-                    $object["table'] = $trim;
-                    $object["no_quotes'] = false;
-                    $object["alias'] = false;
+                    $object["table"] = $trim;
+                    $object["no_quotes"] = false;
+                    $object["alias"] = false;
                 }
-                $object["base_expr'] = $trim;
-                $object["no_quotes'] = this.revokeQuotation($trim);
-                $object["delim'] = false;
+                $object["base_expr"] = $trim;
+                $object["no_quotes"] = this.revokeQuotation($trim);
+                $object["delim"] = false;
 
                 $objectList[] = $object;
                 continue 2;

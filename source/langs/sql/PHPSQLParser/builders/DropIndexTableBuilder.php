@@ -52,14 +52,14 @@ use PHPSQLParser\utils\ExpressionType;
 class DropIndexTableBuilder : Builder {
 
     auto build(array $parsed) {
-        if (!isset($parsed["on']) || $parsed["on'] == false) {
+        if (!isset($parsed["on"]) || $parsed["on"] == false) {
             return '';
         }
-        $table = $parsed["on'];
-        if ($table["expr_type'] !== ExpressionType::TABLE) {
+        $table = $parsed["on"];
+        if ($table["expr_type"] !== ExpressionType::TABLE) {
             return '';
         }
-        return 'ON ' . $table["name'];
+        return 'ON ' . $table["name"];
     }
 
 }

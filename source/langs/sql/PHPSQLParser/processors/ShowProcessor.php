@@ -119,7 +119,7 @@ class ShowProcessor : AbstractProcessor {
                     break;
                 case 'LIMIT':
                     $limit = array_pop($resultList);
-                    $limit["sub_tree'] = this.limitProcessor.process(array_slice($tokens, $k));
+                    $limit["sub_tree"] = this.limitProcessor.process(array_slice($tokens, $k));
                     $resultList[] = $limit;
                     break;
                 case 'FROM':

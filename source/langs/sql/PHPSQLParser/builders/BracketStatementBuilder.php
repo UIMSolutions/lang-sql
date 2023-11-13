@@ -63,7 +63,7 @@ class BracketStatementBuilder : Builder {
 
     auto build(array $parsed) {
         $sql = "";
-        foreach ($parsed["BRACKET'] as $k => $v) {
+        foreach ($parsed["BRACKET"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildSelectBracketExpression($v);
 

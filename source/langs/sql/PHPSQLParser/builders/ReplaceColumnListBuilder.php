@@ -58,11 +58,11 @@ class ReplaceColumnListBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type'] !== ExpressionType::COLUMN_LIST) {
+        if ($parsed["expr_type"] !== ExpressionType::COLUMN_LIST) {
             return "";
         }
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.buildColumn($v);
 

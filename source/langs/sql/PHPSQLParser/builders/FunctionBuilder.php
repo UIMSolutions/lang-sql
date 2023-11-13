@@ -98,18 +98,18 @@ class FunctionBuilder : Builder {
     }
 
     auto build(array $parsed) {
-        if (($parsed["expr_type'] !== ExpressionType::AGGREGATE_FUNCTION)
-            && ($parsed["expr_type'] !== ExpressionType::SIMPLE_FUNCTION)
-            && ($parsed["expr_type'] !== ExpressionType::CUSTOM_FUNCTION)) {
+        if (($parsed["expr_type"] !== ExpressionType::AGGREGATE_FUNCTION)
+            && ($parsed["expr_type"] !== ExpressionType::SIMPLE_FUNCTION)
+            && ($parsed["expr_type"] !== ExpressionType::CUSTOM_FUNCTION)) {
             return "";
         }
 
-        if ($parsed["sub_tree'] == false) {
-            return $parsed["base_expr'] . "()" . this.buildAlias($parsed);
+        if ($parsed["sub_tree"] == false) {
+            return $parsed["base_expr"] . "()" . this.buildAlias($parsed);
         }
 
         $sql = "";
-        foreach ($parsed["sub_tree'] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen($sql);
             $sql  ~= this.build($v);
             $sql  ~= this.buildConstant($v);
@@ -126,7 +126,7 @@ class FunctionBuilder : Builder {
 
             $sql  ~= (this.isReserved($v) ? " " : ",");
         }
-        return $parsed["base_expr'] . "(" . substr($sql, 0, -1) . ")" . this.buildAlias($parsed);
+        return $parsed["base_expr"] . "(" . substr($sql, 0, -1) . ")" . this.buildAlias($parsed);
     }
 
 }
