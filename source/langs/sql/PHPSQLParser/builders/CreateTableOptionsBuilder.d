@@ -7,7 +7,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the table-options statement part of CREATE TABLE. 
@@ -46,19 +49,19 @@ class CreateTableOptionsBuilder : IBuilder {
             return "";
         }
         $options = $parsed["options"];
-        $sql = "";
+        mySql = "";
         foreach ($options as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildExpression($v);
-            $sql  ~= this.buildCharacterSet($v);
-            $sql  ~= this.buildCollation($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildExpression($v);
+            mySql  ~= this.buildCharacterSet($v);
+            mySql  ~= this.buildCollation($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE options', $k, $v, 'expr_type');
             }
 
-            $sql  ~= this.getDelimiter($v);
+            mySql  ~= this.getDelimiter($v);
         }
-        return " " . substr($sql, 0, -1);
+        return " " . substr(mySql, 0, -1);
     }
 }

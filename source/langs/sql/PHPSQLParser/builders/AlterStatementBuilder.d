@@ -1,6 +1,9 @@
 
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 class AlterStatementBuilder : IBuilder {
     protected auto buildSubTree($parsed) {
         $builder = new SubTreeBuilder();

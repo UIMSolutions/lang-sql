@@ -1,5 +1,8 @@
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 class AliasBuilder : ISqlBuilder {
 
   auto hasAlias(parsed) {

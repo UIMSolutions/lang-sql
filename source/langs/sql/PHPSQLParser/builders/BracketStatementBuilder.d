@@ -39,16 +39,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
 
-/**
- * This class : the builder for the parentheses around a statement. 
- * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
- */
+import lang.sql;
+
+@safe:
 class BracketStatementBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {
