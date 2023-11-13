@@ -1,6 +1,9 @@
 module lang.sql.parsers.builders;
 
-class AlterBuilder : Builder {
+import lang.sql;
+
+@safe:
+class AlterBuilder : ISqlBuilder {
     auto build(array $parsed) {    {
         auto mySql = "";
 
