@@ -3,18 +3,13 @@
  * ForeignKeyBuilder.php
  *
  * Builds the FOREIGN KEY statement part of CREATE TABLE.
- *
- *
- * LICENSE:
- * Copyright (c) 2010-2014 Justin Swanhart and André Rothe
- * All rights reserved.
- *
- * 
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the FOREIGN KEY statement part of CREATE TABLE. 

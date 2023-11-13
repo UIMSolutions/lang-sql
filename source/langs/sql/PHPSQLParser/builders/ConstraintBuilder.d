@@ -1,17 +1,18 @@
-
 /**
  * ConstraintBuilder.php
  *
  * Builds the constraint statement part of CREATE TABLE.
- *
- *
+*/
 
 module lang.sql.parsers.builders;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the constraint statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
+ * You can overwrite all functions to achieve another handling. */
 class ConstraintBuilder : ISqlBuilder {
 
     protected auto buildConstant($parsed) {
@@ -28,3 +29,4 @@ class ConstraintBuilder : ISqlBuilder {
     }
 
 }
+

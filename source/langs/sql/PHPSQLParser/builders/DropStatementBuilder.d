@@ -9,6 +9,9 @@
 
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 /**
  * This class : the builder for the whole DROP TABLE statement. 
  * You can overwrite all functions to achieve another handling.

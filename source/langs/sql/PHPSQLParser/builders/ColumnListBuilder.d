@@ -38,13 +38,13 @@ class ColumnListBuilder : ISqlBuilder {
         }
 
         string mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (key, value; $parsed["sub_tree"]) {
             $len = strlen(mySql);
-            mySql  ~= this.buildIndexColumn($v);
-            mySql  ~= this.buildColumnReference($v);
+            mySql  ~= this.buildIndexColumn(value);
+            mySql  ~= this.buildColumnReference(value);
 
             if ($len == strlen(mySql)) {
-                throw new UnableToCreateSQLException('CREATE TABLE column-list subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE column-list subtree', key, value, 'expr_type');
             }
 
             mySql  ~= $delim;

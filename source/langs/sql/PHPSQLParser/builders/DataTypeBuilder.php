@@ -15,10 +15,6 @@ import lang.sql;
 /**
  * This class : the builder for the data-type statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
  */
 class DataTypeBuilder : IBuilder {
 

@@ -6,8 +6,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the index key part of a CREATE TABLE statement. 
@@ -41,20 +43,20 @@ class FulltextIndexBuilder : IBuilder {
         if ($parsed["expr_type"] != ExpressionType::FULLTEXT_IDX) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildColumnList($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildIndexKey($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildColumnList($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildIndexKey($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE fulltext-index key subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }
