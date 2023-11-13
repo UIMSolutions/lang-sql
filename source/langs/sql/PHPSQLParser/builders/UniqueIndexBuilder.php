@@ -93,4 +93,3 @@ class UniqueIndexBuilder : Builder {
         return substr($sql, 0, -1);
     }
 }
-?>

@@ -138,4 +138,3 @@ class SubTreeBuilder : Builder {
         return substr($sql, 0, -strlen($delim));
     }
 }
-?>

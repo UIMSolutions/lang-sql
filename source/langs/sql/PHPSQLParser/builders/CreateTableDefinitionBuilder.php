@@ -62,4 +62,3 @@ class CreateTableDefinitionBuilder : Builder {
         return this.buildTableBracketExpression($parsed['create-def']);
     }
 }
-?>

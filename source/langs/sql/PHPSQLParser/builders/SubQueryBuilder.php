@@ -94,4 +94,3 @@ class SubQueryBuilder : Builder {
         return $sql;
     }
 }
-?>

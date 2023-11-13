@@ -65,4 +65,3 @@ class ColumnTypeBracketExpressionBuilder : Builder {
         return $sql;
     }
 }
-?>

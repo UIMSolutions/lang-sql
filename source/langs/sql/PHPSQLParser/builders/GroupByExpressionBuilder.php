@@ -85,4 +85,3 @@ class GroupByExpressionBuilder : Builder {
         return $sql;
     }
 }
-?>

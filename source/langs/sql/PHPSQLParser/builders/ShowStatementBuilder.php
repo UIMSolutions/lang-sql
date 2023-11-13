@@ -68,4 +68,3 @@ class ShowStatementBuilder : Builder {
         return $sql;
     }
 }
-?>

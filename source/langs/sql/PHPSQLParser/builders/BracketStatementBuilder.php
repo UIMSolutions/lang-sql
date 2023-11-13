@@ -74,4 +74,3 @@ class BracketStatementBuilder : Builder {
         return trim($sql . " " . trim(this.buildSelectStatement($parsed)));
     }
 }
-?>

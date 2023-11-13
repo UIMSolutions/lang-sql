@@ -87,4 +87,3 @@ class CollationBuilder : Builder {
         return substr($sql, 0, -1);
     }
 }
-?>

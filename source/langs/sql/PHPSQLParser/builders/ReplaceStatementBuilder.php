@@ -85,4 +85,3 @@ class ReplaceStatementBuilder : Builder {
         return $sql;
     }
 }
-?>

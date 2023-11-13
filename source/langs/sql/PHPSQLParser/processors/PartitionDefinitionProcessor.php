@@ -386,4 +386,3 @@ class PartitionDefinitionProcessor : AbstractProcessor {
         return $result;
     }
 }
-?>

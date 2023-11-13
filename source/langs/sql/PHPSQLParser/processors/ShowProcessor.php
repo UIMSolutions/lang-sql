@@ -167,4 +167,3 @@ class ShowProcessor : AbstractProcessor {
         return $resultList;
     }
 }
-?>

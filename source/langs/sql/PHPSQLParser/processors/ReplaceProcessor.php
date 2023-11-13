@@ -54,4 +54,3 @@ class ReplaceProcessor : InsertProcessor {
     }
 
 }
-?>

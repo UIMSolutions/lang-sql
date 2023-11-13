@@ -58,4 +58,3 @@ class ViewBuilder : Builder {
         return $parsed['base_expr'];
     }
 }
-?>

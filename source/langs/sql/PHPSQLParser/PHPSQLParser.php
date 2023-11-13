@@ -135,4 +135,3 @@ class PHPSQLParser {
         return PHPSQLParserConstants::getInstance().getCustomFunctions();
     }
 }
-?>

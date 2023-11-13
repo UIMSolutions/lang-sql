@@ -62,4 +62,3 @@ class CreateTableOptionsBuilder : IBuilder {
         return " " . substr($sql, 0, -1);
     }
 }
-?>

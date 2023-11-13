@@ -438,4 +438,3 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         return $expr;
     }
 }
-?>

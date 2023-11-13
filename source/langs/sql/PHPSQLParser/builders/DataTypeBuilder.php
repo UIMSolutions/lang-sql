@@ -26,4 +26,3 @@ class DataTypeBuilder : IBuilder {
         return $parsed['base_expr'];
     }
 }
-?>

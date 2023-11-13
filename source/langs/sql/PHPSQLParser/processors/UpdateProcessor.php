@@ -50,4 +50,3 @@ module lang.sql.parsers.processors;
 class UpdateProcessor : FromProcessor {
 
 }
-?>

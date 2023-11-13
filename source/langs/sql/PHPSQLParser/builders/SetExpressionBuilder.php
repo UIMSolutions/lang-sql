@@ -113,4 +113,3 @@ class SetExpressionBuilder : Builder {
         return $sql;
     }
 }
-?>

@@ -138,4 +138,3 @@ class DropProcessor : AbstractProcessor {
         return array('expr_type' => $objectType, 'option' => $option, 'if-exists' => $exists, 'sub_tree' => $subTree);
     }
 }
-?>

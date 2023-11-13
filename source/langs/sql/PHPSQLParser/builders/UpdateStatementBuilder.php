@@ -73,4 +73,3 @@ class UpdateStatementBuilder : Builder {
         return $sql;
     }
 }
-?>

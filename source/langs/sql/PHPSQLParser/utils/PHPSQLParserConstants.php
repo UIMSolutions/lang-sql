@@ -216,4 +216,3 @@ class PHPSQLParserConstants {
         return array_keys(this.customFunctions);
     }
 }
-?>

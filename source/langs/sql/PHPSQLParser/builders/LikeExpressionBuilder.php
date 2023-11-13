@@ -83,4 +83,3 @@ class LikeExpressionBuilder : Builder {
         return substr($sql, 0, -1);
     }
 }
-?>

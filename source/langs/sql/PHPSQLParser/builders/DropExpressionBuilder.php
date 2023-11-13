@@ -99,4 +99,3 @@ class DropExpressionBuilder : Builder {
         return substr($sql, 0, -2);
     }
 }
-?>

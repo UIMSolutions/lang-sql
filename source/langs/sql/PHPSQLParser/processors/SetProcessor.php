@@ -109,4 +109,3 @@ class SetProcessor : AbstractProcessor {
     }
 
 }
-?>

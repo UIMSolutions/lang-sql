@@ -224,4 +224,3 @@ class UnionProcessor : AbstractProcessor {
         return this.processMySQLUnion($queries);
     }
 }
-?>

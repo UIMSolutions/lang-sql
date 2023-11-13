@@ -145,4 +145,3 @@ class ValuesProcessor : AbstractProcessor {
     }
 
 }
-?>

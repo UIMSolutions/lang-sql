@@ -414,4 +414,3 @@ class CreateDefinitionProcessor : AbstractProcessor {
         return $result;
     }
 }
-?>

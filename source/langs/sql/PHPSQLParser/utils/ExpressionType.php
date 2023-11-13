@@ -149,4 +149,3 @@ class ExpressionType {
     const QUERY = 'query';
     const SUBQUERY_FACTORING = 'subquery-factoring';
 }
-?>

@@ -93,4 +93,3 @@ class QueryBuilder : Builder {
         return $sql;
     }
 }
-?>

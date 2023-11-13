@@ -58,4 +58,3 @@ class OperatorBuilder : Builder {
         return $parsed['base_expr'];
     }
 }
-?>

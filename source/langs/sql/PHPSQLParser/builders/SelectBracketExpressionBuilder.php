@@ -69,4 +69,3 @@ class SelectBracketExpressionBuilder : Builder {
             . this.buildAlias($parsed);
     }
 }
-?>

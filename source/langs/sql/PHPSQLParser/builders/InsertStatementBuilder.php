@@ -85,4 +85,3 @@ class InsertStatementBuilder : Builder {
         return $sql;
     }
 }
-?>

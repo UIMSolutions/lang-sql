@@ -166,4 +166,3 @@ class InsertProcessor : AbstractProcessor {
         return $tokenList;
     }
 }
-?>

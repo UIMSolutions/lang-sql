@@ -96,4 +96,3 @@ class InsertBuilder : Builder {
     }
 
 }
-?>

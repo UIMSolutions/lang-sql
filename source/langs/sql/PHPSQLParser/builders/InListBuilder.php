@@ -64,4 +64,3 @@ class InListBuilder : Builder {
         return "(" . $sql . ")";
     }
 }
-?>

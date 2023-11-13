@@ -58,4 +58,3 @@ class CreateIndexTypeBuilder : IndexTypeBuilder {
         return parent::build($parsed['index-type']);
     }
 }
-?>

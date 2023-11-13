@@ -59,4 +59,3 @@ class AliasReferenceBuilder : Builder {
         return $sql;
     }
 }
-?>

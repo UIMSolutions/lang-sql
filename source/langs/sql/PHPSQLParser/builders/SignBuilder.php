@@ -58,4 +58,3 @@ class SignBuilder : Builder {
         return $parsed['base_expr'];
     }
 }
-?>

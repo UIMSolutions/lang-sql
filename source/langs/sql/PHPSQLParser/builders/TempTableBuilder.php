@@ -87,4 +87,3 @@ class TempTableBuilder : Builder {
         return $sql;
     }
 }
-?>

@@ -194,4 +194,3 @@ class SQLChunkProcessor : AbstractProcessor {
         return $out;
     }
 }
-?>

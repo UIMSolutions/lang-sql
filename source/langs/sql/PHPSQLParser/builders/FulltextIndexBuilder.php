@@ -58,4 +58,3 @@ class FulltextIndexBuilder : IBuilder {
         return substr($sql, 0, -1);
     }
 }
-?>

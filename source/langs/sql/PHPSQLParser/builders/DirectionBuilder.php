@@ -28,4 +28,3 @@ class DirectionBuilder : IBuilder {
         return (" " . $parsed['direction']);
     }
 }
-?>

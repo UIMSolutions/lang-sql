@@ -59,4 +59,3 @@ class LimitBuilder : Builder {
         return "LIMIT " . $sql;
     }
 }
-?>

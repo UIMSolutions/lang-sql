@@ -75,4 +75,3 @@ class ValuesBuilder : Builder {
         return empty($parsed['delim']) ? ' ' : $parsed['delim'] . ' ';
     }
 }
-?>

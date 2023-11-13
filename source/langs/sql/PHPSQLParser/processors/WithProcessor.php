@@ -116,4 +116,3 @@ class WithProcessor : AbstractProcessor {
         return $out;
     }
 }
-?>

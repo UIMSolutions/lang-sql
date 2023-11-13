@@ -80,4 +80,3 @@ class DeleteProcessor : AbstractProcessor {
         return $tokens;
     }
 }
-?>

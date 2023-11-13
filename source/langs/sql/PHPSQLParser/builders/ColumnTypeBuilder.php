@@ -119,4 +119,3 @@ class ColumnTypeBuilder : Builder {
     }
     
 }
-?>

@@ -58,4 +58,3 @@ class PositionBuilder : Builder {
         return $parsed['base_expr'];
     }
 }
-?>

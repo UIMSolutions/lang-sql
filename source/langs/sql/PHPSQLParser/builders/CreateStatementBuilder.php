@@ -76,4 +76,3 @@ class CreateStatementBuilder : Builder {
         return $sql;
     }
 }
-?>

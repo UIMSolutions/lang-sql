@@ -106,4 +106,3 @@ class FromBuilder : Builder {
         return "FROM " . $sql;
     }
 }
-?>

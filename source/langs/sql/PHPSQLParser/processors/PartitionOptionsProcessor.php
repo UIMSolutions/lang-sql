@@ -357,4 +357,3 @@ class PartitionOptionsProcessor : AbstractProcessor {
         return $result;
     }
 }
-?>

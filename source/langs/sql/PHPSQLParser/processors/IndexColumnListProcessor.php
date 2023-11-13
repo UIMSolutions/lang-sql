@@ -96,4 +96,3 @@ class IndexColumnListProcessor : AbstractProcessor {
         return $result;
     }
 }
-?>

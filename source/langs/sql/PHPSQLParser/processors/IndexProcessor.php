@@ -305,4 +305,3 @@ class IndexProcessor : AbstractProcessor {
         return $result;
     }
 }
-?>

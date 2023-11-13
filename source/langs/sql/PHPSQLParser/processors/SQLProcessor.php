@@ -525,4 +525,3 @@ class SQLProcessor : SQLChunkProcessor {
         return parent::process($out);
     }
 }
-?>

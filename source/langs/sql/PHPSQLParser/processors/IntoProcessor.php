@@ -56,4 +56,3 @@ class IntoProcessor : AbstractProcessor {
         return $tokenList;
     }
 }
-?>

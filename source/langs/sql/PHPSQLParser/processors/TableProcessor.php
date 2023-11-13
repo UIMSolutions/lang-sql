@@ -372,4 +372,3 @@ class TableProcessor : AbstractProcessor {
         return $result;
     }
 }
-?>

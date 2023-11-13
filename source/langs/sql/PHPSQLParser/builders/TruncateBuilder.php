@@ -67,4 +67,3 @@ class TruncateBuilder : Builder {
         return substr($sql, 0, $right);
     }
 }
-?>

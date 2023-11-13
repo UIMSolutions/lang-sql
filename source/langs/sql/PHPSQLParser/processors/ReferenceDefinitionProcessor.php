@@ -180,4 +180,3 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         return $expr;
     }
 }
-?>

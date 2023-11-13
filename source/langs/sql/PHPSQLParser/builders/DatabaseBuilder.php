@@ -58,4 +58,3 @@ class DatabaseBuilder : Builder {
         return $parsed['base_expr'];
     }
 }
-?>

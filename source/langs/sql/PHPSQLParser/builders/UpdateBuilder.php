@@ -71,4 +71,3 @@ class UpdateBuilder : Builder {
         return 'UPDATE ' . $sql;
     }
 }
-?>
