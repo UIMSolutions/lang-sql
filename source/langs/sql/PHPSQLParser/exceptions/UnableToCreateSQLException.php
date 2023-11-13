@@ -36,7 +36,7 @@
  * @version   SVN: $Id$
  * 
  */
-namespace PHPSQLParser\exceptions;
+module lang.sql.parsersexceptions;
 use Exception;
 
 /**

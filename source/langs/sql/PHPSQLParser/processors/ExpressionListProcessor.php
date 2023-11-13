@@ -38,7 +38,7 @@
  *
  */
 
-namespace PHPSQLParser\processors;
+module lang.sql.parsersprocessors;
 use PHPSQLParser\utils\ExpressionType;
 use PHPSQLParser\utils\ExpressionToken;
 use PHPSQLParser\utils\PHPSQLParserConstants;

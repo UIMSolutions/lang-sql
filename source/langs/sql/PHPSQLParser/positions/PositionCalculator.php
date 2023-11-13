@@ -39,7 +39,7 @@
  * 
  */
 
-namespace PHPSQLParser\positions;
+module lang.sql.parserspositions;
 use PHPSQLParser\utils\PHPSQLParserConstants;
 use PHPSQLParser\exceptions\UnableToCalculatePositionException;
 use PHPSQLParser\utils\ExpressionType;

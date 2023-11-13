@@ -38,7 +38,7 @@
  *
  */
 
-namespace PHPSQLParser\processors;
+module lang.sql.parsersprocessors;
 
 /**
  * This class processes the REPLACE statements.

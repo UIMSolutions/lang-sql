@@ -6,7 +6,7 @@
  * Part of PHPSQLParser.
  */
 
-namespace PHPSQLParser\lexer;
+module lang.sql.parserslexer;
 
 /**
  * This class holds a sorted array of characters, which are used as stop token.

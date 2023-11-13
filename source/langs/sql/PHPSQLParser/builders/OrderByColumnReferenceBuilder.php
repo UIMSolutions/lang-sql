@@ -38,7 +38,7 @@
  * 
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for column references within the ORDER-BY part. 

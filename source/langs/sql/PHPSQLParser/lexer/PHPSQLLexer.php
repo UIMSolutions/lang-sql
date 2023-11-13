@@ -39,7 +39,7 @@
  *
  */
 
-namespace PHPSQLParser\lexer;
+module lang.sql.parserslexer;
 use PHPSQLParser\exceptions\InvalidParameterException;
 
 /**

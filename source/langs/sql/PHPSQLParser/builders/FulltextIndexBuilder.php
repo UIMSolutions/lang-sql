@@ -5,7 +5,7 @@
  * Builds index key part of a CREATE TABLE statement.
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 use PHPSQLParser\exceptions\UnableToCreateSQLException;
 use PHPSQLParser\utils\ExpressionType;
 

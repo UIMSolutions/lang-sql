@@ -38,7 +38,7 @@
  * 
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for expressions within the ORDER-BY part. 

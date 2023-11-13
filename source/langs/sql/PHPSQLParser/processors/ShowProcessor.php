@@ -30,7 +30,7 @@
  * DAMAGE.
  */
 
-namespace PHPSQLParser\processors;
+module lang.sql.parsersprocessors;
 use PHPSQLParser\Options;
 use PHPSQLParser\utils\ExpressionType;
 use PHPSQLParser\utils\PHPSQLParserConstants;

@@ -12,7 +12,7 @@
  * 
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for directions (e.g. of the order-by clause). 

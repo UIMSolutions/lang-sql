@@ -1,5 +1,5 @@
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 class AlterStatementBuilder : IBuilder {
     protected auto buildSubTree($parsed) {

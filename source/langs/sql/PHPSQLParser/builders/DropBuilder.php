@@ -5,7 +5,7 @@
  * Builds the CREATE statement
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 use PHPSQLParser\exceptions\UnableToCreateSQLException;
 use PHPSQLParser\utils\ExpressionType;
 

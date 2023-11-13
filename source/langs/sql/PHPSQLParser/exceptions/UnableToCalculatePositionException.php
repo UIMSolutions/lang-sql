@@ -37,7 +37,7 @@
  * 
  */
 
-namespace PHPSQLParser\exceptions;
+module lang.sql.parsersexceptions;
 use Exception;
 
 /**

@@ -38,7 +38,7 @@
  *
  */
 
-namespace PHPSQLParser\processors;
+module lang.sql.parsersprocessors;
 
 use PHPSQLParser\lexer\PHPSQLLexer;
 use PHPSQLParser\Options;

@@ -5,7 +5,7 @@
  * Builds the DELETE statement
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for the whole Delete statement. You can overwrite

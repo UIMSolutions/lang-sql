@@ -7,7 +7,7 @@
  *
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for the DROP INDEX statement. You can overwrite

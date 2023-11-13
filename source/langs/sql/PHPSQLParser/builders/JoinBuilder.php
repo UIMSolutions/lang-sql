@@ -39,7 +39,7 @@
  * 
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for the JOIN statement parts (within FROM). 

@@ -38,7 +38,7 @@
  *
  */
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 use PHPSQLParser\exceptions\UnableToCreateSQLException;
 
 /**

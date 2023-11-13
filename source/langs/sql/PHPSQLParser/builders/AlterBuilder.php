@@ -1,5 +1,5 @@
 
-namespace PHPSQLParser\builders;
+module lang.sql.parsersbuilders;
 
 /**
  * This class : the builder for the [DELETE] part. You can overwrite

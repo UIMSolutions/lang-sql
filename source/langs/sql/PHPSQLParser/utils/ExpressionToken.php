@@ -1,6 +1,6 @@
 
 
-namespace PHPSQLParser\utils;
+module lang.sql.parsersutils;
 
 use PHPSQLParser\Options;
 use PHPSQLParser\processors\DefaultProcessor;
