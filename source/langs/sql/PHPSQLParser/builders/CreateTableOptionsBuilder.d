@@ -7,7 +7,7 @@
  */
 
 module lang.sql.parsers.builders;
-use PHPSQLParser\exceptions\UnableToCreateSQLException;
+use SqlParser\exceptions\UnableToCreateSQLException;
 
 /**
  * This class : the builder for the table-options statement part of CREATE TABLE. 

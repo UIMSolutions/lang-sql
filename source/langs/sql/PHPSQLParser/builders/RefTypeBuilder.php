@@ -39,7 +39,7 @@
  */
 
 module lang.sql.parsers.builders;
-use PHPSQLParser\exceptions\UnsupportedFeatureException;
+use SqlParser\exceptions\UnsupportedFeatureException;
 
 /**
  * This class : the references type within a JOIN. 

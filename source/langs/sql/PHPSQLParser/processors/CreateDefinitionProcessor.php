@@ -39,7 +39,7 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the create definition of the TABLE statements.

@@ -31,9 +31,9 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\Options;
-use PHPSQLParser\utils\ExpressionType;
-use PHPSQLParser\utils\PHPSQLParserConstants;
+use SqlParser\Options;
+use SqlParser\utils\ExpressionType;
+use SqlParser\utils\SqlParserConstants;
 
 /**
  *
@@ -140,7 +140,7 @@ class ShowProcessor : AbstractProcessor {
                     $category = "TABLENAME";
                     break;
                 case 'FUNCTION':
-                    if (PHPSQLParserConstants::getInstance().isAggregateFunction($upper)) {
+                    if (SqlParserConstants::getInstance().isAggregateFunction($upper)) {
                         $expr_type = ExpressionType::AGGREGATE_FUNCTION;
                     } else {
                         $expr_type = ExpressionType::SIMPLE_FUNCTION;

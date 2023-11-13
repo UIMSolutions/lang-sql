@@ -2,7 +2,7 @@
 /**
  * PHPSQLCreator.php
  *
- * A creator, which generates SQL from the output of PHPSQLParser.
+ * A creator, which generates SQL from the output of SqlParser.
  *
  *
  * LICENSE:
@@ -36,24 +36,24 @@
  * 
  */
 
-namespace PHPSQLParser;
-use PHPSQLParser\exceptions\UnsupportedFeatureException;
-use PHPSQLParser\builders\SelectStatementBuilder;
-use PHPSQLParser\builders\DeleteStatementBuilder;
-use PHPSQLParser\builders\TruncateStatementBuilder;
-use PHPSQLParser\builders\UpdateStatementBuilder;
-use PHPSQLParser\builders\InsertStatementBuilder;
-use PHPSQLParser\builders\CreateStatementBuilder;
-use PHPSQLParser\builders\DropStatementBuilder;
-use PHPSQLParser\builders\RenameStatementBuilder;
-use PHPSQLParser\builders\ReplaceStatementBuilder;
-use PHPSQLParser\builders\ShowStatementBuilder;
-use PHPSQLParser\builders\BracketStatementBuilder;
-use PHPSQLParser\builders\UnionStatementBuilder;
-use PHPSQLParser\builders\UnionAllStatementBuilder;
-use PHPSQLParser\builders\AlterStatementBuilder;
+namespace SqlParser;
+use SqlParser\exceptions\UnsupportedFeatureException;
+use SqlParser\builders\SelectStatementBuilder;
+use SqlParser\builders\DeleteStatementBuilder;
+use SqlParser\builders\TruncateStatementBuilder;
+use SqlParser\builders\UpdateStatementBuilder;
+use SqlParser\builders\InsertStatementBuilder;
+use SqlParser\builders\CreateStatementBuilder;
+use SqlParser\builders\DropStatementBuilder;
+use SqlParser\builders\RenameStatementBuilder;
+use SqlParser\builders\ReplaceStatementBuilder;
+use SqlParser\builders\ShowStatementBuilder;
+use SqlParser\builders\BracketStatementBuilder;
+use SqlParser\builders\UnionStatementBuilder;
+use SqlParser\builders\UnionAllStatementBuilder;
+use SqlParser\builders\AlterStatementBuilder;
 
-// This class generates SQL from the output of the PHPSQLParser. 
+// This class generates SQL from the output of the SqlParser. 
 class PHPSQLCreator {
 
     $created;

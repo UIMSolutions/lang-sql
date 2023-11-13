@@ -3,7 +3,7 @@
  * UnableToCalculatePositionException.php
  *
  * This file : the UnableToCalculatePositionException class which is used within the
- * PHPSQLParser package.
+ * SqlParser package.
  *
  *
  * LICENSE:

@@ -4,12 +4,12 @@
  *
  */
 
-namespace PHPSQLParser;
+namespace SqlParser;
 
 /**
  *
  * @author  mfris
- * @package PHPSQLParser
+ * @package SqlParser
  */
 final class Options
 {

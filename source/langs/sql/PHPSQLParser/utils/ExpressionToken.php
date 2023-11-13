@@ -2,8 +2,8 @@
 
 module lang.sql.parsers.utils;
 
-use PHPSQLParser\Options;
-use PHPSQLParser\processors\DefaultProcessor;
+use SqlParser\Options;
+use SqlParser\processors\DefaultProcessor;
 
 class ExpressionToken {
 

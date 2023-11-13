@@ -6,8 +6,8 @@
  */
 
 module lang.sql.parsers.builders;
-use PHPSQLParser\exceptions\UnableToCreateSQLException;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\exceptions\UnableToCreateSQLException;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for the [DROP] part. You can overwrite

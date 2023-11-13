@@ -40,9 +40,9 @@
 
 module lang.sql.parsers.processors;
 
-use PHPSQLParser\lexer\PHPSQLLexer;
-use PHPSQLParser\Options;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\lexer\PHPSQLLexer;
+use SqlParser\Options;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class contains some general functions for a processor.
@@ -311,7 +311,7 @@ abstract class AbstractProcessor {
     auto toArray($tokenList) {
         $expr = array();
         foreach ($tokenList as $token) {
-            if ($token instanceof \PHPSQLParser\utils\ExpressionToken) {
+            if ($token instanceof \SqlParser\utils\ExpressionToken) {
                 $expr[] = $token.toArray();
             } else {
                 $expr[] = $token;

@@ -39,7 +39,7 @@
  */
 
 module lang.sql.parsers.builders;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder list of values for the IN statement. 

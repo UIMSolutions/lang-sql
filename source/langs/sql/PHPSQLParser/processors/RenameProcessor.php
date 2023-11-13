@@ -39,8 +39,8 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
-use PHPSQLParser\utils\ExpressionToken;
+use SqlParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionToken;
 
 /**
  * This class processes the RENAME statements.

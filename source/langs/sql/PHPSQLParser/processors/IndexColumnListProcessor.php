@@ -31,7 +31,7 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 /**
  * 

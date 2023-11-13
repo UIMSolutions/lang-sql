@@ -1,7 +1,7 @@
 
 
 /**
- * PHPSQLParser.php
+ * SqlParser.php
  *
  * A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
  *
@@ -38,10 +38,10 @@
  * @version   SVN: $Id$
  */
 
-namespace PHPSQLParser;
-use PHPSQLParser\positions\PositionCalculator;
-use PHPSQLParser\processors\DefaultProcessor;
-use PHPSQLParser\utils\PHPSQLParserConstants;
+namespace SqlParser;
+use SqlParser\positions\PositionCalculator;
+use SqlParser\processors\DefaultProcessor;
+use SqlParser\utils\SqlParserConstants;
 
 /**
  * This class : the parser functionality.
@@ -50,7 +50,7 @@ use PHPSQLParser\utils\PHPSQLParserConstants;
  * @author  André Rothe <arothe@phosco.info>
  
  */
-class PHPSQLParser {
+class SqlParser {
 
     $parsed;
 
@@ -112,7 +112,7 @@ class PHPSQLParser {
      * @return null
      */
     auto addCustomFunction($token) {
-        PHPSQLParserConstants::getInstance().addCustomFunction($token);
+        SqlParserConstants::getInstance().addCustomFunction($token);
     }
 
     /**
@@ -123,7 +123,7 @@ class PHPSQLParser {
      * @return null
      */
     auto removeCustomFunction($token) {
-        PHPSQLParserConstants::getInstance().removeCustomFunction($token);
+        SqlParserConstants::getInstance().removeCustomFunction($token);
     }
 
     /**
@@ -132,6 +132,6 @@ class PHPSQLParser {
      * @return array Returns an array of all custom functions
      */
     auto getCustomFunctions() {
-        return PHPSQLParserConstants::getInstance().getCustomFunctions();
+        return SqlParserConstants::getInstance().getCustomFunctions();
     }
 }

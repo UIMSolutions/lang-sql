@@ -1,6 +1,6 @@
 module lang.sql.parsers.builders;
 
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 class ColumnReferenceBuilder : ISqlBuilder {
 

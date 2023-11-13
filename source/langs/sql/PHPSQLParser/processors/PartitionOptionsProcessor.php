@@ -40,7 +40,7 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the PARTITION BY statements within CREATE TABLE.
@@ -142,7 +142,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
             case 'PARTITIONS':
             case 'SUBPARTITIONS':
                 $currCategory = 'PARTITION_NUM';
-                $expr = array('expr_type' => constant('PHPSQLParser\utils\ExpressionType::' . substr($upper, 0, -1) . '_COUNT'),
+                $expr = array('expr_type' => constant('SqlParser\utils\ExpressionType::' . substr($upper, 0, -1) . '_COUNT'),
                               'base_expr' => false, 'sub_tree' => array(this.getReservedType($trim)),
                               'storage' => substr($base_expr, 0, -strlen($token)));
                 $base_expr = $token;
@@ -156,7 +156,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
             case 'HASH':
             case 'KEY':
-                $expr[] = array('expr_type' => constant('PHPSQLParser\utils\ExpressionType::' . $prevCategory . '_' . $upper),
+                $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::' . $prevCategory . '_' . $upper),
                                 'base_expr' => false, 'linear' => ($currCategory == 'LINEAR'), 'sub_tree' => false,
                                 'storage' => substr($base_expr, 0, -strlen($token)));
 
@@ -173,7 +173,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
             case 'ALGORITHM':
                 if ($currCategory == 'KEY') {
-                    $expr[] = array('expr_type' => constant('PHPSQLParser\utils\ExpressionType::' . $prevCategory . '_KEY_ALGORITHM'),
+                    $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::' . $prevCategory . '_KEY_ALGORITHM'),
                                     'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
@@ -194,7 +194,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
             case 'RANGE':
             case 'LIST':
-                $expr[] = array('expr_type' => constant('PHPSQLParser\utils\ExpressionType::PARTITION_' . $upper), 'base_expr' => false,
+                $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::PARTITION_' . $upper), 'base_expr' => false,
                                 'sub_tree' => false, 'storage' => substr($base_expr, 0, -strlen($token)));
 
                 $last = array_pop($parsed);

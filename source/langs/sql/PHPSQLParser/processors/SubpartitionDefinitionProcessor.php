@@ -40,7 +40,7 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the SUBPARTITION statements within CREATE TABLE.
@@ -181,7 +181,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'INDEX':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by DIRECTORY
-                    $expr[] = array('expr_type' => constant('PHPSQLParser\utils\ExpressionType::SUBPARTITION_' . $upper . '_DIR'),
+                    $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper . '_DIR'),
                                     'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 
@@ -207,7 +207,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'MAX_ROWS':
             case 'MIN_ROWS':
                 if ($prevCategory == 'SUBPARTITION') {
-                    $expr[] = array('expr_type' => constant('PHPSQLParser\utils\ExpressionType::SUBPARTITION_' . $upper),
+                    $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper),
                                     'base_expr' => false, 'sub_tree' => false,
                                     'storage' => substr($base_expr, 0, -strlen($token)));
 

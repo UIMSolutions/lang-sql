@@ -39,7 +39,7 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the DROP statements.
@@ -72,13 +72,13 @@ class DropProcessor : AbstractProcessor {
             case 'DATABASE':
             case 'TABLE':
                 if ($objectType == '') {
-                    $objectType = constant('PHPSQLParser\utils\ExpressionType::' . $upper);
+                    $objectType = constant('SqlParser\utils\ExpressionType::' . $upper);
                 }
                 $base_expr = "";
                 break;
             case 'INDEX':
 	            if ( $objectType == '' ) {
-		            $objectType = constant( 'PHPSQLParser\utils\ExpressionType::' . $upper );
+		            $objectType = constant( 'SqlParser\utils\ExpressionType::' . $upper );
 	            }
 	            $base_expr = "";
 	            break;

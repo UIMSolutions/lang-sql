@@ -39,9 +39,9 @@
  */
 
 module lang.sql.parsers.processors;
-use PHPSQLParser\utils\ExpressionType;
-use PHPSQLParser\utils\ExpressionToken;
-use PHPSQLParser\utils\PHPSQLParserConstants;
+use SqlParser\utils\ExpressionType;
+use SqlParser\utils\ExpressionToken;
+use SqlParser\utils\SqlParserConstants;
 
 /**
  * This class processes expression lists.
@@ -202,7 +202,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                     $prev.setSubTree($curr.getSubTree());
                     if ($prev.isColumnReference()) {
-                        if (PHPSQLParserConstants::getInstance().isCustomFunction($prev.getUpper())) {
+                        if (SqlParserConstants::getInstance().isCustomFunction($prev.getUpper())) {
                             $prev.setTokenType(ExpressionType::CUSTOM_FUNCTION);
                         } else {
                             $prev.setTokenType(ExpressionType::SIMPLE_FUNCTION);
@@ -375,15 +375,15 @@ class ExpressionListProcessor : AbstractProcessor {
 
             /* is a reserved word? */
             if (!$curr.isOperator() && !$curr.isInList() && !$curr.isFunction() && !$curr.isAggregateFunction()
-                && !$curr.isCustomFunction() && PHPSQLParserConstants::getInstance().isReserved($curr.getUpper())) {
+                && !$curr.isCustomFunction() && SqlParserConstants::getInstance().isReserved($curr.getUpper())) {
 
 	            $next = isset( $tokens[ $k + 1 ] ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
                 $isEnclosedWithinParenthesis = $next.isEnclosedWithinParenthesis();
-	            if ($isEnclosedWithinParenthesis && PHPSQLParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
+	            if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
                     $curr.setTokenType(ExpressionType::CUSTOM_FUNCTION);
                     $curr.setNoQuotes(null, null, this.options);
 
-                } elseif ($isEnclosedWithinParenthesis && PHPSQLParserConstants::getInstance().isAggregateFunction($curr.getUpper())) {
+                } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isAggregateFunction($curr.getUpper())) {
                     $curr.setTokenType(ExpressionType::AGGREGATE_FUNCTION);
                     $curr.setNoQuotes(null, null, this.options);
 
@@ -392,17 +392,17 @@ class ExpressionListProcessor : AbstractProcessor {
                     $curr.setTokenType(ExpressionType::CONSTANT);
 
                 } else {
-                    if ($isEnclosedWithinParenthesis && PHPSQLParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
+                    if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
                         // issue 60: check functions with parameters
                         // . colref (we check parameters later)
                         // . if there is no parameter, we leave the colref
                         $curr.setTokenType(ExpressionType::COLREF);
 
-                    } elseif ($isEnclosedWithinParenthesis && PHPSQLParserConstants::getInstance().isFunction($curr.getUpper())) {
+                    } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
                         $curr.setTokenType(ExpressionType::SIMPLE_FUNCTION);
                         $curr.setNoQuotes(null, null, this.options);
 
-                    }  elseif (!$isEnclosedWithinParenthesis && PHPSQLParserConstants::getInstance().isFunction($curr.getUpper())) {
+                    }  elseif (!$isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
 	                    // Colname using auto name.
                     	$curr.setTokenType(ExpressionType::COLREF);
                     } else {
@@ -413,12 +413,12 @@ class ExpressionListProcessor : AbstractProcessor {
             }
 
             // issue 94, INTERVAL 1 MONTH
-            if ($curr.isConstant() && PHPSQLParserConstants::getInstance().isParameterizedFunction($prev.getUpper())) {
+            if ($curr.isConstant() && SqlParserConstants::getInstance().isParameterizedFunction($prev.getUpper())) {
                 $prev.setTokenType(ExpressionType::RESERVED);
                 $prev.setNoQuotes(null, null, this.options);
             }
 
-            if ($prev.isConstant() && PHPSQLParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
+            if ($prev.isConstant() && SqlParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
                 $curr.setTokenType(ExpressionType::RESERVED);
                 $curr.setNoQuotes(null, null, this.options);
             }

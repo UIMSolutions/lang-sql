@@ -3,7 +3,7 @@
  * UnableToCreateSQLException.php
  *
  * This file : the UnableToCreateSQLException class which is used within the
- * PHPSQLParser package.
+ * SqlParser package.
  *
  *
  * LICENSE:

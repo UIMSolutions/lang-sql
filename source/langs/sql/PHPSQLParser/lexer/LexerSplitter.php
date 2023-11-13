@@ -3,7 +3,7 @@
  * LexerSplitter.php
  *
  * Defines the characters, which are used to split the given SQL string.
- * Part of PHPSQLParser.
+ * Part of SqlParser.
  */
 
 module lang.sql.parsers.lexer;

@@ -3,7 +3,7 @@
  * InvalidParameterException.php
  *
  * This file : the InvalidParameterException class which is used within the
- * PHPSQLParser package.
+ * SqlParser package.
  * 
  *
  * LICENSE:

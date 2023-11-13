@@ -3,7 +3,7 @@
  * PositionCalculator.php
  *
  * This class : the calculator for the string positions of the 
- * base_expr elements within the output of the PHPSQLParser.
+ * base_expr elements within the output of the SqlParser.
  *
  *
  * LICENSE:
@@ -40,13 +40,13 @@
  */
 
 module lang.sql.parsers.positions;
-use PHPSQLParser\utils\PHPSQLParserConstants;
-use PHPSQLParser\exceptions\UnableToCalculatePositionException;
-use PHPSQLParser\utils\ExpressionType;
+use SqlParser\utils\SqlParserConstants;
+use SqlParser\exceptions\UnableToCalculatePositionException;
+use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the calculator for the string positions of the 
- * base_expr elements within the output of the PHPSQLParser.
+ * base_expr elements within the output of the SqlParser.
  *
  
  
@@ -225,7 +225,7 @@ class PositionCalculator {
             } else {
                 // move the current pos after the keyword
                 // SELECT, WHERE, INSERT etc.
-                if (PHPSQLParserConstants::getInstance().isReserved($key)) {
+                if (SqlParserConstants::getInstance().isReserved($key)) {
                     $charPos = stripos($sql, $key, $charPos);
                     $charPos += strlen($key);
                 }

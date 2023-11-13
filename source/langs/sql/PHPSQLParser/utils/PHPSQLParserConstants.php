@@ -2,7 +2,7 @@
 /**
  * constants.php
  *
- * Some constants for the PHPSQLParser.
+ * Some constants for the SqlParser.
  *
  * Copyright (c) 2010-2012, Justin Swanhart
  * with contributions by André Rothe <arothe@phosco.info, phosco@gmx.de>
@@ -31,7 +31,7 @@
  */
 
 module lang.sql.parsers.utils;
-class PHPSQLParserConstants {
+class SqlParserConstants {
 
     private static $inst = null;
 
@@ -159,11 +159,11 @@ class PHPSQLParserConstants {
     /**
      * Call this method to get singleton
      *
-     * @return PHPSQLParserConstants
+     * @return SqlParserConstants
      */
     static auto getInstance() {
         if (!isset(self::$inst)) {
-            self::$inst = new PHPSQLParserConstants();
+            self::$inst = new SqlParserConstants();
         }
         return self::$inst;
     }
