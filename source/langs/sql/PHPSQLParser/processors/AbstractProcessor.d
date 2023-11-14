@@ -46,10 +46,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class contains some general functions for a processor.
- *
- 
- 
- *
+
  */
 abstract class AbstractProcessor {
 

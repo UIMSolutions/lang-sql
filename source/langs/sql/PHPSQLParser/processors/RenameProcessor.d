@@ -44,10 +44,7 @@ use SqlParser\utils\ExpressionToken;
 
 /**
  * This class processes the RENAME statements.
- *
- 
- 
- *
+
  */
 class RenameProcessor : AbstractProcessor {
 

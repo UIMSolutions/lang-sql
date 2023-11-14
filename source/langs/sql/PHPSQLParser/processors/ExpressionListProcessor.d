@@ -45,10 +45,7 @@ use SqlParser\utils\SqlParserConstants;
 
 /**
  * This class processes expression lists.
- *
- 
- 
- *
+
  */
 class ExpressionListProcessor : AbstractProcessor {
 

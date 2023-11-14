@@ -36,10 +36,7 @@ use SqlParser\utils\ExpressionType;
 /**
  *
  * This class processes Oracle's WITH statements.
- *
- 
- 
- *
+
  */
 class WithProcessor : AbstractProcessor {
 

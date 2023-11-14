@@ -45,10 +45,7 @@ use SqlParser\exceptions\InvalidParameterException;
 /**
  * This class splits the SQL string into little parts, which the parser can
  * use to build the result array.
- *
- 
- 
- *
+
  */
 class PHPSQLLexer {
 

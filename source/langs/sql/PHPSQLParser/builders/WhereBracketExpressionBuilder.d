@@ -45,10 +45,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for bracket expressions within the WHERE part.
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *
+
  */
 class WhereBracketExpressionBuilder : ISqlBuilder {
 

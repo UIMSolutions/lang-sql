@@ -44,10 +44,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the PARTITION statements within CREATE TABLE.
- *
- 
- 
- *
+
  */
 class PartitionDefinitionProcessor : AbstractProcessor {
 

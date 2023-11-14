@@ -43,10 +43,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the EXPLAIN statements.
- *
- 
- 
- *
+
  */
 class ExplainProcessor : AbstractProcessor {
 

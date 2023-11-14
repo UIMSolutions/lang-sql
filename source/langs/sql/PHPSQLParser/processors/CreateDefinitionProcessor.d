@@ -43,10 +43,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the create definition of the TABLE statements.
- *
- 
- 
- *
+
  */
 class CreateDefinitionProcessor : AbstractProcessor {
 

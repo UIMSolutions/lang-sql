@@ -44,10 +44,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 /**
  * This class : the builder for [sub_tree] fields.
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *
+
  */
 class SubTreeBuilder : ISqlBuilder {
 

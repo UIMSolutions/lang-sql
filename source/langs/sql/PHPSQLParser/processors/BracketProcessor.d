@@ -43,10 +43,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the parentheses around the statement.
- *
- 
- 
- *
+
  */
 class BracketProcessor : AbstractProcessor {
 

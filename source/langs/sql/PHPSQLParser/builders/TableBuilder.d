@@ -44,10 +44,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the table name and join options.
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *
+
  */
 class TableBuilder : ISqlBuilder {
 

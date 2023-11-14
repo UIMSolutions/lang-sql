@@ -42,10 +42,7 @@ module lang.sql.parsers.processors;
 
 /**
  * This class processes the UNION statements.
- *
- 
- 
- *
+
  */
 class UnionProcessor : AbstractProcessor {
 
