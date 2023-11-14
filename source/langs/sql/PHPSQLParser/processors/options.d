@@ -5,12 +5,10 @@
  * This file : the processor for the statement options.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.options;
 use SqlParser\utils\ExpressionType;
 
-/**
- * This class processes the statement options.
- */
+// This class processes the statement options.
 class OptionsProcessor : AbstractProcessor {
 
     auto process($tokens) {
@@ -21,7 +19,7 @@ class OptionsProcessor : AbstractProcessor {
             $tokenList = this.splitSQLIntoTokens($token);
             $result = array();
 
-            foreach ($tokenList as $reserved) {
+            foreach ($reserved; $tokenList) {
                 $trim = trim($reserved);
                 if ($trim == '') {
                     continue;

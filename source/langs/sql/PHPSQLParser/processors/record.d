@@ -6,7 +6,7 @@
  * for an INSERT statement.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.record;
 
 /**
  * This class processes records of an INSERT statement.
@@ -15,7 +15,7 @@ class RecordProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     auto process($unparsed) {

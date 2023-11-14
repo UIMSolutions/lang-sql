@@ -8,9 +8,7 @@
 module source.langs.sql.PHPSQLParser.processors.index;
 use SqlParser\utils\ExpressionType;
 
-/**
- * This class processes the INDEX statements.
- */
+// This class processes the INDEX statements.
 class IndexProcessor : AbstractProcessor {
 
     protected auto getReservedType($token) {
@@ -27,7 +25,7 @@ class IndexProcessor : AbstractProcessor {
 
     protected auto processIndexColumnList($parsed) {
         auto myProcessor = new IndexColumnListProcessor(this.options);
-        return $processor.process($parsed);
+        return myProcessor.process($parsed);
     }
 
     auto process($tokens) {

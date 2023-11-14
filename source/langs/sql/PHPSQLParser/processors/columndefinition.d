@@ -21,12 +21,12 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         $expr = this.removeParenthesisFromStart($parsed);
         $expr = this.splitSQLIntoTokens($expr);
         $expr = this.removeComma($expr);
-        return $processor.process($expr);
+        return myProcessor.process($expr);
     }
 
     protected auto processReferenceDefinition($parsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
-        return $processor.process($parsed);
+        return myProcessor.process($parsed);
     }
 
     protected auto removeComma($tokens) {

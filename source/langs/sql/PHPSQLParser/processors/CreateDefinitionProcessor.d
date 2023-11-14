@@ -15,22 +15,22 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
     protected auto processExpressionList($parsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return $processor.process($parsed);
+        return myProcessor.process($parsed);
     }
 
     protected auto processIndexColumnList($parsed) {
         auto myProcessor = new IndexColumnListProcessor(this.options);
-        return $processor.process($parsed);
+        return myProcessor.process($parsed);
     }
 
     protected auto processColumnDefinition($parsed) {
         auto myProcessor = new ColumnDefinitionProcessor(this.options);
-        return $processor.process($parsed);
+        return myProcessor.process($parsed);
     }
 
     protected auto processReferenceDefinition($parsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
-        return $processor.process($parsed);
+        return myProcessorr.process($parsed);
     }
 
     protected auto correctExpressionType(&$expr) {

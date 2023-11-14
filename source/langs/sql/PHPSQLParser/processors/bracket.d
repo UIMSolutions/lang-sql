@@ -15,7 +15,7 @@ class BracketProcessor : AbstractProcessor {
 
     protected auto processTopLevel($sql) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return $processor.process($sql);
+        return myProcessor.process($sql);
     }
 
     auto process($tokens) {

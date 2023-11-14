@@ -18,7 +18,7 @@ class SetProcessor : AbstractProcessor {
 
     protected auto processExpressionList($tokens) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return $processor.process($tokens);
+        return myProcessor.process($tokens);
     }
 
     /**

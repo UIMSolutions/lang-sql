@@ -15,7 +15,7 @@ class OrderByProcessor : AbstractProcessor {
 
     protected auto processSelectExpression($unparsed) {
         auto myProcessor = new SelectExpressionProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     protected auto initParseInfo() {

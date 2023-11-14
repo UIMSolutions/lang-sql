@@ -18,20 +18,20 @@ class PartitionOptionsProcessor : AbstractProcessor {
         auto myProcessor = new ExpressionListProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
         $expr = this.splitSQLIntoTokens($expr);
-        return $processor.process($expr);
+        return myProcessor.process($expr);
     }
 
     protected auto processColumnList($unparsed) {
         auto myProcessor = new ColumnListProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
-        return $processor.process($expr);
+        return myProcessor.process($expr);
     }
 
     protected auto processPartitionDefinition($unparsed) {
         auto myProcessor = new PartitionDefinitionProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
         $expr = this.splitSQLIntoTokens($expr);
-        return $processor.process($expr);
+        return myProcessor.process($expr);
     }
 
     protected auto getReservedType($token) {

@@ -53,17 +53,17 @@ class FromProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     protected auto processColumnList($unparsed) {
         auto myProcessor = new ColumnListProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     protected auto processSQLDefault($unparsed) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     protected auto initParseInfo($parseInfo = false) {

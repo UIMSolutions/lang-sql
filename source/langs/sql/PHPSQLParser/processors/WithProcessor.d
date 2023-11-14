@@ -6,8 +6,10 @@
  */
 
 module lang.sql.parsers.processors;
-use SqlParser\utils\ExpressionType;
 
+import lang.sql;
+
+@safe: 
 /**
  *
  * This class processes Oracle's WITH statements.
@@ -16,7 +18,7 @@ class WithProcessor : AbstractProcessor {
 
     protected auto processTopLevel($sql) {
     	auto myProcessor = new DefaultProcessor(this.options);
-    	return $processor.process($sql);
+    	return myProcessor.process($sql);
     }
 
     protected auto buildTableName($token) {

@@ -17,15 +17,15 @@ class PartitionDefinitionProcessor : AbstractProcessor {
     protected auto processExpressionList($unparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
-        $expr = this.splitSQLIntoTokens($expr);
-        return $processor.process($expr);
+        auto myTokens = this.splitSQLIntoTokens($expr);
+        return myProcessor.process(myTokens);
     }
 
     protected auto processSubpartitionDefinition($unparsed) {
         auto myProcessor = new SubpartitionDefinitionProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
-        $expr = this.splitSQLIntoTokens($expr);
-        return $processor.process($expr);
+        auto myTokens = this.splitSQLIntoTokens($expr);
+        return myProcessor.process(myTokens);
     }
 
     protected auto getReservedType($token) {
