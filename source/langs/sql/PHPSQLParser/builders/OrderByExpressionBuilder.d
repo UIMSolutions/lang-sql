@@ -16,12 +16,12 @@ module lang.sql.parsers.builders;
 class OrderByExpressionBuilder : WhereExpressionBuilder {
 
     protected auto buildDirection($parsed) {
-        $builder = new DirectionBuilder();
-        return $builder.build($parsed);
+        auto myBuilder = new DirectionBuilder();
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
-        mySql = super.build($parsed);
+        auto mySql = super.build($parsed);
         if (mySql != '') {
             mySql  ~= this.buildDirection($parsed);
         }
