@@ -60,7 +60,7 @@ class FromBuilder : ISqlBuilder {
             }
         }
         else {
-            foreach ($parsed as $k => $v) {
+            foreach (myKey, myValue; $parsed) {
                 $len = mySql.length;
                 mySql  ~= this.buildTable($v, $k);
                 mySql  ~= this.buildTableExpression($v, $k);

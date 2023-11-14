@@ -40,7 +40,7 @@ class HavingBuilder : WhereBuilder {
 
     auto build(array $parsed) {
         auto mySql = "HAVING ";
-        foreach ($parsed as $k => $v) {
+        foreach (myKey, myValue; $parsed) {
             $len = strlen(mySql);
 
             mySql  ~= this.buildAliasReference($v);
