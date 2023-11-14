@@ -4,7 +4,7 @@
  *
  * Builds column-list parts of REPLACE statements. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.replacecolumnlist;
 use SqlParser\exceptions\UnableToCreateSQLException;
 use SqlParser\utils\ExpressionType;
 

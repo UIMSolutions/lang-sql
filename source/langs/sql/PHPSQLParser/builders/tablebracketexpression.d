@@ -4,7 +4,7 @@
  *
  * Builds the table expressions within the create definitions of CREATE TABLE. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.tablebracketexpression;
 
 import lang.sql;
 

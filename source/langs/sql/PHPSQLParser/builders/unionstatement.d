@@ -1,5 +1,5 @@
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.unionstatement;
 
 /**
  * This class : the builder for the whole Union statement. You can overwrite

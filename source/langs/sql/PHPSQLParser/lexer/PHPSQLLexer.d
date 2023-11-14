@@ -123,7 +123,7 @@ class PHPSQLLexer {
                 continue;
             }
 
-            if (strtoupper(substr($token, -1, 1)) == 'E') {
+            if ((substr($token, -1, 1).toUpper == "E") {
                 $scientific = is_numeric(substr($token, 0, -1));
             }
 

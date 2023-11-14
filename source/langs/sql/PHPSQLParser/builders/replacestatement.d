@@ -4,7 +4,7 @@
  *
  * Builds the REPLACE statement */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.replacestatement;
 
 /**
  * This class : the builder for the whole Replace statement. You can overwrite

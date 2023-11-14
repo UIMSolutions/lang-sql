@@ -4,7 +4,7 @@
  *
  * Builds the SHOW statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.showstatement;
 
 /**
  * This class : the builder for the SHOW statement. 

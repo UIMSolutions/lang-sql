@@ -1,10 +1,3 @@
-
-/**
- * DropProcessor.php
- *
- * This file : the processor for the DROP statements.
- */
-
 module langs.sql.PHPSQLParser.processors.drop;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the DROP statements.
  * This class processes the DROP statements.
  */
 class DropProcessor : AbstractProcessor {

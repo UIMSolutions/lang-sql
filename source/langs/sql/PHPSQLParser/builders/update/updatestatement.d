@@ -1,12 +1,7 @@
+module source.langs.sql.PHPSQLParser.builders.update.updatestatement;
 
 /**
- * UpdateStatement.php
- *
- * Builds the UPDATE statement */
-
-module langs.sql.PHPSQLParser.builders.updatestatement;
-
-/**
+ * Builds the UPDATE statement 
  * This class : the builder for the whole Update statement. You can overwrite
  * all functions to achieve another handling. */
 class UpdateStatementBuilder : ISqlBuilder {
@@ -27,10 +22,10 @@ class UpdateStatementBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = this.buildUPDATE($parsed["UPDATE"]) . " "~ this.buildSET($parsed["SET"]);
-        if (isset($parsed["WHERE"])) {
-            $sql  ~= " "~ this.buildWHERE($parsed["WHERE"]);
+        auto mySql = this.buildUPDATE($parsed["UPDATE"]) . " "~ this.buildSET($parsed["SET"]);
+        if ("WHERE" in $parsed["WHERE"]) {
+            mySql  ~= " " ~ this.buildWHERE($parsed["WHERE"]);
         }
-        return $sql;
+        return mySql;
     }
 }

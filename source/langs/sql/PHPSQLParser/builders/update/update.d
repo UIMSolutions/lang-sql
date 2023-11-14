@@ -1,16 +1,11 @@
-
-/**
- * UpdateBuilder.php
- *
- * Builds the UPDATE statement parts. */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.update.update;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the UPDATE statement parts. 
  * This class : the builder for the UPDATE statement parts. 
  * You can overwrite all functions to achieve another handling. */
 class UpdateBuilder : ISqlBuilder {

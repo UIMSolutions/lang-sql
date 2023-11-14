@@ -4,7 +4,7 @@
  *
  * Builds index key part of a CREATE TABLE statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.uniqueindex;
 
 import lang.sql;
 

@@ -1,4 +1,3 @@
-
 /**
  * DefaultProcessor.php
  *
@@ -12,39 +11,41 @@ module langs.sql.PHPSQLParser.processors.default;
  */
 class DefaultProcessor : AbstractProcessor {
 
-    protected auto isUnion($tokens) {
-        return UnionProcessor::isUnion($tokens);
+  protected auto isUnion($tokens) {
+    return UnionProcessor :  : isUnion($tokens);
+  }
+
+  protected auto processUnion($tokens) {
+    // this is the highest level lexical analysis. This is the part of the
+    // code which finds UNION and UNION ALL query parts
+    auto myProcessor = new UnionProcessor(this.options);
+    return myProcessor.process($tokens);
+  }
+
+  protected auto processSQL($tokens) {
+    auto myProcessor = new SQLProcessor(this.options);
+    return myProcessor.process($tokens);
+  }
+
+  auto process($sql) {
+
+    auto myInputArray = this.splitSQLIntoTokens($sql);
+    auto myQueries = this.processUnion(myInputArray);
+
+    // If there was no UNION or UNION ALL in the query, then the query is
+    // stored at myQueries[0].
+    if (!empty(myQueries) && !this.isUnion(myQueries)) {
+      myQueries = this.processSQL(myQueries[0]);
     }
 
-    protected auto processUnion($tokens) {
-        // this is the highest level lexical analysis. This is the part of the
-        // code which finds UNION and UNION ALL query parts
-        auto myProcessor = new UnionProcessor(this.options);
-        return myProcessor.process($tokens);
-    }
+    return myQueries;
+  }
 
-    protected auto processSQL($tokens) {
-        auto myProcessor = new SQLProcessor(this.options);
-        return myProcessor.process($tokens);
-    }
-
-    auto process($sql) {
-
-        $inputArray = this.splitSQLIntoTokens($sql);
-        $queries = this.processUnion($inputArray);
-
-        // If there was no UNION or UNION ALL in the query, then the query is
-        // stored at $queries[0].
-        if (!empty($queries) && !this.isUnion($queries)) {
-            $queries = this.processSQL($queries[0]);
-        }
-
-        return $queries;
-    }
-
-    auto revokeQuotation($sql) {
-        return super.revokeQuotation($sql);
-    }
+  auto revokeQuotation($sql) {
+    return super.revokeQuotation($sql);
+  }
 }
 
-?>
+
+
+?  > 

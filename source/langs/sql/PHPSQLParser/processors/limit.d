@@ -23,15 +23,15 @@ class LimitProcessor : AbstractProcessor {
         
         $comments = array();
         
-        foreach ($tokens as &$token) {
-            if (this.isCommentToken($token)) {
-                 $comments[] = super.processComment($token);
-                 $token = "";
+        foreach (myToken; $tokens) {
+            if (this.isCommentToken(myToken)) {
+                 $comments[] = super.processComment(myToken);
+                 myToken = "";
             }
         }
         
         for ($i = 0; $i < count($tokens); ++$i) {
-            $trim = strtoupper(trim($tokens[$i]));
+            $trim = trim($tokens[$i]).toUpper;
             if ($trim == ",") {
                 $comma = $i;
                 break;

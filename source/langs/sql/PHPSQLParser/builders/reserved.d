@@ -4,7 +4,7 @@
  *
  * Builds reserved keywords. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.reserved;
 
 import lang.sql;
 

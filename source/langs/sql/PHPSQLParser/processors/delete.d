@@ -18,7 +18,7 @@ class DeleteProcessor : AbstractProcessor {
         $del = $tokens["DELETE"];
 
         foreach (myExpression; $tokens["DELETE"]) {
-            if (strtoupper(myExpression) != 'DELETE' && trim(myExpression, " \t\n\r\0\x0B.*") != ""
+            if (myExpression.toUpper != 'DELETE' && trim(myExpression, " \t\n\r\0\x0B.*") != ""
                 && !this.isCommaToken(myExpression)) {
                 $tables[] = trim(myExpression, " \t\n\r\0\x0B.*");
             }

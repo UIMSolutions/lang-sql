@@ -1,10 +1,3 @@
-
-/**
- * ColumnListProcessor.php
- *
- * This file : the processor for column lists like in INSERT statements.
- */
-
 module langs.sql.PHPSQLParser.processors.columnlist;
 
 import lang.sql;
@@ -12,16 +5,17 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for column lists like in INSERT statements.
  * This class processes column-lists.
  */
 class ColumnListProcessor : AbstractProcessor {
     auto process($tokens) {
         $columns = explode(",", $tokens);
-        $cols = array();
-        foreach ($columns as $k => $v) {
-            $cols[] = array('expr_type' => ExpressionType::COLREF, 'base_expr' => trim($v),
-                            'no_quotes' => this.revokeQuotation($v));
+        auto myCols = array();
+        foreach (myKey, myValue; $columns) {
+            myCols = array('expr_type' => ExpressionType::COLREF, 'base_expr' => trim(myValue),
+                            'no_quotes' => this.revokeQuotation(myValue));
         }
-        return $cols;
+        return myCols;
     }
 }

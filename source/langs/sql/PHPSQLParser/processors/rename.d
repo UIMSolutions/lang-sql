@@ -1,10 +1,3 @@
-
-/**
- * RenameProcessor.php
- *
- * This file : the processor for the RENAME statements.
- */
-
 module langs.sql.PHPSQLParser.processors.rename;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the RENAME statements.
  * This class processes the RENAME statements.
  */
 class RenameProcessor : AbstractProcessor {
