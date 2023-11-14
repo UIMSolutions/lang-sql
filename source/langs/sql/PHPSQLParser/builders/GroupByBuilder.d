@@ -20,27 +20,27 @@ class GroupByBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildPosition($parsed) {
         auto myBuilder = new PositionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
         auto myBuilder = new FunctionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildGroupByAlias($parsed) {
         auto myBuilder = new GroupByAliasBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildGroupByExpression($parsed) {
     	auto myBuilder = new GroupByExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

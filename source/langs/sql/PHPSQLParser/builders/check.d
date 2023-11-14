@@ -17,12 +17,12 @@ class CheckBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

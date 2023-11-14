@@ -4,24 +4,25 @@ import lang.sql;
 
 @safe:
 class AlterBuilder : ISqlBuilder {
-    auto build(array $parsed) {    {
-        auto mySql = "";
+  auto build(array$parsed) {
+    {
+      auto mySql = "";
 
-        foreach ($parsed as $term) {
-            if ($term == ' ') {
-                continue;
-            }
-
-            if (substr($term, 0, 1) == '(' ||
-                strpos($term, "\n") != false) {
-                    mySql = rtrim(mySql);
-            }
-
-            mySql  ~= $term . ' ';
+      foreach (myTerm; $parsed) {
+        if (myTerm == ' ') {
+          continue;
         }
 
-        mySql = rtrim(mySql);
+        if (substr(myTerm, 0, 1) == '(' ||
+          strpos(myTerm, "\n") != false) {
+          mySql = rtrim(mySql);
+        }
 
-        return mySql;
+        mySql ~= myTerm.' ';
+      }
+
+      mySql = rtrim(mySql);
+
+      return mySql;
     }
-}
+  }

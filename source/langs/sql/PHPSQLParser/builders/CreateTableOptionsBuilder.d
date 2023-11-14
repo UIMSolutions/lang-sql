@@ -20,17 +20,17 @@ class CreateTableOptionsBuilder : IBuilder {
 
     protected auto buildExpression($parsed) {
         auto myBuilder = new SelectExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCharacterSet($parsed) {
         auto myBuilder = new CharacterSetBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCollation($parsed) {
         auto myBuilder = new CollationBuilder();
-        return $builder.build($parsed);
+        return myBuilderr.build($parsed);
     }
 
     /**

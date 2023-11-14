@@ -36,7 +36,7 @@ class CharacterSetBuilder : ISqlBuilder {
             return "";
         }
         
-        auto auto mySql = "";
+        auto mySql = "";
         foreach (k, v; $parsed["sub_tree"]) {
             $len = strlen(mySql);
             mySql  ~= this.buildOperator(v);

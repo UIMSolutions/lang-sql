@@ -19,7 +19,7 @@ class ConstantBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {
         auto myBuilder = new AliasBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

@@ -21,17 +21,17 @@ class FromBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $key) {
         auto myBuilder = new TableBuilder();
-        return $builder.build($parsed, $key);
+        return myBuilder.build($parsed, $key);
     }
 
     protected auto buildTableExpression($parsed, $key) {
         auto myBuilder = new TableExpressionBuilder();
-        return $builder.build($parsed, $key);
+        return myBuilder.build($parsed, $key);
     }
 
     protected auto buildSubQuery($parsed, $key) {
         auto myBuilder = new SubQueryBuilder();
-        return $builder.build($parsed, $key);
+        return myBuilder.build($parsed, $key);
     }
 
     auto build(array $parsed) {

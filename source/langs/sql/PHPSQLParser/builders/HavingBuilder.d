@@ -25,17 +25,17 @@ class HavingBuilder : WhereBuilder {
 
     protected auto buildAliasReference($parsed) {
         auto myBuilder = new AliasReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 	
 	protected auto buildHavingExpression($parsed) {
         auto myBuilder = new HavingExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildHavingBracketExpression($parsed) {
         auto myBuilder = new HavingBracketExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilderrr.build($parsed);
     }
 
     auto build(array $parsed) {

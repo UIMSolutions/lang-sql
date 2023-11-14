@@ -20,7 +20,7 @@ class DropStatementBuilder : IBuilder {
 
 	protected auto buildDROP( $parsed ) {
 		auto myBuilder = new DropBuilder();
-		return $builder.build( $parsed );
+		return myBuilder.build( $parsed );
 	}
 
 	auto build( array $parsed ) {

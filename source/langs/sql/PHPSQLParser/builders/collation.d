@@ -18,17 +18,17 @@ class CollationBuilder : ISqlBuilder {
 
     protected auto buildOperator($parsed) {
         auto myBuilder = new OperatorBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
@@ -36,14 +36,14 @@ class CollationBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (key, myValue; $parsed["sub_tree"]) {
             $len = strlen(mySql);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildOperator($v);
-            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildOperator(myValue);
+            mySql  ~= this.buildConstant(myValue);
 
             if ($len == strlen(mySql)) {
-                throw new UnableToCreateSQLException('CREATE TABLE options collation subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE options collation subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

@@ -14,17 +14,17 @@ module lang.sql.parsers.builders;
 class DeleteStatementBuilder : ISqlBuilder {
     protected auto buildWHERE($parsed) {
         auto myBuilder = new WhereBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildFROM($parsed) {
         auto myBuilder = new FromBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildDELETE($parsed) {
         auto myBuilder = new DeleteBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

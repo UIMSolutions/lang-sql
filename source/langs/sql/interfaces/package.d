@@ -1,2 +1,5 @@
-module source.langs.sql.interfaces;
+module langs.sql.interfaces;
 
+public {
+  import langs.sql.interfaces.builder;
+}

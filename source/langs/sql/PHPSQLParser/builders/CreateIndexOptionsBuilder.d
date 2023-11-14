@@ -20,32 +20,32 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
 
     protected auto buildIndexParser($parsed) {
         auto myBuilder = new IndexParserBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexSize($parsed) {
         auto myBuilder = new IndexSizeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexType($parsed) {
         auto myBuilder = new IndexTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexComment($parsed) {
         auto myBuilder = new IndexCommentBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexAlgorithm($parsed) {
         auto myBuilder = new IndexAlgorithmBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexLock($parsed) {
         auto myBuilder = new IndexLockBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

@@ -1,4 +1,4 @@
-module langs.sql.interfaces.Builder;
+module langs.sql.interfaces.builder;
 
 import lang.sql;
 

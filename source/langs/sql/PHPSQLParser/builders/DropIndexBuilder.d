@@ -20,7 +20,7 @@ class DropIndexBuilder : IBuilder {
 
 	protected auto buildIndexTable($parsed) {
 		auto myBuilder = new DropIndexTableBuilder();
-		return $builder.build($parsed);
+		return myBuilder.build($parsed);
 	}
 
     auto build(array $parsed) {

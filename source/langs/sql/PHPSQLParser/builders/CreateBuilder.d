@@ -17,17 +17,17 @@ class CreateBuilder : ISqlBuilder {
 
     protected auto buildCreateTable($parsed) {
         auto myBuilder = new CreateTableBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCreateIndex($parsed) {
         auto myBuilder = new CreateIndexBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSubTree($parsed) {
         auto myBuilder = new SubTreeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array$parsed) {

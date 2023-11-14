@@ -7,18 +7,18 @@ import lang.sql;
 class AlterStatementBuilder : IBuilder {
     protected auto buildSubTree($parsed) {
         auto myBuilder = new SubTreeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     private auto buildAlter($parsed) {
         auto myBuilder = new AlterBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
         $alter = $parsed["ALTER"];
-        $sql = this.buildAlter($alter);
+        auto mySql = this.buildAlter($alter);
 
-        return $sql;
+        return mySql;
     }
 }

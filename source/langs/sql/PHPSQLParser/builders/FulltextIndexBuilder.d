@@ -19,12 +19,12 @@ class FulltextIndexBuilder : IBuilder {
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildIndexKey($parsed) {
@@ -36,7 +36,7 @@ class FulltextIndexBuilder : IBuilder {
     
     protected auto buildColumnList($parsed) {
         auto myBuilder = new ColumnListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

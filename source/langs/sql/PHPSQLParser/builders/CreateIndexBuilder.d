@@ -19,17 +19,17 @@ class CreateIndexBuilder : ISqlBuilder {
 
     protected auto buildIndexType($parsed) {
         auto myBuilder = new CreateIndexTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexTable($parsed) {
         auto myBuilder = new CreateIndexTableBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexOptions($parsed) {
         auto myBuilder = new CreateIndexOptionsBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

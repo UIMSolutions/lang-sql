@@ -20,17 +20,17 @@ class ForeignRefBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed) {
         auto myBuilder = new TableBuilder();
-        return $builder.build($parsed, 0);
+        return myBuilder.build($parsed, 0);
     }
 
     protected auto buildColumnList($parsed) {
         auto myBuilder = new ColumnListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

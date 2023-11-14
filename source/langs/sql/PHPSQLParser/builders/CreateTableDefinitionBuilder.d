@@ -17,7 +17,7 @@ class CreateTableDefinitionBuilder : ISqlBuilder {
 
     protected auto buildTableBracketExpression($parsed) {
         auto myBuilder = new TableBracketExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

@@ -20,19 +20,19 @@ class DropBuilder : ISqlBuilder {
 	protected auto buildDropIndex( $parsed ) {
 		auto myBuilder = new DropIndexBuilder();
 
-		return $builder.build( $parsed );
+		return myBuilder.build( $parsed );
 	}
 
 	protected auto buildReserved( $parsed ) {
 		auto myBuilder = new ReservedBuilder();
 
-		return $builder.build( $parsed );
+		return myBuilder.build( $parsed );
 	}
 
 	protected auto buildExpression( $parsed ) {
 		auto myBuilder = new DropExpressionBuilder();
 
-		return $builder.build( $parsed );
+		return myBuilder.build( $parsed );
 	}
 
 	protected auto buildSubTree( $parsed ) {

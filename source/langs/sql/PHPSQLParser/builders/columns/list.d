@@ -4,7 +4,7 @@
  *
  * Builds column-list parts of CREATE TABLE. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.columns.list;
 
 import lang.sql;
 

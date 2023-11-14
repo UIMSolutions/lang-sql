@@ -55,12 +55,12 @@ class GroupByExpressionBuilder : ISqlBuilder {
 
 	protected auto buildColRef($parsed) {
 		auto myBuilder = new ColumnReferenceBuilder();
-		return $builder.build($parsed);
+		return myBuilder.build($parsed);
 	}
 	
 	protected auto buildReserved($parsed) {
 		auto myBuilder = new ReservedBuilder();
-		return $builder.build($parsed);
+		return myBuilderr.build($parsed);
 	}
 	
     auto build(array $parsed) {

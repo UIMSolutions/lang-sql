@@ -20,17 +20,17 @@ class CreateTableBuilder : ISqlBuilder {
 
     protected auto buildCreateTableDefinition($parsed) {
         auto myBuilder = new CreateTableDefinitionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCreateTableOptions($parsed) {
         auto myBuilder = new CreateTableOptionsBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCreateTableSelectOption($parsed) {
         auto myBuilder = new CreateTableSelectOptionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

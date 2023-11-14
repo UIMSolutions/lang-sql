@@ -17,17 +17,17 @@ class CreateStatementBuilder : ISqlBuilder {
 
     protected auto buildLIKE($parsed) {
         auto myBuilder = new LikeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSelectStatement($parsed) {
         auto myBuilder = new SelectStatementBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCREATE($parsed) {
         auto myBuilder = new CreateBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
