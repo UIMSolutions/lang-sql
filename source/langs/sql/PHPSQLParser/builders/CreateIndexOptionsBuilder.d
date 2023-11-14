@@ -52,18 +52,19 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
         if ($parsed["options"] == false) {
             return "";
         }
+        
         auto mySql = "";
-        foreach ($parsed["options"] as $k => $v) {
+        foreach ($parsed["options"] as $k => myValue) {
             $len = strlen(mySql);
-            mySql  ~= this.buildIndexAlgorithm($v);
-            mySql  ~= this.buildIndexLock($v);
-            mySql  ~= this.buildIndexComment($v);
-            mySql  ~= this.buildIndexParser($v);
-            mySql  ~= this.buildIndexSize($v);
-            mySql  ~= this.buildIndexType($v);
+            mySql  ~= this.buildIndexAlgorithm(myValue);
+            mySql  ~= this.buildIndexLock(myValue);
+            mySql  ~= this.buildIndexComment(myValue);
+            mySql  ~= this.buildIndexParser(myValue);
+            mySql  ~= this.buildIndexSize(myValue);
+            mySql  ~= this.buildIndexType(myValue);
 
             if ($len == strlen(mySql)) {
-                throw new UnableToCreateSQLException('CREATE INDEX options', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE INDEX options', $k, myValue, 'expr_type');
             }
 
             mySql  ~= ' ';

@@ -35,7 +35,7 @@ class IndexKeyBuilder : ISqlBuilder {
     
     protected auto buildColumnList($parsed) {
         auto myBuilder = new ColumnListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

@@ -5,7 +5,7 @@
  * Builds the column type statement part of CREATE TABLE.
  */
 
-module source.langs.sql.PHPSQLParser.builders.columns.type;
+module langs.sql.PHPSQLParser.builders.columns.type;
 
 import lang.sql;
 

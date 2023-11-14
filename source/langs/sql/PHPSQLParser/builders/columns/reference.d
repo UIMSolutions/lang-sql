@@ -1,4 +1,4 @@
-module lang.sql.parsers.builders;
+module langs.sql.PHPSQLParser.builders.columns.reference;
 
 import lang.sql;
 

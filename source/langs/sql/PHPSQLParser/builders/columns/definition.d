@@ -5,7 +5,7 @@
  * Builds the column definition statement part of CREATE TABLE.
  */
 
-module source.langs.sql.PHPSQLParser.builders.columns.definition;
+module langs.sql.PHPSQLParser.builders.columns.definition;
 
 import lang.sql;
 

@@ -26,8 +26,8 @@ class ConstantBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::CONSTANT) {
             return "";
         }
-        $sql = $parsed["base_expr"];
-        $sql  ~= this.buildAlias($parsed);
-        return $sql;
+        auto mySql = $parsed["base_expr"];
+        mySql  ~= this.buildAlias($parsed);
+        return mySql;
     }
 }
