@@ -14,7 +14,7 @@ class ValuesBuilder : ISqlBuilder {
 
     protected auto buildRecord($parsed) {
         auto myBuilder = new RecordBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

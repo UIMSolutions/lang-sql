@@ -17,7 +17,7 @@ class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildSubTree($parsed, $delim) {
         auto myBuilder = new SubTreeBuilder();
-        return $builder.build($parsed, $delim);
+        return myBuilder.build($parsed, $delim);
     }
 
     auto build(array $parsed) {

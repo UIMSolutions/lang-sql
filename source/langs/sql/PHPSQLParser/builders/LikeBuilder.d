@@ -15,7 +15,7 @@ class LikeBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
         auto myBuilder = new TableBuilder();
-        return $builder.build($parsed, $index);
+        return myBuilder.build($parsed, $index);
     }
 
     auto build(array $parsed) {

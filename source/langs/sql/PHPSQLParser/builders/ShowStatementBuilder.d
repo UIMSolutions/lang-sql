@@ -13,12 +13,12 @@ class ShowStatementBuilder : ISqlBuilder {
 
     protected auto buildWHERE($parsed) {
         auto myBuilder = new WhereBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSHOW($parsed) {
         auto myBuilder = new ShowBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

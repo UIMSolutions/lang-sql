@@ -17,27 +17,27 @@ class QueryBuilder : ISqlBuilder {
 
     protected auto buildRefClause($parsed) {
         auto myBuilder = new RefClauseBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildRefType($parsed) {
         auto myBuilder = new RefTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildJoin($parsed) {
         auto myBuilder = new JoinBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildAlias($parsed) {
         auto myBuilder = new AliasBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSelectStatement($parsed) {
         auto myBuilder = new SelectStatementBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed, $index = 0) {

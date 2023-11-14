@@ -16,7 +16,7 @@ class InsertColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn($parsed) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

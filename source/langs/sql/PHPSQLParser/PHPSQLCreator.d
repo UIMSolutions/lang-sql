@@ -68,59 +68,59 @@ class PHPSQLCreator {
 
         case 'UNION':
 			auto myBuilder = new UnionStatementBuilder();
-			this.created = $builder.build($parsed);
+			this.created = myBuilder.build($parsed);
 			break;
         case 'UNION ALL':
             auto myBuilder = new UnionAllStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'SELECT':
             auto myBuilder = new SelectStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'INSERT':
             auto myBuilder = new InsertStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'REPLACE':
             auto myBuilder = new ReplaceStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'DELETE':
             auto myBuilder = new DeleteStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'TRUNCATE':
             auto myBuilder = new TruncateStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'UPDATE':
             auto myBuilder = new UpdateStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'RENAME':
             auto myBuilder = new RenameStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'SHOW':
             auto myBuilder = new ShowStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'CREATE':
             auto myBuilder = new CreateStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'BRACKET':
             auto myBuilder = new BracketStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'DROP':
             auto myBuilder = new DropStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         case 'ALTER':
             auto myBuilder = new AlterStatementBuilder();
-            this.created = $builder.build($parsed);
+            this.created = myBuilder.build($parsed);
             break;
         default:
             throw new UnsupportedFeatureException($k);

@@ -15,7 +15,7 @@ class UpdateBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $idx) {
         auto myBuilder = new TableBuilder();
-        return $builder.build($parsed, $idx);
+        return myBuilder.build($parsed, $idx);
     }
 
     auto build(array $parsed) {

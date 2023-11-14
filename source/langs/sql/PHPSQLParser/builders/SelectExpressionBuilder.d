@@ -16,12 +16,12 @@ class SelectExpressionBuilder : ISqlBuilder {
 
   protected auto buildSubTree($parsed, $delim) {
     auto myBuilder = new SubTreeBuilder();
-    return $builder.build($parsed, $delim);
+    return myBuilder.build($parsed, $delim);
   }
 
   protected auto buildAlias($parsed) {
     auto myBuilder = new AliasBuilder();
-    return $builder.build($parsed);
+    return myBuilder.build($parsed);
   }
 
   auto build(array $parsed) {

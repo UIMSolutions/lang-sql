@@ -13,17 +13,17 @@ class UpdateStatementBuilder : ISqlBuilder {
 
     protected auto buildWHERE($parsed) {
         auto myBuilder = new WhereBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSET($parsed) {
         auto myBuilder = new SetBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildUPDATE($parsed) {
         auto myBuilder = new UpdateBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

@@ -15,22 +15,22 @@ class RecordBuilder : ISqlBuilder {
 
     protected auto buildOperator($parsed) {
         auto myBuilder = new OperatorBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
         auto myBuilder = new FunctionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildColRef($parsed) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

@@ -17,7 +17,7 @@ class SetBuilder : ISqlBuilder {
 
     protected auto buildSetExpression($parsed) {
         auto myBuilder = new SetExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

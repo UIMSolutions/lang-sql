@@ -17,12 +17,12 @@ class LikeExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
         auto myBuilder = new TableBuilder();
-        return $builder.build($parsed, $index);
+        return myBuilder.build($parsed, $index);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
