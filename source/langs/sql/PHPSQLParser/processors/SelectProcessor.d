@@ -13,8 +13,7 @@ import lang.sql;
 /**
  * 
  * This class processes the SELECT statements.
- * 
-*/
+ */
 class SelectProcessor : SelectExpressionProcessor {
 
     auto process($tokens) {

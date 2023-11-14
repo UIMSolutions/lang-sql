@@ -5,7 +5,7 @@
  * Builds the table name/join options.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.table;
 use SqlParser\utils\ExpressionType;
 
 /**

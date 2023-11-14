@@ -4,7 +4,7 @@
  *
  * Builds unary operators. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.sign;
 use SqlParser\utils\ExpressionType;
 
 /**

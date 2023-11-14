@@ -10,8 +10,7 @@ module source.langs.sql.PHPSQLParser.processors.groupby;
 /**
  * 
  * This class processes the GROUP-BY statements.
- * 
-*/
+ */
 class GroupByProcessor : OrderByProcessor {
 
     auto process($tokens, $select = array()) {

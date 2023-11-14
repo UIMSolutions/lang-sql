@@ -10,8 +10,7 @@ module lang.sql.parsers.processors;
 /**
  * 
  * This class processes the INTO statements.
- * 
-*/
+ */
 class IntoProcessor : AbstractProcessor {
 
     /**

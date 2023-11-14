@@ -5,19 +5,16 @@
  * This file : the processor for column lists like in INSERT statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.columnlist;
 
 import lang.sql;
 
 @safe:
 
 /**
- * 
  * This class processes column-lists.
- * 
-*/
+ */
 class ColumnListProcessor : AbstractProcessor {
-
     auto process($tokens) {
         $columns = explode(",", $tokens);
         $cols = array();

@@ -11,8 +11,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * 
  * This class processes the index column lists.
- * 
-*/
+ */
 class IndexColumnListProcessor : AbstractProcessor {
 
     protected auto initExpression() {

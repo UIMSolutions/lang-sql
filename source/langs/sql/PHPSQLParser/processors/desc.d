@@ -5,7 +5,7 @@
  * This file : the processor for the DESC statements, which is a short form of DESCRIBE.
 . */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.desc;
 
 import lang.sql;
 
@@ -13,8 +13,7 @@ import lang.sql;
 /**
  * 
  * This class processes the DESC statement.
- * 
-*/
+ */
 class DescProcessor : ExplainProcessor {
 
     protected auto isStatement($keys, $needle = "DESC") {

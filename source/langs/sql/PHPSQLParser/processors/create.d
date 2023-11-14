@@ -5,7 +5,7 @@
  * This file : the processor for the CREATE statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.create;
 
 import lang.sql;
 
