@@ -3,10 +3,7 @@
  * SQLProcessor.php
  *
  * This file : the processor for the base SQL statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

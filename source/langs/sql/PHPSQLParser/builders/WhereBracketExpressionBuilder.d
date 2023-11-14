@@ -3,10 +3,7 @@
  * WhereBracketExpressionBuilder.php
  *
  * Builds bracket expressions within the WHERE part.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;

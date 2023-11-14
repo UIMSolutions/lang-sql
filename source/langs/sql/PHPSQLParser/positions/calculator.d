@@ -4,15 +4,13 @@
  *
  * This class : the calculator for the string positions of the 
  * base_expr elements within the output of the SqlParser.
- *
- *
+ */
 
- * @version   SVN: $Id$ */
+module source.langs.sql.PHPSQLParser.positions.calculator;
 
-module lang.sql.parsers.positions;
-use SqlParser\utils\SqlParserConstants;
-use SqlParser\exceptions\UnableToCalculatePositionException;
-use SqlParser\utils\ExpressionType;
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the calculator for the string positions of the 

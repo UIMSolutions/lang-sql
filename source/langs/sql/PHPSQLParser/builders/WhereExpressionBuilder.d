@@ -3,10 +3,7 @@
  * WhereExpressionBuilder.php
  *
  * Builds expressions within the WHERE part.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;

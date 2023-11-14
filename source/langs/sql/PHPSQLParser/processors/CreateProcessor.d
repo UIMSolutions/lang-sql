@@ -3,10 +3,7 @@
  * CreateProcessor.php
  *
  * This file : the processor for the CREATE statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

@@ -3,10 +3,7 @@
  * DefaultProcessor.php
  *
  * This file : the processor the unparsed sql string given by the user.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

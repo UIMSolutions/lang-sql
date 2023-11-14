@@ -4,10 +4,7 @@
  *
  * This file : the processor for the SUBPARTITION statements 
  * within CREATE TABLE.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

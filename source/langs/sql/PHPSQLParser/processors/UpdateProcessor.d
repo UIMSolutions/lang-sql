@@ -3,10 +3,7 @@
  * UpdateProcessor.php
  *
  * This file : the processor for the UPDATE statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

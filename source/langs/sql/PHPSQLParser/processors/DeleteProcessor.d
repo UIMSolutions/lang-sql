@@ -3,10 +3,7 @@
  * DeleteProcessor.php
  *
  * Processes the DELETE statement parts and splits multi-table deletes.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

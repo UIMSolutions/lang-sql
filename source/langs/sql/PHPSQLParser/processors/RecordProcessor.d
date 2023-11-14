@@ -4,10 +4,7 @@
  *
  * This file : a processor, which processes records of data
  * for an INSERT statement.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

@@ -3,10 +3,7 @@
  * LimitProcessor.php
  *
  * This file : the processor for the LIMIT statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

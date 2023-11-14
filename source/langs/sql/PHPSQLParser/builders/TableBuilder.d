@@ -3,10 +3,7 @@
  * TableBuilder.php
  *
  * Builds the table name/join options.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.builders;
 use SqlParser\utils\ExpressionType;

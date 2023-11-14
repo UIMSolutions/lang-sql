@@ -3,10 +3,7 @@
  * RefClauseBuilder.php
  *
  * Builds reference clauses within a JOIN.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;

@@ -3,10 +3,7 @@
  * BracketProcessor.php
  *
  * This file : the processor for the parentheses around the statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

@@ -3,10 +3,7 @@
  * OptionsProcessor.php
  *
  * This file : the processor for the statement options.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

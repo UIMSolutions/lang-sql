@@ -3,10 +3,7 @@
  * InsertProcessor.php
  *
  * This file : the processor for the INSERT statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

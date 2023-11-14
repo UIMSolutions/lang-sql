@@ -3,10 +3,7 @@
  * TableProcessor.php
  *
  * This file : the processor for the TABLE statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

@@ -3,10 +3,7 @@
  * AbstractProcessor.php
  *
  * This file : an abstract processor, which : some helper functions.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

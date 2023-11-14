@@ -3,10 +3,7 @@
  * IndexProcessor.php
  *
  * This file : the processor for the INDEX statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

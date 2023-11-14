@@ -4,10 +4,7 @@
  *
  * This file contains the lexer, which splits and recombines parts of the
  * SQL statement just before parsing.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.lexer;
 use SqlParser\exceptions\InvalidParameterException;
@@ -251,10 +248,10 @@ class PHPSQLLexer {
                 continue;
             }
 
-            $token = $tokens[$i];
+            auto myToken = $tokens[$i];
 
             if (this.isBacktick($token)) {
-                $tokens = this.balanceCharacter($tokens, $i, $token);
+                $tokens = this.balanceCharacter($tokens, $i, myToken);
             }
 
             $i++;
@@ -276,11 +273,11 @@ class PHPSQLLexer {
                 continue;
             }
 
-            $token = $tokens[$i];
-            $tokens[$idx]  ~= $token;
+            auto myToken = $tokens[$i];
+            $tokens[$idx]  ~= myToken;
             unset($tokens[$i]);
 
-            if ($token == $char) {
+            if (myToken == $char) {
                 break;
             }
 

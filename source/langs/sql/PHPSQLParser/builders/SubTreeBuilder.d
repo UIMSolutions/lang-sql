@@ -3,10 +3,7 @@
  * SubTreeBuilder.php
  *
  * Builds the statements for [sub_tree] fields.
- *
- *
-
- * */
+ */
 
 module source.langs.sql.PHPSQLParser.builders.SubTreeBuilder;
 use SqlParser\exceptions\UnableToCreateSQLException;

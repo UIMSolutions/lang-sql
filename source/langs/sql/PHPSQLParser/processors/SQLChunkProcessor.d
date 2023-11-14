@@ -3,10 +3,7 @@
  * SQLChunkProcessor.php
  *
  * This file : the processor for the SQL chunks.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

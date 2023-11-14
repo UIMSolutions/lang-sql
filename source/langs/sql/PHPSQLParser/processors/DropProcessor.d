@@ -3,10 +3,7 @@
  * DropProcessor.php
  *
  * This file : the processor for the DROP statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;

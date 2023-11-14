@@ -3,10 +3,7 @@
  * WhereProcessor.php
  *
  * This file : the processor for the UNION statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 

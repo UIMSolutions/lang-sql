@@ -3,10 +3,7 @@
  * ExplainProcessor.php
  *
  * This file : the processor for the DESCRIBE statements.
- *
- *
-
- * */
+ */
 
 module lang.sql.parsers.processors;
 
