@@ -53,7 +53,7 @@ class UnableToCalculatePositionException : Exception {
     this($needle, $haystack) {
         this.needle = $needle;
         this.haystack = $haystack;
-        parent::("cannot calculate position of " . $needle . " within " . $haystack, 5);
+        super.("cannot calculate position of " . $needle . " within " . $haystack, 5);
     }
 
     auto getNeedle() {

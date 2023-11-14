@@ -26,11 +26,11 @@ class OrderByExpressionBuilder : WhereExpressionBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = parent::build($parsed);
-        if ($sql != '') {
-            $sql  ~= this.buildDirection($parsed);
+        mySql = super.build($parsed);
+        if (mySql != '') {
+            mySql  ~= this.buildDirection($parsed);
         }
-        return $sql;
+        return mySql;
     }
 
 }

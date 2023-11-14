@@ -26,7 +26,7 @@ class OrderByReservedBuilder : ReservedBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = parent::build($parsed);
+        $sql = super.build($parsed);
         if ($sql != '') {
             $sql  ~= this.buildDirection($parsed);
         }

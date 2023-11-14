@@ -173,7 +173,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (this.isCommentToken($token)) {
-                $expr[] = parent::processComment($token);
+                $expr[] = super.processComment($token);
                 continue;
             }
 

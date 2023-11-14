@@ -80,7 +80,7 @@ class DefaultProcessor : AbstractProcessor {
     }
 
     auto revokeQuotation($sql) {
-        return parent::revokeQuotation($sql);
+        return super.revokeQuotation($sql);
     }
 }
 

@@ -135,7 +135,7 @@ class InsertProcessor : AbstractProcessor {
             }
             foreach ($token as &$value) {
                 if (this.isCommentToken($value)) {
-                     $comments[] = parent::processComment($value);
+                     $comments[] = super.processComment($value);
                      $value = "";
                 }
             }

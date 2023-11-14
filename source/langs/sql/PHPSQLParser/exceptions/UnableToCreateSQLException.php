@@ -61,7 +61,7 @@ class UnableToCreateSQLException : Exception {
         this.partkey = $partkey;
         this.entry = $entry;
         this.entrykey = $entrykey;
-        parent::(
+        super.(
             "unknown [" . $entrykey . "] = " . $entry[$entrykey] . " in \"" . $part . "\" [" . $partkey . "] ", 15);
     }
 

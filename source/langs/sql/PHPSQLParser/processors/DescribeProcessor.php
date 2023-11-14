@@ -50,7 +50,7 @@ module lang.sql.parsers.processors;
 class DescribeProcessor : ExplainProcessor {
 
     protected auto isStatement($keys, $needle = "DESCRIBE") {
-        return parent::isStatement($keys, $needle);
+        return super.isStatement($keys, $needle);
     }
 }
 

@@ -55,7 +55,7 @@ class UnsupportedFeatureException : Exception {
 
     this($key) {
         this.key = $key;
-        parent::($key . " not implemented.", 20);
+        super.($key . " not implemented.", 20);
     }
 
     auto getKey() {

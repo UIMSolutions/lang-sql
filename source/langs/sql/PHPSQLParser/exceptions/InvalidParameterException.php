@@ -54,7 +54,7 @@ class InvalidParameterException : InvalidArgumentException {
 
     this($argument) {
         this.argument = $argument;
-        parent::("no SQL string to parse: \n" . $argument, 10);
+        super.("no SQL string to parse: \n" . $argument, 10);
     }
 
     auto getArgument() {

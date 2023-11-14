@@ -42,7 +42,7 @@ module lang.sql.parsers.processors;
 class DuplicateProcessor : SetProcessor {
 
     auto process($tokens, $isUpdate = false) {
-        return parent::process($tokens, $isUpdate);
+        return super.process($tokens, $isUpdate);
     }
 
 }

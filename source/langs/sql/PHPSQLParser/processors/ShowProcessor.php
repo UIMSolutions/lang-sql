@@ -47,7 +47,7 @@ class ShowProcessor : AbstractProcessor {
     private $limitProcessor;
 
     this(Options $options) {
-        parent::($options);
+        super.($options);
         this.limitProcessor = new LimitProcessor($options);
     }
 

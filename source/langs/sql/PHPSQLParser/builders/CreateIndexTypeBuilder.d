@@ -23,6 +23,6 @@ class CreateIndexTypeBuilder : IndexTypeBuilder {
         if (!isset($parsed["index-type"]) || $parsed["index-type"] == false) {
             return "";
         }
-        return parent::build($parsed["index-type"]);
+        return super.build($parsed["index-type"]);
     }
 }

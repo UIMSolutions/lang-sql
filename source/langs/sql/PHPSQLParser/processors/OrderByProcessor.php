@@ -126,7 +126,7 @@ class OrderByProcessor : AbstractProcessor {
 
             default:
                 if (this.isCommentToken($token)) {
-                    $out[] = parent::processComment($token);
+                    $out[] = super.processComment($token);
                     break;
                 }
 

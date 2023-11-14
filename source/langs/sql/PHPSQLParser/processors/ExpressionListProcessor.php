@@ -61,7 +61,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
 
             if (this.isCommentToken($v)) {
-                $resultList[] = parent::processComment($v);
+                $resultList[] = super.processComment($v);
                 continue;
             }
 

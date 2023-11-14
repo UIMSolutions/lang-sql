@@ -42,6 +42,6 @@ module lang.sql.parsers.processors;
 class DescProcessor : ExplainProcessor {
 
     protected auto isStatement($keys, $needle = "DESC") {
-        return parent::isStatement($keys, $needle);
+        return super.isStatement($keys, $needle);
     }
 }

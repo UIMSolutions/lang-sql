@@ -21,7 +21,7 @@ use SqlParser\utils\ExpressionType;
 class HavingProcessor : ExpressionListProcessor {
 	
     auto process($tokens, $select = array()) {
-        $parsed = parent::process($tokens);
+        $parsed = super.process($tokens);
 
         foreach ($parsed as $k => $v) {
             if ($v["expr_type"] == ExpressionType::COLREF) {

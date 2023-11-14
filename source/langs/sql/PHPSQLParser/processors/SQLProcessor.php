@@ -522,6 +522,6 @@ class SQLProcessor : SQLChunkProcessor {
             return false;
         }
 
-        return parent::process($out);
+        return super.process($out);
     }
 }

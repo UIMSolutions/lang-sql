@@ -50,7 +50,7 @@ module lang.sql.parsers.processors;
 class ReplaceProcessor : InsertProcessor {
 
     auto process($tokenList, $token_category = 'REPLACE') {
-        return parent::process($tokenList, $token_category);
+        return super.process($tokenList, $token_category);
     }
 
 }
