@@ -141,7 +141,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'ACTION':
                 if (strpos($currCategory, 'SEC_REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
-                    $expr["on_' . strtolower(substr($currCategory, -6))]  ~= ' ' . $upper;
+                    $expr["on_' . strtolower(substr($currCategory, -6))]  ~= " " ~ $upper;
                     $currCategory = 'REF_COL_LIST';
                     continue 2;
                 }

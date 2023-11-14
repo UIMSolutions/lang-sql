@@ -25,7 +25,7 @@ class ConstraintBuilder : ISqlBuilder {
             return "";
         }
         $sql = $parsed["sub_tree"] == false ? '' : this.buildConstant($parsed["sub_tree"]);
-        return "CONSTRAINT" . (empty($sql) ? '' : (' ' . $sql));
+        return "CONSTRAINT" . (empty($sql) ? '' : (" " ~ $sql));
     }
 
 }

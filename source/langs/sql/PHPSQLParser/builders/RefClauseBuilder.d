@@ -79,7 +79,7 @@ class RefClauseBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('expression ref_clause', $k, $v, 'expr_type');
             }
 
-            mySql  ~= ' ';
+            mySql  ~= " ";
         }
         return substr(mySql, 0, -1);
     }

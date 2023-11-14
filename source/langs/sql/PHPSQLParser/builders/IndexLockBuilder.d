@@ -48,7 +48,7 @@ class IndexLockBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('CREATE INDEX lock subtree', $k, $v, 'expr_type');
             }
 
-            mySql  ~= ' ';
+            mySql  ~= " ";
         }
         return substr(mySql, 0, -1);
     }

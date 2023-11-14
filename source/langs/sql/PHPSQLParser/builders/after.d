@@ -18,7 +18,7 @@ class AlterBuilder : ISqlBuilder {
           mySql = rtrim(mySql);
         }
 
-        mySql ~= myTerm.' ';
+        mySql ~= myTerm." ";
       }
 
       mySql = rtrim(mySql);

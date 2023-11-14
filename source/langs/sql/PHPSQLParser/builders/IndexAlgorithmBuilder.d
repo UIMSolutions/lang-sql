@@ -48,7 +48,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('CREATE INDEX algorithm subtree', $k, $v, 'expr_type');
             }
 
-            mySql  ~= ' ';
+            mySql  ~= " ";
         }
         return substr(mySql, 0, -1);
     }

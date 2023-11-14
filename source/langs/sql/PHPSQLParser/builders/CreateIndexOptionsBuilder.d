@@ -67,8 +67,8 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('CREATE INDEX options', $k, myValue, 'expr_type');
             }
 
-            mySql  ~= ' ';
+            mySql  ~= " ";
         }
-        return ' ' . substr(mySql, 0, -1);
+        return " " ~ substr(mySql, 0, -1);
     }
 }

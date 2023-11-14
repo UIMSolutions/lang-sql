@@ -38,7 +38,7 @@ class RenameStatementBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('RENAME subtree', $k, $v, 'expr_type');
             }
 
-            mySql  ~= ' ';
+            mySql  ~= " ";
         }
         mySql = trim('RENAME ' . mySql);
         return (substr(mySql, -1) == ',' ? substr(mySql, 0, -1) : mySql);

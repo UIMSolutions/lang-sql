@@ -129,7 +129,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                                 'storage' => substr($base_expr, 0, -strlen($token)));
 
                 $last = array_pop($parsed);
-                $last["by"] = trim($currCategory . ' ' . $upper); // $currCategory will be empty or LINEAR!
+                $last["by"] = trim($currCategory . " " ~ $upper); // $currCategory will be empty or LINEAR!
                 $last["sub_tree"] = $expr;
                 $parsed[] = $last;
 

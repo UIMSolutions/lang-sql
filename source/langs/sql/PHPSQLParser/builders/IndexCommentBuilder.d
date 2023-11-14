@@ -40,7 +40,7 @@ class IndexCommentBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('CREATE INDEX comment subtree', $k, $v, 'expr_type');
             }
 
-            mySql  ~= ' ';
+            mySql  ~= " ";
         }
         return substr(mySql, 0, -1);
     }

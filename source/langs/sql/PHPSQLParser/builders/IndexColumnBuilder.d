@@ -24,7 +24,7 @@ class IndexColumnBuilder : ISqlBuilder {
     }
 
     protected auto buildDirection($parsed) {
-        return ($parsed == false ? '' : (' ' . $parsed));
+        return ($parsed == false ? '' : (" " ~ $parsed));
     }
 
     auto build(array $parsed) {

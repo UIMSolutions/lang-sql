@@ -46,7 +46,7 @@ class DropBuilder : ISqlBuilder {
 				throw new UnableToCreateSQLException( 'DROP subtree', $k, $v, 'expr_type' );
 			}
 
-			mySql  ~= ' ';
+			mySql  ~= " ";
 		}
 
 		return mySql;
@@ -57,7 +57,7 @@ class DropBuilder : ISqlBuilder {
 		mySql  = this.buildSubTree( $drop );
 
 		if ( $drop["expr_type"] == ExpressionType::INDEX ) {
-			mySql  ~= '' . this.buildDropIndex( $parsed["INDEX"] ) . ' ';
+			mySql  ~= '' . this.buildDropIndex( $parsed["INDEX"] ) . " ";
 		}
 
 		return 'DROP ' . substr( mySql, 0, -1 );

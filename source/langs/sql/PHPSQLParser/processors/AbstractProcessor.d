@@ -142,7 +142,7 @@ abstract class AbstractProcessor {
         $trim = trim($token);
         if ($trim != '' && $trim[0] == '(') { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
-            $trim[0] = ' ';
+            $trim[0] = " ";
             $trim = trim($trim);
         }
 
@@ -180,7 +180,7 @@ abstract class AbstractProcessor {
 
             if (($stringOpened == '') && ($trim[$i] == ')')) {
                 if ($parenthesis == $parenthesisRemoved) {
-                    $trim[$i] = ' ';
+                    $trim[$i] = " ";
                     $parenthesisRemoved--;
                 }
                 $parenthesis--;

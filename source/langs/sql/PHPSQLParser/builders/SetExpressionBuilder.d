@@ -51,7 +51,7 @@ class SetExpressionBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $delim = ' ';
+            $delim = " ";
             $len = strlen(mySql);
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildConstant($v);

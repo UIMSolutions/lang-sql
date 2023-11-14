@@ -26,7 +26,7 @@ class DropIndexBuilder : IBuilder {
     auto build(array $parsed) {
         $sql = $parsed["name"];
 	    $sql = trim($sql);
-	    $sql  ~= ' ' . this.buildIndexTable($parsed);
+	    $sql  ~= " " ~ this.buildIndexTable($parsed);
         return trim($sql);
     }
 }
