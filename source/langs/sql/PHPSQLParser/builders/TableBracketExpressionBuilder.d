@@ -64,7 +64,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColDef($v);
             mySql  ~= this.buildPrimaryKey($v);
             mySql  ~= this.buildCheck($v);
@@ -74,7 +74,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildUniqueIndex($v);
             mySql  ~= this.buildFulltextIndex($v);
                         
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE create-def expression subtree', $k, $v, 'expr_type');
             }
 

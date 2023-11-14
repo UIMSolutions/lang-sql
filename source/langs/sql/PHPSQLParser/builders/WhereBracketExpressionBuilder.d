@@ -71,7 +71,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildOperator($v);
@@ -84,7 +84,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildSubQuery($v);
             
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('WHERE expression subtree', $k, $v, 'expr_type');
             }
 

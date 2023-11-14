@@ -50,10 +50,10 @@ class FromBuilder : ISqlBuilder {
 
                     $select_builder = new SelectStatementBuilder();
 
-                    $len = strlen(mySql);
+                    $len = mySql.length;
                     mySql  ~= $select_builder.build($item);
 
-                    if ($len == strlen(mySql)) {
+                    if ($len == mySql.length) {
                         throw new UnableToCreateSQLException('FROM', $union_type, $outer_v, 'expr_type');
                     }
                 }
@@ -61,12 +61,12 @@ class FromBuilder : ISqlBuilder {
         }
         else {
             foreach ($parsed as $k => $v) {
-                $len = strlen(mySql);
+                $len = mySql.length;
                 mySql  ~= this.buildTable($v, $k);
                 mySql  ~= this.buildTableExpression($v, $k);
                 mySql  ~= this.buildSubquery($v, $k);
 
-                if ($len == strlen(mySql)) {
+                if ($len == mySql.length) {
                     throw new UnableToCreateSQLException('FROM', $k, $v, 'expr_type');
                 }
             }

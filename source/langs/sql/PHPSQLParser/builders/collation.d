@@ -37,12 +37,12 @@ class CollationBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach (key, myValue; $parsed["sub_tree"]) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildOperator(myValue);
             mySql  ~= this.buildConstant(myValue);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE options collation subtree', $k, myValue, 'expr_type');
             }
 

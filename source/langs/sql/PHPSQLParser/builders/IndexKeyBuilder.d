@@ -44,13 +44,13 @@ class IndexKeyBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildColumnList($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildIndexType($v);            
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE index key subtree', $k, $v, 'expr_type');
             }
 

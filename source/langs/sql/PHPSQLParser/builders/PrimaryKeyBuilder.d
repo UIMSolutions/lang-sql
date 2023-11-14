@@ -51,7 +51,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildConstraint($v);
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildColumnList($v);
@@ -59,7 +59,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexSize($v);
             mySql  ~= this.buildIndexParser($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, $v, 'expr_type');
             }
 

@@ -42,14 +42,14 @@ class ReplaceBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildTable($v);
             mySql  ~= this.buildSubQuery($v);
             mySql  ~= this.buildColumnList($v);
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildBracketExpression($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('REPLACE', $k, $v, 'expr_type');
             }
 

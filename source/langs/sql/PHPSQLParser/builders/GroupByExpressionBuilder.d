@@ -70,11 +70,11 @@ class GroupByExpressionBuilder : ISqlBuilder {
         
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildReserved($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('GROUP expression subtree', $k, $v, 'expr_type');
             }
 

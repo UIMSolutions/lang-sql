@@ -41,13 +41,13 @@ class RecordBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["data"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildFunction($v);
             mySql  ~= this.buildOperator($v);
             mySql  ~= this.buildColRef($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, $v, 'expr_type');
             }
 

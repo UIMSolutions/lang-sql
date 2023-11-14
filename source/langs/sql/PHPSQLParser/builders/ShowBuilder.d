@@ -53,7 +53,7 @@ class ShowBuilder : ISqlBuilder {
         $show = $parsed["SHOW"];
         mySql = "";
         foreach ($show as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildEngine($v);
@@ -62,7 +62,7 @@ class ShowBuilder : ISqlBuilder {
             mySql  ~= this.buildFunction($v);
             mySql  ~= this.buildTable($v, 0);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('SHOW', $k, $v, 'expr_type');
             }
 

@@ -55,7 +55,7 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
         
         auto mySql = "";
         foreach ($parsed["options"] as $k => myValue) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildIndexAlgorithm(myValue);
             mySql  ~= this.buildIndexLock(myValue);
             mySql  ~= this.buildIndexComment(myValue);
@@ -63,7 +63,7 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexSize(myValue);
             mySql  ~= this.buildIndexType(myValue);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE INDEX options', $k, myValue, 'expr_type');
             }
 

@@ -31,11 +31,11 @@ class CheckBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildSelectBracketExpression($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE check subtree', $k, $v, 'expr_type');
             }
 

@@ -24,10 +24,10 @@ class UpdateBuilder : ISqlBuilder {
         auto mySql = "";
 
         foreach ($parsed as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildTable($v, $k);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('UPDATE table list', $k, $v, 'expr_type');
             }
         }

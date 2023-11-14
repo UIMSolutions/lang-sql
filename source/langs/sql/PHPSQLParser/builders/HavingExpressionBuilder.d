@@ -38,7 +38,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildOperator($v);
@@ -48,7 +48,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
             mySql  ~= this.buildHavingBracketExpression($v);
             mySql  ~= this.buildUserVariable($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('HAVING expression subtree', $k, $v, 'expr_type');
             }
 

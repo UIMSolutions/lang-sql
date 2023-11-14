@@ -46,14 +46,14 @@ class GroupByBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildPosition($v);
             mySql  ~= this.buildFunction($v);
             mySql  ~= this.buildGroupByExpression($v);
             mySql  ~= this.buildGroupByAlias($v);
             
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('GROUP', $k, $v, 'expr_type');
             }
 

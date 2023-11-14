@@ -51,12 +51,12 @@ class CreateTableOptionsBuilder : IBuilder {
         $options = $parsed["options"];
         auto mySql = "";
         foreach ($options as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildExpression($v);
             mySql  ~= this.buildCharacterSet($v);
             mySql  ~= this.buildCollation($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE options', $k, $v, 'expr_type');
             }
 

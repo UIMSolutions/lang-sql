@@ -25,10 +25,10 @@ class BracketStatementBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach ($parsed["BRACKET"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildSelectBracketExpression($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('BRACKET', $k, $v, 'expr_type');
             }
         }

@@ -80,7 +80,7 @@ class SubTreeBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildFunction($v);
             mySql  ~= this.buildOperator($v);
@@ -94,7 +94,7 @@ class SubTreeBuilder : ISqlBuilder {
             $sign = this.buildSign($v);
             mySql  ~= $sign;
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('expression subtree', $k, $v, 'expr_type');
             }
 

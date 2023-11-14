@@ -53,7 +53,7 @@ class OrderByBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildAlias($v);
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildFunction($v);
@@ -62,7 +62,7 @@ class OrderByBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildPosition($v);
             
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('ORDER', $k, $v, 'expr_type');
             }
 

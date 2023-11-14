@@ -44,15 +44,15 @@ class FulltextIndexBuilder : IBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildColumnList($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildIndexKey($v);
+        foreach (myKey, myValue; $parsed["sub_tree"] as $k => myValue) {
+            $len = mySql.length;
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildColumnList(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildIndexKey(myValue);
 
-            if ($len == strlen(mySql)) {
-                throw new UnableToCreateSQLException('CREATE TABLE fulltext-index key subtree', $k, $v, 'expr_type');
+            if ($len == mySql.length) {
+                throw new UnableToCreateSQLException('CREATE TABLE fulltext-index key subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

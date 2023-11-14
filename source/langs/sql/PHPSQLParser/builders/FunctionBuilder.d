@@ -74,7 +74,7 @@ class FunctionBuilder : ISqlBuilder {
 
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.build($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildSubQuery($v);
@@ -84,7 +84,7 @@ class FunctionBuilder : ISqlBuilder {
             mySql  ~= this.buildSelectExpression($v);
             mySql  ~= this.buildUserVariableExpression($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('auto subtree', $k, $v, 'expr_type');
             }
 

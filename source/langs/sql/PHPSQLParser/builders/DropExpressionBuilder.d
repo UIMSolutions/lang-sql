@@ -48,14 +48,14 @@ class DropExpressionBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildTable($v, 0);
             mySql  ~= this.buildView($v);
             mySql  ~= this.buildSchema($v);
             mySql  ~= this.buildDatabase($v);
             mySql  ~= this.buildTemporaryTable($v, 0);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('DROP object-list subtree', $k, $v, 'expr_type');
             }
 

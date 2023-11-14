@@ -37,12 +37,12 @@ class DropBuilder : ISqlBuilder {
 
 	protected auto buildSubTree( $parsed ) {
 		auto mySql = "";
-		foreach (myKey, myValue; $parsed["sub_tree"] as $k => myValue ) {
-			$len = strlen( mySql );
+		foreach (myKey, myValue; $parsed["sub_tree"]) {
+			auto oldLengthOfSql = mySql.length;
 			mySql  ~= this.buildReserved( myValue );
 			mySql  ~= this.buildExpression( myValue );
 
-			if ( $len == strlen( mySql ) ) {
+			if ( oldLengthOfSql == mySql.length ) {
 				throw new UnableToCreateSQLException( 'DROP subtree', $k, myValue, 'expr_type' );
 			}
 

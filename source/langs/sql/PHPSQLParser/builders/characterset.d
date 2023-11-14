@@ -38,12 +38,12 @@ class CharacterSetBuilder : ISqlBuilder {
         
         auto mySql = "";
         foreach (k, myValue; $parsed["sub_tree"]) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildOperator(myValue);
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildConstant(myValue);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE options CHARACTER SET subtree', k, v, 'expr_type');
             }
 

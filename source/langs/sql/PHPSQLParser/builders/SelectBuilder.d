@@ -60,7 +60,7 @@ class SelectBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildSelectBracketExpression($v);
             mySql  ~= this.buildSelectExpression($v);
@@ -68,7 +68,7 @@ class SelectBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildReserved($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('SELECT', $k, $v, 'expr_type');
             }
 

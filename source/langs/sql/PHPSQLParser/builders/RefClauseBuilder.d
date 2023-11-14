@@ -65,7 +65,7 @@ class RefClauseBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildOperator($v);
             mySql  ~= this.buildConstant($v);
@@ -75,7 +75,7 @@ class RefClauseBuilder : ISqlBuilder {
             mySql  ~= this.buildColumnList($v);
             mySql  ~= this.buildSubQuery($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('expression ref_clause', $k, $v, 'expr_type');
             }
 

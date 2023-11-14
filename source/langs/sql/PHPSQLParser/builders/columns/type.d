@@ -64,7 +64,7 @@ class ColumnTypeBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildDataType($v);
             mySql  ~= this.buildColumnTypeBracketExpression($v);
             mySql  ~= this.buildReserved($v);
@@ -73,7 +73,7 @@ class ColumnTypeBuilder : ISqlBuilder {
             mySql  ~= this.buildCollation($v);
             mySql  ~= this.buildComment($v);
 
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE column-type subtree', $k, $v, 'expr_type');
             }
     

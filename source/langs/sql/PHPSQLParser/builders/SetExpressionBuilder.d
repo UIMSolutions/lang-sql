@@ -52,7 +52,7 @@ class SetExpressionBuilder : ISqlBuilder {
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $delim = " ";
-            $len = strlen(mySql);
+            $len = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildOperator($v);
@@ -66,7 +66,7 @@ class SetExpressionBuilder : ISqlBuilder {
             }
             mySql  ~= this.buildSign($v);
             
-            if ($len == strlen(mySql)) {
+            if ($len == mySql.length) {
                 throw new UnableToCreateSQLException('SET expression subtree', $k, $v, 'expr_type');
             }
 
