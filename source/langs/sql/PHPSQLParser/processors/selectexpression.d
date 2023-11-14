@@ -104,7 +104,7 @@ class SelectExpressionProcessor : AbstractProcessor {
 
                 $alias = ['as' : false, 'name' : trim($last["base_expr"]),
                                'no_quotes' : this.revokeQuotation($last["base_expr"]),
-                               'base_expr' : trim($last["base_expr"]));
+                               "base_expr" : trim($last["base_expr"]));
                 // remove the last token
                 array_pop($tokens);
             }

@@ -22,7 +22,7 @@ class InsertProcessor : AbstractProcessor {
         }
         $result = [);
         foreach ($tokenList["OPTIONS"] as $token) {
-            $result[] = ['expr_type' : ExpressionType::RESERVED, 'base_expr' : $token.strip);
+            $result[] = ['expr_type' : ExpressionType::RESERVED, "base_expr" : $token.strip);
         }
         return $result;
     }
@@ -46,7 +46,7 @@ class InsertProcessor : AbstractProcessor {
             $upper = $trim.toUpper;
             switch ($upper) {
             case 'INTO':
-                $result[] = ['expr_type' : ExpressionType::RESERVED, 'base_expr' : $trim);
+                $result[] = ['expr_type' : ExpressionType::RESERVED, "base_expr": $trim];
                 break;
 
             case 'INSERT':
@@ -73,14 +73,14 @@ class InsertProcessor : AbstractProcessor {
             return $cols;
         }
         if ($cols[0] == "(" && substr($cols, -1) == ")") {
-            $parsed = ['expr_type' : ExpressionType::BRACKET_EXPRESSION, 'base_expr' : $cols,
+            $parsed = ['expr_type' : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $cols,
                             'sub_tree' : false);
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = [
-                    ['expr_type' : ExpressionType::QUERY, 'base_expr' : $cols,
+                    ['expr_type' : ExpressionType::QUERY, "base_expr" : $cols,
                             'sub_tree' : $processor.process($cols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
@@ -119,7 +119,7 @@ class InsertProcessor : AbstractProcessor {
         }
 
         $parsed[] = ['expr_type' : ExpressionType::TABLE, 'table' : $table,
-                          'no_quotes' : this.revokeQuotation($table), 'alias' : false, 'base_expr' : $table);
+                          'no_quotes' : this.revokeQuotation($table), 'alias' : false, "base_expr" : $table);
 
         $cols = this.processColumns($cols);
         if ($cols != false) {

@@ -27,7 +27,7 @@ class RenameProcessor : AbstractProcessor {
             // separate source table from destination
                 $tablePair["source"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
                                              'no_quotes' : this.revokeQuotation($base_expr),
-                                             'base_expr' : $base_expr];
+                                             "base_expr" : $base_expr];
                 $base_expr = "";
                 break;
 
@@ -35,7 +35,7 @@ class RenameProcessor : AbstractProcessor {
             // split rename operations
                 $tablePair["destination"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
                                                   'no_quotes' : this.revokeQuotation($base_expr),
-                                                  'base_expr' : $base_expr);
+                                                  "base_expr" : $base_expr);
                 $resultList[] = $tablePair;
                 $tablePair = [);
                 $base_expr = "";
@@ -43,7 +43,7 @@ class RenameProcessor : AbstractProcessor {
 
             case 'TABLE':
                 $objectType = ExpressionType::TABLE;
-                $resultList[] = ['expr_type':ExpressionType::RESERVED, 'base_expr':$token.getTrim());   
+                $resultList[] = ['expr_type':ExpressionType::RESERVED, "base_expr":$token.getTrim());   
                 continue 2; 
                 
             default:
@@ -55,7 +55,7 @@ class RenameProcessor : AbstractProcessor {
         if ($base_expr != "") {
             $tablePair["destination"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
                                               'no_quotes' : this.revokeQuotation($base_expr),
-                                              'base_expr' : $base_expr);
+                                              "base_expr" : $base_expr);
             $resultList[] = $tablePair;
         }
 
