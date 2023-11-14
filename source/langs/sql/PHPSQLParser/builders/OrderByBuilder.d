@@ -15,37 +15,37 @@ class OrderByBuilder : ISqlBuilder {
 
     protected auto buildFunction($parsed) {
         auto myBuilder = new OrderByFunctionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildReserved($parsed) {
         auto myBuilder = new OrderByReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildColRef($parsed) {
         auto myBuilder = new OrderByColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildAlias($parsed) {
         auto myBuilder = new OrderByAliasBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildExpression($parsed) {
         auto myBuilder = new OrderByExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildBracketExpression($parsed) {
         auto myBuilder = new OrderByBracketExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildPosition($parsed) {
         auto myBuilder = new OrderByPositionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

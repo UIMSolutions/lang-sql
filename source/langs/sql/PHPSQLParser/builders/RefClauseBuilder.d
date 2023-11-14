@@ -16,42 +16,42 @@ class RefClauseBuilder : ISqlBuilder {
 
     protected auto buildInList($parsed) {
         auto myBuilder = new InListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildColRef($parsed) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildOperator($parsed) {
         auto myBuilder = new OperatorBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
         auto myBuilder = new FunctionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildBracketExpression($parsed) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildColumnList($parsed) {
         auto myBuilder = new ColumnListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSubQuery($parsed) {
         auto myBuilder = new SubQueryBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

@@ -13,22 +13,22 @@ class ReplaceStatementBuilder : ISqlBuilder {
 
     protected auto buildVALUES($parsed) {
         auto myBuilder = new ValuesBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildREPLACE($parsed) {
         auto myBuilder = new ReplaceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSELECT($parsed) {
         auto myBuilder = new SelectStatementBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildSET($parsed) {
         auto myBuilder = new SetBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

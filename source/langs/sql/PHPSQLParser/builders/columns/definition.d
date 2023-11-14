@@ -16,12 +16,12 @@ class ColumnDefinitionBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildColumnType($parsed) {
         auto myBuilder = new ColumnTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
    auto build(array $parsed) {

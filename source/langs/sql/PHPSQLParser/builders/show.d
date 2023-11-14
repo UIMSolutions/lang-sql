@@ -14,37 +14,37 @@ class ShowBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $delim) {
         auto myBuilder = new TableBuilder();
-        return $builder.build($parsed, $delim);
+        return myBuilder.build($parsed, $delim);
     }
 
     protected auto buildFunction($parsed) {
         auto myBuilder = new FunctionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildProcedure($parsed) {
         auto myBuilder = new ProcedureBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildDatabase($parsed) {
         auto myBuilder = new DatabaseBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildEngine($parsed) {
         auto myBuilder = new EngineBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

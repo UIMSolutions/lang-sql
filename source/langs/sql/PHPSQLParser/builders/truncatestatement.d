@@ -13,12 +13,12 @@ class TruncateStatementBuilder : ISqlBuilder {
 
     protected auto buildTRUNCATE($parsed) {
         auto myBuilder = new TruncateBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildFROM($parsed) {
         auto myBuilder = new FromBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

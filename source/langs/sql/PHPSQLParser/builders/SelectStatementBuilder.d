@@ -13,47 +13,47 @@ class SelectStatementBuilder : ISqlBuilder {
 
     protected auto buildSELECT($parsed) {
         auto myBuilder = new SelectBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildFROM($parsed) {
         auto myBuilder = new FromBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildWHERE($parsed) {
         auto myBuilder = new WhereBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildGROUP($parsed) {
         auto myBuilder = new GroupByBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildHAVING($parsed) {
         auto myBuilder = new HavingBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildORDER($parsed) {
         auto myBuilder = new OrderByBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildLIMIT($parsed) {
         auto myBuilder = new LimitBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildUNION($parsed) {
     	auto myBuilder = new UnionStatementBuilder();
-    	return $builder.build($parsed);
+    	return myBuilder.build($parsed);
     }
     
     protected auto buildUNIONALL($parsed) {
     	auto myBuilder = new UnionAllStatementBuilder();
-    	return $builder.build($parsed);
+    	return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

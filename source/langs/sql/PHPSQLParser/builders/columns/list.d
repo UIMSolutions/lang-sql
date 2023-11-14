@@ -17,12 +17,12 @@ class ColumnListBuilder : ISqlBuilder {
 
     protected auto buildIndexColumn($parsed) {
         auto myBuilder = new IndexColumnBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildColumnReference($parsed) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     string build(array $parsed, $delim = ', ') {

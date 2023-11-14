@@ -18,7 +18,7 @@ class OrderByAliasBuilder : ISqlBuilder {
 
     protected auto buildDirection($parsed) {
         auto myBuilder = new DirectionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

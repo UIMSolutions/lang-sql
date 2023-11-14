@@ -17,28 +17,29 @@ class UniqueIndexBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildIndexType($parsed) {
         auto myBuilder = new IndexTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildColumnList($parsed) {
         auto myBuilder = new ColumnListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::UNIQUE_IDX) {
             return "";
         }
+        
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

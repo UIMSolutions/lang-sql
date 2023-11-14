@@ -18,42 +18,42 @@ class TableBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildColDef($parsed) {
         auto myBuilder = new ColumnDefinitionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildPrimaryKey($parsed) {
         auto myBuilder = new PrimaryKeyBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildForeignKey($parsed) {
         auto myBuilder = new ForeignKeyBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildCheck($parsed) {
         auto myBuilder = new CheckBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildLikeExpression($parsed) {
         auto myBuilder = new LikeExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildIndexKey($parsed) {
         auto myBuilder = new IndexKeyBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildUniqueIndex($parsed) {
         auto myBuilder = new UniqueIndexBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildFulltextIndex($parsed) {
         auto myBuilder = new FulltextIndexBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

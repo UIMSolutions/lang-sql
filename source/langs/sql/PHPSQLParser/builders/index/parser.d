@@ -19,12 +19,12 @@ class IndexParserBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {

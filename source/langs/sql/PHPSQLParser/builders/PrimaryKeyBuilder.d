@@ -15,32 +15,32 @@ class PrimaryKeyBuilder : ISqlBuilder {
 
     protected auto buildColumnList($parsed) {
         auto myBuilder = new ColumnListBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildConstraint($parsed) {
         auto myBuilder = new ConstraintBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexType($parsed) {
         auto myBuilder = new IndexTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexSize($parsed) {
         auto myBuilder = new IndexSizeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildIndexParser($parsed) {
         auto myBuilder = new IndexParserBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {

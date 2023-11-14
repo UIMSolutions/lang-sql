@@ -23,12 +23,12 @@ class IndexKeyBuilder : ISqlBuilder {
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildIndexType($parsed) {
         auto myBuilder = new IndexTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildColumnList($parsed) {

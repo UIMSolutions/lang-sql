@@ -17,22 +17,22 @@ class ColumnTypeBuilder : ISqlBuilder {
 
     protected auto buildColumnTypeBracketExpression($parsed) {
         auto myBuilder = new ColumnTypeBracketExpressionBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildDataType($parsed) {
         auto myBuilder = new DataTypeBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildDefaultValue($parsed) {
         auto myBuilder = new DefaultValueBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildCharacterSet($parsed) {

@@ -14,22 +14,22 @@ class InsertStatementBuilder : ISqlBuilder {
 
     protected auto buildVALUES($parsed) {
         auto myBuilder = new ValuesBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildINSERT($parsed) {
         auto myBuilder = new InsertBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildSELECT($parsed) {
         auto myBuilder = new SelectStatementBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     protected auto buildSET($parsed) {
         auto myBuilder = new SetBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
     
     auto build(array $parsed) {
