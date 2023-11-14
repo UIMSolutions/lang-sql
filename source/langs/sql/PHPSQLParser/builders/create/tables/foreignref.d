@@ -36,14 +36,14 @@ class ForeignRefBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k :  $v) {
+        foreach ($k :  myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildTable($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildColumnList($v);
+            mySql  ~= this.buildTable(myValue);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildColumnList(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

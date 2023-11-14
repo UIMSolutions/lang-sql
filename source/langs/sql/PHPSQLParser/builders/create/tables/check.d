@@ -30,13 +30,13 @@ class CheckBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k :  $v) {
+        foreach ($k :  myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildSelectBracketExpression($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildSelectBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE check subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE check subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

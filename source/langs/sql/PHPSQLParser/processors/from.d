@@ -64,8 +64,8 @@ class FromProcessor : AbstractProcessor {
             $unparsed = this.splitSQLIntoTokens(trim($parseInfo["ref_expr"]));
 
             // here we can get a comma separated list
-            foreach ($unparsed as $k :  $v) {
-                if (this.isCommaToken($v)) {
+            foreach ($k :  myValue; $unparsed) {
+                if (this.isCommaToken(myValue)) {
                     $unparsed[$k] = "";
                 }
             }

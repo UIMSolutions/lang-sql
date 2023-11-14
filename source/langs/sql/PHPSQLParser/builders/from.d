@@ -60,12 +60,12 @@ class FromBuilder : ISqlBuilder {
         else {
             foreach (myKey, myValue; $parsed) {
                 auto oldSqlLength = mySql.length;
-                mySql  ~= this.buildTable($v, $k);
-                mySql  ~= this.buildTableExpression($v, $k);
-                mySql  ~= this.buildSubquery($v, $k);
+                mySql  ~= this.buildTable(myValue, $k);
+                mySql  ~= this.buildTableExpression(myValue, $k);
+                mySql  ~= this.buildSubquery(myValue, $k);
 
                 if (oldSqlLength == mySql.length) { // No change
-                    throw new UnableToCreateSQLException('FROM', $k, $v, 'expr_type');
+                    throw new UnableToCreateSQLException('FROM', $k, myValue, 'expr_type');
                 }
             }
         }

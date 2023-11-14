@@ -39,12 +39,12 @@ class IndexLockBuilder : ISqlBuilder {
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildOperator(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE INDEX lock subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE INDEX lock subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

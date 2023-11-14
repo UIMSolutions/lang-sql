@@ -57,7 +57,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
         $base_expr = "";
         $skip = 0;
 
-        foreach ($tokenKey, $token; $tokens as ) {
+        foreach ($tokenKey, $token; $tokens) {
             $trim = $token.strip;
             $base_expr  ~= $token;
 

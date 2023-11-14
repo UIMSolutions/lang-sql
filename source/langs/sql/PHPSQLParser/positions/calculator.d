@@ -89,8 +89,8 @@ class PositionCalculator {
         return $parsed;
     }
 
-    protected auto findPositionWithinString($sql, $value, $expr_type) {
-        if ($value == '') {
+    protected auto findPositionWithinString($sql, myValue, $expr_type) {
+        if (myValue == '') {
             return false;
         }
 
@@ -98,8 +98,8 @@ class PositionCalculator {
         $ok = false;
         while (true) {
 
-            $pos = strpos($sql, $value, $offset);
-            // error_log("pos:$pos value:$value sql:$sql");
+            $pos = strpos($sql, myValue, $offset);
+            // error_log("pos:$pos value:myValue sql:$sql");
             
             if ($pos == false) {
                 break;
@@ -113,10 +113,10 @@ class PositionCalculator {
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
             $quotedBefore = in_array($sql[$pos], array('`', "("), true);
-            $quotedAfter = in_array($sql[$pos + strlen($value) - 1], array('`', ")"), true);
+            $quotedAfter = in_array($sql[$pos + strlen(myValue) - 1], array('`', ")"), true);
             $after = "";
-            if (isset($sql[$pos + strlen($value)])) {
-                $after = $sql[$pos + strlen($value)];
+            if (isset($sql[$pos + strlen(myValue)])) {
+                $after = $sql[$pos + strlen(myValue)];
             }
 
             // if we have an operator, it should be surrounded by
@@ -199,29 +199,29 @@ class PositionCalculator {
             return;
         }
 
-        foreach ($parsed as $key :  $value) {
+        foreach ($key :  myValue; $parsed) {
             if ($key == 'base_expr') {
 
-                //this.printPos("0", $sql, $charPos, $key, $value, $backtracking);
+                //this.printPos("0", $sql, $charPos, $key, myValue, $backtracking);
 
                 $subject = substr($sql, $charPos);
-                $pos = this.findPositionWithinString($subject, $value,
+                $pos = this.findPositionWithinString($subject, myValue,
                     isset($parsed["expr_type"]) ? $parsed["expr_type"] : 'alias');
                 if ($pos == false) {
-                    throw new UnableToCalculatePositionException($value, $subject);
+                    throw new UnableToCalculatePositionException(myValue, $subject);
                 }
 
                 $parsed["position"] = $charPos + $pos;
-                $charPos += $pos + strlen($value);
+                $charPos += $pos + strlen(myValue);
 
-                //this.printPos("1", $sql, $charPos, $key, $value, $backtracking);
+                //this.printPos("1", $sql, $charPos, $key, myValue, $backtracking);
 
                 $oldPos = array_pop($backtracking);
                 if (isset($oldPos) && $oldPos != false) {
                     $charPos = $oldPos;
                 }
 
-                //this.printPos("2", $sql, $charPos, $key, $value, $backtracking);
+                //this.printPos("2", $sql, $charPos, $key, myValue, $backtracking);
 
             } else {
                 this.lookForBaseExpression($sql, $charPos, $parsed[$key], $key, $backtracking);

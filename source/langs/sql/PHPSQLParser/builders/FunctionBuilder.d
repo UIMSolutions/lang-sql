@@ -72,22 +72,22 @@ class FunctionBuilder : ISqlBuilder {
         }
 
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k :  $v) {
+        foreach ($parsed["sub_tree"] as $k :  myValue) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.build($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildSubQuery($v);
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildSelectBracketExpression($v);
-            mySql  ~= this.buildSelectExpression($v);
-            mySql  ~= this.buildUserVariableExpression($v);
+            mySql  ~= this.build(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildSubQuery(myValue);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildSelectBracketExpression(myValue);
+            mySql  ~= this.buildSelectExpression(myValue);
+            mySql  ~= this.buildUserVariableExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('auto subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('auto subtree', $k, myValue, 'expr_type');
             }
 
-            mySql  ~= (this.isReserved($v) ? " " : ",");
+            mySql  ~= (this.isReserved(myValue) ? " " : ",");
         }
         return $parsed["base_expr"] . "(" . substr(mySql, 0, -1) . ")" . this.buildAlias($parsed);
     }

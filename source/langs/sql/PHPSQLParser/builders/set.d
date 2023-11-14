@@ -24,10 +24,10 @@ class SetBuilder : ISqlBuilder {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildSetExpression($v);
+            mySql  ~= this.buildSetExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SET', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('SET', $k, myValue, 'expr_type');
             }
 
             mySql  ~= ",";

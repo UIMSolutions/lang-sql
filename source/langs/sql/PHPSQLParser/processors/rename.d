@@ -15,8 +15,8 @@ class RenameProcessor : AbstractProcessor {
         $resultList = array();
         $tablePair = array();
 
-        foreach ($tokenList as $k : $v) {
-            $token = new ExpressionToken($k, $v);
+        foreach ($k : myValue; $tokenList) {
+            $token = new ExpressionToken($k, myValue);
 
             if ($token.isWhitespaceToken()) {
                 continue;
@@ -25,9 +25,9 @@ class RenameProcessor : AbstractProcessor {
             switch ($token.getUpper()) {
             case 'TO':
             // separate source table from destination
-                $tablePair["source"] = array('expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
+                $tablePair["source"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
                                              'no_quotes' : this.revokeQuotation($base_expr),
-                                             'base_expr' : $base_expr);
+                                             'base_expr' : $base_expr];
                 $base_expr = "";
                 break;
 

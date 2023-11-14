@@ -42,17 +42,17 @@ class CreateTableOptionsBuilder : IBuilder {
         }
         $options = $parsed["options"];
         auto mySql = "";
-        foreach ($options as $k :  $v) {
+        foreach ($options as $k :  myValue) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildExpression($v);
-            mySql  ~= this.buildCharacterSet($v);
-            mySql  ~= this.buildCollation($v);
+            mySql  ~= this.buildExpression(myValue);
+            mySql  ~= this.buildCharacterSet(myValue);
+            mySql  ~= this.buildCollation(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE options', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE options', $k, myValue, 'expr_type');
             }
 
-            mySql  ~= this.getDelimiter($v);
+            mySql  ~= this.getDelimiter(myValue);
         }
         return " "~ substr(mySql, 0, -1);
     }

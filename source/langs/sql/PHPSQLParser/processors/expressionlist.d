@@ -15,15 +15,15 @@ class ExpressionListProcessor : AbstractProcessor {
         $skip_next = false;
         $prev = new ExpressionToken();
 
-        foreach ($tokens as $k :  $v) {
+        foreach ($tokens as $k :  myValue) {
 
 
-            if (this.isCommentToken($v)) {
-                $resultList[] = super.processComment($v);
+            if (this.isCommentToken(myValue)) {
+                $resultList[] = super.processComment(myValue);
                 continue;
             }
 
-            $curr = new ExpressionToken($k, $v);
+            $curr = new ExpressionToken($k, myValue);
 
             if ($curr.isWhitespaceToken()) {
                 continue;
@@ -49,8 +49,8 @@ class ExpressionListProcessor : AbstractProcessor {
 
                 if ($prev.getUpper() == 'IN') {
 
-                    foreach ($localTokenList as $k :  $v) {
-                        $tmpToken = new ExpressionToken($k, $v);
+                    foreach ($k :  myValue; $localTokenList) {
+                        $tmpToken = new ExpressionToken($k, myValue);
                         if ($tmpToken.isCommaToken()) {
                             unset($localTokenList[$k]);
                         }
@@ -62,9 +62,9 @@ class ExpressionListProcessor : AbstractProcessor {
                 } elseif ($prev.getUpper() == 'AGAINST') {
 
                     $match_mode = false;
-                    foreach ($localTokenList as $k :  $v) {
+                    foreach ($localTokenList as $k :  myValue) {
 
-                        $tmpToken = new ExpressionToken($k, $v);
+                        $tmpToken = new ExpressionToken($k, myValue);
                         switch ($tmpToken.getUpper()) {
                         case 'WITH':
                             $match_mode = 'WITH QUERY EXPANSION';
@@ -105,11 +105,11 @@ class ExpressionListProcessor : AbstractProcessor {
                     $localExpr = new ExpressionToken();
                     $tmpExprList = array();
 
-                    foreach ($localTokenList as $k :  $v) {
-                        $tmpToken = new ExpressionToken($k, $v);
+                    foreach ($localTokenList as $k :  myValue) {
+                        $tmpToken = new ExpressionToken($k, myValue);
                         if (!$tmpToken.isCommaToken()) {
-                            $localExpr.addToken($v);
-                            $tmpExprList[] = $v;
+                            $localExpr.addToken(myValue);
+                            $tmpExprList[] = myValue;
                         } else {
                             // an expression could have multiple parts split by operands
                             // if we have a comma, it is a split-point for expressions
