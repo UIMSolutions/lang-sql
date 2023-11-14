@@ -59,7 +59,7 @@ class RenameProcessor : AbstractProcessor {
             $resultList[] = $tablePair;
         }
 
-        return ["expr_type" : $objectType, 'sub_tree':$resultList);
+        return ["expr_type" : $objectType, "sub_tree":$resultList);
     }
 
 }

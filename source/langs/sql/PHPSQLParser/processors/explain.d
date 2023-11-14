@@ -70,7 +70,7 @@ class ExplainProcessor : AbstractProcessor {
                     if ($currCategory == 'FORMAT') {
                         $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                         return ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : trim($base_expr),
-                                     'sub_tree' : $expr);
+                                     "sub_tree" : $expr);
                     }
                     // else?
                     break;

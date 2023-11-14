@@ -78,7 +78,7 @@ class ValuesProcessor : AbstractProcessor {
                     $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
                     $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
                     $parsed[] = ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : $base_expr,
-                                      'sub_tree' : (empty($res) ? false : $res), 'delim': $trim];
+                                      "sub_tree" : (empty($res) ? false : $res), 'delim': $trim];
                     $base_expr = "";
                     continue 2;
                 }
@@ -102,7 +102,7 @@ class ValuesProcessor : AbstractProcessor {
             if ($currCategory == 'DUPLICATE') {
                 $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
                 $parsed[] = ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : trim($base_expr),
-                                  'sub_tree' : (empty($res) ? false : $res), 'delim' : false);
+                                  "sub_tree" : (empty($res) ? false : $res), 'delim' : false);
             }
         }
 

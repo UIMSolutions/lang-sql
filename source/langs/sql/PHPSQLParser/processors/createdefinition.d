@@ -91,7 +91,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'CONSTRAINT':
-                $expr[] = ["expr_type" : ExpressionType::CONSTRAINT, "base_expr" : $trim, 'sub_tree' : false);
+                $expr[] = ["expr_type" : ExpressionType::CONSTRAINT, "base_expr" : $trim, "sub_tree" : false);
                 $currCategory = $prevCategory = $upper;
                 continue 2;
 
@@ -169,7 +169,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $option = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                     $expr[] = ["expr_type" : ExpressionType::INDEX_PARSER,
                                     "base_expr" : substr($base_expr, 0, -$token.length),
-                                    'sub_tree' : [$option));
+                                    "sub_tree" : [$option));
                     $base_expr = $token;
                     $currCategory = 'INDEX_PARSER';
                     continue 2;
@@ -182,7 +182,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $option = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                     $expr[] = ["expr_type" : ExpressionType::INDEX_SIZE,
                                     "base_expr" : substr($base_expr, 0, -$token.length),
-                                    'sub_tree' : [$option));
+                                    "sub_tree" : [$option));
                     $base_expr = $token;
                     $currCategory = 'INDEX_SIZE';
                     continue 2;
@@ -194,7 +194,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 if ($currCategory == 'INDEX_COL_LIST' || $currCategory == 'PRIMARY') {
                     $option = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                     $expr[] = ["base_expr" : substr($base_expr, 0, -$token.length), 'trim' : $trim,
-                                    'category' : $currCategory, 'sub_tree' : [$option));
+                                    'category' : $currCategory, "sub_tree" : [$option));
                     $base_expr = $token;
                     $currCategory = 'INDEX_TYPE';
                     continue 2;
@@ -219,7 +219,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $last = array_pop($expr);
                     $last["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                     $expr[] = ["expr_type" : ExpressionType::INDEX_TYPE, "base_expr" : $base_expr,
-                                    'sub_tree' : $last["sub_tree"]);
+                                    "sub_tree" : $last["sub_tree"]);
                     $base_expr = $last["base_expr"] . $base_expr;
 
                     // FIXME: it could be wrong for index_type within index_option
@@ -254,7 +254,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 $type = this.correctExpressionType($expr);
                 $result["create-def"][] = ["expr_type" : $type,
                                                 "base_expr" : trim(substr($base_expr, 0, -$token.length)),
-                                                'sub_tree' : $expr);
+                                                "sub_tree" : $expr);
                 $base_expr = "";
                 $expr = [);
                 break;
@@ -273,7 +273,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                         // the column list
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $expr[] = ["expr_type" : ExpressionType::COLUMN_LIST, "base_expr" : $trim,
-                                        'sub_tree' : $cols);
+                                        "sub_tree" : $cols);
                         $prevCategory = $currCategory;
                         $currCategory = 'INDEX_COL_LIST';
                         continue 3;
@@ -285,7 +285,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     if ($upper[0] == "(" && substr($upper, -1) == ")") {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $expr[] = ["expr_type" : ExpressionType::COLUMN_LIST, "base_expr" : $trim,
-                                        'sub_tree' : $cols);
+                                        "sub_tree" : $cols);
                         $prevCategory = $currCategory;
                         $currCategory = 'INDEX_COL_LIST';
                         continue 3;
@@ -300,7 +300,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     if ($upper[0] == "(" && substr($upper, -1) == ")") {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $expr[] = ["expr_type" : ExpressionType::COLUMN_LIST, "base_expr" : $trim,
-                                        'sub_tree' : $cols);
+                                        "sub_tree" : $cols);
                         $prevCategory = $currCategory;
                         $currCategory = 'INDEX_COL_LIST';
                         continue 3;
@@ -322,7 +322,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $last = array_pop($expr);
                     $last["sub_tree"][] = ["expr_type" : ExpressionType::CONSTANT, "base_expr": $trim];
                     $expr[] = ["expr_type" : ExpressionType::INDEX_PARSER, "base_expr" : $base_expr,
-                                    'sub_tree' : $last["sub_tree"]);
+                                    "sub_tree" : $last["sub_tree"]);
                     $base_expr = $last["base_expr"] . $base_expr;
                     $currCategory = 'INDEX_COL_LIST';
                     continue 3;
@@ -332,7 +332,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $last = array_pop($expr);
                     $last["sub_tree"][] = ["expr_type" : ExpressionType::CONSTANT, "base_expr": $trim];
                     $expr[] = ["expr_type" : ExpressionType::INDEX_SIZE, "base_expr" : $base_expr,
-                                    'sub_tree' : $last["sub_tree"]);
+                                    "sub_tree" : $last["sub_tree"]);
                     $base_expr = $last["base_expr"] . $base_expr;
                     $currCategory = 'INDEX_COL_LIST';
                     continue 3;
@@ -342,7 +342,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                         $parsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart($trim));
                         $parsed = this.processExpressionList($parsed);
                         $expr[] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim,
-                                        'sub_tree' : $parsed);
+                                        "sub_tree" : $parsed);
                     }
                     // else?
                     break;
@@ -376,7 +376,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
         }
 
         $type = this.correctExpressionType($expr);
-        $result["create-def"][] = ["expr_type" : $type, "base_expr" : trim($base_expr), 'sub_tree' : $expr);
+        $result["create-def"][] = ["expr_type" : $type, "base_expr" : trim($base_expr), "sub_tree" : $expr);
         return $result;
     }
 }

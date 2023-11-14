@@ -30,7 +30,7 @@ class OptionsProcessor : AbstractProcessor {
                 $result[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
             }
             $resultList[] = ["expr_type" :  ExpressionType::EXPRESSION, "base_expr" :  $token.strip,
-                                  'sub_tree' :  $result);
+                                  "sub_tree" :  $result);
         }
 
         return $resultList;

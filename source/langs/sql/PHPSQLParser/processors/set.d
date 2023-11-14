@@ -34,7 +34,7 @@ class SetProcessor : AbstractProcessor {
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
         return ["expr_type" :  ExpressionType::EXPRESSION, "base_expr" :  trim($base_expr),
-                     'sub_tree' :  (empty($assignment) ? false : $assignment));
+                     "sub_tree" :  (empty($assignment) ? false : $assignment));
     }
 
     auto process($tokens, $isUpdate = false) {

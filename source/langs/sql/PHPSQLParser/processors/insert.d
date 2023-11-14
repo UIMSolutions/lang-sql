@@ -74,14 +74,14 @@ class InsertProcessor : AbstractProcessor {
         }
         if ($cols[0] == "(" && substr($cols, -1) == ")") {
             $parsed = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $cols,
-                            'sub_tree' : false);
+                            "sub_tree" : false);
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = [
                     ["expr_type" : ExpressionType::QUERY, "base_expr" : $cols,
-                            'sub_tree' : $processor.process($cols)));
+                            "sub_tree" : $processor.process($cols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
             $parsed["sub_tree"] = $processor.process($cols);

@@ -26,7 +26,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $expr = ["expr_type" : ExpressionType::REFERENCE, "base_expr" : false, 'sub_tree' : [));
+        $expr = ["expr_type" : ExpressionType::REFERENCE, "base_expr" : false, "sub_tree" : [));
         $base_expr = "";
 
         foreach ($key : $token; $tokens) {
@@ -134,7 +134,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                         auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart($trim));
                         $expr["sub_tree"][] = ["expr_type" : ExpressionType::COLUMN_LIST, "base_expr" : $trim,
-                                                    'sub_tree' : $cols);
+                                                    "sub_tree" : $cols);
                         $currCategory = 'REF_COL_LIST';
                         continue 3;
                     }

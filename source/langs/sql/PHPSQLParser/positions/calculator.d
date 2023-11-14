@@ -176,7 +176,7 @@ class PositionCalculator {
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false; // backtracking only after n base_expr!
                 }
-            } elseif (($key == 'sub_tree' && $parsed != false) || ($key == 'options' && $parsed != false)) {
+            } elseif (($key == "sub_tree" && $parsed != false) || ($key == 'options' && $parsed != false)) {
                 // we prevent wrong backtracking on subtrees (too much array_pop())
                 // there is an array of sub-elements after(!) the base_expr clause of the current element
                 // so we go through the sub-elements and must not come back at the end

@@ -45,7 +45,7 @@ class FromProcessor : AbstractProcessor {
         return ['expression' :  "", 'token_count' :  0, 'table' :  "", 'no_quotes' :  "", 'alias' :  false,
                      'hints' :  [), 'join_type' :  "", 'next_join_type' :  "",
                      'saved_join_type' :  $parseInfo["saved_join_type"], 'ref_type' :  false, 'ref_expr' :  false,
-                     "base_expr" :  false, 'sub_tree' :  false, 'subquery' :  "");
+                     "base_expr" :  false, "sub_tree" :  false, 'subquery' :  "");
     }
 
     protected auto processFromExpression(&$parseInfo) {
@@ -72,7 +72,7 @@ class FromProcessor : AbstractProcessor {
             if ($parseInfo["ref_type"] == 'USING') {
             	// unparsed has only one entry, the column list
             	$ref = this.processColumnList(this.removeParenthesisFromStart($unparsed[0]));
-            	$ref = [["expr_type" :  ExpressionType::COLUMN_LIST, "base_expr" :  $unparsed[0], 'sub_tree' :  $ref));
+            	$ref = [["expr_type" :  ExpressionType::COLUMN_LIST, "base_expr" :  $unparsed[0], "sub_tree" :  $ref));
             } else {
                 $ref = this.processExpressionList($unparsed);
             }

@@ -43,7 +43,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto buildColDef($expr, $base_expr, $options, $refs, $key) {
-        $expr = ["expr_type" : ExpressionType::COLUMN_TYPE, "base_expr" : $base_expr, 'sub_tree' : $expr);
+        $expr = ["expr_type" : ExpressionType::COLUMN_TYPE, "base_expr" : $base_expr, "sub_tree" : $expr);
 
         // add options first
         $expr["sub_tree"] = array_merge($expr["sub_tree"], $options["sub_tree"]);
@@ -67,7 +67,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         $expr = [);
         $refs = [);
         $options = ['unique' : false, 'nullable' : true, 'auto_inc' : false, 'primary' : false,
-                         'sub_tree' : [));
+                         "sub_tree" : [));
         $skip = 0;
 
         foreach ($tokens as $key : $token) {
@@ -219,7 +219,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'ENUM':
                 $currCategory = 'MULTIPLE_PARAM_PARENTHESIS';
                 $prevCategory = 'TEXT';
-                $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $trim, 'sub_tree' : false);
+                $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $trim, "sub_tree" : false);
                 continue 2;
 
             case 'GEOMETRY':
@@ -247,7 +247,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 				} else {
 	                $currCategory = 'MULTIPLE_PARAM_PARENTHESIS';
     	            $prevCategory = 'TEXT';
-        	        $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $trim, 'sub_tree' : false);
+        	        $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $trim, "sub_tree" : false);
 				}
                 continue 2;
 
@@ -364,7 +364,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                     $expr[] = $last;
                     $expr[] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim,
-                                    'sub_tree' : [$parsed));
+                                    "sub_tree" : [$parsed));
                     $currCategory = $prevCategory;
                     break;
 
@@ -378,7 +378,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                     $expr[] = $last;
                     $expr[] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim,
-                                    'sub_tree' : $parsed);
+                                    "sub_tree" : $parsed);
                     $currCategory = $prevCategory;
                     break;
 
@@ -388,7 +388,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                     $last = array_pop($expr);
                     $subTree = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim,
-                                     'sub_tree' : $parsed);
+                                     "sub_tree" : $parsed);
 
                     if (this.options.getConsistentSubtrees()) {
                         $subTree = [$subTree);

@@ -31,12 +31,12 @@ class BracketProcessor : AbstractProcessor {
 
         if (isset($subtree["SELECT"])) {
             $subtree = [
-                    ["expr_type" : ExpressionType::QUERY, "base_expr" : $token, 'sub_tree' : $subtree));
+                    ["expr_type" : ExpressionType::QUERY, "base_expr" : $token, "sub_tree" : $subtree));
         }
 
         return [
                 ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : trim($tokens[0]),
-                        'sub_tree' : $subtree, 'remaining_expressions' : $remainingExpressions));
+                        "sub_tree" : $subtree, 'remaining_expressions' : $remainingExpressions));
     }
 
     private auto getRemainingNotBracketExpression($subtree)

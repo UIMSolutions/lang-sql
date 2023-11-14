@@ -29,7 +29,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto getBracketExpressionType($token) {
-        return ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $token, 'sub_tree' : false);
+        return ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false);
     }
 
     auto process($tokens) {
@@ -66,7 +66,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($currCategory == '') {
                     $expr[] = this.getReservedType($trim);
                     $parsed = ["expr_type" : ExpressionType::SUBPARTITION_DEF, "base_expr" : trim($base_expr),
-                                    'sub_tree' : false);
+                                    "sub_tree" : false);
                     $currCategory = $upper;
                     continue 2;
                 }
@@ -76,7 +76,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'COMMENT':
                 if ($prevCategory == 'SUBPARTITION') {
                     $expr[] = ["expr_type" : ExpressionType::SUBPARTITION_COMMENT, "base_expr" : false,
-                                    'sub_tree' : false, 'storage' : substr($base_expr, 0, -$token.length));
+                                    "sub_tree" : false, 'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
@@ -91,7 +91,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'STORAGE':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by ENGINE
-                    $expr[] = ["expr_type" : ExpressionType::ENGINE, "base_expr" : false, 'sub_tree' : false,
+                    $expr[] = ["expr_type" : ExpressionType::ENGINE, "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
@@ -111,7 +111,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     continue 2;
                 }
                 if ($prevCategory == 'SUBPARTITION') {
-                    $expr[] = ["expr_type" : ExpressionType::ENGINE, "base_expr" : false, 'sub_tree' : false,
+                    $expr[] = ["expr_type" : ExpressionType::ENGINE, "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
@@ -147,7 +147,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by DIRECTORY
                     $expr[] = ["expr_type" : constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper . '_DIR'),
-                                    "base_expr" : false, 'sub_tree' : false,
+                                    "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
@@ -173,7 +173,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'MIN_ROWS':
                 if ($prevCategory == 'SUBPARTITION') {
                     $expr[] = ["expr_type" : constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper),
-                                    "base_expr" : false, 'sub_tree' : false,
+                                    "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
