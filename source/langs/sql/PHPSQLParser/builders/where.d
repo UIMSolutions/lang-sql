@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.builders.where;
-use SqlParser\exceptions\UnableToCreateSQLException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the WHERE part.

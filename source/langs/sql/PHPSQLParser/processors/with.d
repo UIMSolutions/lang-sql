@@ -5,7 +5,7 @@
  * This file : the processor for Oracle's WITH statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.with;
 
 import lang.sql;
 

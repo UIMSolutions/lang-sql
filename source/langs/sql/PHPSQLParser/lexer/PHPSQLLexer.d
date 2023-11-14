@@ -7,7 +7,10 @@
  */
 
 module lang.sql.parsers.lexer;
-use SqlParser\exceptions\InvalidParameterException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class splits the SQL string into little parts, which the parser can

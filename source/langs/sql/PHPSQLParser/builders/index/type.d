@@ -6,8 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.builders.index.type;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the index type of a PRIMARY KEY

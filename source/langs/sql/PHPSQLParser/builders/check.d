@@ -5,8 +5,10 @@
  * Builds the CHECK statement part of CREATE TABLE. */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the CHECK statement part of CREATE TABLE. 

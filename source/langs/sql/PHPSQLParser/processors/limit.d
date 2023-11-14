@@ -5,7 +5,7 @@
  * This file : the processor for the LIMIT statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.limit;
 
 /**
  * This class processes the LIMIT statements.

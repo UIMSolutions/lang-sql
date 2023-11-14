@@ -5,7 +5,7 @@
  * This file : the processor for the INTO statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.into;
 
 /**
  * 

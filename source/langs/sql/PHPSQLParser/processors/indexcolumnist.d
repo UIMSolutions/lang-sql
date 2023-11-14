@@ -5,7 +5,7 @@
  * This file : the processor for index column lists.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.indexcolumnist;
 
 import lang.sql;
 

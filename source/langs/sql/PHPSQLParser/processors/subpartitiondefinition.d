@@ -6,7 +6,7 @@
  * within CREATE TABLE.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.subpartitiondefinition;
 
 import lang.sql;
 

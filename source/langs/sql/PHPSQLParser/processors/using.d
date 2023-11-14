@@ -5,7 +5,7 @@
  * This file : the processor for the USING statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.using;
 
 /**
  * This class processes the USING statements. */

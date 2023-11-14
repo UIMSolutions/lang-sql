@@ -1,3 +1,4 @@
+module source.langs.sql.PHPSQLParser.SQLCreator;
 
 /**
  * PHPSQLCreator.php
