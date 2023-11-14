@@ -1,16 +1,11 @@
-
-/**
- * IndexKeyBuilder.php
- *
- * Builds index key part of a CREATE TABLE statement. */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.tables.fulltextindex;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds index key part of a CREATE TABLE statement. 
  * This class : the builder for the index key part of a CREATE TABLE statement. 
  * You can overwrite all functions to achieve another handling. */
 class FulltextIndexBuilder : IBuilder {
@@ -38,11 +33,11 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::FULLTEXT_IDX) {
+        if ($parsed["expr_type"] != ExpressionType::FULLTEXT_IDX) { 
             return "";
         }
         auto mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"] as $k => myValue) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildColumnList(myValue);

@@ -26,9 +26,8 @@ class CollationBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLLATE) {
-            return "";
-        }
+        if ($parsed["expr_type"] != ExpressionType::COLLATE) { return ""; }
+        
         auto mySql = "";
         foreach (key, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

@@ -1,15 +1,10 @@
-
-/**
- * CreateTableDefinitionBuilder.php
- *
- * Builds the create definitions of CREATE TABLE. */
-
-module source.langs.sql.PHPSQLParser.builders.create.tables.tabedefinition;
+module source.langs.sql.PHPSQLParser.builders.create.tables.definition;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the create definitions of CREATE TABLE.
  * This class : the builder for the create definitions of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class CreateTableDefinitionBuilder : ISqlBuilder {

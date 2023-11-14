@@ -1,9 +1,3 @@
-
-/**
- * ConstantBuilder.php
- *
- * Builds constant (String, Integer, etc.) parts. */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds constant (String, Integer, etc.) parts.
  * This class : the builder for constants. 
  * You can overwrite all functions to achieve another handling. */
 class ConstantBuilder : ISqlBuilder {

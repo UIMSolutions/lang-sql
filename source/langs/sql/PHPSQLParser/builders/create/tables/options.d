@@ -1,17 +1,11 @@
-
-/**
- * CreateTableOptionsBuilder.php
- *
- * Builds the table-options statement part of CREATE TABLE.
- * */
-
-module source.langs.sql.PHPSQLParser.builders.create.tables.tableoptions;
+module source.langs.sql.PHPSQLParser.builders.create.tables.options;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the table-options statement part of CREATE TABLE.
  * This class : the builder for the table-options statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class CreateTableOptionsBuilder : IBuilder {

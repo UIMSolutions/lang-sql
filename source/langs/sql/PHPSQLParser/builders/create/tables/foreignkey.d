@@ -4,7 +4,7 @@
  *
  * Builds the FOREIGN KEY statement part of CREATE TABLE. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.tables.foreignkey;
 
 import lang.sql;
 

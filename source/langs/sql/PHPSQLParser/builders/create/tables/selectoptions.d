@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.create.tables.tableselectoptions;
+module source.langs.sql.PHPSQLParser.builders.create.tables.selectoptions;
 
 import lang.sql;
 
