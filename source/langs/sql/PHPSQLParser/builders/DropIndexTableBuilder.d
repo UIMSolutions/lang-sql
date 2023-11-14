@@ -7,7 +7,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the table part of a DROP INDEX statement.

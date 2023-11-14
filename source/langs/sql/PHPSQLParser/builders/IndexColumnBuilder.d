@@ -32,10 +32,10 @@ class IndexColumnBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX_COLUMN) {
             return "";
         }
-        $sql = $parsed["name"];
-        $sql  ~= this.buildLength($parsed["length"]);
-        $sql  ~= this.buildDirection($parsed["dir"]);
-        return $sql;
+        mySql = $parsed["name"];
+        mySql  ~= this.buildLength($parsed["length"]);
+        mySql  ~= this.buildDirection($parsed["dir"]);
+        return mySql;
     }
 
 }

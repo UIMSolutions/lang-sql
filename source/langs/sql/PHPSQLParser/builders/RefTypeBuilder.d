@@ -7,7 +7,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnsupportedFeatureException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the references type within a JOIN. 

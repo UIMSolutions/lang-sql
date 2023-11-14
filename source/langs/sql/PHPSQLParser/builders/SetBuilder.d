@@ -7,7 +7,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the SET part of INSERT statement. 

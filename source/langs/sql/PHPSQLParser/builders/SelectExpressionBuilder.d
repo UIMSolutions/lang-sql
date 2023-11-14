@@ -1,4 +1,3 @@
-
 /**
  * SelectExpressionBuilder.php
  *
@@ -7,7 +6,10 @@
  */
 
 module lang.sql.parsers.builders;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for simple expressions within a SELECT statement. 
@@ -16,22 +18,22 @@ use SqlParser\utils\ExpressionType;
  */
 class SelectExpressionBuilder : ISqlBuilder {
 
-    protected auto buildSubTree($parsed, $delim) {
-        auto myBuilder = new SubTreeBuilder();
-        return $builder.build($parsed, $delim);
-    }
+  protected auto buildSubTree($parsed, $delim) {
+    auto myBuilder = new SubTreeBuilder();
+    return $builder.build($parsed, $delim);
+  }
 
-    protected auto buildAlias($parsed) {
-        auto myBuilder = new AliasBuilder();
-        return $builder.build($parsed);
-    }
+  protected auto buildAlias($parsed) {
+    auto myBuilder = new AliasBuilder();
+    return $builder.build($parsed);
+  }
 
-    auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
-            return "";
-        }
-        $sql = this.buildSubTree($parsed, " ");
-        $sql  ~= this.buildAlias($parsed);
-        return $sql;
+  auto build(array$parsed) {
+    if ($parsed["expr_type"] != ExpressionType :  : EXPRESSION) {
+      return "";
     }
+    auto mySql = this.buildSubTree($parsed, " ");
+    mySql ~= this.buildAlias($parsed);
+    return mySql;
+  }
 }
