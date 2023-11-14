@@ -5,8 +5,11 @@
  * This file : the processor for the UNION statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.union;
 
+import lang.sql;
+
+@safe:
 /**
  * This class processes the UNION statements.
  */

@@ -5,10 +5,12 @@
  * This file : the processor for the UPDATE statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.update;
 
-/**
- * This class processes the UPDATE statements. */
+import lang.sql;
+
+@safe:
+// This class processes the UPDATE statements.
 class UpdateProcessor : FromProcessor {
 
 }

@@ -6,9 +6,10 @@
  */
 
 module lang.sql.parsers.processors;
-use SqlParser\Options;
-use SqlParser\utils\ExpressionType;
-use SqlParser\utils\SqlParserConstants;
+
+import lang.sql;
+
+@safe:
 
 /**
  *

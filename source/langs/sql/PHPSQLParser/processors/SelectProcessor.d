@@ -7,6 +7,9 @@
 
 module lang.sql.parsers.processors;
 
+import lang.sql;
+
+@safe:
 /**
  * 
  * This class processes the SELECT statements.

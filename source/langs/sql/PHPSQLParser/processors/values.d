@@ -5,8 +5,11 @@
  * This file : the processor for the VALUES statements.
  */
 
-module lang.sql.parsers.processors;
-use SqlParser\utils\ExpressionType;
+module source.langs.sql.PHPSQLParser.processors.values;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class processes the VALUES statements.

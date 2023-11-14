@@ -7,6 +7,9 @@
 
 module source.langs.sql.PHPSQLParser.processors.describe;
 
+import lang.sql;
+
+@safe:
 //This class processes the DESCRIBE statements.
 class DescribeProcessor : ExplainProcessor {
 

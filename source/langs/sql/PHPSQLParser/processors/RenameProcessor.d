@@ -6,8 +6,10 @@
  */
 
 module lang.sql.parsers.processors;
-use SqlParser\utils\ExpressionType;
-use SqlParser\utils\ExpressionToken;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class processes the RENAME statements.

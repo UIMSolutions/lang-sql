@@ -7,8 +7,11 @@
 
 module lang.sql.parsers.processors;
 
-/**
- * This class processes the REPLACE statements. */
+import lang.sql;
+
+@safe:
+
+// This class processes the REPLACE statements. 
 class ReplaceProcessor : InsertProcessor {
 
     auto process($tokenList, $token_category = 'REPLACE') {

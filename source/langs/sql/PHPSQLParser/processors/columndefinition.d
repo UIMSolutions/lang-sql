@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.processors.columndefinition;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  *
