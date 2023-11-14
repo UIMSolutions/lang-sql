@@ -45,16 +45,16 @@ class DropExpressionBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildTable($v, 0);
-            mySql  ~= this.buildView($v);
-            mySql  ~= this.buildSchema($v);
-            mySql  ~= this.buildDatabase($v);
-            mySql  ~= this.buildTemporaryTable($v, 0);
+            mySql  ~= this.buildTable(myValue, 0);
+            mySql  ~= this.buildView(myValue);
+            mySql  ~= this.buildSchema(myValue);
+            mySql  ~= this.buildDatabase(myValue);
+            mySql  ~= this.buildTemporaryTable(myValue, 0);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('DROP object-list subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('DROP object-list subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= ', ';

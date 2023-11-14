@@ -29,13 +29,13 @@ class ColumnDefinitionBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildColumnType($v);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildColumnType(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

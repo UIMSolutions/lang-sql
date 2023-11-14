@@ -12,19 +12,19 @@ module lang.sql.parsers.builders;
 class TruncateBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        $sql = "TRUNCATE TABLE ";
+        auto mySql = "TRUNCATE TABLE ";
         $right = -1;
 
         // works for one table only
         $parsed["tables"] = array($parsed["TABLE"]["base_expr"]);
 
         if ($parsed["tables"] != false) {
-            foreach ($parsed["tables"] as $k => $v) {
-                $sql  ~= $v . ", ";
+            foreach (myKey, myValue; $parsed["tables"]) {
+                mySql  ~= myValue ~ ", ";
                 $right = -2;
             }
         }
 
-        return substr($sql, 0, $right);
+        return substr(mySql, 0, $right);
     }
 }

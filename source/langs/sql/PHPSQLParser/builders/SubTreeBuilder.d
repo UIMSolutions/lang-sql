@@ -77,23 +77,23 @@ class SubTreeBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildFunction($v);
-            mySql  ~= this.buildOperator($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildInList($v);
-            mySql  ~= this.buildSubQuery($v);
-            mySql  ~= this.buildSelectBracketExpression($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildQuery($v);
-            mySql  ~= this.buildUserVariable($v);
-            $sign = this.buildSign($v);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildFunction(myValue);
+            mySql  ~= this.buildOperator(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildInList(myValue);
+            mySql  ~= this.buildSubQuery(myValue);
+            mySql  ~= this.buildSelectBracketExpression(myValue);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildQuery(myValue);
+            mySql  ~= this.buildUserVariable(myValue);
+            $sign = this.buildSign(myValue);
             mySql  ~= $sign;
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('expression subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('expression subtree', $k, myValue, 'expr_type');
             }
 
             // We don't need whitespace between a sign and the following part.

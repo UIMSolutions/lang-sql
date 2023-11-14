@@ -40,15 +40,15 @@ class UniqueIndexBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildColumnList($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildIndexType($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildColumnList(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildIndexType(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE unique-index key subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE unique-index key subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

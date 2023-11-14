@@ -38,15 +38,15 @@ class RecordBuilder : ISqlBuilder {
             return isset($parsed["base_expr"]) ? $parsed["base_expr"] : "";
         }
         auto mySql = "";
-        foreach ($parsed["data"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["data"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildFunction($v);
-            mySql  ~= this.buildOperator($v);
-            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildFunction(myValue);
+            mySql  ~= this.buildOperator(myValue);
+            mySql  ~= this.buildColRef(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, myValue, 'expr_type');
             }
 
             mySql  ~= ", ";

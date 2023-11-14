@@ -23,12 +23,12 @@ class ReplaceColumnListBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildColumn($v);
+            mySql  ~= this.buildColumn(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('REPLACE column-list subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('REPLACE column-list subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= ", ";

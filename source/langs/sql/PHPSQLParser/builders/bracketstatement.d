@@ -23,12 +23,12 @@ class BracketStatementBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         auto mySql = "";
-        foreach ($parsed["BRACKET"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["BRACKET"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildSelectBracketExpression($v);
+            mySql  ~= this.buildSelectBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('BRACKET', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('BRACKET', $k, myValue, 'expr_type');
             }
         }
         return trim(mySql . " "~ trim(this.buildSelectStatement($parsed)));
