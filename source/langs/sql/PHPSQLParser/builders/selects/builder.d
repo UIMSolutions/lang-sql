@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.selects.select;
+module source.langs.sql.PHPSQLParser.builders.selects.builder;
 
 import lang.sql;
 
@@ -47,26 +47,26 @@ class SelectBuilder : ISqlBuilder {
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter($parsed) {
-        return (!isset($parsed["delim"]) || $parsed["delim"] == false ? '' : (trim($parsed["delim"]) . ' '));
+        return ("delim" !in $parsed || $parsed["delim"] == false ? '' : (trim($parsed["delim"]) . ' '));
     }
 
     auto build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildSelectBracketExpression($v);
-            mySql  ~= this.buildSelectExpression($v);
-            mySql  ~= this.buildFunction($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildSelectBracketExpression(myValue);
+            mySql  ~= this.buildSelectExpression(myValue);
+            mySql  ~= this.buildFunction(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SELECT', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('SELECT', $k, myValue, 'expr_type');
             }
 
-            mySql  ~= this.getDelimiter($v);
+            mySql  ~= this.getDelimiter(myValue);
         }
-        return "SELECT " . mySql;
+        return "SELECT " ~ mySql;
     }
 }

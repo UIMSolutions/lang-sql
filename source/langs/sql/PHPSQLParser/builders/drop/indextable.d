@@ -1,10 +1,4 @@
-
-/**
- * DropIndexTable.php
- *
- * Builds the table part of a CREATE INDEX statement */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.drop.indextable;
 
 import lang.sql;
 

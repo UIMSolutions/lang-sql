@@ -1,11 +1,4 @@
-
-/**
- * GroupByBuilder.php
- *
- * Builds the GROUP-BY clause.
- */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.groupby.builder;
 
 import lang.sql;
 

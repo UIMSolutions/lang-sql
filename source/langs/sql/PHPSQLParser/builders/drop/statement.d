@@ -1,17 +1,10 @@
-
-/**
- * DropStatement.php
- *
- * Builds the DROP statement
- *
- * */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.drop.statement;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the DROP statement
  * This class : the builder for the whole DROP TABLE statement. 
  * You can overwrite all functions to achieve another handling. */
 class DropStatementBuilder : IBuilder {

@@ -1,12 +1,5 @@
 
-/**
- * DropIndexBuilder.php
- *
- * Builds the CREATE INDEX statement
- *
- * */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.drop.index;
 
 import lang.sql;
 

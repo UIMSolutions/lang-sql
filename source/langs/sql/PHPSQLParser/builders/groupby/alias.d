@@ -5,7 +5,7 @@
  * Builds an alias within a GROUP-BY clause.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.groupby.alias;
 
 import lang.sql;
 
