@@ -4,7 +4,7 @@
  *
  * Parses the HAVING statements. */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.having;
 use SqlParser\utils\ExpressionType;
 
 /**

@@ -12,7 +12,7 @@ use SqlParser\utils\ExpressionType;
  *
  * This class processes the reference definition part of the CREATE TABLE statements.
  *
- * @author arothe */
+*/
 class ReferenceDefinitionProcessor : AbstractProcessor {
 
     protected auto buildReferenceDef($expr, $base_expr, $key) {

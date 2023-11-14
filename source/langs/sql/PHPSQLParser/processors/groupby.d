@@ -5,13 +5,13 @@
  * This file : the processor for the GROUP-BY statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.groupby;
 
 /**
  * 
  * This class processes the GROUP-BY statements.
  * 
- * @author arothe */
+*/
 class GroupByProcessor : OrderByProcessor {
 
     auto process($tokens, $select = array()) {

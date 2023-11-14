@@ -5,7 +5,7 @@
  * This file : the processor the unparsed sql string given by the user.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.default;
 
 /**
  * This class processes the incoming sql string.
@@ -20,12 +20,12 @@ class DefaultProcessor : AbstractProcessor {
         // this is the highest level lexical analysis. This is the part of the
         // code which finds UNION and UNION ALL query parts
         auto myProcessor = new UnionProcessor(this.options);
-        return $processor.process($tokens);
+        return myProcessor.process($tokens);
     }
 
     protected auto processSQL($tokens) {
         auto myProcessor = new SQLProcessor(this.options);
-        return $processor.process($tokens);
+        return myProcessor.process($tokens);
     }
 
     auto process($sql) {

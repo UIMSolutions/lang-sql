@@ -12,7 +12,7 @@ use SqlParser\utils\ExpressionType;
  * 
  * This class processes column-lists.
  * 
- * @author arothe */
+*/
 class ColumnListProcessor : AbstractProcessor {
 
     auto process($tokens) {

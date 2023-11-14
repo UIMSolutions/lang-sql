@@ -11,7 +11,7 @@ module lang.sql.parsers.processors;
  * 
  * This class processes the SELECT statements.
  * 
- * @author arothe */
+*/
 class SelectProcessor : SelectExpressionProcessor {
 
     auto process($tokens) {

@@ -38,7 +38,7 @@
  * @version   SVN: $Id$
  * */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.from;
 use SqlParser\utils\ExpressionType;
 
 /**

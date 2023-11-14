@@ -5,11 +5,9 @@
  * This file : the processor for the DESCRIBE statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.describe;
 
-/**
- * This class processes the DESCRIBE statements.
- */
+//This class processes the DESCRIBE statements.
 class DescribeProcessor : ExplainProcessor {
 
     protected auto isStatement($keys, $needle = "DESCRIBE") {

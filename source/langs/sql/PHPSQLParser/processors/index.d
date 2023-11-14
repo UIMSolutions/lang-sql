@@ -5,7 +5,7 @@
  * This file : the processor for the INDEX statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.index;
 use SqlParser\utils\ExpressionType;
 
 /**

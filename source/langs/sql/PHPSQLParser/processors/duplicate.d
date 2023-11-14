@@ -5,13 +5,9 @@
  * This file : the processor for the DUPLICATE statements.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.duplicate;
 
-/**
- * 
- * This class processes the DUPLICATE statements.
- * 
- * @author arothe */
+// This class processes the DUPLICATE statements.
 class DuplicateProcessor : SetProcessor {
 
     auto process($tokens, $isUpdate = false) {
