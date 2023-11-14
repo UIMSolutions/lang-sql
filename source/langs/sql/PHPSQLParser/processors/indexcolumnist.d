@@ -48,7 +48,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 break;
 
             default:
-                if ($upper[0] == '(' && substr($upper, -1) == ')') {
+                if ($upper[0] == "(" && substr($upper, -1) == ')') {
                     # the optional length
                     $expr["length"] = this.removeParenthesisFromStart($trim);
                     continue 2;

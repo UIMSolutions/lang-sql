@@ -367,14 +367,14 @@ class PHPSQLLexer {
         $token_count = count($tokens);
         $i = 0;
         while ($i < $token_count) {
-            if ($tokens[$i] != '(') {
+            if ($tokens[$i] != "(") {
                 $i++;
                 continue;
             }
             $count = 1;
             for ($n = $i + 1; $n < $token_count; $n++) {
                 $token = $tokens[$n];
-                if ($token == '(') {
+                if ($token == "(") {
                     $count++;
                 }
                 if ($token == ')') {

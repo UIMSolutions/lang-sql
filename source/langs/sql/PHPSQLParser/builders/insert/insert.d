@@ -45,14 +45,14 @@ class InsertBuilder : ISqlBuilder {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildTable($v);
-            mySql  ~= this.buildSubQuery($v);
-            mySql  ~= this.buildColumnList($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildBracketExpression($v);
+            mySql  ~= this.buildTable(myValue);
+            mySql  ~= this.buildSubQuery(myValue);
+            mySql  ~= this.buildColumnList(myValue);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('INSERT', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('INSERT', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

@@ -141,7 +141,7 @@ class IndexProcessor : AbstractProcessor {
                 switch ($currCategory) {
 
                 case 'COLUMN_DEF':
-                    if ($upper[0] == '(' && substr($upper, -1) == ')') {
+                    if ($upper[0] == "(" && substr($upper, -1) == ')') {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $result["on"]["base_expr"]  ~= $base_expr;
                         $result["on"]["sub_tree"] = array('expr_type' => ExpressionType::COLUMN_LIST,

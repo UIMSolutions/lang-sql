@@ -269,7 +269,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     break;
 
                 case 'PRIMARY':
-                    if ($upper[0] == '(' && substr($upper, -1) == ')') {
+                    if ($upper[0] == "(" && substr($upper, -1) == ')') {
                         // the column list
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $expr[] = array('expr_type' => ExpressionType::COLUMN_LIST, 'base_expr' => $trim,
@@ -282,7 +282,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     break;
 
                 case 'FOREIGN':
-                    if ($upper[0] == '(' && substr($upper, -1) == ')') {
+                    if ($upper[0] == "(" && substr($upper, -1) == ')') {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $expr[] = array('expr_type' => ExpressionType::COLUMN_LIST, 'base_expr' => $trim,
                                         'sub_tree' => $cols);
@@ -297,7 +297,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case 'KEY':
                 case 'UNIQUE':
                 case 'INDEX':
-                    if ($upper[0] == '(' && substr($upper, -1) == ')') {
+                    if ($upper[0] == "(" && substr($upper, -1) == ')') {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $expr[] = array('expr_type' => ExpressionType::COLUMN_LIST, 'base_expr' => $trim,
                                         'sub_tree' => $cols);
@@ -338,7 +338,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     continue 3;
 
                 case 'CHECK':
-                    if ($upper[0] == '(' && substr($upper, -1) == ')') {
+                    if ($upper[0] == "(" && substr($upper, -1) == ')') {
                         $parsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart($trim));
                         $parsed = this.processExpressionList($parsed);
                         $expr[] = array('expr_type' => ExpressionType::BRACKET_EXPRESSION, 'base_expr' => $trim,

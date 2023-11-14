@@ -112,7 +112,7 @@ class PositionCalculator {
 
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
-            $quotedBefore = in_array($sql[$pos], array('`', '('), true);
+            $quotedBefore = in_array($sql[$pos], array('`', "("), true);
             $quotedAfter = in_array($sql[$pos + strlen($value) - 1], array('`', ')'), true);
             $after = "";
             if (isset($sql[$pos + strlen($value)])) {

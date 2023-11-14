@@ -18,7 +18,7 @@ import lang.sql;
 class IndexColumnBuilder : ISqlBuilder {
 
     protected auto buildLength($parsed) {
-        return ($parsed == false ? '' : ('(' . $parsed . ')'));
+        return ($parsed == false ? '' : ("(" . $parsed . ')'));
     }
 
     protected auto buildDirection($parsed) {

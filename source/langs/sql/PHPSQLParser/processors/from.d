@@ -80,7 +80,7 @@ class FromProcessor : AbstractProcessor {
         }
 
         // there is an expression, we have to parse it
-        if (substr(trim($parseInfo["table"]), 0, 1) == '(') {
+        if (substr(trim($parseInfo["table"]), 0, 1) == "(") {
             $parseInfo["expression"] = this.removeParenthesisFromStart($parseInfo["table"]);
 
             if (preg_match("/^\\s*(-- [\\w\\s]+\\n)?\\s*SELECT/i", $parseInfo["expression"])) {

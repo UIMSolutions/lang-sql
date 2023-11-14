@@ -133,7 +133,7 @@ abstract class DProcessor {
         $parenthesisRemoved = 0;
 
         $trim = trim($token);
-        if ($trim != '' && $trim[0] == '(') { // remove only one parenthesis pair now!
+        if ($trim != '' && $trim[0] == "(") { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
             $trim[0] = " ";
             $trim = trim($trim);
@@ -167,7 +167,7 @@ abstract class DProcessor {
                 }
             }
 
-            if (($stringOpened == '') && ($trim[$i] == '(')) {
+            if (($stringOpened == '') && ($trim[$i] == "(")) {
                 $parenthesis++;
             }
 
