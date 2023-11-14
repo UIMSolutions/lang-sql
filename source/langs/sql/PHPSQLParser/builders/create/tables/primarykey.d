@@ -1,14 +1,11 @@
+module source.langs.sql.PHPSQLParser.builders.create.tables.primarykey;
+
+import lang.sql;
+
+@safe:
 
 /**
- * PrimaryKeyBuilder.php
- *
- * Builds the PRIMARY KEY statement part of CREATE TABLE. */
-
-module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
-
-/**
+ * Builds the PRIMARY KEY statement part of CREATE TABLE. 
  * This class : the builder for the PRIMARY KEY  statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class PrimaryKeyBuilder : ISqlBuilder {
@@ -43,22 +40,21 @@ class PrimaryKeyBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::PRIMARY_KEY) {
-            return "";
-        }
+    string build(array $parsed) {
+        if ($parsed["expr_type"] != ExpressionType::PRIMARY_KEY) { return ""; }
+
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildConstraint($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildColumnList($v);
-            mySql  ~= this.buildIndexType($v);
-            mySql  ~= this.buildIndexSize($v);
-            mySql  ~= this.buildIndexParser($v);
+            mySql  ~= this.buildConstraint(myValue);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildColumnList(myValue);
+            mySql  ~= this.buildIndexType(myValue);
+            mySql  ~= this.buildIndexSize(myValue);
+            mySql  ~= this.buildIndexParser(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

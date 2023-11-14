@@ -10,10 +10,11 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling */
 class EngineBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::ENGINE) {
-            return "";
-        }
-        return $parsed["base_expr"];
+  auto build(array$parsed) {
+    if ($parsed["expr_type"] != ExpressionType :  : ENGINE) {
+      return "";
     }
+
+    return $parsed["base_expr"];
+  }
 }

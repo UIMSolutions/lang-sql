@@ -1,10 +1,3 @@
-
-/**
- * LimitBuilder.php
- *
- * Builds the LIMIT statement.
- */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the LIMIT statement.
  * This class : the builder LIMIT statement. 
  * You can overwrite all functions to achieve another handling. */
 class LimitBuilder : ISqlBuilder {

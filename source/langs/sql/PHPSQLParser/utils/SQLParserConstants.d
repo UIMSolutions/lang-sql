@@ -1,11 +1,9 @@
+module source.langs.sql.PHPSQLParser.utils.SQLParserConstants;
 
 /**
- * constants.php
- *
  * Some constants for the SqlParser.
  */
 
-module lang.sql.parsers.utils;
 class SqlParserConstants {
 
     private static $inst = null;

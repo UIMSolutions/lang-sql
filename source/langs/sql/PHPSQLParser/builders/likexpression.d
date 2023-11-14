@@ -1,16 +1,11 @@
-
-/**
- * LikeExpressionBuilder.php
- *
- * Builds the LIKE keyword within parenthesis. */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.likexpression;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the LIKE keyword within parenthesis. 
  * This class : the builder for the (LIKE) keyword within a 
  * CREATE TABLE statement. There are difference to LIKE (without parenthesis), 
  * the latter is a top-level element of the output array.

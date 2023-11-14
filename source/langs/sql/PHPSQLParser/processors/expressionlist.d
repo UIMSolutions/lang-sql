@@ -1,10 +1,3 @@
-
-/**
- * ExpressionListProcessor.php
- *
- * This file : the processor for expression lists.
- */
-
 module langs.sql.PHPSQLParser.processors.expressionlist;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for expression lists.
  * This class processes expression lists.
  */
 class ExpressionListProcessor : AbstractProcessor {

@@ -1,16 +1,8 @@
-
-/**
- * LimitProcessor.php
- *
- * This file : the processor for the LIMIT statements.
- */
-
 module langs.sql.PHPSQLParser.processors.limit;
 
 /**
+ * This file : the processor for the LIMIT statements.
  * This class processes the LIMIT statements.
- * 
- 
   */
 class LimitProcessor : AbstractProcessor {
 
@@ -30,7 +22,7 @@ class LimitProcessor : AbstractProcessor {
             }
         }
         
-        for (myPos = 0;myPos < count($tokens); ++myPos) {
+        for (myPos = 0; myPos < count($tokens); ++myPos) {
             auto trimmedToken = $tokens[myPos].strip.toUpper;
             if (trimmedToken == ",") {
                 $comma = myPos;

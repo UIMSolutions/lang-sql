@@ -1,9 +1,3 @@
-
-/**
- * ForeignKeyBuilder.php
- *
- * Builds the FOREIGN KEY statement part of CREATE TABLE. */
-
 module source.langs.sql.PHPSQLParser.builders.create.tables.foreignkey;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the FOREIGN KEY statement part of CREATE TABLE. 
  * This class : the builder for the FOREIGN KEY statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class ForeignKeyBuilder : IBuilder {
@@ -40,15 +35,15 @@ class ForeignKeyBuilder : IBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildColumnList($v);
-            mySql  ~= this.buildForeignRef($v);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildColumnList(myValue);
+            mySql  ~= this.buildForeignRef(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE foreign key subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE foreign key subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

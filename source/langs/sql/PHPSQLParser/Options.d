@@ -4,6 +4,9 @@
 
 namespace SqlParser;
 
+import lang.sql;
+
+@safe:
 final class Options {
 
   /**

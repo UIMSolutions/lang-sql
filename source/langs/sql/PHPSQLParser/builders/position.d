@@ -4,7 +4,7 @@
  *
  * Builds positions of the GROUP BY clause. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.position;
 
 import lang.sql;
 
