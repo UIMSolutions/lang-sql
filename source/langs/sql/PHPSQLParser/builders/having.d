@@ -23,7 +23,7 @@ class HavingBuilder : WhereBuilder {
 
     protected auto buildHavingBracketExpression($parsed) {
         auto myBuilder = new HavingBracketExpressionBuilder();
-        return myBuilderrr.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     string build(array $parsed) {
