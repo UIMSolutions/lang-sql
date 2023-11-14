@@ -56,7 +56,7 @@ class CreateTableOptionsBuilder : IBuilder {
             mySql  ~= this.buildCharacterSet($v);
             mySql  ~= this.buildCollation($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE options', $k, $v, 'expr_type');
             }
 

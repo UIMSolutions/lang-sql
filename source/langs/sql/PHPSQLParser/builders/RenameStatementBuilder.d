@@ -34,7 +34,7 @@ class RenameStatementBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.processSourceAndDestTable($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('RENAME subtree', $k, $v, 'expr_type');
             }
 

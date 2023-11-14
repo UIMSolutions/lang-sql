@@ -59,7 +59,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexSize($v);
             mySql  ~= this.buildIndexParser($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, $v, 'expr_type');
             }
 

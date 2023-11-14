@@ -53,7 +53,7 @@ class GroupByBuilder : ISqlBuilder {
             mySql  ~= this.buildGroupByExpression($v);
             mySql  ~= this.buildGroupByAlias($v);
             
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('GROUP', $k, $v, 'expr_type');
             }
 

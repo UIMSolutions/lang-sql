@@ -48,7 +48,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
             mySql  ~= this.buildHavingBracketExpression($v);
             mySql  ~= this.buildUserVariable($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('HAVING expression subtree', $k, $v, 'expr_type');
             }
 

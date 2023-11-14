@@ -35,7 +35,7 @@ class CheckBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildSelectBracketExpression($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE check subtree', $k, $v, 'expr_type');
             }
 

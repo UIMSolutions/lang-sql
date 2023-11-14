@@ -53,7 +53,7 @@ class FromBuilder : ISqlBuilder {
                     auto oldSqlLength = mySql.length;
                     mySql  ~= $select_builder.build($item);
 
-                    if ($len == mySql.length) {
+                    if (oldSqlLength == mySql.length) {
                         throw new UnableToCreateSQLException('FROM', $union_type, $outer_v, 'expr_type');
                     }
                 }
@@ -66,7 +66,7 @@ class FromBuilder : ISqlBuilder {
                 mySql  ~= this.buildTableExpression($v, $k);
                 mySql  ~= this.buildSubquery($v, $k);
 
-                if ($len == mySql.length) {
+                if (oldSqlLength == mySql.length) {
                     throw new UnableToCreateSQLException('FROM', $k, $v, 'expr_type');
                 }
             }

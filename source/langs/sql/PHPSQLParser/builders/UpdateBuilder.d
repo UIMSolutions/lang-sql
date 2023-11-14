@@ -27,7 +27,7 @@ class UpdateBuilder : ISqlBuilder {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildTable($v, $k);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('UPDATE table list', $k, $v, 'expr_type');
             }
         }

@@ -51,7 +51,7 @@ class FulltextIndexBuilder : IBuilder {
             mySql  ~= this.buildConstant(myValue);
             mySql  ~= this.buildIndexKey(myValue);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE fulltext-index key subtree', $k, myValue, 'expr_type');
             }
 

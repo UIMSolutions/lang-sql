@@ -84,7 +84,7 @@ class FunctionBuilder : ISqlBuilder {
             mySql  ~= this.buildSelectExpression($v);
             mySql  ~= this.buildUserVariableExpression($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('auto subtree', $k, $v, 'expr_type');
             }
 

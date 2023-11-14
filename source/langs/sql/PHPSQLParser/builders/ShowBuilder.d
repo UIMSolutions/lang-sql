@@ -62,7 +62,7 @@ class ShowBuilder : ISqlBuilder {
             mySql  ~= this.buildFunction($v);
             mySql  ~= this.buildTable($v, 0);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('SHOW', $k, $v, 'expr_type');
             }
 

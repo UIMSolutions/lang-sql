@@ -49,7 +49,7 @@ class UniqueIndexBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildIndexType($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE unique-index key subtree', $k, $v, 'expr_type');
             }
 

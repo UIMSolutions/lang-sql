@@ -29,7 +29,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColumn($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('REPLACE column-list subtree', $k, $v, 'expr_type');
             }
 

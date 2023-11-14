@@ -25,7 +25,7 @@ class ValuesBuilder : ISqlBuilder {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildRecord($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('VALUES', $k, $v, 'expr_type');
             }
 

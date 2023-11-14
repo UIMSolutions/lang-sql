@@ -75,7 +75,7 @@ class RefClauseBuilder : ISqlBuilder {
             mySql  ~= this.buildColumnList($v);
             mySql  ~= this.buildSubQuery($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('expression ref_clause', $k, $v, 'expr_type');
             }
 

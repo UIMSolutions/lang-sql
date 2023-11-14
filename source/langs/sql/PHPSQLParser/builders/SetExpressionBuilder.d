@@ -66,7 +66,7 @@ class SetExpressionBuilder : ISqlBuilder {
             }
             mySql  ~= this.buildSign($v);
             
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('SET expression subtree', $k, $v, 'expr_type');
             }
 

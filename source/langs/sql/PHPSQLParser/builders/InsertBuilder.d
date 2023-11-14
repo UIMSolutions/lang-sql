@@ -50,7 +50,7 @@ class InsertBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildBracketExpression($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('INSERT', $k, $v, 'expr_type');
             }
 

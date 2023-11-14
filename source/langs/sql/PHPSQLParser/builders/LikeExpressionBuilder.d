@@ -37,7 +37,7 @@ class LikeExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildTable($v, 0);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE create-def (like) subtree', $k, $v, 'expr_type');
             }
 

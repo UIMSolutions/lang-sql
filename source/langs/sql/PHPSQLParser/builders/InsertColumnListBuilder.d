@@ -30,7 +30,7 @@ class InsertColumnListBuilder : ISqlBuilder {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColumn($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('INSERT column-list subtree', $k, $v, 'expr_type');
             }
 

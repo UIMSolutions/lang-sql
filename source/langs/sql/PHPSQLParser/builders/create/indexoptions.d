@@ -63,7 +63,7 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexSize(myValue);
             mySql  ~= this.buildIndexType(myValue);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE INDEX options', $k, myValue, 'expr_type');
             }
 

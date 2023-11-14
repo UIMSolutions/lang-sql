@@ -87,7 +87,7 @@ class WhereExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildSubQuery($v);
             mySql  ~= this.buildReserved($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('WHERE expression subtree', $k, $v, 'expr_type');
             }
 

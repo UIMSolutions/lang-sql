@@ -62,7 +62,7 @@ class OrderByBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildPosition($v);
             
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('ORDER', $k, $v, 'expr_type');
             }
 

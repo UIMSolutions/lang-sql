@@ -94,7 +94,7 @@ class SubTreeBuilder : ISqlBuilder {
             $sign = this.buildSign($v);
             mySql  ~= $sign;
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('expression subtree', $k, $v, 'expr_type');
             }
 

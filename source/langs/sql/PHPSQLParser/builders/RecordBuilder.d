@@ -47,7 +47,7 @@ class RecordBuilder : ISqlBuilder {
             mySql  ~= this.buildOperator($v);
             mySql  ~= this.buildColRef($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, $v, 'expr_type');
             }
 

@@ -84,7 +84,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildSubQuery($v);
             
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('WHERE expression subtree', $k, $v, 'expr_type');
             }
 

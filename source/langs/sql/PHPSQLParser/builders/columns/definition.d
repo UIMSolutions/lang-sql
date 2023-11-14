@@ -36,7 +36,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildColumnType($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, $v, 'expr_type');
             }
 

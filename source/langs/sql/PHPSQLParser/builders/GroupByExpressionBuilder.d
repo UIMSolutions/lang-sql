@@ -74,7 +74,7 @@ class GroupByExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildReserved($v);
 
-            if ($len == mySql.length) {
+            if (oldSqlLength == mySql.length) {
                 throw new UnableToCreateSQLException('GROUP expression subtree', $k, $v, 'expr_type');
             }
 
