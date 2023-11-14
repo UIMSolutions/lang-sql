@@ -5,7 +5,10 @@
  * Builds the SHOW statement. */
 
 module source.langs.sql.PHPSQLParser.builders.show;
-use SqlParser\exceptions\UnableToCreateSQLException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the SHOW statement. 

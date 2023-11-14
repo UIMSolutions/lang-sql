@@ -5,7 +5,10 @@
  * Builds the [REPLACE] statement part. */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the [REPLACE] statement parts. 

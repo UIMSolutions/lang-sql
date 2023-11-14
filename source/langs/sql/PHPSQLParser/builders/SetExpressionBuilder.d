@@ -5,8 +5,10 @@
  * Builds the SET part of the INSERT statement. */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the SET part of INSERT statement. 

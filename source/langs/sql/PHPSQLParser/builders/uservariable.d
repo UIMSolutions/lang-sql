@@ -5,7 +5,10 @@
  * Builds an user variable. */
 
 module source.langs.sql.PHPSQLParser.builders.uservariable;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for an user variable. 

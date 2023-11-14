@@ -5,8 +5,10 @@
  * Builds the records within the INSERT statement. */
 
 module source.langs.sql.PHPSQLParser.builders.record;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the records within INSERT statement. 

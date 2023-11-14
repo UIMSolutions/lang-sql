@@ -2,8 +2,9 @@
 
 module lang.sql.parsers.utils;
 
-use SqlParser\Options;
-use SqlParser\processors\DefaultProcessor;
+import lang.sql;
+
+@safe:
 
 class ExpressionToken {
 

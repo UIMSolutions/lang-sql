@@ -3,7 +3,10 @@
  * Builds the view within the DROP statement. */
 
 module source.langs.sql.PHPSQLParser.builders.view;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for a view within DROP statement. 

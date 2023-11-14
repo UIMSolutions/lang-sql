@@ -5,7 +5,10 @@
  * Builds positions of the GROUP BY clause. */
 
 module lang.sql.parsers.builders;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for positions of the GROUP-BY clause. 

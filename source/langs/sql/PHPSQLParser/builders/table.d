@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.builders.table;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the table name and join options.

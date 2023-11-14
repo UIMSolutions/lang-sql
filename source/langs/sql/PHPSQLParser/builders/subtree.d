@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.builders.subtree;
-use SqlParser\exceptions\UnableToCreateSQLException;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for [sub_tree] fields.

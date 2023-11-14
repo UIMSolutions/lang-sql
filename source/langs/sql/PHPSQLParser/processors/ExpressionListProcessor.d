@@ -6,9 +6,10 @@
  */
 
 module lang.sql.parsers.processors;
-use SqlParser\utils\ExpressionType;
-use SqlParser\utils\ExpressionToken;
-use SqlParser\utils\SqlParserConstants;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class processes expression lists.

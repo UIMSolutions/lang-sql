@@ -5,8 +5,10 @@
  * Builds the LIKE keyword within parenthesis. */
 
 module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the (LIKE) keyword within a 

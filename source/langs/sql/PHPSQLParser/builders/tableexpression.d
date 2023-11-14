@@ -5,7 +5,10 @@
  * Builds the table name/join options. */
 
 module source.langs.sql.PHPSQLParser.builders.tableexpression;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the table name and join options. 

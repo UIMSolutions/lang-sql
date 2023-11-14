@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.processors.bracket;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 // This class processes the parentheses around the statement.
 class BracketProcessor : AbstractProcessor {

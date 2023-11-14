@@ -5,7 +5,10 @@
  * Builds unary operators. */
 
 module source.langs.sql.PHPSQLParser.builders.sign;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for unary operators. 

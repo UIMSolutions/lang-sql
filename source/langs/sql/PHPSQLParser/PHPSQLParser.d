@@ -9,9 +9,10 @@
  */
 
 namespace SqlParser;
-use SqlParser\positions\PositionCalculator;
-use SqlParser\processors\DefaultProcessor;
-use SqlParser\utils\SqlParserConstants;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the parser functionality.

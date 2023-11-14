@@ -7,9 +7,9 @@
 
 module source.langs.sql.PHPSQLParser.processors.processor;
 
-use SqlParser\lexer\PHPSQLLexer;
-use SqlParser\Options;
-use SqlParser\utils\ExpressionType;
+import lang.sql;
+
+@safe:
 
 /**
  * This class contains some general functions for a processor.

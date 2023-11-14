@@ -7,7 +7,10 @@
  */
 
 module lang.sql.parsers.processors;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class processes the PARTITION statements within CREATE TABLE.

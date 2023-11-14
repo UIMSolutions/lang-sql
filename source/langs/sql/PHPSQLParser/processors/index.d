@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.processors.index;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 // This class processes the INDEX statements.
 class IndexProcessor : AbstractProcessor {

@@ -5,7 +5,10 @@
  * Builds the statements for sub-queries. */
 
 module source.langs.sql.PHPSQLParser.builders.subquery;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for sub-queries. 

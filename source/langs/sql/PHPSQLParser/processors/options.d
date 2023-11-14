@@ -6,7 +6,10 @@
  */
 
 module source.langs.sql.PHPSQLParser.processors.options;
-use SqlParser\utils\ExpressionType;
+
+import lang.sql;
+
+@safe:
 
 // This class processes the statement options.
 class OptionsProcessor : AbstractProcessor {
