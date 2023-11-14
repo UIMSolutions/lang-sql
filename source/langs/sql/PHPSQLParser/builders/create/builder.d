@@ -1,14 +1,10 @@
-/**
- * CreateBuilder.php
- *
- * Builds the CREATE statement */
-
 module langs.sql.PHPSQLParser.builders.create.builder;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the CREATE statement
  * This class : the builder for the [CREATE] part. You can overwrite
  * all functions to achieve another handling. */
 class CreateBuilder : ISqlBuilder {
@@ -29,15 +25,15 @@ class CreateBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $create = $parsed["CREATE"];
+        auto myCreate = $parsed["CREATE"];
         
-        auto mySql = this.buildSubTree($create);
+        auto mySql = this.buildSubTree(myCreate);
 
-        if (($create["expr_type"] == ExpressionType :  : TABLE)
-            || ($create["expr_type"] == ExpressionType :  : TEMPORARY_TABLE)) {
+        if ((myCreate["expr_type"] == ExpressionType :  : TABLE)
+            || (myCreate["expr_type"] == ExpressionType :  : TEMPORARY_TABLE)) {
             mySql ~= ' '.this.buildCreateTable($parsed["TABLE"]);
         }
-        if ($create["expr_type"] == ExpressionType :  : INDEX) {
+        if (myCreate["expr_type"] == ExpressionType :  : INDEX) {
             mySql ~= ' '.this.buildCreateIndex($parsed["INDEX"]);
         }
 

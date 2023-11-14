@@ -1,20 +1,15 @@
-
-/**
- * CreateStatement.php
- *
- * Builds the CREATE statement */
-
 module langs.sql.PHPSQLParser.builders.create.statement;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the CREATE statement 
  * This class : the builder for the whole Create statement. You can overwrite
  * all functions to achieve another handling. */
 class CreateStatementBuilder : ISqlBuilder {
 
-    protected auto buildLIKE($parsed) {
+    protected auto buildLike($parsed) {
         auto myBuilder = new LikeBuilder();
         return myBuilder.build($parsed);
     }
@@ -24,15 +19,15 @@ class CreateStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    protected auto buildCREATE($parsed) {
+    protected auto buildCreate($parsed) {
         auto myBuilder = new CreateBuilder();
         return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
-        mySql = this.buildCREATE($parsed);
+        auto mySql = this.buildCreate($parsed);
         if (isset($parsed["LIKE"])) {
-            mySql  ~= " "~ this.buildLIKE($parsed["LIKE"]);
+            mySql  ~= " "~ this.buildLike($parsed["LIKE"]);
         }
         if (isset($parsed["SELECT"])) {
             mySql  ~= " "~ this.buildSelectStatement($parsed);

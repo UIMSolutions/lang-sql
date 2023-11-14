@@ -1,4 +1,3 @@
-
 module source.langs.sql.PHPSQLParser.builders.selects.select;
 
 import lang.sql;

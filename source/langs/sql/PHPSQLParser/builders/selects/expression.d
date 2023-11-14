@@ -1,7 +1,3 @@
-/**
- * SelectExpressionBuilder.php
- *
- * Builds simple expressions within a SELECT statement. */
 
 module source.langs.sql.PHPSQLParser.builders.selects.selectexpression;
 
@@ -10,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds simple expressions within a SELECT statement.
  * This class : the builder for simple expressions within a SELECT statement. 
  * You can overwrite all functions to achieve another handling. */
 class SelectExpressionBuilder : ISqlBuilder {
@@ -28,6 +25,7 @@ class SelectExpressionBuilder : ISqlBuilder {
     if ($parsed["expr_type"] != ExpressionType :  : EXPRESSION) {
       return "";
     }
+    
     auto mySql = this.buildSubTree($parsed, " ");
     mySql ~= this.buildAlias($parsed);
     return mySql;

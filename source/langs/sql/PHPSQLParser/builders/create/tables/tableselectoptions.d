@@ -1,14 +1,10 @@
-
-/**
- * CreateTableSelectOptionBuilder.php
- *
- * Builds the select-options statement part of CREATE TABLE. */
 module source.langs.sql.PHPSQLParser.builders.create.tables.tableselectoptions;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the select-options statement part of CREATE TABLE. 
  * This class : the builder for the select-options statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class CreateTableSelectOptionBuilder : ISqlBuilder {

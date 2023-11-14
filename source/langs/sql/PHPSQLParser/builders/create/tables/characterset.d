@@ -4,7 +4,7 @@
  *
  * Builds the CHARACTER SET part of a CREATE TABLE statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.tables.characterset;
 
 import lang.sql;
 

@@ -1,16 +1,11 @@
-
-/**
- * CollationBuilder.php
- *
- * Builds the collation expression part of CREATE TABLE. */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.tables.collation;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the collation expression part of CREATE TABLE.
  * This class : the builder for the collation statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class CollationBuilder : ISqlBuilder {
