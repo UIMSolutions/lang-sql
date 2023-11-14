@@ -41,7 +41,7 @@ class UniqueIndexBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::UNIQUE_IDX) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildReserved($v);

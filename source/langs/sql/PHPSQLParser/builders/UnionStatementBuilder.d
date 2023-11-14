@@ -13,7 +13,7 @@ class UnionStatementBuilder : ISqlBuilder {
 
 	auto build(array $parsed)
 	{
-		mySql = "";
+		auto mySql = "";
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
 		foreach ($parsed["UNION"] as $clause) {

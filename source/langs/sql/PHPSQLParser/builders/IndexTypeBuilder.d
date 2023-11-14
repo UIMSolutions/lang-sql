@@ -26,7 +26,7 @@ class IndexTypeBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX_TYPE) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildReserved($v);

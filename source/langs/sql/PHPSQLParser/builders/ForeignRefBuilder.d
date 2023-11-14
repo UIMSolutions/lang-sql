@@ -37,7 +37,7 @@ class ForeignRefBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::REFERENCE) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildTable($v);

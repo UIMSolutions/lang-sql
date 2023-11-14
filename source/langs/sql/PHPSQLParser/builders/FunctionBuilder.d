@@ -72,7 +72,7 @@ class FunctionBuilder : ISqlBuilder {
             return $parsed["base_expr"] . "()" . this.buildAlias($parsed);
         }
 
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.build($v);

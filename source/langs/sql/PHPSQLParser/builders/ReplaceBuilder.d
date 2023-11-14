@@ -40,7 +40,7 @@ class ReplaceBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildTable($v);

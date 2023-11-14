@@ -43,7 +43,7 @@ class FulltextIndexBuilder : IBuilder {
         if ($parsed["expr_type"] != ExpressionType::FULLTEXT_IDX) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildReserved($v);

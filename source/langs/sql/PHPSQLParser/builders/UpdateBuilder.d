@@ -21,7 +21,7 @@ class UpdateBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        mySql = "";
+        auto mySql = "";
 
         foreach ($parsed as $k => $v) {
             $len = strlen(mySql);

@@ -23,7 +23,7 @@ class IndexHintListBuilder : ISqlBuilder {
         if (!isset($parsed["hints"]) || $parsed["hints"] == false) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["hints"] as $k => $v) {
             mySql  ~= $v["hint_type"] . " "~ $v["hint_list"] . " ";
         }

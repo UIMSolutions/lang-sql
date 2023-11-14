@@ -20,7 +20,7 @@ class ValuesBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildRecord($v);

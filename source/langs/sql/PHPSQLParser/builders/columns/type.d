@@ -62,7 +62,7 @@ class ColumnTypeBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_TYPE) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildDataType($v);

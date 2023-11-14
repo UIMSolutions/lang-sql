@@ -30,7 +30,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLDEF) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildColRef($v);

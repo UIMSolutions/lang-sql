@@ -25,7 +25,7 @@ class InsertColumnListBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildColumn($v);

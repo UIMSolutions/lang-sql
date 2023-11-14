@@ -49,7 +49,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::PRIMARY_KEY) {
             return "";
         }
-        mySql = "";
+        auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $len = strlen(mySql);
             mySql  ~= this.buildConstraint($v);
