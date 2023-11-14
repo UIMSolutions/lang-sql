@@ -3,7 +3,6 @@
  * PositionBuilder.php
  *
  * Builds positions of the GROUP BY clause.
-
  * 
  */
 

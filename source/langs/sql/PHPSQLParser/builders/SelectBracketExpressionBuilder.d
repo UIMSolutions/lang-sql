@@ -3,7 +3,6 @@
  * SelectBracketExpressionBuilder.php
  *
  * Builds the bracket expressions within a SELECT statement.
-
  * 
  */
 

@@ -3,7 +3,6 @@
  * DropExpressionBuilder.php
  *
  * Builds the object list of a DROP statement.
-
  * 
  */
 

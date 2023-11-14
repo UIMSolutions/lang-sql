@@ -3,7 +3,6 @@
  * TruncateBuilder.php
  *
  * Builds the TRUNCATE statement
-
  * 
  */
 

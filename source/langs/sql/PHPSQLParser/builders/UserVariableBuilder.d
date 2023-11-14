@@ -3,7 +3,6 @@
  * UserVariableBuilder.php
  *
  * Builds an user variable.
-
  * 
  */
 

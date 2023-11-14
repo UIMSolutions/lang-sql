@@ -2,8 +2,7 @@
 /**
  * IndexCommentBuilder.php
  *
- * Builds index comment part of a CREATE INDEX statement.
- * 
+ * Builds index comment part of a CREATE INDEX statement. * 
  */
 
 module lang.sql.parsers.builders;

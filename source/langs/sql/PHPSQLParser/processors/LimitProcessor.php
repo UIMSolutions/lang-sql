@@ -44,8 +44,7 @@ module lang.sql.parsers.processors;
  * This class processes the LIMIT statements.
  * 
  
- 
- * 
+  * 
  */
 class LimitProcessor : AbstractProcessor {
 

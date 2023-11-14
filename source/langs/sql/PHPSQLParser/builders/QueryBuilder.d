@@ -3,7 +3,6 @@
  * QueryBuilder.php
  *
  * Builds the SELECT statements within parentheses.
-
  * 
  */
 

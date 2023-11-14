@@ -3,7 +3,6 @@
  * ReplaceColumnListBuilder.php
  *
  * Builds column-list parts of REPLACE statements.
-
  * 
  */
 

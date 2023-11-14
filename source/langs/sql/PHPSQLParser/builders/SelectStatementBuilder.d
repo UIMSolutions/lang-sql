@@ -3,7 +3,6 @@
  * SelectStatement.php
  *
  * Builds the SELECT statement
-
  * 
  */
 

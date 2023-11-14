@@ -3,7 +3,6 @@
  * BracketStatementBuilder.php
  *
  * Builds the parentheses around a statement.
-
  * 
  */
 

@@ -2,8 +2,7 @@
 /**
  * ColumnListBuilder.php
  *
- * Builds column-list parts of CREATE TABLE.
- * 
+ * Builds column-list parts of CREATE TABLE. * 
  */
 
 module lang.sql.parsers.builders;

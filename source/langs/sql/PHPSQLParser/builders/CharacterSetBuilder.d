@@ -2,8 +2,7 @@
 /**
  * CharacterSetBuilder.php
  *
- * Builds the CHARACTER SET part of a CREATE TABLE statement.
- * 
+ * Builds the CHARACTER SET part of a CREATE TABLE statement. * 
  */
 
 module lang.sql.parsers.builders;

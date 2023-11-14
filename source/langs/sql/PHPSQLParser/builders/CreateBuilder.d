@@ -2,7 +2,6 @@
  * CreateBuilder.php
  *
  * Builds the CREATE statement
-
  * 
  */
 

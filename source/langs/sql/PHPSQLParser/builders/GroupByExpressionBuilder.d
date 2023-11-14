@@ -35,8 +35,7 @@
  * @copyright 2010-2016 Justin Swanhart and André Rothe
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
  * @version   SVN: $Id$
- * @example   group by id desc
- * 
+ * @example   group by id desc * 
  */
 
 module lang.sql.parsers.builders;

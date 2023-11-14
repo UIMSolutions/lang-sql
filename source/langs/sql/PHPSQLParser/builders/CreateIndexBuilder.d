@@ -4,7 +4,6 @@
  *
  * Builds the CREATE INDEX statement
  *
-
  * 
  */
 

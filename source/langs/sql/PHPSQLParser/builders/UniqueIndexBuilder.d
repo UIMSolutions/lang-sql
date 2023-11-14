@@ -3,7 +3,6 @@
  * IndexKeyBuilder.php
  *
  * Builds index key part of a CREATE TABLE statement.
-
  * 
  */
 

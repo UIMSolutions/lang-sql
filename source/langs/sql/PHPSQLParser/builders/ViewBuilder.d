@@ -3,7 +3,6 @@
  * ViewBuilder.php
  *
  * Builds the view within the DROP statement.
-
  * 
  */
 

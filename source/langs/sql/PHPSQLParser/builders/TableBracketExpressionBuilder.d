@@ -3,7 +3,6 @@
  * TableBracketExpressionBuilder.php
  *
  * Builds the table expressions within the create definitions of CREATE TABLE.
-
  * 
  */
 

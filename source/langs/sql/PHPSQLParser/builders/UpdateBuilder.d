@@ -3,7 +3,6 @@
  * UpdateBuilder.php
  *
  * Builds the UPDATE statement parts.
-
  * 
  */
 

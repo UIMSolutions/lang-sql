@@ -2,8 +2,7 @@
 /**
  * CreateIndexTable.php
  *
- * Builds the table part of a CREATE INDEX statement
- * 
+ * Builds the table part of a CREATE INDEX statement * 
  */
 
 module lang.sql.parsers.builders;

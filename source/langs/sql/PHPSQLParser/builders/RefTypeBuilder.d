@@ -3,7 +3,6 @@
  * RefTypeBuilder.php
  *
  * Builds reference type within a JOIN.
-
  * 
  */
 

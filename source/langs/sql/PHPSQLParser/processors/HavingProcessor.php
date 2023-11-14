@@ -3,7 +3,6 @@
  * HavingProcessor.php
  *
  * Parses the HAVING statements.
-
  * 
  */
 

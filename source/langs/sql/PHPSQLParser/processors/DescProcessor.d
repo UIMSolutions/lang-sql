@@ -36,8 +36,7 @@ module lang.sql.parsers.processors;
  * 
  * This class processes the DESC statement.
  * 
- * @author arothe
- * 
+ * @author arothe * 
  */
 class DescProcessor : ExplainProcessor {
 

@@ -3,7 +3,6 @@
  * OperatorBuilder.php
  *
  * Builds operators.
-
  * 
  */
 

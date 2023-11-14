@@ -3,7 +3,6 @@
  * DropIndexTable.php
  *
  * Builds the table part of a CREATE INDEX statement
-
  * 
  */
 

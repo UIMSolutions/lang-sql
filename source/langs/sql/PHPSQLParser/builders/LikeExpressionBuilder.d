@@ -3,7 +3,6 @@
  * LikeExpressionBuilder.php
  *
  * Builds the LIKE keyword within parenthesis.
-
  * 
  */
 

@@ -3,7 +3,6 @@
  * OrderByReservedBuilder.php
  *
  * Builds reserved keywords within the ORDER-BY part.
-
  * 
  */
 

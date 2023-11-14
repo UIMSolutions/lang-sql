@@ -3,7 +3,6 @@
  * ValuesBuilder.php
  *
  * Builds the VALUES part of the INSERT statement.
-
  * 
  */
 

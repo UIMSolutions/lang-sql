@@ -2,8 +2,7 @@
 /**
  * CollationBuilder.php
  *
- * Builds the collation expression part of CREATE TABLE.
- * 
+ * Builds the collation expression part of CREATE TABLE. * 
  */
 
 module lang.sql.parsers.builders;

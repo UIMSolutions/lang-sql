@@ -3,7 +3,6 @@
  * OrderByFunctionBuilder.php
  *
  * Builds functions within the ORDER-BY part.
-
  * 
  */
 

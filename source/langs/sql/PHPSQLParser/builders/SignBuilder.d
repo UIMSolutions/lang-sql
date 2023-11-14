@@ -3,7 +3,6 @@
  * SignBuilder.php
  *
  * Builds unary operators.
-
  * 
  */
 

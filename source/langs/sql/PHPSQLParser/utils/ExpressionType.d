@@ -4,7 +4,6 @@
  *
  * Defines all values, which are possible for the [expr_type] field 
  * within the parser output.
-
  * 
  */
 

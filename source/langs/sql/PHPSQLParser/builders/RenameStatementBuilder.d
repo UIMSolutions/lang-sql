@@ -3,7 +3,6 @@
  * RenameStatement.php
  *
  * Builds the RENAME statement
-
  * 
  */
 

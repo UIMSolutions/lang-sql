@@ -3,7 +3,6 @@
  * UpdateStatement.php
  *
  * Builds the UPDATE statement
-
  * 
  */
 

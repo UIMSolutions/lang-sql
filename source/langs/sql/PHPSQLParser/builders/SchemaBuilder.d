@@ -3,7 +3,6 @@
  * SchemaBuilder.php
  *
  * Builds the schema within the DROP statement.
-
  * 
  */
 

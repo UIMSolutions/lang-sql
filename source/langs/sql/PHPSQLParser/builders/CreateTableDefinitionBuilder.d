@@ -2,8 +2,7 @@
 /**
  * CreateTableDefinitionBuilder.php
  *
- * Builds the create definitions of CREATE TABLE.
- * 
+ * Builds the create definitions of CREATE TABLE. * 
  */
 
 module lang.sql.parsers.builders;

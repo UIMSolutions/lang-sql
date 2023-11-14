@@ -3,7 +3,6 @@
  * ReplaceBuilder.php
  *
  * Builds the [REPLACE] statement part.
-
  * 
  */
 

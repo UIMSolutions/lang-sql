@@ -2,8 +2,7 @@
 /**
  * CreateStatement.php
  *
- * Builds the CREATE statement
- * 
+ * Builds the CREATE statement * 
  */
 
 module lang.sql.parsers.builders;

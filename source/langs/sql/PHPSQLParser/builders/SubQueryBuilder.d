@@ -3,7 +3,6 @@
  * SubQueryBuilder.php
  *
  * Builds the statements for sub-queries.
-
  * 
  */
 

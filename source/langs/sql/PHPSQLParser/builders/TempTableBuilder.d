@@ -3,7 +3,6 @@
  * TempTableBuilder.php
  *
  * Builds the temporary table name/join options.
-
  * 
  */
 
