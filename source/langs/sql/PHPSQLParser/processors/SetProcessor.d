@@ -41,7 +41,7 @@ use SqlParser\utils\ExpressionType;
 class SetProcessor : AbstractProcessor {
 
     protected auto processExpressionList($tokens) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         return $processor.process($tokens);
     }
 

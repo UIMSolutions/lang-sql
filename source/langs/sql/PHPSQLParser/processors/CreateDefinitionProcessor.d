@@ -14,22 +14,22 @@ use SqlParser\utils\ExpressionType;
 class CreateDefinitionProcessor : AbstractProcessor {
 
     protected auto processExpressionList($parsed) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         return $processor.process($parsed);
     }
 
     protected auto processIndexColumnList($parsed) {
-        $processor = new IndexColumnListProcessor(this.options);
+        auto myProcessor = new IndexColumnListProcessor(this.options);
         return $processor.process($parsed);
     }
 
     protected auto processColumnDefinition($parsed) {
-        $processor = new ColumnDefinitionProcessor(this.options);
+        auto myProcessor = new ColumnDefinitionProcessor(this.options);
         return $processor.process($parsed);
     }
 
     protected auto processReferenceDefinition($parsed) {
-        $processor = new ReferenceDefinitionProcessor(this.options);
+        auto myProcessor = new ReferenceDefinitionProcessor(this.options);
         return $processor.process($parsed);
     }
 

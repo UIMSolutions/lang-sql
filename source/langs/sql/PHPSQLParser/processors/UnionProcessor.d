@@ -13,12 +13,12 @@ module lang.sql.parsers.processors;
 class UnionProcessor : AbstractProcessor {
 
     protected auto processDefault($token) {
-        $processor = new DefaultProcessor(this.options);
+        auto myProcessor = new DefaultProcessor(this.options);
         return $processor.process($token);
     }
 
     protected auto processSQL($token) {
-        $processor = new SQLProcessor(this.options);
+        auto myProcessor = new SQLProcessor(this.options);
         return $processor.process($token);
     }
 

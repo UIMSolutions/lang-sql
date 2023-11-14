@@ -45,24 +45,24 @@ use SqlParser\utils\ExpressionType;
  * This class processes the FROM statement.
  *
  
- * @author  Marco Th. <marco64th@gmail.com>
+
  * @author  George Schneeloch <noisecapella@gmail.com>
  
  * */
 class FromProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         return $processor.process($unparsed);
     }
 
     protected auto processColumnList($unparsed) {
-        $processor = new ColumnListProcessor(this.options);
+        auto myProcessor = new ColumnListProcessor(this.options);
         return $processor.process($unparsed);
     }
 
     protected auto processSQLDefault($unparsed) {
-        $processor = new DefaultProcessor(this.options);
+        auto myProcessor = new DefaultProcessor(this.options);
         return $processor.process($unparsed);
     }
 

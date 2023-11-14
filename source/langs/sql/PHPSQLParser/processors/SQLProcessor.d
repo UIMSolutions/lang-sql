@@ -9,11 +9,7 @@ module lang.sql.parsers.processors;
 
 /**
  * This class processes the base SQL statements.
- *
- 
- * @author  Marco Th. <marco64th@gmail.com>
- 
- * */
+ */
 class SQLProcessor : SQLChunkProcessor {
 
     /**
@@ -37,7 +33,7 @@ class SQLProcessor : SQLChunkProcessor {
             // https://github.com/sinri/PHP-SQL-Parser/commit/eac592a0e19f1df6f420af3777a6d5504837faa7
             // as there is no pull request for 279 by the user. His solution works and tested.
             if (!isset($tokens[$tokenNumber])) continue;// as a fix by Sinri 20180528
-            $token = $tokens[$tokenNumber];
+            myToken = $tokens[$tokenNumber];
             $trim = trim($token); // this removes also \n and \t!
 
             // if it starts with an "(", it should follow a SELECT
@@ -58,7 +54,7 @@ class SQLProcessor : SQLChunkProcessor {
                 }
                 // to skip the token we replace it with whitespace
                 $trim = "";
-                $token = "";
+                myToken = "";
                 $skip_next--;
                 if ($skip_next > 0) {
                     continue;
@@ -155,10 +151,8 @@ class SQLProcessor : SQLChunkProcessor {
 
             case 'DATABASE':
             case 'SCHEMA':
-                if ($prev_category == 'DROP') {
-                    break;
-                }
-                if ($prev_category == 'SHOW') {
+                if ($prev_category == 'DROP' 
+                    || $prev_category == 'SHOW') {
                     break;
                 }
                 $token_category = $upper;
@@ -166,7 +160,8 @@ class SQLProcessor : SQLChunkProcessor {
 
             case 'EVENT':
             // issue 71
-                if ($prev_category == 'DROP' || $prev_category == 'ALTER' || $prev_category == 'CREATE') {
+                if ($prev_category == 'DROP' 
+                    || $prev_category == 'ALTER' || $prev_category == 'CREATE') {
                     $token_category = $upper;
                 }
                 break;

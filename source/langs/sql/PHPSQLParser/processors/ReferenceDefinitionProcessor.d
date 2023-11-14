@@ -152,7 +152,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 case 'REFERENCES':
                     if ($upper[0] == '(' && substr($upper, -1) == ')') {
                         # index_col_name list
-                        $processor = new IndexColumnListProcessor(this.options);
+                        auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart($trim));
                         $expr["sub_tree"][] = array('expr_type' => ExpressionType::COLUMN_LIST, 'base_expr' => $trim,
                                                     'sub_tree' => $cols);

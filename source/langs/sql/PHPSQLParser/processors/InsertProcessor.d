@@ -75,12 +75,12 @@ class InsertProcessor : AbstractProcessor {
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
-            $processor = new DefaultProcessor(this.options);
+            auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = array(
                     array('expr_type' => ExpressionType::QUERY, 'base_expr' => $cols,
                             'sub_tree' => $processor.process($cols)));
         } else {
-            $processor = new ColumnListProcessor(this.options);
+            auto myProcessor = new ColumnListProcessor(this.options);
             $parsed["sub_tree"] = $processor.process($cols);
             $parsed["expr_type"] = ExpressionType::COLUMN_LIST;
         }

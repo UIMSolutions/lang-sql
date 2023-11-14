@@ -14,12 +14,12 @@ use SqlParser\utils\ExpressionType;
 class ValuesProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         return $processor.process($unparsed);
     }
 
     protected auto processRecord($unparsed) {
-        $processor = new RecordProcessor(this.options);
+        auto myProcessor = new RecordProcessor(this.options);
         return $processor.process($unparsed);
     }
 

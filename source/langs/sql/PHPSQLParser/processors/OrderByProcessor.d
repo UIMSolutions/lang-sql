@@ -14,7 +14,7 @@ use SqlParser\utils\ExpressionType;
 class OrderByProcessor : AbstractProcessor {
 
     protected auto processSelectExpression($unparsed) {
-        $processor = new SelectExpressionProcessor(this.options);
+        auto myProcessor = new SelectExpressionProcessor(this.options);
         return $processor.process($unparsed);
     }
 

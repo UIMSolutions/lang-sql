@@ -15,14 +15,14 @@ use SqlParser\utils\ExpressionType;
 class PartitionDefinitionProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
         $expr = this.splitSQLIntoTokens($expr);
         return $processor.process($expr);
     }
 
     protected auto processSubpartitionDefinition($unparsed) {
-        $processor = new SubpartitionDefinitionProcessor(this.options);
+        auto myProcessor = new SubpartitionDefinitionProcessor(this.options);
         $expr = this.removeParenthesisFromStart($unparsed);
         $expr = this.splitSQLIntoTokens($expr);
         return $processor.process($expr);

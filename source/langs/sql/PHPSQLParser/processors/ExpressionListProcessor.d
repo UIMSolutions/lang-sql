@@ -43,7 +43,7 @@ class ExpressionListProcessor : AbstractProcessor {
             /* is it a subquery? */
             if ($curr.isSubQueryToken()) {
 
-                $processor = new DefaultProcessor(this.options);
+                auto myProcessor = new DefaultProcessor(this.options);
                 $curr.setSubTree($processor.process(this.removeParenthesisFromStart($curr.getTrim())));
                 $curr.setTokenType(ExpressionType::SUBQUERY);
 

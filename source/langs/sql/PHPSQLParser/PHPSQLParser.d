@@ -59,7 +59,7 @@ class SqlParser {
      */
     auto parse($sql, $calcPositions = false) {
 
-        $processor = new DefaultProcessor(this.options);
+        auto myProcessor = new DefaultProcessor(this.options);
         $queries = $processor.process($sql);
 
         // calc the positions of some important tokens

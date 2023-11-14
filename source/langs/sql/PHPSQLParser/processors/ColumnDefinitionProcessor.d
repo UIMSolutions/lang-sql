@@ -41,7 +41,7 @@ use SqlParser\utils\ExpressionType;
 class ColumnDefinitionProcessor : AbstractProcessor {
 
     protected auto processExpressionList($parsed) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         $expr = this.removeParenthesisFromStart($parsed);
         $expr = this.splitSQLIntoTokens($expr);
         $expr = this.removeComma($expr);
@@ -49,7 +49,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto processReferenceDefinition($parsed) {
-        $processor = new ReferenceDefinitionProcessor(this.options);
+        auto myProcessor = new ReferenceDefinitionProcessor(this.options);
         return $processor.process($parsed);
     }
 

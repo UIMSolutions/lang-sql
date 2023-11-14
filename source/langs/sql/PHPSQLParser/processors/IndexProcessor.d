@@ -26,7 +26,7 @@ class IndexProcessor : AbstractProcessor {
     }
 
     protected auto processIndexColumnList($parsed) {
-        $processor = new IndexColumnListProcessor(this.options);
+        auto myProcessor = new IndexColumnListProcessor(this.options);
         return $processor.process($parsed);
     }
 

@@ -14,7 +14,7 @@ use SqlParser\utils\ExpressionType;
 class BracketProcessor : AbstractProcessor {
 
     protected auto processTopLevel($sql) {
-        $processor = new DefaultProcessor(this.options);
+        auto myProcessor = new DefaultProcessor(this.options);
         return $processor.process($sql);
     }
 

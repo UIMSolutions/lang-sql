@@ -14,7 +14,7 @@ module lang.sql.parsers.processors;
 class RecordProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
-        $processor = new ExpressionListProcessor(this.options);
+        auto myProcessor = new ExpressionListProcessor(this.options);
         return $processor.process($unparsed);
     }
 

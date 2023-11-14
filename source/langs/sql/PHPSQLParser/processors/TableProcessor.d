@@ -26,12 +26,12 @@ class TableProcessor : AbstractProcessor {
     }
 
     protected auto processPartitionOptions($tokens) {
-        $processor = new PartitionOptionsProcessor(this.options);
+        auto myProcessor = new PartitionOptionsProcessor(this.options);
         return $processor.process($tokens);
     }
 
     protected auto processCreateDefinition($tokens) {
-        $processor = new CreateDefinitionProcessor(this.options);
+        auto myProcessor = new CreateDefinitionProcessor(this.options);
         return $processor.process($tokens);
     }
 

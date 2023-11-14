@@ -19,12 +19,12 @@ class DefaultProcessor : AbstractProcessor {
     protected auto processUnion($tokens) {
         // this is the highest level lexical analysis. This is the part of the
         // code which finds UNION and UNION ALL query parts
-        $processor = new UnionProcessor(this.options);
+        auto myProcessor = new UnionProcessor(this.options);
         return $processor.process($tokens);
     }
 
     protected auto processSQL($tokens) {
-        $processor = new SQLProcessor(this.options);
+        auto myProcessor = new SQLProcessor(this.options);
         return $processor.process($tokens);
     }
 
