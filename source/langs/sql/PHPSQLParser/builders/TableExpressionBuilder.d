@@ -17,27 +17,27 @@ use SqlParser\utils\ExpressionType;
 class TableExpressionBuilder : ISqlBuilder {
 
     protected auto buildFROM($parsed) {
-        $builder = new FromBuilder();
+        myBuilder = new FromBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildAlias($parsed) {
-        $builder = new AliasBuilder();
+        myBuilder = new AliasBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildJoin($parsed) {
-        $builder = new JoinBuilder();
+        myBuilder = new JoinBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildRefType($parsed) {
-        $builder = new RefTypeBuilder();
+        myBuilder = new RefTypeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildRefClause($parsed) {
-        $builder = new RefClauseBuilder();
+        myBuilder = new RefClauseBuilder();
         return $builder.build($parsed);
     }
 

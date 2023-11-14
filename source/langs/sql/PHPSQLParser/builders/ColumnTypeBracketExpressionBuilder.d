@@ -16,7 +16,7 @@ module lang.sql.parsers.builders;
 class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildSubTree($parsed, $delim) {
-        $builder = new SubTreeBuilder();
+        myBuilder = new SubTreeBuilder();
         return $builder.build($parsed, $delim);
     }
 

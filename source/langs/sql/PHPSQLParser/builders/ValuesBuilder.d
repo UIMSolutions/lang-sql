@@ -17,7 +17,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class ValuesBuilder : ISqlBuilder {
 
     protected auto buildRecord($parsed) {
-        $builder = new RecordBuilder();
+        myBuilder = new RecordBuilder();
         return $builder.build($parsed);
     }
 

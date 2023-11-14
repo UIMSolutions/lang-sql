@@ -18,47 +18,47 @@ import lang.sql;
 class FunctionBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {
-        $builder = new AliasBuilder();
+        myBuilder = new AliasBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColRef($parsed) {
-        $builder = new ColumnReferenceBuilder();
+        myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto isReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.isReserved($parsed);
     }
     
     protected auto buildSelectExpression($parsed) {
-        $builder = new SelectExpressionBuilder();
+        myBuilder = new SelectExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSelectBracketExpression($parsed) {
-        $builder = new SelectBracketExpressionBuilder();
+        myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildSubQuery($parsed) {
-        $builder = new SubQueryBuilder();
+        myBuilder = new SubQueryBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildUserVariableExpression($parsed) {
-        $builder = new UserVariableBuilder();
+        myBuilder = new UserVariableBuilder();
         return $builder.build($parsed);
     }
 

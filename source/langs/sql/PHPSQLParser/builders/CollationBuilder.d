@@ -19,17 +19,17 @@ import lang.sql;
 class CollationBuilder : ISqlBuilder {
 
     protected auto buildOperator($parsed) {
-        $builder = new OperatorBuilder();
+        myBuilder = new OperatorBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

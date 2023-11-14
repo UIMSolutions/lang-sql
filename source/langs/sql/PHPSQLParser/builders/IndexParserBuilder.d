@@ -21,12 +21,12 @@ import lang.sql;
 class IndexParserBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
     

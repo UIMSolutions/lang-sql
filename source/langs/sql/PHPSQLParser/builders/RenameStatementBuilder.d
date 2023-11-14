@@ -17,7 +17,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class RenameStatementBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

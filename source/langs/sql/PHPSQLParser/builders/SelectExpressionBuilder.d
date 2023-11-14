@@ -17,12 +17,12 @@ use SqlParser\utils\ExpressionType;
 class SelectExpressionBuilder : ISqlBuilder {
 
     protected auto buildSubTree($parsed, $delim) {
-        $builder = new SubTreeBuilder();
+        myBuilder = new SubTreeBuilder();
         return $builder.build($parsed, $delim);
     }
 
     protected auto buildAlias($parsed) {
-        $builder = new AliasBuilder();
+        myBuilder = new AliasBuilder();
         return $builder.build($parsed);
     }
 

@@ -18,7 +18,7 @@ use SqlParser\utils\ExpressionType;
 class UpdateBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $idx) {
-        $builder = new TableBuilder();
+        myBuilder = new TableBuilder();
         return $builder.build($parsed, $idx);
     }
 

@@ -19,17 +19,17 @@ import lang.sql;
 class CreateTableOptionsBuilder : IBuilder {
 
     protected auto buildExpression($parsed) {
-        $builder = new SelectExpressionBuilder();
+        myBuilder = new SelectExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildCharacterSet($parsed) {
-        $builder = new CharacterSetBuilder();
+        myBuilder = new CharacterSetBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildCollation($parsed) {
-        $builder = new CollationBuilder();
+        myBuilder = new CollationBuilder();
         return $builder.build($parsed);
     }
 

@@ -18,22 +18,22 @@ use SqlParser\utils\ExpressionType;
 class RecordBuilder : ISqlBuilder {
 
     protected auto buildOperator($parsed) {
-        $builder = new OperatorBuilder();
+        myBuilder = new OperatorBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
-        $builder = new FunctionBuilder();
+        myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColRef($parsed) {
-        $builder = new ColumnReferenceBuilder();
+        myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
     

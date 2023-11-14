@@ -17,7 +17,7 @@ use SqlParser\utils\ExpressionType;
 class InListBuilder : ISqlBuilder {
 
     protected auto buildSubTree($parsed, $delim) {
-        $builder = new SubTreeBuilder();
+        myBuilder = new SubTreeBuilder();
         return $builder.build($parsed, $delim);
     }
 

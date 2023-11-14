@@ -17,7 +17,7 @@ module lang.sql.parsers.builders;
 class OrderByFunctionBuilder : FunctionBuilder {
 
     protected auto buildDirection($parsed) {
-        $builder = new DirectionBuilder();
+        myBuilder = new DirectionBuilder();
         return $builder.build($parsed);
     }
 

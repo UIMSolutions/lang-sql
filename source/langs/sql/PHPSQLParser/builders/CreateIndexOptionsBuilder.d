@@ -20,32 +20,32 @@ import lang.sql;
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
     protected auto buildIndexParser($parsed) {
-        $builder = new IndexParserBuilder();
+        myBuilder = new IndexParserBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexSize($parsed) {
-        $builder = new IndexSizeBuilder();
+        myBuilder = new IndexSizeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexType($parsed) {
-        $builder = new IndexTypeBuilder();
+        myBuilder = new IndexTypeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexComment($parsed) {
-        $builder = new IndexCommentBuilder();
+        myBuilder = new IndexCommentBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexAlgorithm($parsed) {
-        $builder = new IndexAlgorithmBuilder();
+        myBuilder = new IndexAlgorithmBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexLock($parsed) {
-        $builder = new IndexLockBuilder();
+        myBuilder = new IndexLockBuilder();
         return $builder.build($parsed);
     }
 

@@ -18,12 +18,12 @@ use SqlParser\utils\ExpressionType;
 class ColumnDefinitionBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
-        $builder = new ColumnReferenceBuilder();
+        myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColumnType($parsed) {
-        $builder = new ColumnTypeBuilder();
+        myBuilder = new ColumnTypeBuilder();
         return $builder.build($parsed);
     }
 

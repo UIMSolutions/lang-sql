@@ -20,22 +20,22 @@ import lang.sql;
 class IndexKeyBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildIndexType($parsed) {
-        $builder = new IndexTypeBuilder();
+        myBuilder = new IndexTypeBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildColumnList($parsed) {
-        $builder = new ColumnListBuilder();
+        myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
     

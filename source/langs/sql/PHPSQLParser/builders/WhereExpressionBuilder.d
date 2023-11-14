@@ -53,27 +53,27 @@ use SqlParser\utils\ExpressionType;
 class WhereExpressionBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
-        $builder = new ColumnReferenceBuilder();
+        myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildOperator($parsed) {
-        $builder = new OperatorBuilder();
+        myBuilder = new OperatorBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
-        $builder = new FunctionBuilder();
+        myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildInList($parsed) {
-        $builder = new InListBuilder();
+        myBuilder = new InListBuilder();
         return $builder.build($parsed);
     }
 
@@ -82,22 +82,22 @@ class WhereExpressionBuilder : ISqlBuilder {
     }
 
     protected auto buildWhereBracketExpression($parsed) {
-        $builder = new WhereBracketExpressionBuilder();
+        myBuilder = new WhereBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildUserVariable($parsed) {
-        $builder = new UserVariableBuilder();
+        myBuilder = new UserVariableBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSubQuery($parsed) {
-        $builder = new SubQueryBuilder();
+        myBuilder = new SubQueryBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-      $builder = new ReservedBuilder();
+      myBuilder = new ReservedBuilder();
       return $builder.build($parsed);
     }
 

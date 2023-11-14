@@ -18,32 +18,32 @@ use SqlParser\utils\ExpressionType;
 class PrimaryKeyBuilder : ISqlBuilder {
 
     protected auto buildColumnList($parsed) {
-        $builder = new ColumnListBuilder();
+        myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstraint($parsed) {
-        $builder = new ConstraintBuilder();
+        myBuilder = new ConstraintBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexType($parsed) {
-        $builder = new IndexTypeBuilder();
+        myBuilder = new IndexTypeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexSize($parsed) {
-        $builder = new IndexSizeBuilder();
+        myBuilder = new IndexSizeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexParser($parsed) {
-        $builder = new IndexParserBuilder();
+        myBuilder = new IndexParserBuilder();
         return $builder.build($parsed);
     }
 

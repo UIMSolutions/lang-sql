@@ -19,42 +19,42 @@ use SqlParser\utils\ExpressionType;
 class TableBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildColDef($parsed) {
-        $builder = new ColumnDefinitionBuilder();
+        myBuilder = new ColumnDefinitionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildPrimaryKey($parsed) {
-        $builder = new PrimaryKeyBuilder();
+        myBuilder = new PrimaryKeyBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildForeignKey($parsed) {
-        $builder = new ForeignKeyBuilder();
+        myBuilder = new ForeignKeyBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildCheck($parsed) {
-        $builder = new CheckBuilder();
+        myBuilder = new CheckBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildLikeExpression($parsed) {
-        $builder = new LikeExpressionBuilder();
+        myBuilder = new LikeExpressionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildIndexKey($parsed) {
-        $builder = new IndexKeyBuilder();
+        myBuilder = new IndexKeyBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildUniqueIndex($parsed) {
-        $builder = new UniqueIndexBuilder();
+        myBuilder = new UniqueIndexBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildFulltextIndex($parsed) {
-        $builder = new FulltextIndexBuilder();
+        myBuilder = new FulltextIndexBuilder();
         return $builder.build($parsed);
     }
     

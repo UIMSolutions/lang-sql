@@ -16,22 +16,22 @@ module lang.sql.parsers.builders;
 class ReplaceStatementBuilder : ISqlBuilder {
 
     protected auto buildVALUES($parsed) {
-        $builder = new ValuesBuilder();
+        myBuilder = new ValuesBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildREPLACE($parsed) {
-        $builder = new ReplaceBuilder();
+        myBuilder = new ReplaceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSELECT($parsed) {
-        $builder = new SelectStatementBuilder();
+        myBuilder = new SelectStatementBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildSET($parsed) {
-        $builder = new SetBuilder();
+        myBuilder = new SetBuilder();
         return $builder.build($parsed);
     }
     

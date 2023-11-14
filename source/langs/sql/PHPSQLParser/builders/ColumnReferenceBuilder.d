@@ -5,7 +5,7 @@ use SqlParser\utils\ExpressionType;
 class ColumnReferenceBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {
-        $builder = new AliasBuilder();
+        myBuilder = new AliasBuilder();
         return $builder.build($parsed);
     }
 

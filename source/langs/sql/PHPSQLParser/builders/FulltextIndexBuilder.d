@@ -18,12 +18,12 @@ import lang.sql;
 class FulltextIndexBuilder : IBuilder {
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
     
@@ -35,7 +35,7 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     protected auto buildColumnList($parsed) {
-        $builder = new ColumnListBuilder();
+        myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
     

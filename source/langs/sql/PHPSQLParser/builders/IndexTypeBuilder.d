@@ -19,7 +19,7 @@ use SqlParser\utils\ExpressionType;
 class IndexTypeBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
-        $builder = new ReservedBuilder();
+        myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

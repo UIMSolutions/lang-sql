@@ -20,17 +20,17 @@ import lang.sql;
 class FromBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $key) {
-        $builder = new TableBuilder();
+        myBuilder = new TableBuilder();
         return $builder.build($parsed, $key);
     }
 
     protected auto buildTableExpression($parsed, $key) {
-        $builder = new TableExpressionBuilder();
+        myBuilder = new TableExpressionBuilder();
         return $builder.build($parsed, $key);
     }
 
     protected auto buildSubQuery($parsed, $key) {
-        $builder = new SubQueryBuilder();
+        myBuilder = new SubQueryBuilder();
         return $builder.build($parsed, $key);
     }
 

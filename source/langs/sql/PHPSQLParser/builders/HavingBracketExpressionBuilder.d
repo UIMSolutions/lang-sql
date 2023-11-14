@@ -24,7 +24,7 @@ import lang.sql;
 class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
     
     protected auto buildHavingExpression($parsed) {
-        $builder = new HavingExpressionBuilder();
+        myBuilder = new HavingExpressionBuilder();
         return $builder.build($parsed);
     }
 

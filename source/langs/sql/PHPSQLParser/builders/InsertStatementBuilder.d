@@ -16,22 +16,22 @@ module lang.sql.parsers.builders;
 class InsertStatementBuilder : ISqlBuilder {
 
     protected auto buildVALUES($parsed) {
-        $builder = new ValuesBuilder();
+        myBuilder = new ValuesBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildINSERT($parsed) {
-        $builder = new InsertBuilder();
+        myBuilder = new InsertBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSELECT($parsed) {
-        $builder = new SelectStatementBuilder();
+        myBuilder = new SelectStatementBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildSET($parsed) {
-        $builder = new SetBuilder();
+        myBuilder = new SetBuilder();
         return $builder.build($parsed);
     }
     

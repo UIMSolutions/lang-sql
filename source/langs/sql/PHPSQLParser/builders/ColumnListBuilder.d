@@ -19,12 +19,12 @@ import lang.sql;
 class ColumnListBuilder : ISqlBuilder {
 
     protected auto buildIndexColumn($parsed) {
-        $builder = new IndexColumnBuilder();
+        myBuilder = new IndexColumnBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColumnReference($parsed) {
-        $builder = new ColumnReferenceBuilder();
+        myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
     

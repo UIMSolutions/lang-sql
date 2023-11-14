@@ -52,42 +52,42 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class RefClauseBuilder : ISqlBuilder {
 
     protected auto buildInList($parsed) {
-        $builder = new InListBuilder();
+        myBuilder = new InListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColRef($parsed) {
-        $builder = new ColumnReferenceBuilder();
+        myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildOperator($parsed) {
-        $builder = new OperatorBuilder();
+        myBuilder = new OperatorBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
-        $builder = new FunctionBuilder();
+        myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        $builder = new ConstantBuilder();
+        myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildBracketExpression($parsed) {
-        $builder = new SelectBracketExpressionBuilder();
+        myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColumnList($parsed) {
-        $builder = new ColumnListBuilder();
+        myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSubQuery($parsed) {
-        $builder = new SubQueryBuilder();
+        myBuilder = new SubQueryBuilder();
         return $builder.build($parsed);
     }
 
