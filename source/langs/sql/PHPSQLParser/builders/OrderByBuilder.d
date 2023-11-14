@@ -53,7 +53,7 @@ class OrderByBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildAlias($v);
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildFunction($v);

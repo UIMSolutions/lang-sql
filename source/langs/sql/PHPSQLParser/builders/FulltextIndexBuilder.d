@@ -45,7 +45,7 @@ class FulltextIndexBuilder : IBuilder {
         }
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"] as $k => myValue) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildColumnList(myValue);
             mySql  ~= this.buildConstant(myValue);

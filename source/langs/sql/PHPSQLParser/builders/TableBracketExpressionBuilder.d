@@ -64,7 +64,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColDef($v);
             mySql  ~= this.buildPrimaryKey($v);
             mySql  ~= this.buildCheck($v);

@@ -43,7 +43,7 @@ class ForeignKeyBuilder : IBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildColumnList($v);

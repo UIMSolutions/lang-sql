@@ -65,7 +65,7 @@ class RefClauseBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildOperator($v);
             mySql  ~= this.buildConstant($v);

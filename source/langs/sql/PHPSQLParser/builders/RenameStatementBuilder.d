@@ -30,7 +30,7 @@ class RenameStatementBuilder : ISqlBuilder {
         $rename = $parsed["RENAME"];
         mySql = "";
         foreach ($rename["sub_tree"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.processSourceAndDestTable($v);
 

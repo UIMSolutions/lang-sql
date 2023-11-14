@@ -22,7 +22,7 @@ class ValuesBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildRecord($v);
 
             if ($len == mySql.length) {

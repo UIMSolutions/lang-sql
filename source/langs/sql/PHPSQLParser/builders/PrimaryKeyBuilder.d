@@ -51,7 +51,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildConstraint($v);
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildColumnList($v);

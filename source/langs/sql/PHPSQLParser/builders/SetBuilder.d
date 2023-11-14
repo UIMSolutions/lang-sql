@@ -25,7 +25,7 @@ class SetBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildSetExpression($v);
 
             if ($len == mySql.length) {

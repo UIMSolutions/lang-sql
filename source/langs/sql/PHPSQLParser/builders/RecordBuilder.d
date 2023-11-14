@@ -41,7 +41,7 @@ class RecordBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["data"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildFunction($v);
             mySql  ~= this.buildOperator($v);

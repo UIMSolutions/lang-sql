@@ -26,7 +26,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColumn($v);
 
             if ($len == mySql.length) {

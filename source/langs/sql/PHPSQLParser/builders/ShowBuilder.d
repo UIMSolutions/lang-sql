@@ -53,7 +53,7 @@ class ShowBuilder : ISqlBuilder {
         $show = $parsed["SHOW"];
         mySql = "";
         foreach ($show as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildEngine($v);

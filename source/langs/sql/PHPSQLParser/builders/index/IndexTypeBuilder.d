@@ -28,7 +28,7 @@ class IndexTypeBuilder : ISqlBuilder {
         }
         auto mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved($v);
 
             if ($len == mySql.length) {

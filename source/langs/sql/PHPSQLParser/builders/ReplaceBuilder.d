@@ -42,7 +42,7 @@ class ReplaceBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildTable($v);
             mySql  ~= this.buildSubQuery($v);
             mySql  ~= this.buildColumnList($v);

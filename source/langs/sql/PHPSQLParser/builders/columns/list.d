@@ -33,7 +33,7 @@ class ColumnListBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (key, value; $parsed["sub_tree"]) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildIndexColumn(value);
             mySql  ~= this.buildColumnReference(value);
 

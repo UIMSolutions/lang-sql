@@ -60,7 +60,7 @@ class SelectBuilder : ISqlBuilder {
     auto build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
-            $len = mySql.length;
+            auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef($v);
             mySql  ~= this.buildSelectBracketExpression($v);
             mySql  ~= this.buildSelectExpression($v);
