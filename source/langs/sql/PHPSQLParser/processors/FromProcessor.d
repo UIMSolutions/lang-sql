@@ -262,7 +262,7 @@ class FromProcessor : AbstractProcessor {
                 }
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " " . $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
                     continue 2;
                 }
                 break;
@@ -282,7 +282,7 @@ class FromProcessor : AbstractProcessor {
             case 'FOR':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " " . $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
                     continue 2;
                 }
 
@@ -307,7 +307,7 @@ class FromProcessor : AbstractProcessor {
             case 'JOIN':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " " . $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
                     continue 2;
                 }
 
@@ -323,7 +323,7 @@ class FromProcessor : AbstractProcessor {
             case 'GROUP BY':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " " . $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
                     continue 2;
                 }
 

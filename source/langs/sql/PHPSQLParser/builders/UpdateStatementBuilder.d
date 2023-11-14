@@ -29,9 +29,9 @@ class UpdateStatementBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = this.buildUPDATE($parsed["UPDATE"]) . " " . this.buildSET($parsed["SET"]);
+        $sql = this.buildUPDATE($parsed["UPDATE"]) . " "~ this.buildSET($parsed["SET"]);
         if (isset($parsed["WHERE"])) {
-            $sql  ~= " " . this.buildWHERE($parsed["WHERE"]);
+            $sql  ~= " "~ this.buildWHERE($parsed["WHERE"]);
         }
         return $sql;
     }

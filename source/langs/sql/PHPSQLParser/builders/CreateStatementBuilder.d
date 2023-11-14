@@ -30,10 +30,10 @@ class CreateStatementBuilder : ISqlBuilder {
     auto build(array $parsed) {
         mySql = this.buildCREATE($parsed);
         if (isset($parsed["LIKE"])) {
-            mySql  ~= " " . this.buildLIKE($parsed["LIKE"]);
+            mySql  ~= " "~ this.buildLIKE($parsed["LIKE"]);
         }
         if (isset($parsed["SELECT"])) {
-            mySql  ~= " " . this.buildSelectStatement($parsed);
+            mySql  ~= " "~ this.buildSelectStatement($parsed);
         }
         return mySql;
     }

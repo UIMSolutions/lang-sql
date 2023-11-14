@@ -26,7 +26,7 @@ class ShowStatementBuilder : ISqlBuilder {
     auto build(array $parsed) {
         $sql = this.buildSHOW($parsed);
         if (isset($parsed["WHERE"])) {
-            $sql  ~= " " . this.buildWHERE($parsed["WHERE"]);
+            $sql  ~= " "~ this.buildWHERE($parsed["WHERE"]);
         }
         return $sql;
     }

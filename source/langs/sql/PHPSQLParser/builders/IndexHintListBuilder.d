@@ -25,8 +25,8 @@ class IndexHintListBuilder : ISqlBuilder {
         }
         mySql = "";
         foreach ($parsed["hints"] as $k => $v) {
-            mySql  ~= $v["hint_type"] . " " . $v["hint_list"] . " ";
+            mySql  ~= $v["hint_type"] . " "~ $v["hint_list"] . " ";
         }
-        return " " . substr(mySql, 0, -1);
+        return " "~ substr(mySql, 0, -1);
     }
 }

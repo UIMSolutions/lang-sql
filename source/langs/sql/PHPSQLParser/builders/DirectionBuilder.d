@@ -26,6 +26,6 @@ class DirectionBuilder : IBuilder {
         if (!isset($parsed["direction"]) || $parsed["direction"] == false) {
             return "";
         }
-        return (" " . $parsed["direction"]);
+        return (" "~ $parsed["direction"]);
     }
 }

@@ -18,7 +18,7 @@ class AliasBuilder : ISqlBuilder {
     if ($parsed["alias"]["as"]) {
       mySql ~= " AS";
     }
-    mySql ~= " ".$parsed["alias"]["name"];
+    mySql ~= " " ~ $parsed["alias"]["name"];
     return mySql;
   }
 }

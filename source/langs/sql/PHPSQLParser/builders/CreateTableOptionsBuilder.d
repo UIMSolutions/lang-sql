@@ -62,6 +62,6 @@ class CreateTableOptionsBuilder : IBuilder {
 
             mySql  ~= this.getDelimiter($v);
         }
-        return " " . substr(mySql, 0, -1);
+        return " "~ substr(mySql, 0, -1);
     }
 }
