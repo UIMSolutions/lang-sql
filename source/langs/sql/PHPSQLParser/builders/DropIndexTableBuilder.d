@@ -12,10 +12,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the table part of a DROP INDEX statement.
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class DropIndexTableBuilder : ISqlBuilder {
 

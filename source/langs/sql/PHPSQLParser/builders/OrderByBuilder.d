@@ -13,10 +13,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the ORDER-BY clause. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class OrderByBuilder : ISqlBuilder {
 

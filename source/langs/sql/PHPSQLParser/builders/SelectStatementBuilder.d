@@ -11,10 +11,7 @@ module lang.sql.parsers.builders;
 /**
  * This class : the builder for the whole Select statement. You can overwrite
  * all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class SelectStatementBuilder : ISqlBuilder {
 

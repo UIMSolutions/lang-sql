@@ -14,10 +14,7 @@ import lang.sql;
 /**
  * This class : the builder for the collation statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class CollationBuilder : ISqlBuilder {
 

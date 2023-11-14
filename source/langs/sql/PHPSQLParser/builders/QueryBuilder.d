@@ -12,10 +12,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for queries within parentheses (no subqueries). 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class QueryBuilder : ISqlBuilder {
 

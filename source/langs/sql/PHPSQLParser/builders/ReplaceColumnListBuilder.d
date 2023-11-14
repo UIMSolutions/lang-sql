@@ -13,10 +13,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for column-list parts of REPLACE statements. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class ReplaceColumnListBuilder : ISqlBuilder {
 

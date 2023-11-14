@@ -43,10 +43,7 @@ use Exception;
  * method, which can handle the current expr_type field. It could be an error within the parser
  * output or a special case has not been modelled within the creator. Please create an issue
  * in such a case.
- *
- 
- 
- *  
+ * 
  */
 class UnableToCreateSQLException : Exception {
 

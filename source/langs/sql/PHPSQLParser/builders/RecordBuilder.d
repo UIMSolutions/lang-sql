@@ -13,10 +13,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the records within INSERT statement. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class RecordBuilder : ISqlBuilder {
 

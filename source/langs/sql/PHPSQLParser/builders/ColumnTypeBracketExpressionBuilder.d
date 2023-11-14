@@ -6,10 +6,7 @@
  */
 
 module lang.sql.parsers.builders;
- *
- 
- 
- *  
+ * 
 
 /**
  * This class : the builder for bracket expressions within a column type. 

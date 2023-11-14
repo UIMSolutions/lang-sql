@@ -12,10 +12,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 /**
  * This class : the builder for the RENAME statement. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class RenameStatementBuilder : ISqlBuilder {
 

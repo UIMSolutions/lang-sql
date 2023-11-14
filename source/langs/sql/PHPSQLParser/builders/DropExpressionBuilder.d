@@ -15,10 +15,7 @@ import lang.sql;
 /**
  * This class : the builder for the object list of a DROP statement.
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class DropExpressionBuilder : ISqlBuilder {
 

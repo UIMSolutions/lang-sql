@@ -16,10 +16,7 @@ import lang.sql;
  * This class : the builder for the FOREIGN KEY REFERENCES statement
  * part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class ForeignRefBuilder : ISqlBuilder {
 

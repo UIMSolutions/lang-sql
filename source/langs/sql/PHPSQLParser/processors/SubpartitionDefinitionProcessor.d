@@ -44,10 +44,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the SUBPARTITION statements within CREATE TABLE.
- *
- 
- 
- *  
+ * 
  */
 class SubpartitionDefinitionProcessor : AbstractProcessor {
 

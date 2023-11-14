@@ -12,10 +12,7 @@ use SqlParser\exceptions\UnsupportedFeatureException;
 /**
  * This class : the references type within a JOIN. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class RefTypeBuilder {
 

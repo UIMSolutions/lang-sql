@@ -10,10 +10,7 @@ module lang.sql.parsers.builders;
 /**
  * This class : the builder for the create definitions of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class CreateTableDefinitionBuilder : ISqlBuilder {
 

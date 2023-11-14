@@ -12,10 +12,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for simple expressions within a SELECT statement. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class SelectExpressionBuilder : ISqlBuilder {
 

@@ -14,10 +14,7 @@ import lang.sql;
 /**
  * This class : the builder for column-list parts of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class ColumnListBuilder : ISqlBuilder {
 

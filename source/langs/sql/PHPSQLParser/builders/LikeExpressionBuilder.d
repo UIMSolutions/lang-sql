@@ -15,10 +15,7 @@ use SqlParser\utils\ExpressionType;
  * CREATE TABLE statement. There are difference to LIKE (without parenthesis), 
  * the latter is a top-level element of the output array.
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class LikeExpressionBuilder : ISqlBuilder {
 

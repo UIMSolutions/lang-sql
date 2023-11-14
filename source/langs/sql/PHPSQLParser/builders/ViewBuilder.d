@@ -12,10 +12,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for a view within DROP statement. 
  * You can overwrite all functions to achieve another handling.
- *
- 
- 
- *  
+ * 
  */
 class ViewBuilder : ISqlBuilder {
 
