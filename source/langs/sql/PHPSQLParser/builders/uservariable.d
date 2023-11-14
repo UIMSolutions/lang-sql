@@ -4,7 +4,7 @@
  *
  * Builds an user variable. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.uservariable;
 use SqlParser\utils\ExpressionType;
 
 /**

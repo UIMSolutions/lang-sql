@@ -4,7 +4,7 @@
  *
  * Builds the statements for sub-queries. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.subquery;
 use SqlParser\utils\ExpressionType;
 
 /**

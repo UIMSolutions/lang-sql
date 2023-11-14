@@ -4,7 +4,7 @@
  *
  * Builds the TRUNCATE statement */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.truncate;
 
 /**
  * This class : the builder for the [TRUNCATE] part. You can overwrite

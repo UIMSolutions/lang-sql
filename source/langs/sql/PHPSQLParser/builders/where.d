@@ -5,7 +5,7 @@
  * Builds the WHERE part.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.where;
 use SqlParser\exceptions\UnableToCreateSQLException;
 
 /**

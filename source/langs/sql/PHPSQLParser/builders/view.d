@@ -1,10 +1,8 @@
 
 /**
- * ViewBuilder.php
- *
  * Builds the view within the DROP statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.view;
 use SqlParser\utils\ExpressionType;
 
 /**
