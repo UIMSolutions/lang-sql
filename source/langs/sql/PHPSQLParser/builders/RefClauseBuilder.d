@@ -95,24 +95,24 @@ class RefClauseBuilder : ISqlBuilder {
         if ($parsed == false) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildBracketExpression($v);
-            $sql  ~= this.buildInList($v);
-            $sql  ~= this.buildColumnList($v);
-            $sql  ~= this.buildSubQuery($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildBracketExpression($v);
+            mySql  ~= this.buildInList($v);
+            mySql  ~= this.buildColumnList($v);
+            mySql  ~= this.buildSubQuery($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('expression ref_clause', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ' ';
+            mySql  ~= ' ';
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }

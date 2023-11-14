@@ -36,31 +36,31 @@ class DropBuilder : ISqlBuilder {
 	}
 
 	protected auto buildSubTree( $parsed ) {
-		$sql = "";
+		mySql = "";
 		foreach ( $parsed["sub_tree"] as $k => $v ) {
-			$len = strlen( $sql );
-			$sql  ~= this.buildReserved( $v );
-			$sql  ~= this.buildExpression( $v );
+			$len = strlen( mySql );
+			mySql  ~= this.buildReserved( $v );
+			mySql  ~= this.buildExpression( $v );
 
-			if ( $len == strlen( $sql ) ) {
+			if ( $len == strlen( mySql ) ) {
 				throw new UnableToCreateSQLException( 'DROP subtree', $k, $v, 'expr_type' );
 			}
 
-			$sql  ~= ' ';
+			mySql  ~= ' ';
 		}
 
-		return $sql;
+		return mySql;
 	}
 
 	auto build( array $parsed ) {
 		$drop = $parsed["DROP"];
-		$sql  = this.buildSubTree( $drop );
+		mySql  = this.buildSubTree( $drop );
 
 		if ( $drop["expr_type"] == ExpressionType::INDEX ) {
-			$sql  ~= '' . this.buildDropIndex( $parsed["INDEX"] ) . ' ';
+			mySql  ~= '' . this.buildDropIndex( $parsed["INDEX"] ) . ' ';
 		}
 
-		return 'DROP ' . substr( $sql, 0, -1 );
+		return 'DROP ' . substr( mySql, 0, -1 );
 	}
 
 }

@@ -51,30 +51,30 @@ class SetExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
             $delim = ' ';
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildBracketExpression($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildBracketExpression($v);
                         
             // we don't need whitespace between the sign and 
             // the following part
             if (this.buildSign($v) != '') {
                 $delim = "";
             }
-            $sql  ~= this.buildSign($v);
+            mySql  ~= this.buildSign($v);
             
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('SET expression subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= $delim;
+            mySql  ~= $delim;
         }
-        $sql = substr($sql, 0, -1);
-        return $sql;
+        mySql = substr(mySql, 0, -1);
+        return mySql;
     }
 }

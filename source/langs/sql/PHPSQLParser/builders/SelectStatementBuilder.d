@@ -61,35 +61,35 @@ class SelectStatementBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         if (isset($parsed["SELECT"])) {
-            $sql  ~= this.buildSELECT($parsed["SELECT"]);
+            mySql  ~= this.buildSELECT($parsed["SELECT"]);
         }
         if (isset($parsed["FROM"])) {
-            $sql  ~= " " . this.buildFROM($parsed["FROM"]);
+            mySql  ~= " " . this.buildFROM($parsed["FROM"]);
         }
         if (isset($parsed["WHERE"])) {
-            $sql  ~= " " . this.buildWHERE($parsed["WHERE"]);
+            mySql  ~= " " . this.buildWHERE($parsed["WHERE"]);
         }
         if (isset($parsed["GROUP"])) {
-            $sql  ~= " " . this.buildGROUP($parsed["GROUP"]);
+            mySql  ~= " " . this.buildGROUP($parsed["GROUP"]);
         }
         if (isset($parsed["HAVING"])) {
-            $sql  ~= " " . this.buildHAVING($parsed["HAVING"]);
+            mySql  ~= " " . this.buildHAVING($parsed["HAVING"]);
         }
         if (isset($parsed["ORDER"])) {
-            $sql  ~= " " . this.buildORDER($parsed["ORDER"]);
+            mySql  ~= " " . this.buildORDER($parsed["ORDER"]);
         }
         if (isset($parsed["LIMIT"])) {
-            $sql  ~= " " . this.buildLIMIT($parsed["LIMIT"]);
+            mySql  ~= " " . this.buildLIMIT($parsed["LIMIT"]);
         }       
         if (isset($parsed["UNION"])) {
-            $sql  ~= " " . this.buildUNION($parsed);
+            mySql  ~= " " . this.buildUNION($parsed);
         }
         if (isset($parsed["UNION ALL"])) {
-        	$sql  ~= " " . this.buildUNIONALL($parsed);
+        	mySql  ~= " " . this.buildUNIONALL($parsed);
         }
-        return $sql;
+        return mySql;
     }
 
 }

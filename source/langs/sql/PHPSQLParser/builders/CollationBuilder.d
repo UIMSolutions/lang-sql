@@ -37,19 +37,19 @@ class CollationBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLLATE) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildConstant($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildConstant($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE options collation subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }

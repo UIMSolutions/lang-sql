@@ -110,31 +110,31 @@ class SubTreeBuilder : ISqlBuilder {
         if ($parsed["sub_tree"] == '' || $parsed["sub_tree"] == false) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildInList($v);
-            $sql  ~= this.buildSubQuery($v);
-            $sql  ~= this.buildSelectBracketExpression($v);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildQuery($v);
-            $sql  ~= this.buildUserVariable($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildInList($v);
+            mySql  ~= this.buildSubQuery($v);
+            mySql  ~= this.buildSelectBracketExpression($v);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildQuery($v);
+            mySql  ~= this.buildUserVariable($v);
             $sign = this.buildSign($v);
-            $sql  ~= $sign;
+            mySql  ~= $sign;
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('expression subtree', $k, $v, 'expr_type');
             }
 
             // We don't need whitespace between a sign and the following part.
             if ($sign == '') {
-                $sql  ~= $delim;
+                mySql  ~= $delim;
             }
         }
-        return substr($sql, 0, -strlen($delim));
+        return substr(mySql, 0, -strlen($delim));
     }
 }

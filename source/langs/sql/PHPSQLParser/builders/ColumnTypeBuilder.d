@@ -61,25 +61,25 @@ class ColumnTypeBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_TYPE) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildDataType($v);
-            $sql  ~= this.buildColumnTypeBracketExpression($v);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildDefaultValue($v);
-            $sql  ~= this.buildCharacterSet($v);
-            $sql  ~= this.buildCollation($v);
-            $sql  ~= this.buildComment($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildDataType($v);
+            mySql  ~= this.buildColumnTypeBracketExpression($v);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildDefaultValue($v);
+            mySql  ~= this.buildCharacterSet($v);
+            mySql  ~= this.buildCollation($v);
+            mySql  ~= this.buildComment($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE column-type subtree', $k, $v, 'expr_type');
             }
     
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
     
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
     
 }

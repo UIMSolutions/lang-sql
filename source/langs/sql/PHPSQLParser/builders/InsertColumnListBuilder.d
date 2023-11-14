@@ -26,18 +26,18 @@ class InsertColumnListBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColumn($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColumn($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('INSERT column-list subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ", ";
+            mySql  ~= ", ";
         } 
-        return "(" . substr($sql, 0, -2) . ")";
+        return "(" . substr(mySql, 0, -2) . ")";
     }
 
 }

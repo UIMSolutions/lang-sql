@@ -53,24 +53,24 @@ class OrderByBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildAlias($v);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildExpression($v);
-            $sql  ~= this.buildBracketExpression($v);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildPosition($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildAlias($v);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildExpression($v);
+            mySql  ~= this.buildBracketExpression($v);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildPosition($v);
             
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('ORDER', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ", ";
+            mySql  ~= ", ";
         }
-        $sql = substr($sql, 0, -2);
-        return "ORDER BY " . $sql;
+        mySql = substr(mySql, 0, -2);
+        return "ORDER BY " . mySql;
     }
 }

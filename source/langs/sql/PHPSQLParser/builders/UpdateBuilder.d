@@ -23,16 +23,16 @@ class UpdateBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
 
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildTable($v, $k);
+            $len = strlen(mySql);
+            mySql  ~= this.buildTable($v, $k);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('UPDATE table list', $k, $v, 'expr_type');
             }
         }
-        return 'UPDATE ' . $sql;
+        return 'UPDATE ' . mySql;
     }
 }

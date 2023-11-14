@@ -13,7 +13,7 @@ class AliasReferenceBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::ALIAS) {
             return "";
         }
-        $sql = $parsed["base_expr"];
-        return $sql;
+        mySql = $parsed["base_expr"];
+        return mySql;
     }
 }

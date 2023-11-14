@@ -17,10 +17,10 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class LimitBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
-        $sql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
-        if ($sql == "") {
+        mySql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
+        if (mySql == "") {
             throw new UnableToCreateSQLException('LIMIT', 'rowcount', $parsed, 'rowcount');
         }
-        return "LIMIT " . $sql;
+        return "LIMIT " . mySql;
     }
 }
