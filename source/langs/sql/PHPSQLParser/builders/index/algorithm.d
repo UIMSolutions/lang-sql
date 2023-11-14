@@ -5,7 +5,7 @@
  * Builds index algorithm part of a CREATE INDEX statement.
  */
 
-module source.langs.sql.PHPSQLParser.builders.index.IndexAlgorithmBuilder;
+module source.langs.sql.PHPSQLParser.builders.index.algorithm;
 
 import lang.sql;
 

@@ -4,7 +4,7 @@
  *
  * Builds index type part of a CREATE INDEX statement. */
 
-module source.langs.sql.PHPSQLParser.builders.create.CreateIndexTypeBuilder;
+module source.langs.sql.PHPSQLParser.builders.create.indextype;
 
 import lang.sql;
 
