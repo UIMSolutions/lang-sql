@@ -4,10 +4,6 @@
 
 namespace SqlParser;
 
-/**
- *
- * @author  mfris
- * @package SqlParser */
 final class Options {
 
   /**
@@ -24,15 +20,15 @@ final class Options {
      *
      * @param array $options
      */
-  this(array$options) {
+  this(array $options) {
     this.options = $options;
   }
 
   bool getConsistentSubtrees() {
-    return (isset(this.options[self: : CONSISTENT_SUB_TREES]) && this.options[self: : CONSISTENT_SUB_TREES]);
+    return (isset(this.options[this.CONSISTENT_SUB_TREES]) && this.options[this.CONSISTENT_SUB_TREES]);
   }
 
   bool getANSIQuotes() {
-    return (isset(this.options[self: : ANSI_QUOTES]) && this.options[self: : ANSI_QUOTES]);
+    return (isset(this.options[this.ANSI_QUOTES]) && this.options[this.ANSI_QUOTES]);
   }
 }

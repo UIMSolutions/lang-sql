@@ -15,12 +15,12 @@ class ValuesProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     protected auto processRecord($unparsed) {
         auto myProcessor = new RecordProcessor(this.options);
-        return $processor.process($unparsed);
+        return myProcessor.process($unparsed);
     }
 
     auto process($tokens) {
@@ -29,16 +29,16 @@ class ValuesProcessor : AbstractProcessor {
         $parsed = array();
         $base_expr = "";
 
-        foreach ($tokens["VALUES"] as $k => $v) {
-	        if (this.isCommentToken($v)) {
-		        $parsed[] = super.processComment($v);
+        foreach (myKey, myValue; $tokens["VALUES"]) {
+	        if (this.isCommentToken(myValue)) {
+		        $parsed[] = super.processComment(myValue);
 		        continue;
 	        }
 
-	        $base_expr  ~= $v;
-	        $trim = trim($v);
+	        $base_expr  ~= myValue;
+	        $trim = trim(myValue);
 
-            if (this.isWhitespaceToken($v)) {
+            if (this.isWhitespaceToken(myValue)) {
                 continue;
             }
 
@@ -48,7 +48,7 @@ class ValuesProcessor : AbstractProcessor {
             case 'ON':
                 if ($currCategory == '') {
 
-                    $base_expr = trim(substr($base_expr, 0, -strlen($v)));
+                    $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
                     $parsed[] = array('expr_type' => ExpressionType::RECORD, 'base_expr' => $base_expr,
                                       'data' => this.processRecord($base_expr), 'delim' => false);
                     $base_expr = "";
@@ -72,7 +72,7 @@ class ValuesProcessor : AbstractProcessor {
             case ',':
                 if ($currCategory == 'DUPLICATE') {
 
-                    $base_expr = trim(substr($base_expr, 0, -strlen($v)));
+                    $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
                     $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
                     $parsed[] = array('expr_type' => ExpressionType::EXPRESSION, 'base_expr' => $base_expr,
                                       'sub_tree' => (empty($res) ? false : $res), 'delim' => $trim);

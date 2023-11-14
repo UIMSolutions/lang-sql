@@ -137,10 +137,10 @@ class SqlParserConstants {
      * @return SqlParserConstants
      */
     static auto getInstance() {
-        if (!isset(self::$inst)) {
-            self::$inst = new SqlParserConstants();
+        if (!isset(this.$inst)) {
+            this.$inst = new SqlParserConstants();
         }
-        return self::$inst;
+        return this.$inst;
     }
 
     /**

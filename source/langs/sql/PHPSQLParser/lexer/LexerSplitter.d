@@ -26,7 +26,7 @@ class LexerSplitter {
      * It initializes some fields.
      */
     this() {
-        this.splitterPattern = this.convertSplittersToRegexPattern( self::$splitters );
+        this.splitterPattern = this.convertSplittersToRegexPattern( this.$splitters );
     }
 
 	// Get the regex pattern string of all the splitters

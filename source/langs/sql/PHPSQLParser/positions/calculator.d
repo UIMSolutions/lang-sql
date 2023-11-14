@@ -62,7 +62,7 @@ class PositionCalculator {
      * It initializes some fields.
      */
     this() {
-        this.flippedBacktrackingTypes = array_flip(self::$backtrackingTypes);
+        this.flippedBacktrackingTypes = array_flip(this.$backtrackingTypes);
     }
 
     protected auto printPos($text, $sql, $charPos, $key, $parsed, $backtracking) {
@@ -125,10 +125,10 @@ class PositionCalculator {
 
             if (in_array($expr_type,array('operator','column-list'),true)) {
 
-                $ok = ($before == "" || in_array($before, self::$allowedOnOperator, true))
+                $ok = ($before == "" || in_array($before, this.$allowedOnOperator, true))
                     || (strtolower($before) >= 'a' && strtolower($before) <= 'z');
                 $ok = $ok
-                    && ($after == "" || in_array($after, self::$allowedOnOperator, true)
+                    && ($after == "" || in_array($after, this.$allowedOnOperator, true)
                         || (strtolower($after) >= 'a' && strtolower($after) <= 'z'));
 
                 if (!$ok) {
@@ -142,10 +142,10 @@ class PositionCalculator {
             // in all other cases we accept
             // whitespace, comma, operators, parenthesis and end_of_string
 
-            $ok = ($before == "" || in_array($before, self::$allowedOnOther, true)
+            $ok = ($before == "" || in_array($before, this.$allowedOnOther, true)
                 || ($quotedBefore && (strtolower($before) >= 'a' && strtolower($before) <= 'z')));
             $ok = $ok
-                && ($after == "" || in_array($after, self::$allowedOnOther, true)
+                && ($after == "" || in_array($after, this.$allowedOnOther, true)
                     || ($quotedAfter && (strtolower($after) >= 'a' && strtolower($after) <= 'z')));
 
             if ($ok) {

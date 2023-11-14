@@ -5,7 +5,7 @@
  * Processes the DELETE statement parts and splits multi-table deletes.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.delete;
 
 /**
  * This class processes the DELETE statements.
@@ -17,14 +17,14 @@ class DeleteProcessor : AbstractProcessor {
         $tables = array();
         $del = $tokens["DELETE"];
 
-        foreach ($expression; $tokens["DELETE"]) {
-            if (strtoupper($expression) != 'DELETE' && trim($expression, " \t\n\r\0\x0B.*") != ""
-                && !this.isCommaToken($expression)) {
-                $tables[] = trim($expression, " \t\n\r\0\x0B.*");
+        foreach (myExpression; $tokens["DELETE"]) {
+            if (strtoupper(myExpression) != 'DELETE' && trim(myExpression, " \t\n\r\0\x0B.*") != ""
+                && !this.isCommaToken(myExpression)) {
+                $tables[] = trim(myExpression, " \t\n\r\0\x0B.*");
             }
         }
 
-        if (empty($tables) && isset($tokens["USING"])) {
+        if (empty($tables) && "USING" in $tokens)) {
             foreach ($tokens["FROM"] as $table) {
                 $tables[] = trim($table["table"], " \t\n\r\0\x0B.*");
             }
@@ -33,9 +33,9 @@ class DeleteProcessor : AbstractProcessor {
         }
 
         $options = array();
-        if (isset($tokens["OPTIONS"])) {
+        if ("OPTIONS" in $tokens) {
             $options = $tokens["OPTIONS"];
-            unset($tokens["OPTIONS"]);
+            $tokens.remove("OPTIONS");
         }
 
         $tokens["DELETE"] = array('options' => (empty($options) ? false : $options),

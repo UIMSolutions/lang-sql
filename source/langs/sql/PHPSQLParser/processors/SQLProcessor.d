@@ -4,12 +4,9 @@
  *
  * This file : the processor for the base SQL statements.
  */
-
 module lang.sql.parsers.processors;
 
-/**
- * This class processes the base SQL statements.
- */
+//This class processes the base SQL statements.
 class SQLProcessor : SQLChunkProcessor {
 
     /**

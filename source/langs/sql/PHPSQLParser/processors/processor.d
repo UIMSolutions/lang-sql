@@ -5,7 +5,7 @@
  * This file : an abstract processor, which : some helper functions.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.processor;
 
 use SqlParser\lexer\PHPSQLLexer;
 use SqlParser\Options;
@@ -14,7 +14,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class contains some general functions for a processor.
  */
-abstract class AbstractProcessor {
+abstract class DProcessor {
 
     /**
      * @var Options
@@ -22,8 +22,6 @@ abstract class AbstractProcessor {
     protected $options;
 
     /**
-     * AbstractProcessor constructor.
-     *
      * @param Options $options
      */
     this(Options $options = null)
@@ -42,8 +40,8 @@ abstract class AbstractProcessor {
      * tokens for the SQL processor
      */
     auto splitSQLIntoTokens($sql) {
-        $lexer = new PHPSQLLexer();
-        return $lexer.split($sql);
+        auto myLexer = new PHPSQLLexer();
+        return myLexer.split($sql);
     }
 
     /**
@@ -63,7 +61,7 @@ abstract class AbstractProcessor {
      *   a  .  `b` => [a,b]
      */
     protected auto revokeQuotation($sql) {
-        mySqlBuffer = trim($sql);
+        auto mySqlBuffer = trim($sql);
         $result = array();
 
         $quote = false;

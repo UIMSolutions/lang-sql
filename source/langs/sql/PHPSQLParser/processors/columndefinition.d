@@ -5,7 +5,7 @@
  * This file : the processor for column definition part of a CREATE TABLE statement.
  */
 
-module lang.sql.parsers.processors;
+module source.langs.sql.PHPSQLParser.processors.columndefinition;
 use SqlParser\utils\ExpressionType;
 
 /**
