@@ -1,4 +1,3 @@
-
 /**
  * DeleteBuilder.php
  *
@@ -16,21 +15,21 @@ import lang.sql;
  */
 class DeleteBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
-        $sql = "DELETE ";
-        $right = -1;
+  auto build(array$parsed) {
+    auto mySql = "DELETE ";
+    $right =  - 1;
 
-        if ($parsed["options"] != false) {
-            $parsed["options"].byKeyValue.each!(kv => $sql ~= kv.value+" ");
-        }
-
-        if ($parsed["tables"] != false) {
-            foreach (k, v; $parsed["tables"]) {
-                $sql  ~= $v . ", ";
-                $right = -2;
-            }
-        }
-
-        return substr($sql, 0, $right);
+    if ($parsed["options"] != false) {
+      $parsed["options"].byKeyValue.each!(kv => mySql ~= kv.value + " ");
     }
+
+    if ($parsed["tables"] != false) {
+      foreach (k, v; $parsed["tables"]) {
+        mySql ~= $v.", ";
+        $right =  - 2;
+      }
+    }
+
+    return substr(mySql, 0, $right);
+  }
 }

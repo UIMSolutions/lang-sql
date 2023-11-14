@@ -37,13 +37,13 @@ class DropBuilder : ISqlBuilder {
 
 	protected auto buildSubTree( $parsed ) {
 		auto mySql = "";
-		foreach ( $parsed["sub_tree"] as $k => $v ) {
+		foreach (myKey, myValue; $parsed["sub_tree"] as $k => myValue ) {
 			$len = strlen( mySql );
-			mySql  ~= this.buildReserved( $v );
-			mySql  ~= this.buildExpression( $v );
+			mySql  ~= this.buildReserved( myValue );
+			mySql  ~= this.buildExpression( myValue );
 
 			if ( $len == strlen( mySql ) ) {
-				throw new UnableToCreateSQLException( 'DROP subtree', $k, $v, 'expr_type' );
+				throw new UnableToCreateSQLException( 'DROP subtree', $k, myValue, 'expr_type' );
 			}
 
 			mySql  ~= " ";
@@ -54,13 +54,13 @@ class DropBuilder : ISqlBuilder {
 
 	auto build( array $parsed ) {
 		$drop = $parsed["DROP"];
-		mySql  = this.buildSubTree( $drop );
+		auto mySql  = this.buildSubTree( $drop );
 
 		if ( $drop["expr_type"] == ExpressionType::INDEX ) {
-			mySql  ~= '' . this.buildDropIndex( $parsed["INDEX"] ) . " ";
+			mySql  ~= "" ~ this.buildDropIndex( $parsed["INDEX"] ) . " ";
 		}
 
-		return 'DROP ' . substr( mySql, 0, -1 );
+		return "DROP " ~ substr( mySql, 0, -1 );
 	}
 
 }

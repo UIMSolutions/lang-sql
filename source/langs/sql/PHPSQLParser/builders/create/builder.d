@@ -4,7 +4,7 @@
  * Builds the CREATE statement
  */
 
-module source.langs.sql.PHPSQLParser.builders.create.builder;
+module langs.sql.PHPSQLParser.builders.create.builder;
 
 import lang.sql;
 
@@ -30,9 +30,10 @@ class CreateBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array$parsed) {
+    auto build(array $parsed) {
         $create = $parsed["CREATE"];
-        mySql = this.buildSubTree($create);
+        
+        auto mySql = this.buildSubTree($create);
 
         if (($create["expr_type"] == ExpressionType :  : TABLE)
             || ($create["expr_type"] == ExpressionType :  : TEMPORARY_TABLE)) {

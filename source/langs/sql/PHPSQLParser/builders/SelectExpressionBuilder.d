@@ -26,7 +26,7 @@ class SelectExpressionBuilder : ISqlBuilder {
     return $builder.build($parsed);
   }
 
-  auto build(array$parsed) {
+  auto build(array $parsed) {
     if ($parsed["expr_type"] != ExpressionType :  : EXPRESSION) {
       return "";
     }

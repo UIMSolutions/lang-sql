@@ -22,7 +22,7 @@ class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
         return $builder.build($parsed, $delim);
     }
 
-    auto build(array$parsed) {
+    auto build(array $parsed) {
         if ($parsed["expr_type"] !=  = ExpressionType :  : BRACKET_EXPRESSION) {
             return "";
         }
