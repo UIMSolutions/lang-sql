@@ -70,7 +70,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -78,7 +78,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'PARTITION':
-                if ($currCategory == '') {
+                if ($currCategory == "") {
                     $expr[] = this.getReservedType($trim);
                     $parsed = ["expr_type" : ExpressionType::PARTITION_DEF, "base_expr" : trim($base_expr),
                                     "sub_tree" : false);
@@ -208,7 +208,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
 
             case ',':
-                if ($prevCategory == 'PARTITION' && $currCategory == '') {
+                if ($prevCategory == 'PARTITION' && $currCategory == "") {
                     // it separates the partition-definitions
                     $result[] = $parsed;
                     $parsed = [);
@@ -319,7 +319,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     $currCategory = $prevCategory;
                     break;
 
-                case '':
+                case "":
                     if ($prevCategory == 'PARTITION') {
                         // last part to process, it is only one token!
                         if ($upper[0] == "(" && substr($upper, -1) == ")") {

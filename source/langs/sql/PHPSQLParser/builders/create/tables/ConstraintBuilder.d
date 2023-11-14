@@ -24,8 +24,8 @@ class ConstraintBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::CONSTRAINT) {
             return "";
         }
-        $sql = $parsed["sub_tree"] == false ? '' : this.buildConstant($parsed["sub_tree"]);
-        return "CONSTRAINT" . (empty($sql) ? '' : (" " ~ $sql));
+        $sql = $parsed["sub_tree"] == false ? "" : this.buildConstant($parsed["sub_tree"]);
+        return "CONSTRAINT" . (empty($sql) ? "" : (" " ~ $sql));
     }
 
 }

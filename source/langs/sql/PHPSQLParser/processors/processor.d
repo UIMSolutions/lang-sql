@@ -74,7 +74,7 @@ abstract class DProcessor {
             $char = mySqlBuffer[$i];
             switch ($char) {
             case '`':
-            case '\'':
+            case '\"":
             case '"':
                 if ($quote == false) {
                     // start
@@ -101,7 +101,7 @@ abstract class DProcessor {
                 if ($quote == false) {
                     // we have found a separator
                     $char = trim(substr(mySqlBuffer, $start, $i - $start));
-                    if ($char != '') {
+                    if ($char != "") {
                         $result[] = $char;
                     }
                     $start = $i + 1;
@@ -117,7 +117,7 @@ abstract class DProcessor {
 
         if ($quote == false && ($start < $len)) {
             $char = trim(substr(mySqlBuffer, $start, $i - $start));
-            if ($char != '') {
+            if ($char != "") {
                 $result[] = $char;
             }
         }
@@ -133,7 +133,7 @@ abstract class DProcessor {
         $parenthesisRemoved = 0;
 
         $trim = $token.strip;
-        if ($trim != '' && $trim[0] == "(") { // remove only one parenthesis pair now!
+        if ($trim != "" && $trim[0] == "(") { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
             $trim[0] = " ";
             $trim = trim($trim);
@@ -152,7 +152,7 @@ abstract class DProcessor {
             }
 
             if ($trim[$i] == "'") {
-                if ($stringOpened == '') {
+                if ($stringOpened == "") {
                     $stringOpened = "'";
                 } elseif ($stringOpened == "'") {
                     $stringOpened = "";
@@ -160,18 +160,18 @@ abstract class DProcessor {
             }
 
             if ($trim[$i] == '"') {
-                if ($stringOpened == '') {
+                if ($stringOpened == "") {
                     $stringOpened = '"';
                 } elseif ($stringOpened == '"') {
                     $stringOpened = "";
                 }
             }
 
-            if (($stringOpened == '') && ($trim[$i] == "(")) {
+            if (($stringOpened == "") && ($trim[$i] == "(")) {
                 $parenthesis++;
             }
 
-            if (($stringOpened == '') && ($trim[$i] == ")")) {
+            if (($stringOpened == "") && ($trim[$i] == ")")) {
                 if ($parenthesis == $parenthesisRemoved) {
                     $trim[$i] = " ";
                     $parenthesisRemoved--;
@@ -211,7 +211,7 @@ abstract class DProcessor {
     }
 
     protected auto isWhitespaceToken($token) {
-        return ($token.strip == '');
+        return ($token.strip == "");
     }
 
     protected auto isCommentToken($token) {

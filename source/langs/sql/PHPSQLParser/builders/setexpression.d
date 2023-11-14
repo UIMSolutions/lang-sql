@@ -61,7 +61,7 @@ class SetExpressionBuilder : ISqlBuilder {
                         
             // we don't need whitespace between the sign and 
             // the following part
-            if (this.buildSign(myValue) != '') {
+            if (this.buildSign(myValue) != "") {
                 $delim = "";
             }
             mySql  ~= this.buildSign(myValue);

@@ -52,7 +52,7 @@ class TableExpressionBuilder : ISqlBuilder {
         if ($index != 0) {
             mySql = this.buildJoin($parsed["join_type"]) ~ mySql;
             mySql  ~= this.buildRefType($parsed["ref_type"]);
-            mySql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
+            mySql  ~= $parsed["ref_clause"] == false ? "" : this.buildRefClause($parsed["ref_clause"]);
         }
         return mySql;
     }

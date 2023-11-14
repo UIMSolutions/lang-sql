@@ -37,7 +37,7 @@ class ExplainProcessor : AbstractProcessor {
                 $trim = $token.strip;
                 $base_expr  ~= $token;
 
-                if ($trim == '') {
+                if ($trim == "") {
                     continue;
                 }
 
@@ -51,7 +51,7 @@ class ExplainProcessor : AbstractProcessor {
                     break;
 
                 case 'FORMAT':
-                    if ($currCategory == '') {
+                    if ($currCategory == "") {
                         $currCategory = $upper;
                         $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                     }
@@ -70,7 +70,7 @@ class ExplainProcessor : AbstractProcessor {
                     if ($currCategory == 'FORMAT') {
                         $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                         return ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : trim($base_expr),
-                                     "sub_tree" : $expr);
+                                     "sub_tree" : $expr];
                     }
                     // else?
                     break;
@@ -87,7 +87,7 @@ class ExplainProcessor : AbstractProcessor {
 
             $trim = $token.strip;
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -99,7 +99,7 @@ class ExplainProcessor : AbstractProcessor {
                                 'no_quotes' : this.revokeQuotation($trim));
                 break;
 
-            case '':
+            case "":
                 $currCategory = 'TABLENAME';
                 $expr[] = ["expr_type" : ExpressionType::TABLE, 'table' : $trim,
                                 'no_quotes' : this.revokeQuotation($trim), 'alias' : false, "base_expr": $trim];

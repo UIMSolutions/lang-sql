@@ -24,7 +24,7 @@ class OptionsProcessor : AbstractProcessor {
 
             foreach (myReserved; $tokenList) {
                 $trim = myReserved.strip;
-                if ($trim == '') {
+                if ($trim == "") {
                     continue;
                 }
                 $result[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);

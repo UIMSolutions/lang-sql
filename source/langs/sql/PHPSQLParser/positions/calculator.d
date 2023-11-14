@@ -90,7 +90,7 @@ class PositionCalculator {
     }
 
     protected auto findPositionWithinString($sql, myValue, $expr_type) {
-        if (myValue == '') {
+        if (myValue == "") {
             return false;
         }
 

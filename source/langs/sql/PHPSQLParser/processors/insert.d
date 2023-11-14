@@ -29,7 +29,7 @@ class InsertProcessor : AbstractProcessor {
 
     protected auto processKeyword($keyword, $tokenList) {
         if (!isset($tokenList[$keyword])) {
-            return ['', false, [));
+            return ["", false, [));
         }
 
         $table = "";
@@ -39,7 +39,7 @@ class InsertProcessor : AbstractProcessor {
         foreach ($tokenList[$keyword] as $token) {
             $trim = $token.strip;
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -54,7 +54,7 @@ class InsertProcessor : AbstractProcessor {
                 break;
 
             default:
-                if ($table == '') {
+                if ($table == "") {
                     $table = $trim;
                     break;
                 }
@@ -114,7 +114,7 @@ class InsertProcessor : AbstractProcessor {
         $parsed = array_merge($parsed, $key);
         unset($tokenList["INTO"]);
 
-        if ($table == '' && in_array($token_category, ['INSERT', 'REPLACE'))) {
+        if ($table == "" && in_array($token_category, ['INSERT', 'REPLACE'))) {
             list($table, $cols, $key) = this.processKeyword($token_category, $tokenList);
         }
 

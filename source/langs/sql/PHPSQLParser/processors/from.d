@@ -175,7 +175,7 @@ class FromProcessor : AbstractProcessor {
 
             default:
                 if ($token_category == 'LEFT' || $token_category == 'RIGHT') {
-                    if ($upper == '') {
+                    if ($upper == "") {
                         $prevToken  ~= $token;
                         break;
                     } else {
@@ -194,7 +194,7 @@ class FromProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($upper == '') {
+            if ($upper == "") {
                 $i++;
                 continue;
             }

@@ -53,7 +53,7 @@ class IndexProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -178,7 +178,7 @@ class IndexProcessor : AbstractProcessor {
                 // the parser name
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::INDEX_PARSER,
-                                                 "base_expr" : trim($base_expr), "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), "sub_tree" : $expr];
                     $expr = [);
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
@@ -189,7 +189,7 @@ class IndexProcessor : AbstractProcessor {
                 // the index comment
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::COMMENT,
-                                                 "base_expr" : trim($base_expr), "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), "sub_tree" : $expr];
                     $expr = [);
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
@@ -201,7 +201,7 @@ class IndexProcessor : AbstractProcessor {
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::INDEX_SIZE,
                                                  "base_expr" : trim($base_expr), 'size' : $upper,
-                                                 "sub_tree" : $expr);
+                                                 "sub_tree" : $expr];
                     $expr = [);
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
@@ -215,11 +215,11 @@ class IndexProcessor : AbstractProcessor {
                     if ($currCategory == 'INDEX_TYPE') {
                         $result["index-type"] = ["expr_type" : ExpressionType::INDEX_TYPE,
                                                       "base_expr" : trim($base_expr), 'using' : $upper,
-                                                      "sub_tree" : $expr);
+                                                      "sub_tree" : $expr];
                     } else {
                         $result["options"][] = ["expr_type" : ExpressionType::INDEX_TYPE,
                                                      "base_expr" : trim($base_expr), 'using' : $upper,
-                                                     "sub_tree" : $expr);
+                                                     "sub_tree" : $expr];
                     }
 
                     $expr = [);
@@ -232,7 +232,7 @@ class IndexProcessor : AbstractProcessor {
                     $expr[] = this.getReservedType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::INDEX_LOCK,
                                                  "base_expr" : trim($base_expr), 'lock' : $upper,
-                                                 "sub_tree" : $expr);
+                                                 "sub_tree" : $expr];
 
                     $expr = [);
                     $base_expr = "";
@@ -244,7 +244,7 @@ class IndexProcessor : AbstractProcessor {
                     $expr[] = this.getReservedType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::INDEX_ALGORITHM,
                                                  "base_expr" : trim($base_expr), 'algorithm' : $upper,
-                                                 "sub_tree" : $expr);
+                                                 "sub_tree" : $expr];
 
                     $expr = [);
                     $base_expr = "";

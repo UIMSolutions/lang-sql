@@ -20,7 +20,7 @@ class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
 
     string build(array $parsed) {
         auto $sql = super.build($parsed);
-        if ($sql != '') {
+        if ($sql != "") {
             $sql  ~= this.buildDirection($parsed);
         }
         return $sql;

@@ -75,7 +75,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -291,7 +291,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     $currCategory = $prevCategory;
                     break;
 
-                case '':
+                case "":
                     if ($prevCategory == 'PARTITION' || $prevCategory == 'SUBPARTITION') {
                         if ($upper[0] == "(" && substr($upper, -1) == ")") {
                             // last part to process, it is only one token!

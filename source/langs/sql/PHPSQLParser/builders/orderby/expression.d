@@ -19,7 +19,7 @@ class OrderByExpressionBuilder : WhereExpressionBuilder {
 
     string build(array $parsed) {
         auto mySql = super.build($parsed);
-        if (mySql != '') {
+        if (mySql != "") {
             mySql  ~= this.buildDirection($parsed);
         }
         return mySql;

@@ -135,7 +135,7 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case 'DESC':
-                if ($token_category == '') {
+                if ($token_category == "") {
                     // short version of DESCRIBE
                     $token_category = $upper;
                 }
@@ -221,7 +221,7 @@ class SQLProcessor : SQLChunkProcessor {
                 continue 2;
 
             case 'TRUNCATE':
-            	if ($prev_category == '') {
+            	if ($prev_category == "") {
             		// set the category in case these get subclauses in a future version of MySQL
             		$token_category = $upper;
             		$out[$upper][0] = $trim;
@@ -232,7 +232,7 @@ class SQLProcessor : SQLChunkProcessor {
                 continue 2;
 
             case 'REPLACE':
-            	if ($prev_category == '') {
+            	if ($prev_category == "") {
             		// set the category in case these get subclauses in a future version of MySQL
             		$token_category = $upper;
             		$out[$upper][0] = $trim;
@@ -451,7 +451,7 @@ class SQLProcessor : SQLChunkProcessor {
                     $out["OPTIONS"][] = 'WITH ROLLUP'; // TODO: this could be generate problems within the position calculator
                     continue 2;
                 }
-                if ($token_category == '') {
+                if ($token_category == "") {
                 	$token_category = $upper;
                 }
                 break;
@@ -459,7 +459,7 @@ class SQLProcessor : SQLChunkProcessor {
             case 'AS':
                 break;
 
-            case '':
+            case "":
             case ',':
                 break;
 

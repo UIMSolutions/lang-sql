@@ -43,7 +43,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto buildColDef($expr, $base_expr, $options, $refs, $key) {
-        $expr = ["expr_type" : ExpressionType::COLUMN_TYPE, "base_expr" : $base_expr, "sub_tree" : $expr);
+        $expr = ["expr_type" : ExpressionType::COLUMN_TYPE, "base_expr" : $base_expr, "sub_tree" : $expr];
 
         // add options first
         $expr["sub_tree"] = array_merge($expr["sub_tree"], $options["sub_tree"]);
@@ -84,7 +84,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 

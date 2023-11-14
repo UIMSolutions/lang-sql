@@ -21,7 +21,7 @@ class DropProcessor : AbstractProcessor {
             $base_expr  ~= $token;
             $trim = $token.strip;
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -31,13 +31,13 @@ class DropProcessor : AbstractProcessor {
             case 'SCHEMA':
             case 'DATABASE':
             case 'TABLE':
-                if ($objectType == '') {
+                if ($objectType == "") {
                     $objectType = constant('SqlParser\utils\ExpressionType::' . $upper);
                 }
                 $base_expr = "";
                 break;
             case 'INDEX':
-	            if ( $objectType == '' ) {
+	            if ( $objectType == "" ) {
 		            $objectType = constant( 'SqlParser\utils\ExpressionType::' . $upper );
 	            }
 	            $base_expr = "";

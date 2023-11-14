@@ -73,7 +73,7 @@ class SubTreeBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed, $delim = " ") {
-        if ($parsed["sub_tree"] == '' || $parsed["sub_tree"] == false) {
+        if ($parsed["sub_tree"] == "" || $parsed["sub_tree"] == false) {
             return "";
         }
         auto mySql = "";
@@ -97,7 +97,7 @@ class SubTreeBuilder : ISqlBuilder {
             }
 
             // We don't need whitespace between a sign and the following part.
-            if ($sign == '') {
+            if ($sign == "") {
                 mySql  ~= $delim;
             }
         }

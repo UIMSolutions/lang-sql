@@ -107,7 +107,7 @@ class UnionProcessor : AbstractProcessor {
 
         $finalQueryString = trim(implode($finalQuery));
 
-        if (!empty($finalQuery) && $finalQueryString != '') {
+        if (!empty($finalQuery) && $finalQueryString != "") {
             $queries[$unionType][] = $finalQuery;
         }
 

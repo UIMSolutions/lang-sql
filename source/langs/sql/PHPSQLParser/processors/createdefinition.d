@@ -82,7 +82,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 continue;
             }
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -101,7 +101,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 continue 2;
 
             case 'FOREIGN':
-                if ($prevCategory == '' || $prevCategory == 'CONSTRAINT') {
+                if ($prevCategory == "" || $prevCategory == 'CONSTRAINT') {
                     $expr[] = ["expr_type" : ExpressionType::FOREIGN_KEY, "base_expr": $trim];
                     $currCategory = $upper;
                     continue 2;
@@ -110,7 +110,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'PRIMARY':
-                if ($prevCategory == '' || $prevCategory == 'CONSTRAINT') {
+                if ($prevCategory == "" || $prevCategory == 'CONSTRAINT') {
                     // next one is KEY
                     $expr[] = ["expr_type" : ExpressionType::PRIMARY_KEY, "base_expr": $trim];
                     $currCategory = $upper;
@@ -120,7 +120,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'UNIQUE':
-                if ($prevCategory == '' || $prevCategory == 'CONSTRAINT' || $prevCategory == 'INDEX_COL_LIST') {
+                if ($prevCategory == "" || $prevCategory == 'CONSTRAINT' || $prevCategory == 'INDEX_COL_LIST') {
                     // next one is KEY
                     $expr[] = ["expr_type" : ExpressionType::UNIQUE_IDX, "base_expr": $trim];
                     $currCategory = $upper;
@@ -254,7 +254,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 $type = this.correctExpressionType($expr);
                 $result["create-def"][] = ["expr_type" : $type,
                                                 "base_expr" : trim(substr($base_expr, 0, -$token.length)),
-                                                "sub_tree" : $expr);
+                                                "sub_tree" : $expr];
                 $base_expr = "";
                 $expr = [);
                 break;
@@ -347,7 +347,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     // else?
                     break;
 
-                case '':
+                case "":
                 // if the currCategory is empty, we have an unknown token,
                 // which is a column reference
                     $expr[] = ["expr_type" : ExpressionType::COLREF, "base_expr" : $trim,
@@ -376,7 +376,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
         }
 
         $type = this.correctExpressionType($expr);
-        $result["create-def"][] = ["expr_type" : $type, "base_expr" : trim($base_expr), "sub_tree" : $expr);
+        $result["create-def"][] = ["expr_type" : $type, "base_expr" : trim($base_expr), "sub_tree" : $expr];
         return $result;
     }
 }

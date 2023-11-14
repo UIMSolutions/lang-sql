@@ -72,7 +72,7 @@ class WithProcessor : AbstractProcessor {
                 		$category = "";
                 	break;
 
-                	case '':
+                	case "":
                 		// we have the name of the table
                 		$resultList[] = this.buildTableName($trim);
                 		$category = 'TABLENAME';

@@ -66,7 +66,7 @@ class TableProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == '') {
+            if ($trim == "") {
                 continue;
             }
 
@@ -204,7 +204,7 @@ class TableProcessor : AbstractProcessor {
                     // all assignments with the keywords
                     $expr[] = this.getReservedType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::EXPRESSION,
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                 }
                 break;
@@ -213,7 +213,7 @@ class TableProcessor : AbstractProcessor {
             case 'REPLACE':
                 $expr[] = this.getReservedType($trim);
                 $result["select-option"] = ["base_expr" : trim($base_expr), 'duplicates' : $trim, 'as' : false,
-                                                 "sub_tree" : $expr);
+                                                 "sub_tree" : $expr];
                 continue 2;
 
             case 'AS':
@@ -243,7 +243,7 @@ class TableProcessor : AbstractProcessor {
                 // the charset name
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::CHARSET,
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                     break;
 
@@ -251,7 +251,7 @@ class TableProcessor : AbstractProcessor {
                 // the collate name
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::COLLATE,
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                     break;
 
@@ -259,7 +259,7 @@ class TableProcessor : AbstractProcessor {
                 // we have the directory name
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::DIRECTORY, 'kind' : 'DATA',
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $prevCategory);
                     continue 3;
 
@@ -267,7 +267,7 @@ class TableProcessor : AbstractProcessor {
                 // we have the directory name
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::DIRECTORY, 'kind' : 'INDEX',
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $prevCategory);
                     continue 3;
 
@@ -283,7 +283,7 @@ class TableProcessor : AbstractProcessor {
                     this.clear($expr, $base_expr, $currCategory);
                     break;
 
-                case '':
+                case "":
                 // after table name
                     if ($prevCategory == 'TABLE_NAME' && $upper[0] == "(" && substr($upper, -1) == ")") {
                         $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart($trim));
@@ -306,7 +306,7 @@ class TableProcessor : AbstractProcessor {
                     $expr[] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim,
                                     "sub_tree" : '***TODO***');
                     $result["options"][] = ["expr_type" : ExpressionType::UNION, "base_expr" : trim($base_expr),
-                                                 'delim' : " ", "sub_tree" : $expr);
+                                                 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                     break;
 
@@ -314,7 +314,7 @@ class TableProcessor : AbstractProcessor {
                 // strings and numeric constants
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::EXPRESSION,
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr);
+                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                     break;
                 }

@@ -52,7 +52,7 @@ class QueryBuilder : ISqlBuilder {
         if ($index != 0) {
             $sql = this.buildJoin($parsed["join_type"]) . $sql;
             $sql  ~= this.buildRefType($parsed["ref_type"]);
-            $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
+            $sql  ~= $parsed["ref_clause"] == false ? "" : this.buildRefClause($parsed["ref_clause"]);
         }
         return $sql;
     }

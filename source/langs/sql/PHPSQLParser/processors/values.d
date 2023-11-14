@@ -49,7 +49,7 @@ class ValuesProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'ON':
-                if ($currCategory == '') {
+                if ($currCategory == "") {
 
                     $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
                     $parsed[] = ["expr_type" : ExpressionType::RECORD, "base_expr" : $base_expr,
@@ -94,8 +94,8 @@ class ValuesProcessor : AbstractProcessor {
 
         }
 
-        if (trim($base_expr) != '') {
-            if ($currCategory == '') {
+        if (trim($base_expr) != "") {
+            if ($currCategory == "") {
                 $parsed[] = ["expr_type" : ExpressionType::RECORD, "base_expr" : trim($base_expr),
                                   'data' : this.processRecord(trim($base_expr)), 'delim' : false);
             }

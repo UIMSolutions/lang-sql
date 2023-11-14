@@ -47,7 +47,7 @@ class SelectBuilder : ISqlBuilder {
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter($parsed) {
-        return ("delim" !in $parsed || $parsed["delim"] == false ? '' : (trim($parsed["delim"]) . " "));
+        return ("delim" !in $parsed || $parsed["delim"] == false ? "" : (trim($parsed["delim"]) . " "));
     }
 
     string build(array $parsed) {

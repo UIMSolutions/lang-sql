@@ -20,7 +20,7 @@ class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
 
     string build(array $parsed) {
         $sql = super.build($parsed);
-        if ($sql != '') {
+        if ($sql != "") {
             $sql  ~= this.buildDirection($parsed);
         }
         return $sql;
