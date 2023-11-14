@@ -43,19 +43,19 @@ class HavingBuilder : WhereBuilder {
         foreach (myKey, myValue; $parsed) {
             $len = strlen(mySql);
 
-            mySql  ~= this.buildAliasReference($v);
-            mySql  ~= this.buildOperator($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildSubQuery($v);
-            mySql  ~= this.buildInList($v);
-            mySql  ~= this.buildFunction($v);
-            mySql  ~= this.buildHavingExpression($v);
-            mySql  ~= this.buildHavingBracketExpression($v);
-            mySql  ~= this.buildUserVariable($v);
+            mySql  ~= this.buildAliasReference(myValue);
+            mySql  ~= this.buildOperator(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildSubQuery(myValue);
+            mySql  ~= this.buildInList(myValue);
+            mySql  ~= this.buildFunction(myValue);
+            mySql  ~= this.buildHavingExpression(myValue);
+            mySql  ~= this.buildHavingBracketExpression(myValue);
+            mySql  ~= this.buildUserVariable(myValue);
 
             if (strlen(mySql) == $len) {
-                throw new UnableToCreateSQLException('HAVING', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('HAVING', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

@@ -6,7 +6,7 @@
 
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.index.IndexHintListBuilder;
 
 /**
  * This class : the builder for index hint lists. 
@@ -24,8 +24,8 @@ class IndexHintListBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["hints"] as $k => $v) {
-            mySql  ~= $v["hint_type"] . " "~ $v["hint_list"] . " ";
+        foreach ($parsed["hints"] as $k => myValue) {
+            mySql  ~= myValue["hint_type"] . " "~ myValue["hint_list"] . " ";
         }
         return " "~ substr(mySql, 0, -1);
     }

@@ -4,7 +4,7 @@
  *
  * Builds index comment part of a CREATE INDEX statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.index.IndexCommentBuilder;
 
 import lang.sql;
 
@@ -31,13 +31,13 @@ class IndexCommentBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k => myValue) {
             $len = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildConstant(myValue);
 
             if ($len == mySql.length) {
-                throw new UnableToCreateSQLException('CREATE INDEX comment subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE INDEX comment subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

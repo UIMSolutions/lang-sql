@@ -6,7 +6,7 @@
 
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.index.IndexAlgorithmBuilder;
 
 import lang.sql;
 
