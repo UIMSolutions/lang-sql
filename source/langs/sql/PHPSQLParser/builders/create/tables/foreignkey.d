@@ -43,7 +43,7 @@ class ForeignKeyBuilder : IBuilder {
             mySql  ~= this.buildForeignRef(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE foreign key subtree', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE foreign key subtree', $k, myValue, "expr_type");
             }
 
             mySql  ~= " ";

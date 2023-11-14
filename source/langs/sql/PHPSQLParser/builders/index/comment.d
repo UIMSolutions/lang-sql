@@ -31,7 +31,7 @@ class IndexCommentBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE INDEX comment subtree', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE INDEX comment subtree', $k, myValue, "expr_type");
             }
 
             mySql  ~= " ";

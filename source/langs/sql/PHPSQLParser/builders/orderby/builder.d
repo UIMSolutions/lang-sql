@@ -63,7 +63,7 @@ class OrderByBuilder : ISqlBuilder {
             mySql  ~= this.buildPosition(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('ORDER', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('ORDER', $k, myValue, "expr_type");
             }
 
             mySql  ~= ", ";

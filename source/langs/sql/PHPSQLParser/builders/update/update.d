@@ -23,7 +23,7 @@ class UpdateBuilder : ISqlBuilder {
             mySql  ~= this.buildTable(myValue, $k);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('UPDATE table list', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('UPDATE table list', $k, myValue, "expr_type");
             }
         }
         return 'UPDATE " ~ mySql;

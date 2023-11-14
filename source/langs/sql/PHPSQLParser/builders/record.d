@@ -48,7 +48,7 @@ class RecordBuilder : ISqlBuilder {
             mySql  ~= this.buildColRef(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, myValue, "expr_type");
             }
 
             mySql  ~= ", ";

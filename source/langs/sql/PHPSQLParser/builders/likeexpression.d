@@ -33,7 +33,7 @@ class LikeExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildTable(myValue, 0);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE create-def (like) subtree', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE create-def (like) subtree', $k, myValue, "expr_type");
             }
 
             mySql  ~= " ";

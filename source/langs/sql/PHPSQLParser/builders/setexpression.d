@@ -67,7 +67,7 @@ class SetExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildSign(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SET expression subtree', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('SET expression subtree', $k, myValue, "expr_type");
             }
 
             mySql  ~= $delim;

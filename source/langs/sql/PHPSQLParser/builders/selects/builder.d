@@ -62,7 +62,7 @@ class SelectBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SELECT', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('SELECT', $k, myValue, "expr_type");
             }
 
             mySql  ~= this.getDelimiter(myValue);

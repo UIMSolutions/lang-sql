@@ -34,7 +34,7 @@ class IndexKeyBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX) {
             return "";
         }
-        
+
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
@@ -44,7 +44,7 @@ class IndexKeyBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexType(myValue);            
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE index key subtree', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE index key subtree', $k, myValue, "expr_type");
             }
 
             mySql  ~= " ";

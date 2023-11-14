@@ -43,7 +43,7 @@ class HavingBuilder : WhereBuilder {
             mySql  ~= this.buildUserVariable(myValue);
 
             if (mySql.length == oldSqlLength) {
-                throw new UnableToCreateSQLException('HAVING', $k, myValue, 'expr_type');
+                throw new UnableToCreateSQLException('HAVING', $k, myValue, "expr_type");
             }
 
             mySql  ~= " ";

@@ -25,7 +25,7 @@ class RenameProcessor : AbstractProcessor {
             switch ($token.getUpper()) {
             case 'TO':
             // separate source table from destination
-                $tablePair["source"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
+                $tablePair["source"] = ["expr_type" : ExpressionType::TABLE, 'table' : trim($base_expr),
                                              'no_quotes' : this.revokeQuotation($base_expr),
                                              "base_expr" : $base_expr];
                 $base_expr = "";
@@ -33,7 +33,7 @@ class RenameProcessor : AbstractProcessor {
 
             case ',':
             // split rename operations
-                $tablePair["destination"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
+                $tablePair["destination"] = ["expr_type" : ExpressionType::TABLE, 'table' : trim($base_expr),
                                                   'no_quotes' : this.revokeQuotation($base_expr),
                                                   "base_expr" : $base_expr);
                 $resultList[] = $tablePair;
@@ -43,7 +43,7 @@ class RenameProcessor : AbstractProcessor {
 
             case 'TABLE':
                 $objectType = ExpressionType::TABLE;
-                $resultList[] = ['expr_type':ExpressionType::RESERVED, "base_expr":$token.getTrim());   
+                $resultList[] = ["expr_type":ExpressionType::RESERVED, "base_expr":$token.getTrim());   
                 continue 2; 
                 
             default:
@@ -53,13 +53,13 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if ($base_expr != "") {
-            $tablePair["destination"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
+            $tablePair["destination"] = ["expr_type" : ExpressionType::TABLE, 'table' : trim($base_expr),
                                               'no_quotes' : this.revokeQuotation($base_expr),
                                               "base_expr" : $base_expr);
             $resultList[] = $tablePair;
         }
 
-        return ['expr_type' : $objectType, 'sub_tree':$resultList);
+        return ["expr_type" : $objectType, 'sub_tree':$resultList);
     }
 
 }

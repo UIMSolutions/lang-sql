@@ -161,7 +161,7 @@ class PositionCalculator {
     protected auto lookForBaseExpression($sql, &$charPos, &$parsed, $key, &$backtracking) {
         if (!is_numeric($key)) {
             if (($key == 'UNION' || $key == 'UNION ALL')
-                || ($key == 'expr_type' && isset(this.flippedBacktrackingTypes[$parsed]))
+                || ($key == "expr_type" && isset(this.flippedBacktrackingTypes[$parsed]))
                 || ($key == 'select-option' && $parsed != false) || ($key == 'alias' && $parsed != false)) {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record

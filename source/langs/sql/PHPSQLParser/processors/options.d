@@ -27,9 +27,9 @@ class OptionsProcessor : AbstractProcessor {
                 if ($trim == '') {
                     continue;
                 }
-                $result[] = ['expr_type' :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $result[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
             }
-            $resultList[] = ['expr_type' :  ExpressionType::EXPRESSION, "base_expr" :  $token.strip,
+            $resultList[] = ["expr_type" :  ExpressionType::EXPRESSION, "base_expr" :  $token.strip,
                                   'sub_tree' :  $result);
         }
 
