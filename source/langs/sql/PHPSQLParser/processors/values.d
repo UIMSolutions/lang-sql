@@ -45,7 +45,7 @@ class ValuesProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
             switch ($upper) {
 
             case 'ON':

@@ -57,7 +57,7 @@ class IndexProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
             switch ($upper) {
 
             case 'USING':

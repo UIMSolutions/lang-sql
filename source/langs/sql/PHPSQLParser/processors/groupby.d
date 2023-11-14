@@ -22,7 +22,7 @@ class GroupByProcessor : OrderByProcessor {
         }
 
         foreach ($tokens as $token) {
-            $trim = strtoupper(trim($token));
+            $trim = trim($token).toUpper;
             switch ($trim) {
             case ',':
                 $parsed = this.processOrderExpression($parseInfo, $select);

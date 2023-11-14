@@ -24,7 +24,7 @@ class ExpressionToken {
         this.token = $token;
         this.tokenType = false;
         this.trim = trim($token);
-        this.upper = strtoupper(this.trim);
+        this.trim);
         this.noQuotes = null;
     }
 

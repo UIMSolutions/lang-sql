@@ -45,7 +45,7 @@ class SetProcessor : AbstractProcessor {
 
         foreach ($tokens as $token) {
             $trim = trim($token);
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
 
             switch ($upper) {
             case 'LOCAL':

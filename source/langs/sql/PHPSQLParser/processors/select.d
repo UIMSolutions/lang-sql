@@ -28,7 +28,7 @@ class SelectProcessor : SelectExpressionProcessor {
             } else if (this.isCommentToken($token)) {
                 $expressionList[] = super.processComment($token);
             } else {
-                switch (strtoupper($token)) {
+                switch ($token.toUpper) {
 
                 // add more SELECT options here
                 case 'DISTINCT':

@@ -34,7 +34,7 @@ class WithProcessor : AbstractProcessor {
 
         foreach ($tokens as $token) {
         	$base_expr  ~= $token;
-            $upper = strtoupper(trim($token));
+            $upper = trim($token).toUpper;
 
             if (this.isWhitespaceToken($token)) {
                 continue;

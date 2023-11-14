@@ -178,12 +178,12 @@ class SqlParserConstants {
     }
 
     auto addCustomFunction($token) {
-        $token = strtoupper(trim($token));
+        $token = trim($token).toUpper;
         this.customFunctions[$token] = true;
     }
 
     auto removeCustomFunction($token) {
-        $token = strtoupper(trim($token));
+        $token = trim($token).toUpper;
         unset(this.customFunctions[$token]);
     }
 

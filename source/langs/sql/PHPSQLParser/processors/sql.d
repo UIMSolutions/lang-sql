@@ -58,7 +58,7 @@ class SQLProcessor : SQLChunkProcessor {
                 }
             }
 
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
             switch ($upper) {
 
             /* Tokens that get their own sections. These keywords have subclauses. */

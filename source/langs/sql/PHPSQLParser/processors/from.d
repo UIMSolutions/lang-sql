@@ -128,7 +128,7 @@ class FromProcessor : AbstractProcessor {
         $i = 0;
 
         foreach ($tokens as $token) {
-            $upper = strtoupper(trim($token));
+            $upper = trim($token).toUpper;
 
             if ($skip_next && $token != "") {
                 $parseInfo["token_count"]++;
@@ -156,7 +156,7 @@ class FromProcessor : AbstractProcessor {
             case 'JOIN':
                 if ($token_category == 'LEFT' || $token_category == 'RIGHT' || $token_category == 'NATURAL') {
                     $token_category = "";
-                    $parseInfo["next_join_type"] = strtoupper(trim($prevToken)); // it seems to be a join
+                    $parseInfo["next_join_type"] = trim($prevToken)); // it seems to be a join
                 } elseif ($token_category == 'IDX_HINT') {
                     $parseInfo["expression"]  ~= $token;
                     if ($parseInfo["ref_type"] != false) { // all after ON / USING

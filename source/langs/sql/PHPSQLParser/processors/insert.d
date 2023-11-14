@@ -43,7 +43,7 @@ class InsertProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
             switch ($upper) {
             case 'INTO':
                 $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);

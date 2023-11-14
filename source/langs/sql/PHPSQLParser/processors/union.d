@@ -95,7 +95,7 @@ class UnionProcessor : AbstractProcessor {
 
         if (!$finalQueryFound) {
             foreach ($outputArray as $key => $token) {
-                if (strtoupper($token) == 'ORDER') {
+                if ($token.toUpper == 'ORDER') {
                     break;
                 } else {
                     $finalQuery[] = $token;
@@ -146,13 +146,13 @@ class UnionProcessor : AbstractProcessor {
                 if ($trim == "") {
                     continue; // read the next token
                 }
-                if (strtoupper($trim) == $skipUntilToken) {
+                if ($trim.toUpper == $skipUntilToken) {
                     $skipUntilToken = false;
                     continue; // read the next token
                 }
             }
 
-            if (strtoupper($trim) != "UNION") {
+            if ($trim.toUpper != "UNION") {
                 $outputArray[] = $token; // here we get empty tokens, if we remove these, we get problems in parse_sql()
                 continue;
             }
@@ -164,7 +164,7 @@ class UnionProcessor : AbstractProcessor {
                 if (trim($inputArray[$i]) == "") {
                     continue;
                 }
-                if (strtoupper($inputArray[$i]) != "ALL") {
+                if ($inputArray[$i].toUpper != "ALL") {
                     break;
                 }
                 // the other for-loop should overread till "ALL"

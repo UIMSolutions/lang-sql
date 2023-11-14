@@ -25,7 +25,7 @@ class DropProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
             switch ($upper) {
             case 'VIEW':
             case 'SCHEMA':

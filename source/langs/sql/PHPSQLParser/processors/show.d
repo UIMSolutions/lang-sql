@@ -32,7 +32,7 @@ class ShowProcessor : AbstractProcessor {
         $prev = "";
 
         foreach ($tokens as $k => $token) {
-            $upper = strtoupper(trim($token));
+            $upper = trim($token).toUpper;
 
             if (this.isWhitespaceToken($token)) {
                 continue;

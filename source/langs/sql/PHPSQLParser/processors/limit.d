@@ -30,14 +30,14 @@ class LimitProcessor : AbstractProcessor {
             }
         }
         
-        for ($i = 0; $i < count($tokens); ++$i) {
-            $trim = trim($tokens[$i]).toUpper;
-            if ($trim == ",") {
-                $comma = $i;
+        for (myPos = 0;myPos < count($tokens); ++myPos) {
+            auto trimmedToken = $tokens[myPos].strip.toUpper;
+            if (trimmedToken == ",") {
+                $comma = myPos;
                 break;
             }
-            if ($trim == "OFFSET") {
-                $comma = $i;
+            if (trimmedToken == "OFFSET") {
+                $comma = myPos;
                 $exchange = true;
                 break;
             }

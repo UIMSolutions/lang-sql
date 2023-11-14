@@ -29,7 +29,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strtoupper($trim);
+            $upper = $trim.toUpper;
 
             switch ($upper) {
 
