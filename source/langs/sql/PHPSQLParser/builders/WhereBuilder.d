@@ -70,28 +70,28 @@ class WhereBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "WHERE ";
+        mySql = "WHERE ";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
+            $len = strlen(mySql);
 
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildSubQuery($v);
-            $sql  ~= this.buildInList($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildWhereExpression($v);
-            $sql  ~= this.buildWhereBracketExpression($v);
-            $sql  ~= this.buildUserVariable($v);
-            $sql  ~= this.buildReserved($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildSubQuery($v);
+            mySql  ~= this.buildInList($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildWhereExpression($v);
+            mySql  ~= this.buildWhereBracketExpression($v);
+            mySql  ~= this.buildUserVariable($v);
+            mySql  ~= this.buildReserved($v);
             
-            if (strlen($sql) == $len) {
+            if (strlen(mySql) == $len) {
                 throw new UnableToCreateSQLException('WHERE', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 
 }

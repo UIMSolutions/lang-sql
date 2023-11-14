@@ -78,7 +78,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'COMMENT':
                 if ($prevCategory == 'SUBPARTITION') {
                     $expr[] = array('expr_type' => ExpressionType::SUBPARTITION_COMMENT, 'base_expr' => false,
-                                    'sub_tree' => false, 'storage' => substr($base_expr, 0, -strlen($token)));
+                                    'sub_tree' => false, 'storage' => substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
@@ -94,7 +94,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by ENGINE
                     $expr[] = array('expr_type' => ExpressionType::ENGINE, 'base_expr' => false, 'sub_tree' => false,
-                                    'storage' => substr($base_expr, 0, -strlen($token)));
+                                    'storage' => substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
@@ -114,7 +114,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 }
                 if ($prevCategory == 'SUBPARTITION') {
                     $expr[] = array('expr_type' => ExpressionType::ENGINE, 'base_expr' => false, 'sub_tree' => false,
-                                    'storage' => substr($base_expr, 0, -strlen($token)));
+                                    'storage' => substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
@@ -150,7 +150,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     // followed by DIRECTORY
                     $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper . '_DIR'),
                                     'base_expr' => false, 'sub_tree' => false,
-                                    'storage' => substr($base_expr, 0, -strlen($token)));
+                                    'storage' => substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
@@ -176,7 +176,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($prevCategory == 'SUBPARTITION') {
                     $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper),
                                     'base_expr' => false, 'sub_tree' => false,
-                                    'storage' => substr($base_expr, 0, -strlen($token)));
+                                    'storage' => substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;

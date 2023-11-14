@@ -170,7 +170,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 if ($currCategory == 'INDEX_COL_LIST') {
                     $option = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                     $expr[] = array('expr_type' => ExpressionType::INDEX_PARSER,
-                                    'base_expr' => substr($base_expr, 0, -strlen($token)),
+                                    'base_expr' => substr($base_expr, 0, -$token.length),
                                     'sub_tree' => array($option));
                     $base_expr = $token;
                     $currCategory = 'INDEX_PARSER';
@@ -183,7 +183,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 if ($currCategory == 'INDEX_COL_LIST') {
                     $option = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
                     $expr[] = array('expr_type' => ExpressionType::INDEX_SIZE,
-                                    'base_expr' => substr($base_expr, 0, -strlen($token)),
+                                    'base_expr' => substr($base_expr, 0, -$token.length),
                                     'sub_tree' => array($option));
                     $base_expr = $token;
                     $currCategory = 'INDEX_SIZE';
@@ -195,7 +195,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             // starts an index option
                 if ($currCategory == 'INDEX_COL_LIST' || $currCategory == 'PRIMARY') {
                     $option = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
-                    $expr[] = array('base_expr' => substr($base_expr, 0, -strlen($token)), 'trim' => $trim,
+                    $expr[] = array('base_expr' => substr($base_expr, 0, -$token.length), 'trim' => $trim,
                                     'category' => $currCategory, 'sub_tree' => array($option));
                     $base_expr = $token;
                     $currCategory = 'INDEX_TYPE';
@@ -255,7 +255,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             // this starts the next definition
                 $type = this.correctExpressionType($expr);
                 $result["create-def"][] = array('expr_type' => $type,
-                                                'base_expr' => trim(substr($base_expr, 0, -strlen($token))),
+                                                'base_expr' => trim(substr($base_expr, 0, -$token.length)),
                                                 'sub_tree' => $expr);
                 $base_expr = "";
                 $expr = array();

@@ -68,7 +68,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case ',':
             # we stop on a single comma
             # or at the end of the array $tokens
-                $expr = this.buildReferenceDef($expr, trim(substr($base_expr, 0, -strlen($token))), $key - 1);
+                $expr = this.buildReferenceDef($expr, trim(substr($base_expr, 0, -$token.length)), $key - 1);
                 break 2;
 
             case 'REFERENCES':

@@ -112,7 +112,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 $currCategory = 'PARTITION_NUM';
                 $expr = array('expr_type' => constant('SqlParser\utils\ExpressionType::' . substr($upper, 0, -1) . '_COUNT'),
                               'base_expr' => false, 'sub_tree' => array(this.getReservedType($trim)),
-                              'storage' => substr($base_expr, 0, -strlen($token)));
+                              'storage' => substr($base_expr, 0, -$token.length));
                 $base_expr = $token;
                 continue 2;
 
@@ -126,7 +126,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
             case 'KEY':
                 $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::' . $prevCategory . '_' . $upper),
                                 'base_expr' => false, 'linear' => ($currCategory == 'LINEAR'), 'sub_tree' => false,
-                                'storage' => substr($base_expr, 0, -strlen($token)));
+                                'storage' => substr($base_expr, 0, -$token.length));
 
                 $last = array_pop($parsed);
                 $last["by"] = trim($currCategory . " " ~ $upper); // $currCategory will be empty or LINEAR!
@@ -143,7 +143,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 if ($currCategory == 'KEY') {
                     $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::' . $prevCategory . '_KEY_ALGORITHM'),
                                     'base_expr' => false, 'sub_tree' => false,
-                                    'storage' => substr($base_expr, 0, -strlen($token)));
+                                    'storage' => substr($base_expr, 0, -$token.length));
 
                     $last = array_pop($parsed);
                     $subtree = array_pop($last["sub_tree"]);
@@ -163,7 +163,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
             case 'RANGE':
             case 'LIST':
                 $expr[] = array('expr_type' => constant('SqlParser\utils\ExpressionType::PARTITION_' . $upper), 'base_expr' => false,
-                                'sub_tree' => false, 'storage' => substr($base_expr, 0, -strlen($token)));
+                                'sub_tree' => false, 'storage' => substr($base_expr, 0, -$token.length));
 
                 $last = array_pop($parsed);
                 $last["by"] = $upper;

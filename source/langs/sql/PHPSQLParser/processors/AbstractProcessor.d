@@ -68,17 +68,17 @@ abstract class AbstractProcessor {
      *   a  .  `b` => [a,b]
      */
     protected auto revokeQuotation($sql) {
-        $tmp = trim($sql);
+        mySqlBuffer = trim($sql);
         $result = array();
 
         $quote = false;
         $start = 0;
         $i = 0;
-        $len = strlen($tmp);
+        $len = mySqlBuffer.length;
 
         while ($i < $len) {
 
-            $char = $tmp[$i];
+            $char = mySqlBuffer[$i];
             switch ($char) {
             case '`':
             case '\'':
@@ -92,13 +92,13 @@ abstract class AbstractProcessor {
                 if ($quote != $char) {
                     break;
                 }
-                if (isset($tmp[$i + 1]) && ($quote == $tmp[$i + 1])) {
+                if (isset(mySqlBuffer[$i + 1]) && ($quote == mySqlBuffer[$i + 1])) {
                     // escaped
                     $i++;
                     break;
                 }
                 // end
-                $char = substr($tmp, $start, $i - $start);
+                $char = substr(mySqlBuffer, $start, $i - $start);
                 $result[] = str_replace($quote . $quote, $quote, $char);
                 $start = $i + 1;
                 $quote = false;
@@ -107,7 +107,7 @@ abstract class AbstractProcessor {
             case '.':
                 if ($quote == false) {
                     // we have found a separator
-                    $char = trim(substr($tmp, $start, $i - $start));
+                    $char = trim(substr(mySqlBuffer, $start, $i - $start));
                     if ($char != '') {
                         $result[] = $char;
                     }
@@ -123,7 +123,7 @@ abstract class AbstractProcessor {
         }
 
         if ($quote == false && ($start < $len)) {
-            $char = trim(substr($tmp, $start, $i - $start));
+            $char = trim(substr(mySqlBuffer, $start, $i - $start));
             if ($char != '') {
                 $result[] = $char;
             }

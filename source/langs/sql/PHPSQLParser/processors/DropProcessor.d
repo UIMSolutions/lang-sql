@@ -66,7 +66,7 @@ class DropProcessor : AbstractProcessor {
                 $option = $upper;
                 if (!empty($objectList)) {
                     $subTree[] = array('expr_type' => ExpressionType::EXPRESSION,
-                                       'base_expr' => trim(substr($base_expr, 0, -strlen($token))),
+                                       'base_expr' => trim(substr($base_expr, 0, -$token.length)),
                                        'sub_tree' => $objectList);
                     $objectList = array();
                 }
