@@ -44,7 +44,7 @@ class ForeignRefBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildColumnList($v);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', $k, $v, 'expr_type');
             }
 

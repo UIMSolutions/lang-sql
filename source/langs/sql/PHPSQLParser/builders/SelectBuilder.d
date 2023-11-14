@@ -68,7 +68,7 @@ class SelectBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildReserved($v);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('SELECT', $k, $v, 'expr_type');
             }
 

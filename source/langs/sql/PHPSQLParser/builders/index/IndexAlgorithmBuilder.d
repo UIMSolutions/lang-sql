@@ -38,14 +38,14 @@ class IndexAlgorithmBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildOperator(myValue);
 
-            if (oldSqlLength == mySql.length) {
-                throw new UnableToCreateSQLException('CREATE INDEX algorithm subtree', $k, $v, 'expr_type');
+            if (oldSqlLength == mySql.length) { // No change
+                throw new UnableToCreateSQLException('CREATE INDEX algorithm subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

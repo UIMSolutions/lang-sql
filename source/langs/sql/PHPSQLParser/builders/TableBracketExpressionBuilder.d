@@ -74,7 +74,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildUniqueIndex($v);
             mySql  ~= this.buildFulltextIndex($v);
                         
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE create-def expression subtree', $k, $v, 'expr_type');
             }
 

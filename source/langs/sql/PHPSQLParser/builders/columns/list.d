@@ -37,7 +37,7 @@ class ColumnListBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexColumn(value);
             mySql  ~= this.buildColumnReference(value);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE column-list subtree', key, value, 'expr_type');
             }
 

@@ -49,7 +49,7 @@ class ReplaceBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved($v);
             mySql  ~= this.buildBracketExpression($v);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('REPLACE', $k, $v, 'expr_type');
             }
 

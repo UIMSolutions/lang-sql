@@ -42,7 +42,7 @@ class CollationBuilder : ISqlBuilder {
             mySql  ~= this.buildOperator(myValue);
             mySql  ~= this.buildConstant(myValue);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE options collation subtree', $k, myValue, 'expr_type');
             }
 

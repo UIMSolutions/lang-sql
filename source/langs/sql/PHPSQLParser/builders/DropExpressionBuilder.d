@@ -55,7 +55,7 @@ class DropExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildDatabase($v);
             mySql  ~= this.buildTemporaryTable($v, 0);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('DROP object-list subtree', $k, $v, 'expr_type');
             }
 

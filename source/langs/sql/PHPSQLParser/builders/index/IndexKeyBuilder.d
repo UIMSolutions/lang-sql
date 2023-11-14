@@ -50,7 +50,7 @@ class IndexKeyBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildIndexType($v);            
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE index key subtree', $k, $v, 'expr_type');
             }
 

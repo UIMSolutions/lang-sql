@@ -44,7 +44,7 @@ class IndexLockBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant($v);
             mySql  ~= this.buildOperator($v);
 
-            if (oldSqlLength == mySql.length) {
+            if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE INDEX lock subtree', $k, $v, 'expr_type');
             }
 
