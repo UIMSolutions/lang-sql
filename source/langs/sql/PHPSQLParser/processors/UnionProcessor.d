@@ -14,18 +14,18 @@ class UnionProcessor : AbstractProcessor {
 
     protected auto processDefault($token) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return $processor.process($token);
+        return myProcessor$processor.process($token);
     }
 
     protected auto processSQL($token) {
         auto myProcessor = new SQLProcessor(this.options);
-        return $processor.process($token);
+        return myProcessor.process($token);
     }
 
     static auto isUnion($queries) {
         $unionTypes = array('UNION', 'UNION ALL');
-        foreach ($unionTypes as $unionType) {
-            if (!empty($queries[$unionType])) {
+        foreach (myUnionType; $unionTypes) {
+            if (!empty($queries[myUnionType])) {
                 return true;
             }
         }
@@ -44,14 +44,14 @@ class UnionProcessor : AbstractProcessor {
      */
     protected auto processMySQLUnion($queries) {
         $unionTypes = array('UNION', 'UNION ALL');
-        foreach ($unionTypes as $unionType) {
+        foreach (myUnionType; $unionTypes) {
 
-            if (empty($queries[$unionType])) {
+            if (empty($queries[myUnionType])) {
                 continue;
             }
 
-            foreach ($queries[$unionType] as $key => $tokenList) {
-                foreach ($tokenList as $z => $token) {
+            foreach ($key, $tokenList; $queries[myUnionType]) {
+                foreach ($z, $token; $tokenList as ) {
                     $token = trim($token);
                     if ($token == "") {
                         continue;
@@ -59,10 +59,10 @@ class UnionProcessor : AbstractProcessor {
 
                     // starts with "(select"
                     if (preg_match("/^\\(\\s*select\\s*/i", $token)) {
-                        $queries[$unionType][$key] = this.processDefault(this.removeParenthesisFromStart($token));
+                        $queries[myUnionType][$key] = this.processDefault(this.removeParenthesisFromStart($token));
                         break;
                     }
-                    $queries[$unionType][$key] = this.processSQL($queries[$unionType][$key]);
+                    $queries[myUnionType][$key] = this.processSQL($queries[myUnionType][$key]);
                     break;
                 }
             }
