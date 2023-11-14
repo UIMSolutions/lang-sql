@@ -5,7 +5,7 @@
  * Builds reference clauses within a JOIN.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.refclause;
 
 import lang.sql;
 
@@ -58,9 +58,8 @@ class RefClauseBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed == false) {
-            return "";
-        }
+        if ($parsed == false) { return ""; }
+        
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;

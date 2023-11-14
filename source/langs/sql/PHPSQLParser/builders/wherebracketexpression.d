@@ -5,7 +5,7 @@
  * Builds bracket expressions within the WHERE part.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.wherebracketexpression;
 
 import lang.sql;
 

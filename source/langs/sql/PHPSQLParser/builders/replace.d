@@ -4,7 +4,7 @@
  *
  * Builds the [REPLACE] statement part. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.replace;
 
 import lang.sql;
 

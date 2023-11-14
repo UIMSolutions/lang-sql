@@ -4,7 +4,7 @@
  *
  * Builds the SET part of the INSERT statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.set;
 
 import lang.sql;
 

@@ -5,7 +5,7 @@
  * This file : the UnableToCreateSQLException class which is used within the
  * SqlParser package.
  */
-module lang.sql.parsers.exceptions;
+module source.langs.sql.PHPSQLParser.exceptions.unabletocreatesql;
 
 import lang.sql;
 

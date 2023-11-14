@@ -5,7 +5,7 @@
  * This file : the UnsupportedFeatureException class which is used within the
  * SqlParser package.
  */
-module lang.sql.parsers.exceptions;
+module source.langs.sql.PHPSQLParser.exceptions.unsupportedfeature;
 
 import lang.sql;
 
