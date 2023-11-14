@@ -1,10 +1,3 @@
-
-/**
- * HavingBracketExpressionBuilder.php
- *
- * Builds bracket expressions within the HAVING part.
- */
-
 module source.langs.sql.PHPSQLParser.builders.havingbracketexpression;
 
 import lang.sql;
@@ -12,13 +5,10 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds bracket expressions within the HAVING part.
  * This class : the builder for bracket expressions within the HAVING part. 
  * You can overwrite all functions to achieve another handling.
- *
- * @author  Ian Barker <ian@theorganicagency.com>
- 
- 
- *   */
+ */
 class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
     
     protected auto buildHavingExpression($parsed) {

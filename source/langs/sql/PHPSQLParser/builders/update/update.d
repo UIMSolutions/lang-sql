@@ -20,12 +20,12 @@ class UpdateBuilder : ISqlBuilder {
 
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildTable($v, $k);
+            mySql  ~= this.buildTable(myValue, $k);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('UPDATE table list', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('UPDATE table list', $k, myValue, 'expr_type');
             }
         }
-        return 'UPDATE ' . mySql;
+        return 'UPDATE " ~ mySql;
     }
 }

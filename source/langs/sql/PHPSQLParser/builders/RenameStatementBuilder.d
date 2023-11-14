@@ -41,7 +41,7 @@ class RenameStatementBuilder : ISqlBuilder {
 
             mySql  ~= " ";
         }
-        mySql = trim('RENAME ' . mySql);
+        mySql = trim('RENAME " ~ mySql);
         return (substr(mySql, -1) == ',' ? substr(mySql, 0, -1) : mySql);
     }
 }

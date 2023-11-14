@@ -1,12 +1,7 @@
-
-/**
- * ShowStatementBuilder.php
- *
- * Builds the SHOW statement. */
-
 module source.langs.sql.PHPSQLParser.builders.showstatement;
 
 /**
+ * Builds the SHOW statement. */
  * This class : the builder for the SHOW statement. 
  * You can overwrite all functions to achieve another handling. */
 class ShowStatementBuilder : ISqlBuilder {
@@ -22,10 +17,10 @@ class ShowStatementBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        $sql = this.buildSHOW($parsed);
+        auto mySql = this.buildSHOW($parsed);
         if (isset($parsed["WHERE"])) {
-            $sql  ~= " "~ this.buildWHERE($parsed["WHERE"]);
+            mySql  ~= " "~ this.buildWHERE($parsed["WHERE"]);
         }
-        return $sql;
+        return mySql;
     }
 }

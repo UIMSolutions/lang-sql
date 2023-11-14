@@ -1,9 +1,3 @@
-
-/**
- * ReplaceBuilder.php
- *
- * Builds the [REPLACE] statement part. */
-
 module source.langs.sql.PHPSQLParser.builders.replace;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the [REPLACE] statement part. 
  * This class : the builder for the [REPLACE] statement parts. 
  * You can overwrite all functions to achieve another handling. */
 class ReplaceBuilder : ISqlBuilder {

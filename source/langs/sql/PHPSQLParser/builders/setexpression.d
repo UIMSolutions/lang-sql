@@ -50,24 +50,24 @@ class SetExpressionBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             $delim = " ";
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildOperator($v);
-            mySql  ~= this.buildFunction($v);
-            mySql  ~= this.buildBracketExpression($v);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildOperator(myValue);
+            mySql  ~= this.buildFunction(myValue);
+            mySql  ~= this.buildBracketExpression(myValue);
                         
             // we don't need whitespace between the sign and 
             // the following part
-            if (this.buildSign($v) != '') {
+            if (this.buildSign(myValue) != '') {
                 $delim = "";
             }
-            mySql  ~= this.buildSign($v);
+            mySql  ~= this.buildSign(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SET expression subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('SET expression subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= $delim;

@@ -1,4 +1,4 @@
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.direction;
 
 import lang.sql;
 
@@ -14,6 +14,6 @@ class DirectionBuilder : IBuilder {
         if ("direction" !in $parsed["direction"] || $parsed["direction"] == false) {
             return "";
         }
-        return (" "~ $parsed["direction"]);
+        return (" " ~ $parsed["direction"]);
     }
 }

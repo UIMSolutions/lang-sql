@@ -15,9 +15,10 @@ class IndexHintListBuilder : ISqlBuilder {
         if (!isset($parsed["hints"]) || $parsed["hints"] == false) {
             return "";
         }
+
         auto mySql = "";
-        foreach ($parsed["hints"] as $k => myValue) {
-            mySql  ~= myValue["hint_type"] . " "~ myValue["hint_list"] . " ";
+        foreach (myKey, myValue; $parsed["hints"]) {
+            mySql  ~= myValue["hint_type"] ~ " "~ myValue["hint_list"] ~ " ";
         }
         return " "~ substr(mySql, 0, -1);
     }
