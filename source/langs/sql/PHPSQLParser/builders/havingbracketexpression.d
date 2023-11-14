@@ -1,37 +1,33 @@
 
 /**
- * HavingExpressionBuilder.php
+ * HavingBracketExpressionBuilder.php
  *
- * Builds expressions within the HAVING part.
+ * Builds bracket expressions within the HAVING part.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.havingbracketexpression;
 
 import lang.sql;
 
 @safe:
 
 /**
- * This class : the builder for expressions within the HAVING part. 
+ * This class : the builder for bracket expressions within the HAVING part. 
  * You can overwrite all functions to achieve another handling.
  *
  * @author  Ian Barker <ian@theorganicagency.com>
  
  
  *   */
-class HavingExpressionBuilder : WhereExpressionBuilder {
-
+class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
+    
     protected auto buildHavingExpression($parsed) {
-        return this.build($parsed);
-    }
-
-    protected auto buildHavingBracketExpression($parsed) {
-        auto myBuilder = new HavingBracketExpressionBuilder();
-        return myBuilderr.build($parsed);
+        auto myBuilder = new HavingExpressionBuilder();
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
         
@@ -44,7 +40,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
             mySql  ~= this.buildInList(myValue);
             mySql  ~= this.buildFunction(myValue);
             mySql  ~= this.buildHavingExpression(myValue);
-            mySql  ~= this.buildHavingBracketExpression(myValue);
+            mySql  ~= this.build(myValue);
             mySql  ~= this.buildUserVariable(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
@@ -54,7 +50,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
             mySql  ~= " ";
         }
 
-        mySql = substr(mySql, 0, -1);
+        mySql = "(" ~ substr(mySql, 0, -1) ~ ")";
         return mySql;
     }
 

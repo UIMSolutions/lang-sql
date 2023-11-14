@@ -5,7 +5,7 @@
  * Builds the HAVING part.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.having;
 
 import lang.sql;
 

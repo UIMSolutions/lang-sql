@@ -1,16 +1,11 @@
-
-/**
- * ShowBuilder.php
- *
- * Builds the SHOW statement. */
-
-module langs.sql.PHPSQLParser.builders.show;
+module source.langs.sql.PHPSQLParser.builders.show.show;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the SHOW statement. 
  * This class : the builder for the SHOW statement. 
  * You can overwrite all functions to achieve another handling. */
 class ShowBuilder : ISqlBuilder {
@@ -51,20 +46,21 @@ class ShowBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $show = $parsed["SHOW"];
-        mySql = "";
-        foreach ($show as $k => $v) {
+        auto $show = $parsed["SHOW"];
+        
+        auto mySql = "";
+        foreach (myKey, myValue; $show) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildConstant($v);
-            mySql  ~= this.buildEngine($v);
-            mySql  ~= this.buildDatabase($v);
-            mySql  ~= this.buildProcedure($v);
-            mySql  ~= this.buildFunction($v);
-            mySql  ~= this.buildTable($v, 0);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildConstant(myValue);
+            mySql  ~= this.buildEngine(myValue);
+            mySql  ~= this.buildDatabase(myValue);
+            mySql  ~= this.buildProcedure(myValue);
+            mySql  ~= this.buildFunction(myValue);
+            mySql  ~= this.buildTable(myValue, 0);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SHOW', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('SHOW', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

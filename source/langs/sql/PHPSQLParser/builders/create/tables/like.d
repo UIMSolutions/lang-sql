@@ -1,17 +1,11 @@
-
-/**
- * LikeBuilder.php
- *
- * Builds the LIKE statement part of a CREATE TABLE statement.
- */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.tables.like;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the LIKE statement part of a CREATE TABLE statement.
  * This class : the builder for the LIKE statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class LikeBuilder : ISqlBuilder {
@@ -22,10 +16,10 @@ class LikeBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = this.buildTable($parsed, 0);
-        if (strlen($sql) == 0) {
+        auto mySql = this.buildTable($parsed, 0);
+        if (strlen(mySql) == 0) {
             throw new UnableToCreateSQLException('LIKE', "", $parsed, 'table');
         }
-        return "LIKE " . $sql;
+        return "LIKE " . mySql;
     }
 }

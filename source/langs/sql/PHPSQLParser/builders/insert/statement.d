@@ -5,7 +5,7 @@
  * Builds the INSERT statement
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.insert.InsertStatementBuilder;
 
 /**
  * This class : the builder for the whole Insert statement. You can overwrite

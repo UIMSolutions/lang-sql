@@ -1,10 +1,3 @@
-
-/**
- * RefClauseBuilder.php
- *
- * Builds reference clauses within a JOIN.
- */
-
 module source.langs.sql.PHPSQLParser.builders.refclause;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds reference clauses within a JOIN.
  * This class : the references clause within a JOIN.
  * You can overwrite all functions to achieve another handling.
  */
@@ -59,7 +53,7 @@ class RefClauseBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         if ($parsed == false) { return ""; }
-        
+
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;

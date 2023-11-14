@@ -5,7 +5,7 @@
  * Builds lists of values for the IN statement.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.inlist;
 
 import lang.sql;
 

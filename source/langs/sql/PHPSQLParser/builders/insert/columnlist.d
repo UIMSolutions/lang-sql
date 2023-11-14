@@ -1,17 +1,11 @@
-
-/**
- * InsertColumnListBuilder.php
- *
- * Builds column-list parts of INSERT statements.
- */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.insert.columnlist;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds column-list parts of INSERT statements.
  * This class : the builder for column-list parts of INSERT statements. 
  * You can overwrite all functions to achieve another handling. */
 class InsertColumnListBuilder : ISqlBuilder {
@@ -22,9 +16,8 @@ class InsertColumnListBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
-            return "";
-        }
+        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) { return ""; }
+
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
@@ -36,6 +29,7 @@ class InsertColumnListBuilder : ISqlBuilder {
 
             mySql  ~= ", ";
         } 
+        
         return "(" . substr(mySql, 0, -2) . ")";
     }
 

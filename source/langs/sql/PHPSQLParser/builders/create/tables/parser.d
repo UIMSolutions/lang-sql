@@ -1,17 +1,11 @@
-
-/**
- * IndexParserBuilder.php
- *
- * Builds index parser part of a PRIMARY KEY statement part of CREATE TABLE.
- */
-
-module langs.sql.PHPSQLParser.builders.index.parser;
+module source.langs.sql.PHPSQLParser.builders.create.tables.parser;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds index parser part of a PRIMARY KEY statement part of CREATE TABLE.
  * This class : the builder for the index parser of a PRIMARY KEY
  * statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
@@ -32,13 +26,13 @@ class IndexParserBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValie; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.buildConstant(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key index parser subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE primary key index parser subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";
