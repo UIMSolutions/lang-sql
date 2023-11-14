@@ -16,7 +16,6 @@ import lang.sql;
  * This class : the builder for index column entries of the column-list 
  * parts of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class IndexColumnBuilder : ISqlBuilder {
 

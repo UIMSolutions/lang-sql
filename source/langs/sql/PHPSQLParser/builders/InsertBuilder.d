@@ -12,7 +12,6 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 /**
  * This class : the builder for the [INSERT] statement parts. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class InsertBuilder : ISqlBuilder {
 

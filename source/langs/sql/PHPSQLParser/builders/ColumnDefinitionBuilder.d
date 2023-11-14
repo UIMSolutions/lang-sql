@@ -3,7 +3,6 @@
  * ColumnDefinitionBuilder.php
  *
  * Builds the column definition statement part of CREATE TABLE.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -13,7 +12,6 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the columndefinition statement part 
  * of CREATE TABLE. You can overwrite all functions to achieve another handling.
- * 
  */
 class ColumnDefinitionBuilder : ISqlBuilder {
 

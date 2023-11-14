@@ -2,15 +2,13 @@
 /**
  * CreateStatement.php
  *
- * Builds the CREATE statement * 
- */
+ * Builds the CREATE statement */
 
 module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Create statement. You can overwrite
  * all functions to achieve another handling.
- * 
  */
 class CreateStatementBuilder : ISqlBuilder {
 

@@ -42,7 +42,6 @@ module lang.sql.parsers.processors;
 
 /**
  * This class processes the WHERE statements.
- * 
  */
 class WhereProcessor : ExpressionListProcessor {
 

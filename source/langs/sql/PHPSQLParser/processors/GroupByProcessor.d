@@ -36,8 +36,7 @@ module lang.sql.parsers.processors;
  * 
  * This class processes the GROUP-BY statements.
  * 
- * @author arothe * 
- */
+ * @author arothe */
 class GroupByProcessor : OrderByProcessor {
 
     auto process($tokens, $select = array()) {

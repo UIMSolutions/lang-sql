@@ -3,7 +3,6 @@
  * HavingProcessor.php
  *
  * Parses the HAVING statements.
- * 
  */
 
 module lang.sql.parsers.processors;
@@ -12,7 +11,6 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the processor for the HAVING statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class HavingProcessor : ExpressionListProcessor {
 	

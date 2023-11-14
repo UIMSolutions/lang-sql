@@ -3,7 +3,6 @@
  * OperatorBuilder.php
  *
  * Builds operators.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -15,7 +14,6 @@ import lang.sql;
 /**
  * This class : the builder for operators. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class OperatorBuilder : ISqlBuilder {
 

@@ -2,7 +2,6 @@
  * CreateBuilder.php
  *
  * Builds the CREATE statement
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -13,7 +12,6 @@ import lang.sql;
 /**
  * This class : the builder for the [CREATE] part. You can overwrite
  * all functions to achieve another handling.
- * 
  */
 class CreateBuilder : ISqlBuilder {
 

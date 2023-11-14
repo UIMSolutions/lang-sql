@@ -11,7 +11,6 @@ module lang.sql.parsers.builders;
 /**
  * This class : the builder for index hint lists. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class IndexHintListBuilder : ISqlBuilder {
 

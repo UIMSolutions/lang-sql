@@ -33,8 +33,7 @@
  * 
  
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version   SVN: $Id$ * 
- */
+ * @version   SVN: $Id$ */
 module lang.sql.parsers.exceptions;
 use Exception;
 
@@ -43,7 +42,6 @@ use Exception;
  * a field name, which is unknown. The developers have created some 
  * additional output of the parser, but the creator class has not been 
  * enhanced. Please open an issue in such a case.
- * 
  */
 class UnsupportedFeatureException : Exception {
 

@@ -16,7 +16,6 @@ import lang.sql;
  * This class : the builder for the index size of a PRIMARY KEY
  * statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class IndexSizeBuilder : ISqlBuilder {
 

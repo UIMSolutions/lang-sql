@@ -2,8 +2,7 @@
 /**
  * CreateIndexTable.php
  *
- * Builds the table part of a CREATE INDEX statement * 
- */
+ * Builds the table part of a CREATE INDEX statement */
 
 module lang.sql.parsers.builders;
 
@@ -13,7 +12,6 @@ import lang.sql;
 /**
  * This class : the builder for the table part of a CREATE INDEX statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class CreateIndexTableBuilder : ISqlBuilder {
 

@@ -3,7 +3,6 @@
  * OrderByExpressionBuilder.php
  *
  * Builds expressions within the ORDER-BY part.
- * 
  */
 
 module lang.sql.parsers.builders;

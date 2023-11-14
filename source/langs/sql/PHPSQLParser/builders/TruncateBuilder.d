@@ -3,7 +3,6 @@
  * TruncateBuilder.php
  *
  * Builds the TRUNCATE statement
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -11,7 +10,6 @@ module lang.sql.parsers.builders;
 /**
  * This class : the builder for the [TRUNCATE] part. You can overwrite
  * all functions to achieve another handling.
- * 
  */
 class TruncateBuilder : ISqlBuilder {
 

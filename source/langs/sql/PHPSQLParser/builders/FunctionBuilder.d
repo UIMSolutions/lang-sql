@@ -2,8 +2,7 @@
 /**
  * FunctionBuilder.php
  *
- * Builds auto statements. * 
- */
+ * Builds auto statements. */
 
 module lang.sql.parsers.builders;
 

@@ -3,7 +3,6 @@
  * SelectBuilder.php
  *
  * Builds the SELECT statement from the [SELECT] field.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -15,7 +14,6 @@ import lang.sql;
 /**
  * This class : the builder for the [SELECT] field. You can overwrite
  * all functions to achieve another handling.
- * 
  */
 class SelectBuilder : ISqlBuilder {
 

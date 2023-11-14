@@ -14,7 +14,6 @@ use SqlParser\utils\ExpressionType;
  * This class : the builder for the index type of a PRIMARY KEY
  * statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class IndexTypeBuilder : ISqlBuilder {
 

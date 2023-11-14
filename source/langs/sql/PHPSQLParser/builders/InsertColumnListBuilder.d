@@ -13,7 +13,6 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for column-list parts of INSERT statements. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class InsertColumnListBuilder : ISqlBuilder {
 

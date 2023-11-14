@@ -2,8 +2,7 @@
 /**
  * CreateIndexTypeBuilder.php
  *
- * Builds index type part of a CREATE INDEX statement. * 
- */
+ * Builds index type part of a CREATE INDEX statement. */
 
 module lang.sql.parsers.builders;
 
@@ -11,7 +10,6 @@ module lang.sql.parsers.builders;
  * This class : the builder for the index type of a CREATE INDEX
  * statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 

@@ -33,8 +33,7 @@
  * 
  
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version   SVN: $Id$ * 
- */
+ * @version   SVN: $Id$ */
 
 module lang.sql.parsers.exceptions;
 use InvalidArgumentException;
@@ -42,7 +41,6 @@ use InvalidArgumentException;
 /**
  * This exception will occur in the parser, if the given SQL statement
  * is not a String type.
- * 
  */
 class InvalidParameterException : InvalidArgumentException {
 

@@ -3,7 +3,6 @@
  * ShowBuilder.php
  *
  * Builds the SHOW statement.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -12,7 +11,6 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 /**
  * This class : the builder for the SHOW statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class ShowBuilder : ISqlBuilder {
 

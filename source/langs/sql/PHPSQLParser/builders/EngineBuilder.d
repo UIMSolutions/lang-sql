@@ -2,8 +2,7 @@
 /**
  * DatabaseBuilder.php
  *
- * Builds the database within the SHOW statement. * 
- */
+ * Builds the database within the SHOW statement. */
 
 module lang.sql.parsers.builders;
 

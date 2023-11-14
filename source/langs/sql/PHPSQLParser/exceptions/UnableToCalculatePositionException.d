@@ -33,8 +33,7 @@
  * 
  
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version   SVN: $Id$ * 
- */
+ * @version   SVN: $Id$ */
 
 module lang.sql.parsers.exceptions;
 use Exception;

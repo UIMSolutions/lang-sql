@@ -32,8 +32,7 @@
  * 
  
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version   SVN: $Id$ * 
- */
+ * @version   SVN: $Id$ */
 
 namespace SqlParser;
 use SqlParser\exceptions\UnsupportedFeatureException;

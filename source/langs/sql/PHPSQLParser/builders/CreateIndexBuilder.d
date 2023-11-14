@@ -4,7 +4,6 @@
  *
  * Builds the CREATE INDEX statement
  *
- * 
  */
 
 module lang.sql.parsers.builders;

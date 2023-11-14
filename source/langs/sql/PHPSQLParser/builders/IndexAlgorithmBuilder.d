@@ -15,7 +15,6 @@ import lang.sql;
 /**
  * This class : the builder for the index algorithm of CREATE INDEX statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class IndexAlgorithmBuilder : ISqlBuilder {
 

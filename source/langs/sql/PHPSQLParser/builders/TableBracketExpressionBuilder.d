@@ -3,7 +3,6 @@
  * TableBracketExpressionBuilder.php
  *
  * Builds the table expressions within the create definitions of CREATE TABLE.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -16,7 +15,6 @@ import lang.sql;
  * This class : the builder for the table expressions 
  * within the create definitions of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class TableBracketExpressionBuilder : ISqlBuilder {
 

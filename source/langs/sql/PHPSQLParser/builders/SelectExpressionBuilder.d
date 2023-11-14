@@ -2,7 +2,6 @@
  * SelectExpressionBuilder.php
  *
  * Builds simple expressions within a SELECT statement.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -14,7 +13,6 @@ import lang.sql;
 /**
  * This class : the builder for simple expressions within a SELECT statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class SelectExpressionBuilder : ISqlBuilder {
 

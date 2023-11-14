@@ -3,7 +3,6 @@
  * PrimaryKeyBuilder.php
  *
  * Builds the PRIMARY KEY statement part of CREATE TABLE.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -13,7 +12,6 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the PRIMARY KEY  statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class PrimaryKeyBuilder : ISqlBuilder {
 

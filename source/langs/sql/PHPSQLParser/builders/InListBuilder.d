@@ -12,7 +12,6 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder list of values for the IN statement. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class InListBuilder : ISqlBuilder {
 

@@ -3,7 +3,6 @@
  * ReplaceBuilder.php
  *
  * Builds the [REPLACE] statement part.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -12,7 +11,6 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 /**
  * This class : the builder for the [REPLACE] statement parts. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class ReplaceBuilder : ISqlBuilder {
 

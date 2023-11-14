@@ -33,8 +33,7 @@
  * 
  
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version   SVN: $Id$ * 
- */
+ * @version   SVN: $Id$ */
 module lang.sql.parsers.exceptions;
 use Exception;
 
@@ -43,7 +42,6 @@ use Exception;
  * method, which can handle the current expr_type field. It could be an error within the parser
  * output or a special case has not been modelled within the creator. Please create an issue
  * in such a case.
- * 
  */
 class UnableToCreateSQLException : Exception {
 

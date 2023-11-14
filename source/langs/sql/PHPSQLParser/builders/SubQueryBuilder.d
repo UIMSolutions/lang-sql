@@ -3,7 +3,6 @@
  * SubQueryBuilder.php
  *
  * Builds the statements for sub-queries.
- * 
  */
 
 module lang.sql.parsers.builders;
@@ -12,7 +11,6 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for sub-queries. 
  * You can overwrite all functions to achieve another handling.
- * 
  */
 class SubQueryBuilder : ISqlBuilder {
 
