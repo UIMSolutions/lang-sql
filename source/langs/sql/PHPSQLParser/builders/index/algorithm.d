@@ -1,10 +1,4 @@
 
-/**
- * IndexAlgorithmBuilder.php
- *
- * Builds index algorithm part of a CREATE INDEX statement.
- */
-
 module langs.sql.PHPSQLParser.builders.index.algorithm;
 
 import lang.sql;
@@ -12,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds index algorithm part of a CREATE INDEX statement.
  * This class : the builder for the index algorithm of CREATE INDEX statement. 
  * You can overwrite all functions to achieve another handling. */
 class IndexAlgorithmBuilder : ISqlBuilder {

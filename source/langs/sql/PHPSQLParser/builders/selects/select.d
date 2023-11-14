@@ -1,16 +1,12 @@
 
-/**
- * SelectBuilder.php
- *
- * Builds the SELECT statement from the [SELECT] field. */
-
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.selects.select;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the SELECT statement from the [SELECT] field. 
  * This class : the builder for the [SELECT] field. You can overwrite
  * all functions to achieve another handling. */
 class SelectBuilder : ISqlBuilder {

@@ -6,7 +6,7 @@
  *
  * */
 
-module langs.sql.PHPSQLParser.builders.create.table;
+module source.langs.sql.PHPSQLParser.builders.create.tables.table;
 
 import lang.sql;
 
@@ -32,7 +32,7 @@ class CreateTableBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        mySql = $parsed["name"];
+        auto mySql = $parsed["name"];
         mySql  ~= this.buildCreateTableDefinition($parsed);
         mySql  ~= this.buildCreateTableOptions($parsed);
         mySql  ~= this.buildCreateTableSelectOption($parsed);

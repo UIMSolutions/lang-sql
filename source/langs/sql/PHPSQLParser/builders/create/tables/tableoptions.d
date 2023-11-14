@@ -5,7 +5,7 @@
  * Builds the table-options statement part of CREATE TABLE.
  * */
 
-module langs.sql.PHPSQLParser.builders.create.tableoptions;
+module source.langs.sql.PHPSQLParser.builders.create.tables.tableoptions;
 
 import lang.sql;
 

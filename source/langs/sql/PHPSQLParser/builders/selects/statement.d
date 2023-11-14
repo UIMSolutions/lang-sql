@@ -1,12 +1,7 @@
+module source.langs.sql.PHPSQLParser.builders.selects.statement;
 
 /**
- * SelectStatement.php
- *
- * Builds the SELECT statement */
-
-module lang.sql.parsers.builders;
-
-/**
+ * Builds the SELECT statement 
  * This class : the builder for the whole Select statement. You can overwrite
  * all functions to achieve another handling. */
 class SelectStatementBuilder : ISqlBuilder {

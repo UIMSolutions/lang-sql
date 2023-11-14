@@ -3,7 +3,7 @@
  *
  * Builds simple expressions within a SELECT statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.selects.selectexpression;
 
 import lang.sql;
 
