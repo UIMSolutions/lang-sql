@@ -3,15 +3,13 @@
  * IndexHintListBuilder.php
  *
  * Builds the index hint list of a table.
-
  */
 
 module source.langs.sql.PHPSQLParser.builders.index.IndexHintListBuilder;
 
 /**
  * This class : the builder for index hint lists. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class IndexHintListBuilder : ISqlBuilder {
 
     auto hasHint($parsed) {

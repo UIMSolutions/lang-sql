@@ -3,7 +3,6 @@
  * GroupByBuilder.php
  *
  * Builds the GROUP-BY clause.
-
  */
 
 module lang.sql.parsers.builders;
@@ -14,8 +13,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the GROUP-BY clause. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class GroupByBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {

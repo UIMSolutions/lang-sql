@@ -6,14 +6,12 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
- * This class processes the USING statements.
- */
+ * This class processes the USING statements. */
 class UsingProcessor : FromProcessor {
 
 }

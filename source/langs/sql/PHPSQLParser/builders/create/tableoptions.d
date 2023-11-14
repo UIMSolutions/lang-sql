@@ -3,8 +3,7 @@
  * CreateTableOptionsBuilder.php
  *
  * Builds the table-options statement part of CREATE TABLE.
- *
- */
+ * */
 
 module source.langs.sql.PHPSQLParser.builders.create.tableoptions;
 
@@ -14,8 +13,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the table-options statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class CreateTableOptionsBuilder : IBuilder {
 
     protected auto buildExpression($parsed) {

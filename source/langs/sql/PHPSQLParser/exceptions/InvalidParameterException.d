@@ -40,8 +40,7 @@ use InvalidArgumentException;
 
 /**
  * This exception will occur in the parser, if the given SQL statement
- * is not a String type.
- */
+ * is not a String type. */
 class InvalidParameterException : InvalidArgumentException {
 
     protected $argument;

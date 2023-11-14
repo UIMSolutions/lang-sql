@@ -3,7 +3,6 @@
  * InsertColumnListBuilder.php
  *
  * Builds column-list parts of INSERT statements.
-
  */
 
 module lang.sql.parsers.builders;
@@ -12,8 +11,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for column-list parts of INSERT statements. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class InsertColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn($parsed) {

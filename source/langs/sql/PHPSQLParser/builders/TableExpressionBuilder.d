@@ -2,16 +2,14 @@
 /**
  * TableExpressionBuilder.php
  *
- * Builds the table name/join options.
- */
+ * Builds the table name/join options. */
 
 module lang.sql.parsers.builders;
 use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for the table name and join options. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class TableExpressionBuilder : ISqlBuilder {
 
     protected auto buildFROM($parsed) {

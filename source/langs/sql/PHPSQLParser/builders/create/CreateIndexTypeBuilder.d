@@ -12,8 +12,7 @@ import lang.sql;
 /**
  * This class : the builder for the index type of a CREATE INDEX
  * statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
     auto build(array $parsed) {

@@ -41,8 +41,7 @@ use Exception;
 /**
  * This exception will occur, if the PositionCalculator can not find the token 
  * defined by a base_expr field within the original SQL statement. Please create 
- * an issue in such a case, it is an application error.
- */
+ * an issue in such a case, it is an application error. */
 class UnableToCalculatePositionException : Exception {
 
     protected $needle;

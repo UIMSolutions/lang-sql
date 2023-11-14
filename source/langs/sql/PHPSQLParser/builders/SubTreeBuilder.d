@@ -6,8 +6,7 @@
  *
  *
 
- *
- */
+ * */
 
 module source.langs.sql.PHPSQLParser.builders.SubTreeBuilder;
 use SqlParser\exceptions\UnableToCreateSQLException;
@@ -15,7 +14,6 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 /**
  * This class : the builder for [sub_tree] fields.
  * You can overwrite all functions to achieve another handling.
-
  */
 class SubTreeBuilder : ISqlBuilder {
 

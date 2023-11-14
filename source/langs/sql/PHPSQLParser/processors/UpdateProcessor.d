@@ -6,14 +6,12 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
- * This class processes the UPDATE statements.
- */
+ * This class processes the UPDATE statements. */
 class UpdateProcessor : FromProcessor {
 
 }

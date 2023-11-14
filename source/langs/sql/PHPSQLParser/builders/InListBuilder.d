@@ -3,7 +3,6 @@
  * InListBuilder.php
  *
  * Builds lists of values for the IN statement.
-
  */
 
 module lang.sql.parsers.builders;
@@ -11,8 +10,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder list of values for the IN statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class InListBuilder : ISqlBuilder {
 
     protected auto buildSubTree($parsed, $delim) {

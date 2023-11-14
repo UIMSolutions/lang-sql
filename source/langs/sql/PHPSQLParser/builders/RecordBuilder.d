@@ -2,8 +2,7 @@
 /**
  * RecordBuilder.php
  *
- * Builds the records within the INSERT statement.
- */
+ * Builds the records within the INSERT statement. */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;
@@ -11,8 +10,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for the records within INSERT statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class RecordBuilder : ISqlBuilder {
 
     protected auto buildOperator($parsed) {

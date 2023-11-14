@@ -2,16 +2,14 @@
 /**
  * OrderByReservedBuilder.php
  *
- * Builds reserved keywords within the ORDER-BY part.
- */
+ * Builds reserved keywords within the ORDER-BY part. */
 
 module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for reserved keywords within the ORDER-BY part. 
  * It must contain the direction. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class OrderByReservedBuilder : ReservedBuilder {
 
     protected auto buildDirection($parsed) {

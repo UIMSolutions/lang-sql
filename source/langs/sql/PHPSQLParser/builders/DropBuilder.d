@@ -2,8 +2,7 @@
 /**
  * DropBuilder.php
  *
- * Builds the CREATE statement
- */
+ * Builds the CREATE statement */
 
 module lang.sql.parsers.builders;
 
@@ -13,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the [DROP] part. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class DropBuilder : ISqlBuilder {
 
 	protected auto buildDropIndex( $parsed ) {

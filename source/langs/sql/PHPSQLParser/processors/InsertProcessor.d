@@ -6,15 +6,13 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the INSERT statements.
-
  */
 class InsertProcessor : AbstractProcessor {
 

@@ -6,14 +6,12 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
  * This class processes the DESCRIBE statements.
-
  */
 class DescribeProcessor : ExplainProcessor {
 

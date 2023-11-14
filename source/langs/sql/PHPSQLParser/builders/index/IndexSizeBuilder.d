@@ -3,7 +3,6 @@
  * IndexSizeBuilder.php
  *
  * Builds index size part of a PRIMARY KEY statement part of CREATE TABLE.
-
  */
 
 module lang.sql.parsers.builders;
@@ -15,8 +14,7 @@ import lang.sql;
 /**
  * This class : the builder for the index size of a PRIMARY KEY
  * statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class IndexSizeBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {

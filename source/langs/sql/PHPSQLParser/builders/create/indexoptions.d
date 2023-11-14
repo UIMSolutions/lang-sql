@@ -3,8 +3,7 @@
  * CreateIndexOptionsBuilder.php
  *
  * Builds index options part of a CREATE INDEX statement.
- *
- */
+ * */
 
 module source.langs.sql.PHPSQLParser.builders.create.indexoptions;
 
@@ -14,8 +13,7 @@ import lang.sql;
 /**
  * This class : the builder for the index options of a CREATE INDEX
  * statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
     protected auto buildIndexParser($parsed) {

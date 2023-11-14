@@ -2,8 +2,7 @@
 /**
  * UpdateBuilder.php
  *
- * Builds the UPDATE statement parts.
- */
+ * Builds the UPDATE statement parts. */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;
@@ -11,8 +10,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for the UPDATE statement parts. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class UpdateBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $idx) {

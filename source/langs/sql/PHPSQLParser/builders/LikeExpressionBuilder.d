@@ -2,8 +2,7 @@
 /**
  * LikeExpressionBuilder.php
  *
- * Builds the LIKE keyword within parenthesis.
- */
+ * Builds the LIKE keyword within parenthesis. */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;
@@ -13,8 +12,7 @@ use SqlParser\utils\ExpressionType;
  * This class : the builder for the (LIKE) keyword within a 
  * CREATE TABLE statement. There are difference to LIKE (without parenthesis), 
  * the latter is a top-level element of the output array.
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class LikeExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {

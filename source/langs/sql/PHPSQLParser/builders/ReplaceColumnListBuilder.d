@@ -2,8 +2,7 @@
 /**
  * ReplaceColumnListBuilder.php
  *
- * Builds column-list parts of REPLACE statements.
- */
+ * Builds column-list parts of REPLACE statements. */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;
@@ -11,8 +10,7 @@ use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for column-list parts of REPLACE statements. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class ReplaceColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn($parsed) {

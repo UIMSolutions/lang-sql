@@ -3,7 +3,6 @@
  * IndexTypeBuilder.php
  *
  * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
-
  */
 
 module lang.sql.parsers.builders;
@@ -13,8 +12,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * This class : the builder for the index type of a PRIMARY KEY
  * statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class IndexTypeBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {

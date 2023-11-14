@@ -2,16 +2,14 @@
 /**
  * RenameStatement.php
  *
- * Builds the RENAME statement
- */
+ * Builds the RENAME statement */
 
 module lang.sql.parsers.builders;
 use SqlParser\exceptions\UnableToCreateSQLException;
 
 /**
  * This class : the builder for the RENAME statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class RenameStatementBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {

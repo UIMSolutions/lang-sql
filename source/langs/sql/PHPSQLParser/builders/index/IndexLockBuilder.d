@@ -3,7 +3,6 @@
  * IndexLockBuilder.php
  *
  * Builds index lock part of a CREATE INDEX statement.
-
  */
 
 module lang.sql.parsers.builders;
@@ -14,8 +13,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the index lock of CREATE INDEX statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class IndexLockBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {

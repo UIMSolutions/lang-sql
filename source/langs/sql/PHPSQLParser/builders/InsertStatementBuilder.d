@@ -3,15 +3,13 @@
  * InsertStatement.php
  *
  * Builds the INSERT statement
-
  */
 
 module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Insert statement. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class InsertStatementBuilder : ISqlBuilder {
 
     protected auto buildVALUES($parsed) {

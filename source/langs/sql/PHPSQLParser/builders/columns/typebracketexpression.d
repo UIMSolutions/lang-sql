@@ -2,7 +2,6 @@
  * ColumnTypeExpressionBuilder.php
  *
  * Builds the bracket expressions within a column type.
-
  */
 
 module langs.sql.PHPSQLParser.builders.columns.typebracketexpression;
@@ -13,7 +12,6 @@ import lang.sql;
 /**
  * This class : the builder for bracket expressions within a column type. 
  * You can overwrite all functions to achieve another handling.
-
  */
 class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
 

@@ -3,8 +3,7 @@
  * FromBuilder.php
  *
  * Builds the FROM statement
- *
- */
+ * */
 
 module lang.sql.parsers.builders;
 
@@ -15,7 +14,6 @@ import lang.sql;
 /**
  * This class : the builder for the [FROM] part. You can overwrite
  * all functions to achieve another handling.
-
  */
 class FromBuilder : ISqlBuilder {
 

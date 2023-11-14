@@ -49,8 +49,7 @@ import lang.sql;
  *
  * @author  oohook <oohook@163.com>
  
- *  
- */
+ *   */
 class GroupByExpressionBuilder : ISqlBuilder {
 
 	protected auto buildColRef($parsed) {

@@ -6,14 +6,12 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
  * This class processes the incoming sql string.
-
  */
 class DefaultProcessor : AbstractProcessor {
 

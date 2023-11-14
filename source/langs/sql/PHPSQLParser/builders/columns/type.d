@@ -2,8 +2,7 @@
 /**
  * ColumnTypeBuilder.php
  *
- * Builds the column type statement part of CREATE TABLE.
- */
+ * Builds the column type statement part of CREATE TABLE. */
 
 module langs.sql.PHPSQLParser.builders.columns.type;
 
@@ -13,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the column type statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class ColumnTypeBuilder : ISqlBuilder {
 
     protected auto buildColumnTypeBracketExpression($parsed) {

@@ -12,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the index comment of CREATE INDEX statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class IndexCommentBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {

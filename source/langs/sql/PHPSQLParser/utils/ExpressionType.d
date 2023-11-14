@@ -3,15 +3,13 @@
  * ExpressionType.php
  *
  * Defines all values, which are possible for the [expr_type] field 
- * within the parser output.
- */
+ * within the parser output. */
 
 module lang.sql.parsers.utils;
 
 /**
  * This class defines all values, which are possible for the [expr_type] field 
  * within the parser output.
-
  */
 class ExpressionType {
 

@@ -6,15 +6,13 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
  * This class processes the DELETE statements.
  * You can overwrite all functions to achieve another handling.
-
  */
 class DeleteProcessor : AbstractProcessor {
 

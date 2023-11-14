@@ -3,7 +3,6 @@
  * OrderByAliasBuilder.php
  *
  * Builds an alias within an ORDER-BY clause.
-
  */
 
 module lang.sql.parsers.builders;
@@ -14,8 +13,7 @@ import lang.sql;
 
 /**
  * This class : the builder for an alias within the ORDER-BY clause. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class OrderByAliasBuilder : ISqlBuilder {
 
     protected auto buildDirection($parsed) {

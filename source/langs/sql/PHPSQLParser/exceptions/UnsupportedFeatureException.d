@@ -41,8 +41,7 @@ use Exception;
  * This exception will occur in the PHPSQLCreator, if the creator finds
  * a field name, which is unknown. The developers have created some 
  * additional output of the parser, but the creator class has not been 
- * enhanced. Please open an issue in such a case.
- */
+ * enhanced. Please open an issue in such a case. */
 class UnsupportedFeatureException : Exception {
 
     protected $key;

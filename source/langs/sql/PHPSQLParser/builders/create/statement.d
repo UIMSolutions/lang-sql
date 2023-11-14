@@ -11,8 +11,7 @@ import lang.sql;
 @safe:
 /**
  * This class : the builder for the whole Create statement. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class CreateStatementBuilder : ISqlBuilder {
 
     protected auto buildLIKE($parsed) {

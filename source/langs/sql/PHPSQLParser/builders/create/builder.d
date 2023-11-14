@@ -1,8 +1,7 @@
 /**
  * CreateBuilder.php
  *
- * Builds the CREATE statement
- */
+ * Builds the CREATE statement */
 
 module langs.sql.PHPSQLParser.builders.create.builder;
 
@@ -11,8 +10,7 @@ import lang.sql;
 @safe:
 /**
  * This class : the builder for the [CREATE] part. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class CreateBuilder : ISqlBuilder {
 
     protected auto buildCreateTable($parsed) {

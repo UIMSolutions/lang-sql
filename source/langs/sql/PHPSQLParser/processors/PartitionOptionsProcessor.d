@@ -7,15 +7,13 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;
 
 /**
  * This class processes the PARTITION BY statements within CREATE TABLE.
-
  */
 class PartitionOptionsProcessor : AbstractProcessor {
 

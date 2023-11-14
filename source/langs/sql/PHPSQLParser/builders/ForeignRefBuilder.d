@@ -2,8 +2,7 @@
 /**
  * ForeignRefBuilder.php
  *
- * Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE.
- */
+ * Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE. */
 
 module lang.sql.parsers.builders;
 
@@ -14,8 +13,7 @@ import lang.sql;
 /**
  * This class : the builder for the FOREIGN KEY REFERENCES statement
  * part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class ForeignRefBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed) {

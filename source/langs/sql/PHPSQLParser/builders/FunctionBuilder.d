@@ -12,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the builder for auto calls. 
- * You can overwrite all functions to achieve another handling.  
- */
+ * You can overwrite all functions to achieve another handling.   */
 class FunctionBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {

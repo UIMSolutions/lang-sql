@@ -3,7 +3,6 @@
  * OrderByBracketExpressionBuilder.php
  *
  * Builds bracket-expressions within the ORDER-BY part.
-
  */
 
 module lang.sql.parsers.builders;
@@ -11,8 +10,7 @@ module lang.sql.parsers.builders;
 /**
  * This class : the builder for bracket-expressions within the ORDER-BY part. 
  * It must contain the direction. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
 
     protected auto buildDirection($parsed) {

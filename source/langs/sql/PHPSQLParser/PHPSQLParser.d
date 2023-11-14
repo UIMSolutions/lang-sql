@@ -6,7 +6,6 @@
  * A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
  *
  *
-
  */
 
 namespace SqlParser;
@@ -19,8 +18,7 @@ use SqlParser\utils\SqlParserConstants;
  *
  * @author  Justin Swanhart <greenlion@gmail.com>
  * @author  André Rothe <arothe@phosco.info>
- 
- */
+  */
 class SqlParser {
 
     $parsed;

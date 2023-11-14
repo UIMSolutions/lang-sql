@@ -2,8 +2,7 @@
 /**
  * BracketStatementBuilder.php
  *
- * Builds the parentheses around a statement.
- */
+ * Builds the parentheses around a statement. */
 
 module lang.sql.parsers.builders;
 

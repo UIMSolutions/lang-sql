@@ -3,7 +3,6 @@
  * LikeBuilder.php
  *
  * Builds the LIKE statement part of a CREATE TABLE statement.
-
  */
 
 module lang.sql.parsers.builders;
@@ -11,8 +10,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 
 /**
  * This class : the builder for the LIKE statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class LikeBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {

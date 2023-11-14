@@ -41,8 +41,7 @@ use Exception;
  * This exception will occur within the PHPSQLCreator, if the creator can not find a
  * method, which can handle the current expr_type field. It could be an error within the parser
  * output or a special case has not been modelled within the creator. Please create an issue
- * in such a case.
- */
+ * in such a case. */
 class UnableToCreateSQLException : Exception {
 
     protected $part;

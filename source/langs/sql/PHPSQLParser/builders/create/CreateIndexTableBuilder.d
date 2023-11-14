@@ -11,8 +11,7 @@ import lang.sql;
 @safe:
 /**
  * This class : the builder for the table part of a CREATE INDEX statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class CreateIndexTableBuilder : ISqlBuilder {
 
     protected auto buildColumnList($parsed) {

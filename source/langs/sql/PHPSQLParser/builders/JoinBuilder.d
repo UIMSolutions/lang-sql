@@ -46,8 +46,7 @@ module lang.sql.parsers.builders;
  
  * @author  George Schneeloch <noisecapella@gmail.com>
  
- *  
- */
+ *   */
 class JoinBuilder {
 
     auto build($parsed) {

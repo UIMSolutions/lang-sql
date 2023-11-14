@@ -1,8 +1,7 @@
 /**
  * DeleteBuilder.php
  *
- * Builds the DELETE statement
- */
+ * Builds the DELETE statement */
 
 module lang.sql.parsers.builders;
 
@@ -11,8 +10,7 @@ import lang.sql;
 @safe:
 /**
  * This class : the builder for the [DELETE] part. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class DeleteBuilder : ISqlBuilder {
 
   auto build(array$parsed) {

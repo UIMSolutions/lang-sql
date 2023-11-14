@@ -2,8 +2,7 @@
 /**
  * IndexKeyBuilder.php
  *
- * Builds index key part of a CREATE TABLE statement.
- */
+ * Builds index key part of a CREATE TABLE statement. */
 
 module lang.sql.parsers.builders;
 
@@ -13,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the index key part of a CREATE TABLE statement. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class FulltextIndexBuilder : IBuilder {
 
     protected auto buildReserved($parsed) {

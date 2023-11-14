@@ -3,7 +3,6 @@
  * HavingBuilder.php
  *
  * Builds the HAVING part.
-
  */
 
 module lang.sql.parsers.builders;
@@ -19,8 +18,7 @@ import lang.sql;
  * @author  Ian Barker <ian@theorganicagency.com>
  
  
- *  
- */
+ *   */
 class HavingBuilder : WhereBuilder {
 
     protected auto buildAliasReference($parsed) {

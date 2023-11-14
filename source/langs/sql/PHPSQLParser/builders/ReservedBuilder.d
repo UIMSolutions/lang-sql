@@ -2,16 +2,14 @@
 /**
  * ReservedBuilder.php
  *
- * Builds reserved keywords.
- */
+ * Builds reserved keywords. */
 
 module lang.sql.parsers.builders;
 use SqlParser\utils\ExpressionType;
 
 /**
  * This class : the builder for reserved keywords.
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class ReservedBuilder : ISqlBuilder {
 
     auto isReserved($parsed) {

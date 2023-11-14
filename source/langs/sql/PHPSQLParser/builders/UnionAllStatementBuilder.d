@@ -7,8 +7,7 @@ module lang.sql.parsers.builders;
  *
  * @author  George Schneeloch <george_schneeloch@hms.harvard.edu>
  
- *
- */
+ * */
 class UnionAllStatementBuilder : ISqlBuilder {
 
 

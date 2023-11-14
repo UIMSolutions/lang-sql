@@ -2,8 +2,7 @@
 /**
  * DropExpressionBuilder.php
  *
- * Builds the object list of a DROP statement.
- */
+ * Builds the object list of a DROP statement. */
 
 module lang.sql.parsers.builders;
 
@@ -13,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the object list of a DROP statement.
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class DropExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {

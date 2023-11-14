@@ -2,15 +2,13 @@
 /**
  * TruncateStatementBuilder.php
  *
- * Builds the TRUNCATE statement
- */
+ * Builds the TRUNCATE statement */
 
 module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Truncate statement. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class TruncateStatementBuilder : ISqlBuilder {
 
     protected auto buildTRUNCATE($parsed) {

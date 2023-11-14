@@ -3,7 +3,6 @@
  * InsertBuilder.php
  *
  * Builds the [INSERT] statement part.
-
  */
 
 module lang.sql.parsers.builders;
@@ -11,8 +10,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 
 /**
  * This class : the builder for the [INSERT] statement parts. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class InsertBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed) {

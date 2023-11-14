@@ -6,14 +6,12 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
- * This class processes the REPLACE statements.
- */
+ * This class processes the REPLACE statements. */
 class ReplaceProcessor : InsertProcessor {
 
     auto process($tokenList, $token_category = 'REPLACE') {

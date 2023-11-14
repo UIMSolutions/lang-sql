@@ -6,8 +6,7 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;
@@ -16,7 +15,6 @@ use SqlParser\utils\SqlParserConstants;
 
 /**
  * This class processes expression lists.
-
  */
 class ExpressionListProcessor : AbstractProcessor {
 

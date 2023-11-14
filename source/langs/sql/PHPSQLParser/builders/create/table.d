@@ -4,8 +4,7 @@
  *
  * Builds the CREATE TABLE statement
  *
- *
- */
+ * */
 
 module source.langs.sql.PHPSQLParser.builders.create.table;
 
@@ -14,8 +13,7 @@ import lang.sql;
 @safe:
 /**
  * This class : the builder for the CREATE TABLE statement. You can overwrite
- * all functions to achieve another handling.  
- */
+ * all functions to achieve another handling.   */
 class CreateTableBuilder : ISqlBuilder {
 
     protected auto buildCreateTableDefinition($parsed) {

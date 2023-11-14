@@ -36,8 +36,7 @@
  * @copyright 2010-2014 Justin Swanhart and André Rothe
  * @license   http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
  * @version   SVN: $Id$
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;
@@ -49,8 +48,7 @@ use SqlParser\utils\ExpressionType;
  * @author  Marco Th. <marco64th@gmail.com>
  * @author  George Schneeloch <noisecapella@gmail.com>
  
- *
- */
+ * */
 class FromProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {

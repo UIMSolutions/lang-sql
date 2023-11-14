@@ -1,16 +1,14 @@
 
 /**
  * @author     mfris
- *
- */
+ * */
 
 namespace SqlParser;
 
 /**
  *
  * @author  mfris
- * @package SqlParser
- */
+ * @package SqlParser */
 final class Options
 {
 

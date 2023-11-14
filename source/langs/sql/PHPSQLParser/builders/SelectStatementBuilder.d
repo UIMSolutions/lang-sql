@@ -2,15 +2,13 @@
 /**
  * SelectStatement.php
  *
- * Builds the SELECT statement
- */
+ * Builds the SELECT statement */
 
 module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Select statement. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class SelectStatementBuilder : ISqlBuilder {
 
     protected auto buildSELECT($parsed) {

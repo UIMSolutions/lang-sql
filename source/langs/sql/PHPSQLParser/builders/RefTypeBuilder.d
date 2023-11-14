@@ -2,8 +2,7 @@
 /**
  * RefTypeBuilder.php
  *
- * Builds reference type within a JOIN.
- */
+ * Builds reference type within a JOIN. */
 
 module lang.sql.parsers.builders;
 
@@ -13,8 +12,7 @@ import lang.sql;
 
 /**
  * This class : the references type within a JOIN. 
- * You can overwrite all functions to achieve another handling.
- */
+ * You can overwrite all functions to achieve another handling. */
 class RefTypeBuilder {
 
     auto build($parsed) {

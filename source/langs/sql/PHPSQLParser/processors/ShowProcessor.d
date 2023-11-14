@@ -27,8 +27,7 @@
  * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.
- */
+ * DAMAGE. */
 
 module lang.sql.parsers.processors;
 use SqlParser\Options;
@@ -40,8 +39,7 @@ use SqlParser\utils\SqlParserConstants;
  * This class processes the SHOW statements.
  *
  * @author arothe
- *
- */
+ * */
 class ShowProcessor : AbstractProcessor {
 
     private $limitProcessor;

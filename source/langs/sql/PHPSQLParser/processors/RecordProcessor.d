@@ -7,14 +7,12 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
 /**
  * This class processes records of an INSERT statement.
-
  */
 class RecordProcessor : AbstractProcessor {
 

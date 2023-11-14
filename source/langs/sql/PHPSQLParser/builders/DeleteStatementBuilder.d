@@ -2,15 +2,13 @@
 /**
  * DeleteStatementBuilder.php
  *
- * Builds the DELETE statement
- */
+ * Builds the DELETE statement */
 
 module lang.sql.parsers.builders;
 
 /**
  * This class : the builder for the whole Delete statement. You can overwrite
- * all functions to achieve another handling.
- */
+ * all functions to achieve another handling. */
 class DeleteStatementBuilder : ISqlBuilder {
     protected auto buildWHERE($parsed) {
         auto myBuilder = new WhereBuilder();

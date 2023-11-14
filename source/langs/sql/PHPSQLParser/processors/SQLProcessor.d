@@ -6,8 +6,7 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 
@@ -17,8 +16,7 @@ module lang.sql.parsers.processors;
  
  * @author  Marco Th. <marco64th@gmail.com>
  
- *
- */
+ * */
 class SQLProcessor : SQLChunkProcessor {
 
     /**

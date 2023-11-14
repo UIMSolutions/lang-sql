@@ -7,15 +7,13 @@
  *
  *
 
- *
- */
+ * */
 
 module lang.sql.parsers.processors;
 use SqlParser\utils\ExpressionType;
 
 /**
- * This class processes the SUBPARTITION statements within CREATE TABLE.
- */
+ * This class processes the SUBPARTITION statements within CREATE TABLE. */
 class SubpartitionDefinitionProcessor : AbstractProcessor {
 
     protected auto getReservedType($token) {
