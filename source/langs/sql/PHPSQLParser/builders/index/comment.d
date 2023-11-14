@@ -4,7 +4,7 @@
  *
  * Builds index comment part of a CREATE INDEX statement. */
 
-module source.langs.sql.PHPSQLParser.builders.index.IndexCommentBuilder;
+module langs.sql.PHPSQLParser.builders.index.IndexCommentBuilder;
 
 import lang.sql;
 

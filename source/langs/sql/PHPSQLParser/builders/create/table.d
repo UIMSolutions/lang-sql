@@ -6,7 +6,7 @@
  *
  * */
 
-module source.langs.sql.PHPSQLParser.builders.create.table;
+module langs.sql.PHPSQLParser.builders.create.table;
 
 import lang.sql;
 

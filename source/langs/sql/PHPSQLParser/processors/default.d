@@ -5,7 +5,7 @@
  * This file : the processor the unparsed sql string given by the user.
  */
 
-module source.langs.sql.PHPSQLParser.processors.default;
+module langs.sql.PHPSQLParser.processors.default;
 
 /**
  * This class processes the incoming sql string.

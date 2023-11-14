@@ -4,7 +4,7 @@
  *
  * Builds the records within the INSERT statement. */
 
-module source.langs.sql.PHPSQLParser.builders.record;
+module langs.sql.PHPSQLParser.builders.record;
 
 import lang.sql;
 

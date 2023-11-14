@@ -5,7 +5,7 @@
  * This file : the processor for the statement options.
  */
 
-module source.langs.sql.PHPSQLParser.processors.options;
+module langs.sql.PHPSQLParser.processors.options;
 
 import lang.sql;
 

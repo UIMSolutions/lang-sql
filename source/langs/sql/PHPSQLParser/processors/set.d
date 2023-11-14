@@ -5,7 +5,7 @@
  * This file : the processor for the SET statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.set;
+module langs.sql.PHPSQLParser.processors.set;
 
 import lang.sql;
 

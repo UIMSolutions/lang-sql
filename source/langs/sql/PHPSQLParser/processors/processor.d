@@ -5,7 +5,7 @@
  * This file : an abstract processor, which : some helper functions.
  */
 
-module source.langs.sql.PHPSQLParser.processors.processor;
+module langs.sql.PHPSQLParser.processors.processor;
 
 import lang.sql;
 

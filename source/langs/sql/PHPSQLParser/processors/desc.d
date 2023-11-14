@@ -5,7 +5,7 @@
  * This file : the processor for the DESC statements, which is a short form of DESCRIBE.
 . */
 
-module source.langs.sql.PHPSQLParser.processors.desc;
+module langs.sql.PHPSQLParser.processors.desc;
 
 import lang.sql;
 

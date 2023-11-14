@@ -5,7 +5,7 @@
  * This file : the processor for the DUPLICATE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.duplicate;
+module langs.sql.PHPSQLParser.processors.duplicate;
 
 // This class processes the DUPLICATE statements.
 class DuplicateProcessor : SetProcessor {

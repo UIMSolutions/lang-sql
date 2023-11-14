@@ -5,7 +5,7 @@
  * Processes the DELETE statement parts and splits multi-table deletes.
  */
 
-module source.langs.sql.PHPSQLParser.processors.delete;
+module langs.sql.PHPSQLParser.processors.delete;
 
 /**
  * This class processes the DELETE statements.

@@ -5,7 +5,7 @@
  * Builds the index hint list of a table.
  */
 
-module source.langs.sql.PHPSQLParser.builders.index.IndexHintListBuilder;
+module langs.sql.PHPSQLParser.builders.index.IndexHintListBuilder;
 
 /**
  * This class : the builder for index hint lists. 

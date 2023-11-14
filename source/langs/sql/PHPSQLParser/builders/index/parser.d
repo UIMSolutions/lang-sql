@@ -5,7 +5,7 @@
  * Builds index parser part of a PRIMARY KEY statement part of CREATE TABLE.
  */
 
-module source.langs.sql.PHPSQLParser.builders.index.parser;
+module langs.sql.PHPSQLParser.builders.index.parser;
 
 import lang.sql;
 

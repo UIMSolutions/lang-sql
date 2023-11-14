@@ -4,7 +4,7 @@
  *
  * Builds unary operators. */
 
-module source.langs.sql.PHPSQLParser.builders.sign;
+module langs.sql.PHPSQLParser.builders.sign;
 
 import lang.sql;
 

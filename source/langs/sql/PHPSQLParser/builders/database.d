@@ -4,7 +4,7 @@
  *
  * Builds the database within the SHOW statement. */
 
-module source.langs.sql.PHPSQLParser.builders.database;
+module langs.sql.PHPSQLParser.builders.database;
 
 import lang.sql;
 

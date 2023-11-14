@@ -6,7 +6,7 @@
  * for an INSERT statement.
  */
 
-module source.langs.sql.PHPSQLParser.processors.record;
+module langs.sql.PHPSQLParser.processors.record;
 
 /**
  * This class processes records of an INSERT statement.

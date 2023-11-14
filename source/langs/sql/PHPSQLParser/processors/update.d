@@ -5,7 +5,7 @@
  * This file : the processor for the UPDATE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.update;
+module langs.sql.PHPSQLParser.processors.update;
 
 import lang.sql;
 

@@ -5,7 +5,7 @@
  * This file : the processor for the RENAME statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.rename;
+module langs.sql.PHPSQLParser.processors.rename;
 
 import lang.sql;
 

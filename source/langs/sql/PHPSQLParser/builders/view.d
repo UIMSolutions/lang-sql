@@ -2,7 +2,7 @@
 /**
  * Builds the view within the DROP statement. */
 
-module source.langs.sql.PHPSQLParser.builders.view;
+module langs.sql.PHPSQLParser.builders.view;
 
 import lang.sql;
 

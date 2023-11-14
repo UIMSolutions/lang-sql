@@ -5,7 +5,7 @@
  * This file : the processor for the SHOW statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.show;
+module langs.sql.PHPSQLParser.processors.show;
 
 import lang.sql;
 

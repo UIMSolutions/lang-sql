@@ -5,7 +5,7 @@
  * This file : the processor for expression lists.
  */
 
-module source.langs.sql.PHPSQLParser.processors.expressionlist;
+module langs.sql.PHPSQLParser.processors.expressionlist;
 
 import lang.sql;
 

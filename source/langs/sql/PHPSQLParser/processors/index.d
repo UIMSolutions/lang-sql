@@ -5,7 +5,7 @@
  * This file : the processor for the INDEX statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.index;
+module langs.sql.PHPSQLParser.processors.index;
 
 import lang.sql;
 

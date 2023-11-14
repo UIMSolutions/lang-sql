@@ -5,7 +5,7 @@
  * This file : the processor for the UNION statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.union;
+module langs.sql.PHPSQLParser.processors.union;
 
 import lang.sql;
 

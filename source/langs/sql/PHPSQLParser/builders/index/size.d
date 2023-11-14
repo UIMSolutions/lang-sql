@@ -5,7 +5,7 @@
  * Builds index size part of a PRIMARY KEY statement part of CREATE TABLE.
  */
 
-module source.langs.sql.PHPSQLParser.builders.index.size;
+module langs.sql.PHPSQLParser.builders.index.size;
 
 import lang.sql;
 

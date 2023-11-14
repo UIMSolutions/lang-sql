@@ -5,7 +5,7 @@
  * This file : the processor for the create definition within the TABLE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.createdefinition;
+module langs.sql.PHPSQLParser.processors.createdefinition;
 
 import lang.sql;
 

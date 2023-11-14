@@ -5,7 +5,7 @@
  * Builds the CREATE INDEX statement
  * */
 
-module source.langs.sql.PHPSQLParser.builders.create.index;
+module langs.sql.PHPSQLParser.builders.create.index;
 
 import lang.sql;
 

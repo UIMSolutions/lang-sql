@@ -5,7 +5,7 @@
  * This file : the processor for the EXPLAIN statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.explain;
+module langs.sql.PHPSQLParser.processors.explain;
 
 import lang.sql;
 

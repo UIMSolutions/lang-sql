@@ -5,7 +5,7 @@
  * This file : the processor for the FROM statement.
  * */
 
-module source.langs.sql.PHPSQLParser.processors.from;
+module langs.sql.PHPSQLParser.processors.from;
 
 import lang.sql;
 

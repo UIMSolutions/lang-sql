@@ -5,7 +5,7 @@
  * This file : the processor for the REPLACE statements. 
  */
 
-module source.langs.sql.PHPSQLParser.processors.replace;
+module langs.sql.PHPSQLParser.processors.replace;
 
 import lang.sql;
 

@@ -5,7 +5,7 @@
  * Builds the data-type statement part of CREATE TABLE.
  * */
 
-module source.langs.sql.PHPSQLParser.builders.datatype;
+module langs.sql.PHPSQLParser.builders.datatype;
 
 import lang.sql;
 

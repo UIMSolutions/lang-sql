@@ -5,7 +5,7 @@
  * This file : the processor for the DROP statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.drop;
+module langs.sql.PHPSQLParser.processors.drop;
 
 import lang.sql;
 

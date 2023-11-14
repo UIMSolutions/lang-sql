@@ -5,7 +5,7 @@
  * This file : the processor for the TABLE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.table;
+module langs.sql.PHPSQLParser.processors.table;
 
 import lang.sql;
 

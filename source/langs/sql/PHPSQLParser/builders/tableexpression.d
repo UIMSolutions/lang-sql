@@ -4,7 +4,7 @@
  *
  * Builds the table name/join options. */
 
-module source.langs.sql.PHPSQLParser.builders.tableexpression;
+module langs.sql.PHPSQLParser.builders.tableexpression;
 
 import lang.sql;
 

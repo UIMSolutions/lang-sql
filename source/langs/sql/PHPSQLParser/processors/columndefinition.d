@@ -5,7 +5,7 @@
  * This file : the processor for column definition part of a CREATE TABLE statement.
  */
 
-module source.langs.sql.PHPSQLParser.processors.columndefinition;
+module langs.sql.PHPSQLParser.processors.columndefinition;
 
 import lang.sql;
 

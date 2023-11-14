@@ -5,7 +5,7 @@
  * This file : the processor for the DESCRIBE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.describe;
+module langs.sql.PHPSQLParser.processors.describe;
 
 import lang.sql;
 

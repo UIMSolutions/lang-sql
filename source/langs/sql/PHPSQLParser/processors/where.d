@@ -5,7 +5,7 @@
  * This file : the processor for the WHERE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.where;
+module langs.sql.PHPSQLParser.processors.where;
 
 import lang.sql;
 

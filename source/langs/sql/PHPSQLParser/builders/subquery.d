@@ -4,7 +4,7 @@
  *
  * Builds the statements for sub-queries. */
 
-module source.langs.sql.PHPSQLParser.builders.subquery;
+module langs.sql.PHPSQLParser.builders.subquery;
 
 import lang.sql;
 

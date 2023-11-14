@@ -4,7 +4,7 @@
  *
  * Builds an user variable. */
 
-module source.langs.sql.PHPSQLParser.builders.uservariable;
+module langs.sql.PHPSQLParser.builders.uservariable;
 
 import lang.sql;
 

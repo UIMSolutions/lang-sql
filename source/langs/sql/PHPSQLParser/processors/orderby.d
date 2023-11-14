@@ -5,7 +5,7 @@
  * This file : the processor for the ORDER-BY statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.orderby;
+module langs.sql.PHPSQLParser.processors.orderby;
 
 import lang.sql;
 

@@ -5,7 +5,7 @@
  * This file : the processor for the GROUP-BY statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.groupby;
+module langs.sql.PHPSQLParser.processors.groupby;
 
 /**
  * 

@@ -5,7 +5,7 @@
  * Builds the WHERE part.
  */
 
-module source.langs.sql.PHPSQLParser.builders.where;
+module langs.sql.PHPSQLParser.builders.where;
 
 import lang.sql;
 

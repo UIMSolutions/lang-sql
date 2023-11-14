@@ -3,7 +3,7 @@
  *
  * Builds the DELETE statement */
 
-module source.langs.sql.PHPSQLParser.builders.delete;
+module langs.sql.PHPSQLParser.builders.delete;
 
 import lang.sql;
 

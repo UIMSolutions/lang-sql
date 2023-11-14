@@ -5,7 +5,7 @@
  * This file : the processor for the SQL chunks.
  */
 
-module source.langs.sql.PHPSQLParser.processors.sqlchunk;
+module langs.sql.PHPSQLParser.processors.sqlchunk;
 
 /**
  * This class processes the SQL chunks.

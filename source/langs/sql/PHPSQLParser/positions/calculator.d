@@ -6,7 +6,7 @@
  * base_expr elements within the output of the SqlParser.
  */
 
-module source.langs.sql.PHPSQLParser.positions.calculator;
+module langs.sql.PHPSQLParser.positions.calculator;
 
 import lang.sql;
 

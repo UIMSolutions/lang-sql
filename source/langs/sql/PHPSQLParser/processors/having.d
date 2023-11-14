@@ -3,7 +3,7 @@
  *
  * Parses the HAVING statements. */
 
-module source.langs.sql.PHPSQLParser.processors.having;
+module langs.sql.PHPSQLParser.processors.having;
 
 import lang.sql;
 

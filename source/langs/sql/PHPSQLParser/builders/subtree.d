@@ -5,7 +5,7 @@
  * Builds the statements for [sub_tree] fields.
  */
 
-module source.langs.sql.PHPSQLParser.builders.subtree;
+module langs.sql.PHPSQLParser.builders.subtree;
 
 import lang.sql;
 

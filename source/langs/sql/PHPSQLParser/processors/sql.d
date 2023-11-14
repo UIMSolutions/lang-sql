@@ -4,7 +4,7 @@
  *
  * This file : the processor for the base SQL statements.
  */
-module source.langs.sql.PHPSQLParser.processors.sql;
+module langs.sql.PHPSQLParser.processors.sql;
 
 //This class processes the base SQL statements.
 class SQLProcessor : SQLChunkProcessor {

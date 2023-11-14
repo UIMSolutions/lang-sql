@@ -5,7 +5,7 @@
  * This file : the processor for the VALUES statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.values;
+module langs.sql.PHPSQLParser.processors.values;
 
 import lang.sql;
 

@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.SQLParser;
+module langs.sql.PHPSQLParser.SQLParser;
 
 /**
  * SqlParser.php

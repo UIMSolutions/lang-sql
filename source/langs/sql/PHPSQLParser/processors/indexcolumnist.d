@@ -1,22 +1,14 @@
 
-/**
- * IndexColumnListProcessor.php
- *
- * This file : the processor for index column lists.
- */
 
-module source.langs.sql.PHPSQLParser.processors.indexcolumnist;
+
+module langs.sql.PHPSQLParser.processors.indexcolumnist;
 
 import lang.sql;
 
 @safe:
-
-/**
- * 
- * This class processes the index column lists.
- */
+// Processor for index column lists.
+// This class processes the index column lists.
 class IndexColumnListProcessor : AbstractProcessor {
-
     protected auto initExpression() {
         return array('name' => false, 'no_quotes' => false, 'length' => false, 'dir' => false);
     }

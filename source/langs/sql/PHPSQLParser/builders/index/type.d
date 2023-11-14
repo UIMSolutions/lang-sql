@@ -5,7 +5,7 @@
  * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
  */
 
-module source.langs.sql.PHPSQLParser.builders.index.type;
+module langs.sql.PHPSQLParser.builders.index.type;
 
 import lang.sql;
 

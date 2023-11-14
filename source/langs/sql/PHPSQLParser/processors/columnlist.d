@@ -5,7 +5,7 @@
  * This file : the processor for column lists like in INSERT statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.columnlist;
+module langs.sql.PHPSQLParser.processors.columnlist;
 
 import lang.sql;
 

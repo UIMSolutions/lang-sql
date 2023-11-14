@@ -5,7 +5,7 @@
  * This file : the processor for the INSERT statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.insert;
+module langs.sql.PHPSQLParser.processors.insert;
 
 import lang.sql;
 

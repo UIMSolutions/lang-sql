@@ -5,7 +5,7 @@
  * This file : the processor for the parentheses around the statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.bracket;
+module langs.sql.PHPSQLParser.processors.bracket;
 
 import lang.sql;
 

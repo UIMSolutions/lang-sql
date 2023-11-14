@@ -4,7 +4,7 @@
  *
  * Builds the UPDATE statement */
 
-module source.langs.sql.PHPSQLParser.builders.updatestatement;
+module langs.sql.PHPSQLParser.builders.updatestatement;
 
 /**
  * This class : the builder for the whole Update statement. You can overwrite
