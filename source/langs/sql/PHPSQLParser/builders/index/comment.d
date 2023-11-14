@@ -25,7 +25,7 @@ class IndexCommentBuilder : ISqlBuilder {
         return myBuilderr.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COMMENT) {
             return "";
         }

@@ -56,7 +56,7 @@ class ColumnTypeBuilder : ISqlBuilder {
         return $parsed["base_expr"];
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_TYPE) {
             return "";
         }

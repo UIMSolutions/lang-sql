@@ -31,7 +31,7 @@ class ReplaceStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    auto build(array $parsed) {
+    string build(array $parsed) {
         // TODO: are there more than one tables possible (like [REPLACE][1])
         $sql = this.buildREPLACE($parsed["REPLACE"]);
         if (isset($parsed["VALUES"])) {

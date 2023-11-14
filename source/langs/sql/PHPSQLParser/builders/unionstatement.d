@@ -10,7 +10,7 @@ module source.langs.sql.PHPSQLParser.builders.unionstatement;
  * */
 class UnionStatementBuilder : ISqlBuilder {
 
-	auto build(array $parsed)
+	string build(array $parsed)
 	{
 		auto mySql = "";
 		$select_builder = new SelectStatementBuilder();

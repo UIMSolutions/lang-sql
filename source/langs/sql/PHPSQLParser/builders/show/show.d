@@ -45,7 +45,7 @@ class ShowBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto $show = $parsed["SHOW"];
         
         auto mySql = "";

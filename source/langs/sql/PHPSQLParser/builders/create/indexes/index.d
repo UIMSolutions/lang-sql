@@ -30,7 +30,7 @@ class CreateIndexBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = $parsed["name"];
         mySql  ~= " " ~ this.buildIndexType($parsed);
         mySql = trim(mySql);

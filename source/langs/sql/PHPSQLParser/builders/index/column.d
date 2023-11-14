@@ -25,7 +25,7 @@ class IndexColumnBuilder : ISqlBuilder {
         return ($parsed == false ? '' : (" " ~ $parsed));
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::INDEX_COLUMN) {
             return "";
         }

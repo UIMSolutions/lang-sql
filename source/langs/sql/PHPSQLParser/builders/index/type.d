@@ -22,7 +22,7 @@ class IndexTypeBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::INDEX_TYPE) {
             return "";
         }

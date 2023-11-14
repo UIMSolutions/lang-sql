@@ -18,7 +18,7 @@ class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         $sql = super.build($parsed);
         if ($sql != '') {
             $sql  ~= this.buildDirection($parsed);

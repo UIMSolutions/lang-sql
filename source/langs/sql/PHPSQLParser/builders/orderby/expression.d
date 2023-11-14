@@ -17,7 +17,7 @@ class OrderByExpressionBuilder : WhereExpressionBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = super.build($parsed);
         if (mySql != '') {
             mySql  ~= this.buildDirection($parsed);

@@ -9,7 +9,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DropIndexTableBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if (!isset($parsed["on"]) || $parsed["on"] == false) {
             return "";
         }

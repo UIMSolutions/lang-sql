@@ -19,7 +19,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if (!isset($parsed["on"]) || $parsed["on"] == false) {
             return "";
         }

@@ -31,7 +31,7 @@ class CreateTableBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = $parsed["name"];
         mySql  ~= this.buildCreateTableDefinition($parsed);
         mySql  ~= this.buildCreateTableOptions($parsed);

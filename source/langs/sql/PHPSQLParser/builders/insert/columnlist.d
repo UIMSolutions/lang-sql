@@ -15,7 +15,7 @@ class InsertColumnListBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) { return ""; }
 
         auto mySql = "";
@@ -29,8 +29,8 @@ class InsertColumnListBuilder : ISqlBuilder {
 
             mySql  ~= ", ";
         } 
-        
-        return "(" . substr(mySql, 0, -2) . ")";
+
+        return "(" ~ substr(mySql, 0, -2) ~ ")";
     }
 
 }

@@ -24,7 +24,7 @@ class CreateStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = this.buildCreate($parsed);
         if (isset($parsed["LIKE"])) {
             mySql  ~= " "~ this.buildLike($parsed["LIKE"]);

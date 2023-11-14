@@ -24,7 +24,7 @@ class CreateBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto myCreate = $parsed["CREATE"];
         
         auto mySql = this.buildSubTree(myCreate);

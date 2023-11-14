@@ -1,4 +1,4 @@
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.drop.expression;
 
 import lang.sql;
 
@@ -35,10 +35,9 @@ class DropExpressionBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
-            return "";
-        }
+    string build(array $parsed) {
+        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) { return ""; }
+
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

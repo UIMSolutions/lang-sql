@@ -51,7 +51,7 @@ class RefClauseBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed == false) { return ""; }
 
         auto mySql = "";

@@ -18,7 +18,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) { return ""; }
 
         auto mySql = "";

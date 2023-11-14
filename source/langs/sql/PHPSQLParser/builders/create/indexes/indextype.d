@@ -15,7 +15,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if (!isset($parsed["index-type"]) || $parsed["index-type"] == false) {
             return "";
         }

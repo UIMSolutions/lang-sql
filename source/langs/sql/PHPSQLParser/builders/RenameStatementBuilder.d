@@ -27,7 +27,7 @@ class RenameStatementBuilder : ISqlBuilder {
         return $v["source"]["base_expr"] . ' TO ' . $v["destination"]["base_expr"] . ',';
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         $rename = $parsed["RENAME"];
         mySql = "";
         foreach ($rename["sub_tree"] as $k => $v) {

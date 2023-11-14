@@ -26,10 +26,9 @@ class IndexAlgorithmBuilder : ISqlBuilder {
         return myBuilderr.build($parsed);
     }
     
-    auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_ALGORITHM) {
-            return "";
-        }
+    string build(array $parsed) {
+        if ($parsed["expr_type"] != ExpressionType::INDEX_ALGORITHM) { return ""; }
+        
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

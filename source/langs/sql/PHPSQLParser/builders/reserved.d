@@ -19,7 +19,7 @@ class ReservedBuilder : ISqlBuilder {
         return (isset($parsed["expr_type"]) && $parsed["expr_type"] == ExpressionType::RESERVED);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if (!this.isReserved($parsed)) {
             return "";
         }

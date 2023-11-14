@@ -9,7 +9,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ("select-option" !in $parsed || $parsed["select-option"] == false) {
             return "";
         }

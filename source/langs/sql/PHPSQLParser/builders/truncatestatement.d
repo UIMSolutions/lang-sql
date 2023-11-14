@@ -21,7 +21,7 @@ class TruncateStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    auto build(array $parsed) {
+    string build(array $parsed) {
         $sql = this.buildTRUNCATE($parsed);
         // $sql  ~= " "~ this.buildTRUNCATE($parsed) // Uncomment when parser fills in expr_type=table
         

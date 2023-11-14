@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DataTypeBuilder : IBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::DATA_TYPE) {
             return "";
         }

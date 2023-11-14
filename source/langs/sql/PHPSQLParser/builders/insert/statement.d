@@ -32,7 +32,7 @@ class InsertStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    auto build(array $parsed) {
+    string build(array $parsed) {
         // TODO: are there more than one tables possible (like [INSERT][1])
         $sql = this.buildINSERT($parsed["INSERT"]);
         if (isset($parsed["VALUES"])) {

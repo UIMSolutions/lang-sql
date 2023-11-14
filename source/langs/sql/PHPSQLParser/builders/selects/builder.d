@@ -50,7 +50,7 @@ class SelectBuilder : ISqlBuilder {
         return ("delim" !in $parsed || $parsed["delim"] == false ? '' : (trim($parsed["delim"]) . ' '));
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;

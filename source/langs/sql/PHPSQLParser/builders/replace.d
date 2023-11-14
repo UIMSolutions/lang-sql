@@ -40,7 +40,7 @@ class ReplaceBuilder : ISqlBuilder {
         return myBuilder.build($parsed, 0);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;

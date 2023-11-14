@@ -36,7 +36,7 @@ class CreateTableOptionsBuilder : IBuilder {
         return ($parsed["delim"] == false ? '' : (trim($parsed["delim"]) . ' '));
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if (!isset($parsed["options"]) || $parsed["options"] == false) {
             return "";
         }

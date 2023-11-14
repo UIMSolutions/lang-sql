@@ -21,7 +21,7 @@ class UpdateStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto mySql = this.buildUPDATE($parsed["UPDATE"]) . " "~ this.buildSET($parsed["SET"]);
         if ("WHERE" in $parsed["WHERE"]) {
             mySql  ~= " " ~ this.buildWHERE($parsed["WHERE"]);

@@ -12,7 +12,7 @@ import lang.sql;
  */
 class DefaultValueBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::DEF_VALUE) {
             return "";
         }

@@ -21,7 +21,7 @@ class GroupByExpressionBuilder : ISqlBuilder {
 		return myBuilderr.build($parsed);
 	}
 	
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) { return ""; }
         
         auto mySql = "";

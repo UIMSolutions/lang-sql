@@ -15,7 +15,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class OperatorBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::OPERATOR) {
             return "";
         }

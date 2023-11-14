@@ -15,7 +15,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class UserVariableBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::USER_VARIABLE) {
             return "";
         }

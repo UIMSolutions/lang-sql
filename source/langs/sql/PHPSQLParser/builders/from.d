@@ -32,7 +32,7 @@ class FromBuilder : ISqlBuilder {
         return myBuilder.build($parsed, $key);
     }
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         auto auto mySql = "";
         if (array_key_exists("UNION ALL", $parsed) || array_key_exists("UNION", $parsed)) {
             foreach ($parsed as $union_type => $outer_v) {

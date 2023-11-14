@@ -8,11 +8,11 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class AliasReferenceBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::ALIAS) {
             return "";
         }
-        mySql = $parsed["base_expr"];
+        auto mySql = $parsed["base_expr"];
         return mySql;
     }
 }

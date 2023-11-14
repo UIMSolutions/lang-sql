@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class LimitBuilder : ISqlBuilder {
 
-    auto build(array $parsed) {
+    string build(array $parsed) {
         mySql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
         if (mySql == "") {
             throw new UnableToCreateSQLException('LIMIT', 'rowcount', $parsed, 'rowcount');

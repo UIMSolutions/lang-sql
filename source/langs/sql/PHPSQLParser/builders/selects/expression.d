@@ -21,11 +21,11 @@ class SelectExpressionBuilder : ISqlBuilder {
     return myBuilder.build($parsed);
   }
 
-  auto build(array $parsed) {
+  string build(array $parsed) {
     if ($parsed["expr_type"] != ExpressionType :  : EXPRESSION) {
       return "";
     }
-    
+
     auto mySql = this.buildSubTree($parsed, " ");
     mySql ~= this.buildAlias($parsed);
     return mySql;
