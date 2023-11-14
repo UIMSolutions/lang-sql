@@ -52,7 +52,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             $upper = $token.toUpper;
 
             if ($upper == 'AS') {
-                $alias = array('as' => true, "name" => "", "base_expr" => $token);
+                $alias = array('as' : true, "name" : "", "base_expr" : $token);
                 $tokens[$i] = "";
                 $capture = true;
                 continue;
@@ -102,9 +102,9 @@ class SelectExpressionProcessor : AbstractProcessor {
                     || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
                     || this.isColumnReference($prev) || this.isBracketExpression($prev)|| this.isCustomFunction($prev)) {
 
-                $alias = array('as' => false, 'name' => trim($last["base_expr"]),
-                               'no_quotes' => this.revokeQuotation($last["base_expr"]),
-                               'base_expr' => trim($last["base_expr"]));
+                $alias = array('as' : false, 'name' : trim($last["base_expr"]),
+                               'no_quotes' : this.revokeQuotation($last["base_expr"]),
+                               'base_expr' : trim($last["base_expr"]));
                 // remove the last token
                 array_pop($tokens);
             }

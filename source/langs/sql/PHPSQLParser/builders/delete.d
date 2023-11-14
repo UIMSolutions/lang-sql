@@ -18,7 +18,7 @@ class DeleteBuilder : ISqlBuilder {
     $right =  - 1;
 
     if ($parsed["options"] != false) {
-      $parsed["options"].byKeyValue.each!(kv => mySql ~= kv.value + " ");
+      $parsed["options"].byKeyValue.each!(kv :  mySql ~= kv.value + " ");
     }
 
     if ($parsed["tables"] != false) {

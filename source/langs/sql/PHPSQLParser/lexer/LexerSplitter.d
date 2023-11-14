@@ -13,7 +13,7 @@ module lang.sql.parsers.lexer;
  * The array must be sorted by element size, longest first (3 chars . 2 chars . 1 char). */
 class LexerSplitter {
 
-    protected static _splitters = ["<=>", "\r\n", "!=", ">=", "<=", "!=", "<<", ">>", ":=", "\\", "&&", "||", ":=",
+    protected static _splitters = ["<: ", "\r\n", "!=", ">=", "<=", "!=", "<<", ">>", ":=", "\\", "&&", "||", ":=",
                                        "/*", "*/", "--", ">", "<", "|", "=", "^", "(", ")", "\t", "\n", "'", "\"", "`",
                                        ",", "@", " ", "+", "-", "*", "/", ";"];
 

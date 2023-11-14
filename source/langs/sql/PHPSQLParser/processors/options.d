@@ -27,10 +27,10 @@ class OptionsProcessor : AbstractProcessor {
                 if ($trim == '') {
                     continue;
                 }
-                $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
+                $result[] = array('expr_type' :  ExpressionType::RESERVED, 'base_expr' :  $trim);
             }
-            $resultList[] = array('expr_type' => ExpressionType::EXPRESSION, 'base_expr' => $token.strip,
-                                  'sub_tree' => $result);
+            $resultList[] = array('expr_type' :  ExpressionType::EXPRESSION, 'base_expr' :  $token.strip,
+                                  'sub_tree' :  $result);
         }
 
         return $resultList;

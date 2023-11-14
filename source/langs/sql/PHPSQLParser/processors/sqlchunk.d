@@ -16,7 +16,7 @@ class SQLChunkProcessor : AbstractProcessor {
         if (!isset($out["TABLE"]["like"])) {
             return;
         }
-        $out = this.array_insert_after($out, 'TABLE', array('LIKE' => $out["TABLE"]["like"]));
+        $out = this.array_insert_after($out, 'TABLE', array('LIKE' :  $out["TABLE"]["like"]));
         unset($out["TABLE"]["like"]);
     }
 
@@ -34,7 +34,7 @@ class SQLChunkProcessor : AbstractProcessor {
             unset($processedBracket[0]["remaining_expressions"]);
 
             if(!empty($remainingExpressions)) {
-                foreach($remainingExpressions as $key=>$expression) {
+                foreach($remainingExpressions as $key: $expression) {
                     $processedBracket[][$key] = $expression;
                 }
             }

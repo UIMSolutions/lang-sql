@@ -39,13 +39,13 @@ class FromProcessor : AbstractProcessor {
     protected auto initParseInfo($parseInfo = false) {
         // first init
         if ($parseInfo == false) {
-            $parseInfo = array('join_type' => "", 'saved_join_type' => "JOIN");
+            $parseInfo = array('join_type' :  "", 'saved_join_type' :  "JOIN");
         }
         // loop init
-        return array('expression' => "", 'token_count' => 0, 'table' => "", 'no_quotes' => "", 'alias' => false,
-                     'hints' => array(), 'join_type' => "", 'next_join_type' => "",
-                     'saved_join_type' => $parseInfo["saved_join_type"], 'ref_type' => false, 'ref_expr' => false,
-                     'base_expr' => false, 'sub_tree' => false, 'subquery' => "");
+        return array('expression' :  "", 'token_count' :  0, 'table' :  "", 'no_quotes' :  "", 'alias' :  false,
+                     'hints' :  array(), 'join_type' :  "", 'next_join_type' :  "",
+                     'saved_join_type' :  $parseInfo["saved_join_type"], 'ref_type' :  false, 'ref_expr' :  false,
+                     'base_expr' :  false, 'sub_tree' :  false, 'subquery' :  "");
     }
 
     protected auto processFromExpression(&$parseInfo) {
@@ -64,7 +64,7 @@ class FromProcessor : AbstractProcessor {
             $unparsed = this.splitSQLIntoTokens(trim($parseInfo["ref_expr"]));
 
             // here we can get a comma separated list
-            foreach ($unparsed as $k => $v) {
+            foreach ($unparsed as $k :  $v) {
                 if (this.isCommaToken($v)) {
                     $unparsed[$k] = "";
                 }
@@ -72,7 +72,7 @@ class FromProcessor : AbstractProcessor {
             if ($parseInfo["ref_type"] == 'USING') {
             	// unparsed has only one entry, the column list
             	$ref = this.processColumnList(this.removeParenthesisFromStart($unparsed[0]));
-            	$ref = array(array('expr_type' => ExpressionType::COLUMN_LIST, 'base_expr' => $unparsed[0], 'sub_tree' => $ref));
+            	$ref = array(array('expr_type' :  ExpressionType::COLUMN_LIST, 'base_expr' :  $unparsed[0], 'sub_tree' :  $ref));
             } else {
                 $ref = this.processExpressionList($unparsed);
             }
@@ -201,7 +201,7 @@ class FromProcessor : AbstractProcessor {
 
             switch ($upper) {
             case 'AS':
-                $parseInfo["alias"] = array('as' => true, 'name' => "", 'base_expr' => $token);
+                $parseInfo["alias"] = array('as' :  true, 'name' :  "", 'base_expr' :  $token);
                 $parseInfo["token_count"]++;
                 $n = 1;
                 $str = "";
@@ -311,9 +311,9 @@ class FromProcessor : AbstractProcessor {
                         $parseInfo["no_quotes"] = this.revokeQuotation($token);
                     }
                 } else if ($parseInfo["token_count"] == 1) {
-                    $parseInfo["alias"] = array('as' => false, 'name' => $token.strip,
-                                                'no_quotes' => this.revokeQuotation($token),
-                                                'base_expr' => $token.strip);
+                    $parseInfo["alias"] = array('as' :  false, 'name' :  $token.strip,
+                                                'no_quotes' :  this.revokeQuotation($token),
+                                                'base_expr' :  $token.strip);
                 }
                 $parseInfo["token_count"]++;
                 break;

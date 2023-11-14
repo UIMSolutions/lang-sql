@@ -199,7 +199,7 @@ class PositionCalculator {
             return;
         }
 
-        foreach ($parsed as $key => $value) {
+        foreach ($parsed as $key :  $value) {
             if ($key == 'base_expr') {
 
                 //this.printPos("0", $sql, $charPos, $key, $value, $backtracking);

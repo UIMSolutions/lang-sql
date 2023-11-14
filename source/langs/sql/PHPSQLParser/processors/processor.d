@@ -56,9 +56,9 @@ abstract class DProcessor {
      *   `a`.b
      * It is also possible to have escaped quoting characters
      * within an expression part:
-     *   `a``b` => a`b
+     *   `a``b` : a`b
      * And you can use whitespace between the parts:
-     *   a  .  `b` => [a,b]
+     *   a  .  `b` : [a,b]
      */
     protected auto revokeQuotation($sql) {
         auto mySqlBuffer = trim($sql);
@@ -122,7 +122,7 @@ abstract class DProcessor {
             }
         }
 
-        return array('delim' => (count($result) == 1 ? false : '.'), 'parts' => $result);
+        return array('delim' : (count($result) == 1 ? false : '.'), 'parts' : $result);
     }
 
     /**

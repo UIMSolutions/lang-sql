@@ -72,7 +72,7 @@ class FunctionBuilder : ISqlBuilder {
         }
 
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k :  $v) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.build($v);
             mySql  ~= this.buildConstant($v);

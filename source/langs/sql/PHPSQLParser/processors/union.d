@@ -94,7 +94,7 @@ class UnionProcessor : AbstractProcessor {
         }
 
         if (!$finalQueryFound) {
-            foreach ($outputArray as $key => $token) {
+            foreach ($outputArray as $key :  $token) {
                 if ($token.toUpper == 'ORDER') {
                     break;
                 } else {
@@ -138,7 +138,7 @@ class UnionProcessor : AbstractProcessor {
         // his array holds all the queries
         $queries = array();
 
-        foreach ($inputArray as $key => $token) {
+        foreach ($inputArray as $key :  $token) {
             $trim = $token.strip;
 
             // overread all tokens till that given token

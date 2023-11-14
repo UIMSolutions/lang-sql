@@ -22,7 +22,7 @@ class InsertProcessor : AbstractProcessor {
         }
         $result = array();
         foreach ($tokenList["OPTIONS"] as $token) {
-            $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $token.strip);
+            $result[] = array('expr_type' : ExpressionType::RESERVED, 'base_expr' : $token.strip);
         }
         return $result;
     }
@@ -46,7 +46,7 @@ class InsertProcessor : AbstractProcessor {
             $upper = $trim.toUpper;
             switch ($upper) {
             case 'INTO':
-                $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
+                $result[] = array('expr_type' : ExpressionType::RESERVED, 'base_expr' : $trim);
                 break;
 
             case 'INSERT':
@@ -73,15 +73,15 @@ class InsertProcessor : AbstractProcessor {
             return $cols;
         }
         if ($cols[0] == "(" && substr($cols, -1) == ")") {
-            $parsed = array('expr_type' => ExpressionType::BRACKET_EXPRESSION, 'base_expr' => $cols,
-                            'sub_tree' => false);
+            $parsed = array('expr_type' : ExpressionType::BRACKET_EXPRESSION, 'base_expr' : $cols,
+                            'sub_tree' : false);
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = array(
-                    array('expr_type' => ExpressionType::QUERY, 'base_expr' => $cols,
-                            'sub_tree' => $processor.process($cols)));
+                    array('expr_type' : ExpressionType::QUERY, 'base_expr' : $cols,
+                            'sub_tree' : $processor.process($cols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
             $parsed["sub_tree"] = $processor.process($cols);
@@ -95,7 +95,7 @@ class InsertProcessor : AbstractProcessor {
         $cols = false;
         $comments = array();
 
-        foreach ($tokenList as $key => &$token) {
+        foreach ($tokenList as $key : &$token) {
             if ($key == 'VALUES') {
                 continue;
             }
@@ -118,8 +118,8 @@ class InsertProcessor : AbstractProcessor {
             list($table, $cols, $key) = this.processKeyword($token_category, $tokenList);
         }
 
-        $parsed[] = array('expr_type' => ExpressionType::TABLE, 'table' => $table,
-                          'no_quotes' => this.revokeQuotation($table), 'alias' => false, 'base_expr' => $table);
+        $parsed[] = array('expr_type' : ExpressionType::TABLE, 'table' : $table,
+                          'no_quotes' : this.revokeQuotation($table), 'alias' : false, 'base_expr' : $table);
 
         $cols = this.processColumns($cols);
         if ($cols != false) {

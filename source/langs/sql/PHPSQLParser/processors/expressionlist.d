@@ -15,7 +15,7 @@ class ExpressionListProcessor : AbstractProcessor {
         $skip_next = false;
         $prev = new ExpressionToken();
 
-        foreach ($tokens as $k => $v) {
+        foreach ($tokens as $k :  $v) {
 
 
             if (this.isCommentToken($v)) {
@@ -49,7 +49,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                 if ($prev.getUpper() == 'IN') {
 
-                    foreach ($localTokenList as $k => $v) {
+                    foreach ($localTokenList as $k :  $v) {
                         $tmpToken = new ExpressionToken($k, $v);
                         if ($tmpToken.isCommaToken()) {
                             unset($localTokenList[$k]);
@@ -62,7 +62,7 @@ class ExpressionListProcessor : AbstractProcessor {
                 } elseif ($prev.getUpper() == 'AGAINST') {
 
                     $match_mode = false;
-                    foreach ($localTokenList as $k => $v) {
+                    foreach ($localTokenList as $k :  $v) {
 
                         $tmpToken = new ExpressionToken($k, $v);
                         switch ($tmpToken.getUpper()) {
@@ -105,7 +105,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     $localExpr = new ExpressionToken();
                     $tmpExprList = array();
 
-                    foreach ($localTokenList as $k => $v) {
+                    foreach ($localTokenList as $k :  $v) {
                         $tmpToken = new ExpressionToken($k, $v);
                         if (!$tmpToken.isCommaToken()) {
                             $localExpr.addToken($v);
@@ -245,7 +245,7 @@ class ExpressionListProcessor : AbstractProcessor {
                 case '^':
                 case 'DIV':
                 case '/':
-                case '<=>':
+                case '<: ':
                 case '=':
                 case '>=':
                 case '>':

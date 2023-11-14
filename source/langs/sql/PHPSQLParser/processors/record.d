@@ -22,7 +22,7 @@ class RecordProcessor : AbstractProcessor {
         $unparsed = this.removeParenthesisFromStart($unparsed);
         $values = this.splitSQLIntoTokens($unparsed);
 
-        foreach ($values as $k => $v) {
+        foreach ($values as $k :  $v) {
             if (this.isCommaToken($v)) {
                 $values[$k] = "";
             }

@@ -57,9 +57,9 @@ class DropProcessor : AbstractProcessor {
             case 'CASCADE':
                 $option = $upper;
                 if (!empty($objectList)) {
-                    $subTree[] = array('expr_type' => ExpressionType::EXPRESSION,
-                                       'base_expr' => trim(substr($base_expr, 0, -$token.length)),
-                                       'sub_tree' => $objectList);
+                    $subTree[] = array('expr_type' :  ExpressionType::EXPRESSION,
+                                       'base_expr' :  trim(substr($base_expr, 0, -$token.length)),
+                                       'sub_tree' :  $objectList);
                     $objectList = array();
                 }
                 $base_expr = "";
@@ -87,14 +87,14 @@ class DropProcessor : AbstractProcessor {
                 continue 2;
             }
 
-            $subTree[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
+            $subTree[] = array('expr_type' :  ExpressionType::RESERVED, 'base_expr' :  $trim);
         }
 
         if (!empty($objectList)) {
-            $subTree[] = array('expr_type' => ExpressionType::EXPRESSION, 'base_expr' => trim($base_expr),
-                               'sub_tree' => $objectList);
+            $subTree[] = array('expr_type' :  ExpressionType::EXPRESSION, 'base_expr' :  trim($base_expr),
+                               'sub_tree' :  $objectList);
         }
 
-        return array('expr_type' => $objectType, 'option' => $option, 'if-exists' => $exists, 'sub_tree' => $subTree);
+        return array('expr_type' :  $objectType, 'option' :  $option, 'if-exists' :  $exists, 'sub_tree' :  $subTree);
     }
 }

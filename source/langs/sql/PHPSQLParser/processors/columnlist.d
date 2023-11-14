@@ -13,8 +13,8 @@ class ColumnListProcessor : AbstractProcessor {
         $columns = explode(",", $tokens);
         auto myCols = array();
         foreach (myKey, myValue; $columns) {
-            myCols = array('expr_type' => ExpressionType::COLREF, 'base_expr' => trim(myValue),
-                            'no_quotes' => this.revokeQuotation(myValue));
+            myCols = array('expr_type' :  ExpressionType::COLREF, 'base_expr' :  trim(myValue),
+                            'no_quotes' :  this.revokeQuotation(myValue));
         }
         return myCols;
     }

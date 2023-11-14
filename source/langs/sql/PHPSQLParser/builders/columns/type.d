@@ -61,7 +61,7 @@ class ColumnTypeBuilder : ISqlBuilder {
             return "";
         }
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach ($parsed["sub_tree"] as $k :  $v) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildDataType($v);
             mySql  ~= this.buildColumnTypeBracketExpression($v);
