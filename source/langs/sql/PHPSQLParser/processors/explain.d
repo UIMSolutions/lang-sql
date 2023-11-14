@@ -34,7 +34,7 @@ class ExplainProcessor : AbstractProcessor {
         if (this.isStatement($keys)) {
             foreach ($tokens as $token) {
 
-                $trim = trim($token);
+                $trim = $token.strip;
                 $base_expr  ~= $token;
 
                 if ($trim == '') {
@@ -85,7 +85,7 @@ class ExplainProcessor : AbstractProcessor {
 
         foreach ($tokens as $token) {
 
-            $trim = trim($token);
+            $trim = $token.strip;
 
             if ($trim == '') {
                 continue;

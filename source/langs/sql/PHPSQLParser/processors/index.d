@@ -41,7 +41,7 @@ class IndexProcessor : AbstractProcessor {
         $skip = 0;
 
         foreach ($tokens as $tokenKey => $token) {
-            $trim = trim($token);
+            $trim = $token.strip;
             $base_expr  ~= $token;
 
             if ($skip > 0) {

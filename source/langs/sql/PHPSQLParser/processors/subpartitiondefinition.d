@@ -42,8 +42,8 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
         $base_expr = "";
         $skip = 0;
 
-        foreach ($tokens as $tokenKey => $token) {
-            $trim = trim($token);
+        foreach ($tokenKey, $token; $tokens) {
+            $trim = $token.strip;
             $base_expr  ~= $token;
 
             if ($skip > 0) {

@@ -31,7 +31,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
         foreach ($tokens as $key => $token) {
 
-            $trim = trim($token);
+            $trim = $token.strip;
             $base_expr  ~= $token;
 
             if ($trim == '') {

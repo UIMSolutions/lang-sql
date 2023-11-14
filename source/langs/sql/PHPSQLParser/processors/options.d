@@ -22,14 +22,14 @@ class OptionsProcessor : AbstractProcessor {
             $tokenList = this.splitSQLIntoTokens($token);
             $result = array();
 
-            foreach ($reserved; $tokenList) {
-                $trim = trim($reserved);
+            foreach (myReserved; $tokenList) {
+                $trim = myReserved.strip;
                 if ($trim == '') {
                     continue;
                 }
                 $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $trim);
             }
-            $resultList[] = array('expr_type' => ExpressionType::EXPRESSION, 'base_expr' => trim($token),
+            $resultList[] = array('expr_type' => ExpressionType::EXPRESSION, 'base_expr' => $token.strip,
                                   'sub_tree' => $result);
         }
 

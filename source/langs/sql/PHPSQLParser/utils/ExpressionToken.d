@@ -23,7 +23,7 @@ class ExpressionToken {
         this.key = $key;
         this.token = $token;
         this.tokenType = false;
-        this.trim = trim($token);
+        this.trim = $token.strip;
         this.trim);
         this.noQuotes = null;
     }

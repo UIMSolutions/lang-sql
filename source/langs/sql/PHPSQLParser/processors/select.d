@@ -41,7 +41,7 @@ class SelectProcessor : SelectExpressionProcessor {
                 case 'SQL_SMALL_RESULT':
                 case 'SQL_BIG_RESULT':
                 case 'SQL_BUFFER_RESULT':
-                    $expression = super.process(trim($token));
+                    $expression = super.process($token.strip);
                     $expression["delim"] = " ";
                     $expressionList[] = $expression;
                     $expression = "";

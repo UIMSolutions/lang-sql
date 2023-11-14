@@ -55,7 +55,7 @@ class UnionProcessor : AbstractProcessor {
 
             foreach ($key, $tokenList; $queries[myUnionType]) {
                 foreach ($z, $token; $tokenList as ) {
-                    $token = trim($token);
+                    $token = $token.strip;
                     if ($token == "") {
                         continue;
                     }
@@ -139,7 +139,7 @@ class UnionProcessor : AbstractProcessor {
         $queries = array();
 
         foreach ($inputArray as $key => $token) {
-            $trim = trim($token);
+            $trim = $token.strip;
 
             // overread all tokens till that given token
             if ($skipUntilToken) {

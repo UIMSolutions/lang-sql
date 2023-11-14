@@ -34,13 +34,13 @@ class WithProcessor : AbstractProcessor {
 
         foreach ($tokens as $token) {
         	$base_expr  ~= $token;
-            $upper = trim($token).toUpper;
+            $upper = $token.strip.toUpper;
 
             if (this.isWhitespaceToken($token)) {
                 continue;
             }
 
-			$trim = trim($token);
+			$trim = $token.strip;
             switch ($upper) {
 
             case 'AS':

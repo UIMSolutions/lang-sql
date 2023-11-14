@@ -31,7 +31,7 @@ class SQLProcessor : SQLChunkProcessor {
             // as there is no pull request for 279 by the user. His solution works and tested.
             if (!isset($tokens[$tokenNumber])) continue;// as a fix by Sinri 20180528
             myToken = $tokens[$tokenNumber];
-            $trim = trim($token); // this removes also \n and \t!
+            $trim = $token.strip; // this removes also \n and \t!
 
             // if it starts with an "(", it should follow a SELECT
             if ($trim != "" && $trim[0] == "(" && $token_category == "") {

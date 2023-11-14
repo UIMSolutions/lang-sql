@@ -15,9 +15,9 @@ class DropIndexBuilder : IBuilder {
 	}
 
     string build(array $parsed) {
-        $sql = $parsed["name"];
-	    $sql = trim($sql);
-	    $sql  ~= " " ~ this.buildIndexTable($parsed);
-        return trim($sql);
+        auto mySql = $parsed["name"];
+	    mySql = mySql.strip;
+	    mySql  ~= " " ~ this.buildIndexTable($parsed);
+        return mySql.strip;
     }
 }

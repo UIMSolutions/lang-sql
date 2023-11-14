@@ -32,7 +32,7 @@ class ShowProcessor : AbstractProcessor {
         $prev = "";
 
         foreach ($tokens as $k => $token) {
-            $upper = trim($token).toUpper;
+            $upper = $token.strip.toUpper;
 
             if (this.isWhitespaceToken($token)) {
                 continue;
@@ -41,7 +41,7 @@ class ShowProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'FROM':
-                $resultList[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => trim($token));
+                $resultList[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $token.strip);
                 if ($prev == 'INDEX' || $prev == 'COLUMNS') {
                     break;
                 }
@@ -83,7 +83,7 @@ class ShowProcessor : AbstractProcessor {
             case 'CHARACTER':
             case 'SET':
             case 'COLLATION':
-                $resultList[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => trim($token));
+                $resultList[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $token.strip);
                 $category = $upper;
                 break;
 

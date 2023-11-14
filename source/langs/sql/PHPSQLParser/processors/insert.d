@@ -22,7 +22,7 @@ class InsertProcessor : AbstractProcessor {
         }
         $result = array();
         foreach ($tokenList["OPTIONS"] as $token) {
-            $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => trim($token));
+            $result[] = array('expr_type' => ExpressionType::RESERVED, 'base_expr' => $token.strip);
         }
         return $result;
     }
@@ -37,7 +37,7 @@ class InsertProcessor : AbstractProcessor {
         $result = array();
 
         foreach ($tokenList[$keyword] as $token) {
-            $trim = trim($token);
+            $trim = $token.strip;
 
             if ($trim == '') {
                 continue;

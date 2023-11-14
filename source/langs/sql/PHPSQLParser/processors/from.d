@@ -128,7 +128,7 @@ class FromProcessor : AbstractProcessor {
         $i = 0;
 
         foreach ($tokens as $token) {
-            $upper = trim($token).toUpper;
+            $upper = $token.strip.toUpper;
 
             if ($skip_next && $token != "") {
                 $parseInfo["token_count"]++;
@@ -311,9 +311,9 @@ class FromProcessor : AbstractProcessor {
                         $parseInfo["no_quotes"] = this.revokeQuotation($token);
                     }
                 } else if ($parseInfo["token_count"] == 1) {
-                    $parseInfo["alias"] = array('as' => false, 'name' => trim($token),
+                    $parseInfo["alias"] = array('as' => false, 'name' => $token.strip,
                                                 'no_quotes' => this.revokeQuotation($token),
-                                                'base_expr' => trim($token));
+                                                'base_expr' => $token.strip);
                 }
                 $parseInfo["token_count"]++;
                 break;

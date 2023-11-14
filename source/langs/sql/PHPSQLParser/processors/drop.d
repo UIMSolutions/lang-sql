@@ -19,7 +19,7 @@ class DropProcessor : AbstractProcessor {
 
         foreach ($tokenList as $token) {
             $base_expr  ~= $token;
-            $trim = trim($token);
+            $trim = $token.strip;
 
             if ($trim == '') {
                 continue;

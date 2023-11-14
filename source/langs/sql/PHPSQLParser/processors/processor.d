@@ -132,7 +132,7 @@ abstract class DProcessor {
     protected auto removeParenthesisFromStart($token) {
         $parenthesisRemoved = 0;
 
-        $trim = trim($token);
+        $trim = $token.strip;
         if ($trim != '' && $trim[0] == "(") { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
             $trim[0] = " ";
@@ -207,11 +207,11 @@ abstract class DProcessor {
     }
 
     protected auto isCommaToken($token) {
-        return (trim($token) == ',');
+        return ($token.strip == ',');
     }
 
     protected auto isWhitespaceToken($token) {
-        return (trim($token) == '');
+        return ($token.strip == '');
     }
 
     protected auto isCommentToken($token) {
