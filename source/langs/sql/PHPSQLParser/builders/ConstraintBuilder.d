@@ -16,7 +16,7 @@ import lang.sql;
 class ConstraintBuilder : ISqlBuilder {
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 

@@ -16,17 +16,17 @@ module lang.sql.parsers.builders;
 class UpdateStatementBuilder : ISqlBuilder {
 
     protected auto buildWHERE($parsed) {
-        myBuilder = new WhereBuilder();
+        auto myBuilder = new WhereBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSET($parsed) {
-        myBuilder = new SetBuilder();
+        auto myBuilder = new SetBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildUPDATE($parsed) {
-        myBuilder = new UpdateBuilder();
+        auto myBuilder = new UpdateBuilder();
         return $builder.build($parsed);
     }
 

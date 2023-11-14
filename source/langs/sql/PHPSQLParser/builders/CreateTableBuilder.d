@@ -19,17 +19,17 @@ import lang.sql;
 class CreateTableBuilder : ISqlBuilder {
 
     protected auto buildCreateTableDefinition($parsed) {
-        myBuilder = new CreateTableDefinitionBuilder();
+        auto myBuilder = new CreateTableDefinitionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildCreateTableOptions($parsed) {
-        myBuilder = new CreateTableOptionsBuilder();
+        auto myBuilder = new CreateTableOptionsBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildCreateTableSelectOption($parsed) {
-        myBuilder = new CreateTableSelectOptionBuilder();
+        auto myBuilder = new CreateTableSelectOptionBuilder();
         return $builder.build($parsed);
     }
 

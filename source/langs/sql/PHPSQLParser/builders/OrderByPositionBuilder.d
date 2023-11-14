@@ -16,7 +16,7 @@ use SqlParser\utils\ExpressionType;
  */
 class OrderByPositionBuilder : ISqlBuilder {
     protected auto buildDirection($parsed) {
-        myBuilder = new DirectionBuilder();
+        auto myBuilder = new DirectionBuilder();
         return $builder.build($parsed);
     }
 

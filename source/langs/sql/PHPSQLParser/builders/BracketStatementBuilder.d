@@ -14,12 +14,12 @@ import lang.sql;
 class BracketStatementBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {
-        myBuilder = new SelectBracketExpressionBuilder();
+        auto myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed, " ");
     }
 
     protected auto buildSelectStatement($parsed) {
-        myBuilder = new SelectStatementBuilder();
+        auto myBuilder = new SelectStatementBuilder();
         return $builder.build($parsed);
     }
 

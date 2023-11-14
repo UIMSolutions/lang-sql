@@ -18,22 +18,22 @@ use SqlParser\utils\ExpressionType;
 class UniqueIndexBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildIndexType($parsed) {
-        myBuilder = new IndexTypeBuilder();
+        auto myBuilder = new IndexTypeBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildColumnList($parsed) {
-        myBuilder = new ColumnListBuilder();
+        auto myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
     

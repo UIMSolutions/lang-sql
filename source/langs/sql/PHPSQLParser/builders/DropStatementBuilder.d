@@ -19,7 +19,7 @@ import lang.sql;
 class DropStatementBuilder : IBuilder {
 
 	protected auto buildDROP( $parsed ) {
-		myBuilder = new DropBuilder();
+		auto myBuilder = new DropBuilder();
 		return $builder.build( $parsed );
 	}
 

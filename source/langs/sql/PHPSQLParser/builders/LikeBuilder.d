@@ -17,7 +17,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class LikeBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
-        myBuilder = new TableBuilder();
+        auto myBuilder = new TableBuilder();
         return $builder.build($parsed, $index);
     }
 

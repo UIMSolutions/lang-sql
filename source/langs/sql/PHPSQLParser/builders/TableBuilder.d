@@ -52,27 +52,27 @@ use SqlParser\utils\ExpressionType;
 class TableBuilder : ISqlBuilder {
 
     protected auto buildAlias($parsed) {
-        myBuilder = new AliasBuilder();
+        auto myBuilder = new AliasBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexHintList($parsed) {
-        myBuilder = new IndexHintListBuilder();
+        auto myBuilder = new IndexHintListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildJoin($parsed) {
-        myBuilder = new JoinBuilder();
+        auto myBuilder = new JoinBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildRefType($parsed) {
-        myBuilder = new RefTypeBuilder();
+        auto myBuilder = new RefTypeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildRefClause($parsed) {
-        myBuilder = new RefClauseBuilder();
+        auto myBuilder = new RefClauseBuilder();
         return $builder.build($parsed);
     }
 

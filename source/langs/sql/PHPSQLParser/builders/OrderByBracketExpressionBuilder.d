@@ -17,7 +17,7 @@ module lang.sql.parsers.builders;
 class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
 
     protected auto buildDirection($parsed) {
-        myBuilder = new DirectionBuilder();
+        auto myBuilder = new DirectionBuilder();
         return $builder.build($parsed);
     }
 

@@ -52,57 +52,57 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class SubTreeBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
-        myBuilder = new ColumnReferenceBuilder();
+        auto myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
-        myBuilder = new FunctionBuilder();
+        auto myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildOperator($parsed) {
-        myBuilder = new OperatorBuilder();
+        auto myBuilder = new OperatorBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildInList($parsed) {
-        myBuilder = new InListBuilder();
+        auto myBuilder = new InListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSubQuery($parsed) {
-        myBuilder = new SubQueryBuilder();
+        auto myBuilder = new SubQueryBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildQuery($parsed) {
-        myBuilder = new QueryBuilder();
+        auto myBuilder = new QueryBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSelectBracketExpression($parsed) {
-        myBuilder = new SelectBracketExpressionBuilder();
+        auto myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildUserVariable($parsed) {
-        myBuilder = new UserVariableBuilder();
+        auto myBuilder = new UserVariableBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSign($parsed) {
-        myBuilder = new SignBuilder();
+        auto myBuilder = new SignBuilder();
         return $builder.build($parsed);
     }
 

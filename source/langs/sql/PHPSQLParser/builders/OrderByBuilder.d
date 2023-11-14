@@ -18,37 +18,37 @@ use SqlParser\utils\ExpressionType;
 class OrderByBuilder : ISqlBuilder {
 
     protected auto buildFunction($parsed) {
-        myBuilder = new OrderByFunctionBuilder();
+        auto myBuilder = new OrderByFunctionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildReserved($parsed) {
-        myBuilder = new OrderByReservedBuilder();
+        auto myBuilder = new OrderByReservedBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildColRef($parsed) {
-        myBuilder = new OrderByColumnReferenceBuilder();
+        auto myBuilder = new OrderByColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildAlias($parsed) {
-        myBuilder = new OrderByAliasBuilder();
+        auto myBuilder = new OrderByAliasBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildExpression($parsed) {
-        myBuilder = new OrderByExpressionBuilder();
+        auto myBuilder = new OrderByExpressionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildBracketExpression($parsed) {
-        myBuilder = new OrderByBracketExpressionBuilder();
+        auto myBuilder = new OrderByBracketExpressionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildPosition($parsed) {
-        myBuilder = new OrderByPositionBuilder();
+        auto myBuilder = new OrderByPositionBuilder();
         return $builder.build($parsed);
     }
 

@@ -28,7 +28,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
     }
 
     protected auto buildHavingBracketExpression($parsed) {
-        myBuilder = new HavingBracketExpressionBuilder();
+        auto myBuilder = new HavingBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 

@@ -17,22 +17,22 @@ use SqlParser\utils\ExpressionType;
 class ColumnTypeBuilder : ISqlBuilder {
 
     protected auto buildColumnTypeBracketExpression($parsed) {
-        myBuilder = new ColumnTypeBracketExpressionBuilder();
+        auto myBuilder = new ColumnTypeBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildDataType($parsed) {
-        myBuilder = new DataTypeBuilder();
+        auto myBuilder = new DataTypeBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildDefaultValue($parsed) {
-        myBuilder = new DefaultValueBuilder();
+        auto myBuilder = new DefaultValueBuilder();
         return $builder.build($parsed);
     }
 

@@ -20,27 +20,27 @@ import lang.sql;
 class DropExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
-        myBuilder = new TableBuilder();
+        auto myBuilder = new TableBuilder();
         return $builder.build($parsed, $index);
     }
 
     protected auto buildDatabase($parsed) {
-        myBuilder = new DatabaseBuilder();
+        auto myBuilder = new DatabaseBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSchema($parsed) {
-        myBuilder = new SchemaBuilder();
+        auto myBuilder = new SchemaBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildTemporaryTable($parsed) {
-        myBuilder = new TempTableBuilder();
+        auto myBuilder = new TempTableBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildView($parsed) {
-        myBuilder = new ViewBuilder();
+        auto myBuilder = new ViewBuilder();
         return $builder.build($parsed);
     }
     

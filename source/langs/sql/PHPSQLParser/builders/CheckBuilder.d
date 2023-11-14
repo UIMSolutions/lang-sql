@@ -18,12 +18,12 @@ use SqlParser\utils\ExpressionType;
 class CheckBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {
-        myBuilder = new SelectBracketExpressionBuilder();
+        auto myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

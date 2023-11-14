@@ -16,12 +16,12 @@ module lang.sql.parsers.builders;
 class TruncateStatementBuilder : ISqlBuilder {
 
     protected auto buildTRUNCATE($parsed) {
-        myBuilder = new TruncateBuilder();
+        auto myBuilder = new TruncateBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFROM($parsed) {
-        myBuilder = new FromBuilder();
+        auto myBuilder = new FromBuilder();
         return $builder.build($parsed);
     }
     

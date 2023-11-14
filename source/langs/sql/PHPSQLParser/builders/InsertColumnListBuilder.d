@@ -18,7 +18,7 @@ use SqlParser\utils\ExpressionType;
 class InsertColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn($parsed) {
-        myBuilder = new ColumnReferenceBuilder();
+        auto myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 

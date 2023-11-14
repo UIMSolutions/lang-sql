@@ -16,47 +16,47 @@ module lang.sql.parsers.builders;
 class SelectStatementBuilder : ISqlBuilder {
 
     protected auto buildSELECT($parsed) {
-        myBuilder = new SelectBuilder();
+        auto myBuilder = new SelectBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFROM($parsed) {
-        myBuilder = new FromBuilder();
+        auto myBuilder = new FromBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildWHERE($parsed) {
-        myBuilder = new WhereBuilder();
+        auto myBuilder = new WhereBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildGROUP($parsed) {
-        myBuilder = new GroupByBuilder();
+        auto myBuilder = new GroupByBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildHAVING($parsed) {
-        myBuilder = new HavingBuilder();
+        auto myBuilder = new HavingBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildORDER($parsed) {
-        myBuilder = new OrderByBuilder();
+        auto myBuilder = new OrderByBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildLIMIT($parsed) {
-        myBuilder = new LimitBuilder();
+        auto myBuilder = new LimitBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildUNION($parsed) {
-    	myBuilder = new UnionStatementBuilder();
+    	auto myBuilder = new UnionStatementBuilder();
     	return $builder.build($parsed);
     }
     
     protected auto buildUNIONALL($parsed) {
-    	myBuilder = new UnionAllStatementBuilder();
+    	auto myBuilder = new UnionAllStatementBuilder();
     	return $builder.build($parsed);
     }
 

@@ -18,19 +18,19 @@ import lang.sql;
 class DropBuilder : ISqlBuilder {
 
 	protected auto buildDropIndex( $parsed ) {
-		myBuilder = new DropIndexBuilder();
+		auto myBuilder = new DropIndexBuilder();
 
 		return $builder.build( $parsed );
 	}
 
 	protected auto buildReserved( $parsed ) {
-		myBuilder = new ReservedBuilder();
+		auto myBuilder = new ReservedBuilder();
 
 		return $builder.build( $parsed );
 	}
 
 	protected auto buildExpression( $parsed ) {
-		myBuilder = new DropExpressionBuilder();
+		auto myBuilder = new DropExpressionBuilder();
 
 		return $builder.build( $parsed );
 	}

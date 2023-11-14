@@ -17,7 +17,7 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class SetBuilder : ISqlBuilder {
 
     protected auto buildSetExpression($parsed) {
-        myBuilder = new SetExpressionBuilder();
+        auto myBuilder = new SetExpressionBuilder();
         return $builder.build($parsed);
     }
 

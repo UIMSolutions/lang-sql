@@ -24,17 +24,17 @@ import lang.sql;
 class HavingBuilder : WhereBuilder {
 
     protected auto buildAliasReference($parsed) {
-        myBuilder = new AliasReferenceBuilder();
+        auto myBuilder = new AliasReferenceBuilder();
         return $builder.build($parsed);
     }
 	
 	protected auto buildHavingExpression($parsed) {
-        myBuilder = new HavingExpressionBuilder();
+        auto myBuilder = new HavingExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildHavingBracketExpression($parsed) {
-        myBuilder = new HavingBracketExpressionBuilder();
+        auto myBuilder = new HavingBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 

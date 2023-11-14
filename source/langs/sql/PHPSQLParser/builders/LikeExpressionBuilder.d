@@ -20,12 +20,12 @@ use SqlParser\utils\ExpressionType;
 class LikeExpressionBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $index) {
-        myBuilder = new TableBuilder();
+        auto myBuilder = new TableBuilder();
         return $builder.build($parsed, $index);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

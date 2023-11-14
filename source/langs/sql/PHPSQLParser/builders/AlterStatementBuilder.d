@@ -6,12 +6,12 @@ import lang.sql;
 @safe:
 class AlterStatementBuilder : IBuilder {
     protected auto buildSubTree($parsed) {
-        myBuilder = new SubTreeBuilder();
+        auto myBuilder = new SubTreeBuilder();
         return $builder.build($parsed);
     }
 
     private auto buildAlter($parsed) {
-        myBuilder = new AlterBuilder();
+        auto myBuilder = new AlterBuilder();
         return $builder.build($parsed);
     }
 

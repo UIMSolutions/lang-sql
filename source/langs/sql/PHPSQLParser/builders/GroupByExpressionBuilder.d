@@ -55,12 +55,12 @@ import lang.sql;
 class GroupByExpressionBuilder : ISqlBuilder {
 
 	protected auto buildColRef($parsed) {
-		myBuilder = new ColumnReferenceBuilder();
+		auto myBuilder = new ColumnReferenceBuilder();
 		return $builder.build($parsed);
 	}
 	
 	protected auto buildReserved($parsed) {
-		myBuilder = new ReservedBuilder();
+		auto myBuilder = new ReservedBuilder();
 		return $builder.build($parsed);
 	}
 	

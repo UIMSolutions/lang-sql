@@ -18,32 +18,32 @@ use SqlParser\utils\ExpressionType;
 class SetExpressionBuilder : ISqlBuilder {
 
     protected auto buildColRef($parsed) {
-        myBuilder = new ColumnReferenceBuilder();
+        auto myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildOperator($parsed) {
-        myBuilder = new OperatorBuilder();
+        auto myBuilder = new OperatorBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildFunction($parsed) {
-        myBuilder = new FunctionBuilder();
+        auto myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildBracketExpression($parsed) {
-        myBuilder = new SelectBracketExpressionBuilder();
+        auto myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
     
     protected auto buildSign($parsed) {
-        myBuilder = new SignBuilder();
+        auto myBuilder = new SignBuilder();
         return $builder.build($parsed);
     }
     

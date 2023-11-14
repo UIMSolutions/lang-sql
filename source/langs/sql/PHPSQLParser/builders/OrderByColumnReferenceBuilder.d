@@ -17,7 +17,7 @@ module lang.sql.parsers.builders;
 class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
 
     protected auto buildDirection($parsed) {
-        myBuilder = new DirectionBuilder();
+        auto myBuilder = new DirectionBuilder();
         return $builder.build($parsed);
     }
 

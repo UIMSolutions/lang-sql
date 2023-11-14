@@ -19,17 +19,17 @@ import lang.sql;
 class CreateIndexBuilder : ISqlBuilder {
 
     protected auto buildIndexType($parsed) {
-        myBuilder = new CreateIndexTypeBuilder();
+        auto myBuilder = new CreateIndexTypeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexTable($parsed) {
-        myBuilder = new CreateIndexTableBuilder();
+        auto myBuilder = new CreateIndexTableBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildIndexOptions($parsed) {
-        myBuilder = new CreateIndexOptionsBuilder();
+        auto myBuilder = new CreateIndexOptionsBuilder();
         return $builder.build($parsed);
     }
 

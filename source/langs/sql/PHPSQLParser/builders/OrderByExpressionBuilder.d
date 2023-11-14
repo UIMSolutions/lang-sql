@@ -16,7 +16,7 @@ module lang.sql.parsers.builders;
 class OrderByExpressionBuilder : WhereExpressionBuilder {
 
     protected auto buildDirection($parsed) {
-        auto myBuilder = new DirectionBuilder();
+        auto auto myBuilder = new DirectionBuilder();
         return myBuilder.build($parsed);
     }
 

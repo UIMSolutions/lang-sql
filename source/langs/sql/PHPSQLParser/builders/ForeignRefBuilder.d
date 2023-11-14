@@ -21,17 +21,17 @@ import lang.sql;
 class ForeignRefBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed) {
-        myBuilder = new TableBuilder();
+        auto myBuilder = new TableBuilder();
         return $builder.build($parsed, 0);
     }
 
     protected auto buildColumnList($parsed) {
-        myBuilder = new ColumnListBuilder();
+        auto myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

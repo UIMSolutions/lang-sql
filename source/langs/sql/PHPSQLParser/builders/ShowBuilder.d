@@ -17,37 +17,37 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class ShowBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed, $delim) {
-        myBuilder = new TableBuilder();
+        auto myBuilder = new TableBuilder();
         return $builder.build($parsed, $delim);
     }
 
     protected auto buildFunction($parsed) {
-        myBuilder = new FunctionBuilder();
+        auto myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildProcedure($parsed) {
-        myBuilder = new ProcedureBuilder();
+        auto myBuilder = new ProcedureBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildDatabase($parsed) {
-        myBuilder = new DatabaseBuilder();
+        auto myBuilder = new DatabaseBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildEngine($parsed) {
-        myBuilder = new EngineBuilder();
+        auto myBuilder = new EngineBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 

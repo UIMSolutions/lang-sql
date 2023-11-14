@@ -17,32 +17,32 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class SelectBuilder : ISqlBuilder {
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildFunction($parsed) {
-        myBuilder = new FunctionBuilder();
+        auto myBuilder = new FunctionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSelectExpression($parsed) {
-        myBuilder = new SelectExpressionBuilder();
+        auto myBuilder = new SelectExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSelectBracketExpression($parsed) {
-        myBuilder = new SelectBracketExpressionBuilder();
+        auto myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColRef($parsed) {
-        myBuilder = new ColumnReferenceBuilder();
+        auto myBuilder = new ColumnReferenceBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
     /**

@@ -18,17 +18,17 @@ import lang.sql;
 class CreateBuilder : ISqlBuilder {
 
     protected auto buildCreateTable($parsed) {
-        myBuilder = new CreateTableBuilder();
+        auto myBuilder = new CreateTableBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildCreateIndex($parsed) {
-        myBuilder = new CreateIndexBuilder();
+        auto myBuilder = new CreateIndexBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSubTree($parsed) {
-        myBuilder = new SubTreeBuilder();
+        auto myBuilder = new SubTreeBuilder();
         return $builder.build($parsed);
     }
 

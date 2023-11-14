@@ -18,22 +18,22 @@ import lang.sql;
 class ForeignKeyBuilder : IBuilder {
 
     protected auto buildConstant($parsed) {
-        myBuilder = new ConstantBuilder();
+        auto myBuilder = new ConstantBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColumnList($parsed) {
-        myBuilder = new ColumnListBuilder();
+        auto myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildForeignRef($parsed) {
-        myBuilder = new ForeignRefBuilder();
+        auto myBuilder = new ForeignRefBuilder();
         return $builder.build($parsed);
     }
     

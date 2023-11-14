@@ -18,7 +18,7 @@ import lang.sql;
 class CreateIndexTableBuilder : ISqlBuilder {
 
     protected auto buildColumnList($parsed) {
-        myBuilder = new ColumnListBuilder();
+        auto myBuilder = new ColumnListBuilder();
         return $builder.build($parsed);
     }
 

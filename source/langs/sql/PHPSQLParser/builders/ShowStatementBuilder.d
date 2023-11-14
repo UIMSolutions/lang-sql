@@ -16,12 +16,12 @@ module lang.sql.parsers.builders;
 class ShowStatementBuilder : ISqlBuilder {
 
     protected auto buildWHERE($parsed) {
-        myBuilder = new WhereBuilder();
+        auto myBuilder = new WhereBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSHOW($parsed) {
-        myBuilder = new ShowBuilder();
+        auto myBuilder = new ShowBuilder();
         return $builder.build($parsed);
     }
 

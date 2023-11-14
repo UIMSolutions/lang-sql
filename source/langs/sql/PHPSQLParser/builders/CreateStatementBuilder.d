@@ -15,17 +15,17 @@ module lang.sql.parsers.builders;
 class CreateStatementBuilder : ISqlBuilder {
 
     protected auto buildLIKE($parsed) {
-        myBuilder = new LikeBuilder();
+        auto myBuilder = new LikeBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildSelectStatement($parsed) {
-        myBuilder = new SelectStatementBuilder();
+        auto myBuilder = new SelectStatementBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildCREATE($parsed) {
-        myBuilder = new CreateBuilder();
+        auto myBuilder = new CreateBuilder();
         return $builder.build($parsed);
     }
 

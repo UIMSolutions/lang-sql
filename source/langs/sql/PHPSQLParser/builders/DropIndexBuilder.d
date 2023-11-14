@@ -19,7 +19,7 @@ import lang.sql;
 class DropIndexBuilder : IBuilder {
 
 	protected auto buildIndexTable($parsed) {
-		myBuilder = new DropIndexTableBuilder();
+		auto myBuilder = new DropIndexTableBuilder();
 		return $builder.build($parsed);
 	}
 

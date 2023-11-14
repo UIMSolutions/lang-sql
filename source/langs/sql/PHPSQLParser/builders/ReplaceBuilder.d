@@ -17,27 +17,27 @@ use SqlParser\exceptions\UnableToCreateSQLException;
 class ReplaceBuilder : ISqlBuilder {
 
     protected auto buildTable($parsed) {
-        myBuilder = new TableBuilder();
+        auto myBuilder = new TableBuilder();
         return $builder.build($parsed, 0);
     }
 
     protected auto buildSubQuery($parsed) {
-        myBuilder = new SubQueryBuilder();
+        auto myBuilder = new SubQueryBuilder();
         return $builder.build($parsed, 0);
     }
 
     protected auto buildReserved($parsed) {
-        myBuilder = new ReservedBuilder();
+        auto myBuilder = new ReservedBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildBracketExpression($parsed) {
-        myBuilder = new SelectBracketExpressionBuilder();
+        auto myBuilder = new SelectBracketExpressionBuilder();
         return $builder.build($parsed);
     }
 
     protected auto buildColumnList($parsed) {
-        myBuilder = new ReplaceColumnListBuilder();
+        auto myBuilder = new ReplaceColumnListBuilder();
         return $builder.build($parsed, 0);
     }
 
