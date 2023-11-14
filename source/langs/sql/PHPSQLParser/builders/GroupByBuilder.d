@@ -45,23 +45,23 @@ class GroupByBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildPosition($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildGroupByExpression($v);
-            $sql  ~= this.buildGroupByAlias($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildPosition($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildGroupByExpression($v);
+            mySql  ~= this.buildGroupByAlias($v);
             
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('GROUP', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ", ";
+            mySql  ~= ", ";
         }
-        $sql = substr($sql, 0, -2);
-        return "GROUP BY " . $sql;
+        mySql = substr(mySql, 0, -2);
+        return "GROUP BY " . mySql;
     }
 
 }

@@ -62,27 +62,27 @@ class TableBracketExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColDef($v);
-            $sql  ~= this.buildPrimaryKey($v);
-            $sql  ~= this.buildCheck($v);
-            $sql  ~= this.buildLikeExpression($v);
-            $sql  ~= this.buildForeignKey($v);
-            $sql  ~= this.buildIndexKey($v);
-            $sql  ~= this.buildUniqueIndex($v);
-            $sql  ~= this.buildFulltextIndex($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColDef($v);
+            mySql  ~= this.buildPrimaryKey($v);
+            mySql  ~= this.buildCheck($v);
+            mySql  ~= this.buildLikeExpression($v);
+            mySql  ~= this.buildForeignKey($v);
+            mySql  ~= this.buildIndexKey($v);
+            mySql  ~= this.buildUniqueIndex($v);
+            mySql  ~= this.buildFulltextIndex($v);
                         
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE create-def expression subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ", ";
+            mySql  ~= ", ";
         }
 
-        $sql = " (" . substr($sql, 0, -2) . ")";
-        return $sql;
+        mySql = " (" . substr(mySql, 0, -2) . ")";
+        return mySql;
     }
     
 }

@@ -51,22 +51,22 @@ class PrimaryKeyBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::PRIMARY_KEY) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildConstraint($v);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildColumnList($v);
-            $sql  ~= this.buildIndexType($v);
-            $sql  ~= this.buildIndexSize($v);
-            $sql  ~= this.buildIndexParser($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildConstraint($v);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildColumnList($v);
+            mySql  ~= this.buildIndexType($v);
+            mySql  ~= this.buildIndexSize($v);
+            mySql  ~= this.buildIndexParser($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE primary key subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }

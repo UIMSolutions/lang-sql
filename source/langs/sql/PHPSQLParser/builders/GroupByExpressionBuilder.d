@@ -69,20 +69,20 @@ class GroupByExpressionBuilder : ISqlBuilder {
             return "";
         }
         
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildReserved($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildReserved($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('GROUP expression subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
 
-        $sql = substr($sql, 0, -1);
-        return $sql;
+        mySql = substr(mySql, 0, -1);
+        return mySql;
     }
 }

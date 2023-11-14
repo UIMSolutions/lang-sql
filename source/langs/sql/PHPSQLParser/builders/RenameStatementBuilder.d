@@ -30,20 +30,20 @@ class RenameStatementBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         $rename = $parsed["RENAME"];
-        $sql = "";
+        mySql = "";
         foreach ($rename["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.processSourceAndDestTable($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.processSourceAndDestTable($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('RENAME subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ' ';
+            mySql  ~= ' ';
         }
-        $sql = trim('RENAME ' . $sql);
-        return (substr($sql, -1) == ',' ? substr($sql, 0, -1) : $sql);
+        mySql = trim('RENAME ' . mySql);
+        return (substr(mySql, -1) == ',' ? substr(mySql, 0, -1) : mySql);
     }
 }
 

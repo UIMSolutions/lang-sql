@@ -48,21 +48,21 @@ class DropExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildTable($v, 0);
-            $sql  ~= this.buildView($v);
-            $sql  ~= this.buildSchema($v);
-            $sql  ~= this.buildDatabase($v);
-            $sql  ~= this.buildTemporaryTable($v, 0);
+            $len = strlen(mySql);
+            mySql  ~= this.buildTable($v, 0);
+            mySql  ~= this.buildView($v);
+            mySql  ~= this.buildSchema($v);
+            mySql  ~= this.buildDatabase($v);
+            mySql  ~= this.buildTemporaryTable($v, 0);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('DROP object-list subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ', ';
+            mySql  ~= ', ';
         }
-        return substr($sql, 0, -2);
+        return substr(mySql, 0, -2);
     }
 }

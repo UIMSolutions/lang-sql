@@ -57,22 +57,22 @@ class SelectBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildSelectBracketExpression($v);
-            $sql  ~= this.buildSelectExpression($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildReserved($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildSelectBracketExpression($v);
+            mySql  ~= this.buildSelectExpression($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildReserved($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('SELECT', $k, $v, 'expr_type');
             }
 
-            $sql  ~= this.getDelimiter($v);
+            mySql  ~= this.getDelimiter($v);
         }
-        return "SELECT " . $sql;
+        return "SELECT " . mySql;
     }
 }

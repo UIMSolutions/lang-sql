@@ -13,19 +13,19 @@ class UnionStatementBuilder : ISqlBuilder {
 
 	auto build(array $parsed)
 	{
-		$sql = "";
+		mySql = "";
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
 		foreach ($parsed["UNION"] as $clause) {
 			if (!$first) {
-				$sql  ~= " UNION ";
+				mySql  ~= " UNION ";
 			}
 			else {
 				$first = false;
 			}
 
-			$sql  ~= $select_builder.build($clause);
+			mySql  ~= $select_builder.build($clause);
 		}
-		return $sql;
+		return mySql;
 	}
 }

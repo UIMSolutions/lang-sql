@@ -31,18 +31,18 @@ class IndexCommentBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COMMENT) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildConstant($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildConstant($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE INDEX comment subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ' ';
+            mySql  ~= ' ';
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }

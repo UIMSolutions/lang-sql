@@ -39,19 +39,19 @@ class ForeignRefBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::REFERENCE) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildTable($v);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildColumnList($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildTable($v);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildColumnList($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }

@@ -53,25 +53,25 @@ class ShowBuilder : ISqlBuilder {
 
     auto build(array $parsed) {
         $show = $parsed["SHOW"];
-        $sql = "";
+        mySql = "";
         foreach ($show as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildEngine($v);
-            $sql  ~= this.buildDatabase($v);
-            $sql  ~= this.buildProcedure($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildTable($v, 0);
+            $len = strlen(mySql);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildEngine($v);
+            mySql  ~= this.buildDatabase($v);
+            mySql  ~= this.buildProcedure($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildTable($v, 0);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('SHOW', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
 
-        $sql = substr($sql, 0, -1);
-        return "SHOW " . $sql;
+        mySql = substr(mySql, 0, -1);
+        return "SHOW " . mySql;
     }
 }

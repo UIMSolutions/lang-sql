@@ -105,29 +105,29 @@ class WhereExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildInList($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildWhereExpression($v);
-            $sql  ~= this.buildWhereBracketExpression($v);
-            $sql  ~= this.buildUserVariable($v);
-            $sql  ~= this.buildSubQuery($v);
-            $sql  ~= this.buildReserved($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildInList($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildWhereExpression($v);
+            mySql  ~= this.buildWhereBracketExpression($v);
+            mySql  ~= this.buildUserVariable($v);
+            mySql  ~= this.buildSubQuery($v);
+            mySql  ~= this.buildReserved($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('WHERE expression subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
 
-        $sql = substr($sql, 0, -1);
-        return $sql;
+        mySql = substr(mySql, 0, -1);
+        return mySql;
     }
 
 }

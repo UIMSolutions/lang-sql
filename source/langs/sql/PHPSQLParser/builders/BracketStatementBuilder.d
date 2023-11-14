@@ -24,15 +24,15 @@ class BracketStatementBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed["BRACKET"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildSelectBracketExpression($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildSelectBracketExpression($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('BRACKET', $k, $v, 'expr_type');
             }
         }
-        return trim($sql . " " . trim(this.buildSelectStatement($parsed)));
+        return trim(mySql . " " . trim(this.buildSelectStatement($parsed)));
     }
 }

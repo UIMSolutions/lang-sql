@@ -41,22 +41,22 @@ class RecordBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::RECORD) {
             return isset($parsed["base_expr"]) ? $parsed["base_expr"] : "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["data"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildColRef($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildColRef($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, $v, 'expr_type');
             }
 
-            $sql  ~= ", ";
+            mySql  ~= ", ";
         }
-        $sql = substr($sql, 0, -2);
-        return "(" . $sql . ")";
+        mySql = substr(mySql, 0, -2);
+        return "(" . mySql . ")";
     }
 
 }

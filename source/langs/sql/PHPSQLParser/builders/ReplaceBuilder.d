@@ -42,22 +42,22 @@ class ReplaceBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildTable($v);
-            $sql  ~= this.buildSubQuery($v);
-            $sql  ~= this.buildColumnList($v);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildBracketExpression($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildTable($v);
+            mySql  ~= this.buildSubQuery($v);
+            mySql  ~= this.buildColumnList($v);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildBracketExpression($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('REPLACE', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return 'REPLACE ' . substr($sql, 0, -1);
+        return 'REPLACE ' . substr(mySql, 0, -1);
     }
 
 }

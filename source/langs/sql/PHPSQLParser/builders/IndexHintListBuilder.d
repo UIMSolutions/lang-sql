@@ -24,10 +24,10 @@ class IndexHintListBuilder : ISqlBuilder {
         if (!isset($parsed["hints"]) || $parsed["hints"] == false) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["hints"] as $k => $v) {
-            $sql  ~= $v["hint_type"] . " " . $v["hint_list"] . " ";
+            mySql  ~= $v["hint_type"] . " " . $v["hint_list"] . " ";
         }
-        return " " . substr($sql, 0, -1);
+        return " " . substr(mySql, 0, -1);
     }
 }

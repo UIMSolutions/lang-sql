@@ -43,20 +43,20 @@ class IndexKeyBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildReserved($v);
-            $sql  ~= this.buildColumnList($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildIndexType($v);            
+            $len = strlen(mySql);
+            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildColumnList($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildIndexType($v);            
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('CREATE TABLE index key subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
-        return substr($sql, 0, -1);
+        return substr(mySql, 0, -1);
     }
 }

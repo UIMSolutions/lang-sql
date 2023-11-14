@@ -36,27 +36,27 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return "";
         }
-        $sql = "";
+        mySql = "";
         foreach ($parsed["sub_tree"] as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildColRef($v);
-            $sql  ~= this.buildConstant($v);
-            $sql  ~= this.buildOperator($v);
-            $sql  ~= this.buildInList($v);
-            $sql  ~= this.buildFunction($v);
-            $sql  ~= this.buildHavingExpression($v);
-            $sql  ~= this.buildHavingBracketExpression($v);
-            $sql  ~= this.buildUserVariable($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildColRef($v);
+            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildOperator($v);
+            mySql  ~= this.buildInList($v);
+            mySql  ~= this.buildFunction($v);
+            mySql  ~= this.buildHavingExpression($v);
+            mySql  ~= this.buildHavingBracketExpression($v);
+            mySql  ~= this.buildUserVariable($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('HAVING expression subtree', $k, $v, 'expr_type');
             }
 
-            $sql  ~= " ";
+            mySql  ~= " ";
         }
 
-        $sql = substr($sql, 0, -1);
-        return $sql;
+        mySql = substr(mySql, 0, -1);
+        return mySql;
     }
 
 }

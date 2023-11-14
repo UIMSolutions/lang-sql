@@ -22,18 +22,18 @@ class ValuesBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildRecord($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildRecord($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('VALUES', $k, $v, 'expr_type');
             }
 
-            $sql  ~= this.getRecordDelimiter($v);
+            mySql  ~= this.getRecordDelimiter($v);
         }
-        return "VALUES " . trim($sql);
+        return "VALUES " . trim(mySql);
     }
 
     protected auto getRecordDelimiter($parsed) {

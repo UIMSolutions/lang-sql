@@ -22,17 +22,17 @@ class SetBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        $sql = "";
+        mySql = "";
         foreach ($parsed as $k => $v) {
-            $len = strlen($sql);
-            $sql  ~= this.buildSetExpression($v);
+            $len = strlen(mySql);
+            mySql  ~= this.buildSetExpression($v);
 
-            if ($len == strlen($sql)) {
+            if ($len == strlen(mySql)) {
                 throw new UnableToCreateSQLException('SET', $k, $v, 'expr_type');
             }
 
-            $sql  ~= ",";
+            mySql  ~= ",";
         }
-        return "SET " . substr($sql, 0, -1);
+        return "SET " . substr(mySql, 0, -1);
     }
 }
