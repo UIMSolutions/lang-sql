@@ -10,14 +10,14 @@ import lang.sql;
 // This class processes the index column lists.
 class IndexColumnListProcessor : AbstractProcessor {
     protected auto initExpression() {
-        return array('name' :  false, 'no_quotes' :  false, 'length' :  false, 'dir' :  false);
+        return ['name' :  false, 'no_quotes' :  false, 'length' :  false, 'dir' :  false);
     }
 
     auto process($sql) {
         $tokens = this.splitSQLIntoTokens($sql);
 
         $expr = this.initExpression();
-        $result = array();
+        $result = [);
         $base_expr = "";
 
         foreach ($tokens as $k :  $token) {
@@ -41,7 +41,7 @@ class IndexColumnListProcessor : AbstractProcessor {
 
             case ',':
             # the next column
-                $result[] = array_merge(array('expr_type' :  ExpressionType::INDEX_COLUMN, 'base_expr' :  $base_expr),
+                $result[] = array_merge(['expr_type' :  ExpressionType::INDEX_COLUMN, 'base_expr' :  $base_expr),
                         $expr);
                 $expr = this.initExpression();
                 $base_expr = "";
@@ -59,7 +59,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result[] = array_merge(array('expr_type' :  ExpressionType::INDEX_COLUMN, 'base_expr' :  $base_expr), $expr);
+        $result[] = array_merge(['expr_type' :  ExpressionType::INDEX_COLUMN, 'base_expr' :  $base_expr), $expr);
         return $result;
     }
 }

@@ -8,8 +8,8 @@ class SqlParserConstants {
 
     private static $inst = null;
 
-    protected $customFunctions = array();
-    protected $reserved = array('ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_ENCRYPT', 'AES_DECRYPT', 'AGAINST', 'ASCII',
+    protected $customFunctions = [);
+    protected $reserved = ['ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_ENCRYPT', 'AES_DECRYPT', 'AGAINST', 'ASCII',
                                 'ASIN', 'ATAN', 'AVG', 'BENCHMARK', 'BIN', 'BIT_AND', 'BIT_OR', 'BITCOUNT',
                                 'BITLENGTH', 'CAST', 'CEILING', 'CHAR', 'CHAR_LENGTH', 'CHARACTER_LENGTH', 'CHARSET',
                                 'COALESCE', 'COERCIBILITY', 'COLLATION', 'COMPRESS', 'CONCAT', 'CONCAT_WS',
@@ -68,7 +68,7 @@ class SqlParserConstants {
                                 'UTC_TIME', 'UTC_TIMESTAMP', 'VALUES', 'VARBINARY', 'VARCHAR', 'VARCHARACTER',
                                 'VARYING', 'WHEN', 'WHERE', 'WHILE', 'WITH', 'WRITE', 'XOR', 'YEAR_MONTH', 'ZEROFILL');
 
-    protected $parameterizedFunctions = array('ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_ENCRYPT', 'AES_DECRYPT',
+    protected $parameterizedFunctions = ['ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_ENCRYPT', 'AES_DECRYPT',
                                               'AGAINST', 'ASCII', 'ASIN', 'ATAN', 'AVG', 'BENCHMARK', 'BIN', 'BIT_AND',
                                               'BIT_OR', 'BITCOUNT', 'BITLENGTH', 'CAST', 'CEILING', 'CHAR',
                                               'CHAR_LENGTH', 'CHARACTER_LENGTH', 'CHARSET', 'COALESCE', 'COERCIBILITY',
@@ -97,7 +97,7 @@ class SqlParserConstants {
                                               'UPPER', 'VAR_POP', 'VAR_SAMP', 'VARIANCE', 'WEEK', 'WEEKDAY',
                                               'WEEKOFYEAR', 'YEAR', 'YEARWEEK');
 
-    protected $functions = array('ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_ENCRYPT', 'AES_DECRYPT', 'AGAINST', 'ASCII',
+    protected $functions = ['ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_ENCRYPT', 'AES_DECRYPT', 'AGAINST', 'ASCII',
                                  'ASIN', 'ATAN', 'AVG', 'BENCHMARK', 'BIN', 'BIT_AND', 'BIT_OR', 'BITCOUNT',
                                  'BITLENGTH', 'CAST', 'CEILING', 'CHAR', 'CHAR_LENGTH', 'CHARACTER_LENGTH', 'CHARSET',
                                  'COALESCE', 'COERCIBILITY', 'COLLATION', 'COMPRESS', 'CONCAT', 'CONCAT_WS',
@@ -125,7 +125,7 @@ class SqlParserConstants {
                                  'UTC_TIME', 'UTC_TIMESTAMP', 'UUID', 'VAR_POP', 'VAR_SAMP', 'VARIANCE', 'VERSION',
                                  'WEEK', 'WEEKDAY', 'WEEKOFYEAR', 'YEAR', 'YEARWEEK');
 
-    protected $aggregateFunctions = array('AVG', 'SUM', 'COUNT', 'MIN', 'MAX', 'STD', 'STDDEV', 'STDDEV_SAMP',
+    protected $aggregateFunctions = ['AVG', 'SUM', 'COUNT', 'MIN', 'MAX', 'STD', 'STDDEV', 'STDDEV_SAMP',
                                           'STDDEV_POP', 'VARIANCE', 'VAR_SAMP', 'VAR_POP', 'GROUP_CONCAT', 'BIT_AND',
                                           'BIT_OR', 'BIT_XOR');
 

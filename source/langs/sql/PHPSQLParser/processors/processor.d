@@ -62,7 +62,7 @@ abstract class DProcessor {
      */
     protected auto revokeQuotation($sql) {
         auto mySqlBuffer = trim($sql);
-        $result = array();
+        $result = [);
 
         $quote = false;
         $start = 0;
@@ -122,7 +122,7 @@ abstract class DProcessor {
             }
         }
 
-        return array('delim' : (count($result) == 1 ? false : '.'), 'parts' : $result);
+        return ['delim' : (count($result) == 1 ? false : '.'), 'parts' : $result);
     }
 
     /**
@@ -260,7 +260,7 @@ abstract class DProcessor {
     }
 
     auto processComment($expression) {
-        $result = array();
+        $result = [);
         $result["expr_type"] = ExpressionType::COMMENT;
         $result["value"] = $expression;
         return $result;
@@ -270,7 +270,7 @@ abstract class DProcessor {
      * translates an array of objects into an associative array
      */
     auto toArray($tokenList) {
-        $expr = array();
+        $expr = [);
         foreach ($tokenList as $token) {
             if ($token instanceof \SqlParser\utils\ExpressionToken) {
                 $expr[] = $token.toArray();

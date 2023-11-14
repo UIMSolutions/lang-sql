@@ -16,7 +16,7 @@ class SQLChunkProcessor : AbstractProcessor {
         if (!isset($out["TABLE"]["like"])) {
             return;
         }
-        $out = this.array_insert_after($out, 'TABLE', array('LIKE' :  $out["TABLE"]["like"]));
+        $out = this.array_insert_after($out, 'TABLE', ['LIKE' :  $out["TABLE"]["like"]));
         unset($out["TABLE"]["like"]);
     }
 
@@ -85,12 +85,12 @@ class SQLChunkProcessor : AbstractProcessor {
         if (!empty($out["GROUP"])) {
             // set empty array if we have partial SQL statement
             auto myProcessor = new GroupByProcessor(this.options);
-            $out["GROUP"] = $processor.process($out["GROUP"], isset($out["SELECT"]) ? $out["SELECT"] : array());
+            $out["GROUP"] = $processor.process($out["GROUP"], isset($out["SELECT"]) ? $out["SELECT"] : [));
         }
         if (!empty($out["ORDER"])) {
             // set empty array if we have partial SQL statement
             auto myProcessor = new OrderByProcessor(this.options);
-            $out["ORDER"] = $processor.process($out["ORDER"], isset($out["SELECT"]) ? $out["SELECT"] : array());
+            $out["ORDER"] = $processor.process($out["ORDER"], isset($out["SELECT"]) ? $out["SELECT"] : [));
         }
         if (!empty($out["LIMIT"])) {
             auto myProcessor = new LimitProcessor(this.options);
@@ -102,7 +102,7 @@ class SQLChunkProcessor : AbstractProcessor {
         }
         if (!empty($out["HAVING"])) {
             auto myProcessor = new HavingProcessor(this.options);
-            $out["HAVING"] = $processor.process($out["HAVING"], isset($out["SELECT"]) ? $out["SELECT"] : array());
+            $out["HAVING"] = $processor.process($out["HAVING"], isset($out["SELECT"]) ? $out["SELECT"] : [));
         }
         if (!empty($out["SET"])) {
             auto myProcessor = new SetProcessor(this.options);

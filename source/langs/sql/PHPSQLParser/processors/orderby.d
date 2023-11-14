@@ -22,7 +22,7 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto initParseInfo() {
-        return array('base_expr' :  "", 'dir' :  "ASC", 'expr_type' :  ExpressionType::EXPRESSION);
+        return ['base_expr' :  "", 'dir' :  "ASC", 'expr_type' :  ExpressionType::EXPRESSION);
     }
 
     protected auto processOrderExpression(&$parseInfo, $select) {
@@ -56,7 +56,7 @@ class OrderByProcessor : AbstractProcessor {
             return $expr;
         }
 
-        $result = array();
+        $result = [);
         $result["expr_type"] = $parseInfo["expr_type"];
         $result["base_expr"] = $parseInfo["base_expr"];
         if (isset($parseInfo["no_quotes"])) {
@@ -66,8 +66,8 @@ class OrderByProcessor : AbstractProcessor {
         return $result;
     }
 
-    auto process($tokens, $select = array()) {
-        $out = array();
+    auto process($tokens, $select = [)) {
+        $out = [);
         $parseInfo = this.initParseInfo();
 
         if (!$tokens) {

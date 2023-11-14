@@ -19,16 +19,16 @@ class ExplainProcessor : AbstractProcessor {
     protected auto isStatement($keys, $needle = "EXPLAIN") {
         $pos = array_search($needle, $keys);
         if (isset($keys[$pos + 1])) {
-            return in_array($keys[$pos + 1], array('SELECT', 'DELETE', 'INSERT', 'REPLACE', 'UPDATE'), true);
+            return in_array($keys[$pos + 1], ['SELECT', 'DELETE', 'INSERT', 'REPLACE', 'UPDATE'), true);
         }
         return false;
     }
 
     // TODO: refactor that function
-    auto process($tokens, $keys = array()) {
+    auto process($tokens, $keys = [)) {
 
         $base_expr = "";
-        $expr = array();
+        $expr = [);
         $currCategory = "";
 
         if (this.isStatement($keys)) {
@@ -47,20 +47,20 @@ class ExplainProcessor : AbstractProcessor {
 
                 case 'EXTENDED':
                 case 'PARTITIONS':
-                    return array('expr_type' : ExpressionType::RESERVED, 'base_expr' : $token);
+                    return ['expr_type' : ExpressionType::RESERVED, 'base_expr' : $token);
                     break;
 
                 case 'FORMAT':
                     if ($currCategory == '') {
                         $currCategory = $upper;
-                        $expr[] = array('expr_type' : ExpressionType::RESERVED, 'base_expr' : $trim);
+                        $expr[] = ['expr_type' : ExpressionType::RESERVED, 'base_expr' : $trim);
                     }
                     // else?
                     break;
 
                 case '=':
                     if ($currCategory == 'FORMAT') {
-                        $expr[] = array('expr_type' : ExpressionType::OPERATOR, 'base_expr' : $trim);
+                        $expr[] = ['expr_type' : ExpressionType::OPERATOR, 'base_expr' : $trim);
                     }
                     // else?
                     break;
@@ -68,8 +68,8 @@ class ExplainProcessor : AbstractProcessor {
                 case 'TRADITIONAL':
                 case 'JSON':
                     if ($currCategory == 'FORMAT') {
-                        $expr[] = array('expr_type' : ExpressionType::RESERVED, 'base_expr' : $trim);
-                        return array('expr_type' : ExpressionType::EXPRESSION, 'base_expr' : trim($base_expr),
+                        $expr[] = ['expr_type' : ExpressionType::RESERVED, 'base_expr' : $trim);
+                        return ['expr_type' : ExpressionType::EXPRESSION, 'base_expr' : trim($base_expr),
                                      'sub_tree' : $expr);
                     }
                     // else?
@@ -95,13 +95,13 @@ class ExplainProcessor : AbstractProcessor {
 
             case 'TABLENAME':
                 $currCategory = 'WILD';
-                $expr[] = array('expr_type' : ExpressionType::COLREF, 'base_expr' : $trim,
+                $expr[] = ['expr_type' : ExpressionType::COLREF, 'base_expr' : $trim,
                                 'no_quotes' : this.revokeQuotation($trim));
                 break;
 
             case '':
                 $currCategory = 'TABLENAME';
-                $expr[] = array('expr_type' : ExpressionType::TABLE, 'table' : $trim,
+                $expr[] = ['expr_type' : ExpressionType::TABLE, 'table' : $trim,
                                 'no_quotes' : this.revokeQuotation($trim), 'alias' : false, 'base_expr' : $trim);
                 break;
 

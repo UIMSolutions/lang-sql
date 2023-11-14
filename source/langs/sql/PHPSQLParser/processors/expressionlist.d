@@ -11,7 +11,7 @@ import lang.sql;
 class ExpressionListProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $resultList = array();
+        $resultList = [);
         $skip_next = false;
         $prev = new ExpressionToken();
 
@@ -103,7 +103,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     // below for unspecified tokens (expressions).
 
                     $localExpr = new ExpressionToken();
-                    $tmpExprList = array();
+                    $tmpExprList = [);
 
                     foreach ($localTokenList as $k :  myValue) {
                         $tmpToken = new ExpressionToken($k, myValue);
@@ -121,7 +121,7 @@ class ExpressionListProcessor : AbstractProcessor {
                                 $localExpr.setTokenType(ExpressionType::EXPRESSION);
                                 $localExprList = $localExpr.toArray();
                                 $localExprList["alias"] = false;
-                                $localExprList = array($localExprList);
+                                $localExprList = [$localExprList);
                             }
 
                             if (!$curr.getSubTree()) {
@@ -133,7 +133,7 @@ class ExpressionListProcessor : AbstractProcessor {
                                 $curr.setSubTree(array_merge($tmpExprList, $localExprList));
                             }
 
-                            $tmpExprList = array();
+                            $tmpExprList = [);
                             $localExpr = new ExpressionToken();
                         }
                     }
@@ -146,7 +146,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         $localExpr.setTokenType(ExpressionType::EXPRESSION);
                         $localExprList = $localExpr.toArray();
                         $localExprList["alias"] = false;
-                        $localExprList = array($localExprList);
+                        $localExprList = [$localExprList);
                     }
 
                     if (!$curr.getSubTree()) {

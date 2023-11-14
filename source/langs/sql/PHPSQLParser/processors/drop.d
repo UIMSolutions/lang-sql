@@ -14,7 +14,7 @@ class DropProcessor : AbstractProcessor {
         $exists = false;
         $base_expr = "";
         $objectType = "";
-        $subTree = array();
+        $subTree = [);
         $option = false;
 
         foreach ($tokenList as $token) {
@@ -57,10 +57,10 @@ class DropProcessor : AbstractProcessor {
             case 'CASCADE':
                 $option = $upper;
                 if (!empty($objectList)) {
-                    $subTree[] = array('expr_type' :  ExpressionType::EXPRESSION,
+                    $subTree[] = ['expr_type' :  ExpressionType::EXPRESSION,
                                        'base_expr' :  trim(substr($base_expr, 0, -$token.length)),
                                        'sub_tree' :  $objectList);
-                    $objectList = array();
+                    $objectList = [);
                 }
                 $base_expr = "";
                 break;
@@ -72,7 +72,7 @@ class DropProcessor : AbstractProcessor {
                 continue 2;
 
             default:
-                $object = array();
+                $object = [);
                 $object["expr_type"] = $objectType;
                 if ($objectType == ExpressionType::TABLE || $objectType == ExpressionType::TEMPORARY_TABLE) {
                     $object["table"] = $trim;
@@ -87,14 +87,14 @@ class DropProcessor : AbstractProcessor {
                 continue 2;
             }
 
-            $subTree[] = array('expr_type' :  ExpressionType::RESERVED, 'base_expr' :  $trim);
+            $subTree[] = ['expr_type' :  ExpressionType::RESERVED, 'base_expr' :  $trim);
         }
 
         if (!empty($objectList)) {
-            $subTree[] = array('expr_type' :  ExpressionType::EXPRESSION, 'base_expr' :  trim($base_expr),
+            $subTree[] = ['expr_type' :  ExpressionType::EXPRESSION, 'base_expr' :  trim($base_expr),
                                'sub_tree' :  $objectList);
         }
 
-        return array('expr_type' :  $objectType, 'option' :  $option, 'if-exists' :  $exists, 'sub_tree' :  $subTree);
+        return ['expr_type' :  $objectType, 'option' :  $option, 'if-exists' :  $exists, 'sub_tree' :  $subTree);
     }
 }

@@ -12,8 +12,8 @@ class RenameProcessor : AbstractProcessor {
 
     auto process($tokenList) {
         $base_expr = "";
-        $resultList = array();
-        $tablePair = array();
+        $resultList = [);
+        $tablePair = [);
 
         foreach ($k : myValue; $tokenList) {
             $token = new ExpressionToken($k, myValue);
@@ -33,17 +33,17 @@ class RenameProcessor : AbstractProcessor {
 
             case ',':
             // split rename operations
-                $tablePair["destination"] = array('expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
+                $tablePair["destination"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
                                                   'no_quotes' : this.revokeQuotation($base_expr),
                                                   'base_expr' : $base_expr);
                 $resultList[] = $tablePair;
-                $tablePair = array();
+                $tablePair = [);
                 $base_expr = "";
                 break;
 
             case 'TABLE':
                 $objectType = ExpressionType::TABLE;
-                $resultList[] = array('expr_type':ExpressionType::RESERVED, 'base_expr':$token.getTrim());   
+                $resultList[] = ['expr_type':ExpressionType::RESERVED, 'base_expr':$token.getTrim());   
                 continue 2; 
                 
             default:
@@ -53,13 +53,13 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if ($base_expr != "") {
-            $tablePair["destination"] = array('expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
+            $tablePair["destination"] = ['expr_type' : ExpressionType::TABLE, 'table' : trim($base_expr),
                                               'no_quotes' : this.revokeQuotation($base_expr),
                                               'base_expr' : $base_expr);
             $resultList[] = $tablePair;
         }
 
-        return array('expr_type' : $objectType, 'sub_tree':$resultList);
+        return ['expr_type' : $objectType, 'sub_tree':$resultList);
     }
 
 }

@@ -11,9 +11,9 @@ import lang.sql;
 class ColumnListProcessor : AbstractProcessor {
     auto process($tokens) {
         $columns = explode(",", $tokens);
-        auto myCols = array();
+        auto myCols = [);
         foreach (myKey, myValue; $columns) {
-            myCols = array('expr_type' :  ExpressionType::COLREF, 'base_expr' :  trim(myValue),
+            myCols = ['expr_type' :  ExpressionType::COLREF, 'base_expr' :  trim(myValue),
                             'no_quotes' :  this.revokeQuotation(myValue));
         }
         return myCols;

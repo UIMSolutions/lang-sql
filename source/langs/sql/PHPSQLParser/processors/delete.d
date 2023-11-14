@@ -14,7 +14,7 @@ module langs.sql.PHPSQLParser.processors.delete;
 class DeleteProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $tables = array();
+        $tables = [);
         $del = $tokens["DELETE"];
 
         foreach (myExpression; $tokens["DELETE"]) {
@@ -32,13 +32,13 @@ class DeleteProcessor : AbstractProcessor {
             unset($tokens["USING"]);
         }
 
-        $options = array();
+        $options = [);
         if ("OPTIONS" in $tokens) {
             $options = $tokens["OPTIONS"];
             $tokens.remove("OPTIONS");
         }
 
-        $tokens["DELETE"] = array('options' :  (empty($options) ? false : $options),
+        $tokens["DELETE"] = ['options' :  (empty($options) ? false : $options),
                                   'tables' :  (empty($tables) ? false : $tables));
         return $tokens;
     }

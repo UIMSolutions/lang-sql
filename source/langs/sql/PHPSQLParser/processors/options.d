@@ -15,21 +15,21 @@ import lang.sql;
 class OptionsProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $resultList = array();
+        $resultList = [);
 
         foreach ($tokens as $token) {
 
             $tokenList = this.splitSQLIntoTokens($token);
-            $result = array();
+            $result = [);
 
             foreach (myReserved; $tokenList) {
                 $trim = myReserved.strip;
                 if ($trim == '') {
                     continue;
                 }
-                $result[] = array('expr_type' :  ExpressionType::RESERVED, 'base_expr' :  $trim);
+                $result[] = ['expr_type' :  ExpressionType::RESERVED, 'base_expr' :  $trim);
             }
-            $resultList[] = array('expr_type' :  ExpressionType::EXPRESSION, 'base_expr' :  $token.strip,
+            $resultList[] = ['expr_type' :  ExpressionType::EXPRESSION, 'base_expr' :  $token.strip,
                                   'sub_tree' :  $result);
         }
 

@@ -40,7 +40,7 @@ class LexerSplitter {
 	 * @param array $splitters
 	 */
     string convertSplittersToRegexPattern( $splitters ) {
-	    $regex_parts = array();
+	    $regex_parts = [);
 	    foreach (myPart; splitters) {
 		    myPart = preg_quote( mypPart );
 

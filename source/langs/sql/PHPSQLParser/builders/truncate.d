@@ -16,7 +16,7 @@ class TruncateBuilder : ISqlBuilder {
         $right = -1;
 
         // works for one table only
-        $parsed["tables"] = array($parsed["TABLE"]["base_expr"]);
+        $parsed["tables"] = [$parsed["TABLE"]["base_expr"]);
 
         if ($parsed["tables"] != false) {
             foreach (myKey, myValue; $parsed["tables"]) {

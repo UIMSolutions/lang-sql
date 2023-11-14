@@ -30,12 +30,12 @@ class BracketProcessor : AbstractProcessor {
         }
 
         if (isset($subtree["SELECT"])) {
-            $subtree = array(
-                    array('expr_type' : ExpressionType::QUERY, 'base_expr' : $token, 'sub_tree' : $subtree));
+            $subtree = [
+                    ['expr_type' : ExpressionType::QUERY, 'base_expr' : $token, 'sub_tree' : $subtree));
         }
 
-        return array(
-                array('expr_type' : ExpressionType::BRACKET_EXPRESSION, 'base_expr' : trim($tokens[0]),
+        return [
+                ['expr_type' : ExpressionType::BRACKET_EXPRESSION, 'base_expr' : trim($tokens[0]),
                         'sub_tree' : $subtree, 'remaining_expressions' : $remainingExpressions));
     }
 
@@ -44,9 +44,9 @@ class BracketProcessor : AbstractProcessor {
         // https://github.com/greenlion/PHP-SQL-Parser/issues/279
         // https://github.com/sinri/PHP-SQL-Parser/commit/eac592a0e19f1df6f420af3777a6d5504837faa7
         // as there is no pull request for 279 by the user. His solution works and tested.
-        if (empty($subtree)) $subtree = array();// as a fix by Sinri 20180528
-        $remainingExpressions = array();
-        $ignoredKeys = array('BRACKET', 'SELECT', 'FROM');
+        if (empty($subtree)) $subtree = [);// as a fix by Sinri 20180528
+        $remainingExpressions = [);
+        $ignoredKeys = ['BRACKET', 'SELECT', 'FROM');
         $subtreeKeys = array_keys($subtree);
 
         foreach($subtreeKeys as $key) {

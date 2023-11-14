@@ -17,13 +17,13 @@ import lang.sql;
  * base_expr elements within the output of the SqlParser. */
 class PositionCalculator {
 
-    protected static $allowedOnOperator = array("\t", "\n", "\r", " ", ",", "(", ")", "_", "'", "\"", "?", "@", "0",
+    protected static $allowedOnOperator = ["\t", "\n", "\r", " ", ",", "(", ")", "_", "'", "\"", "?", "@", "0",
                                                 "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    protected static $allowedOnOther = array("\t", "\n", "\r", " ", ",", "(", ")", "<", ">", "*", "+", "-", "/", "|",
+    protected static $allowedOnOther = ["\t", "\n", "\r", " ", ",", "(", ")", "<", ">", "*", "+", "-", "/", "|",
                                              "&", "=", "!", ";");
 
     protected $flippedBacktrackingTypes;
-    protected static $backtrackingTypes = array(ExpressionType::EXPRESSION, ExpressionType::SUBQUERY,
+    protected static $backtrackingTypes = [ExpressionType::EXPRESSION, ExpressionType::SUBQUERY,
                                                 ExpressionType::BRACKET_EXPRESSION, ExpressionType::TABLE_EXPRESSION,
                                                 ExpressionType::RECORD, ExpressionType::IN_LIST,
                                                 ExpressionType::MATCH_ARGUMENTS, ExpressionType::TABLE,
@@ -84,7 +84,7 @@ class PositionCalculator {
 
     auto setPositionsWithinSQL($sql, $parsed) {
         $charPos = 0;
-        $backtracking = array();
+        $backtracking = [);
         this.lookForBaseExpression($sql, $charPos, $parsed, 0, $backtracking);
         return $parsed;
     }
@@ -112,8 +112,8 @@ class PositionCalculator {
 
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
-            $quotedBefore = in_array($sql[$pos], array('`', "("), true);
-            $quotedAfter = in_array($sql[$pos + strlen(myValue) - 1], array('`', ")"), true);
+            $quotedBefore = in_array($sql[$pos], ['`', "("), true);
+            $quotedAfter = in_array($sql[$pos + strlen(myValue) - 1], ['`', ")"), true);
             $after = "";
             if (isset($sql[$pos + strlen(myValue)])) {
                 $after = $sql[$pos + strlen(myValue)];
@@ -123,7 +123,7 @@ class PositionCalculator {
             // whitespace, comma, parenthesis, digit or letter, end_of_string
             // an operator should not be surrounded by another operator
 
-            if (in_array($expr_type,array('operator','column-list'),true)) {
+            if (in_array($expr_type,['operator','column-list'),true)) {
 
                 $ok = ($before == "" || in_array($before, this.$allowedOnOperator, true))
                     || (strtolower($before) >= 'a' && strtolower($before) <= 'z');
