@@ -44,15 +44,16 @@ class TableExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::TABLE_EXPRESSION) {
             return "";
         }
-        $sql = substr(this.buildFROM($parsed["sub_tree"]), 5); // remove FROM keyword
-        $sql = "(" . $sql . ")";
-        $sql  ~= this.buildAlias($parsed);
+        
+        auto mySql = substr(this.buildFROM($parsed["sub_tree"]), 5); // remove FROM keyword
+        mySql = "(" ~ mySql ~ ")";
+        mySql  ~= this.buildAlias($parsed);
 
         if ($index != 0) {
-            $sql = this.buildJoin($parsed["join_type"]) . $sql;
-            $sql  ~= this.buildRefType($parsed["ref_type"]);
-            $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
+            mySql = this.buildJoin($parsed["join_type"]) ~ mySql;
+            mySql  ~= this.buildRefType($parsed["ref_type"]);
+            mySql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
         }
-        return $sql;
+        return mySql;
     }
 }

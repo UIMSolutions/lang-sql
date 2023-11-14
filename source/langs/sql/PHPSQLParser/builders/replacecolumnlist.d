@@ -32,7 +32,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
 
             mySql  ~= ", ";
         } 
-        return "(" . substr(mySql, 0, -2) . ")";
+        return "(" ~ substr(mySql, 0, -2) ~ ")";
     }
 
 }

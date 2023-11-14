@@ -54,7 +54,7 @@ class RecordBuilder : ISqlBuilder {
             mySql  ~= ", ";
         }
         mySql = substr(mySql, 0, -2);
-        return "(" . mySql . ")";
+        return "(" ~ mySql ~ ")";
     }
 
 }

@@ -1,10 +1,3 @@
-
-/**
- * InListBuilder.php
- *
- * Builds lists of values for the IN statement.
- */
-
 module source.langs.sql.PHPSQLParser.builders.inlist;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds lists of values for the IN statement.
  * This class : the builder list of values for the IN statement. 
  * You can overwrite all functions to achieve another handling. */
 class InListBuilder : ISqlBuilder {
@@ -25,7 +19,7 @@ class InListBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::IN_LIST) {
             return "";
         }
-        $sql = this.buildSubTree($parsed, ", ");
-        return "(" . $sql . ")";
+        auto mySql = this.buildSubTree($parsed, ", ");
+        return "(" ~ mySql ~ ")";
     }
 }

@@ -20,29 +20,29 @@ class RenameStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    protected auto processSourceAndDestTable($v) {
-        if (!isset($v["source"]) || !isset($v["destination"])) {
+    protected auto processSourceAndDestTable(myValue) {
+        if (!isset(myValue["source"]) || !isset(myValue["destination"])) {
             return "";
         }
-        return $v["source"]["base_expr"] . ' TO ' . $v["destination"]["base_expr"] . ',';
+        return myValue["source"]["base_expr"] ~ " TO " ~ myValue["destination"]["base_expr"] ~ ",";
     }
 
     string build(array $parsed) {
-        $rename = $parsed["RENAME"];
-        mySql = "";
-        foreach ($rename["sub_tree"] as $k => $v) {
+        auto myRename = $parsed["RENAME"];
+        auto mySql = "";
+        foreach (myKey, myValue; myRename["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.processSourceAndDestTable($v);
+            mySql  ~= this.buildReserved(myValue);
+            mySql  ~= this.processSourceAndDestTable(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('RENAME subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('RENAME subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";
         }
-        mySql = trim('RENAME " ~ mySql);
-        return (substr(mySql, -1) == ',' ? substr(mySql, 0, -1) : mySql);
+        mySql = trim("RENAME " ~ mySql);
+        return (substr(mySql, -1) == "," ? substr(mySql, 0, -1) : mySql);
     }
 }
 

@@ -46,15 +46,15 @@ class SubQueryBuilder : ISqlBuilder {
         }
 
         // TODO: should we add a numeric level (0) between sub_tree and SELECT?
-        $sql = this.buildSelectStatement($parsed["sub_tree"]);
-        $sql = "(" . $sql . ")";
-        $sql  ~= this.buildAlias($parsed);
+        auto mySql = this.buildSelectStatement($parsed["sub_tree"]);
+        mySql = "(" ~ mySql ~ ")";
+        mySql  ~= this.buildAlias($parsed);
 
         if ($index != 0) {
-            $sql = this.buildJoin($parsed["join_type"]) . $sql;
-            $sql  ~= this.buildRefType($parsed["ref_type"]);
-            $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
+            mySql = this.buildJoin($parsed["join_type"]) . mySql;
+            mySql  ~= this.buildRefType($parsed["ref_type"]);
+            mySql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
         }
-        return $sql;
+        return mySql;
     }
 }

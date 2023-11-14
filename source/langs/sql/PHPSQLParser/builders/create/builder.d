@@ -31,10 +31,10 @@ class CreateBuilder : ISqlBuilder {
 
         if ((myCreate["expr_type"] == ExpressionType :  : TABLE)
             || (myCreate["expr_type"] == ExpressionType :  : TEMPORARY_TABLE)) {
-            mySql ~= ' '.this.buildCreateTable($parsed["TABLE"]);
+            mySql ~= " ".this.buildCreateTable($parsed["TABLE"]);
         }
         if (myCreate["expr_type"] == ExpressionType :  : INDEX) {
-            mySql ~= ' '.this.buildCreateIndex($parsed["INDEX"]);
+            mySql ~= " ".this.buildCreateIndex($parsed["INDEX"]);
         }
 
         // TODO: add more expr_types here (like VIEW), if available in parser output

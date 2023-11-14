@@ -29,7 +29,7 @@ class SelectBracketExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
-        return "(" . this.buildSubTree($parsed, ' ') . ")"
+        return "(" ~ this.buildSubTree($parsed, " ") . ")"
             . this.buildAlias($parsed);
     }
 }

@@ -36,6 +36,6 @@ class ValuesBuilder : ISqlBuilder {
     }
 
     protected auto getRecordDelimiter($parsed) {
-        return empty($parsed["delim"]) ? ' ' : $parsed["delim"] . " ";
+        return empty($parsed["delim"]) ? " " : $parsed["delim"] . " ";
     }
 }

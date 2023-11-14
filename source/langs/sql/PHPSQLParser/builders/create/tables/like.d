@@ -17,9 +17,9 @@ class LikeBuilder : ISqlBuilder {
 
     string build(array $parsed) {
         auto mySql = this.buildTable($parsed, 0);
-        if (strlen(mySql) == 0) {
+        if (mySql.isEmpty) {
             throw new UnableToCreateSQLException('LIKE', "", $parsed, 'table');
         }
-        return "LIKE " . mySql;
+        return "LIKE " ~ mySql;
     }
 }

@@ -21,6 +21,6 @@ class LimitBuilder : ISqlBuilder {
         if (mySql == "") {
             throw new UnableToCreateSQLException('LIMIT', 'rowcount', $parsed, 'rowcount');
         }
-        return "LIMIT " . mySql;
+        return "LIMIT " ~ mySql;
     }
 }

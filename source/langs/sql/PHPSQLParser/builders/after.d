@@ -8,7 +8,7 @@ class AlterBuilder : ISqlBuilder {
     auto mySql = "";
 
     foreach (myTerm; $parsed) {
-      if (myTerm == ' ') {
+      if (myTerm == " ") {
         continue;
       }
 
