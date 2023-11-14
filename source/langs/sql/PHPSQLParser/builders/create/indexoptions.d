@@ -6,7 +6,7 @@
  *
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.indexoptions;
 
 import lang.sql;
 

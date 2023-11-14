@@ -4,7 +4,7 @@
  *
  * Builds the create definitions of CREATE TABLE. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.tabedefinition;
 
 import lang.sql;
 

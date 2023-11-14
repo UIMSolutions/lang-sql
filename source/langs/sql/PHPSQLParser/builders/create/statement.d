@@ -4,7 +4,7 @@
  *
  * Builds the CREATE statement */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.create.statement;
 
 import lang.sql;
 
