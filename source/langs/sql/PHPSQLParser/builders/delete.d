@@ -3,7 +3,7 @@
  *
  * Builds the DELETE statement */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.delete;
 
 import lang.sql;
 
@@ -23,7 +23,7 @@ class DeleteBuilder : ISqlBuilder {
 
     if ($parsed["tables"] != false) {
       foreach (k, v; $parsed["tables"]) {
-        mySql ~= $v.", ";
+        mySql ~= myValue.", ";
         $right =  - 2;
       }
     }

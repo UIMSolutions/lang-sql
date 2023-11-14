@@ -4,7 +4,7 @@
  *
  * Builds the procedures within the SHOW statement. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.procedure;
 
 import lang.sql;
 

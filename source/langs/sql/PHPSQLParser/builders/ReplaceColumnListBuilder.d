@@ -19,9 +19,8 @@ class ReplaceColumnListBuilder : ISqlBuilder {
     }
 
     auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
-            return "";
-        }
+        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) { return ""; }
+
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

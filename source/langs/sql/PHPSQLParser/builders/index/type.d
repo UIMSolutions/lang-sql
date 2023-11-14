@@ -5,7 +5,7 @@
  * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.index.type;
 use SqlParser\exceptions\UnableToCreateSQLException;
 use SqlParser\utils\ExpressionType;
 

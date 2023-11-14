@@ -68,13 +68,13 @@ class GroupByExpressionBuilder : ISqlBuilder {
         }
         
         auto mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef($v);
-            mySql  ~= this.buildReserved($v);
+            mySql  ~= this.buildColRef(myValue);
+            mySql  ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('GROUP expression subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('GROUP expression subtree', $k, myValue, 'expr_type');
             }
 
             mySql  ~= " ";

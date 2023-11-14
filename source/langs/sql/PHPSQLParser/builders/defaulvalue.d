@@ -4,7 +4,7 @@
  *
  * Builds the default value statement part of a column of a CREATE TABLE. */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.defaulvalue;
 
 import lang.sql;
 

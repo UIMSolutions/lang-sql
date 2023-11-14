@@ -47,15 +47,15 @@ class TableBuilder : ISqlBuilder {
             return "";
         }
 
-        $sql = $parsed["table"];
-        $sql  ~= this.buildAlias($parsed);
-        $sql  ~= this.buildIndexHintList($parsed);
+        mySql = $parsed["table"];
+        mySql  ~= this.buildAlias($parsed);
+        mySql  ~= this.buildIndexHintList($parsed);
 
         if ($index != 0) {
-            $sql = this.buildJoin($parsed["join_type"]) . $sql;
-            $sql  ~= this.buildRefType($parsed["ref_type"]);
-            $sql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
+            mySql = this.buildJoin($parsed["join_type"]) . mySql;
+            mySql  ~= this.buildRefType($parsed["ref_type"]);
+            mySql  ~= $parsed["ref_clause"] == false ? '' : this.buildRefClause($parsed["ref_clause"]);
         }
-        return $sql;
+        return mySql;
     }
 }

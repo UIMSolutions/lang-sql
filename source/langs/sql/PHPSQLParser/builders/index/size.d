@@ -1,21 +1,21 @@
 
 /**
- * IndexParserBuilder.php
+ * IndexSizeBuilder.php
  *
- * Builds index parser part of a PRIMARY KEY statement part of CREATE TABLE.
+ * Builds index size part of a PRIMARY KEY statement part of CREATE TABLE.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.index.size;
 
 import lang.sql;
 
 @safe:
 
 /**
- * This class : the builder for the index parser of a PRIMARY KEY
+ * This class : the builder for the index size of a PRIMARY KEY
  * statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
-class IndexParserBuilder : ISqlBuilder {
+class IndexSizeBuilder : ISqlBuilder {
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
@@ -28,7 +28,7 @@ class IndexParserBuilder : ISqlBuilder {
     }
     
     auto build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_PARSER) {
+        if ($parsed["expr_type"] != ExpressionType::INDEX_SIZE) {
             return "";
         }
         auto mySql = "";
@@ -38,7 +38,7 @@ class IndexParserBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant($v);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key index parser subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE primary key index size subtree', $k, $v, 'expr_type');
             }
 
             mySql  ~= " ";

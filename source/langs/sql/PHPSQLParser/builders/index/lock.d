@@ -5,7 +5,7 @@
  * Builds index lock part of a CREATE INDEX statement.
  */
 
-module lang.sql.parsers.builders;
+module source.langs.sql.PHPSQLParser.builders.index.lock;
 
 import lang.sql;
 
