@@ -42,7 +42,7 @@ class ColumnListBuilder : ISqlBuilder {
 
             mySql  ~= $delim;
         }
-        return "(" . substr(mySql, 0, -strlen($delim)) . ')';
+        return "(" . substr(mySql, 0, -strlen($delim)) . ")";
     }
 
 }

@@ -1,10 +1,3 @@
-
-/**
- * IndexColumnBuilder.php
- *
- * Builds the column entries of the column-list parts of CREATE TABLE.
- */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -12,13 +5,14 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the column entries of the column-list parts of CREATE TABLE.
  * This class : the builder for index column entries of the column-list 
  * parts of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class IndexColumnBuilder : ISqlBuilder {
 
     protected auto buildLength($parsed) {
-        return ($parsed == false ? '' : ("(" . $parsed . ')'));
+        return ($parsed == false ? '' : ("(" . $parsed . ")"));
     }
 
     protected auto buildDirection($parsed) {
@@ -29,7 +23,8 @@ class IndexColumnBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX_COLUMN) {
             return "";
         }
-        mySql = $parsed["name"];
+
+        auto mySql = $parsed["name"];
         mySql  ~= this.buildLength($parsed["length"]);
         mySql  ~= this.buildDirection($parsed["dir"]);
         return mySql;

@@ -1,9 +1,3 @@
-
-/**
- * IndexCommentBuilder.php
- *
- * Builds index comment part of a CREATE INDEX statement. */
-
 module langs.sql.PHPSQLParser.builders.index.IndexCommentBuilder;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds index comment part of a CREATE INDEX statement. 
  * This class : the builder for the index comment of CREATE INDEX statement. 
  * You can overwrite all functions to achieve another handling. */
 class IndexCommentBuilder : ISqlBuilder {

@@ -1,4 +1,3 @@
-
 module langs.sql.PHPSQLParser.builders.index.algorithm;
 
 import lang.sql;
@@ -28,7 +27,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
     
     string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::INDEX_ALGORITHM) { return ""; }
-        
+
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

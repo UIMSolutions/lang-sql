@@ -45,7 +45,7 @@ class TableExpressionBuilder : ISqlBuilder {
             return "";
         }
         $sql = substr(this.buildFROM($parsed["sub_tree"]), 5); // remove FROM keyword
-        $sql = "(" . $sql . ')';
+        $sql = "(" . $sql . ")";
         $sql  ~= this.buildAlias($parsed);
 
         if ($index != 0) {

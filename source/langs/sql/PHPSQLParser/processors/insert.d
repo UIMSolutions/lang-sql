@@ -72,7 +72,7 @@ class InsertProcessor : AbstractProcessor {
         if ($cols == false) {
             return $cols;
         }
-        if ($cols[0] == "(" && substr($cols, -1) == ')') {
+        if ($cols[0] == "(" && substr($cols, -1) == ")") {
             $parsed = array('expr_type' => ExpressionType::BRACKET_EXPRESSION, 'base_expr' => $cols,
                             'sub_tree' => false);
         }

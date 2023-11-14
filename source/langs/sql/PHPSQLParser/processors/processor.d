@@ -171,7 +171,7 @@ abstract class DProcessor {
                 $parenthesis++;
             }
 
-            if (($stringOpened == '') && ($trim[$i] == ')')) {
+            if (($stringOpened == '') && ($trim[$i] == ")")) {
                 if ($parenthesis == $parenthesisRemoved) {
                     $trim[$i] = " ";
                     $parenthesisRemoved--;

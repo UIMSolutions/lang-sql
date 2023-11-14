@@ -1,4 +1,3 @@
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -35,6 +34,7 @@ class IndexKeyBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX) {
             return "";
         }
+        
         auto mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

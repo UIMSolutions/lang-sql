@@ -129,7 +129,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 switch ($currCategory) {
 
                 case 'REFERENCES':
-                    if ($upper[0] == "(" && substr($upper, -1) == ')') {
+                    if ($upper[0] == "(" && substr($upper, -1) == ")") {
                         # index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart($trim));

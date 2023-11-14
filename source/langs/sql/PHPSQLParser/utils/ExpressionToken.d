@@ -34,7 +34,7 @@ class ExpressionToken {
     }
 
     auto isEnclosedWithinParenthesis() {
-        return (!empty( this.upper ) && this.upper[0] == "(" && substr(this.upper, -1) == ')');
+        return (!empty( this.upper ) && this.upper[0] == "(" && substr(this.upper, -1) == ")");
     }
 
     auto setSubTree($tree) {

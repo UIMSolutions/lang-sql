@@ -1,10 +1,3 @@
-
-/**
- * HavingBuilder.php
- *
- * Builds the HAVING part.
- */
-
 module source.langs.sql.PHPSQLParser.builders.having;
 
 import lang.sql;
@@ -12,13 +5,10 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the HAVING part.
  * This class : the builder for the HAVING part. 
  * You can overwrite all functions to achieve another handling.
- *
- * @author  Ian Barker <ian@theorganicagency.com>
- 
- 
- *   */
+ */
 class HavingBuilder : WhereBuilder {
 
     protected auto buildAliasReference($parsed) {
@@ -39,7 +29,7 @@ class HavingBuilder : WhereBuilder {
     string build(array $parsed) {
         auto mySql = "HAVING ";
         foreach (myKey, myValue; $parsed) {
-            $len = strlen(mySql);
+            auto oldSqlLength = mySql.length;
 
             mySql  ~= this.buildAliasReference(myValue);
             mySql  ~= this.buildOperator(myValue);
@@ -52,7 +42,7 @@ class HavingBuilder : WhereBuilder {
             mySql  ~= this.buildHavingBracketExpression(myValue);
             mySql  ~= this.buildUserVariable(myValue);
 
-            if (strlen(mySql) == $len) {
+            if (mySql.length == oldSqlLength) {
                 throw new UnableToCreateSQLException('HAVING', $k, myValue, 'expr_type');
             }
 

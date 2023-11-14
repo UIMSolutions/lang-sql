@@ -377,7 +377,7 @@ class PHPSQLLexer {
                 if ($token == "(") {
                     $count++;
                 }
-                if ($token == ')') {
+                if ($token == ")") {
                     $count--;
                 }
                 $tokens[$i]  ~= $token;

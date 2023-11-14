@@ -1,17 +1,11 @@
-
-/**
- * IndexSizeBuilder.php
- *
- * Builds index size part of a PRIMARY KEY statement part of CREATE TABLE.
- */
-
-module langs.sql.PHPSQLParser.builders.index.size;
+module source.langs.sql.PHPSQLParser.builders.create.tables.size;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds index size part of a PRIMARY KEY statement part of CREATE TABLE.
  * This class : the builder for the index size of a PRIMARY KEY
  * statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */

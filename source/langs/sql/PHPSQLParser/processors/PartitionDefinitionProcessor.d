@@ -322,7 +322,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 case '':
                     if ($prevCategory == 'PARTITION') {
                         // last part to process, it is only one token!
-                        if ($upper[0] == "(" && substr($upper, -1) == ')') {
+                        if ($upper[0] == "(" && substr($upper, -1) == ")") {
                             $last = this.getBracketExpressionType($trim);
                             $last["sub_tree"] = this.processSubpartitionDefinition($trim);
                             $expr[] = $last;
