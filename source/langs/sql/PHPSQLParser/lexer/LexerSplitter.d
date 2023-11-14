@@ -15,9 +15,9 @@ module lang.sql.parsers.lexer;
  */
 class LexerSplitter {
 
-    protected static $splitters = array("<=>", "\r\n", "!=", ">=", "<=", "!=", "<<", ">>", ":=", "\\", "&&", "||", ":=",
+    protected static _splitters = ["<=>", "\r\n", "!=", ">=", "<=", "!=", "<<", ">>", ":=", "\\", "&&", "||", ":=",
                                        "/*", "*/", "--", ">", "<", "|", "=", "^", "(", ")", "\t", "\n", "'", "\"", "`",
-                                       ",", "@", " ", "+", "-", "*", "/", ";");
+                                       ",", "@", " ", "+", "-", "*", "/", ";"];
 
 	//Regex string pattern of splitters.
 	protected string _splitterPattern;
