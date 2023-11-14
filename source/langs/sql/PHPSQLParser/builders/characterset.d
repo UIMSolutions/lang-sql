@@ -18,32 +18,33 @@ class CharacterSetBuilder : ISqlBuilder {
 
     protected auto buildConstant($parsed) {
         auto myBuilder = new ConstantBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildOperator($parsed) {
         auto myBuilder = new OperatorBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     protected auto buildReserved($parsed) {
         auto myBuilder = new ReservedBuilder();
-        return $builder.build($parsed);
+        return myBuilder.build($parsed);
     }
 
     auto build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::CHARSET) {
             return "";
         }
-        mySql = "";
-        foreach ($parsed["sub_tree"] as $k => $v) {
+        
+        auto mySql = "";
+        foreach (k, v; $parsed["sub_tree"]) {
             $len = strlen(mySql);
-            mySql  ~= this.buildOperator($v);
-            mySql  ~= this.buildReserved($v);
-            mySql  ~= this.buildConstant($v);
+            mySql  ~= this.buildOperator(v);
+            mySql  ~= this.buildReserved(v);
+            mySql  ~= this.buildConstant(v);
 
             if ($len == strlen(mySql)) {
-                throw new UnableToCreateSQLException('CREATE TABLE options CHARACTER SET subtree', $k, $v, 'expr_type');
+                throw new UnableToCreateSQLException('CREATE TABLE options CHARACTER SET subtree', k, v, 'expr_type');
             }
 
             mySql  ~= " ";

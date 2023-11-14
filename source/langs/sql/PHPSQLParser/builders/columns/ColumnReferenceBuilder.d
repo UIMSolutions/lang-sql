@@ -1,6 +1,8 @@
 module lang.sql.parsers.builders;
 
-use SqlParser\utils\ExpressionType;
+import lang.sql;
+
+@safe:
 
 class ColumnReferenceBuilder : ISqlBuilder {
 

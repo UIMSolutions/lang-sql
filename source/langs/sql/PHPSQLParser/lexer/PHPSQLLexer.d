@@ -41,20 +41,20 @@ class PHPSQLLexer {
             : (substr(haystack, -length) == $needle);
     }
 
-    auto split($sql) {
-        if (!is_string($sql)) {
-            throw new InvalidParameterException($sql);
+    auto split(string aSql) {
+        if (!is_string(aSql)) {
+            throw new InvalidParameterException(aSql);
         }
-        $tokens = preg_split(this.splitters.getSplittersRegexPattern(), $sql, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        $tokens = this.concatComments($tokens);
-        $tokens = this.concatEscapeSequences($tokens);
-        $tokens = this.balanceBackticks($tokens);
-        $tokens = this.concatColReferences($tokens);
-        $tokens = this.balanceParenthesis($tokens);
-        $tokens = this.concatUserDefinedVariables($tokens);
-        $tokens = this.concatScientificNotations($tokens);
-        $tokens = this.concatNegativeNumbers($tokens);
-        return $tokens;
+        auto myTokens = preg_split(this.splitters.getSplittersRegexPattern(), aSql, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        myTokens = this.concatComments(myTokens);
+        myTokens = this.concatEscapeSequences(myTokens);
+        myTokens = this.balanceBackticks(myTokens);
+        myTokens = this.concatColReferences(myTokens);
+        myTokens = this.balanceParenthesis(myTokens);
+        myTokens = this.concatUserDefinedVariables(myTokens);
+        myTokens = this.concatScientificNotations(myTokens);
+        myTokens = this.concatNegativeNumbers(myTokens);
+        return myTokens;
     }
 
     protected auto concatNegativeNumbers($tokens) {

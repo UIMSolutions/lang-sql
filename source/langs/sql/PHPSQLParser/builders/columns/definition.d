@@ -5,10 +5,11 @@
  * Builds the column definition statement part of CREATE TABLE.
  */
 
-module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+module source.langs.sql.PHPSQLParser.builders.columns.definition;
 
+import lang.sql;
+
+@safe:
 /**
  * This class : the builder for the columndefinition statement part 
  * of CREATE TABLE. You can overwrite all functions to achieve another handling.

@@ -6,6 +6,9 @@
 
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 /**
  * This class : the builder for the index type of a CREATE INDEX
  * statement. 

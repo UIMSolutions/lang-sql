@@ -5,9 +5,11 @@
  * Builds the column type statement part of CREATE TABLE.
  */
 
-module lang.sql.parsers.builders;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+module source.langs.sql.PHPSQLParser.builders.columns.type;
+
+import lang.sql;
+
+@safe:
 
 /**
  * This class : the builder for the column type statement part of CREATE TABLE. 

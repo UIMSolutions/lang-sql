@@ -6,6 +6,9 @@
 
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 /**
  * This class : the builder for the create definitions of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling.

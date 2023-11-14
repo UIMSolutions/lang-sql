@@ -6,8 +6,10 @@
  */
 
 module lang.sql.parsers.builders;
- * 
 
+import lang.sql;
+
+@safe:
 /**
  * This class : the builder for bracket expressions within a column type. 
  * You can overwrite all functions to achieve another handling.
