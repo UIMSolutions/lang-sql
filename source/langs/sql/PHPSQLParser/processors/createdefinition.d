@@ -259,7 +259,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case 'LIKE':
                 // this is the tablename after LIKE
                     myExpression[] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken, "base_expr" : strippedToken,
-                                    'no_quotes' : this.revokeQuotation(strippedToken));
+                                    "no_quotes" : this.revokeQuotation(strippedToken));
                     break;
 
                 case 'PRIMARY':
@@ -345,7 +345,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 // if the currCategory is empty, we have an unknown token,
                 // which is a column reference
                     myExpression[] = ["expr_type" : expressionType(COLREF, "base_expr" : strippedToken,
-                                    'no_quotes' : this.revokeQuotation(strippedToken));
+                                    "no_quotes" : this.revokeQuotation(strippedToken));
                     currentCategory = 'COLUMN_NAME';
                     continue 3;
 

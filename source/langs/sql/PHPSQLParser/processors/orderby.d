@@ -16,7 +16,7 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto initParseInfo() {
-        return ["base_expr" : "", 'dir' : "ASC", "expr_type" : expressionType(EXPRESSION);
+        return ["base_expr" : "", 'dir' : "ASC", "expr_type" : expressionType("EXPRESSION")];
     }
 
     protected auto processOrderExpression(&$parseInfo, $select) {
@@ -27,23 +27,23 @@ class OrderByProcessor : AbstractProcessor {
         }
 
         if (is_numeric($parseInfo["base_expr"])) {
-            $parseInfo["expr_type"] .isExpressionType(POSITION;
+            $parseInfo["expr_type"] = expressionType("POSITION");
         } else {
             $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo["base_expr"]);
             // search to see if the expression matches an alias
-            foreach ($select as $clause) {
-                if (empty($clause["alias"])) {
+            foreach ($clause; $select) {
+                if ($clause["alias"].isEmpty) {
                     continue;
                 }
 
                 if ($clause["alias"]["no_quotes"] == $parseInfo["no_quotes"]) {
-                    $parseInfo["expr_type"] .isExpressionType(ALIAS;
+                    $parseInfo["expr_type"] = expressionType("ALIAS");
                     break;
                 }
             }
         }
 
-        if ($parseInfo["expr_type"] =.isExpressionType(EXPRESSION) {
+        if ($parseInfo["expr_type"] = expressionType("EXPRESSION") {
             myExpression = this.processSelectExpression($parseInfo["base_expr"]);
             myExpression["direction"] = $parseInfo["dir"];
             unset(myExpression["alias"]);

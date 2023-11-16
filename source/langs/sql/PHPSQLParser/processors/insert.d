@@ -114,7 +114,7 @@ class InsertProcessor : AbstractProcessor {
         }
 
         $parsed[] = ["expr_type" : expressionType(TABLE, 'table' : myTable,
-                          'no_quotes' : this.revokeQuotation(myTable), 'alias' : false, "base_expr" : myTable);
+                          "no_quotes" : this.revokeQuotation(myTable), 'alias' : false, "base_expr" : myTable);
 
         $cols = this.processColumns($cols);
         if ($cols != false) {

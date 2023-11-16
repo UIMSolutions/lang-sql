@@ -18,25 +18,25 @@ class ShowProcessor : AbstractProcessor {
     }
 
     auto process($tokens) {
-        $resultList = [];
-        $category = "";
-        $prev = "";
+        auto $resultList = [];
+        auto myCategory = "";
+        auto myPrevious = "";
 
-        foreach ($tokens as $k : $token) {
-            upperToken = $token.strip.toUpper;
+        foreach (myKey, myToken; $tokens) {
+            auto upperToken = myToken.strip.toUpper;
 
-            if (this.isWhitespaceToken($token)) {
+            if (this.isWhitespaceToken(myToken)) {
                 continue;
             }
 
             switch (upperToken) {
 
             case 'FROM':
-                $resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
-                if ($prev == 'INDEX' || $prev == 'COLUMNS') {
+                $resultList[] = ["expr_type":  expressionType("RESERVED"), "base_expr":  myToken.strip];
+                if (myPrevious == 'INDEX' || myPrevious == 'COLUMNS') {
                     break;
                 }
-                $category = upperToken;
+                myCategory = upperToken;
                 break;
 
             case 'CREATE':
@@ -74,14 +74,14 @@ class ShowProcessor : AbstractProcessor {
             case 'CHARACTER':
             case 'SET':
             case 'COLLATION':
-                $resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
-                $category = upperToken;
+                $resultList[] = ["expr_type":  expressionType("RESERVED"), "base_expr":  myToken.strip];
+                myCategory = upperToken;
                 break;
 
             default:
-                switch ($prev) {
+                switch (myPrevious) {
                 case 'LIKE':
-                    $resultList[] = ["expr_type" : expressionType(CONSTANT, "base_expr" : $token];
+                    $resultList[] = ["expr_type":  expressionType("CONSTANT"), "base_expr":  myToken];
                     break;
                 case 'LIMIT':
                     $limit = array_pop($resultList);
@@ -91,36 +91,36 @@ class ShowProcessor : AbstractProcessor {
                 case 'FROM':
                 case 'SCHEMA':
                 case 'DATABASE':
-                    $resultList[] = ["expr_type" : expressionType(DATABASE, 'name' : $token,
-                                          'no_quotes' : this.revokeQuotation($token), "base_expr" : $token];
+                    $resultList[] = ["expr_type":  expressionType("DATABASE"), "name" : myToken,
+                        "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case 'FOR':
-                    $resultList[] = ["expr_type" : expressionType(USER, 'name' : $token,
-                                          'no_quotes' : this.revokeQuotation($token), "base_expr" : $token];
+                    $resultList[] = ["expr_type":  expressionType("USER"), "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case 'INDEX':
                 case 'COLUMNS':
                 case 'TABLE':
-                    $resultList[] = ["expr_type" : expressionType(TABLE, 'table' : $token,
-                                          'no_quotes' : this.revokeQuotation($token), "base_expr" : $token];
-                    $category = "TABLENAME";
+                    $resultList[] = ["expr_type":  expressionType("TABLE"), 'table' : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
+                    myCategory = "TABLENAME";
                     break;
                 case 'FUNCTION':
                     if (SqlParserConstants::getInstance().isAggregateFunction(upperToken)) {
-                        $expr_type .isExpressionType(AGGREGATE_FUNCTION;
+                        $expr_type = expressionType("AGGREGATE_FUNCTION");
                     } else {
-                        $expr_type .isExpressionType(SIMPLE_FUNCTION;
+                        $expr_type = expressionType("SIMPLE_FUNCTION");
                     }
-                    $resultList[] = ["expr_type" : $expr_type, 'name' : $token,
-                                          'no_quotes' : this.revokeQuotation($token), "base_expr" : $token];
+                    $resultList[] = ["expr_type":  $expr_type, "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case 'PROCEDURE':
-                    $resultList[] = ["expr_type" : expressionType(PROCEDURE, 'name' : $token,
-                                          'no_quotes' : this.revokeQuotation($token), "base_expr" : $token];
+                    $resultList[] = ["expr_type":  expressionType("PROCEDURE"), "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case 'ENGINE':
-                    $resultList[] = ["expr_type" : expressionType(ENGINE, 'name' : $token,
-                                          'no_quotes' : this.revokeQuotation($token), "base_expr" : $token];
+                    $resultList[] = ["expr_type":  expressionType("ENGINE"), "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 default:
                 // ignore
@@ -128,7 +128,7 @@ class ShowProcessor : AbstractProcessor {
                 }
                 break;
             }
-            $prev = $category;
+            myPrevious = myCategory;
         }
         return $resultList;
     }

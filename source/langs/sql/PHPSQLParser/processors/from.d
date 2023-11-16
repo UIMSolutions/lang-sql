@@ -31,7 +31,7 @@ class FromProcessor : AbstractProcessor {
             $parseInfo = ['join_type' : "", 'saved_join_type' : "JOIN");
         }
         // loop init
-        return ['expression' : "", 'token_count' : 0, 'table' : "", 'no_quotes' : "", 'alias' : false,
+        return ['expression' : "", 'token_count' : 0, 'table' : "", "no_quotes" : "", 'alias' : false,
                      'hints' : [], 'join_type' : "", 'next_join_type' : "",
                      'saved_join_type' : $parseInfo["saved_join_type"], 'ref_type' : false, 'ref_expr' : false,
                      "base_expr" : false, "sub_tree" : false, 'subquery' : "");
@@ -301,7 +301,7 @@ class FromProcessor : AbstractProcessor {
                     }
                 } else if ($parseInfo["token_count"] == 1) {
                     $parseInfo["alias"] = ['as' : false, 'name' : $token.strip,
-                                                'no_quotes' : this.revokeQuotation($token),
+                                                "no_quotes" : this.revokeQuotation($token),
                                                 "base_expr" : $token.strip);
                 }
                 $parseInfo["token_count"]++;

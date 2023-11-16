@@ -41,7 +41,7 @@ class TableProcessor : AbstractProcessor {
     auto process($tokens) {
 
         currentCategory = 'TABLE_NAME';
-        $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'create-def' : false,
+        $result = ["base_expr" : false, 'name' : false, "no_quotes" : false, 'create-def' : false,
                         'options' : [], 'like' : false, 'select-option' : false];
         myExpression = [];
         baseExpression = "";
@@ -273,7 +273,7 @@ class TableProcessor : AbstractProcessor {
 
                 case 'LIKE':
                     $result["like"] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
-                                            "base_expr" : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken));
+                                            "base_expr" : strippedToken, "no_quotes" : this.revokeQuotation(strippedToken));
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;
 

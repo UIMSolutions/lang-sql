@@ -180,7 +180,7 @@ abstract class DProcessor {
     protected auto getVariableType($expression) {
         // $expression must contain only upper-case characters
         if ($expression[1] != '@') {
-            return expressionType(USER_VARIABLE;
+            return expressionType("USER_VARIABLE");
         }
 
         $type = substr($expression, 2, strpos($expression, '.', 2));

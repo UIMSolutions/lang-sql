@@ -9,20 +9,20 @@ import lang.sql;
  * This class processes the SUBPARTITION statements within CREATE TABLE. */
 class SubpartitionDefinitionProcessor : AbstractProcessor {
 
-    protected auto getReservedType($token) {
-        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token];
+    protected auto getReservedType(myToken) {
+        return ["expr_type" : expressionType("RESERVED"), "base_expr" : myToken];
     }
 
-    protected auto getConstantType($token) {
-        return ["expr_type" : expressionType(CONSTANT, "base_expr" : $token];
+    protected auto getConstantType(myToken) {
+        return ["expr_type" : expressionType("CONSTANT"), "base_expr" : myToken];
     }
 
-    protected auto getOperatorType($token) {
-        return ["expr_type" : expressionType(OPERATOR, "base_expr" : $token];
+    protected auto getOperatorType(myToken) {
+        return ["expr_type" : expressionType("OPERATOR"), "base_expr" : myToken];
     }
 
-    protected auto getBracketExpressionType($token) {
-        return ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false];
+    protected auto getBracketExpressionType(myToken) {
+        return ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : myToken, "sub_tree" : false];
     }
 
     auto process($tokens) {
@@ -35,9 +35,9 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
         baseExpression = "";
         $skip = 0;
 
-        foreach ($tokenKey, $token; $tokens) {
-            auto strippedToken = $token.strip;
-            baseExpression ~= $token;
+        foreach ($tokenKey, myToken; $tokens) {
+            auto strippedToken = myToken.strip;
+            baseExpression ~= myToken;
 
             if ($skip > 0) {
                 $skip--;
@@ -58,7 +58,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'SUBPARTITION':
                 if (currentCategory.isEmpty) {
                     myExpression[] = this.getReservedType(strippedToken);
-                    $parsed = ["expr_type" : expressionType(SUBPARTITION_DEF, "base_expr" : baseExpression.strip,
+                    $parsed = ["expr_type" : expressionType("SUBPARTITION_DEF"), "base_expr" : baseExpression.strip,
                                     "sub_tree" : false];
                     currentCategory = upperToken;
                     continue 2;
@@ -69,11 +69,11 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'COMMENT':
                 if ($prevCategory == 'SUBPARTITION') {
                     myExpression[] = ["expr_type" : expressionType(SUBPARTITION_COMMENT, "base_expr" : false,
-                                    "sub_tree" : false, 'storage' : substr(baseExpression, 0, -$token.length));
+                                    "sub_tree" : false, 'storage' : substr(baseExpression, 0, -myToken.length));
 
                     $parsed["sub_tree"] = myExpression;
-                    baseExpression = $token;
-                    myExpression = [this.getReservedType(strippedToken));
+                    baseExpression = myToken;
+                    myExpression = [this.getReservedType(strippedToken)];
 
                     currentCategory = upperToken;
                     continue 2;
@@ -84,12 +84,12 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'STORAGE':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by ENGINE
-                    myExpression[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
-                                    'storage' : substr(baseExpression, 0, -$token.length));
+                    myExpression[] = ["expr_type" : expressionType("ENGINE"), "base_expr" : false, "sub_tree" : false,
+                                    'storage' : substr(baseExpression, 0, -myToken.length));
 
                     $parsed["sub_tree"] = myExpression;
-                    baseExpression = $token;
-                    myExpression = [this.getReservedType(strippedToken));
+                    baseExpression = myToken;
+                    myExpression = [this.getReservedType(strippedToken)];
 
                     currentCategory = upperToken;
                     continue 2;
@@ -105,11 +105,11 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 }
                 if ($prevCategory == 'SUBPARTITION') {
                     myExpression[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
-                                    'storage' : substr(baseExpression, 0, -$token.length));
+                                    'storage' : substr(baseExpression, 0, -myToken.length));
 
                     $parsed["sub_tree"] = myExpression;
-                    baseExpression = $token;
-                    myExpression = [this.getReservedType(strippedToken));
+                    baseExpression = myToken;
+                    myExpression = [this.getReservedType(strippedToken)];
                     
                     currentCategory = upperToken;
                     continue 2;
@@ -139,12 +139,12 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'INDEX':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by DIRECTORY
-                    myExpression[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . upperToken . '_DIR'),
+                    myExpression[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' ~ upperToken ~ '_DIR'),
                                     "base_expr" : false, "sub_tree" : false,
-                                    'storage' : substr(baseExpression, 0, -$token.length));
+                                    'storage' : substr(baseExpression, 0, -myToken.length));
 
                     $parsed["sub_tree"] = myExpression;
-                    baseExpression = $token;
+                    baseExpression = myToken;
                     myExpression = [this.getReservedType(strippedToken));
 
                     currentCategory = upperToken;
@@ -167,11 +167,11 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($prevCategory == 'SUBPARTITION') {
                     myExpression[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . upperToken),
                                     "base_expr" : false, "sub_tree" : false,
-                                    'storage' : substr(baseExpression, 0, -$token.length));
+                                    'storage' : substr(baseExpression, 0, -myToken.length));
 
                     $parsed["sub_tree"] = myExpression;
-                    baseExpression = $token;
-                    myExpression = [this.getReservedType(strippedToken));
+                    baseExpression = myToken;
+                    myExpression = [this.getReservedType(strippedToken)];
 
                     currentCategory = upperToken;
                     continue 2;
@@ -192,7 +192,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     $last = array_pop($parsed["sub_tree"]);
                     $last["sub_tree"] = myExpression;
                     $last["base_expr"] = baseExpression.strip;
-                    baseExpression = $last["storage"] . baseExpression;
+                    baseExpression = $last["storage"] ~ baseExpression;
                     unset($last["storage"]);
 
                     $parsed["sub_tree"][] = $last;

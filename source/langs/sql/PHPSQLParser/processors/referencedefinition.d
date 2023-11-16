@@ -132,7 +132,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                     }
                     # foreign key reference table name
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("TABLE"), 'table' : strippedToken,
-                                                "base_expr" : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken));
+                                                "base_expr" : strippedToken, "no_quotes" : this.revokeQuotation(strippedToken));
                     continue 3;
 
                 default:

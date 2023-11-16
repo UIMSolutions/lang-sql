@@ -85,26 +85,26 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case ",":
             // we stop on a single comma and return
             // the myExpression entry and the index myKey
-                myExpression = this.buildColDef(myExpression, trim(substr(baseExpression, 0, -myToken.length)), $options, $refs,
+                myExpression = this.buildColDef(myExpression, (substr(baseExpression, 0, -myToken.length)).strip, $options, $refs,
                     myKey - 1);
                 break 2;
 
             case 'VARCHAR':
             case 'VARCHARACTER': // Alias for VARCHAR
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'length' : false];
                 $prevCategory = 'TEXT';
                 currentCategory = 'SINGLE_PARAM_PARENTHESIS';
                 continue 2;
 
             case 'VARBINARY':
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'length' : false];
                 $prevCategory = upperToken;
                 currentCategory = 'SINGLE_PARAM_PARENTHESIS';
                 continue 2;
 
             case 'UNSIGNED':
                 foreach (array_reverse(array_keys(myExpression)) as $i) {
-                    if (isset(myExpression[$i]["expr_type"]) && (expressionType(DATA_TYPE == myExpression[$i]["expr_type"])) {
+                    if (myExpression[$i].isSet("expr_type") && (expressionType("DATA_TYPE") == myExpression[$i]["expr_type"])) {
                         myExpression[$i]["unsigned"] = true;
                         break;
                     }
@@ -134,7 +134,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'INT8':       // Alias of BIGINT
             case 'BOOL':
             case 'BOOLEAN':
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'unsigned' : false,
                                 'zerofill' : false, 'length' : false];
                 currentCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
@@ -148,14 +148,14 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     myExpression[] = $last;
                     continue 2;
                 }
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'length' : false];
                 currentCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
 
             case 'CHAR':
             case 'CHARACTER':  // Alias for CHAR
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'length' : false];
                 currentCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = 'TEXT';
                 continue 2;
@@ -165,7 +165,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'FLOAT8':     // Alias for DOUBLE
             case 'FLOAT':
             case 'FLOAT4':     // Alias for FLOAT
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'unsigned' : false,
                                 'zerofill' : false];
                 currentCategory = 'TWO_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
@@ -173,14 +173,14 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case 'DECIMAL':
             case 'NUMERIC':
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'unsigned' : false,
                                 'zerofill' : false];
                 currentCategory = 'TWO_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
 
             case 'YEAR':
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'length' : false];
                 currentCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
@@ -193,7 +193,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'BLOB':
             case 'MEDIUMBLOB':
             case 'LONGBLOB':
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr": strippedToken];
                 $prevCategory = currentCategory = upperToken;
                 continue 2;
 
@@ -203,7 +203,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'MEDIUMTEXT':
             case 'LONGTEXT':
                 $prevCategory = currentCategory = 'TEXT';
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'binary' : false];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr" : strippedToken, 'binary' : false];
                 continue 2;
 
             case 'ENUM':
@@ -220,7 +220,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'MULTILINESTRING':
             case 'MULTIPOLYGON':
             case 'GEOMETRYCOLLECTION':
-                myExpression[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("DATA_TYPE"), "base_expr": strippedToken];
                 $prevCategory = currentCategory = upperToken;
                 // TODO: is it right?
                 // spatial types

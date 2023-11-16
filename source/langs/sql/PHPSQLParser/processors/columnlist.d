@@ -14,7 +14,7 @@ class ColumnListProcessor : AbstractProcessor {
         auto myCols = [];
         foreach (myKey, myValue; $columns) {
             myCols = ["expr_type" : expressionType(COLREF, "base_expr" : trim(myValue),
-                            'no_quotes' : this.revokeQuotation(myValue));
+                            "no_quotes" : this.revokeQuotation(myValue));
         }
         return myCols;
     }

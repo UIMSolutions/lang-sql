@@ -43,7 +43,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             upperToken = $token.toUpper;
 
             if (upperToken == 'AS') {
-                $alias = ['as' : true, "name" : "", "base_expr" : $token];
+                $alias = ['as' : true, "name":  "", "base_expr":  $token];
                 $tokens[$i] = "";
                 $capture = true;
                 continue;
@@ -71,8 +71,8 @@ class SelectExpressionProcessor : AbstractProcessor {
         if ($alias) {
             // remove quotation from the alias
             $alias["no_quotes"] = this.revokeQuotation($alias["name"]);
-            $alias["name"] = trim($alias["name"]);
-            $alias["base_expr"] = trim($alias["base_expr"]);
+            $alias["name"] = $alias["name"].strip;
+            $alias["base_expr"] = $alias["base_expr"].strip;
         }
 
         $stripped = this.processExpressionList($stripped);
@@ -93,9 +93,9 @@ class SelectExpressionProcessor : AbstractProcessor {
                     || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
                     || this.isColumnReference($prev) || this.isBracketExpression($prev)|| this.isCustomFunction($prev)) {
 
-                $alias = ['as' : false, 'name' : trim($last["base_expr"]),
-                               'no_quotes' : this.revokeQuotation($last["base_expr"]),
-                               "base_expr" : trim($last["base_expr"]));
+                $alias = ['as' : false, 'name' : $last["base_expr"].strip),
+                               "no_quotes" : this.revokeQuotation($last["base_expr"]),
+                               "base_expr":  $last["base_expr"].strip];
                 // remove the last token
                 array_pop($tokens);
             }
@@ -113,7 +113,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             if (!this.isSubQuery($processed[0])) {
                 $type = $processed[0]["expr_type"];
                 baseExpression = $processed[0]["base_expr"];
-                $no_quotes = isset($processed[0]["no_quotes"]) ? $processed[0]["no_quotes"] : null;
+                $no_quotes = $processed[0].isSet("no_quotes") ? $processed[0]["no_quotes"] : null;
                 $processed = $processed[0]["sub_tree"]; // it can be FALSE
             }
         }
@@ -125,7 +125,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         if (!empty($no_quotes)) {
             $result["no_quotes"] = $no_quotes;
         }
-        $result["sub_tree"] = (empty($processed) ? false : $processed);
+        $result["sub_tree"] = ($processed.isEmpty ? false : $processed);
         return $result;
     }
 

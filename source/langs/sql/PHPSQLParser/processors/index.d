@@ -28,7 +28,7 @@ class IndexProcessor : AbstractProcessor {
     auto process($tokens) {
 
         currentCategory = 'INDEX_NAME';
-        $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'index-type' : false, 'on' : false,
+        $result = ["base_expr" : false, 'name' : false, "no_quotes" : false, 'index-type' : false, 'on' : false,
                         'options' : []);
         myExpression = [];
         baseExpression = "";
@@ -152,7 +152,7 @@ class IndexProcessor : AbstractProcessor {
                     myExpression[] = this.getConstantType(strippedToken);
                     // TODO: the base_expr should contain the column-def too
                     $result["on"] = ["expr_type" : expressionType(TABLE, "base_expr" : baseExpression,
-                                          'name' : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken),
+                                          'name' : strippedToken, "no_quotes" : this.revokeQuotation(strippedToken),
                                           "sub_tree" : false];
                     myExpression = [];
                     baseExpression = "";

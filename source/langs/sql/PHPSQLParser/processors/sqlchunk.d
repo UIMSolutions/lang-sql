@@ -35,40 +35,40 @@ class SQLChunkProcessor : AbstractProcessor {
 
             $out["BRACKET"] = $processedBracket;
         }
-        if (!empty($out["CREATE"])) {
+        if (!$out["CREATE"].isEmpty) {
             auto myProcessor = new CreateProcessor(this.options);
             $out["CREATE"] = $processor.process($out["CREATE"]);
         }
-        if (!empty($out["TABLE"])) {
+        if (!$out["TABLE"].isEmpty) {
             auto myProcessor = new TableProcessor(this.options);
             $out["TABLE"] = $processor.process($out["TABLE"]);
             this.moveLIKE($out);
         }
-        if (!empty($out["INDEX"])) {
+        if (!$out["INDEX"].isEmpty) {
             auto myProcessor = new IndexProcessor(this.options);
             $out["INDEX"] = $processor.process($out["INDEX"]);
         }
-        if (!empty($out["EXPLAIN"])) {
+        if (!$out["EXPLAIN"].isEmpty) {
             auto myProcessor = new ExplainProcessor(this.options);
             $out["EXPLAIN"] = $processor.process($out["EXPLAIN"], array_keys($out));
         }
-        if (!empty($out["DESCRIBE"])) {
+        if (!$out["DESCRIBE"].isEmpty) {
             auto myProcessor = new DescribeProcessor(this.options);
             $out["DESCRIBE"] = $processor.process($out["DESCRIBE"], array_keys($out));
         }
-        if (!empty($out["DESC"])) {
+        if (!$out["DESC"].isEmpty) {
             auto myProcessor = new DescProcessor(this.options);
             $out["DESC"] = $processor.process($out["DESC"], array_keys($out));
         }
-        if (!empty($out["SELECT"])) {
+        if (!$out["SELECT"].isEmpty) {
             auto myProcessor = new SelectProcessor(this.options);
             $out["SELECT"] = $processor.process($out["SELECT"]);
         }
-        if (!empty($out["FROM"])) {
+        if (!$out["FROM"].isEmpty) {
             auto myProcessor = new FromProcessor(this.options);
             $out["FROM"] = $processor.process($out["FROM"]);
         }
-        if (!empty($out["USING"])) {
+        if (!$out["USING"].isEmpty) {
             auto myProcessor = new UsingProcessor(this.options);
             $out["USING"] = $processor.process($out["USING"]);
         }
@@ -76,74 +76,74 @@ class SQLChunkProcessor : AbstractProcessor {
             auto myProcessor = new UpdateProcessor(this.options);
             $out["UPDATE"] = $processor.process($out["UPDATE"]);
         }
-        if (!empty($out["GROUP"])) {
+        if (!$out["GROUP"].isEmpty) {
             // set empty array if we have partial SQL statement
             auto myProcessor = new GroupByProcessor(this.options);
             $out["GROUP"] = $processor.process($out["GROUP"], $out.isSet("SELECT") ? $out["SELECT"] : []);
         }
-        if (!empty($out["ORDER"])) {
+        if (!$out["ORDER"].isEmpty) {
             // set empty array if we have partial SQL statement
             auto myProcessor = new OrderByProcessor(this.options);
             $out["ORDER"] = $processor.process($out["ORDER"], $out.isSet("SELECT") ? $out["SELECT"] : []);
         }
-        if (!empty($out["LIMIT"])) {
+        if (!$out["LIMIT"].isEmpty) {
             auto myProcessor = new LimitProcessor(this.options);
             $out["LIMIT"] = $processor.process($out["LIMIT"]);
         }
-        if (!empty($out["WHERE"])) {
+        if (!$out["WHERE"].isEmpty) {
             auto myProcessor = new WhereProcessor(this.options);
             $out["WHERE"] = $processor.process($out["WHERE"]);
         }
-        if (!empty($out["HAVING"])) {
+        if (!$out["HAVING"].isEmpty) {
             auto myProcessor = new HavingProcessor(this.options);
             $out["HAVING"] = $processor.process($out["HAVING"], $out.isSet("SELECT") ? $out["SELECT"] : []);
         }
-        if (!empty($out["SET"])) {
+        if (!$out["SET"].isEmpty) {
             auto myProcessor = new SetProcessor(this.options);
             $out["SET"] = $processor.process($out["SET"], isset($out["UPDATE"]));
         }
-        if (!empty($out["DUPLICATE"])) {
+        if (!$out["DUPLICATE"].isEmpty) {
             auto myProcessor = new DuplicateProcessor(this.options);
             $out["ON DUPLICATE KEY UPDATE"] = $processor.process($out["DUPLICATE"]);
-            unset($out["DUPLICATE"]);
+            $out.unSet("DUPLICATE");
         }
-        if (!empty($out["INSERT"])) {
+        if (!$out["INSERT"].isEmpty) {
             auto myProcessor = new InsertProcessor(this.options);
             $out = $processor.process($out);
         }
-        if (!empty($out["REPLACE"])) {
+        if (!$out["REPLACE"].isEmpty) {
             auto myProcessor = new ReplaceProcessor(this.options);
             $out = $processor.process($out);
         }
-        if (!empty($out["DELETE"])) {
+        if (!$out["DELETE"].isEmpty) {
             auto myProcessor = new DeleteProcessor(this.options);
             $out = $processor.process($out);
         }
-        if (!empty($out["VALUES"])) {
+        if (!$out["VALUES"].isEmpty) {
             auto myProcessor = new ValuesProcessor(this.options);
             $out = $processor.process($out);
         }
-        if (!empty($out["INTO"])) {
+        if (!$out["INTO"].isEmpty) {
             auto myProcessor = new IntoProcessor(this.options);
             $out = $processor.process($out);
         }
-        if (!empty($out["DROP"])) {
+        if (!$out["DROP"].isEmpty) {
             auto myProcessor = new DropProcessor(this.options);
             $out["DROP"] = $processor.process($out["DROP"]);
         }
-        if (!empty($out["RENAME"])) {
+        if (!$out["RENAME"].isEmpty) {
             auto myProcessor = new RenameProcessor(this.options);
             $out["RENAME"] = $processor.process($out["RENAME"]);
         }
-        if (!empty($out["SHOW"])) {
+        if (!$out["SHOW"].isEmpty) {
             auto myProcessor = new ShowProcessor(this.options);
             $out["SHOW"] = $processor.process($out["SHOW"]);
         }
-        if (!empty($out["OPTIONS"])) {
+        if (!$out["OPTIONS"].isEmpty) {
             auto myProcessor = new OptionsProcessor(this.options);
             $out["OPTIONS"] = $processor.process($out["OPTIONS"]);
         }
-        if (!empty($out["WITH"])) {
+        if (!$out["WITH"].isEmpty) {
         	auto myProcessor = new WithProcessor(this.options);
         	$out["WITH"] = $processor.process($out["WITH"]);
         }

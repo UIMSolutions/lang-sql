@@ -45,9 +45,9 @@ class ValuesProcessor : AbstractProcessor {
             case 'ON':
                 if (currentCategory.isEmpty) {
 
-                    baseExpression = trim(substr(baseExpression, 0, -strlen(myToken)));
+                    baseExpression = trim(substr(baseExpression, 0, -myToken.length));
                     $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression,
-                                      'data' : this.processRecord(baseExpression), 'delim' : false];
+                                      'data' : this.processRecord(baseExpression), "delim" : false];
                     baseExpression = "";
 
                     currentCategory = 'DUPLICATE';

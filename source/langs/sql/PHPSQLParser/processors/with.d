@@ -15,7 +15,7 @@ class WithProcessor : AbstractProcessor {
     }
 
     protected auto buildTableName($token) {
-    	return ["expr_type" : expressionType(TEMPORARY_TABLE, 'name':$token, "base_expr" : $token, 'no_quotes' : this.revokeQuotation($token));
+    	return ["expr_type" : expressionType(TEMPORARY_TABLE, 'name':$token, "base_expr" : $token, "no_quotes" : this.revokeQuotation($token));
     }
 
     auto process($tokens) {

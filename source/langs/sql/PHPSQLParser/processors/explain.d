@@ -41,7 +41,7 @@ class ExplainProcessor : AbstractProcessor {
 
                 case 'EXTENDED':
                 case 'PARTITIONS':
-                    return ["expr_type" : expressionType("RESERVED"), "base_expr" : myToken);
+                    return ["expr_type" : expressionType("RESERVED"), "base_expr" : myToken];
                     break;
 
                 case 'FORMAT':
@@ -78,25 +78,21 @@ class ExplainProcessor : AbstractProcessor {
         }
 
         foreach (myToken; $tokens) {
-
-            strippedToken = myToken.strip;
-
-            if (strippedToken.isEmpty) {
-                continue;
-            }
+            auto strippedToken = myToken.strip;
+            if (strippedToken.isEmpty) { continue; }
 
             switch (currentCategory) {
 
-            case 'TABLENAME':
+            case "TABLENAME":
                 currentCategory = 'WILD';
-                myExpression[] = ["expr_type" : expressionType(COLREF, "base_expr" : strippedToken,
-                                'no_quotes' : this.revokeQuotation(strippedToken));
+                myExpression[] = ["expr_type" : expressionType("COLREF"), "base_expr" : strippedToken,
+                    "no_quotes" : this.revokeQuotation(strippedToken));
                 break;
 
             case "":
                 currentCategory = 'TABLENAME';
-                myExpression[] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
-                                'no_quotes' : this.revokeQuotation(strippedToken), 'alias' : false, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("TABLE"), "table" : strippedToken,
+                    "no_quotes" : this.revokeQuotation(strippedToken), "alias" : false, "base_expr": strippedToken];
                 break;
 
             default:
