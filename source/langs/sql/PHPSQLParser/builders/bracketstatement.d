@@ -1,14 +1,9 @@
-
-/**
- * BracketStatementBuilder.php
- *
- * Builds the parentheses around a statement. */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
 
 @safe:
+// Builds the parentheses around a statement. */
 class BracketStatementBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression($parsed) {

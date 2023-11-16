@@ -1,17 +1,10 @@
-
-/**
- * WithProcessor.php
- *
- * This file : the processor for Oracle's WITH statements.
- */
-
 module langs.sql.PHPSQLParser.processors.with;
 
 import lang.sql;
 
 @safe: 
 /**
- *
+ * This file : the processor for Oracle's WITH statements.
  * This class processes Oracle's WITH statements.
  */
 class WithProcessor : AbstractProcessor {

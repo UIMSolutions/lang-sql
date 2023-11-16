@@ -1,10 +1,3 @@
-
-/**
- * ReferenceDefinitionProcessor.php
- *
- * This file : the processor reference definition part of the CREATE TABLE statements.
- */
-
 module langs.sql.PHPSQLParser.processors.referencedefinition;
 
 import lang.sql;
@@ -12,9 +5,8 @@ import lang.sql;
 @safe:
 
 /**
- *
+ * This file : the processor reference definition part of the CREATE TABLE statements.
  * This class processes the reference definition part of the CREATE TABLE statements.
- *
 */
 class ReferenceDefinitionProcessor : AbstractProcessor {
 

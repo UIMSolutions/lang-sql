@@ -1,10 +1,3 @@
-
-/**
- * AbstractProcessor.php
- *
- * This file : an abstract processor, which : some helper functions.
- */
-
 module langs.sql.PHPSQLParser.processors.processor;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : an abstract processor, which : some helper functions.
  * This class contains some general functions for a processor.
  */
 abstract class DProcessor {

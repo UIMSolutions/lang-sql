@@ -1,10 +1,3 @@
-
-/**
- * SelectExpressionProcessor.php
- *
- * This file : the processor for SELECT expressions.
- */
-
 module langs.sql.PHPSQLParser.processors.selectexpression;
 
 import lang.sql;
@@ -12,10 +5,8 @@ import lang.sql;
 @safe:
 
 /**
- *
+ * This file : the processor for SELECT expressions.
  * This class processes the SELECT expressions.
- *
-
  * */
 class SelectExpressionProcessor : AbstractProcessor {
 

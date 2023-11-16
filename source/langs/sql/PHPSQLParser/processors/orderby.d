@@ -1,10 +1,3 @@
-
-/**
- * OrderByProcessor.php
- *
- * This file : the processor for the ORDER-BY statements.
- */
-
 module langs.sql.PHPSQLParser.processors.orderby;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the ORDER-BY statements.
  * This class processes the ORDER-BY statements.
  */
 class OrderByProcessor : AbstractProcessor {

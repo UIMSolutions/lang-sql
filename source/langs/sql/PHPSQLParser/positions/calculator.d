@@ -19,7 +19,7 @@ class PositionCalculator {
     protected $flippedBacktrackingTypes;
     protected static $backtrackingTypes = [expressionType("EXPRESSION"), expressionType(SUBQUERY,
                                                 expressionType(BRACKET_EXPRESSION, expressionType(TABLE_EXPRESSION,
-                                                expressionType(RECORD, expressionType(IN_LIST,
+                                                expressionType("RECORD"), expressionType(IN_LIST,
                                                 expressionType(MATCH_ARGUMENTS, expressionType(TABLE,
                                                 expressionType(TEMPORARY_TABLE, expressionType(COLUMN_TYPE,
                                                 expressionType(COLDEF, expressionType(PRIMARY_KEY,

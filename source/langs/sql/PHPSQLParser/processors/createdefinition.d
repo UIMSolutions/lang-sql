@@ -1,10 +1,3 @@
-
-/**
- * CreateDefinitionProcessor.php
- *
- * This file : the processor for the create definition within the TABLE statements.
- */
-
 module langs.sql.PHPSQLParser.processors.createdefinition;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the create definition within the TABLE statements.
  * This class processes the create definition of the TABLE statements.
  */
 class CreateDefinitionProcessor : AbstractProcessor {

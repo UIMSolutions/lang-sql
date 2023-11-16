@@ -1,11 +1,6 @@
-
-/**
- * SQLProcessor.php
- *
- * This file : the processor for the base SQL statements.
- */
 module langs.sql.PHPSQLParser.processors.sql;
 
+// This file : the processor for the base SQL statements.
 //This class processes the base SQL statements.
 class SQLProcessor : SQLChunkProcessor {
 

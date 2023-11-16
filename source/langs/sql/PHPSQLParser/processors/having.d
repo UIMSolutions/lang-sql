@@ -1,8 +1,3 @@
-/**
- * HavingProcessor.php
- *
- * Parses the HAVING statements. */
-
 module langs.sql.PHPSQLParser.processors.having;
 
 import lang.sql;
@@ -10,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Parses the HAVING statements. 
  * This class : the processor for the HAVING statement. 
  * You can overwrite all functions to achieve another handling. */
 class HavingProcessor : ExpressionListProcessor {

@@ -1,13 +1,7 @@
-
-/**
- * SQLChunkProcessor.php
- *
- * This file : the processor for the SQL chunks.
- */
-
 module langs.sql.PHPSQLParser.processors.sqlchunk;
 
 /**
+ * This file : the processor for the SQL chunks.
  * This class processes the SQL chunks.
  */
 class SQLChunkProcessor : AbstractProcessor {

@@ -1,10 +1,3 @@
-
-/**
- * SetProcessor.php
- *
- * This file : the processor for the SET statements.
- */
-
 module langs.sql.PHPSQLParser.processors.set;
 
 import lang.sql;
@@ -12,10 +5,8 @@ import lang.sql;
 @safe:
 
 /**
- *
+ * This file : the processor for the SET statements.
  * This class processes the SET statements.
- *
-
  * */
 class SetProcessor : AbstractProcessor {
 

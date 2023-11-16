@@ -1,17 +1,10 @@
-
-/**
- * PartitionOptionsProcessor.php
- *
- * This file : the processor for the PARTITION BY statements
- * within CREATE TABLE.
- */
-
 module lang.sql.parsers.processors;
 
 import lang.sql;
 
 @safe:
 
+// This file : the processor for the PARTITION BY statements within CREATE TABLE.
 // This class processes the PARTITION BY statements within CREATE TABLE.
 class PartitionOptionsProcessor : AbstractProcessor {
 

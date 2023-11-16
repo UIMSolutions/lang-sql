@@ -1,16 +1,10 @@
-
-/**
- * OptionsProcessor.php
- *
- * This file : the processor for the statement options.
- */
-
 module langs.sql.PHPSQLParser.processors.options;
 
 import lang.sql;
 
 @safe:
 
+// This file : the processor for the statement options.
 // This class processes the statement options.
 class OptionsProcessor : AbstractProcessor {
 

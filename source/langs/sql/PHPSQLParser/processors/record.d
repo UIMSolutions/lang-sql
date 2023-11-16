@@ -1,14 +1,7 @@
-
-/**
- * RecordProcessor.php
- *
- * This file : a processor, which processes records of data
- * for an INSERT statement.
- */
-
 module langs.sql.PHPSQLParser.processors.record;
 
 /**
+ * This file : a processor, which processes records of data for an INSERT statement.
  * This class processes records of an INSERT statement.
  */
 class RecordProcessor : AbstractProcessor {

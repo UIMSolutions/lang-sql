@@ -1,16 +1,10 @@
-
-/**
- * IndexProcessor.php
- *
- * This file : the processor for the INDEX statements.
- */
-
 module langs.sql.PHPSQLParser.processors.index;
 
 import lang.sql;
 
 @safe:
 
+// This file : the processor for the INDEX statements.
 // This class processes the INDEX statements.
 class IndexProcessor : AbstractProcessor {
 

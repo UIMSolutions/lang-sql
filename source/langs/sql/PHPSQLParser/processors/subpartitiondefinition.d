@@ -1,11 +1,3 @@
-
-/**
- * SubpartitionDefinitionProcessor.php
- *
- * This file : the processor for the SUBPARTITION statements 
- * within CREATE TABLE.
- */
-
 module langs.sql.PHPSQLParser.processors.subpartitiondefinition;
 
 import lang.sql;
@@ -13,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the SUBPARTITION statements within CREATE TABLE.
  * This class processes the SUBPARTITION statements within CREATE TABLE. */
 class SubpartitionDefinitionProcessor : AbstractProcessor {
 

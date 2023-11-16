@@ -1,17 +1,10 @@
-
-/**
- * SelectProcessor.php
- *
- * This file : the processor for the SELECT statements.
- */
-
 module langs.sql.PHPSQLParser.processors.select;
 
 import lang.sql;
 
 @safe:
 /**
- * 
+ * This file : the processor for the SELECT statements.
  * This class processes the SELECT statements.
  */
 class SelectProcessor : SelectExpressionProcessor {

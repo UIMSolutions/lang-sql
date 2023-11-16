@@ -1,10 +1,3 @@
-
-/**
- * TableProcessor.php
- *
- * This file : the processor for the TABLE statements.
- */
-
 module langs.sql.PHPSQLParser.processors.table;
 
 import lang.sql;
@@ -13,6 +6,7 @@ import lang.sql;
 
 /**
  * This class processes the TABLE statements.
+ * This file : the processor for the TABLE statements.
  */
 class TableProcessor : AbstractProcessor {
 

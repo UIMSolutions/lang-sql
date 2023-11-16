@@ -1,10 +1,3 @@
-
-/**
- * FromProcessor.php
- *
- * This file : the processor for the FROM statement.
- * */
-
 module langs.sql.PHPSQLParser.processors.from;
 
 import lang.sql;
@@ -12,12 +5,8 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the FROM statement.
  * This class processes the FROM statement.
- *
- 
-
-
- 
  * */
 class FromProcessor : AbstractProcessor {
 
