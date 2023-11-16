@@ -41,7 +41,7 @@ class SubQueryBuilder : ISqlBuilder {
     }
 
     string build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] != ExpressionType::SUBQUERY) {
+        if ($parsed["expr_type"] !.isExpressionType(SUBQUERY) {
             return "";
         }
 

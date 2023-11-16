@@ -26,7 +26,7 @@ class CollationBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLLATE) { return ""; }
+        if ($parsed["expr_type"] !.isExpressionType(COLLATE) { return ""; }
 
         string mySql = "";
         foreach (key, myValue; $parsed["sub_tree"]) {

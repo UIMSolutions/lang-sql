@@ -32,7 +32,7 @@ class IndexLockBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_LOCK) {
+        if ($parsed["expr_type"] !.isExpressionType(INDEX_LOCK) {
             return "";
         }
 

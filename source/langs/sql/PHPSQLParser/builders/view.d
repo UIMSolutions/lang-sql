@@ -14,7 +14,7 @@ import lang.sql;
 class ViewBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::VIEW) {
+        if ($parsed["expr_type"] !.isExpressionType(VIEW) {
             return "";
         }
         return $parsed["base_expr"];

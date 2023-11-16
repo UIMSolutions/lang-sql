@@ -49,7 +49,7 @@ class DropProcessor : AbstractProcessor {
                 break;
 
             case 'TEMPORARY':
-                $objectType = ExpressionType::TEMPORARY_TABLE;
+                $objectType .isExpressionType(TEMPORARY_TABLE;
                 $base_expr = "";
                 break;
 
@@ -74,7 +74,7 @@ class DropProcessor : AbstractProcessor {
             default:
                 $object = [);
                 $object["expr_type"] = $objectType;
-                if ($objectType == ExpressionType::TABLE || $objectType == ExpressionType::TEMPORARY_TABLE) {
+                if ($objectType =.isExpressionType(TABLE || $objectType =.isExpressionType(TEMPORARY_TABLE) {
                     $object["table"] = $trim;
                     $object["no_quotes"] = false;
                     $object["alias"] = false;

@@ -16,7 +16,7 @@ class InListBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::IN_LIST) {
+        if ($parsed["expr_type"] !.isExpressionType(IN_LIST) {
             return "";
         }
         string mySql = this.buildSubTree($parsed, ", ");

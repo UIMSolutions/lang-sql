@@ -9,7 +9,7 @@ import lang.sql;
 class AliasReferenceBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }
         string mySql = $parsed["base_expr"];

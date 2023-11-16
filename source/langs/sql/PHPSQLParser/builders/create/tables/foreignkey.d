@@ -31,7 +31,7 @@ class ForeignKeyBuilder : IBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::FOREIGN_KEY) {
+        if ($parsed["expr_type"] !.isExpressionType(FOREIGN_KEY) {
             return "";
         }
         string mySql = "";

@@ -11,7 +11,7 @@ import lang.sql;
 class OperatorBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::OPERATOR) {
+        if ($parsed["expr_type"] !.isExpressionType(OPERATOR) {
             return "";
         }
         return $parsed["base_expr"];

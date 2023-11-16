@@ -42,7 +42,7 @@ class SetExpressionBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) {
             return "";
         }
         string mySql = "";

@@ -1,9 +1,3 @@
-
-/**
- * ColumnTypeBuilder.php
- *
- * Builds the column type statement part of CREATE TABLE. */
-
 module langs.sql.PHPSQLParser.builders.columns.type;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the column type statement part of CREATE TABLE. */
  * This class : the builder for the column type statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class ColumnTypeBuilder : ISqlBuilder {
@@ -36,30 +31,29 @@ class ColumnTypeBuilder : ISqlBuilder {
     }
 
     protected auto buildCharacterSet($parsed) {
-        if ($parsed["expr_type"] != ExpressionType::CHARSET) {
+        if ($parsed["expr_type"] !.isExpressionType(CHARSET) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     protected auto buildCollation($parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLLATE) {
+        if ($parsed["expr_type"] !.isExpressionType(COLLATE) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     protected auto buildComment($parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COMMENT) {
+        if ($parsed["expr_type"] !.isExpressionType(COMMENT) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLUMN_TYPE) {
-            return "";
-        }
+        if ($parsed["expr_type"] !.isExpressionType(COLUMN_TYPE) { return ""; }
+
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;

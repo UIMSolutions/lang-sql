@@ -12,7 +12,7 @@ import lang.sql;
 class ProcedureBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::PROCEDURE) {
+        if ($parsed["expr_type"] !.isExpressionType(PROCEDURE) {
             return "";
         }
         return $parsed["base_expr"];

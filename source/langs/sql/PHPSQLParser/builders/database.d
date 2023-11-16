@@ -11,7 +11,7 @@ import lang.sql;
 class DatabaseBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::DATABASE) {
+        if ($parsed["expr_type"] !.isExpressionType(DATABASE) {
             return "";
         }
         return $parsed["base_expr"];

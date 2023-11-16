@@ -19,7 +19,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) { return ""; }
+        if ($parsed["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {

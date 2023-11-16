@@ -92,23 +92,23 @@ class ExpressionToken {
     }
 
     auto isExpression() {
-        return this.tokenType == ExpressionType::EXPRESSION;
+        return this.tokenType =.isExpressionType(EXPRESSION;
     }
 
     auto isBracketExpression() {
-        return this.tokenType == ExpressionType::BRACKET_EXPRESSION;
+        return this.tokenType =.isExpressionType(BRACKET_EXPRESSION;
     }
 
     auto isOperator() {
-        return this.tokenType == ExpressionType::OPERATOR;
+        return this.tokenType =.isExpressionType(OPERATOR;
     }
 
     auto isInList() {
-        return this.tokenType == ExpressionType::IN_LIST;
+        return this.tokenType =.isExpressionType(IN_LIST;
     }
 
     auto isFunction() {
-        return this.tokenType == ExpressionType::SIMPLE_FUNCTION;
+        return this.tokenType =.isExpressionType(SIMPLE_FUNCTION;
     }
 
     auto isUnspecified() {
@@ -116,31 +116,31 @@ class ExpressionToken {
     }
 
     auto isVariable() {
-        return this.tokenType == ExpressionType::GLOBAL_VARIABLE || this.tokenType == ExpressionType::LOCAL_VARIABLE || this.tokenType == ExpressionType::USER_VARIABLE;
+        return this.tokenType =.isExpressionType(GLOBAL_VARIABLE || this.tokenType =.isExpressionType(LOCAL_VARIABLE || this.tokenType =.isExpressionType(USER_VARIABLE;
     }
 
     auto isAggregateFunction() {
-        return this.tokenType == ExpressionType::AGGREGATE_FUNCTION;
+        return this.tokenType =.isExpressionType(AGGREGATE_FUNCTION;
     }
 
     auto isCustomFunction() {
-        return this.tokenType == ExpressionType::CUSTOM_FUNCTION;
+        return this.tokenType =.isExpressionType(CUSTOM_FUNCTION;
     }
 
     auto isColumnReference() {
-        return this.tokenType == ExpressionType::COLREF;
+        return this.tokenType =.isExpressionType(COLREF;
     }
 
     auto isConstant() {
-        return this.tokenType == ExpressionType::CONSTANT;
+        return this.tokenType =.isExpressionType(CONSTANT;
     }
 
     auto isSign() {
-        return this.tokenType == ExpressionType::SIGN;
+        return this.tokenType =.isExpressionType(SIGN;
     }
 
     auto isSubQuery() {
-        return this.tokenType == ExpressionType::SUBQUERY;
+        return this.tokenType =.isExpressionType(SUBQUERY;
     }
 
     private auto revokeQuotation($token, Options $options) {

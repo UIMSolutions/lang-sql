@@ -193,14 +193,14 @@ abstract class DProcessor {
 
         switch ($type) {
         case 'GLOBAL':
-            $type = ExpressionType::GLOBAL_VARIABLE;
+            $type .isExpressionType(GLOBAL_VARIABLE;
             break;
         case 'LOCAL':
-            $type = ExpressionType::LOCAL_VARIABLE;
+            $type .isExpressionType(LOCAL_VARIABLE;
             break;
         case 'SESSION':
         default:
-            $type = ExpressionType::SESSION_VARIABLE;
+            $type .isExpressionType(SESSION_VARIABLE;
             break;
         }
         return $type;
@@ -220,48 +220,48 @@ abstract class DProcessor {
     }
 
     protected auto isColumnReference($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::COLREF);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(COLREF);
     }
 
     protected auto isReserved($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::RESERVED);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(RESERVED);
     }
 
     protected auto isConstant($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::CONSTANT);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(CONSTANT);
     }
 
     protected auto isAggregateFunction($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::AGGREGATE_FUNCTION);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(AGGREGATE_FUNCTION);
     }
 
     protected auto isCustomFunction($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::CUSTOM_FUNCTION);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(CUSTOM_FUNCTION);
     }
 
     protected auto isFunction($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::SIMPLE_FUNCTION);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(SIMPLE_FUNCTION);
     }
 
     protected auto isExpression($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::EXPRESSION);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(EXPRESSION);
     }
 
     protected auto isBracketExpression($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::BRACKET_EXPRESSION);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(BRACKET_EXPRESSION);
     }
 
     protected auto isSubQuery($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::SUBQUERY);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(SUBQUERY);
     }
 
     protected auto isComment($out) {
-        return (isset($out["expr_type"]) && $out["expr_type"] == ExpressionType::COMMENT);
+        return (isset($out["expr_type"]) && $out["expr_type"] =.isExpressionType(COMMENT);
     }
 
     auto processComment($expression) {
         $result = [);
-        $result["expr_type"] = ExpressionType::COMMENT;
+        $result["expr_type"] .isExpressionType(COMMENT;
         $result["value"] = $expression;
         return $result;
     }

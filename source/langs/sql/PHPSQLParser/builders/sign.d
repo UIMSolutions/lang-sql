@@ -11,7 +11,7 @@ import lang.sql;
 class SignBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::SIGN) {
+        if ($parsed["expr_type"] !.isExpressionType(SIGN) {
             return "";
         }
         return $parsed["base_expr"];

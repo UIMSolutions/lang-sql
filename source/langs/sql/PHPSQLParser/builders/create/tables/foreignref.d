@@ -28,7 +28,7 @@ class ForeignRefBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::REFERENCE) {
+        if ($parsed["expr_type"] !.isExpressionType(REFERENCE) {
             return "";
         }
         string mySql = "";

@@ -116,9 +116,9 @@ class ShowProcessor : AbstractProcessor {
                     break;
                 case 'FUNCTION':
                     if (SqlParserConstants::getInstance().isAggregateFunction($upper)) {
-                        $expr_type = ExpressionType::AGGREGATE_FUNCTION;
+                        $expr_type .isExpressionType(AGGREGATE_FUNCTION;
                     } else {
-                        $expr_type = ExpressionType::SIMPLE_FUNCTION;
+                        $expr_type .isExpressionType(SIMPLE_FUNCTION;
                     }
                     $resultList[] = ["expr_type" : $expr_type, 'name' : $token,
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);

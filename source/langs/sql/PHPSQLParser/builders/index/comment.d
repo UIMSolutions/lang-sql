@@ -21,7 +21,7 @@ class IndexCommentBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COMMENT) {
+        if ($parsed["expr_type"] !.isExpressionType(COMMENT) {
             return "";
         }
         string mySql = "";

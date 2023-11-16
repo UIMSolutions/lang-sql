@@ -33,7 +33,7 @@ class OrderByProcessor : AbstractProcessor {
         }
 
         if (is_numeric($parseInfo["base_expr"])) {
-            $parseInfo["expr_type"] = ExpressionType::POSITION;
+            $parseInfo["expr_type"] .isExpressionType(POSITION;
         } else {
             $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo["base_expr"]);
             // search to see if the expression matches an alias
@@ -43,13 +43,13 @@ class OrderByProcessor : AbstractProcessor {
                 }
 
                 if ($clause["alias"]["no_quotes"] == $parseInfo["no_quotes"]) {
-                    $parseInfo["expr_type"] = ExpressionType::ALIAS;
+                    $parseInfo["expr_type"] .isExpressionType(ALIAS;
                     break;
                 }
             }
         }
 
-        if ($parseInfo["expr_type"] == ExpressionType::EXPRESSION) {
+        if ($parseInfo["expr_type"] =.isExpressionType(EXPRESSION) {
             $expr = this.processSelectExpression($parseInfo["base_expr"]);
             $expr["direction"] = $parseInfo["dir"];
             unset($expr["alias"]);

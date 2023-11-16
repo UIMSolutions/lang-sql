@@ -11,7 +11,7 @@ import lang.sql;
 class UserVariableBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::USER_VARIABLE) {
+        if ($parsed["expr_type"] !.isExpressionType(USER_VARIABLE) {
             return "";
         }
         return $parsed["base_expr"];

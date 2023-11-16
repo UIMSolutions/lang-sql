@@ -16,7 +16,7 @@ class ConstantBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::CONSTANT) {
+        if ($parsed["expr_type"] !.isExpressionType(CONSTANT) {
             return "";
         }
         

@@ -42,7 +42,7 @@ class RenameProcessor : AbstractProcessor {
                 break;
 
             case 'TABLE':
-                $objectType = ExpressionType::TABLE;
+                $objectType .isExpressionType(TABLE;
                 $resultList[] = ["expr_type":ExpressionType::RESERVED, "base_expr":$token.getTrim());   
                 continue 2; 
                 

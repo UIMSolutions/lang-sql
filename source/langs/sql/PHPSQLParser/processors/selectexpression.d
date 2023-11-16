@@ -117,7 +117,7 @@ class SelectExpressionProcessor : AbstractProcessor {
 
         // if there is only one part, we copy the expr_type
         // in all other cases we use "EXPRESSION" as global type
-        $type = ExpressionType::EXPRESSION;
+        $type .isExpressionType(EXPRESSION;
         if (count($processed) == 1) {
             if (!this.isSubQuery($processed[0])) {
                 $type = $processed[0]["expr_type"];

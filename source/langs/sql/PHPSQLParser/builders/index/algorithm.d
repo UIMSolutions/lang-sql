@@ -26,7 +26,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_ALGORITHM) { return ""; }
+        if ($parsed["expr_type"] !.isExpressionType(INDEX_ALGORITHM) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {

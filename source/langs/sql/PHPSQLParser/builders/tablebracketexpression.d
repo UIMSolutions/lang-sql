@@ -53,7 +53,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
+        if ($parsed["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
             return "";
         }
         string mySql = "";

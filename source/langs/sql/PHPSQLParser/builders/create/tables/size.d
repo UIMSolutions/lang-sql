@@ -22,7 +22,7 @@ class IndexSizeBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_SIZE) {
+        if ($parsed["expr_type"] !.isExpressionType(INDEX_SIZE) {
             return "";
         }
         string mySql = "";

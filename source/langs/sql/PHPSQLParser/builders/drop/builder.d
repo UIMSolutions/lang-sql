@@ -54,7 +54,7 @@ class DropBuilder : ISqlBuilder {
 		$drop = $parsed["DROP"];
 		string mySql  = this.buildSubTree( $drop );
 
-		if ( $drop["expr_type"] == ExpressionType::INDEX ) {
+		if ( $drop["expr_type"] =.isExpressionType(INDEX ) {
 			mySql  ~= "" ~ this.buildDropIndex( $parsed["INDEX"] ) . " ";
 		}
 

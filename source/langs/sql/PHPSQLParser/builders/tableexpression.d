@@ -41,7 +41,7 @@ class TableExpressionBuilder : ISqlBuilder {
     }
 
     string build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] != ExpressionType::TABLE_EXPRESSION) {
+        if ($parsed["expr_type"] !.isExpressionType(TABLE_EXPRESSION) {
             return "";
         }
         

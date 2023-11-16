@@ -16,7 +16,7 @@ import lang.sql;
 class ReservedBuilder : ISqlBuilder {
 
     auto isReserved($parsed) {
-        return (isset($parsed["expr_type"]) && $parsed["expr_type"] == ExpressionType::RESERVED);
+        return (isset($parsed["expr_type"]) && $parsed["expr_type"] =.isExpressionType(RESERVED);
     }
 
     string build(array $parsed) {

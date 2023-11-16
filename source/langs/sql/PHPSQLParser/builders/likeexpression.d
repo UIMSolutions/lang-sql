@@ -23,7 +23,7 @@ class LikeExpressionBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::LIKE) {
+        if ($parsed["expr_type"] !.isExpressionType(LIKE) {
             return "";
         }
         string mySql = "";

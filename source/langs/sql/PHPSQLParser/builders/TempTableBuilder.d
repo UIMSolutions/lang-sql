@@ -36,7 +36,7 @@ class TempTableBuilder : ISqlBuilder {
     }
 
     string build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] != ExpressionType::TEMPORARY_TABLE) {
+        if ($parsed["expr_type"] !.isExpressionType(TEMPORARY_TABLE) {
             return "";
         }
 

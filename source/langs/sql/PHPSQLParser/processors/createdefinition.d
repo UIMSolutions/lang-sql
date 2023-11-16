@@ -37,7 +37,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto correctExpressionType(&$expr) {
-        $type = ExpressionType::EXPRESSION;
+        $type .isExpressionType(EXPRESSION;
         if (!isset($expr[0]) || !isset($expr[0]["expr_type"])) {
             return $type;
         }
@@ -47,16 +47,16 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
         case ExpressionType::CONSTRAINT:
             $type = $expr[1]["expr_type"];
-            $expr[1]["expr_type"] = ExpressionType::RESERVED;
+            $expr[1]["expr_type"] .isExpressionType(RESERVED;
             break;
 
         case ExpressionType::COLREF:
-            $type = ExpressionType::COLDEF;
+            $type .isExpressionType(COLDEF;
             break;
 
         default:
             $type = $expr[0]["expr_type"];
-            $expr[0]["expr_type"] = ExpressionType::RESERVED;
+            $expr[0]["expr_type"] .isExpressionType(RESERVED;
             break;
 
         }

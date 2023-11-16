@@ -14,7 +14,7 @@ class DropIndexTableBuilder : ISqlBuilder {
             return "";
         }
         auto myTable = $parsed["on"];
-        if (myTable["expr_type"] != ExpressionType::TABLE) {
+        if (myTable["expr_type"] !.isExpressionType(TABLE) {
             return "";
         }
         return 'ON ' ~ myTable["name"];

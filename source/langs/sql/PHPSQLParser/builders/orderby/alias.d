@@ -22,7 +22,7 @@ class OrderByAliasBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::ALIAS) {
+        if ($parsed["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }
         return $parsed["base_expr"] . this.buildDirection($parsed);

@@ -85,7 +85,7 @@ class FromProcessor : AbstractProcessor {
 
             if (preg_match("/^\\s*(-- [\\w\\s]+\\n)?\\s*SELECT/i", $parseInfo["expression"])) {
                 $parseInfo["sub_tree"] = this.processSQLDefault($parseInfo["expression"]);
-                $res["expr_type"] = ExpressionType::SUBQUERY;
+                $res["expr_type"] .isExpressionType(SUBQUERY;
             } else {
                 $tmp = this.splitSQLIntoTokens($parseInfo["expression"]);
                 $unionProcessor = new UnionProcessor(this.options);
@@ -100,10 +100,10 @@ class FromProcessor : AbstractProcessor {
                     $sub_tree = $unionQueries;
                 }
                 $parseInfo["sub_tree"] = $sub_tree;
-                $res["expr_type"] = ExpressionType::TABLE_EXPRESSION;
+                $res["expr_type"] .isExpressionType(TABLE_EXPRESSION;
             }
         } else {
-            $res["expr_type"] = ExpressionType::TABLE;
+            $res["expr_type"] .isExpressionType(TABLE;
             $res["table"] = $parseInfo["table"];
             $res["no_quotes"] = this.revokeQuotation($parseInfo["table"]);
         }

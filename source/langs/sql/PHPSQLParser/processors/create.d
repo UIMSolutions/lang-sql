@@ -34,21 +34,21 @@ class CreateProcessor : AbstractProcessor {
 
             case 'TEMPORARY':
                 // CREATE TEMPORARY TABLE
-                $result["expr_type"] = ExpressionType::TEMPORARY_TABLE;
+                $result["expr_type"] .isExpressionType(TEMPORARY_TABLE;
                 $result["not-exists"] = false;
                 $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
                 break;
 
             case 'TABLE':
                 // CREATE TABLE
-                $result["expr_type"] = ExpressionType::TABLE;
+                $result["expr_type"] .isExpressionType(TABLE;
                 $result["not-exists"] = false;
                 $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
                 break;
 
             case 'INDEX':
                 // CREATE INDEX
-                $result["expr_type"] = ExpressionType::INDEX;
+                $result["expr_type"] .isExpressionType(INDEX;
                 $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
                 break;
 

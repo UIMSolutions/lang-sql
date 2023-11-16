@@ -26,7 +26,7 @@ class CheckBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::CHECK) {
+        if ($parsed["expr_type"] !.isExpressionType(CHECK) {
             return "";
         }
         string mySql = "";

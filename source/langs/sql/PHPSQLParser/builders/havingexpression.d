@@ -1,10 +1,4 @@
 
-/**
- * HavingExpressionBuilder.php
- *
- * Builds expressions within the HAVING part.
- */
-
 module langs.sql.PHPSQLParser.builders.havingexpression;
 
 import lang.sql;
@@ -12,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds expressions within the HAVING part.
  * This class : the builder for expressions within the HAVING part. 
  * You can overwrite all functions to achieve another handling.
  *
@@ -31,7 +26,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
+        if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) {
             return "";
         }
         

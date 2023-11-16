@@ -22,7 +22,7 @@ class IndexParserBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_PARSER) {
+        if ($parsed["expr_type"] !.isExpressionType(INDEX_PARSER) {
             return "";
         }
         string mySql = "";

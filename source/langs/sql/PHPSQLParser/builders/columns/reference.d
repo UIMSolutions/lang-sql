@@ -12,7 +12,7 @@ class ColumnReferenceBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLREF) {
+        if ($parsed["expr_type"] !.isExpressionType(COLREF) {
             return "";
         }
         

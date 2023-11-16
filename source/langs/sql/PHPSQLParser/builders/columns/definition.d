@@ -25,7 +25,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
     }
 
    string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::COLDEF) {
+        if ($parsed["expr_type"] !.isExpressionType(COLDEF) {
             return "";
         }
         string mySql = "";

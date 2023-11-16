@@ -85,7 +85,7 @@ class InsertProcessor : AbstractProcessor {
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
             $parsed["sub_tree"] = $processor.process($cols);
-            $parsed["expr_type"] = ExpressionType::COLUMN_LIST;
+            $parsed["expr_type"] .isExpressionType(COLUMN_LIST;
         }
         return $parsed;
     }

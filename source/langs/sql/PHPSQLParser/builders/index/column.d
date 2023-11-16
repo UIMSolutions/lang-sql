@@ -20,7 +20,7 @@ class IndexColumnBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_COLUMN) {
+        if ($parsed["expr_type"] !.isExpressionType(INDEX_COLUMN) {
             return "";
         }
 

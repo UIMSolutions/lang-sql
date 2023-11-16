@@ -41,7 +41,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::PRIMARY_KEY) { return ""; }
+        if ($parsed["expr_type"] !.isExpressionType(PRIMARY_KEY) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {

@@ -21,7 +21,7 @@ class ColumnListBuilder : ISqlBuilder {
     }
     
     string build(array $parsed, $delim = ', ') {
-        if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) {
+        if ($parsed["expr_type"] !.isExpressionType(COLUMN_LIST) {
             return "";
         }
 

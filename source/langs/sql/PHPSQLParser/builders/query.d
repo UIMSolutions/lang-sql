@@ -41,7 +41,7 @@ class QueryBuilder : ISqlBuilder {
     }
 
     string build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] != ExpressionType::QUERY) {
+        if ($parsed["expr_type"] !.isExpressionType(QUERY) {
             return "";
         }
 

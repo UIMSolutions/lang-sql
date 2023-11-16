@@ -21,7 +21,7 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     protected auto buildIndexKey($parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX) {
+        if ($parsed["expr_type"] !.isExpressionType(INDEX) {
             return "";
         }
         return $parsed["base_expr"];
@@ -33,7 +33,7 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::FULLTEXT_IDX) { 
+        if ($parsed["expr_type"] !.isExpressionType(FULLTEXT_IDX) { 
             return "";
         }
         string mySql = "";

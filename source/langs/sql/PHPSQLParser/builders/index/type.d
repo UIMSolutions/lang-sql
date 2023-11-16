@@ -17,7 +17,7 @@ class IndexTypeBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::INDEX_TYPE) {
+        if ($parsed["expr_type"] !.isExpressionType(INDEX_TYPE) {
             return "";
         }
 
