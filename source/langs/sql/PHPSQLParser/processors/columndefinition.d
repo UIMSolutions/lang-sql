@@ -133,15 +133,15 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'TINYBIT':
             case 'TINYINT':
             case 'SMALLINT':
-            case 'INT2':        // Alias of SMALLINT
+            case 'INT2':       // Alias of SMALLINT
             case 'MEDIUMINT':
-            case 'INT3':        // Alias of MEDIUMINT
-            case 'MIDDLEINT':   // Alias of MEDIUMINT
+            case 'INT3':       // Alias of MEDIUMINT
+            case 'MIDDLEINT':  // Alias of MEDIUMINT
             case 'INT':
             case 'INTEGER':
-            case 'INT4':        // Alias of INT
+            case 'INT4':       // Alias of INT
             case 'BIGINT':
-            case 'INT8':        // Alias of BIGINT
+            case 'INT8':       // Alias of BIGINT
             case 'BOOL':
             case 'BOOLEAN':
                 $expr[] = ["expr_type" : ExpressionType::DATA_TYPE, "base_expr" : $trim, 'unsigned' : false,
@@ -164,7 +164,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 continue 2;
 
             case 'CHAR':
-            case 'CHARACTER':   // Alias for CHAR
+            case 'CHARACTER':  // Alias for CHAR
                 $expr[] = ["expr_type" : ExpressionType::DATA_TYPE, "base_expr" : $trim, 'length' : false);
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = 'TEXT';
@@ -172,9 +172,9 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case 'REAL':
             case 'DOUBLE':
-            case 'FLOAT8':      // Alias for DOUBLE
+            case 'FLOAT8':     // Alias for DOUBLE
             case 'FLOAT':
-            case 'FLOAT4':      // Alias for FLOAT
+            case 'FLOAT4':     // Alias for FLOAT
                 $expr[] = ["expr_type" : ExpressionType::DATA_TYPE, "base_expr" : $trim, 'unsigned' : false,
                                 'zerofill' : false);
                 $currCategory = 'TWO_PARAM_PARENTHESIS';

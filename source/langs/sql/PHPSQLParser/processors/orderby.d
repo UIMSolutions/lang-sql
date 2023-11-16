@@ -22,7 +22,7 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto initParseInfo() {
-        return ["base_expr" :  "", 'dir' :  "ASC", "expr_type" :  expressionType(EXPRESSION);
+        return ["base_expr" : "", 'dir' : "ASC", "expr_type" : expressionType(EXPRESSION);
     }
 
     protected auto processOrderExpression(&$parseInfo, $select) {

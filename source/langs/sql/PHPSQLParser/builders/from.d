@@ -35,7 +35,7 @@ class FromBuilder : ISqlBuilder {
     string build(array $parsed) {
         auto string mySql = "";
         if (array_key_exists("UNION ALL", $parsed) || array_key_exists("UNION", $parsed)) {
-            foreach ($union_type :  $outer_v; $parsed) {
+            foreach ($union_type : $outer_v; $parsed) {
                 $first = true;
 
                 foreach ($item; $outer_v) {

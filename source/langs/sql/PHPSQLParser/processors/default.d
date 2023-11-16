@@ -12,7 +12,7 @@ module langs.sql.PHPSQLParser.processors.default;
 class DefaultProcessor : AbstractProcessor {
 
   protected auto isUnion($tokens) {
-    return UnionProcessor :  : isUnion($tokens);
+    return UnionProcessor : : isUnion($tokens);
   }
 
   protected auto processUnion($tokens) {

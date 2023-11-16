@@ -38,8 +38,8 @@ class DeleteProcessor : AbstractProcessor {
             $tokens.remove("OPTIONS");
         }
 
-        $tokens["DELETE"] = ['options' :  (empty($options) ? false : $options),
-                                  'tables' :  (empty($tables) ? false : $tables));
+        $tokens["DELETE"] = ['options' : (empty($options) ? false : $options),
+                                  'tables' : (empty($tables) ? false : $tables));
         return $tokens;
     }
 }

@@ -31,7 +31,7 @@ import lang.sql;
     }
 
     string build(array$parsed) {
-      if ($parsed["expr_type"] != ExpressionType :  : RECORD) {
+      if ($parsed["expr_type"] != ExpressionType : : RECORD) {
         return $parsed.get("base_expr", "");
       }
       
@@ -44,7 +44,7 @@ import lang.sql;
         mySql ~= this.buildColRef(myValue);
 
         if (oldSqlLength == mySql.length) { // No change
-          throw new UnableToCreateSQLException(ExpressionType :  : RECORD, myKey, myValue, "expr_type");
+          throw new UnableToCreateSQLException(ExpressionType : : RECORD, myKey, myValue, "expr_type");
         }
 
         mySql ~= ", ";

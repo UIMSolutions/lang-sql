@@ -28,7 +28,7 @@ class HavingProcessor : ExpressionListProcessor {
             continue;
           }
           if ($clause["alias"]["no_quotes"] == myValue["no_quotes"]) {
-            $parsed[$k]["expr_type"] = ExpressionType :  : ALIAS;
+            $parsed[$k]["expr_type"] = ExpressionType : : ALIAS;
             break;
           }
         }
