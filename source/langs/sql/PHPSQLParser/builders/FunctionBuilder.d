@@ -1,9 +1,4 @@
 
-/**
- * FunctionBuilder.php
- *
- * Builds auto statements. */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds auto statements. 
  * This class : the builder for auto calls. 
  * You can overwrite all functions to achieve another handling.   */
 class FunctionBuilder : ISqlBuilder {
@@ -72,7 +68,7 @@ class FunctionBuilder : ISqlBuilder {
         }
 
         string mySql = "";
-        foreach ($parsed["sub_tree"] as $k :  myValue) {
+        foreach ($k :  myValue, $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.build(myValue);
             mySql  ~= this.buildConstant(myValue);
@@ -84,7 +80,7 @@ class FunctionBuilder : ISqlBuilder {
             mySql  ~= this.buildUserVariableExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('auto subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('auto subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= (this.isReserved(myValue) ? " " : ",");

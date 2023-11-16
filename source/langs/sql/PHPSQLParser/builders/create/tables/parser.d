@@ -32,7 +32,7 @@ class IndexParserBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key index parser subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE primary key index parser subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

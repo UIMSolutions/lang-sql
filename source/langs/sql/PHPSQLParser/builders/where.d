@@ -84,7 +84,7 @@ class WhereBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved(myValue);
             
             if (strlen(mySql) == $len) {
-                throw new UnableToCreateSQLException('WHERE', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('WHERE', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

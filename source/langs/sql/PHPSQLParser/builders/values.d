@@ -27,7 +27,7 @@ class ValuesBuilder : ISqlBuilder {
             mySql  ~= this.buildRecord(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('VALUES', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('VALUES', myKey, myValue, "expr_type");
             }
 
             mySql  ~= this.getRecordDelimiter(myValue);

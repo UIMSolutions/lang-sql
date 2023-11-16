@@ -27,7 +27,7 @@ class SetBuilder : ISqlBuilder {
             mySql  ~= this.buildSetExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SET', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('SET', myKey, myValue, "expr_type");
             }
 
             mySql  ~= ",";

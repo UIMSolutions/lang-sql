@@ -1,9 +1,4 @@
 
-/**
- * TableBracketExpressionBuilder.php
- *
- * Builds the table expressions within the create definitions of CREATE TABLE. */
-
 module source.langs.sql.PHPSQLParser.builders.tablebracketexpression;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the table expressions within the create definitions of CREATE TABLE. */
  * This class : the builder for the table expressions 
  * within the create definitions of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
@@ -73,7 +69,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildFulltextIndex(myValue);
                         
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE create-def expression subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE create-def expression subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= ", ";

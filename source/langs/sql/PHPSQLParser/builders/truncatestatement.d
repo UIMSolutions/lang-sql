@@ -1,12 +1,8 @@
 
-/**
- * TruncateStatementBuilder.php
- *
- * Builds the TRUNCATE statement */
-
 module lang.sql.parsers.builders;
 
 /**
+ * Builds the TRUNCATE statement */
  * This class : the builder for the whole Truncate statement. You can overwrite
  * all functions to achieve another handling. */
 class TruncateStatementBuilder : ISqlBuilder {
@@ -22,10 +18,10 @@ class TruncateStatementBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        $sql = this.buildTRUNCATE($parsed);
-        // $sql  ~= " "~ this.buildTRUNCATE($parsed) // Uncomment when parser fills in expr_type=table
+        auto mySql = this.buildTRUNCATE($parsed);
+        // mySql  ~= " "~ this.buildTRUNCATE($parsed) // Uncomment when parser fills in expr_type=table
         
-        return $sql;
+        return mySql;
     }
 
 }

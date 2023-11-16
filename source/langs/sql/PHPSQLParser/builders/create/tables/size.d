@@ -32,7 +32,7 @@ class IndexSizeBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key index size subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE primary key index size subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

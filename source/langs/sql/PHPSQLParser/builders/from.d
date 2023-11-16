@@ -65,7 +65,7 @@ class FromBuilder : ISqlBuilder {
                 mySql  ~= this.buildSubquery(myValue, $k);
 
                 if (oldSqlLength == mySql.length) { // No change
-                    throw new UnableToCreateSQLException('FROM', $k, myValue, "expr_type");
+                    throw new UnableToCreateSQLException('FROM', myKey, myValue, "expr_type");
                 }
             }
         }

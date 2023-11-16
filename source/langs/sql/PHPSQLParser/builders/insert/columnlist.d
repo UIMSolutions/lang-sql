@@ -24,7 +24,7 @@ class InsertColumnListBuilder : ISqlBuilder {
             mySql  ~= this.buildColumn(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('INSERT column-list subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('INSERT column-list subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= ", ";

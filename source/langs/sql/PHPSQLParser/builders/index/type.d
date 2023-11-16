@@ -20,14 +20,14 @@ class IndexTypeBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX_TYPE) {
             return "";
         }
-        
+
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key index type subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE primary key index type subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

@@ -1,9 +1,4 @@
 
-/**
- * ForeignRefBuilder.php
- *
- * Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE. */
-
 module source.langs.sql.PHPSQLParser.builders.create.tables.foreignref;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE. */
  * This class : the builder for the FOREIGN KEY REFERENCES statement
  * part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
@@ -36,14 +32,14 @@ class ForeignRefBuilder : ISqlBuilder {
             return "";
         }
         string mySql = "";
-        foreach ($k :  myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue);
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildColumnList(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

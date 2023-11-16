@@ -1,9 +1,4 @@
 
-/**
- * SetExpressionBuilder.php
- *
- * Builds the SET part of the INSERT statement. */
-
 module source.langs.sql.PHPSQLParser.builders.setexpression;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the SET part of the INSERT statement. */
  * This class : the builder for the SET part of INSERT statement. 
  * You can overwrite all functions to achieve another handling. */
 class SetExpressionBuilder : ISqlBuilder {
@@ -51,7 +47,7 @@ class SetExpressionBuilder : ISqlBuilder {
         }
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            $delim = " ";
+            string myDelim = " ";
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);
             mySql  ~= this.buildConstant(myValue);
@@ -62,15 +58,15 @@ class SetExpressionBuilder : ISqlBuilder {
             // we don't need whitespace between the sign and 
             // the following part
             if (this.buildSign(myValue) != "") {
-                $delim = "";
+                myDelim = "";
             }
             mySql  ~= this.buildSign(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SET expression subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('SET expression subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= $delim;
+            mySql  ~= myDelim;
         }
         mySql = substr(mySql, 0, -1);
         return mySql;

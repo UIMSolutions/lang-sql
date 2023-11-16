@@ -1,10 +1,4 @@
 
-/**
- * WhereBracketExpressionBuilder.php
- *
- * Builds bracket expressions within the WHERE part.
- */
-
 module source.langs.sql.PHPSQLParser.builders.wherebracketexpression;
 
 import lang.sql;
@@ -12,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds bracket expressions within the WHERE part.
  * This class : the builder for bracket expressions within the WHERE part.
  * You can overwrite all functions to achieve another handling.
  */
@@ -82,7 +77,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
             mySql  ~= this.buildSubQuery(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('WHERE expression subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('WHERE expression subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

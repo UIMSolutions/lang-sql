@@ -52,7 +52,7 @@ class InsertBuilder : ISqlBuilder {
             mySql  ~= this.buildBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('INSERT', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('INSERT', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

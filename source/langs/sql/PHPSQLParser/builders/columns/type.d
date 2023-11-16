@@ -72,7 +72,7 @@ class ColumnTypeBuilder : ISqlBuilder {
             mySql  ~= this.buildComment(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE column-type subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE column-type subtree', myKey, myValue, "expr_type");
             }
     
             mySql  ~= " ";

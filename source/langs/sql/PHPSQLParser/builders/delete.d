@@ -1,14 +1,10 @@
-/**
- * DeleteBuilder.php
- *
- * Builds the DELETE statement */
-
 module langs.sql.PHPSQLParser.builders.delete;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the DELETE statement */
  * This class : the builder for the [DELETE] part. You can overwrite
  * all functions to achieve another handling. */
 class DeleteBuilder : ISqlBuilder {

@@ -1,9 +1,4 @@
 
-/**
- * RenameStatement.php
- *
- * Builds the RENAME statement */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the RENAME statement */
  * This class : the builder for the RENAME statement. 
  * You can overwrite all functions to achieve another handling. */
 class RenameStatementBuilder : ISqlBuilder {
@@ -21,7 +17,7 @@ class RenameStatementBuilder : ISqlBuilder {
     }
 
     protected auto processSourceAndDestTable(myValue) {
-        if (!isset(myValue["source"]) || !isset(myValue["destination"])) {
+        if ("source" !in myValue || !isset(myValue["destination"])) {
             return "";
         }
         return myValue["source"]["base_expr"] ~ " TO " ~ myValue["destination"]["base_expr"] ~ ",";
@@ -36,12 +32,12 @@ class RenameStatementBuilder : ISqlBuilder {
             mySql  ~= this.processSourceAndDestTable(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('RENAME subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('RENAME subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";
         }
-        mySql = trim("RENAME " ~ mySql);
+        mySql = ("RENAME " ~ mySql).strip;
         return (substr(mySql, -1) == "," ? substr(mySql, 0, -1) : mySql);
     }
 }

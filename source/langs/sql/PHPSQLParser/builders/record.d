@@ -1,9 +1,4 @@
 
-/**
- * RecordBuilder.php
- *
- * Builds the records within the INSERT statement. */
-
 module langs.sql.PHPSQLParser.builders.record;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the records within the INSERT statement. */
  * This class : the builder for the records within INSERT statement. 
  * You can overwrite all functions to achieve another handling. */
 class RecordBuilder : ISqlBuilder {
@@ -48,7 +44,7 @@ class RecordBuilder : ISqlBuilder {
             mySql  ~= this.buildColRef(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException(ExpressionType::RECORD, $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException(ExpressionType::RECORD, myKey, myValue, "expr_type");
             }
 
             mySql  ~= ", ";

@@ -93,7 +93,7 @@ class SubTreeBuilder : ISqlBuilder {
             mySql  ~= $sign;
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('expression subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('expression subtree', myKey, myValue, "expr_type");
             }
 
             // We don't need whitespace between a sign and the following part.

@@ -1,9 +1,4 @@
 
-/**
- * IndexKeyBuilder.php
- *
- * Builds index key part of a CREATE TABLE statement. */
-
 module source.langs.sql.PHPSQLParser.builders.uniqueindex;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds index key part of a CREATE TABLE statement. */
  * This class : the builder for the index key part of a CREATE TABLE statement. 
  * You can overwrite all functions to achieve another handling. */
 class UniqueIndexBuilder : ISqlBuilder {
@@ -49,7 +45,7 @@ class UniqueIndexBuilder : ISqlBuilder {
             mySql  ~= this.buildIndexType(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE unique-index key subtree', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE unique-index key subtree', myKey, myValue, "expr_type");
             }
 
             mySql  ~= " ";

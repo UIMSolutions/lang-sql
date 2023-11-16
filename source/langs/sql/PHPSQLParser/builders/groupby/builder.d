@@ -45,7 +45,7 @@ class GroupByBuilder : ISqlBuilder {
             mySql  ~= this.buildGroupByAlias(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('GROUP', $k, myValue, "expr_type");
+                throw new UnableToCreateSQLException('GROUP', myKey, myValue, "expr_type");
             }
 
             mySql  ~= ", ";
