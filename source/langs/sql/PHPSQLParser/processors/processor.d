@@ -132,11 +132,11 @@ abstract class DProcessor {
     protected auto removeParenthesisFromStart($token) {
         $parenthesisRemoved = 0;
 
-        $trim = $token.strip;
-        if ($trim != "" && $trim[0] == "(") { // remove only one parenthesis pair now!
+        auto strippedToken = $token.strip;
+        if (strippedToken != "" && strippedToken[0] == "(") { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
-            $trim[0] = " ";
-            $trim = $trim.strip;
+            strippedToken[0] = " ";
+            strippedToken = strippedToken.strip;
         }
 
         $parenthesis = $parenthesisRemoved;
@@ -144,14 +144,14 @@ abstract class DProcessor {
         $string = 0;
         // Whether a string was opened or not, and with which character it was open (' or ")
         $stringOpened = "";
-        while ($i < $trim.length) {
+        while ($i < strippedToken.length) {
 
-            if ($trim[$i] == "\\") {
+            if (strippedToken[$i] == "\\") {
                 $i += 2; // an escape character, the next character is irrelevant
                 continue;
             }
 
-            if ($trim[$i] == "'") {
+            if (strippedToken[$i] == "'") {
                 if ($stringOpened.isEmpty) {
                     $stringOpened = "'";
                 } elseif ($stringOpened == "'") {
@@ -159,7 +159,7 @@ abstract class DProcessor {
                 }
             }
 
-            if ($trim[$i] == '"') {
+            if (strippedToken[$i] == '"') {
                 if ($stringOpened.isEmpty) {
                     $stringOpened = '"';
                 } elseif ($stringOpened == '"') {
@@ -167,20 +167,20 @@ abstract class DProcessor {
                 }
             }
 
-            if (($stringOpened.isEmpty) && ($trim[$i] == "(")) {
+            if (($stringOpened.isEmpty) && (strippedToken[$i] == "(")) {
                 $parenthesis++;
             }
 
-            if (($stringOpened.isEmpty) && ($trim[$i] == ")")) {
+            if (($stringOpened.isEmpty) && (strippedToken[$i] == ")")) {
                 if ($parenthesis == $parenthesisRemoved) {
-                    $trim[$i] = " ";
+                    strippedToken[$i] = " ";
                     $parenthesisRemoved--;
                 }
                 $parenthesis--;
             }
             $i++;
         }
-        return trim($trim);
+        return trim(strippedToken);
     }
 
     protected auto getVariableType($expression) {

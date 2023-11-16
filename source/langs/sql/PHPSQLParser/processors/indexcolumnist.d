@@ -22,21 +22,21 @@ class IndexColumnListProcessor : AbstractProcessor {
 
         foreach ($tokens as $k : $token) {
 
-            $trim = $token.strip;
+            auto strippedToken = $token.strip;
             $base_expr  ~= $token;
 
-            if ($trim.isEmpty) {
+            if (strippedToken.isEmpty) {
                 continue;
             }
 
-            $upper = $trim.toUpper;
+            $upper = strippedToken.toUpper;
 
             switch ($upper) {
 
             case 'ASC':
             case 'DESC':
             # the optional order
-                $expr["dir"] = $trim;
+                $expr["dir"] = strippedToken;
                 break;
 
             case ',':
@@ -50,12 +50,12 @@ class IndexColumnListProcessor : AbstractProcessor {
             default:
                 if ($upper[0] == "(" && substr($upper, -1) == ")") {
                     # the optional length
-                    $expr["length"] = this.removeParenthesisFromStart($trim);
+                    $expr["length"] = this.removeParenthesisFromStart(strippedToken);
                     continue 2;
                 }
                 # the col name
-                $expr["name"] = $trim;
-                $expr["no_quotes"] = this.revokeQuotation($trim);
+                $expr["name"] = strippedToken;
+                $expr["no_quotes"] = this.revokeQuotation(strippedToken);
                 break;
             }
         }

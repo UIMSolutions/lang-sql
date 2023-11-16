@@ -23,11 +23,11 @@ class OptionsProcessor : AbstractProcessor {
             $result = [];
 
             foreach (myReserved; $tokenList) {
-                $trim = myReserved.strip;
-                if ($trim.isEmpty) {
+                auto strippedToken = myReserved.strip;
+                if (strippedToken.isEmpty) {
                     continue;
                 }
-                $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : $trim);
+                $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
             }
             $resultList[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : myToken.strip,
                                   "sub_tree" : $result];

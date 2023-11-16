@@ -44,15 +44,15 @@ class SetProcessor : AbstractProcessor {
         $varType = false;
 
         foreach ($token; $tokens) {
-            $trim = $token.strip;
-            $upper = $trim.toUpper;
+            auto strippedToken = $token.strip;
+            $upper = strippedToken.toUpper;
 
             switch ($upper) {
             case 'LOCAL':
             case 'SESSION':
             case 'GLOBAL':
                 if (!$isUpdate) {
-                    $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : $trim);
+                    $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
                     $varType = this.getVariableType("@@" . $upper . ".");
                     $baseExpr = "";
                     continue 2;

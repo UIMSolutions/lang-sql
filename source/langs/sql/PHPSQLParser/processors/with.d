@@ -34,25 +34,25 @@ class WithProcessor : AbstractProcessor {
 
         foreach ($token; $tokens) {
         	$base_expr  ~= $token;
-            $upper = $token.strip.toUpper;
+			auto strippedToken = $token.strip;
+            upperToken = strippedToken.toUpper;
 
             if (this.isWhitespaceToken($token)) {
                 continue;
             }
 
-			$trim = $token.strip;
-            switch ($upper) {
+            switch (upperToken) {
 
             case 'AS':
             	if ($prev != 'TABLENAME') {
             		// error or tablename is AS
-            		$resultList[] = this.buildTableName($trim);
+            		$resultList[] = this.buildTableName(strippedToken);
             		$category = 'TABLENAME';
             		break;
             	}
 
-            	$resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
-            	$category = $upper;
+            	$resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+            	$category = upperToken;
                 break;
 
             case ',':
@@ -65,7 +65,7 @@ class WithProcessor : AbstractProcessor {
                 	case 'AS':
                 		// it follows a parentheses pair
                 		$subtree = this.processTopLevel(this.removeParenthesisFromStart($token));
-                		$resultList[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $trim, "sub_tree" : $subtree);
+                		$resultList[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken, "sub_tree" : $subtree);
 
                 		$out[] = ["expr_type" : expressionType(SUBQUERY_FACTORING, "base_expr" : trim($base_expr), "sub_tree" : $resultList);
                 		$resultList = [];
@@ -74,7 +74,7 @@ class WithProcessor : AbstractProcessor {
 
                 	case "":
                 		// we have the name of the table
-                		$resultList[] = this.buildTableName($trim);
+                		$resultList[] = this.buildTableName(strippedToken);
                 		$category = 'TABLENAME';
                 		break;
 

@@ -32,32 +32,32 @@ class ValuesProcessor : AbstractProcessor {
         $parsed = [];
         $base_expr = "";
 
-        foreach (myKey, myValue; $tokens["VALUES"]) {
-	        if (this.isCommentToken(myValue)) {
-		        $parsed[] = super.processComment(myValue);
+        foreach (myKey, myToken; $tokens["VALUES"]) {
+	        if (this.isCommentToken(myToken)) {
+		        $parsed[] = super.processComment(myToken);
 		        continue;
 	        }
 
-	        $base_expr  ~= myValue;
-	        $trim = trim(myValue);
+	        $base_expr  ~= myToken;
+	        strippedToken = myToken.strip;
 
-            if (this.isWhitespaceToken(myValue)) {
+            if (this.isWhitespaceToken(myToken)) {
                 continue;
             }
 
-            $upper = $trim.toUpper;
+            $upper = strippedToken.toUpper;
             switch ($upper) {
 
             case 'ON':
                 if ($currCategory.isEmpty) {
 
-                    $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
+                    $base_expr = trim(substr($base_expr, 0, -strlen(myToken)));
                     $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : $base_expr,
                                       'data' : this.processRecord($base_expr), 'delim' : false);
                     $base_expr = "";
 
                     $currCategory = 'DUPLICATE';
-                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
+                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 }
                 // else ?
                 break;
@@ -66,7 +66,7 @@ class ValuesProcessor : AbstractProcessor {
             case 'KEY':
             case 'UPDATE':
                 if ($currCategory == 'DUPLICATE') {
-                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
+                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     $base_expr = "";
                 }
                 // else ?
@@ -75,16 +75,16 @@ class ValuesProcessor : AbstractProcessor {
             case ',':
                 if ($currCategory == 'DUPLICATE') {
 
-                    $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
+                    $base_expr = trim(substr($base_expr, 0, -strlen(myToken)));
                     $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
                     $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : $base_expr,
-                                      "sub_tree" : (empty($res) ? false : $res), 'delim': $trim];
+                                      "sub_tree" : (empty($res) ? false : $res), 'delim': strippedToken];
                     $base_expr = "";
                     continue 2;
                 }
 
                 $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim($base_expr),
-                                  'data' : this.processRecord(trim($base_expr)), 'delim': $trim];
+                                  'data' : this.processRecord(trim($base_expr)), 'delim': strippedToken];
                 $base_expr = "";
                 break;
 

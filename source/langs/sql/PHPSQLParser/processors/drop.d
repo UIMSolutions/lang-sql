@@ -19,13 +19,13 @@ class DropProcessor : AbstractProcessor {
 
         foreach ($tokenList as $token) {
             $base_expr  ~= $token;
-            $trim = $token.strip;
+            strippedToken = $token.strip;
 
-            if ($trim.isEmpty) {
+            if (strippedToken.isEmpty) {
                 continue;
             }
 
-            $upper = $trim.toUpper;
+            $upper = strippedToken.toUpper;
             switch ($upper) {
             case 'VIEW':
             case 'SCHEMA':
@@ -67,7 +67,7 @@ class DropProcessor : AbstractProcessor {
 
             case ',':
                 $last = array_pop($objectList);
-                $last["delim"] = $trim;
+                $last["delim"] = strippedToken;
                 $objectList[] = $last;
                 continue 2;
 
@@ -75,19 +75,19 @@ class DropProcessor : AbstractProcessor {
                 $object = [];
                 $object["expr_type"] = $objectType;
                 if ($objectType =.isExpressionType(TABLE || $objectType =.isExpressionType(TEMPORARY_TABLE) {
-                    $object["table"] = $trim;
+                    $object["table"] = strippedToken;
                     $object["no_quotes"] = false;
                     $object["alias"] = false;
                 }
-                $object["base_expr"] = $trim;
-                $object["no_quotes"] = this.revokeQuotation($trim);
+                $object["base_expr"] = strippedToken;
+                $object["no_quotes"] = this.revokeQuotation(strippedToken);
                 $object["delim"] = false;
 
                 $objectList[] = $object;
                 continue 2;
             }
 
-            $subTree[] = ["expr_type" : expressionType(RESERVED, "base_expr" : $trim);
+            $subTree[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
         }
 
         if (!empty($objectList)) {

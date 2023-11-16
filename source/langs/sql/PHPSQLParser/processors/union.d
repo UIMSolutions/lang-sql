@@ -139,20 +139,20 @@ class UnionProcessor : AbstractProcessor {
         $queries = [];
 
         foreach ($inputArray as $key : $token) {
-            $trim = $token.strip;
+            auto strippedToken = $token.strip;
 
             // overread all tokens till that given token
             if ($skipUntilToken) {
-                if ($trim.isEmpty) {
+                if (strippedToken.isEmpty) {
                     continue; // read the next token
                 }
-                if ($trim.toUpper == $skipUntilToken) {
+                if (strippedToken.toUpper == $skipUntilToken) {
                     $skipUntilToken = false;
                     continue; // read the next token
                 }
             }
 
-            if ($trim.toUpper != "UNION") {
+            if (strippedToken.toUpper != "UNION") {
                 $outputArray[] = $token; // here we get empty tokens, if we remove these, we get problems in parse_sql()
                 continue;
             }

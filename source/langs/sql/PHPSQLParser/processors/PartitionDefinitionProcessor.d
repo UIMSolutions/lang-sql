@@ -58,7 +58,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
         $skip = 0;
 
         foreach ($tokenKey, $token; $tokens) {
-            $trim = $token.strip;
+            auto strippedToken = $token.strip;
             $base_expr  ~= $token;
 
             if ($skip > 0) {
@@ -70,16 +70,16 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim.isEmpty) {
+            if (strippedToken.isEmpty) {
                 continue;
             }
 
-            $upper = $trim.toUpper;
+            $upper = strippedToken.toUpper;
             switch ($upper) {
 
             case 'PARTITION':
                 if ($currCategory.isEmpty) {
-                    $expr[] = this.getReservedType($trim);
+                    $expr[] = this.getReservedType(strippedToken);
                     $parsed = ["expr_type" : expressionType(PARTITION_DEF, "base_expr" : trim($base_expr),
                                     "sub_tree" : false);
                     $currCategory = $upper;
@@ -95,7 +95,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     $parsed["sub_tree"] = $expr;
 
                     $base_expr = $token;
-                    $expr = [this.getReservedType($trim));
+                    $expr = [this.getReservedType(strippedToken));
 
                     $currCategory = $upper;
                     continue 2;
@@ -105,7 +105,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case 'LESS':
                 if ($currCategory == 'VALUES') {
-                    $expr[] = this.getReservedType($trim);
+                    $expr[] = this.getReservedType(strippedToken);
                     continue 2;
                 }
                 // else ?
@@ -114,7 +114,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
             case 'THAN':
                 if ($currCategory == 'VALUES') {
                     // followed by parenthesis and (value-list or expr)
-                    $expr[] = this.getReservedType($trim);
+                    $expr[] = this.getReservedType(strippedToken);
                     continue 2;
                 }
                 // else ?
@@ -122,7 +122,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case 'MAXVALUE':
                 if ($currCategory == 'VALUES') {
-                    $expr[] = this.getConstantType($trim);
+                    $expr[] = this.getConstantType(strippedToken);
 
                     $last = array_pop($parsed["sub_tree"]);
                     $last["base_expr"] = $base_expr;
@@ -143,7 +143,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
             case 'IN':
                 if ($currCategory == 'VALUES') {
                     // followed by parenthesis and value-list
-                    $expr[] = this.getReservedType($trim);
+                    $expr[] = this.getReservedType(strippedToken);
                     continue 2;
                 }
                 break;
@@ -155,7 +155,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
-                    $expr = [this.getReservedType($trim));
+                    $expr = [this.getReservedType(strippedToken));
 
                     $currCategory = $upper;
                     continue 2;
@@ -171,7 +171,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
-                    $expr = [this.getReservedType($trim));
+                    $expr = [this.getReservedType(strippedToken));
 
                     $currCategory = $upper;
                     continue 2;
@@ -181,7 +181,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case 'ENGINE':
                 if ($currCategory == 'STORAGE') {
-                    $expr[] = this.getReservedType($trim);
+                    $expr[] = this.getReservedType(strippedToken);
                     $currCategory = $upper;
                     continue 2;
                 }
@@ -191,7 +191,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
-                    $expr = [this.getReservedType($trim));
+                    $expr = [this.getReservedType(strippedToken));
 
                     $currCategory = $upper;
                     continue 2;
@@ -201,7 +201,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case '=':
                 if (in_array($currCategory, ['ENGINE', 'COMMENT', 'DIRECTORY', 'MAX_ROWS', 'MIN_ROWS'))) {
-                    $expr[] = this.getOperatorType($trim);
+                    $expr[] = this.getOperatorType(strippedToken);
                     continue 2;
                 }
                 // else ?
@@ -227,7 +227,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
-                    $expr = [this.getReservedType($trim));
+                    $expr = [this.getReservedType(strippedToken));
 
                     $currCategory = $upper;
                     continue 2;
@@ -237,7 +237,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case 'DIRECTORY':
                 if ($currCategory == 'DATA' || $currCategory == 'INDEX') {
-                    $expr[] = this.getReservedType($trim);
+                    $expr[] = this.getReservedType(strippedToken);
                     $currCategory = $upper;
                     continue 2;
                 }
@@ -253,7 +253,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
                     $parsed["sub_tree"] = $expr;
                     $base_expr = $token;
-                    $expr = [this.getReservedType($trim));
+                    $expr = [this.getReservedType(strippedToken));
 
                     $currCategory = $upper;
                     continue 2;
@@ -269,7 +269,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 case 'ENGINE':
                 case 'DIRECTORY':
                 case 'COMMENT':
-                    $expr[] = this.getConstantType($trim);
+                    $expr[] = this.getConstantType(strippedToken);
 
                     $last = array_pop($parsed["sub_tree"]);
                     $last["sub_tree"] = $expr;
@@ -289,18 +289,18 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 case 'PARTITION':
                 // that is the partition name
                     $last = array_pop($expr);
-                    $last["name"] = $trim;
+                    $last["name"] = strippedToken;
                     $expr[] = $last;
-                    $expr[] = this.getConstantType($trim);
+                    $expr[] = this.getConstantType(strippedToken);
                     $parsed["sub_tree"] = $expr;
                     $parsed["base_expr"] = trim($base_expr);
                     break;
 
                 case 'VALUES':
                 // we have parenthesis and have to process an expression/in-list
-                    $last = this.getBracketExpressionType($trim);
+                    $last = this.getBracketExpressionType(strippedToken);
 
-                    $res = this.processExpressionList($trim);
+                    $res = this.processExpressionList(strippedToken);
                     $last["sub_tree"] = (empty($res) ? false : $res);
                     $expr[] = $last;
 
@@ -323,8 +323,8 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     if ($prevCategory == 'PARTITION') {
                         // last part to process, it is only one token!
                         if ($upper[0] == "(" && substr($upper, -1) == ")") {
-                            $last = this.getBracketExpressionType($trim);
-                            $last["sub_tree"] = this.processSubpartitionDefinition($trim);
+                            $last = this.getBracketExpressionType(strippedToken);
+                            $last["sub_tree"] = this.processSubpartitionDefinition(strippedToken);
                             $expr[] = $last;
                             unset($last);
 

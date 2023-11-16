@@ -28,14 +28,14 @@ class ExplainProcessor : AbstractProcessor {
         if (this.isStatement($keys)) {
             foreach (myToken; $tokens) {
 
-                $trim = myToken.strip;
+                auto strippedToken = myToken.strip;
                 $base_expr  ~= myToken;
 
-                if ($trim.isEmpty) {
+                if (strippedToken.isEmpty) {
                     continue;
                 }
 
-                $upper = $trim.toUpper;
+                $upper = strippedToken.toUpper;
 
                 switch ($upper) {
 
@@ -47,14 +47,14 @@ class ExplainProcessor : AbstractProcessor {
                 case 'FORMAT':
                     if ($currCategory.isEmpty) {
                         $currCategory = $upper;
-                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
+                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     }
                     // else?
                     break;
 
                 case '=':
                     if ($currCategory == 'FORMAT') {
-                        $expr[] = ["expr_type" : expressionType(OPERATOR, "base_expr": $trim];
+                        $expr[] = ["expr_type" : expressionType(OPERATOR, "base_expr": strippedToken];
                     }
                     // else?
                     break;
@@ -62,7 +62,7 @@ class ExplainProcessor : AbstractProcessor {
                 case 'TRADITIONAL':
                 case 'JSON':
                     if ($currCategory == 'FORMAT') {
-                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
+                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                         return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim($base_expr),
                                      "sub_tree" : $expr];
                     }
@@ -79,9 +79,9 @@ class ExplainProcessor : AbstractProcessor {
 
         foreach (myToken; $tokens) {
 
-            $trim = myToken.strip;
+            strippedToken = myToken.strip;
 
-            if ($trim.isEmpty) {
+            if (strippedToken.isEmpty) {
                 continue;
             }
 
@@ -89,14 +89,14 @@ class ExplainProcessor : AbstractProcessor {
 
             case 'TABLENAME':
                 $currCategory = 'WILD';
-                $expr[] = ["expr_type" : expressionType(COLREF, "base_expr" : $trim,
-                                'no_quotes' : this.revokeQuotation($trim));
+                $expr[] = ["expr_type" : expressionType(COLREF, "base_expr" : strippedToken,
+                                'no_quotes' : this.revokeQuotation(strippedToken));
                 break;
 
             case "":
                 $currCategory = 'TABLENAME';
-                $expr[] = ["expr_type" : expressionType(TABLE, 'table' : $trim,
-                                'no_quotes' : this.revokeQuotation($trim), 'alias' : false, "base_expr": $trim];
+                $expr[] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
+                                'no_quotes' : this.revokeQuotation(strippedToken), 'alias' : false, "base_expr": strippedToken];
                 break;
 
             default:
