@@ -40,7 +40,7 @@ class TableProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $currCategory = 'TABLE_NAME';
+        currentCategory = 'TABLE_NAME';
         $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'create-def' : false,
                         'options' : [], 'like' : false, 'select-option' : false];
         $expr = [];
@@ -67,11 +67,11 @@ class TableProcessor : AbstractProcessor {
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
 
-            case ',':
+            case ",":
             // it is possible to separate the table options with comma!
                 if ($prevCategory == 'CREATE_DEF') {
                     $last = array_pop($result["options"]);
-                    $last["delim"] = ',';
+                    $last["delim"] = ",";
                     $result["options"][] = $last;
                     baseExpression = "";
                 }
@@ -80,7 +80,7 @@ class TableProcessor : AbstractProcessor {
             case 'UNION':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'UNION';
+                    currentCategory = 'UNION';
                     continue 2;
                 }
                 break;
@@ -88,7 +88,7 @@ class TableProcessor : AbstractProcessor {
             case 'LIKE':
             // like without parenthesis
                 if ($prevCategory == 'TABLE_NAME') {
-                    $currCategory = upperToken;
+                    currentCategory = upperToken;
                     continue 2;
                 }
                 break;
@@ -104,7 +104,7 @@ class TableProcessor : AbstractProcessor {
             case 'CHARACTER':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'TABLE_OPTION';
+                    currentCategory = 'TABLE_OPTION';
                 }
                 if ($prevCategory == 'TABLE_OPTION') {
                     // add it to the previous DEFAULT
@@ -118,7 +118,7 @@ class TableProcessor : AbstractProcessor {
                 if ($prevCategory == 'TABLE_OPTION') {
                     // add it to a previous CHARACTER
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'CHARSET';
+                    currentCategory = 'CHARSET';
                     continue 2;
                 }
                 break;
@@ -127,13 +127,13 @@ class TableProcessor : AbstractProcessor {
                 if ($prevCategory == 'TABLE_OPTION' || $prevCategory == 'CREATE_DEF') {
                     // add it to the previous DEFAULT
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'COLLATE';
+                    currentCategory = 'COLLATE';
                     continue 2;
                 }
                 break;
 
             case 'DIRECTORY':
-                if ($currCategory == 'INDEX_DIRECTORY' || $currCategory == 'DATA_DIRECTORY') {
+                if (currentCategory == 'INDEX_DIRECTORY' || currentCategory == 'DATA_DIRECTORY') {
                     // after INDEX or DATA
                     $expr[] = this.getReservedType(strippedToken);
                     continue 2;
@@ -143,7 +143,7 @@ class TableProcessor : AbstractProcessor {
             case 'INDEX':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'INDEX_DIRECTORY';
+                    currentCategory = 'INDEX_DIRECTORY';
                     continue 2;
                 }
                 break;
@@ -151,7 +151,7 @@ class TableProcessor : AbstractProcessor {
             case 'DATA':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'DATA_DIRECTORY';
+                    currentCategory = 'DATA_DIRECTORY';
                     continue 2;
                 }
                 break;
@@ -175,7 +175,7 @@ class TableProcessor : AbstractProcessor {
             case 'KEY_BLOCK_SIZE':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = $prevCategory = 'TABLE_OPTION';
+                    currentCategory = $prevCategory = 'TABLE_OPTION';
                     continue 2;
                 }
                 break;
@@ -192,14 +192,14 @@ class TableProcessor : AbstractProcessor {
                 if ($prevCategory == 'CREATE_DEF') {
                     // DEFAULT before CHARACTER SET and COLLATE
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'TABLE_OPTION';
+                    currentCategory = 'TABLE_OPTION';
                 }
                 if ($prevCategory == 'TABLE_OPTION') {
                     // all assignments with the keywords
                     $expr[] = this.getReservedType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
                                                  "base_expr" : baseExpression.strip, 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, baseExpression, $currCategory);
+                    this.clear($expr, baseExpression, currentCategory);
                 }
                 break;
 
@@ -231,14 +231,14 @@ class TableProcessor : AbstractProcessor {
                 break;
 
             default:
-                switch ($currCategory) {
+                switch (currentCategory) {
 
                 case 'CHARSET':
                 // the charset name
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType(CHARSET,
                                                  "base_expr" : baseExpression.strip, 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, baseExpression, $currCategory);
+                    this.clear($expr, baseExpression, currentCategory);
                     break;
 
                 case 'COLLATE':
@@ -246,7 +246,7 @@ class TableProcessor : AbstractProcessor {
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType(COLLATE,
                                                  "base_expr" : baseExpression.strip, 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, baseExpression, $currCategory);
+                    this.clear($expr, baseExpression, currentCategory);
                     break;
 
                 case 'DATA_DIRECTORY':
@@ -274,7 +274,7 @@ class TableProcessor : AbstractProcessor {
                 case 'LIKE':
                     $result["like"] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
                                             "base_expr" : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken));
-                    this.clear($expr, baseExpression, $currCategory);
+                    this.clear($expr, baseExpression, currentCategory);
                     break;
 
                 case "":
@@ -286,7 +286,7 @@ class TableProcessor : AbstractProcessor {
                                                       "base_expr" : baseExpression, "sub_tree" : $coldef["create-def"]);
                         $expr = [];
                         baseExpression = "";
-                        $currCategory = 'CREATE_DEF';
+                        currentCategory = 'CREATE_DEF';
                     }
                     break;
 
@@ -301,7 +301,7 @@ class TableProcessor : AbstractProcessor {
                                     "sub_tree" : '***TODO***');
                     $result["options"][] = ["expr_type" : expressionType(UNION, "base_expr" : baseExpression.strip,
                                                  'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, baseExpression, $currCategory);
+                    this.clear($expr, baseExpression, currentCategory);
                     break;
 
                 default:
@@ -309,14 +309,14 @@ class TableProcessor : AbstractProcessor {
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
                                                  "base_expr" : baseExpression.strip, 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, baseExpression, $currCategory);
+                    this.clear($expr, baseExpression, currentCategory);
                     break;
                 }
                 break;
             }
 
-            $prevCategory = $currCategory;
-            $currCategory = "";
+            $prevCategory = currentCategory;
+            currentCategory = "";
         }
 
         if ($result["like"] == false) {

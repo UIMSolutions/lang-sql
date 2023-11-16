@@ -31,7 +31,7 @@ class RenameProcessor : AbstractProcessor {
                 baseExpression = "";
                 break;
 
-            case ',':
+            case ",":
             // split rename operations
                 $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
                                                   'no_quotes' : this.revokeQuotation(baseExpression),

@@ -27,7 +27,7 @@ class IndexProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $currCategory = 'INDEX_NAME';
+        currentCategory = 'INDEX_NAME';
         $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'index-type' : false, 'on' : false,
                         'options' : []);
         $expr = [];
@@ -57,12 +57,12 @@ class IndexProcessor : AbstractProcessor {
             case 'USING':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'TYPE_OPTION';
+                    currentCategory = 'TYPE_OPTION';
                     continue 2;
                 }
                 if ($prevCategory == 'TYPE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'INDEX_TYPE';
+                    currentCategory = 'INDEX_TYPE';
                     continue 2;
                 }
                 // else ?
@@ -71,7 +71,7 @@ class IndexProcessor : AbstractProcessor {
             case 'KEY_BLOCK_SIZE':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'INDEX_OPTION';
+                    currentCategory = 'INDEX_OPTION';
                     continue 2;
                 }
                 // else ?
@@ -80,14 +80,14 @@ class IndexProcessor : AbstractProcessor {
             case 'WITH':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'INDEX_PARSER';
+                    currentCategory = 'INDEX_PARSER';
                     continue 2;
                 }
                 // else ?
                 break;
 
             case 'PARSER':
-                if ($currCategory == 'INDEX_PARSER') {
+                if (currentCategory == 'INDEX_PARSER') {
                     $expr[] = this.getReservedType(strippedToken);
                     continue 2;
                 }
@@ -97,7 +97,7 @@ class IndexProcessor : AbstractProcessor {
             case 'COMMENT':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'INDEX_COMMENT';
+                    currentCategory = 'INDEX_COMMENT';
                     continue 2;
                 }
                 // else ?
@@ -107,7 +107,7 @@ class IndexProcessor : AbstractProcessor {
             case 'LOCK':
                 if ($prevCategory == 'CREATE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = upperToken . '_OPTION';
+                    currentCategory = upperToken . '_OPTION';
                     continue 2;
                 }
                 // else ?
@@ -115,7 +115,7 @@ class IndexProcessor : AbstractProcessor {
 
             case '=':
             // the optional operator
-                if (substr($currCategory, -7, 7) == '_OPTION') {
+                if (substr(currentCategory, -7, 7) == '_OPTION') {
                     $expr[] = this.getOperatorType(strippedToken);
                     continue 2; // don't change the category
                 }
@@ -125,14 +125,14 @@ class IndexProcessor : AbstractProcessor {
             case 'ON':
                 if ($prevCategory == 'CREATE_DEF' || $prevCategory == 'TYPE_DEF') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = 'TABLE_DEF';
+                    currentCategory = 'TABLE_DEF';
                     continue 2;
                 }
                 // else ?
                 break;
 
             default:
-                switch ($currCategory) {
+                switch (currentCategory) {
 
                 case 'COLUMN_DEF':
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
@@ -144,7 +144,7 @@ class IndexProcessor : AbstractProcessor {
 
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
                     break;
 
                 case 'TABLE_DEF':
@@ -156,7 +156,7 @@ class IndexProcessor : AbstractProcessor {
                                           "sub_tree" : false];
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'COLUMN_DEF';
+                    currentCategory = 'COLUMN_DEF';
                     continue 3;
 
                 case 'INDEX_NAME':
@@ -165,7 +165,7 @@ class IndexProcessor : AbstractProcessor {
 
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'TYPE_DEF';
+                    currentCategory = 'TYPE_DEF';
                     break;
 
                 case 'INDEX_PARSER':
@@ -175,7 +175,7 @@ class IndexProcessor : AbstractProcessor {
                                                  "base_expr" : baseExpression.strip, "sub_tree" : $expr];
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
 
                     break;
 
@@ -186,7 +186,7 @@ class IndexProcessor : AbstractProcessor {
                                                  "base_expr" : baseExpression.strip, "sub_tree" : $expr];
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
 
                     break;
 
@@ -198,7 +198,7 @@ class IndexProcessor : AbstractProcessor {
                                                  "sub_tree" : $expr];
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
 
                     break;
 
@@ -206,7 +206,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'TYPE_OPTION':
                 // BTREE or HASH
                     $expr[] = this.getReservedType(strippedToken);
-                    if ($currCategory == 'INDEX_TYPE') {
+                    if (currentCategory == 'INDEX_TYPE') {
                         $result["index-type"] = ["expr_type" : expressionType(INDEX_TYPE,
                                                       "base_expr" : baseExpression.strip, 'using' : upperToken,
                                                       "sub_tree" : $expr];
@@ -218,7 +218,7 @@ class IndexProcessor : AbstractProcessor {
 
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
                     break;
 
                 case 'LOCK_OPTION':
@@ -230,7 +230,7 @@ class IndexProcessor : AbstractProcessor {
 
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
                     break;
 
                 case 'ALGORITHM_OPTION':
@@ -242,7 +242,7 @@ class IndexProcessor : AbstractProcessor {
 
                     $expr = [];
                     baseExpression = "";
-                    $currCategory = 'CREATE_DEF';
+                    currentCategory = 'CREATE_DEF';
 
                     break;
 
@@ -253,8 +253,8 @@ class IndexProcessor : AbstractProcessor {
                 break;
             }
 
-            $prevCategory = $currCategory;
-            $currCategory = "";
+            $prevCategory = currentCategory;
+            currentCategory = "";
         }
 
         if ($result["options"] == []) {

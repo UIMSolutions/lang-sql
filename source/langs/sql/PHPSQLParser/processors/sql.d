@@ -455,7 +455,7 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case "":
-            case ',':
+            case ",":
                 break;
 
             default:

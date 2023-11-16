@@ -39,7 +39,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 $expr["dir"] = strippedToken;
                 break;
 
-            case ',':
+            case ",":
             # the next column
                 $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression),
                         $expr);

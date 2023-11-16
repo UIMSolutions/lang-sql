@@ -117,7 +117,7 @@ class PositionCalculator {
             // whitespace, comma, parenthesis, digit or letter, end_of_string
             // an operator should not be surrounded by another operator
 
-            if (in_array($expr_type,['operator','column-list'),true)) {
+            if (in_array($expr_type,['operator","column-list'),true)) {
 
                 $ok = ($before.isEmpty || in_array($before, this.$allowedOnOperator, true))
                     || (strtolower($before) >= 'a' && strtolower($before) <= 'z');

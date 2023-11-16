@@ -71,7 +71,7 @@ class OrderByProcessor : AbstractProcessor {
         foreach ($token; $tokens) {
             upperToken = $token.strip.toUpper;
             switch (upperToken) {
-            case ',':
+            case ",":
                 $out[] = this.processOrderExpression($parseInfo, $select);
                 $parseInfo = this.initParseInfo();
                 break;

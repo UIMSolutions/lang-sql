@@ -23,7 +23,7 @@ class ExplainProcessor : AbstractProcessor {
 
         baseExpression = "";
         $expr = [];
-        $currCategory = "";
+        currentCategory = "";
 
         if (this.isStatement($keys)) {
             foreach (myToken; $tokens) {
@@ -45,15 +45,15 @@ class ExplainProcessor : AbstractProcessor {
                     break;
 
                 case 'FORMAT':
-                    if ($currCategory.isEmpty) {
-                        $currCategory = upperToken;
+                    if (currentCategory.isEmpty) {
+                        currentCategory = upperToken;
                         $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     }
                     // else?
                     break;
 
                 case '=':
-                    if ($currCategory == 'FORMAT') {
+                    if (currentCategory == 'FORMAT') {
                         $expr[] = ["expr_type" : expressionType(OPERATOR, "base_expr": strippedToken];
                     }
                     // else?
@@ -61,7 +61,7 @@ class ExplainProcessor : AbstractProcessor {
 
                 case 'TRADITIONAL':
                 case 'JSON':
-                    if ($currCategory == 'FORMAT') {
+                    if (currentCategory == 'FORMAT') {
                         $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                         return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
                                      "sub_tree" : $expr];
@@ -85,16 +85,16 @@ class ExplainProcessor : AbstractProcessor {
                 continue;
             }
 
-            switch ($currCategory) {
+            switch (currentCategory) {
 
             case 'TABLENAME':
-                $currCategory = 'WILD';
+                currentCategory = 'WILD';
                 $expr[] = ["expr_type" : expressionType(COLREF, "base_expr" : strippedToken,
                                 'no_quotes' : this.revokeQuotation(strippedToken));
                 break;
 
             case "":
-                $currCategory = 'TABLENAME';
+                currentCategory = 'TABLENAME';
                 $expr[] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
                                 'no_quotes' : this.revokeQuotation(strippedToken), 'alias' : false, "base_expr": strippedToken];
                 break;

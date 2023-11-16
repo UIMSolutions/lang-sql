@@ -50,7 +50,7 @@ class SetProcessor : AbstractProcessor {
                 }
                 break;
 
-            case ',':
+            case ",":
                 $assignment = this.processAssignment($baseExpr);
                 if (!$isUpdate && $varType != false) {
                     $assignment["sub_tree"][0]["expr_type"] = $varType;

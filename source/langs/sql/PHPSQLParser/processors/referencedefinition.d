@@ -34,7 +34,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             switch (upperToken) {
 
-            case ',':
+            case ",":
             # we stop on a single comma
             # or at the end of the array $tokens
                 $expr = this.buildReferenceDef($expr, trim(substr(baseExpression, 0, -$token.length)), $key - 1);
@@ -42,13 +42,13 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'REFERENCES':
                 $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                $currCategory = upperToken;
+                currentCategory = upperToken;
                 break;
 
             case 'MATCH':
-                if ($currCategory == 'REF_COL_LIST') {
+                if (currentCategory == 'REF_COL_LIST') {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $currCategory = 'REF_MATCH';
+                    currentCategory = 'REF_MATCH';
                     continue 2;
                 }
                 # else?
@@ -57,19 +57,19 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'FULL':
             case 'PARTIAL':
             case 'SIMPLE':
-                if ($currCategory == 'REF_MATCH') {
+                if (currentCategory == 'REF_MATCH') {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     $expr["match"] = upperToken;
-                    $currCategory = 'REF_COL_LIST';
+                    currentCategory = 'REF_COL_LIST';
                     continue 2;
                 }
                 # else?
                 break;
 
             case 'ON':
-                if ($currCategory == 'REF_COL_LIST') {
+                if (currentCategory == 'REF_COL_LIST') {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $currCategory = 'REF_ACTION';
+                    currentCategory = 'REF_ACTION';
                     continue 2;
                 }
                 # else ?
@@ -77,9 +77,9 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'UPDATE':
             case 'DELETE':
-                if ($currCategory == 'REF_ACTION') {
+                if (currentCategory == 'REF_ACTION') {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $currCategory = 'REF_OPTION_' . upperToken;
+                    currentCategory = 'REF_OPTION_' . upperToken;
                     continue 2;
                 }
                 # else ?
@@ -87,9 +87,9 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'RESTRICT':
             case 'CASCADE':
-                if (strpos($currCategory, 'REF_OPTION_') == 0) {
+                if (strpos(currentCategory, 'REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_"  ~ strtolower(substr($currCategory, -6))] = upperToken;
+                    $expr["on_"  ~ strtolower(substr(currentCategory, -6))] = upperToken;
                     continue 2;
                 }
                 # else ?
@@ -97,10 +97,10 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'SET':
             case 'NO':
-                if (strpos($currCategory, 'REF_OPTION_') == 0) {
+                if (strpos(currentCategory, 'REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_" ~ strtolower(substr($currCategory, -6))] = upperToken;
-                    $currCategory = 'SEC_' . $currCategory;
+                    $expr["on_" ~ strtolower(substr(currentCategory, -6))] = upperToken;
+                    currentCategory = 'SEC_' . currentCategory;
                     continue 2;
                 }
                 # else ?
@@ -108,17 +108,17 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'NULL':
             case 'ACTION':
-                if (strpos($currCategory, 'SEC_REF_OPTION_') == 0) {
+                if (strpos(currentCategory, 'SEC_REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_" ~ strtolower(substr($currCategory, -6))]  ~= " " ~ upperToken;
-                    $currCategory = 'REF_COL_LIST';
+                    $expr["on_" ~ strtolower(substr(currentCategory, -6))]  ~= " " ~ upperToken;
+                    currentCategory = 'REF_COL_LIST';
                     continue 2;
                 }
                 # else ?
                 break;
 
             default:
-                switch ($currCategory) {
+                switch (currentCategory) {
 
                 case 'REFERENCES':
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
@@ -127,7 +127,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                         $cols = $processor.process(this.removeParenthesisFromStart(strippedToken));
                         $expr["sub_tree"][] = ["expr_type" : expressionType(COLUMN_LIST, "base_expr" : strippedToken,
                                                     "sub_tree" : $cols);
-                        $currCategory = 'REF_COL_LIST';
+                        currentCategory = 'REF_COL_LIST';
                         continue 3;
                     }
                     # foreign key reference table name

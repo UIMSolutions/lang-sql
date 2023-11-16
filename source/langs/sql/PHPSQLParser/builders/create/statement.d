@@ -26,7 +26,7 @@ class CreateStatementBuilder : ISqlBuilder {
 
     string build(array $parsed) {
         string mySql = this.buildCreate($parsed);
-        if (isset($parsed["LIKE"])) {
+        if ($parsed.isSet("LIKE")) {
             mySql  ~= " "~ this.buildLike($parsed["LIKE"]);
         }
         if (isset($parsed["SELECT"])) {

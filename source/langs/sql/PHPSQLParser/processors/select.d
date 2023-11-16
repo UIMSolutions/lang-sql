@@ -12,41 +12,41 @@ class SelectProcessor : SelectExpressionProcessor {
     auto process($tokens) {
         $expression = "";
         $expressionList = [];
-        foreach ($token; $tokens) {
-            if (this.isCommaToken($token)) {
-                $expression = super.process(trim($expression));
-                $expression["delim"] = ',';
+        foreach (myToken; $tokens) {
+            if (this.isCommaToken(myToken)) {
+                $expression = super.process($expression.strip);
+                $expression["delim"] = ",";
                 $expressionList[] = $expression;
                 $expression = "";
-            } else if (this.isCommentToken($token)) {
-                $expressionList[] = super.processComment($token];
+            } else if (this.isCommentToken(myToken)) {
+                $expressionList[] = super.processComment(myToken];
             } else {
-                switch ($token.toUpper) {
+                switch (myToken.toUpper) {
 
                 // add more SELECT options here
-                case 'DISTINCT':
-                case 'DISTINCTROW':
-                case 'HIGH_PRIORITY':
-                case 'SQL_CACHE':
-                case 'SQL_NO_CACHE':
-                case 'SQL_CALC_FOUND_ROWS':
-                case 'STRAIGHT_JOIN':
-                case 'SQL_SMALL_RESULT':
-                case 'SQL_BIG_RESULT':
-                case 'SQL_BUFFER_RESULT':
-                    $expression = super.process($token.strip);
+                case "DISTINCT":
+                case "DISTINCTROW":
+                case "HIGH_PRIORITY":
+                case "SQL_CACHE":
+                case "SQL_NO_CACHE":
+                case "SQL_CALC_FOUND_ROWS":
+                case "STRAIGHT_JOIN":
+                case "SQL_SMALL_RESULT":
+                case "SQL_BIG_RESULT":
+                case "SQL_BUFFER_RESULT":
+                    $expression = super.process(myToken.strip);
                     $expression["delim"] = " ";
                     $expressionList[] = $expression;
                     $expression = "";
                     break;
 
                 default:
-                    $expression  ~= $token;
+                    $expression  ~= myToken;
                 }
             }
         }
         if ($expression) {
-            $expression = super.process(trim($expression));
+            $expression = super.process($expression.strip);
             $expression["delim"] = false;
             $expressionList[] = $expression;
         }

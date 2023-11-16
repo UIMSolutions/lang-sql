@@ -136,7 +136,7 @@ class FromProcessor : AbstractProcessor {
 
             switch (upperToken) {
             case 'CROSS':
-            case ',':
+            case ",":
             case 'INNER':
             case 'STRAIGHT_JOIN':
                 break;
@@ -258,7 +258,7 @@ class FromProcessor : AbstractProcessor {
                 $parseInfo = this.initParseInfo($parseInfo);
                 break;
 
-            case ',':
+            case ",":
                 $parseInfo["next_join_type"] = 'CROSS';
 
             case 'JOIN':

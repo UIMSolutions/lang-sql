@@ -48,7 +48,7 @@ class WithProcessor : AbstractProcessor {
             	$category = upperToken;
                 break;
 
-            case ',':
+            case ",":
             	// ignore
             	baseExpression = "";
             	break;

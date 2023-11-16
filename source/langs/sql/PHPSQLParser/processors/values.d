@@ -66,7 +66,7 @@ class ValuesProcessor : AbstractProcessor {
                 // else ?
                 break;
 
-            case ',':
+            case ",":
                 if (currentCategory == 'DUPLICATE') {
 
                     baseExpression = trim(substr(baseExpression, 0, -strlen(myToken)));

@@ -65,7 +65,7 @@ class DropProcessor : AbstractProcessor {
                 baseExpression = "";
                 break;
 
-            case ',':
+            case ",":
                 $last = array_pop($objectList);
                 $last["delim"] = strippedToken;
                 $objectList[] = $last;

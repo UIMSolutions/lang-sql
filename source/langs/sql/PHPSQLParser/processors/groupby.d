@@ -18,7 +18,7 @@ class GroupByProcessor : OrderByProcessor {
         foreach ($token; $tokens) {
             auto strippedToken = $token.strip.toUpper;
             switch (strippedToken) {
-            case ',':
+            case ",":
                 $parsed = this.processOrderExpression($parseInfo, $select);
                 unset($parsed["direction"]);
 

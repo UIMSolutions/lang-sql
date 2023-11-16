@@ -201,7 +201,7 @@ abstract class DProcessor {
     }
 
     protected auto isCommaToken($token) {
-        return ($token.strip == ',');
+        return ($token.strip == ",");
     }
 
     protected auto isWhitespaceToken($token) {

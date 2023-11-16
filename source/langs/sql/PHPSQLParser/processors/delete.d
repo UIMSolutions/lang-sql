@@ -12,15 +12,15 @@ class DeleteProcessor : AbstractProcessor {
         $del = $tokens["DELETE"];
 
         foreach (myExpression; $tokens["DELETE"]) {
-            if (myExpression.toUpper != 'DELETE' && trim(myExpression, " \t\n\r\0\x0B.*") != ""
+            if (myExpression.toUpper != 'DELETE' && (myExpression, " \t\n\r\0\x0B.*").strip != ""
                 && !this.isCommaToken(myExpression)) {
                 $tables[] = trim(myExpression, " \t\n\r\0\x0B.*");
             }
         }
 
         if (empty($tables) && "USING" in $tokens)) {
-            foreach ($tokens["FROM"] as $table) {
-                $tables[] = trim($table["table"], " \t\n\r\0\x0B.*");
+            foreach ($table; $tokens["FROM"] ) {
+                $tables[] = ($table["table"], " \t\n\r\0\x0B.*").strip;
             }
             $tokens["FROM"] = $tokens["USING"];
             unset($tokens["USING"]);

@@ -26,6 +26,6 @@ class BracketStatementBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('BRACKET', myKey, myValue, "expr_type");
             }
         }
-        return trim(mySql . " "~ trim(this.buildSelectStatement($parsed)));
+        return mySql ~ " "~ this.buildSelectStatement($parsed).strip).strip;
     }
 }
