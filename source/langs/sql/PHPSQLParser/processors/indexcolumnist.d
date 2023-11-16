@@ -29,9 +29,9 @@ class IndexColumnListProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
+            upperToken = strippedToken.toUpper;
 
-            switch ($upper) {
+            switch (upperToken) {
 
             case 'ASC':
             case 'DESC':
@@ -48,7 +48,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 break;
 
             default:
-                if ($upper[0] == "(" && substr($upper, -1) == ")") {
+                if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                     # the optional length
                     $expr["length"] = this.removeParenthesisFromStart(strippedToken);
                     continue 2;

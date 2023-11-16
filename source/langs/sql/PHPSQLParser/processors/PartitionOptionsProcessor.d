@@ -79,20 +79,20 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strtoupper(strippedToken);
-            switch ($upper) {
+            upperToken = strtoupper(strippedToken);
+            switch (upperToken) {
 
             case 'PARTITION':
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $expr[] = this.getReservedType(strippedToken);
-                $parsed[] = ["expr_type" : expressionType(PARTITION, "base_expr" : trim(baseExpression),
+                $parsed[] = ["expr_type" : expressionType(PARTITION, "base_expr" : baseExpression.strip,
                                   "sub_tree" : false);
                 break;
 
             case 'SUBPARTITION':
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $expr[] = this.getReservedType(strippedToken);
-                $parsed[] = ["expr_type" : expressionType(SUBPARTITION, "base_expr" : trim(baseExpression),
+                $parsed[] = ["expr_type" : expressionType(SUBPARTITION, "base_expr" : baseExpression.strip,
                                   "sub_tree" : false);
                 break;
 
@@ -106,7 +106,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
             case 'PARTITIONS':
             case 'SUBPARTITIONS':
                 $currCategory = 'PARTITION_NUM';
-                $expr = ["expr_type" : constant('SqlParser\utils\expressionType(' . substr($upper, 0, -1) . '_COUNT'),
+                $expr = ["expr_type" : constant('SqlParser\utils\expressionType(' . substr(upperToken, 0, -1) . '_COUNT'),
                               "base_expr" : false, "sub_tree" : [this.getReservedType(strippedToken)),
                               'storage' : substr(baseExpression, 0, -$token.length));
                 baseExpression = $token;
@@ -114,25 +114,25 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
             case 'LINEAR':
             // followed by HASH or KEY
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $expr[] = this.getReservedType(strippedToken);
                 continue 2;
 
             case 'HASH':
             case 'KEY':
-                $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(' . $prevCategory . '_' . $upper),
+                $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(' . $prevCategory . '_' . upperToken),
                                 "base_expr" : false, 'linear' : ($currCategory == 'LINEAR'), "sub_tree" : false,
                                 'storage' : substr(baseExpression, 0, -$token.length));
 
                 $last = array_pop($parsed);
-                $last["by"] = trim($currCategory . " " ~ $upper); // $currCategory will be empty or LINEAR!
+                $last["by"] = trim($currCategory . " " ~ upperToken); // $currCategory will be empty or LINEAR!
                 $last["sub_tree"] = $expr;
                 $parsed[] = $last;
 
                 baseExpression = $token;
                 $expr = [this.getReservedType(strippedToken));
 
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 continue 2;
 
             case 'ALGORITHM':
@@ -151,18 +151,18 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                     baseExpression = $token;
                     $expr = [this.getReservedType(strippedToken));
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 break;
 
             case 'RANGE':
             case 'LIST':
-                $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(PARTITION_' . $upper), "base_expr" : false,
+                $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(PARTITION_' . upperToken), "base_expr" : false,
                                 "sub_tree" : false, 'storage' : substr(baseExpression, 0, -$token.length));
 
                 $last = array_pop($parsed);
-                $last["by"] = $upper;
+                $last["by"] = upperToken;
                 $last["sub_tree"] = $expr;
                 $parsed[] = $last;
                 unset($last);
@@ -170,13 +170,13 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 baseExpression = $token;
                 $expr = [this.getReservedType(strippedToken));
 
-                $currCategory = $upper . '_EXPR';
+                $currCategory = upperToken . '_EXPR';
                 continue 2;
 
             case 'COLUMNS':
                 if ($currCategory == 'RANGE_EXPR' || $currCategory == 'LIST_EXPR') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = substr($currCategory, 0, -4) . $upper;
+                    $currCategory = substr($currCategory, 0, -4) . upperToken;
                     continue 2;
                 }
                 break;
@@ -194,7 +194,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                 case 'PARTITION_NUM':
                 // the number behind PARTITIONS or SUBPARTITIONS
-                    $expr["base_expr"] = trim(baseExpression);
+                    $expr["base_expr"] = baseExpression.strip;
                     $expr["sub_tree"][] = this.getConstantType(strippedToken);
                     baseExpression = $expr["storage"] . baseExpression;
                     unset($expr["storage"]);
@@ -220,7 +220,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     $key = array_pop($subtree["sub_tree"]);
 
                     $key["sub_tree"] = $expr;
-                    $key["base_expr"] = trim(baseExpression);
+                    $key["base_expr"] = baseExpression.strip;
 
                     baseExpression = $key["storage"] . baseExpression;
                     unset($key["storage"]);
@@ -256,7 +256,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     baseExpression = $subtree["storage"] ~ baseExpression;
                     unset($subtree["storage"]);
                     $last["sub_tree"][] = $subtree;
-                    $last["base_expr"] = trim(baseExpression);
+                    $last["base_expr"] = baseExpression.strip;
                     $parsed[] = $last;
                     unset($last);
                     unset($subtree);
@@ -281,7 +281,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     baseExpression = $subtree["storage"] . baseExpression;
                     unset($subtree["storage"]);
                     $last["sub_tree"][] = $subtree;
-                    $last["base_expr"] = trim(baseExpression);
+                    $last["base_expr"] = baseExpression.strip;
                     $parsed[] = $last;
                     unset($last);
                     unset($subtree);
@@ -293,7 +293,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                 case "":
                     if ($prevCategory == 'PARTITION' || $prevCategory == 'SUBPARTITION') {
-                        if ($upper[0] == "(" && substr($upper, -1) == ")") {
+                        if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                             // last part to process, it is only one token!
                             $last = this.getBracketExpressionType(strippedToken);
                             $last["sub_tree"] = this.processPartitionDefinition(strippedToken);

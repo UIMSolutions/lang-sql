@@ -58,8 +58,8 @@ class SQLProcessor : SQLChunkProcessor {
                 }
             }
 
-            $upper = strippedToken.toUpper;
-            switch ($upper) {
+            upperToken = strippedToken.toUpper;
+            switch (upperToken) {
 
             /* Tokens that get their own sections. These keywords have subclauses. */
             case 'SELECT':
@@ -85,25 +85,25 @@ class SQLProcessor : SQLChunkProcessor {
             case 'PURGE':
             case 'EXECUTE':
             case 'PREPARE':
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'DEALLOCATE':
                 if (strippedToken == 'DEALLOCATE') {
                     $skip_next = 1;
                 }
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'DUPLICATE':
                 if ($token_category != 'VALUES') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
             case 'SET':
                 if ($token_category != 'TABLE') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
@@ -113,7 +113,7 @@ class SQLProcessor : SQLChunkProcessor {
                 if ($token_category == 'SHOW') {
                     break;
                 }
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'FROM':
@@ -125,25 +125,25 @@ class SQLProcessor : SQLChunkProcessor {
                 if ($token_category == 'SHOW') {
                     break;
                 }
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'EXPLAIN':
             case 'DESCRIBE':
             case 'SHOW':
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'DESC':
                 if ($token_category.isEmpty) {
                     // short version of DESCRIBE
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 // else direction of ORDER-BY
                 break;
 
             case 'RENAME':
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'DATABASE':
@@ -152,21 +152,21 @@ class SQLProcessor : SQLChunkProcessor {
                     || $prev_category == 'SHOW') {
                     break;
                 }
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'EVENT':
             // issue 71
                 if ($prev_category == 'DROP' 
                     || $prev_category == 'ALTER' || $prev_category == 'CREATE') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
             case 'DATA':
             // prevent wrong handling of DATA as keyword
                 if ($prev_category == 'LOAD') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
@@ -176,20 +176,20 @@ class SQLProcessor : SQLChunkProcessor {
                     $out[$prev_category][] = strippedToken;
                     continue 2;
                 }
-                $token_category = $prev_category = $upper;
+                $token_category = $prev_category = upperToken;
                 break;
 
             case 'USER':
             // prevent wrong processing as keyword
                 if ($prev_category == 'CREATE' || $prev_category == 'RENAME' || $prev_category == 'DROP') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
             case 'VIEW':
             // prevent wrong processing as keyword
                 if ($prev_category == 'CREATE' || $prev_category == 'ALTER' || $prev_category == 'DROP') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
@@ -215,16 +215,16 @@ class SQLProcessor : SQLChunkProcessor {
             case 'REPAIR':
             case 'RESTORE':
             case 'HELP':
-                $token_category = $upper;
+                $token_category = upperToken;
                 // set the category in case these get subclauses in a future version of MySQL
-                $out[$upper][0] = strippedToken;
+                $out[upperToken][0] = strippedToken;
                 continue 2;
 
             case 'TRUNCATE':
             	if ($prev_category.isEmpty) {
             		// set the category in case these get subclauses in a future version of MySQL
-            		$token_category = $upper;
-            		$out[$upper][0] = strippedToken;
+            		$token_category = upperToken;
+            		$out[upperToken][0] = strippedToken;
             		continue 2;
             	}
                 // part of the CREATE TABLE statement or a function
@@ -234,8 +234,8 @@ class SQLProcessor : SQLChunkProcessor {
             case 'REPLACE':
             	if ($prev_category.isEmpty) {
             		// set the category in case these get subclauses in a future version of MySQL
-            		$token_category = $upper;
-            		$out[$upper][0] = strippedToken;
+            		$token_category = upperToken;
+            		$out[upperToken][0] = strippedToken;
             		continue 2;
             	}
                 // part of the CREATE TABLE statement or a function
@@ -253,7 +253,7 @@ class SQLProcessor : SQLChunkProcessor {
                     $out[$token_category][] = strippedToken;
                     continue 2;
                 }
-                $out["OPTIONS"][] = $upper;
+                $out["OPTIONS"][] = upperToken;
                 continue 2;
 
             case 'CHECK':
@@ -261,32 +261,32 @@ class SQLProcessor : SQLChunkProcessor {
                     $out[$prev_category][] = strippedToken;
                     continue 2;
                 }
-                $token_category = $upper;
-                $out[$upper][0] = strippedToken;
+                $token_category = upperToken;
+                $out[upperToken][0] = strippedToken;
                 continue 2;
 
             case 'CREATE':
                 if ($prev_category == 'SHOW') {
                     break;
                 }
-                $token_category = $upper;
+                $token_category = upperToken;
                 break;
 
             case 'INDEX':
 	            if ( in_array( $prev_category, [ 'CREATE', 'DROP' ) ) ) {
 		            $out[ $prev_category ][] = strippedToken;
-		            $token_category          = $upper;
+		            $token_category          = upperToken;
 	            }
 	            break;
 
             case 'TABLE':
                 if ($prev_category == 'CREATE') {
                     $out[$prev_category][] = strippedToken;
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 if ($prev_category == 'TRUNCATE') {
                     $out[$prev_category][] = strippedToken;
-                    $token_category = $upper;
+                    $token_category = upperToken;
                 }
                 break;
 
@@ -328,7 +328,7 @@ class SQLProcessor : SQLChunkProcessor {
             case 'CACHE':
                 if ($prev_category.isEmpty || $prev_category == 'RESET' || $prev_category == 'FLUSH'
                     || $prev_category == 'LOAD') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                     continue 2;
                 }
                 break;
@@ -336,8 +336,8 @@ class SQLProcessor : SQLChunkProcessor {
             /* This is either LOCK TABLES or SELECT ... LOCK IN SHARE MODE */
             case 'LOCK':
                 if ($token_category.isEmpty) {
-                    $token_category = $upper;
-                    $out[$upper][0] = strippedToken;
+                    $token_category = upperToken;
+                    $out[upperToken][0] = strippedToken;
                 } elseif ($token_category == 'INDEX') {
                     break;
                 } else {
@@ -349,11 +349,11 @@ class SQLProcessor : SQLChunkProcessor {
 
             case 'USING': /* USING in FROM clause is different from USING w/ prepared statement*/
                 if ($token_category == 'EXECUTE') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                     continue 2;
                 }
                 if ($token_category == 'FROM' && !empty($out["DELETE"])) {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                     continue 2;
                 }
                 break;
@@ -361,7 +361,7 @@ class SQLProcessor : SQLChunkProcessor {
             /* DROP TABLE is different from ALTER TABLE DROP ... */
             case 'DROP':
                 if ($token_category != 'ALTER') {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                     continue 2;
                 }
                 break;
@@ -376,7 +376,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             case 'UPDATE':
                 if ($token_category.isEmpty) {
-                    $token_category = $upper;
+                    $token_category = upperToken;
                     continue 2;
                 }
                 if ($token_category == 'DUPLICATE') {
@@ -386,7 +386,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             case 'START':
                 strippedToken = "BEGIN";
-                $out[$upper][0] = $upper; // TODO: this could be generate problems within the position calculator
+                $out[upperToken][0] = upperToken; // TODO: this could be generate problems within the position calculator
                 $skip_next = 1;
                 break;
 
@@ -432,8 +432,8 @@ class SQLProcessor : SQLChunkProcessor {
                     continue 2;
                 }
                 // set the category in case these get subclauses in a future version of MySQL
-                $token_category = $upper;
-                $out[$upper][0] = strippedToken;
+                $token_category = upperToken;
+                $out[upperToken][0] = strippedToken;
                 continue 2;
 
             case 'FORCE':
@@ -452,7 +452,7 @@ class SQLProcessor : SQLChunkProcessor {
                     continue 2;
                 }
                 if ($token_category.isEmpty) {
-                	$token_category = $upper;
+                	$token_category = upperToken;
                 }
                 break;
 

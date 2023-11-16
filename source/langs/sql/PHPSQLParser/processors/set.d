@@ -33,7 +33,7 @@ class SetProcessor : AbstractProcessor {
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
-        return ["expr_type" : expressionType(EXPRESSION, "base_expr" : trim(baseExpression),
+        return ["expr_type" : expressionType(EXPRESSION, "base_expr" : baseExpression.strip,
                      "sub_tree" : (empty($assignment) ? false : $assignment));
     }
 
@@ -45,15 +45,15 @@ class SetProcessor : AbstractProcessor {
 
         foreach ($token; $tokens) {
             auto strippedToken = $token.strip;
-            $upper = strippedToken.toUpper;
+            upperToken = strippedToken.toUpper;
 
-            switch ($upper) {
+            switch (upperToken) {
             case 'LOCAL':
             case 'SESSION':
             case 'GLOBAL':
                 if (!$isUpdate) {
                     $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
-                    $varType = this.getVariableType("@@" . $upper . ".");
+                    $varType = this.getVariableType("@@" . upperToken . ".");
                     $baseExpr = "";
                     continue 2;
                 }

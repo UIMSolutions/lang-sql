@@ -23,8 +23,8 @@ class CreateProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
-            switch ($upper) {
+            upperToken = strippedToken.toUpper;
+            switch (upperToken) {
 
             case 'TEMPORARY':
                 // CREATE TEMPORARY TABLE
@@ -51,7 +51,7 @@ class CreateProcessor : AbstractProcessor {
             case 'SPATIAL':
                 // options of CREATE INDEX
                 $result["base_expr"] = $result["expr_type"] = false;
-                $result["constraint"] = $upper; 
+                $result["constraint"] = upperToken; 
                 $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;                
                                 
@@ -75,7 +75,7 @@ class CreateProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result["base_expr"] = trim(baseExpression);
+        $result["base_expr"] = baseExpression.strip;
         $result["sub_tree"] = $expr;
         return $result;
     }

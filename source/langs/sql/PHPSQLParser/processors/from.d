@@ -128,7 +128,7 @@ class FromProcessor : AbstractProcessor {
         $i = 0;
 
         foreach ($token; $tokens) {
-            $upper = $token.strip.toUpper;
+            upperToken = $token.strip.toUpper;
 
             if ($skip_next && $token != "") {
                 $parseInfo["token_count"]++;
@@ -145,7 +145,7 @@ class FromProcessor : AbstractProcessor {
                 continue;
             }
 
-            switch ($upper) {
+            switch (upperToken) {
             case 'CROSS':
             case ',':
             case 'INNER':
@@ -168,14 +168,14 @@ class FromProcessor : AbstractProcessor {
             case 'LEFT':
             case 'RIGHT':
             case 'NATURAL':
-                $token_category = $upper;
+                $token_category = upperToken;
                 $prevToken = $token;
                 $i++;
                 continue 2;
 
             default:
                 if ($token_category == 'LEFT' || $token_category == 'RIGHT') {
-                    if ($upper.isEmpty) {
+                    if (upperToken.isEmpty) {
                         $prevToken  ~= $token;
                         break;
                     } else {
@@ -194,12 +194,12 @@ class FromProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($upper.isEmpty) {
+            if (upperToken.isEmpty) {
                 $i++;
                 continue;
             }
 
-            switch ($upper) {
+            switch (upperToken) {
             case 'AS':
                 $parseInfo["alias"] = ['as' : true, 'name' : "", "base_expr" : $token);
                 $parseInfo["token_count"]++;
@@ -219,25 +219,25 @@ class FromProcessor : AbstractProcessor {
             case 'USE':
             case 'FORCE':
                 $token_category = 'IDX_HINT';
-                $parseInfo["hints"][]["hint_type"] = $upper;
+                $parseInfo["hints"][]["hint_type"] = upperToken;
                 continue 2;
 
             case 'KEY':
             case 'INDEX':
                 if ($token_category == 'CREATE') {
-                    $token_category = $upper; // TODO: what is it for a statement?
+                    $token_category = upperToken; // TODO: what is it for a statement?
                     continue 2;
                 }
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
                     continue 2;
                 }
                 break;
 
             case 'USING':
             case 'ON':
-                $parseInfo["ref_type"] = $upper;
+                $parseInfo["ref_type"] = upperToken;
                 $parseInfo["ref_expr"] = "";
 
             case 'CROSS':
@@ -250,7 +250,7 @@ class FromProcessor : AbstractProcessor {
             case 'FOR':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
                     continue 2;
                 }
 
@@ -275,7 +275,7 @@ class FromProcessor : AbstractProcessor {
             case 'JOIN':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
                     continue 2;
                 }
 
@@ -291,7 +291,7 @@ class FromProcessor : AbstractProcessor {
             case 'GROUP BY':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ $upper;
+                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
                     continue 2;
                 }
 

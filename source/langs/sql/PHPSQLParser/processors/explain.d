@@ -35,9 +35,9 @@ class ExplainProcessor : AbstractProcessor {
                     continue;
                 }
 
-                $upper = strippedToken.toUpper;
+                upperToken = strippedToken.toUpper;
 
-                switch ($upper) {
+                switch (upperToken) {
 
                 case 'EXTENDED':
                 case 'PARTITIONS':
@@ -46,7 +46,7 @@ class ExplainProcessor : AbstractProcessor {
 
                 case 'FORMAT':
                     if ($currCategory.isEmpty) {
-                        $currCategory = $upper;
+                        $currCategory = upperToken;
                         $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     }
                     // else?
@@ -63,7 +63,7 @@ class ExplainProcessor : AbstractProcessor {
                 case 'JSON':
                     if ($currCategory == 'FORMAT') {
                         $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim(baseExpression),
+                        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
                                      "sub_tree" : $expr];
                     }
                     // else?

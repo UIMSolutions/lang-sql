@@ -59,15 +59,15 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
-            switch ($upper) {
+            upperToken = strippedToken.toUpper;
+            switch (upperToken) {
 
             case 'SUBPARTITION':
                 if ($currCategory.isEmpty) {
                     $expr[] = this.getReservedType(strippedToken);
-                    $parsed = ["expr_type" : expressionType(SUBPARTITION_DEF, "base_expr" : trim(baseExpression),
+                    $parsed = ["expr_type" : expressionType(SUBPARTITION_DEF, "base_expr" : baseExpression.strip,
                                     "sub_tree" : false);
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -82,7 +82,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     $expr = [this.getReservedType(strippedToken));
 
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -98,7 +98,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     $expr = [this.getReservedType(strippedToken));
 
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -107,7 +107,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'ENGINE':
                 if ($currCategory == 'STORAGE') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 if ($prevCategory == 'SUBPARTITION') {
@@ -118,7 +118,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     $expr = [this.getReservedType(strippedToken));
                     
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -146,7 +146,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'INDEX':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by DIRECTORY
-                    $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . $upper . '_DIR'),
+                    $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . upperToken . '_DIR'),
                                     "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr(baseExpression, 0, -$token.length));
 
@@ -154,7 +154,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     $expr = [this.getReservedType(strippedToken));
 
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -163,7 +163,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'DIRECTORY':
                 if ($currCategory == 'DATA' || $currCategory == 'INDEX') {
                     $expr[] = this.getReservedType(strippedToken);
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -172,7 +172,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'MAX_ROWS':
             case 'MIN_ROWS':
                 if ($prevCategory == 'SUBPARTITION') {
-                    $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . $upper),
+                    $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . upperToken),
                                     "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr(baseExpression, 0, -$token.length));
 
@@ -180,7 +180,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     $expr = [this.getReservedType(strippedToken));
 
-                    $currCategory = $upper;
+                    $currCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -198,12 +198,12 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
 
                     $last = array_pop($parsed["sub_tree"]);
                     $last["sub_tree"] = $expr;
-                    $last["base_expr"] = trim(baseExpression);
+                    $last["base_expr"] = baseExpression.strip;
                     baseExpression = $last["storage"] . baseExpression;
                     unset($last["storage"]);
 
                     $parsed["sub_tree"][] = $last;
-                    $parsed["base_expr"] = trim(baseExpression);
+                    $parsed["base_expr"] = baseExpression.strip;
                     $expr = $parsed["sub_tree"];
                     unset($last);
 
@@ -217,7 +217,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     $expr[] = $last;
                     $expr[] = this.getConstantType(strippedToken);
                     $parsed["sub_tree"] = $expr;
-                    $parsed["base_expr"] = trim(baseExpression);
+                    $parsed["base_expr"] = baseExpression.strip;
                     break;
 
                 default:

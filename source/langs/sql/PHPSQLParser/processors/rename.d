@@ -25,7 +25,7 @@ class RenameProcessor : AbstractProcessor {
             switch ($token.getUpper()) {
             case 'TO':
             // separate source table from destination
-                $tablePair["source"] = ["expr_type" : expressionType(TABLE, 'table' : trim(baseExpression),
+                $tablePair["source"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
                                              'no_quotes' : this.revokeQuotation(baseExpression),
                                              "base_expr" : baseExpression];
                 baseExpression = "";
@@ -33,7 +33,7 @@ class RenameProcessor : AbstractProcessor {
 
             case ',':
             // split rename operations
-                $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : trim(baseExpression),
+                $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
                                                   'no_quotes' : this.revokeQuotation(baseExpression),
                                                   "base_expr" : baseExpression);
                 $resultList[] = $tablePair;
@@ -53,7 +53,7 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if (baseExpression != "") {
-            $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : trim(baseExpression),
+            $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
                                               'no_quotes' : this.revokeQuotation(baseExpression),
                                               "base_expr" : baseExpression);
             $resultList[] = $tablePair;

@@ -14,7 +14,7 @@ class ExpressionToken {
     private $token;
     private $tokenType;
     private $trim;
-    private $upper;
+    private upperToken;
     private $noQuotes;
 
     this($key = "", $token = "") {

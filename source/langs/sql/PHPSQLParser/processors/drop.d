@@ -25,20 +25,20 @@ class DropProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
-            switch ($upper) {
+            upperToken = strippedToken.toUpper;
+            switch (upperToken) {
             case 'VIEW':
             case 'SCHEMA':
             case 'DATABASE':
             case 'TABLE':
                 if ($objectType.isEmpty) {
-                    $objectType = constant('SqlParser\utils\expressionType(' . $upper);
+                    $objectType = constant('SqlParser\utils\expressionType(' . upperToken);
                 }
                 baseExpression = "";
                 break;
             case 'INDEX':
 	            if ( $objectType.isEmpty ) {
-		            $objectType = constant( 'SqlParser\utils\expressionType(' . $upper );
+		            $objectType = constant( 'SqlParser\utils\expressionType(' . upperToken );
 	            }
 	            baseExpression = "";
 	            break;
@@ -55,7 +55,7 @@ class DropProcessor : AbstractProcessor {
 
             case 'RESTRICT':
             case 'CASCADE':
-                $option = $upper;
+                $option = upperToken;
                 if (!empty($objectList)) {
                     $subTree[] = ["expr_type" : expressionType(EXPRESSION,
                                        "base_expr" : trim(substr(baseExpression, 0, -$token.length)),
@@ -91,7 +91,7 @@ class DropProcessor : AbstractProcessor {
         }
 
         if (!empty($objectList)) {
-            $subTree[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : trim(baseExpression),
+            $subTree[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : baseExpression.strip,
                                "sub_tree" : $objectList);
         }
 

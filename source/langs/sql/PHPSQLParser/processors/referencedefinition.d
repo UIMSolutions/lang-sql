@@ -38,9 +38,9 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
+            upperToken = strippedToken.toUpper;
 
-            switch ($upper) {
+            switch (upperToken) {
 
             case ',':
             # we stop on a single comma
@@ -50,7 +50,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'REFERENCES':
                 $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 break;
 
             case 'MATCH':
@@ -67,7 +67,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'SIMPLE':
                 if ($currCategory == 'REF_MATCH') {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["match"] = $upper;
+                    $expr["match"] = upperToken;
                     $currCategory = 'REF_COL_LIST';
                     continue 2;
                 }
@@ -87,7 +87,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'DELETE':
                 if ($currCategory == 'REF_ACTION') {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $currCategory = 'REF_OPTION_' . $upper;
+                    $currCategory = 'REF_OPTION_' . upperToken;
                     continue 2;
                 }
                 # else ?
@@ -97,7 +97,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'CASCADE':
                 if (strpos($currCategory, 'REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_"  ~ strtolower(substr($currCategory, -6))] = $upper;
+                    $expr["on_"  ~ strtolower(substr($currCategory, -6))] = upperToken;
                     continue 2;
                 }
                 # else ?
@@ -107,7 +107,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'NO':
                 if (strpos($currCategory, 'REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_" ~ strtolower(substr($currCategory, -6))] = $upper;
+                    $expr["on_" ~ strtolower(substr($currCategory, -6))] = upperToken;
                     $currCategory = 'SEC_' . $currCategory;
                     continue 2;
                 }
@@ -118,7 +118,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'ACTION':
                 if (strpos($currCategory, 'SEC_REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_" ~ strtolower(substr($currCategory, -6))]  ~= " " ~ $upper;
+                    $expr["on_" ~ strtolower(substr($currCategory, -6))]  ~= " " ~ upperToken;
                     $currCategory = 'REF_COL_LIST';
                     continue 2;
                 }
@@ -129,7 +129,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 switch ($currCategory) {
 
                 case 'REFERENCES':
-                    if ($upper[0] == "(" && substr($upper, -1) == ")") {
+                    if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         # index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart(strippedToken));
@@ -152,7 +152,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         }
 
         if (!isset($expr["till"])) {
-            $expr = this.buildReferenceDef($expr, trim(baseExpression), -1);
+            $expr = this.buildReferenceDef($expr, baseExpression.strip, -1);
         }
         return $expr;
     }

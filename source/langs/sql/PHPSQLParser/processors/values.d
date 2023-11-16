@@ -45,8 +45,8 @@ class ValuesProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
-            switch ($upper) {
+            auto upperToken = strippedToken.toUpper;
+            switch (upperToken) {
 
             case 'ON':
                 if ($currCategory.isEmpty) {
@@ -83,8 +83,8 @@ class ValuesProcessor : AbstractProcessor {
                     continue 2;
                 }
 
-                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim(baseExpression),
-                                  'data' : this.processRecord(trim(baseExpression)), 'delim': strippedToken];
+                $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression.strip,
+                                  'data' : this.processRecord(baseExpression.strip), 'delim': strippedToken];
                 baseExpression = "";
                 break;
 
@@ -94,15 +94,15 @@ class ValuesProcessor : AbstractProcessor {
 
         }
 
-        if (trim(baseExpression) != "") {
+        if (!baseExpression.strip.isEmpty) {
             if ($currCategory.isEmpty) {
-                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim(baseExpression),
-                                  'data' : this.processRecord(trim(baseExpression)), 'delim' : false);
+                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : baseExpression.strip,
+                                  'data' : this.processRecord(baseExpression.strip), 'delim' : false);
             }
             if ($currCategory == 'DUPLICATE') {
                 $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim(baseExpression),
-                                  "sub_tree" : (empty($res) ? false : $res), 'delim' : false);
+                $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
+                                  "sub_tree" : ($res.isEmpty ? false : $res), 'delim' : false);
             }
         }
 

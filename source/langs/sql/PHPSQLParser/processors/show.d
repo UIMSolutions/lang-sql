@@ -32,20 +32,20 @@ class ShowProcessor : AbstractProcessor {
         $prev = "";
 
         foreach ($tokens as $k : $token) {
-            $upper = $token.strip.toUpper;
+            upperToken = $token.strip.toUpper;
 
             if (this.isWhitespaceToken($token)) {
                 continue;
             }
 
-            switch ($upper) {
+            switch (upperToken) {
 
             case 'FROM':
                 $resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
                 if ($prev == 'INDEX' || $prev == 'COLUMNS') {
                     break;
                 }
-                $category = $upper;
+                $category = upperToken;
                 break;
 
             case 'CREATE':
@@ -84,7 +84,7 @@ class ShowProcessor : AbstractProcessor {
             case 'SET':
             case 'COLLATION':
                 $resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
-                $category = $upper;
+                $category = upperToken;
                 break;
 
             default:
@@ -115,7 +115,7 @@ class ShowProcessor : AbstractProcessor {
                     $category = "TABLENAME";
                     break;
                 case 'FUNCTION':
-                    if (SqlParserConstants::getInstance().isAggregateFunction($upper)) {
+                    if (SqlParserConstants::getInstance().isAggregateFunction(upperToken)) {
                         $expr_type .isExpressionType(AGGREGATE_FUNCTION;
                     } else {
                         $expr_type .isExpressionType(SIMPLE_FUNCTION;

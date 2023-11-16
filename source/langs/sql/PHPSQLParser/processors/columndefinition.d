@@ -80,9 +80,9 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
+            upperToken = strippedToken.toUpper;
 
-            switch ($upper) {
+            switch (upperToken) {
 
             case ',':
             // we stop on a single comma and return
@@ -100,7 +100,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case 'VARBINARY':
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
-                $prevCategory = $upper;
+                $prevCategory = upperToken;
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 continue 2;
 
@@ -139,7 +139,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
                                 'zerofill' : false, 'length' : false);
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
-                $prevCategory = $upper;
+                $prevCategory = upperToken;
                 continue 2;
 
             case 'BINARY':
@@ -152,7 +152,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 }
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
-                $prevCategory = $upper;
+                $prevCategory = upperToken;
                 continue 2;
 
             case 'CHAR':
@@ -170,7 +170,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
                                 'zerofill' : false);
                 $currCategory = 'TWO_PARAM_PARENTHESIS';
-                $prevCategory = $upper;
+                $prevCategory = upperToken;
                 continue 2;
 
             case 'DECIMAL':
@@ -178,13 +178,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
                                 'zerofill' : false);
                 $currCategory = 'TWO_PARAM_PARENTHESIS';
-                $prevCategory = $upper;
+                $prevCategory = upperToken;
                 continue 2;
 
             case 'YEAR':
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
-                $prevCategory = $upper;
+                $prevCategory = upperToken;
                 continue 2;
 
             case 'DATE':
@@ -196,7 +196,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'MEDIUMBLOB':
             case 'LONGBLOB':
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr": strippedToken];
-                $prevCategory = $currCategory = $upper;
+                $prevCategory = $currCategory = upperToken;
                 continue 2;
 
             // the next token can be BINARY
@@ -223,7 +223,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'MULTIPOLYGON':
             case 'GEOMETRYCOLLECTION':
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr": strippedToken];
-                $prevCategory = $currCategory = $upper;
+                $prevCategory = $currCategory = upperToken;
                 // TODO: is it right?
                 // spatial types
                 continue 2;
@@ -244,7 +244,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 continue 2;
 
             case 'COLLATE':
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
@@ -252,13 +252,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'NULL':
                 $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 if ($options["nullable"]) {
-                    $options["nullable"] = ($upper == 'NOT' ? false : true);
+                    $options["nullable"] = (upperToken == 'NOT' ? false : true);
                 }
                 continue 2;
 
             case 'DEFAULT':
             case 'COMMENT':
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
@@ -269,13 +269,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case 'COLUMN_FORMAT':
             case 'STORAGE':
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case 'UNIQUE':
             // it can follow a KEY word
-                $currCategory = $upper;
+                $currCategory = upperToken;
                 $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 $options["unique"] = true;
                 continue 2;
@@ -303,7 +303,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 switch ($currCategory) {
 
                 case 'STORAGE':
-                    if ($upper == 'DISK' || $upper == 'MEMORY' || $upper == 'DEFAULT') {
+                    if (upperToken == 'DISK' || upperToken == 'MEMORY' || upperToken == 'DEFAULT') {
                         $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                         $options["storage"] = strippedToken;
                         continue 3;
@@ -312,7 +312,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     break;
 
                 case 'COLUMN_FORMAT':
-                    if ($upper == 'FIXED' || $upper == 'DYNAMIC' || $upper == 'DEFAULT') {
+                    if (upperToken == 'FIXED' || upperToken == 'DYNAMIC' || upperToken == 'DEFAULT') {
                         $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                         $options["col_format"] = strippedToken;
                         continue 3;
@@ -402,7 +402,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
         if (!isset($expr["till"])) {
             // end of $tokens array
-            $expr = this.buildColDef($expr, trim(baseExpression), $options, $refs, -1);
+            $expr = this.buildColDef($expr, baseExpression.strip, $options, $refs, -1);
         }
         return $expr;
     }

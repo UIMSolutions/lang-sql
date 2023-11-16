@@ -49,23 +49,23 @@ class SelectExpressionProcessor : AbstractProcessor {
 
         for ($i = 0; $i < $token_count; ++$i) {
             $token = $tokens[$i];
-            $upper = $token.toUpper;
+            upperToken = $token.toUpper;
 
-            if ($upper == 'AS') {
+            if (upperToken == 'AS') {
                 $alias = ['as' : true, "name" : "", "base_expr" : $token);
                 $tokens[$i] = "";
                 $capture = true;
                 continue;
             }
 
-            if (!this.isWhitespaceToken($upper)) {
+            if (!this.isWhitespaceToken(upperToken)) {
                 $stripped[] = $token;
             }
 
             // we have an explicit AS, next one can be the alias
             // but also a comment!
             if ($capture) {
-                if (!this.isWhitespaceToken($upper) && !this.isCommentToken($upper)) {
+                if (!this.isWhitespaceToken(upperToken) && !this.isCommentToken(upperToken)) {
                     $alias["name"]  ~= $token;
                     array_pop($stripped);
                 }
@@ -130,7 +130,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         $result = [];
         $result["expr_type"] = $type;
         $result["alias"] = $alias;
-        $result["base_expr"] = trim(baseExpression);
+        $result["base_expr"] = baseExpression.strip;
         if (!empty($no_quotes)) {
             $result["no_quotes"] = $no_quotes;
         }

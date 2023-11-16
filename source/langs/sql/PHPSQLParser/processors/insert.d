@@ -38,8 +38,8 @@ class InsertProcessor : AbstractProcessor {
                 continue;
             }
 
-            $upper = strippedToken.toUpper;
-            switch ($upper) {
+            upperToken = strippedToken.toUpper;
+            switch (upperToken) {
             case 'INTO':
                 $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 break;
