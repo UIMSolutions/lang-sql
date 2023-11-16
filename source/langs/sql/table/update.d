@@ -20,7 +20,7 @@ class DSQLUpdate : DSQLUpdateStatement  {
 	protected string _sets;
 	auto sets(string[string] values) { 
 		string[] s;
-		foreach(k, v; values) s ~= k~"="~v;
+		foreach(k, v; values) s ~= k~"=" ~v;
 		return sets(s);
 	}
 	auto sets(string[] values...) { 
@@ -41,8 +41,8 @@ class DSQLUpdate : DSQLUpdateStatement  {
 	} 
 
   override string toSQL() {
-		auto sql = "UPDATE "~_table~" SET "~_sets;
-		if (_where.length > 0) sql ~= " WHERE "~_where;
+		auto sql = "UPDATE " ~_table~" SET " ~_sets;
+		if (_where.length > 0) sql ~= " WHERE " ~_where;
 		return sql;
 	}
 

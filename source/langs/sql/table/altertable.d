@@ -2,9 +2,9 @@
 
 import langs.sql;
 
-string sqlAlterTable(string tableName) { return "ALTER "~tableName; }
-string sqlAddColumn(string columnName, string definition) { return "ADD "~columnName~" "~definition; }
-string sqlAddColumn(string sql, string columnName, string definition) { return sql~" "~sqlAddColumn(columnName, definition); }
+string sqlAlterTable(string tableName) { return "ALTER " ~tableName; }
+string sqlAddColumn(string columnName, string definition) { return "ADD " ~columnName~" " ~definition; }
+string sqlAddColumn(string sql, string columnName, string definition) { return sql~" " ~sqlAddColumn(columnName, definition); }
 
 class DSQLAlterTable : DSQLUpdateStatement {
 	this() { super(); }

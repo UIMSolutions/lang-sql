@@ -2,10 +2,10 @@
 
 import langs.sql;
 
-string sqlSelectFromTable(string tableName, string attributes = "*") { return "SELECT "~attributes~" FROM "~tableName; }
-string sqlWhere(string condition) { return "WHERE "~condition; }
-string sqlLimit(string limit) { return "LIMIT "~limit; }
-string sqlLimit(size_t limit) { return "LIMIT "~to!string(limit); }
+string sqlSelectFromTable(string tableName, string attributes = "*") { return "SELECT " ~attributes~" FROM " ~tableName; }
+string sqlWhere(string condition) { return "WHERE " ~condition; }
+string sqlLimit(string limit) { return "LIMIT " ~limit; }
+string sqlLimit(size_t limit) { return "LIMIT " ~to!string(limit); }
 
 class DSQLSelect : DSQLQueryStatement {
 	protected string _columns;
@@ -84,10 +84,10 @@ class DSQLSelect : DSQLQueryStatement {
 
 	override string toSQL() {
 		if (_columns.length == 0) _columns = "*";
-		string sql = "SELECT "~_columns~" FROM "~_table;
-		if (_where.length > 0) sql ~= " WHERE "~_where;
-		if (_orderBy.length > 0) sql ~= " ORDER BY "~_orderBy;
-		if (_groupBy.length > 0) sql ~= " GROUP BY "~_groupBy;
+		string sql = "SELECT " ~_columns~" FROM " ~_table;
+		if (_where.length > 0) sql ~= " WHERE " ~_where;
+		if (_orderBy.length > 0) sql ~= " ORDER BY " ~_orderBy;
+		if (_groupBy.length > 0) sql ~= " GROUP BY " ~_groupBy;
 		if (_limit > 0) sql ~= " LIMIT %s".format(_limit);
 		if (_offset > 0) sql ~= " OFFSET %s".format(_offset);
 		return sql;

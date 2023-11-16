@@ -29,8 +29,8 @@ class DSQLDelete : DSQLStatement {
 	}
 
     override string toSQL() {
-		auto sql = "DELETE FROM "~_table;
-        if (_where.length > 0) sql ~= " WHERE "~_where;
+		auto sql = "DELETE FROM " ~_table;
+        if (_where.length > 0) sql ~= " WHERE " ~_where;
 		return sql;
 	}
 	override string toString() { return toSQL; }

@@ -29,13 +29,13 @@ public import langs.sql.functions;
 
 string OR(string[] conditions) {
 	string[] c = new string[conditions.length];
-	foreach(i, x; conditions) c[i] = "("~x~")";
+	foreach(i, x; conditions) c[i] = "(" ~x~")";
 	if (conditions.length > 0) return c.join(" OR ");
 	return "";
 } 
 string AND(string[] conditions) {
 	string[] c = new string[conditions.length];
-	foreach(i, x; conditions) c[i] = "("~x~")";
+	foreach(i, x; conditions) c[i] = "(" ~x~")";
 	if (conditions.length > 0) return c.join(" AND ");
 	return "";
 } 
@@ -67,7 +67,7 @@ alias STRINGAA = string[string];
 //	return results.keys;
 //}
 //string[] readTableColumns(Database db, string tableName) {
-//	foreach (row; QueryCache(db.execute("SELECT * FROM "~tableName~" LIMIT 1"))) return row.columnIndexes.keys;
+//	foreach (row; QueryCache(db.execute("SELECT * FROM " ~tableName~" LIMIT 1"))) return row.columnIndexes.keys;
 //	return null;
 //}
 
@@ -129,13 +129,13 @@ void readFromDB(T)(DataSplice!T splice, size_t pos, QueryCache.CachedRow dbRow, 
 void save(T)(Database db, DataTable!T rows, string[] sources, string company) {
 	writeln("--- void save(Database db, DRow[] rows, string[] sources)...");
 	
-	auto pre = "(IDAY = %s) AND (NAME = '"~company~"')";	
+	auto pre = "(IDAY = %s) AND (NAME = '" ~company~"')";	
 	foreach(iday, row; rows) if (row) {				
 		auto sel = pre.format(iday);
 		auto update = "";
 		foreach(source; sources) {
 			if (auto cells = row.changedCells(source)) {
-				update ~= "UPDATE "~source.sets(cells).where(sel)~";";		
+				update ~= "UPDATE " ~source.sets(cells).where(sel)~";";		
 			}
 		}
 		try {
@@ -144,7 +144,7 @@ void save(T)(Database db, DataTable!T rows, string[] sources, string company) {
 		catch(Exception e) {
 			foreach(source; sources) {
 				if (auto cells = row.changedCells(source)) {
-					db.run("UPDATE "~source.sets(cells).where(sel));		
+					db.run("UPDATE " ~source.sets(cells).where(sel));		
 				}
 			}
 		}
@@ -163,7 +163,7 @@ void save(T)(Database db, DataRow!(T)[] rows, string[] tableNames) {
 		auto update = "";
 		foreach(tableName; tableNames) {
 			if (auto cells = row.changedCells(tableName)) {
-				update ~= "UPDATE "~tableName.sets(cells).where(sel)~";";		
+				update ~= "UPDATE " ~tableName.sets(cells).where(sel)~";";		
 			}
 		}
 		try {
@@ -174,7 +174,7 @@ void save(T)(Database db, DataRow!(T)[] rows, string[] tableNames) {
 			writeln(e);
 			foreach(tableName; tableNames) {
 				if (auto cells = row.changedCells(tableName)) {
-					db.run("UPDATE "~tableName.sets(cells).where(sel));		
+					db.run("UPDATE " ~tableName.sets(cells).where(sel));		
 				}
 			}
 		}
@@ -182,7 +182,7 @@ void save(T)(Database db, DataRow!(T)[] rows, string[] tableNames) {
 }
 //string[] columns(Database db, string tableName, string[] ignoreNames = null) {
 //	string[] names;
-//	foreach(row; db.execute("PRAGMA table_info("~tableName~")")) {
+//	foreach(row; db.execute("PRAGMA table_info(" ~tableName~")")) {
 //		auto name = row[1].as!string.toUpper;
 //		if(name.isIn(ignoreNames)) continue;
 //		
@@ -194,7 +194,7 @@ void save(T)(Database db, DataRow!(T)[] rows, string[] tableNames) {
 //void save(T)(Database db, T[size_t][] changedCellsInRows, string[][string] tableCells, string companyName, size_t start = 0, bool dMode = false) {
 //	writeln("--- void save(Database db, DRow[] rows, string[] sources)...");
 //	
-//	auto pre = "(NAME = '"~companyName~"') AND (IDAY = %s)";	
+//	auto pre = "(NAME = '" ~companyName~"') AND (IDAY = %s)";	
 //	foreach(iday, row; changedCellsInRows) if (row) {	
 //		if (iday < start) continue; 
 //		auto where = pre.format(iday);
@@ -260,7 +260,7 @@ string[] quote(string[] source, string start, string end) {
 //
 //auto readTradesLevel0(Database db, string where = "") {
 //	STRINGAA tradeStrategies;
-//	auto select = "SELECT ID, L0 FROM TRADES WHERE (LEVEL = 0)"~(where.length > 0 ? " AND "~where : "");
+//	auto select = "SELECT ID, L0 FROM TRADES WHERE (LEVEL = 0)" ~(where.length > 0 ? " AND " ~where : "");
 //	foreach(row; db.execute(select)) {
 //		auto id = row[0].as!string;
 //		auto level0 = row[1].as!string;
@@ -271,7 +271,7 @@ string[] quote(string[] source, string start, string end) {
 
 //auto readTradesLevel1(Database db, string where = "") {
 //	STRINGAA[string] tradeStrategies;
-//	auto select = "SELECT ID, L0, L1 FROM TRADES WHERE (LEVEL = 1)"~(where.length > 0 ? " AND "~where : "");
+//	auto select = "SELECT ID, L0, L1 FROM TRADES WHERE (LEVEL = 1)" ~(where.length > 0 ? " AND " ~where : "");
 //	foreach(row; db.execute(select)) {
 //		auto id = row[0].as!string;
 //		auto level0 = row[1].as!string;
@@ -287,7 +287,7 @@ string[] quote(string[] source, string start, string end) {
 //
 //auto readTradesLevel2(Database db, string where = "") {
 //	STRINGAA[string][string] tradeStrategies;
-//	auto select = "SELECT ID, L0, L1, L2 FROM TRADES WHERE (LEVEL = 2)"~(where.length > 0 ? " AND "~where : "");
+//	auto select = "SELECT ID, L0, L1, L2 FROM TRADES WHERE (LEVEL = 2)" ~(where.length > 0 ? " AND " ~where : "");
 //	foreach(row; db.execute(select)) {
 //		auto id = row[0].as!string;
 //		auto level0 = row[1].as!string;
@@ -307,7 +307,7 @@ string[] quote(string[] source, string start, string end) {
 //}
 //auto readTradesLevel3(Database db, string where = "") {
 //	STRINGAA[string][string][string] tradeStrategies;
-//	auto select = "SELECT ID, L0, L1, L2, L3 FROM TRADES WHERE (LEVEL = 3)"~(where.length > 0 ? " AND "~where : "");
+//	auto select = "SELECT ID, L0, L1, L2, L3 FROM TRADES WHERE (LEVEL = 3)" ~(where.length > 0 ? " AND " ~where : "");
 //	foreach(row; db.execute(select)) {
 //		auto id = row[0].as!string;
 //		auto level0 = row[1].as!string;

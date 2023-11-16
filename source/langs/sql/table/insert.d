@@ -41,7 +41,7 @@ class DSQLInsert : DSQLStatement {
 	}
 
     override string toSQL() {
-		auto sql = "INSERT INTO "~_table~" ("~_columns~") VALUES("~_values~")";        
+		auto sql = "INSERT INTO " ~_table~" (" ~_columns~") VALUES(" ~_values~")";        
 		return sql;
 	}
 }
