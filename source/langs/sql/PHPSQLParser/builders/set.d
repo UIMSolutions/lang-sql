@@ -1,9 +1,3 @@
-
-/**
- * SetBuilder.php
- *
- * Builds the SET part of the INSERT statement. */
-
 module langs.sql.PHPSQLParser.builders.set;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the SET part of the INSERT statement. */
  * This class : the builder for the SET part of INSERT statement. 
  * You can overwrite all functions to achieve another handling. */
 class SetBuilder : ISqlBuilder {
@@ -23,7 +18,7 @@ class SetBuilder : ISqlBuilder {
     string build(array $parsed) {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildSetExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
@@ -32,6 +27,6 @@ class SetBuilder : ISqlBuilder {
 
             mySql  ~= ",";
         }
-        return "SET " . substr(mySql, 0, -1);
+        return "SET " ~ substr(mySql, 0, -1);
     }
 }

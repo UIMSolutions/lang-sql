@@ -12,7 +12,7 @@ module langs.sql.PHPSQLParser.builders.truncate;
 class TruncateBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        auto mySql = "TRUNCATE TABLE ";
+        string mySql = "TRUNCATE TABLE ";
         $right = -1;
 
         // works for one table only

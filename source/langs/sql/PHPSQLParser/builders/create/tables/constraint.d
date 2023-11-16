@@ -19,7 +19,7 @@ class ConstraintBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::CONSTRAINT) {
             return "";
         }
-        auto mySql = $parsed["sub_tree"] == false ? "" : this.buildConstant($parsed["sub_tree"]);
+        string mySql = $parsed["sub_tree"] == false ? "" : this.buildConstant($parsed["sub_tree"]);
         return "CONSTRAINT" ~ (mySql.isEmpty ? "" : (" " ~ mySql));
     }
 

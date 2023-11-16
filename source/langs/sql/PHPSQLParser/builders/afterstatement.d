@@ -16,7 +16,7 @@ class AlterStatementBuilder : IBuilder {
 
   auto build(array$parsed) {
     auto myAlter = $parsed["ALTER"];
-    auto mySql = this.buildAlter(myAlterr);
+    string mySql = this.buildAlter(myAlterr);
 
     return mySql;
   }

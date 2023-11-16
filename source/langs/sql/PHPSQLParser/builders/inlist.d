@@ -19,7 +19,7 @@ class InListBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::IN_LIST) {
             return "";
         }
-        auto mySql = this.buildSubTree($parsed, ", ");
+        string mySql = this.buildSubTree($parsed, ", ");
         return "(" ~ mySql ~ ")";
     }
 }

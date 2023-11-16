@@ -10,7 +10,7 @@ import lang.sql;
 class DeleteBuilder : ISqlBuilder {
 
   auto build(array$parsed) {
-    auto mySql = "DELETE ";
+    string mySql = "DELETE ";
     $right =  - 1;
 
     if ($parsed["options"] != false) {

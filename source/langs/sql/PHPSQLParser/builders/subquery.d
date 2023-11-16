@@ -46,7 +46,7 @@ class SubQueryBuilder : ISqlBuilder {
         }
 
         // TODO: should we add a numeric level (0) between sub_tree and SELECT?
-        auto mySql = this.buildSelectStatement($parsed["sub_tree"]);
+        string mySql = this.buildSelectStatement($parsed["sub_tree"]);
         mySql = "(" ~ mySql ~ ")";
         mySql  ~= this.buildAlias($parsed);
 

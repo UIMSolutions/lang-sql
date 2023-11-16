@@ -38,7 +38,7 @@ class ReplaceBuilder : ISqlBuilder {
     string build(array $parsed) {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue);
             mySql  ~= this.buildSubQuery(myValue);
             mySql  ~= this.buildColumnList(myValue);
@@ -51,7 +51,7 @@ class ReplaceBuilder : ISqlBuilder {
 
             mySql  ~= " ";
         }
-        return 'REPLACE ' . substr(mySql, 0, -1);
+        return 'REPLACE ' ~ substr(mySql, 0, -1);
     }
 
 }

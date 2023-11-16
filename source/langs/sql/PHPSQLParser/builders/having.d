@@ -27,9 +27,9 @@ class HavingBuilder : WhereBuilder {
     }
 
     string build(array $parsed) {
-        auto mySql = "HAVING ";
+        string mySql = "HAVING ";
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
 
             mySql  ~= this.buildAliasReference(myValue);
             mySql  ~= this.buildOperator(myValue);

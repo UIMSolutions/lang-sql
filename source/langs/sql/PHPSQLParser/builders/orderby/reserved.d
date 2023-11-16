@@ -13,7 +13,7 @@ class OrderByReservedBuilder : ReservedBuilder {
   }
 
   auto build(array$parsed) {
-    auto mySql = super.build($parsed);
+    string mySql = super.build($parsed);
     if (!mySql.isEmpty) {
       mySql ~= this.buildDirection($parsed);
     }

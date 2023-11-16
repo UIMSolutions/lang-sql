@@ -1,9 +1,3 @@
-
-/**
- * SignBuilder.php
- *
- * Builds unary operators. */
-
 module langs.sql.PHPSQLParser.builders.sign;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds unary operators. 
  * This class : the builder for unary operators. 
  * You can overwrite all functions to achieve another handling. */
 class SignBuilder : ISqlBuilder {
