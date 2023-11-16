@@ -1,10 +1,3 @@
-
-/**
- * UnsupportedFeatureException.php
- *
- * This file : the UnsupportedFeatureException class which is used within the
- * SqlParser package.
- */
 module langs.sql.PHPSQLParser.exceptions.unsupportedfeature;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the UnsupportedFeatureException class which is used within the SqlParser package.
  * This exception will occur in the PHPSQLCreator, if the creator finds
  * a field name, which is unknown. The developers have created some 
  * additional output of the parser, but the creator class has not been 

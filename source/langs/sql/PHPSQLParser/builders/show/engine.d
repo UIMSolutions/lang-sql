@@ -11,7 +11,7 @@ import lang.sql;
 class EngineBuilder : ISqlBuilder {
 
   auto build(array$parsed) {
-    if ($parsed["expr_type"] != ExpressionType : : ENGINE) {
+    if ($parsed["expr_type"] !.isExpressionType(ENGINE) {
       return "";
     }
 

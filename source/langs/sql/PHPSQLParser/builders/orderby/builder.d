@@ -1,9 +1,3 @@
-
-/**
- * OrderByBuilder.php
- *
- * Builds the ORDERBY clause. */
-
 module langs.sql.PHPSQLParser.builders.orderby.builder;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the ORDERBY clause. */
  * This class : the builder for the ORDER-BY clause. 
  * You can overwrite all functions to achieve another handling. */
 class OrderByBuilder : ISqlBuilder {
@@ -69,6 +64,7 @@ class OrderByBuilder : ISqlBuilder {
             mySql  ~= ", ";
         }
         mySql = substr(mySql, 0, -2);
+        
         return "ORDER BY " ~ mySql;
     }
 }

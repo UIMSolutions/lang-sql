@@ -1,11 +1,3 @@
-
-/**
- * PHPSQLLexer.php
- *
- * This file contains the lexer, which splits and recombines parts of the
- * SQL statement just before parsing.
- */
-
 module lang.sql.parsers.lexer;
 
 import lang.sql;
@@ -13,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file contains the lexer, which splits and recombines parts of the SQL statement just before parsing.
  * This class splits the SQL string into little parts, which the parser can
  * use to build the result array.
  */
@@ -33,10 +26,10 @@ class PHPSQLLexer {
      * Ends the given string $haystack with the string $needle?
      * @return true, if the parameter $haystack ends with the character sequences $needle, false otherwise
      */
-    protected bool endsWith(string haystack, string needle) {
-        return needle.isEmpty 
+    protected bool endsWith(string haystack, string aNeedle) {
+        return aNeedle.isEmpty 
             ? true
-            : (substr(haystack, -length) == $needle);
+            : (substr(haystack, -length) == aNeedle);
     }
 
     auto split(string aSql) {

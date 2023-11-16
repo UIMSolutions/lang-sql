@@ -1,10 +1,3 @@
-
-/**
- * CreateProcessor.php
- *
- * This file : the processor for the CREATE statements.
- */
-
 module langs.sql.PHPSQLParser.processors.create;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the CREATE statements.
  * This class processes the CREATE statements.
  */
 class CreateProcessor : AbstractProcessor {
@@ -22,34 +16,34 @@ class CreateProcessor : AbstractProcessor {
 
         foreach (myToken; $tokens) {
             
-            $trim = myToken.strip;
+            auto strippedToken = myToken.strip;
             $base_expr  ~= myToken;
 
-            if ($trim.isEmpty) {
+            if (strippedToken.isEmpty) {
                 continue;
             }
 
-            $upper = $trim.toUpper;
+            $upper = strippedToken.toUpper;
             switch ($upper) {
 
             case 'TEMPORARY':
                 // CREATE TEMPORARY TABLE
                 $result["expr_type"] .isExpressionType(TEMPORARY_TABLE;
                 $result["not-exists"] = false;
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'TABLE':
                 // CREATE TABLE
                 $result["expr_type"] =  expressionType("TABLE");
                 $result["not-exists"] = false;
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'INDEX':
                 // CREATE INDEX
                 $result["expr_type"] .isExpressionType(INDEX;
-                $expr[] = ["expr_type" : expressionType("RESERVED", "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED", "base_expr" : strippedToken);
                 break;
 
             case 'UNIQUE':
@@ -58,23 +52,23 @@ class CreateProcessor : AbstractProcessor {
                 // options of CREATE INDEX
                 $result["base_expr"] = $result["expr_type"] = false;
                 $result["constraint"] = $upper; 
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;                
                                 
             case 'IF':
                 // option of CREATE TABLE
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'NOT':
                 // option of CREATE TABLE
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'EXISTS':
                 // option of CREATE TABLE
                 $result["not-exists"] = true;
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $trim);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             default:

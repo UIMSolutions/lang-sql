@@ -1,8 +1,3 @@
-/**
- * SelectBracketExpressionBuilder.php
- *
- * Builds the bracket expressions within a SELECT statement. */
-
 module langs.sql.PHPSQLParser.builders.selects.bracketexpression;
 
 import lang.sql;
@@ -10,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the b racket expressions within a SELECT statement. */
  * This class : the builder for bracket expressions within a SELECT statement. 
  * You can overwrite all functions to achieve another handling. */
 class SelectBracketExpressionBuilder : ISqlBuilder {
@@ -25,7 +21,7 @@ class SelectBracketExpressionBuilder : ISqlBuilder {
   }
 
   string build(array$parsed) {
-    if ($parsed["expr_type"] != ExpressionType : : BRACKET_EXPRESSION) {
+    if ($parsed["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
       return "";
     }
     return "(" ~ this.buildSubTree($parsed, " ") ~ ")" ~ this.buildAlias($parsed);

@@ -1,12 +1,7 @@
-/**
- * DefaultProcessor.php
- *
- * This file : the processor the unparsed sql string given by the user.
- */
-
 module langs.sql.PHPSQLParser.processors.default;
 
 /**
+ * This file : the processor the unparsed sql string given by the user.
  * This class processes the incoming sql string.
  */
 class DefaultProcessor : AbstractProcessor {

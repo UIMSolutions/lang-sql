@@ -1,13 +1,7 @@
-
-/**
- * DeleteProcessor.php
- *
- * Processes the DELETE statement parts and splits multi-table deletes.
- */
-
 module langs.sql.PHPSQLParser.processors.delete;
 
 /**
+ * Processes the DELETE statement parts and splits multi-table deletes.
  * This class processes the DELETE statements.
  * You can overwrite all functions to achieve another handling.
  */

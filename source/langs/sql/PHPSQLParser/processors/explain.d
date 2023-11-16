@@ -1,10 +1,3 @@
-
-/**
- * ExplainProcessor.php
- *
- * This file : the processor for the EXPLAIN statements.
- */
-
 module langs.sql.PHPSQLParser.processors.explain;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the EXPLAIN statements.
  * This class processes the EXPLAIN statements.
  */
 class ExplainProcessor : AbstractProcessor {
@@ -32,10 +26,10 @@ class ExplainProcessor : AbstractProcessor {
         $currCategory = "";
 
         if (this.isStatement($keys)) {
-            foreach ($token; $tokens) {
+            foreach (myToken; $tokens) {
 
-                $trim = $token.strip;
-                $base_expr  ~= $token;
+                $trim = myToken.strip;
+                $base_expr  ~= myToken;
 
                 if ($trim.isEmpty) {
                     continue;
@@ -47,7 +41,7 @@ class ExplainProcessor : AbstractProcessor {
 
                 case 'EXTENDED':
                 case 'PARTITIONS':
-                    return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token);
+                    return ["expr_type" : expressionType("RESERVED"), "base_expr" : myToken);
                     break;
 
                 case 'FORMAT':
@@ -83,9 +77,9 @@ class ExplainProcessor : AbstractProcessor {
             return $expr.isEmpty ? null : $expr;
         }
 
-        foreach ($token; $tokens) {
+        foreach (myToken; $tokens) {
 
-            $trim = $token.strip;
+            $trim = myToken.strip;
 
             if ($trim.isEmpty) {
                 continue;

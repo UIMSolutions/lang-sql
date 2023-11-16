@@ -31,7 +31,7 @@ import lang.sql;
     }
 
     string build(array$parsed) {
-      if ($parsed["expr_type"] != ExpressionType : : RECORD) {
+      if ($parsed["expr_type"] !.isExpressionType(RECORD) {
         return $parsed.get("base_expr", "");
       }
       
