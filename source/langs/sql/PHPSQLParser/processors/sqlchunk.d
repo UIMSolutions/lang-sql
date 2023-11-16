@@ -79,12 +79,12 @@ class SQLChunkProcessor : AbstractProcessor {
         if (!empty($out["GROUP"])) {
             // set empty array if we have partial SQL statement
             auto myProcessor = new GroupByProcessor(this.options);
-            $out["GROUP"] = $processor.process($out["GROUP"], isset($out["SELECT"]) ? $out["SELECT"] : []);
+            $out["GROUP"] = $processor.process($out["GROUP"], $out.isSet("SELECT") ? $out["SELECT"] : []);
         }
         if (!empty($out["ORDER"])) {
             // set empty array if we have partial SQL statement
             auto myProcessor = new OrderByProcessor(this.options);
-            $out["ORDER"] = $processor.process($out["ORDER"], isset($out["SELECT"]) ? $out["SELECT"] : []);
+            $out["ORDER"] = $processor.process($out["ORDER"], $out.isSet("SELECT") ? $out["SELECT"] : []);
         }
         if (!empty($out["LIMIT"])) {
             auto myProcessor = new LimitProcessor(this.options);
@@ -96,7 +96,7 @@ class SQLChunkProcessor : AbstractProcessor {
         }
         if (!empty($out["HAVING"])) {
             auto myProcessor = new HavingProcessor(this.options);
-            $out["HAVING"] = $processor.process($out["HAVING"], isset($out["SELECT"]) ? $out["SELECT"] : []);
+            $out["HAVING"] = $processor.process($out["HAVING"], $out.isSet("SELECT") ? $out["SELECT"] : []);
         }
         if (!empty($out["SET"])) {
             auto myProcessor = new SetProcessor(this.options);

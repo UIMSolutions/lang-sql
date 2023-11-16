@@ -11,7 +11,7 @@ import lang.sql;
 class InsertProcessor : AbstractProcessor {
 
     protected auto processOptions($tokenList) {
-        if (!isset($tokenList["OPTIONS"])) {
+        if (!$tokenList.isSet("OPTIONS")) {
             return [];
         }
         }
@@ -23,7 +23,7 @@ class InsertProcessor : AbstractProcessor {
     }
 
     protected auto processKeyword($keyword, $tokenList) {
-        if (!isset($tokenList[$keyword])) {
+        if (!$tokenList.isSet($keyword)) {
             return ["", false, []);
         }
 
@@ -68,19 +68,19 @@ class InsertProcessor : AbstractProcessor {
             return $cols;
         }
         if ($cols[0] == "(" && substr($cols, -1) == ")") {
-            $parsed = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $cols,
+            $parsed = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $cols,
                             "sub_tree" : false];
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = [
-                    ["expr_type" : expressionType(QUERY, "base_expr" : $cols,
+                    ["expr_type" : expressionType("QUERY"), "base_expr" : $cols,
                             "sub_tree" : $processor.process($cols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
             $parsed["sub_tree"] = $processor.process($cols);
-            $parsed["expr_type"] .isExpressionType(COLUMN_LIST;
+            $parsed["expr_type"] .isExpressionType("COLUMN_LIST");
         }
         return $parsed;
     }

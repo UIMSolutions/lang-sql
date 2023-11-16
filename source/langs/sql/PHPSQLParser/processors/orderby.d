@@ -53,7 +53,7 @@ class OrderByProcessor : AbstractProcessor {
         $result = [];
         $result["expr_type"] = $parseInfo["expr_type"];
         $result["base_expr"] = $parseInfo["base_expr"];
-        if (isset($parseInfo["no_quotes"])) {
+        if ($parseInfoisSet("no_quotes")) {
             $result["no_quotes"] = $parseInfo["no_quotes"];
         }
         $result["direction"] = $parseInfo["dir"];
@@ -68,8 +68,8 @@ class OrderByProcessor : AbstractProcessor {
             return false;
         }
 
-        foreach ($token; $tokens) {
-            upperToken = $token.strip.toUpper;
+        foreach (myToken; $tokens) {
+            auto upperToken = myToken.strip.toUpper;
             switch (upperToken) {
             case ",":
                 $out[] = this.processOrderExpression($parseInfo, $select);
@@ -85,12 +85,12 @@ class OrderByProcessor : AbstractProcessor {
                 break;
 
             default:
-                if (this.isCommentToken($token)) {
-                    $out[] = super.processComment($token];
+                if (this.isCommentToken(myToken)) {
+                    $out[] = super.processComment(myToken];
                     break;
                 }
 
-                $parseInfo["base_expr"] ~= $token;
+                $parseInfo["base_expr"] ~= myToken;
             }
         }
 

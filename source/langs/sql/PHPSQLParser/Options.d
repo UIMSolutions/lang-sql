@@ -28,10 +28,10 @@ final class Options {
   }
 
   bool getConsistentSubtrees() {
-    return (isset(this.options[this.CONSISTENT_SUB_TREES]) && this.options[this.CONSISTENT_SUB_TREES]);
+    return (this.options.isSet(this.CONSISTENT_SUB_TREES) && this.options[this.CONSISTENT_SUB_TREES]);
   }
 
   bool getANSIQuotes() {
-    return (isset(this.options[this.ANSI_QUOTES]) && this.options[this.ANSI_QUOTES]);
+    return (this.options.isSet(this.ANSI_QUOTES) && this.options[this.ANSI_QUOTES]);
   }
 }

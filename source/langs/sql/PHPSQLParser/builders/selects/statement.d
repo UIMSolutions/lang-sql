@@ -53,31 +53,31 @@ class SelectStatementBuilder : ISqlBuilder {
 
     string build(array $parsed) {
         string mySql = "";
-        if (isset($parsed["SELECT"])) {
+        if ($parsed.isSet("SELECT")) {
             mySql ~= this.buildSELECT($parsed["SELECT"]);
         }
-        if (isset($parsed["FROM"])) {
+        if ($parsed.isSet("FROM")) {
             mySql ~= " " ~ this.buildFROM($parsed["FROM"]);
         }
-        if (isset($parsed["WHERE"])) {
+        if ($parsed.isSet("WHERE")) {
             mySql ~= " " ~ this.buildWHERE($parsed["WHERE"]);
         }
-        if (isset($parsed["GROUP"])) {
+        if ($parsed.isSet("GROUP")) {
             mySql ~= " " ~ this.buildGROUP($parsed["GROUP"]);
         }
-        if (isset($parsed["HAVING"])) {
+        if ($parsed.isSet("HAVING")) {
             mySql ~= " " ~ this.buildHAVING($parsed["HAVING"]);
         }
-        if (isset($parsed["ORDER"])) {
+        if ($parsed.isSet("ORDER")) {
             mySql ~= " " ~ this.buildORDER($parsed["ORDER"]);
         }
-        if (isset($parsed["LIMIT"])) {
+        if ($parsed.isSet("LIMIT")) {
             mySql ~= " " ~ this.buildLIMIT($parsed["LIMIT"]);
         }       
-        if (isset($parsed["UNION"])) {
+        if ($parsed.isSet("UNION")) {
             mySql ~= " " ~ this.buildUNION($parsed);
         }
-        if (isset($parsed["UNION ALL"])) {
+        if ($parsed.isSet("UNION ALL")) {
         	mySql ~= " " ~ this.buildUNIONALL($parsed);
         }
         return mySql;

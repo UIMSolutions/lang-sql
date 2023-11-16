@@ -11,7 +11,7 @@ import lang.sql;
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
     string build(array $parsed) {
-        if (!isset($parsed["index-type"]) || $parsed["index-type"] == false) {
+        if (!$parsed["index-type"]) || $parsed["index-type"] == false) {
             return "";
         }
         return super.build($parsed["index-type"]);

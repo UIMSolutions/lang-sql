@@ -15,8 +15,8 @@ class HavingProcessor : ExpressionListProcessor {
 
     foreach (myKey, myValue; $parsed) {
       if (myValue["expr_type"].isExpressionType(COLREF) {
-        foreach ($select as$clause) {
-          if (!isset($clause["alias"])) {
+        foreach ($select as $clause) {
+          if (!$clause.isSet("alias")) {
             continue;
           }
 
@@ -24,7 +24,7 @@ class HavingProcessor : ExpressionListProcessor {
             continue;
           }
           if ($clause["alias"]["no_quotes"] == myValue["no_quotes"]) {
-            $parsed[$k]["expr_type"] = ExpressionType : : ALIAS;
+            $parsed[$k]["expr_type"] = expressionType("ALIAS");
             break;
           }
         }

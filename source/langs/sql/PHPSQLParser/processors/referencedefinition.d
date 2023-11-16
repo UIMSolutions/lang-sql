@@ -125,13 +125,13 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                         # index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart(strippedToken));
-                        $expr["sub_tree"][] = ["expr_type" : expressionType(COLUMN_LIST, "base_expr" : strippedToken,
+                        $expr["sub_tree"][] = ["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : strippedToken,
                                                     "sub_tree" : $cols);
                         currentCategory = 'REF_COL_LIST';
                         continue 3;
                     }
                     # foreign key reference table name
-                    $expr["sub_tree"][] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("TABLE"), 'table' : strippedToken,
                                                 "base_expr" : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken));
                     continue 3;
 
@@ -143,7 +143,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             }
         }
 
-        if (!isset($expr["till"])) {
+        if (!$expr.isSet("till")) {
             $expr = this.buildReferenceDef($expr, baseExpression.strip, -1);
         }
         return $expr;

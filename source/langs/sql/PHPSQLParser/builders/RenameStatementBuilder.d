@@ -16,8 +16,8 @@ class RenameStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    protected auto processSourceAndDestTable(myValue) {
-        if ("source" !in myValue || !isset(myValue["destination"])) {
+    protected auto processSourceAndDestTable(auto[string] myValue) {
+        if (myValue.isSet("source") || !myValue.isSet("destination")) {
             return "";
         }
         return myValue["source"]["base_expr"] ~ " TO " ~ myValue["destination"]["base_expr"] ~ ",";

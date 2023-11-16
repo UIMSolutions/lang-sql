@@ -156,23 +156,23 @@ class SqlParserConstants {
     }
 
     auto isAggregateFunction($token) {
-        return isset(this.aggregateFunctions[$token]);
+        return aggregateFunctions.isSet($token);
     }
 
     auto isReserved($token) {
-        return isset(this.reserved[$token]);
+        return reserved.isSet($token);
     }
 
     auto isFunction($token) {
-        return isset(this.functions[$token]);
+        return functions.isSet($token);
     }
 
     auto isParameterizedFunction($token) {
-        return isset(this.parameterizedFunctions[$token]);
+        return parameterizedFunctions.isSet($token);
     }
 
     auto isCustomFunction($token) {
-        return isset(this.customFunctions[$token]);
+        return customFunctions.isSet($token);
     }
 
     auto addCustomFunction($token) {

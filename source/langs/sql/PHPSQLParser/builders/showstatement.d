@@ -18,7 +18,7 @@ class ShowStatementBuilder : ISqlBuilder {
 
     string build(array $parsed) {
         string mySql = this.buildSHOW($parsed);
-        if (isset($parsed["WHERE"])) {
+        if ($parsed.isSet("WHERE")) {
             mySql ~= " " ~ this.buildWHERE($parsed["WHERE"]);
         }
         return mySql;
