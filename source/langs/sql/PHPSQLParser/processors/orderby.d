@@ -74,7 +74,7 @@ class OrderByProcessor : AbstractProcessor {
             return false;
         }
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             $upper = $token.strip.toUpper;
             switch ($upper) {
             case ',':

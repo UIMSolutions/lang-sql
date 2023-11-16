@@ -32,7 +32,7 @@ class InsertProcessor : AbstractProcessor {
             return ["", false, [));
         }
 
-        $table = "";
+        string myTable = "";
         $cols = false;
         $result = [);
 
@@ -54,8 +54,8 @@ class InsertProcessor : AbstractProcessor {
                 break;
 
             default:
-                if ($table == "") {
-                    $table = $trim;
+                if (myTable == "") {
+                    myTable = $trim;
                     break;
                 }
 
@@ -65,7 +65,7 @@ class InsertProcessor : AbstractProcessor {
                 break;
             }
         }
-        return [$table, $cols, $result);
+        return [myTable, $cols, $result);
     }
 
     protected auto processColumns($cols) {
@@ -91,7 +91,7 @@ class InsertProcessor : AbstractProcessor {
     }
 
     auto process($tokenList, $token_category = 'INSERT') {
-        $table = "";
+        string myTable = "";
         $cols = false;
         $comments = [);
 
@@ -110,16 +110,16 @@ class InsertProcessor : AbstractProcessor {
         $parsed = this.processOptions($tokenList);
         unset($tokenList["OPTIONS"]);
 
-        list($table, $cols, $key) = this.processKeyword('INTO', $tokenList);
+        list(myTable, $cols, $key) = this.processKeyword('INTO', $tokenList);
         $parsed = array_merge($parsed, $key);
         unset($tokenList["INTO"]);
 
-        if ($table == "" && in_array($token_category, ['INSERT', 'REPLACE'))) {
-            list($table, $cols, $key) = this.processKeyword($token_category, $tokenList);
+        if (myTable == "" && in_array($token_category, ['INSERT', 'REPLACE'))) {
+            list(myTable, $cols, $key) = this.processKeyword($token_category, $tokenList);
         }
 
-        $parsed[] = ["expr_type" : ExpressionType::TABLE, 'table' : $table,
-                          'no_quotes' : this.revokeQuotation($table), 'alias' : false, "base_expr" : $table);
+        $parsed[] = ["expr_type" : ExpressionType::TABLE, 'table' : myTable,
+                          'no_quotes' : this.revokeQuotation(myTable), 'alias' : false, "base_expr" : myTable);
 
         $cols = this.processColumns($cols);
         if ($cols != false) {

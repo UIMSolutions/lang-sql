@@ -43,7 +43,7 @@ class SetProcessor : AbstractProcessor {
         $assignment = false;
         $varType = false;
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             $trim = $token.strip;
             $upper = $trim.toUpper;
 

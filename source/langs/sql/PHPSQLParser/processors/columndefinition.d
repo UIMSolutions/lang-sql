@@ -34,7 +34,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
     protected auto removeComma($tokens) {
         $res = [);
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             if ($token.strip != ',') {
                 $res[] = $token;
             }

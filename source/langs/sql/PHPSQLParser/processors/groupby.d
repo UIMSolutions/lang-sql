@@ -21,7 +21,7 @@ class GroupByProcessor : OrderByProcessor {
             return false;
         }
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             $trim = $token.strip.toUpper;
             switch ($trim) {
             case ',':

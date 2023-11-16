@@ -127,7 +127,7 @@ class FromProcessor : AbstractProcessor {
         $skip_next = false;
         $i = 0;
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             $upper = $token.strip.toUpper;
 
             if ($skip_next && $token != "") {

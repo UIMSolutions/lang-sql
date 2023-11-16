@@ -19,14 +19,13 @@ class RecordProcessor : AbstractProcessor {
     }
 
     auto process($unparsed) {
-        $unparsed = this.removeParenthesisFromStart($unparsed);
-        myValues = this.splitSQLIntoTokens($unparsed);
+        auto unparsedCorrected = this.removeParenthesisFromStart($unparsed);
+        auto myTokens = this.splitSQLIntoTokens(unparsedCorrected);
 
-        foreach ($k :  myValue; myValues) {
-            if (this.isCommaToken(myValue)) {
-                myValues[$k] = "";
-            }
-        }
-        return this.processExpressionList(myValues);
+        myTokens.byKeyValue
+            .filter!(kv => this.isCommaToken(kv.value))
+            .each!(kv => myTokens[kv.key] = "");
+        
+        return this.processExpressionList(myTokens);
     }
 }

@@ -32,7 +32,7 @@ class WithProcessor : AbstractProcessor {
         $base_expr = "";
         $prev = "";
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
         	$base_expr  ~= $token;
             $upper = $token.strip.toUpper;
 

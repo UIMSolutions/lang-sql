@@ -20,7 +20,7 @@ class CreateProcessor : AbstractProcessor {
         $result = $expr = [);
         $base_expr = "";
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             
             $trim = $token.strip;
             $base_expr  ~= $token;

@@ -17,9 +17,9 @@ class OptionsProcessor : AbstractProcessor {
     auto process($tokens) {
         $resultList = [);
 
-        foreach ($tokens as $token) {
+        foreach (myToken; $tokens) {
 
-            $tokenList = this.splitSQLIntoTokens($token);
+            $tokenList = this.splitSQLIntoTokens(myToken);
             $result = [);
 
             foreach (myReserved; $tokenList) {
@@ -29,8 +29,8 @@ class OptionsProcessor : AbstractProcessor {
                 }
                 $result[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
             }
-            $resultList[] = ["expr_type" :  ExpressionType::EXPRESSION, "base_expr" :  $token.strip,
-                                  "sub_tree" :  $result);
+            $resultList[] = ["expr_type" :  ExpressionType::EXPRESSION, "base_expr" :  myToken.strip,
+                                  "sub_tree" :  $result];
         }
 
         return $resultList;

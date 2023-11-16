@@ -73,9 +73,9 @@ abstract class DProcessor {
 
             $char = mySqlBuffer[$i];
             switch ($char) {
-            case '`':
-            case '\"":
-            case '"':
+            case "`":
+            case "\'":
+            case "\"":
                 if ($quote == false) {
                     // start
                     $quote = $char;
@@ -92,7 +92,7 @@ abstract class DProcessor {
                 }
                 // end
                 $char = substr(mySqlBuffer, $start, $i - $start);
-                $result[] = str_replace($quote . $quote, $quote, $char);
+                $result[] = str_replace($quote ~ $quote, $quote, $char);
                 $start = $i + 1;
                 $quote = false;
                 break;
@@ -100,7 +100,7 @@ abstract class DProcessor {
             case '.':
                 if ($quote == false) {
                     // we have found a separator
-                    $char = trim(substr(mySqlBuffer, $start, $i - $start));
+                    $char = substr(mySqlBuffer, $start, $i - $start).strip;
                     if ($char != "") {
                         $result[] = $char;
                     }
@@ -116,7 +116,7 @@ abstract class DProcessor {
         }
 
         if ($quote == false && ($start < $len)) {
-            $char = trim(substr(mySqlBuffer, $start, $i - $start));
+            $char = substr(mySqlBuffer, $start, $i - $start).strip;
             if ($char != "") {
                 $result[] = $char;
             }
@@ -136,7 +136,7 @@ abstract class DProcessor {
         if ($trim != "" && $trim[0] == "(") { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
             $trim[0] = " ";
-            $trim = trim($trim);
+            $trim = $trim.strip;
         }
 
         $parenthesis = $parenthesisRemoved;
@@ -144,7 +144,7 @@ abstract class DProcessor {
         $string = 0;
         // Whether a string was opened or not, and with which character it was open (' or ")
         $stringOpened = "";
-        while ($i < strlen($trim)) {
+        while ($i < $trim.length) {
 
             if ($trim[$i] == "\\") {
                 $i += 2; // an escape character, the next character is irrelevant

@@ -19,7 +19,7 @@ class SelectProcessor : SelectExpressionProcessor {
     auto process($tokens) {
         $expression = "";
         $expressionList = [);
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
             if (this.isCommaToken($token)) {
                 $expression = super.process(trim($expression));
                 $expression["delim"] = ',';

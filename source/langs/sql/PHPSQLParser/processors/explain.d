@@ -32,7 +32,7 @@ class ExplainProcessor : AbstractProcessor {
         $currCategory = "";
 
         if (this.isStatement($keys)) {
-            foreach ($tokens as $token) {
+            foreach ($token; $tokens) {
 
                 $trim = $token.strip;
                 $base_expr  ~= $token;
@@ -80,10 +80,10 @@ class ExplainProcessor : AbstractProcessor {
                     break;
                 }
             }
-            return empty($expr) ? null : $expr;
+            return $expr.isEmpty ? null : $expr;
         }
 
-        foreach ($tokens as $token) {
+        foreach ($token; $tokens) {
 
             $trim = $token.strip;
 
@@ -109,7 +109,7 @@ class ExplainProcessor : AbstractProcessor {
                 break;
             }
         }
-        return empty($expr) ? null : $expr;
+        return $expr.isEmpty ? null : $expr;
     }
 }
 
