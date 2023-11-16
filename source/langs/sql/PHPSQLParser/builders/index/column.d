@@ -12,11 +12,11 @@ import lang.sql;
 class IndexColumnBuilder : ISqlBuilder {
 
     protected auto buildLength($parsed) {
-        return ($parsed == false ? "" : ("(" ~ $parsed ~ ")"));
+        return ($parsed.isEmpty ? "" : ("(" ~ $parsed ~ ")"));
     }
 
     protected auto buildDirection($parsed) {
-        return ($parsed == false ? "" : (" " ~ $parsed));
+        return ($parsed.isEmpty ? "" : (" " ~ $parsed));
     }
 
     string build(array $parsed) {

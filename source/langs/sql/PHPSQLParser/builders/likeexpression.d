@@ -27,7 +27,7 @@ class LikeExpressionBuilder : ISqlBuilder {
             return "";
         }
         string mySql = "";
-        foreach ($parsed["sub_tree"] as $k :  myValue) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildTable(myValue, 0);

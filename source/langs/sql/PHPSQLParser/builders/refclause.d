@@ -52,7 +52,7 @@ class RefClauseBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed == false) { return ""; }
+        if ($parsed.isEmpty) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; $parsed) {

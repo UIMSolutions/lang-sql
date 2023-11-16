@@ -20,7 +20,7 @@ class AlterBuilder : ISqlBuilder {
       mySql ~= myTerm." ";
     }
 
-    mySql = rtrim(mySql);
+    mySql = mySql.rstrip;
 
     return mySql;
   }

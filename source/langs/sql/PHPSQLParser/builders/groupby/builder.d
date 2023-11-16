@@ -51,7 +51,7 @@ class GroupByBuilder : ISqlBuilder {
             mySql  ~= ", ";
         }
         mySql = substr(mySql, 0, -2);
-        return "GROUP BY " . mySql;
+        return "GROUP BY " ~ mySql;
     }
 
 }

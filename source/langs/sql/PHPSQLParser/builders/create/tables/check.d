@@ -30,7 +30,7 @@ class CheckBuilder : ISqlBuilder {
             return "";
         }
         string mySql = "";
-        foreach ($k :  myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildSelectBracketExpression(myValue);

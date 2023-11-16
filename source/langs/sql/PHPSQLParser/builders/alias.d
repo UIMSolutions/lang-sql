@@ -15,10 +15,11 @@ class AliasBuilder : ISqlBuilder {
     }
 
     string mySql = "";
-    if ($parsed["alias"]["as"]) {
+    auto subParsed = $parsed["alias"];
+    if ("as" in subParsed) {
       mySql ~= " AS";
     }
-    mySql ~= " " ~ $parsed["alias"]["name"];
+    mySql ~= " " ~ subParsed["name"];
     return mySql;
   }
 }

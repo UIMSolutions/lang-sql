@@ -11,7 +11,7 @@ import lang.sql;
 class RefTypeBuilder {
 
     auto build($parsed) {
-        if ($parsed == false) {
+        if ($parsed.isEmpty) {
             return "";
         }
         if ($parsed == 'ON') {

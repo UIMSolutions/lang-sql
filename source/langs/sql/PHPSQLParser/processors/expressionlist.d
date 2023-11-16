@@ -15,7 +15,7 @@ class ExpressionListProcessor : AbstractProcessor {
         $skip_next = false;
         $prev = new ExpressionToken();
 
-        foreach ($tokens as $k :  myValue) {
+        foreach ($tokens as myKey, myValue) {
 
 
             if (this.isCommentToken(myValue)) {
@@ -49,7 +49,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                 if ($prev.getUpper() == 'IN') {
 
-                    foreach ($k :  myValue; $localTokenList) {
+                    foreach (myKey, myValue; $localTokenList) {
                         $tmpToken = new ExpressionToken(myKey, myValue);
                         if ($tmpToken.isCommaToken()) {
                             unset($localTokenList[$k]);
@@ -62,7 +62,7 @@ class ExpressionListProcessor : AbstractProcessor {
                 } elseif ($prev.getUpper() == 'AGAINST') {
 
                     $match_mode = false;
-                    foreach ($localTokenList as $k :  myValue) {
+                    foreach ($localTokenList as myKey, myValue) {
 
                         $tmpToken = new ExpressionToken(myKey, myValue);
                         switch ($tmpToken.getUpper()) {
@@ -105,7 +105,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     $localExpr = new ExpressionToken();
                     $tmpExprList = [);
 
-                    foreach ($localTokenList as $k :  myValue) {
+                    foreach ($localTokenList as myKey, myValue) {
                         $tmpToken = new ExpressionToken(myKey, myValue);
                         if (!$tmpToken.isCommaToken()) {
                             $localExpr.addToken(myValue);

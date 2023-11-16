@@ -42,7 +42,7 @@ class CreateTableOptionsBuilder : IBuilder {
         }
         $options = $parsed["options"];
         string mySql = "";
-        foreach ($options as $k :  myValue) {
+        foreach ($options as myKey, myValue) {
             size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildExpression(myValue);
             mySql  ~= this.buildCharacterSet(myValue);
