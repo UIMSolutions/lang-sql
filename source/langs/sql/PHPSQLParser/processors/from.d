@@ -130,7 +130,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (this.isCommentToken($token)) {
-                $expr[] = super.processComment($token);
+                $expr[] = super.processComment($token];
                 continue;
             }
 
@@ -190,7 +190,7 @@ class FromProcessor : AbstractProcessor {
 
             switch (upperToken) {
             case 'AS':
-                $parseInfo["alias"] = ['as' : true, 'name' : "", "base_expr" : $token);
+                $parseInfo["alias"] = ['as' : true, 'name' : "", "base_expr" : $token];
                 $parseInfo["token_count"]++;
                 $n = 1;
                 $str = "";
@@ -297,7 +297,7 @@ class FromProcessor : AbstractProcessor {
                 if ($parseInfo["token_count"] == 0) {
                     if ($parseInfo["table"].isEmpty) {
                         $parseInfo["table"] = $token;
-                        $parseInfo["no_quotes"] = this.revokeQuotation($token);
+                        $parseInfo["no_quotes"] = this.revokeQuotation($token];
                     }
                 } else if ($parseInfo["token_count"] == 1) {
                     $parseInfo["alias"] = ['as' : false, 'name' : $token.strip,

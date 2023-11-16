@@ -15,7 +15,7 @@ class BracketProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $token = this.removeParenthesisFromStart($tokens[0]);
-        $subtree = this.processTopLevel($token);
+        $subtree = this.processTopLevel($token];
 
         $remainingExpressions = this.getRemainingNotBracketExpression($subtree);
 

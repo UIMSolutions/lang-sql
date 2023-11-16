@@ -11,12 +11,12 @@ class UnionProcessor : AbstractProcessor {
 
     protected auto processDefault($token) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return myProcessor$processor.process($token);
+        return myProcessor$processor.process($token];
     }
 
     protected auto processSQL($token) {
         auto myProcessor = new SQLProcessor(this.options);
-        return myProcessor.process($token);
+        return myProcessor.process($token];
     }
 
     static auto isUnion($queries) {

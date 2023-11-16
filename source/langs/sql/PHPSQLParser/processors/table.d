@@ -11,15 +11,15 @@ import lang.sql;
 class TableProcessor : AbstractProcessor {
 
     protected auto getReservedType($token) {
-        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token);
+        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token];
     }
 
     protected auto getConstantType($token) {
-        return ["expr_type" : expressionType(CONSTANT, "base_expr" : $token);
+        return ["expr_type" : expressionType(CONSTANT, "base_expr" : $token];
     }
 
     protected auto getOperatorType($token) {
-        return ["expr_type" : expressionType(OPERATOR, "base_expr" : $token);
+        return ["expr_type" : expressionType(OPERATOR, "base_expr" : $token];
     }
 
     protected auto processPartitionOptions($tokens) {

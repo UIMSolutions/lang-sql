@@ -145,7 +145,7 @@ class ExpressionToken {
 
     private auto revokeQuotation($token, Options $options) {
         $defProc = new DefaultProcessor($options);
-        return $defProc.revokeQuotation($token);
+        return $defProc.revokeQuotation($token];
     }
 
     auto toArray() {

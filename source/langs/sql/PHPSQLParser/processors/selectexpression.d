@@ -43,7 +43,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             upperToken = $token.toUpper;
 
             if (upperToken == 'AS') {
-                $alias = ['as' : true, "name" : "", "base_expr" : $token);
+                $alias = ['as' : true, "name" : "", "base_expr" : $token];
                 $tokens[$i] = "";
                 $capture = true;
                 continue;

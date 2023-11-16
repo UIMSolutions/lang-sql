@@ -19,7 +19,7 @@ class SelectProcessor : SelectExpressionProcessor {
                 $expressionList[] = $expression;
                 $expression = "";
             } else if (this.isCommentToken($token)) {
-                $expressionList[] = super.processComment($token);
+                $expressionList[] = super.processComment($token];
             } else {
                 switch ($token.toUpper) {
 

@@ -75,7 +75,7 @@ class SqlParser {
      * @return null
      */
     auto addCustomFunction($token) {
-        SqlParserConstants::getInstance().addCustomFunction($token);
+        SqlParserConstants::getInstance().addCustomFunction($token];
     }
 
     /**
@@ -86,7 +86,7 @@ class SqlParser {
      * @return null
      */
     auto removeCustomFunction($token) {
-        SqlParserConstants::getInstance().removeCustomFunction($token);
+        SqlParserConstants::getInstance().removeCustomFunction($token];
     }
 
     /**
