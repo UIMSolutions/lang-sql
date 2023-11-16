@@ -5,7 +5,7 @@
  * Builds index options part of a CREATE INDEX statement.
  * */
 
-module source.langs.sql.PHPSQLParser.builders.create.indexes.indexoptions;
+module langs.sql.PHPSQLParser.builders.create.indexes.indexoptions;
 
 import lang.sql;
 

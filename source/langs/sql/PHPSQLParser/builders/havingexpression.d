@@ -5,7 +5,7 @@
  * Builds expressions within the HAVING part.
  */
 
-module source.langs.sql.PHPSQLParser.builders.havingexpression;
+module langs.sql.PHPSQLParser.builders.havingexpression;
 
 import lang.sql;
 

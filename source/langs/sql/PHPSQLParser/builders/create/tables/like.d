@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.create.tables.like;
+module langs.sql.PHPSQLParser.builders.create.tables.like;
 
 import lang.sql;
 

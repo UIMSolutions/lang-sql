@@ -3,7 +3,7 @@
  *
  * Builds the bracket expressions within a SELECT statement. */
 
-module source.langs.sql.PHPSQLParser.builders.selects.bracketexpression;
+module langs.sql.PHPSQLParser.builders.selects.bracketexpression;
 
 import lang.sql;
 

@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.exceptions.invalidparameter;
+module langs.sql.PHPSQLParser.exceptions.invalidparameter;
 
 import lang.sql;
 

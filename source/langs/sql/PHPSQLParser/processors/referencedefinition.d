@@ -5,7 +5,7 @@
  * This file : the processor reference definition part of the CREATE TABLE statements.
  */
 
-module source.langs.sql.PHPSQLParser.processors.referencedefinition;
+module langs.sql.PHPSQLParser.processors.referencedefinition;
 
 import lang.sql;
 

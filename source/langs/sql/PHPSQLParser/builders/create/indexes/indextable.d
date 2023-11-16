@@ -4,7 +4,7 @@
  *
  * Builds the table part of a CREATE INDEX statement */
 
-module source.langs.sql.PHPSQLParser.builders.create.indexes.indextable;
+module langs.sql.PHPSQLParser.builders.create.indexes.indextable;
 
 import lang.sql;
 

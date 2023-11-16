@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.drop.schema;
+module langs.sql.PHPSQLParser.builders.drop.schema;
 
 import lang.sql;
 

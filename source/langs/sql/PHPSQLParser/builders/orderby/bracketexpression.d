@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.orderby.bracketexpression;
+module langs.sql.PHPSQLParser.builders.orderby.bracketexpression;
 
 /**
  * Builds bracket-expressions within the ORDER-BY part.

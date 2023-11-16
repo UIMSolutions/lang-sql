@@ -1,5 +1,5 @@
 
-module source.langs.sql.PHPSQLParser.builders.setexpression;
+module langs.sql.PHPSQLParser.builders.setexpression;
 
 import lang.sql;
 

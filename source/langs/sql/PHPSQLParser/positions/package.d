@@ -1,2 +1,2 @@
-module source.langs.sql.PHPSQLParser.positions;
+module langs.sql.PHPSQLParser.positions;
 

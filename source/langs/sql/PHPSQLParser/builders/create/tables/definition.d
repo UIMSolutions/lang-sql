@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.create.tables.definition;
+module langs.sql.PHPSQLParser.builders.create.tables.definition;
 
 import lang.sql;
 

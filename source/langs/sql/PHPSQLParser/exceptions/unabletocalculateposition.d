@@ -6,7 +6,7 @@
  * SqlParser package.
  */
 
-module source.langs.sql.PHPSQLParser.exceptions.unabletocalculateposition;
+module langs.sql.PHPSQLParser.exceptions.unabletocalculateposition;
 
 import lang.sql;
 

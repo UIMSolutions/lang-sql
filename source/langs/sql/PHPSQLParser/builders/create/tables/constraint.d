@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.create.tables.constraint;
+module langs.sql.PHPSQLParser.builders.create.tables.constraint;
 
 import lang.sql;
 

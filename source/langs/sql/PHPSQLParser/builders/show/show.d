@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.show.show;
+module langs.sql.PHPSQLParser.builders.show.show;
 
 import lang.sql;
 

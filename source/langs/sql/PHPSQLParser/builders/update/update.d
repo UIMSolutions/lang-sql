@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.update.update;
+module langs.sql.PHPSQLParser.builders.update.update;
 
 import lang.sql;
 

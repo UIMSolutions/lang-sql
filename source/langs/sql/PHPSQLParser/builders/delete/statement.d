@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.delete.statement;
+module langs.sql.PHPSQLParser.builders.delete.statement;
 
 import lang.sql;
 

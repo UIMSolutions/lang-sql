@@ -1,5 +1,5 @@
 
-module source.langs.sql.PHPSQLParser.builders.drop.index;
+module langs.sql.PHPSQLParser.builders.drop.index;
 
 import lang.sql;
 

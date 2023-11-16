@@ -4,7 +4,7 @@
  *
  * Builds the CHECK statement part of CREATE TABLE. */
 
-module source.langs.sql.PHPSQLParser.builders.create.tables.check;
+module langs.sql.PHPSQLParser.builders.create.tables.check;
 
 import lang.sql;
 

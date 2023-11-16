@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.create.tables.primarykey;
+module langs.sql.PHPSQLParser.builders.create.tables.primarykey;
 
 import lang.sql;
 

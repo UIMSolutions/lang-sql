@@ -5,7 +5,7 @@
  * Builds an alias within an ORDER-BY clause.
  */
 
-module source.langs.sql.PHPSQLParser.builders.orderby.alias;
+module langs.sql.PHPSQLParser.builders.orderby.alias;
 
 import lang.sql;
 

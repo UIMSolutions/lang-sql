@@ -5,7 +5,7 @@
  * Builds the FROM statement
  * */
 
-module source.langs.sql.PHPSQLParser.builders.from;
+module langs.sql.PHPSQLParser.builders.from;
 
 import lang.sql;
 

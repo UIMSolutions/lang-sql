@@ -5,7 +5,7 @@
  * This file : the processor for SELECT expressions.
  */
 
-module source.langs.sql.PHPSQLParser.processors.selectexpression;
+module langs.sql.PHPSQLParser.processors.selectexpression;
 
 import lang.sql;
 

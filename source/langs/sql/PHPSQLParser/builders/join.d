@@ -5,7 +5,7 @@
  * Builds the JOIN statement parts (within FROM).
  */
 
-module source.langs.sql.PHPSQLParser.builders.join;
+module langs.sql.PHPSQLParser.builders.join;
 
 import lang.sql;
 

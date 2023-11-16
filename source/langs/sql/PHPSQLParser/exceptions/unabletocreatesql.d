@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.exceptions.unabletocreatesql;
+module langs.sql.PHPSQLParser.exceptions.unabletocreatesql;
 
 import lang.sql;
 

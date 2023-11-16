@@ -1,5 +1,5 @@
 
-module source.langs.sql.PHPSQLParser.builders.selects.selectexpression;
+module langs.sql.PHPSQLParser.builders.selects.selectexpression;
 
 import lang.sql;
 

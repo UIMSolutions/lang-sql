@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.direction;
+module langs.sql.PHPSQLParser.builders.direction;
 
 import lang.sql;
 

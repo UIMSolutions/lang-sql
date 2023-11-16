@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.likeexpression;
+module langs.sql.PHPSQLParser.builders.likeexpression;
 
 import lang.sql;
 

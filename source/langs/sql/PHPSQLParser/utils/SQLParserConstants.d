@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.utils.SQLParserConstants;
+module langs.sql.PHPSQLParser.utils.SQLParserConstants;
 
 /**
  * Some constants for the SqlParser.

@@ -5,7 +5,7 @@
  * Builds the [INSERT] statement part.
  */
 
-module source.langs.sql.PHPSQLParser.builders.insert.builder;
+module langs.sql.PHPSQLParser.builders.insert.builder;
 
 import lang.sql;
 

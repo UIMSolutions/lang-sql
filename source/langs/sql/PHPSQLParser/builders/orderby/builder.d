@@ -4,7 +4,7 @@
  *
  * Builds the ORDERBY clause. */
 
-module source.langs.sql.PHPSQLParser.builders.orderby.builder;
+module langs.sql.PHPSQLParser.builders.orderby.builder;
 
 import lang.sql;
 

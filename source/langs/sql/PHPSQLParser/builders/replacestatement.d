@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.replacestatement;
+module langs.sql.PHPSQLParser.builders.replacestatement;
 
 /**
  * Builds the REPLACE statement 
