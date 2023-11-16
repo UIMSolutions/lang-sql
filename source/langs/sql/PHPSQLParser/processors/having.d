@@ -18,7 +18,7 @@ class HavingProcessor : ExpressionListProcessor {
     $parsed = super.process($tokens);
 
     foreach (myKey, myValue; $parsed) {
-      if (myValue["expr_type"] == ExpressionType :  : COLREF) {
+      if (myValue["expr_type"].isExpressionType(COLREF) {
         foreach ($select as$clause) {
           if (!isset($clause["alias"])) {
             continue;

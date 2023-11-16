@@ -1,15 +1,10 @@
-
-/**
- * ColumnDefinitionBuilder.php
- *
- * Builds the column definition statement part of CREATE TABLE. */
-
 module langs.sql.PHPSQLParser.builders.columns.definition;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the column definition statement part of CREATE TABLE. */
  * This class : the builder for the columndefinition statement part 
  * of CREATE TABLE. You can overwrite all functions to achieve another handling. */
 class ColumnDefinitionBuilder : ISqlBuilder {
@@ -43,7 +38,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
 
             mySql  ~= " ";
         }
-        
+
         return substr(mySql, 0, -1);
     }
 }

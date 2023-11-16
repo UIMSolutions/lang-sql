@@ -1,9 +1,3 @@
-
-/**
- * CharacterSetBuilder.php
- *
- * Builds the CHARACTER SET part of a CREATE TABLE statement. */
-
 module langs.sql.PHPSQLParser.builders.create.tables.characterset;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the CHARACTER SET part of a CREATE TABLE statement. */
  * This class : the builder for the CHARACTER SET statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class CharacterSetBuilder : ISqlBuilder {
@@ -31,7 +26,7 @@ class CharacterSetBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(CHARSET) {
+        if (!$parsed["expr_type"].isExpressionType("CHARSET")) {
             return "";
         }
         
@@ -43,7 +38,7 @@ class CharacterSetBuilder : ISqlBuilder {
             mySql  ~= this.buildConstant(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE options CHARACTER SET subtree', k, v, "expr_type");
+                throw new UnableToCreateSQLException('CREATE TABLE options CHARACTER SET subtree', k, myValue, "expr_type");
             }
 
             mySql  ~= " ";

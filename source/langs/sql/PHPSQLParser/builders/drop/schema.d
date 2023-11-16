@@ -11,7 +11,7 @@ import lang.sql;
 class SchemaBuilder : ISqlBuilder {
 
   string build(array$parsed) {
-    if ($parsed["expr_type"] != ExpressionType :  : SCHEMA) {
+    if (!$parsed["expr_type"].isExpressionType("SCHEMA")) {
       return "";
     }
 

@@ -1,15 +1,10 @@
-
-/**
- * CreateIndexTable.php
- *
- * Builds the table part of a CREATE INDEX statement */
-
 module langs.sql.PHPSQLParser.builders.create.indexes.indextable;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the table part of a CREATE INDEX statement */
  * This class : the builder for the table part of a CREATE INDEX statement. 
  * You can overwrite all functions to achieve another handling. */
 class CreateIndexTableBuilder : ISqlBuilder {
@@ -20,11 +15,11 @@ class CreateIndexTableBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if (!isset($parsed["on"]) || $parsed["on"] == false) {
+        if ($parsed.isSet("on") || $parsed["on"] == false) {
             return "";
         }
         $table = $parsed["on"];
-        if ($table["expr_type"] !.isExpressionType(TABLE) {
+        if (!$table["expr_type"].isExpressionType("TABLE") {
             return "";
         }
         return "ON " ~ $table["name"] ~ " " ~ this.buildColumnList($table["sub_tree"]);

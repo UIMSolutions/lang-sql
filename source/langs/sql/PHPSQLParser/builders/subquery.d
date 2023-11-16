@@ -1,9 +1,4 @@
 
-/**
- * SubQueryBuilder.php
- *
- * Builds the statements for sub-queries. */
-
 module langs.sql.PHPSQLParser.builders.subquery;
 
 import lang.sql;
@@ -11,6 +6,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the statements for sub-queries. */
  * This class : the builder for sub-queries. 
  * You can overwrite all functions to achieve another handling. */
 class SubQueryBuilder : ISqlBuilder {
