@@ -1,13 +1,7 @@
-
-/**
- * OrderByBracketExpressionBuilder.php
- *
- * Builds bracket-expressions within the ORDER-BY part.
- */
-
 module source.langs.sql.PHPSQLParser.builders.orderby.bracketexpression;
 
 /**
+ * Builds bracket-expressions within the ORDER-BY part.
  * This class : the builder for bracket-expressions within the ORDER-BY part. 
  * It must contain the direction. 
  * You can overwrite all functions to achieve another handling. */
@@ -19,11 +13,11 @@ class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
     }
 
     string build(array $parsed) {
-        auto $sql = super.build($parsed);
-        if ($sql != "") {
-            $sql  ~= this.buildDirection($parsed);
+        string mySql = super.build($parsed);
+        if (!mySql.isEmpty) {
+            mySql  ~= this.buildDirection($parsed);
         }
-        return $sql;
+        return mySql;
     }
 
 }

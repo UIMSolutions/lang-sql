@@ -1,10 +1,3 @@
-
-/**
- * IndexTypeBuilder.php
- *
- * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
- */
-
 module langs.sql.PHPSQLParser.builders.index.type;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
  * This class : the builder for the index type of a PRIMARY KEY
  * statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
@@ -26,6 +20,7 @@ class IndexTypeBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX_TYPE) {
             return "";
         }
+        
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;

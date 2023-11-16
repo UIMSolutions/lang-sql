@@ -10,14 +10,14 @@ import lang.sql;
 class DropIndexTableBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if (!isset($parsed["on"]) || $parsed["on"] == false) {
+        if ("on" !in $parsed || $parsed["on"] == false) {
             return "";
         }
-        $table = $parsed["on"];
-        if ($table["expr_type"] != ExpressionType::TABLE) {
+        auto myTable = $parsed["on"];
+        if (myTable["expr_type"] != ExpressionType::TABLE) {
             return "";
         }
-        return 'ON ' . $table["name"];
+        return 'ON ' ~ myTable["name"];
     }
 
 }

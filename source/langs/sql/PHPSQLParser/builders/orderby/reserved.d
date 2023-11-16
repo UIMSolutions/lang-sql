@@ -14,7 +14,7 @@ class OrderByReservedBuilder : ReservedBuilder {
 
   auto build(array$parsed) {
     auto mySql = super.build($parsed);
-    if (mySql != "") {
+    if (!mySql.isEmpty) {
       mySql ~= this.buildDirection($parsed);
     }
     return mySql;

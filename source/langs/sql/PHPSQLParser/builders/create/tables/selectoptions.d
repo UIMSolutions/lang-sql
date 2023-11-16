@@ -15,7 +15,7 @@ class CreateTableSelectOptionBuilder : ISqlBuilder {
         }
         $option = $parsed["select-option"];
 
-        auto mySql = ($option["duplicates"] == false ? "" : (" " ~ $option["duplicates"]));
+        string mySql = ($option["duplicates"] == false ? "" : (" " ~ $option["duplicates"]));
         mySql  ~= ($option["as"] == false ? "" : ' AS');
         return mySql;
     }

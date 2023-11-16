@@ -26,7 +26,7 @@ class SelectExpressionBuilder : ISqlBuilder {
       return "";
     }
 
-    auto mySql = this.buildSubTree($parsed, " ");
+    string mySql = this.buildSubTree($parsed, " ");
     mySql ~= this.buildAlias($parsed);
     return mySql;
   }

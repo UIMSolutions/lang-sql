@@ -10,7 +10,7 @@ class AliasBuilder : ISqlBuilder {
   }
 
   string build(array $parsed) {
-    if (!isset($parsed["alias"]) || $parsed["alias"] == false) {
+    if ("alias" !in parsed || $parsed["alias"] == false) {
       return "";
     }
 

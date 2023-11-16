@@ -1,9 +1,3 @@
-
-/**
- * ColumnListBuilder.php
- *
- * Builds column-list parts of CREATE TABLE. */
-
 module langs.sql.PHPSQLParser.builders.columns.list;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds column-list parts of CREATE TABLE. 
  * This class : the builder for column-list parts of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class ColumnListBuilder : ISqlBuilder {
