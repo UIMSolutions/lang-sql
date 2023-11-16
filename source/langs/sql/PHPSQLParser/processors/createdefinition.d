@@ -68,8 +68,8 @@ class CreateDefinitionProcessor : AbstractProcessor {
         $base_expr = "";
         $prevCategory = "";
         $currCategory = "";
-        $expr = [);
-        $result = [);
+        $expr = [];
+        $result = [];
         $skip = 0;
 
         foreach ($tokens as $k : $token) {
@@ -256,7 +256,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                                                 "base_expr" : trim(substr($base_expr, 0, -$token.length)),
                                                 "sub_tree" : $expr];
                 $base_expr = "";
-                $expr = [);
+                $expr = [];
                 break;
 
             default:

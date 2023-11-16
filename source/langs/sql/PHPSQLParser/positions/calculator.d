@@ -1,11 +1,3 @@
-
-/**
- * PositionCalculator.php
- *
- * This class : the calculator for the string positions of the 
- * base_expr elements within the output of the SqlParser.
- */
-
 module langs.sql.PHPSQLParser.positions.calculator;
 
 import lang.sql;
@@ -13,7 +5,9 @@ import lang.sql;
 @safe:
 
 /**
- * This class : the calculator for the string positions of the 
+ *  * This class : the calculator for the string positions of the 
+ * base_expr elements within the output of the SqlParser.
+ This class : the calculator for the string positions of the 
  * base_expr elements within the output of the SqlParser. */
 class PositionCalculator {
 
@@ -84,7 +78,7 @@ class PositionCalculator {
 
     auto setPositionsWithinSQL($sql, $parsed) {
         $charPos = 0;
-        $backtracking = [);
+        $backtracking = [];
         this.lookForBaseExpression($sql, $charPos, $parsed, 0, $backtracking);
         return $parsed;
     }

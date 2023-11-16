@@ -14,7 +14,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class HavingProcessor : ExpressionListProcessor {
 
-  auto process($tokens, $select = [)) {
+  auto process($tokens, $select = []) {
     $parsed = super.process($tokens);
 
     foreach (myKey, myValue; $parsed) {

@@ -1,10 +1,3 @@
-
-/**
- * InsertProcessor.php
- *
- * This file : the processor for the INSERT statements.
- */
-
 module langs.sql.PHPSQLParser.processors.insert;
 
 import lang.sql;
@@ -12,15 +5,17 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the INSERT statements.
  * This class processes the INSERT statements.
  */
 class InsertProcessor : AbstractProcessor {
 
     protected auto processOptions($tokenList) {
         if (!isset($tokenList["OPTIONS"])) {
-            return [);
+            return [];
         }
-        $result = [);
+        }
+        $result = [];
         foreach ($tokenList["OPTIONS"] as $token) {
             $result[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $token.strip);
         }
@@ -29,14 +24,14 @@ class InsertProcessor : AbstractProcessor {
 
     protected auto processKeyword($keyword, $tokenList) {
         if (!isset($tokenList[$keyword])) {
-            return ["", false, [));
+            return ["", false, []);
         }
 
         string myTable = "";
         $cols = false;
-        $result = [);
+        $result = [];
 
-        foreach ($tokenList[$keyword] as $token) {
+        foreach ($token; $tokenList[$keyword] as ) {
             $trim = $token.strip;
 
             if ($trim.isEmpty) {
@@ -93,7 +88,7 @@ class InsertProcessor : AbstractProcessor {
     auto process($tokenList, $token_category = 'INSERT') {
         string myTable = "";
         $cols = false;
-        $comments = [);
+        $comments = [];
 
         foreach ($tokenList as $key : &$token) {
             if ($key == 'VALUES') {

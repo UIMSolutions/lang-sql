@@ -14,7 +14,7 @@ class DropProcessor : AbstractProcessor {
         $exists = false;
         $base_expr = "";
         $objectType = "";
-        $subTree = [);
+        $subTree = [];
         $option = false;
 
         foreach ($tokenList as $token) {
@@ -60,7 +60,7 @@ class DropProcessor : AbstractProcessor {
                     $subTree[] = ["expr_type" :  ExpressionType::EXPRESSION,
                                        "base_expr" :  trim(substr($base_expr, 0, -$token.length)),
                                        "sub_tree" :  $objectList);
-                    $objectList = [);
+                    $objectList = [];
                 }
                 $base_expr = "";
                 break;
@@ -72,7 +72,7 @@ class DropProcessor : AbstractProcessor {
                 continue 2;
 
             default:
-                $object = [);
+                $object = [];
                 $object["expr_type"] = $objectType;
                 if ($objectType =.isExpressionType(TABLE || $objectType =.isExpressionType(TEMPORARY_TABLE) {
                     $object["table"] = $trim;

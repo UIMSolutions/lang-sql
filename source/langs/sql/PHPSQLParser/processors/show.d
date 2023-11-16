@@ -27,7 +27,7 @@ class ShowProcessor : AbstractProcessor {
     }
 
     auto process($tokens) {
-        $resultList = [);
+        $resultList = [];
         $category = "";
         $prev = "";
 

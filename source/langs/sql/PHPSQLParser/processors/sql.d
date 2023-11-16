@@ -17,7 +17,7 @@ class SQLProcessor : SQLChunkProcessor {
         $prev_category = "";
         $token_category = "";
         $skip_next = 0;
-        $out = [);
+        $out = [];
 
 	// $tokens may come as a numeric indexed array starting with an index greater than 0 (or as a boolean)
 	$tokenCount = count($tokens);
@@ -302,7 +302,7 @@ class SQLProcessor : SQLChunkProcessor {
                 if ($prev_category == 'TABLE') {
                     $token_category = 'CREATE';
                     $out[$token_category] = array_merge($out[$token_category], $out[$prev_category]);
-                    $out[$prev_category] = [);
+                    $out[$prev_category] = [];
                     $out[$token_category][] = $trim;
                     $prev_category = $token_category;
                     continue 2;

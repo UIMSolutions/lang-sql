@@ -1,10 +1,3 @@
-
-/**
- * OrderByAliasBuilder.php
- *
- * Builds an alias within an ORDER-BY clause.
- */
-
 module langs.sql.PHPSQLParser.builders.orderby.alias;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds an alias within an ORDER-BY clause.
  * This class : the builder for an alias within the ORDER-BY clause. 
  * You can overwrite all functions to achieve another handling. */
 class OrderByAliasBuilder : ISqlBuilder {

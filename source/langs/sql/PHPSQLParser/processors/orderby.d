@@ -56,7 +56,7 @@ class OrderByProcessor : AbstractProcessor {
             return $expr;
         }
 
-        $result = [);
+        $result = [];
         $result["expr_type"] = $parseInfo["expr_type"];
         $result["base_expr"] = $parseInfo["base_expr"];
         if (isset($parseInfo["no_quotes"])) {
@@ -66,8 +66,8 @@ class OrderByProcessor : AbstractProcessor {
         return $result;
     }
 
-    auto process($tokens, $select = [)) {
-        $out = [);
+    auto process($tokens, $select = []) {
+        $out = [];
         $parseInfo = this.initParseInfo();
 
         if (!$tokens) {

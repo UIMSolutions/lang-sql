@@ -35,8 +35,8 @@ class IndexProcessor : AbstractProcessor {
 
         $currCategory = 'INDEX_NAME';
         $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'index-type' : false, 'on' : false,
-                        'options' : [));
-        $expr = [);
+                        'options' : []);
+        $expr = [];
         $base_expr = "";
         $skip = 0;
 
@@ -148,7 +148,7 @@ class IndexProcessor : AbstractProcessor {
                                                           "base_expr" : $trim, "sub_tree" : $cols);
                     }
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
                     break;
@@ -160,7 +160,7 @@ class IndexProcessor : AbstractProcessor {
                     $result["on"] = ["expr_type" : ExpressionType::TABLE, "base_expr" : $base_expr,
                                           'name' : $trim, 'no_quotes' : this.revokeQuotation($trim),
                                           "sub_tree" : false);
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'COLUMN_DEF';
                     continue 3;
@@ -169,7 +169,7 @@ class IndexProcessor : AbstractProcessor {
                     $result["base_expr"] = $result["name"] = $trim;
                     $result["no_quotes"] = this.revokeQuotation($trim);
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'TYPE_DEF';
                     break;
@@ -179,7 +179,7 @@ class IndexProcessor : AbstractProcessor {
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::INDEX_PARSER,
                                                  "base_expr" : trim($base_expr), "sub_tree" : $expr];
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
@@ -190,7 +190,7 @@ class IndexProcessor : AbstractProcessor {
                     $expr[] = this.getConstantType($trim);
                     $result["options"][] = ["expr_type" : ExpressionType::COMMENT,
                                                  "base_expr" : trim($base_expr), "sub_tree" : $expr];
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
@@ -202,7 +202,7 @@ class IndexProcessor : AbstractProcessor {
                     $result["options"][] = ["expr_type" : ExpressionType::INDEX_SIZE,
                                                  "base_expr" : trim($base_expr), 'size' : $upper,
                                                  "sub_tree" : $expr];
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
@@ -222,7 +222,7 @@ class IndexProcessor : AbstractProcessor {
                                                      "sub_tree" : $expr];
                     }
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
                     break;
@@ -234,7 +234,7 @@ class IndexProcessor : AbstractProcessor {
                                                  "base_expr" : trim($base_expr), 'lock' : $upper,
                                                  "sub_tree" : $expr];
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
                     break;
@@ -246,7 +246,7 @@ class IndexProcessor : AbstractProcessor {
                                                  "base_expr" : trim($base_expr), 'algorithm' : $upper,
                                                  "sub_tree" : $expr];
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = 'CREATE_DEF';
 
@@ -263,7 +263,7 @@ class IndexProcessor : AbstractProcessor {
             $currCategory = "";
         }
 
-        if ($result["options"] == [)) {
+        if ($result["options"] == []) {
             $result["options"] = false;
         }
         return $result;

@@ -39,7 +39,7 @@ class TableProcessor : AbstractProcessor {
     }
 
     protected auto clear(&$expr, &$base_expr, &$category) {
-        $expr = [);
+        $expr = [];
         $base_expr = "";
         $category = 'CREATE_DEF';
     }
@@ -48,8 +48,8 @@ class TableProcessor : AbstractProcessor {
 
         $currCategory = 'TABLE_NAME';
         $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'create-def' : false,
-                        'options' : [), 'like' : false, 'select-option' : false);
-        $expr = [);
+                        'options' : [], 'like' : false, 'select-option' : false);
+        $expr = [];
         $base_expr = "";
         $skip = 0;
 
@@ -290,7 +290,7 @@ class TableProcessor : AbstractProcessor {
                         $coldef = this.processCreateDefinition($unparsed);
                         $result["create-def"] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION,
                                                       "base_expr" : $base_expr, "sub_tree" : $coldef["create-def"]);
-                        $expr = [);
+                        $expr = [];
                         $base_expr = "";
                         $currCategory = 'CREATE_DEF';
                     }
@@ -331,7 +331,7 @@ class TableProcessor : AbstractProcessor {
         if ($result["select-option"] == false) {
             unset($result["select-option"]);
         }
-        if ($result["options"] == [)) {
+        if ($result["options"] == []) {
             $result["options"] = false;
         }
 

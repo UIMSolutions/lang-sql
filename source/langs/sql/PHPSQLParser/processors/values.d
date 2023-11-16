@@ -29,7 +29,7 @@ class ValuesProcessor : AbstractProcessor {
     auto process($tokens) {
 
         $currCategory = "";
-        $parsed = [);
+        $parsed = [];
         $base_expr = "";
 
         foreach (myKey, myValue; $tokens["VALUES"]) {

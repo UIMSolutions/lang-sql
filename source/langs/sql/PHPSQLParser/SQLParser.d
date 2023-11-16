@@ -30,7 +30,7 @@ class SqlParser {
      * @param bool $calcPositions True, if the output should contain [position], false otherwise.
      * @param array $options
      */
-    this($sql = false, $calcPositions = false, array $options = [)) {
+    this($sql = false, $calcPositions = false, array $options = []) {
         this.options = new Options($options);
 
         if ($sql) {

@@ -1,10 +1,3 @@
-
-/**
- * WhereBuilder.php
- *
- * Builds the WHERE part.
- */
-
 module langs.sql.PHPSQLParser.builders.where;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the WHERE part.
  * This class : the builder for the WHERE part.
  * You can overwrite all functions to achieve another handling.
  */

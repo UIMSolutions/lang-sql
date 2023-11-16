@@ -33,7 +33,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto removeComma($tokens) {
-        $res = [);
+        $res = [];
         foreach ($token; $tokens) {
             if ($token.strip != ',') {
                 $res[] = $token;
@@ -64,10 +64,10 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         $trim = "";
         $base_expr = "";
         $currCategory = "";
-        $expr = [);
-        $refs = [);
+        $expr = [];
+        $refs = [];
         $options = ['unique' : false, 'nullable' : true, 'auto_inc' : false, 'primary' : false,
-                         "sub_tree" : [));
+                         "sub_tree" : []);
         $skip = 0;
 
         foreach ($tokens as $key : $token) {

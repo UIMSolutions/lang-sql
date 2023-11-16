@@ -12,8 +12,8 @@ class RenameProcessor : AbstractProcessor {
 
     auto process($tokenList) {
         $base_expr = "";
-        $resultList = [);
-        $tablePair = [);
+        $resultList = [];
+        $tablePair = [];
 
         foreach ($k : myValue; $tokenList) {
             $token = new ExpressionToken(myKey, myValue);
@@ -37,7 +37,7 @@ class RenameProcessor : AbstractProcessor {
                                                   'no_quotes' : this.revokeQuotation($base_expr),
                                                   "base_expr" : $base_expr);
                 $resultList[] = $tablePair;
-                $tablePair = [);
+                $tablePair = [];
                 $base_expr = "";
                 break;
 

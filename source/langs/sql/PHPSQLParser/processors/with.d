@@ -26,8 +26,8 @@ class WithProcessor : AbstractProcessor {
     }
 
     auto process($tokens) {
-    	$out = [);
-        $resultList = [);
+    	$out = [];
+        $resultList = [];
         $category = "";
         $base_expr = "";
         $prev = "";
@@ -68,7 +68,7 @@ class WithProcessor : AbstractProcessor {
                 		$resultList[] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim, "sub_tree" : $subtree);
 
                 		$out[] = ["expr_type" : ExpressionType::SUBQUERY_FACTORING, "base_expr" : trim($base_expr), "sub_tree" : $resultList);
-                		$resultList = [);
+                		$resultList = [];
                 		$category = "";
                 	break;
 

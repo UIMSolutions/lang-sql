@@ -34,11 +34,11 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $result = [);
+        $result = [];
         $prevCategory = "";
         $currCategory = "";
-        $parsed = [);
-        $expr = [);
+        $parsed = [];
+        $expr = [];
         $base_expr = "";
         $skip = 0;
 
@@ -136,9 +136,9 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($prevCategory == 'SUBPARTITION' && $currCategory.isEmpty) {
                     // it separates the subpartition-definitions
                     $result[] = $parsed;
-                    $parsed = [);
+                    $parsed = [];
                     $base_expr = "";
-                    $expr = [);
+                    $expr = [];
                 }
                 break;
 

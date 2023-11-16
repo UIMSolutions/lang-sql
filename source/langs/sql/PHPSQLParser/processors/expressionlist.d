@@ -11,7 +11,7 @@ import lang.sql;
 class ExpressionListProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $resultList = [);
+        $resultList = [];
         $skip_next = false;
         $prev = new ExpressionToken();
 
@@ -103,7 +103,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     // below for unspecified tokens (expressions).
 
                     $localExpr = new ExpressionToken();
-                    $tmpExprList = [);
+                    $tmpExprList = [];
 
                     foreach ($localTokenList as myKey, myValue) {
                         $tmpToken = new ExpressionToken(myKey, myValue);
@@ -133,7 +133,7 @@ class ExpressionListProcessor : AbstractProcessor {
                                 $curr.setSubTree(array_merge($tmpExprList, $localExprList));
                             }
 
-                            $tmpExprList = [);
+                            $tmpExprList = [];
                             $localExpr = new ExpressionToken();
                         }
                     }

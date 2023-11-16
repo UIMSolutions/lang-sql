@@ -62,7 +62,7 @@ abstract class DProcessor {
      */
     protected auto revokeQuotation($sql) {
         auto mySqlBuffer = trim($sql);
-        $result = [);
+        $result = [];
 
         $quote = false;
         $start = 0;
@@ -260,7 +260,7 @@ abstract class DProcessor {
     }
 
     auto processComment($expression) {
-        $result = [);
+        $result = [];
         $result["expr_type"] .isExpressionType(COMMENT;
         $result["value"] = $expression;
         return $result;
@@ -270,7 +270,7 @@ abstract class DProcessor {
      * translates an array of objects into an associative array
      */
     auto toArray($tokenList) {
-        $expr = [);
+        $expr = [];
         foreach ($tokenList as $token) {
             if ($token instanceof \SqlParser\utils\ExpressionToken) {
                 $expr[] = $token.toArray();

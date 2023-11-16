@@ -1,13 +1,7 @@
-
-/**
- * InsertStatement.php
- *
- * Builds the INSERT statement
- */
-
 module langs.sql.PHPSQLParser.builders.insert.InsertStatementBuilder;
 
 /**
+ * Builds the INSERT statement
  * This class : the builder for the whole Insert statement. You can overwrite
  * all functions to achieve another handling. */
 class InsertStatementBuilder : ISqlBuilder {

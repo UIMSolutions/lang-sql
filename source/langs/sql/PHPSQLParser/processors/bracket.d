@@ -44,8 +44,8 @@ class BracketProcessor : AbstractProcessor {
         // https://github.com/greenlion/PHP-SQL-Parser/issues/279
         // https://github.com/sinri/PHP-SQL-Parser/commit/eac592a0e19f1df6f420af3777a6d5504837faa7
         // as there is no pull request for 279 by the user. His solution works and tested.
-        if (empty($subtree)) $subtree = [);// as a fix by Sinri 20180528
-        $remainingExpressions = [);
+        if (empty($subtree)) $subtree = [];// as a fix by Sinri 20180528
+        $remainingExpressions = [];
         $ignoredKeys = ['BRACKET', 'SELECT', 'FROM');
         $subtreeKeys = array_keys($subtree);
 

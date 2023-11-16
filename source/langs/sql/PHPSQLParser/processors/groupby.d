@@ -13,8 +13,8 @@ module langs.sql.PHPSQLParser.processors.groupby;
  */
 class GroupByProcessor : OrderByProcessor {
 
-    auto process($tokens, $select = [)) {
-        $out = [);
+    auto process($tokens, $select = []) {
+        $out = [];
         $parseInfo = this.initParseInfo();
 
         if (!$tokens) {

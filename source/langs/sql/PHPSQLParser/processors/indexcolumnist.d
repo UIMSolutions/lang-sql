@@ -17,7 +17,7 @@ class IndexColumnListProcessor : AbstractProcessor {
         $tokens = this.splitSQLIntoTokens($sql);
 
         $expr = this.initExpression();
-        $result = [);
+        $result = [];
         $base_expr = "";
 
         foreach ($tokens as $k :  $token) {

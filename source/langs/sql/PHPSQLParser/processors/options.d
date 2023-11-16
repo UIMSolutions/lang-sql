@@ -15,12 +15,12 @@ import lang.sql;
 class OptionsProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $resultList = [);
+        $resultList = [];
 
         foreach (myToken; $tokens) {
 
             $tokenList = this.splitSQLIntoTokens(myToken);
-            $result = [);
+            $result = [];
 
             foreach (myReserved; $tokenList) {
                 $trim = myReserved.strip;

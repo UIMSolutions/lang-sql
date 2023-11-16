@@ -13,7 +13,7 @@ class LimitProcessor : AbstractProcessor {
         $comma = -1;
         $exchange = false;
         
-        $comments = [);
+        $comments = [];
         
         foreach (myToken; $tokens) {
             if (this.isCommentToken(myToken)) {

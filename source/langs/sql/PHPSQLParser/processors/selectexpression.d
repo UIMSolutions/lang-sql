@@ -42,7 +42,7 @@ class SelectExpressionProcessor : AbstractProcessor {
          * The tokens after (and including) the AS are removed.
          */
         $base_expr = "";
-        $stripped = [);
+        $stripped = [];
         $capture = false;
         $alias = false;
         $processed = false;
@@ -127,7 +127,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             }
         }
 
-        $result = [);
+        $result = [];
         $result["expr_type"] = $type;
         $result["alias"] = $alias;
         $result["base_expr"] = trim($base_expr);

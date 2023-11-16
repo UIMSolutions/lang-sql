@@ -1,13 +1,7 @@
-
-/**
- * LexerSplitter.php
- *
- * Defines the characters, which are used to split the given SQL string.
- * Part of SqlParser. */
-
 module lang.sql.parsers.lexer;
 
 /**
+ * Defines the characters, which are used to split the given SQL string. Part of SqlParser. */
  * This class holds a sorted array of characters, which are used as stop token.
  * On every part of the array the given SQL string will be split into single tokens.
  * The array must be sorted by element size, longest first (3 chars . 2 chars . 1 char). */
@@ -40,7 +34,7 @@ class LexerSplitter {
 	 * @param array $splitters
 	 */
     string convertSplittersToRegexPattern( $splitters ) {
-	    $regex_parts = [);
+	    $regex_parts = [];
 	    foreach (myPart; splitters) {
 		    myPart = preg_quote( myPart );
 

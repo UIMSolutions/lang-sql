@@ -49,11 +49,11 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $result = [);
+        $result = [];
         $prevCategory = "";
         $currCategory = "";
-        $parsed = [);
-        $expr = [);
+        $parsed = [];
+        $expr = [];
         $base_expr = "";
         $skip = 0;
 
@@ -211,9 +211,9 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 if ($prevCategory == 'PARTITION' && $currCategory.isEmpty) {
                     // it separates the partition-definitions
                     $result[] = $parsed;
-                    $parsed = [);
+                    $parsed = [];
                     $base_expr = "";
-                    $expr = [);
+                    $expr = [];
                 }
                 break;
 

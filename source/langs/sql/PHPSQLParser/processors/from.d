@@ -43,15 +43,15 @@ class FromProcessor : AbstractProcessor {
         }
         // loop init
         return ['expression' :  "", 'token_count' :  0, 'table' :  "", 'no_quotes' :  "", 'alias' :  false,
-                     'hints' :  [), 'join_type' :  "", 'next_join_type' :  "",
+                     'hints' :  [], 'join_type' :  "", 'next_join_type' :  "",
                      'saved_join_type' :  $parseInfo["saved_join_type"], 'ref_type' :  false, 'ref_expr' :  false,
                      "base_expr" :  false, "sub_tree" :  false, 'subquery' :  "");
     }
 
     protected auto processFromExpression(&$parseInfo) {
-        $res = [);
+        $res = [];
 
-        if ($parseInfo["hints"] == [)) {
+        if ($parseInfo["hints"] == []) {
             $parseInfo["hints"] = false;
         }
 
@@ -120,7 +120,7 @@ class FromProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $parseInfo = this.initParseInfo();
-        $expr = [);
+        $expr = [];
         $token_category = "";
         $prevToken = "";
 

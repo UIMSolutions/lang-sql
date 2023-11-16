@@ -17,7 +17,7 @@ import lang.sql;
 class CreateProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $result = $expr = [);
+        $result = $expr = [];
         $base_expr = "";
 
         foreach ($token; $tokens) {

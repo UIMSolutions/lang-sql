@@ -1,10 +1,3 @@
-
-/**
- * InsertBuilder.php
- *
- * Builds the [INSERT] statement part.
- */
-
 module langs.sql.PHPSQLParser.builders.insert.builder;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the [INSERT] statement part.
  * This class : the builder for the [INSERT] statement parts. 
  * You can overwrite all functions to achieve another handling. */
 class InsertBuilder : ISqlBuilder {

@@ -18,7 +18,7 @@ class SelectProcessor : SelectExpressionProcessor {
 
     auto process($tokens) {
         $expression = "";
-        $expressionList = [);
+        $expressionList = [];
         foreach ($token; $tokens) {
             if (this.isCommaToken($token)) {
                 $expression = super.process(trim($expression));

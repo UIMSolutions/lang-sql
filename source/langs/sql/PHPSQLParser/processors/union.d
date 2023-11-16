@@ -123,7 +123,7 @@ class UnionProcessor : AbstractProcessor {
     }
 
     auto process($inputArray) {
-        $outputArray = [);
+        $outputArray = [];
 
         // ometimes the parser needs to skip ahead until a particular
         // oken is found
@@ -136,7 +136,7 @@ class UnionProcessor : AbstractProcessor {
 
         // ometimes a "query" consists of more than one query (like a UNION query)
         // his array holds all the queries
-        $queries = [);
+        $queries = [];
 
         foreach ($inputArray as $key :  $token) {
             $trim = $token.strip;
@@ -174,7 +174,7 @@ class UnionProcessor : AbstractProcessor {
 
             // store the tokens related to the unionType
             $queries[$unionType][] = $outputArray;
-            $outputArray = [);
+            $outputArray = [];
         }
 
         // the query tokens after the last UNION or UNION ALL

@@ -53,12 +53,12 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $result = ['partition-options' : [), 'last-parsed' : false);
+        $result = ['partition-options' : [], 'last-parsed' : false);
 
         $prevCategory = "";
         $currCategory = "";
-        $parsed = [);
-        $expr = [);
+        $parsed = [];
+        $expr = [];
         $base_expr = "";
         $skip = 0;
 
@@ -206,7 +206,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     $parsed[] = $last;
                     unset($last);
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = $prevCategory;
                     break;
@@ -261,7 +261,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     unset($last);
                     unset($subtree);
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = $prevCategory;
                     break;
@@ -286,7 +286,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     unset($last);
                     unset($subtree);
 
-                    $expr = [);
+                    $expr = [];
                     $base_expr = "";
                     $currCategory = $prevCategory;
                     break;

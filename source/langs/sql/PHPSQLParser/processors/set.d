@@ -38,7 +38,7 @@ class SetProcessor : AbstractProcessor {
     }
 
     auto process($tokens, $isUpdate = false) {
-        $result = [);
+        $result = [];
         $baseExpr = "";
         $assignment = false;
         $varType = false;

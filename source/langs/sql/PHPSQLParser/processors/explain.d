@@ -25,10 +25,10 @@ class ExplainProcessor : AbstractProcessor {
     }
 
     // TODO: refactor that function
-    auto process($tokens, $keys = [)) {
+    auto process($tokens, $keys = []) {
 
         $base_expr = "";
-        $expr = [);
+        $expr = [];
         $currCategory = "";
 
         if (this.isStatement($keys)) {
