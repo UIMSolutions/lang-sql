@@ -1,10 +1,3 @@
-
-/**
- * FromBuilder.php
- *
- * Builds the FROM statement
- * */
-
 module langs.sql.PHPSQLParser.builders.from;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the FROM statement
  * This class : the builder for the [FROM] part. You can overwrite
  * all functions to achieve another handling.
  */

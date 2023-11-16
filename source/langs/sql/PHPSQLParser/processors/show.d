@@ -1,10 +1,3 @@
-
-/**
- * ShowProcessor.php
- *
- * This file : the processor for the SHOW statements.
- */
-
 module langs.sql.PHPSQLParser.processors.show;
 
 import lang.sql;
@@ -12,10 +5,8 @@ import lang.sql;
 @safe:
 
 /**
- *
+ * This file : the processor for the SHOW statements.
  * This class processes the SHOW statements.
- *
-
  * */
 class ShowProcessor : AbstractProcessor {
 

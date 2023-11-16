@@ -10,7 +10,7 @@ import lang.sql;
 // This class processes the index column lists.
 class IndexColumnListProcessor : AbstractProcessor {
     protected auto initExpression() {
-        return ['name' : false, 'no_quotes' : false, 'length' : false, 'dir' : false);
+        return ['name' : false, 'no_quotes' : false, 'length' : false, 'dir' : false];
     }
 
     auto process($sql) {

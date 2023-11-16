@@ -69,7 +69,7 @@ class InsertProcessor : AbstractProcessor {
         }
         if ($cols[0] == "(" && substr($cols, -1) == ")") {
             $parsed = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $cols,
-                            "sub_tree" : false);
+                            "sub_tree" : false];
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {

@@ -1,9 +1,3 @@
-
-/**
- * QueryBuilder.php
- *
- * Builds the SELECT statements within parentheses. */
-
 module lang.sql.parsers.builders;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the SELECT statements within parentheses. 
  * This class : the builder for queries within parentheses (no subqueries). 
  * You can overwrite all functions to achieve another handling. */
 class QueryBuilder : ISqlBuilder {

@@ -1,15 +1,10 @@
-
-/**
- * CreateIndexTypeBuilder.php
- *
- * Builds index type part of a CREATE INDEX statement. */
-
 module langs.sql.PHPSQLParser.builders.create.indexes.indextype;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds index type part of a CREATE INDEX statement. */
  * This class : the builder for the index type of a CREATE INDEX
  * statement. 
  * You can overwrite all functions to achieve another handling. */

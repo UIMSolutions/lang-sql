@@ -153,7 +153,7 @@ class IndexProcessor : AbstractProcessor {
                     // TODO: the base_expr should contain the column-def too
                     $result["on"] = ["expr_type" : expressionType(TABLE, "base_expr" : baseExpression,
                                           'name' : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken),
-                                          "sub_tree" : false);
+                                          "sub_tree" : false];
                     $expr = [];
                     baseExpression = "";
                     $currCategory = 'COLUMN_DEF';

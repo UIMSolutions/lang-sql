@@ -1,10 +1,3 @@
-
-/**
- * ValuesProcessor.php
- *
- * This file : the processor for the VALUES statements.
- */
-
 module langs.sql.PHPSQLParser.processors.values;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the processor for the VALUES statements.
  * This class processes the VALUES statements.
  */
 class ValuesProcessor : AbstractProcessor {
@@ -53,7 +47,7 @@ class ValuesProcessor : AbstractProcessor {
 
                     baseExpression = trim(substr(baseExpression, 0, -strlen(myToken)));
                     $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression,
-                                      'data' : this.processRecord(baseExpression), 'delim' : false);
+                                      'data' : this.processRecord(baseExpression), 'delim' : false];
                     baseExpression = "";
 
                     currentCategory = 'DUPLICATE';
@@ -97,12 +91,12 @@ class ValuesProcessor : AbstractProcessor {
         if (!baseExpression.strip.isEmpty) {
             if (currentCategory.isEmpty) {
                 $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression.strip,
-                                  'data' : this.processRecord(baseExpression.strip), 'delim' : false);
+                                  'data' : this.processRecord(baseExpression.strip), 'delim' : false];
             }
             if (currentCategory == 'DUPLICATE') {
                 $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
                 $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
-                                  "sub_tree" : ($res.isEmpty ? false : $res), 'delim' : false);
+                                  "sub_tree" : ($res.isEmpty ? false : $res), 'delim' : false];
             }
         }
 

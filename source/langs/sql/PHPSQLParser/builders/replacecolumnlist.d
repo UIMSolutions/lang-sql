@@ -1,14 +1,9 @@
-
-/**
- * ReplaceColumnListBuilder.php
- *
- * Builds column-list parts of REPLACE statements. */
-
 module langs.sql.PHPSQLParser.builders.replacecolumnlist;
 use SqlParser\exceptions\UnableToCreateSQLException;
 use SqlParser\utils\ExpressionType;
 
 /**
+ * Builds column-list parts of REPLACE statements. 
  * This class : the builder for column-list parts of REPLACE statements. 
  * You can overwrite all functions to achieve another handling. */
 class ReplaceColumnListBuilder : ISqlBuilder {

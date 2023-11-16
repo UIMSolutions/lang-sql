@@ -93,13 +93,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case 'VARCHAR':
             case 'VARCHARACTER': // Alias for VARCHAR
-                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
+                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
                 $prevCategory = 'TEXT';
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 continue 2;
 
             case 'VARBINARY':
-                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
+                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
                 $prevCategory = upperToken;
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 continue 2;
@@ -137,7 +137,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'BOOL':
             case 'BOOLEAN':
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
-                                'zerofill' : false, 'length' : false);
+                                'zerofill' : false, 'length' : false];
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
@@ -150,14 +150,14 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     $expr[] = $last;
                     continue 2;
                 }
-                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
+                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
 
             case 'CHAR':
             case 'CHARACTER':  // Alias for CHAR
-                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
+                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = 'TEXT';
                 continue 2;
@@ -168,7 +168,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'FLOAT':
             case 'FLOAT4':     // Alias for FLOAT
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
-                                'zerofill' : false);
+                                'zerofill' : false];
                 $currCategory = 'TWO_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
@@ -176,13 +176,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'DECIMAL':
             case 'NUMERIC':
                 $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'unsigned' : false,
-                                'zerofill' : false);
+                                'zerofill' : false];
                 $currCategory = 'TWO_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
 
             case 'YEAR':
-                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false);
+                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'length' : false];
                 $currCategory = 'SINGLE_PARAM_PARENTHESIS';
                 $prevCategory = upperToken;
                 continue 2;
@@ -205,13 +205,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case 'MEDIUMTEXT':
             case 'LONGTEXT':
                 $prevCategory = $currCategory = 'TEXT';
-                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'binary' : false);
+                $expr[] = ["expr_type" : expressionType(DATA_TYPE, "base_expr" : strippedToken, 'binary' : false];
                 continue 2;
 
             case 'ENUM':
                 $currCategory = 'MULTIPLE_PARAM_PARENTHESIS';
                 $prevCategory = 'TEXT';
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false);
+                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false];
                 continue 2;
 
             case 'GEOMETRY':
@@ -239,7 +239,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 				} else {
 	                $currCategory = 'MULTIPLE_PARAM_PARENTHESIS';
     	            $prevCategory = 'TEXT';
-        	        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false);
+        	        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false];
 				}
                 continue 2;
 

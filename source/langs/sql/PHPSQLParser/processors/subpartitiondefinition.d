@@ -22,7 +22,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto getBracketExpressionType($token) {
-        return ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false);
+        return ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false];
     }
 
     auto process($tokens) {
@@ -59,7 +59,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 if ($currCategory.isEmpty) {
                     $expr[] = this.getReservedType(strippedToken);
                     $parsed = ["expr_type" : expressionType(SUBPARTITION_DEF, "base_expr" : baseExpression.strip,
-                                    "sub_tree" : false);
+                                    "sub_tree" : false];
                     $currCategory = upperToken;
                     continue 2;
                 }

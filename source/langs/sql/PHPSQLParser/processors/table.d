@@ -42,7 +42,7 @@ class TableProcessor : AbstractProcessor {
 
         $currCategory = 'TABLE_NAME';
         $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'create-def' : false,
-                        'options' : [], 'like' : false, 'select-option' : false);
+                        'options' : [], 'like' : false, 'select-option' : false];
         $expr = [];
         baseExpression = "";
         $skip = 0;

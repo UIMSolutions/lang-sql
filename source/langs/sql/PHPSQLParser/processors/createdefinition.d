@@ -85,7 +85,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case 'CONSTRAINT':
-                $expr[] = ["expr_type" : expressionType(CONSTRAINT, "base_expr" : strippedToken, "sub_tree" : false);
+                $expr[] = ["expr_type" : expressionType(CONSTRAINT, "base_expr" : strippedToken, "sub_tree" : false];
                 $currCategory = $prevCategory = upperToken;
                 continue 2;
 

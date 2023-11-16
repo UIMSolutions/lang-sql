@@ -1,10 +1,3 @@
-
-/**
- * WhereExpressionBuilder.php
- *
- * Builds expressions within the WHERE part.
- */
-
 module langs.sql.PHPSQLParser.builders.whereexpression;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds expressions within the WHERE part.
  * This class : the builder for expressions within the WHERE part.
  * You can overwrite all functions to achieve another handling.
  */
