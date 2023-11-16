@@ -284,9 +284,9 @@ class ExpressionListProcessor : AbstractProcessor {
                     if ($prev.isColumnReference() || $prev.isFunction() || $prev.isAggregateFunction()
                         || $prev.isConstant() || $prev.isSubQuery() || $prev.isExpression()
                         || $prev.isBracketExpression() || $prev.isVariable() || $prev.isCustomFunction()) {
-                        $curr.setTokenType(expressionType(OPERATOR);
+                        $curr.setTokenType(expressionType("OPERATOR"));
                     } else {
-                        $curr.setTokenType(expressionType(SIGN);
+                        $curr.setTokenType(expressionType("SIGN"));
                     }
                     break;
 
@@ -296,18 +296,18 @@ class ExpressionListProcessor : AbstractProcessor {
                     switch ($curr.getToken(0)) {
                     case "'":
                     // it is a string literal
-                        $curr.setTokenType(expressionType(CONSTANT);
+                        $curr.setTokenType(expressionType("CONSTANT"));
                         break;
                     case '"':
                         if (!this.options.getANSIQuotes()) {
                         // If we're not using ANSI quotes, this is a string literal.
-                            $curr.setTokenType(expressionType(CONSTANT);
+                            $curr.setTokenType(expressionType("CONSTANT"));
                             break;
                         }
                         // Otherwise continue to the next case
                     case '`':
                     // it is an escaped colum name
-                        $curr.setTokenType(expressionType(COLREF);
+                        $curr.setTokenType(expressionType("COLREF"));
                         $curr.setNoQuotes($curr.getToken(), null, this.options);
                         break;
 
@@ -316,14 +316,14 @@ class ExpressionListProcessor : AbstractProcessor {
 
                             if ($prev.isSign()) {
                                 $prev.addToken($curr.getToken()); // it is a negative numeric constant
-                                $prev.setTokenType(expressionType(CONSTANT);
+                                $prev.setTokenType(expressionType("CONSTANT"));
                                 continue 3;
                                 // skip current token
                             } else {
-                                $curr.setTokenType(expressionType(CONSTANT);
+                                $curr.setTokenType(expressionType("CONSTANT"));
                             }
                         } else {
-                            $curr.setTokenType(expressionType(COLREF);
+                            $curr.setTokenType(expressionType("COLREF"));
                             $curr.setNoQuotes($curr.getToken(), null, this.options);
                         }
                         break;
@@ -338,31 +338,31 @@ class ExpressionListProcessor : AbstractProcessor {
 	            $next = isset( $tokens[ $k + 1 ] ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
                 $isEnclosedWithinParenthesis = $next.isEnclosedWithinParenthesis();
 	            if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
-                    $curr.setTokenType(expressionType(CUSTOM_FUNCTION);
+                    $curr.setTokenType(expressionType("CUSTOM_FUNCTION");
                     $curr.setNoQuotes(null, null, this.options);
 
                 } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isAggregateFunction($curr.getUpper())) {
-                    $curr.setTokenType(expressionType(AGGREGATE_FUNCTION);
+                    $curr.setTokenType(expressionType("AGGREGATE_FUNCTION");
                     $curr.setNoQuotes(null, null, this.options);
 
                 } elseif ($curr.getUpper() == 'NULL') {
                     // it is a reserved word, but we would like to set it as constant
-                    $curr.setTokenType(expressionType(CONSTANT);
+                    $curr.setTokenType(expressionType("CONSTANT");
 
                 } else {
                     if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
                         // issue 60: check functions with parameters
                         // . colref (we check parameters later)
                         // . if there is no parameter, we leave the colref
-                        $curr.setTokenType(expressionType(COLREF);
+                        $curr.setTokenType(expressionType("COLREF"));
 
                     } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
-                        $curr.setTokenType(expressionType(SIMPLE_FUNCTION);
+                        $curr.setTokenType(expressionType("SIMPLE_FUNCTION"));
                         $curr.setNoQuotes(null, null, this.options);
 
                     }  elseif (!$isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
 	                    // Colname using auto name.
-                    	$curr.setTokenType(expressionType(COLREF);
+                    	$curr.setTokenType(expressionType("COLREF"));
                     } else {
                         $curr.setTokenType(expressionType("RESERVED"));
                         $curr.setNoQuotes(null, null, this.options);

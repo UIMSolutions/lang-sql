@@ -21,13 +21,13 @@ class OptionsProcessor : AbstractProcessor {
                 if (strippedToken.isEmpty) {
                     continue;
                 }
-                $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
+
+                $result[] = ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
             }
-            $resultList[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : myToken.strip,
-                                  "sub_tree" : $result];
+            $resultList[] = ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip,
+                "sub_tree": $result];
         }
 
         return $resultList;
     }
 }
-

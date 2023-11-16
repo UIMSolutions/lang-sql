@@ -22,8 +22,8 @@ class SelectExpressionProcessor : AbstractProcessor {
      */
     auto process($expression) {
         $tokens = this.splitSQLIntoTokens($expression);
-        $token_count = count($tokens);
-        if ($token_count == 0) {
+        size_t numberOfTokens = count($tokens);
+        if (numberOfTokens == 0) {
             return null;
         }
 
@@ -38,7 +38,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         $alias = false;
         $processed = false;
 
-        for ($i = 0; $i < $token_count; ++$i) {
+        for ($i = 0; $i < numberOfTokens; ++$i) {
             $token = $tokens[$i];
             upperToken = $token.toUpper;
 
@@ -122,7 +122,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         $result["expr_type"] = $type;
         $result["alias"] = $alias;
         $result["base_expr"] = baseExpression.strip;
-        if (!empty($no_quotes)) {
+        if (!$no_quotes.isEmpty) {
             $result["no_quotes"] = $no_quotes;
         }
         $result["sub_tree"] = ($processed.isEmpty ? false : $processed);
