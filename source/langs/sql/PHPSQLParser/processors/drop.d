@@ -12,13 +12,13 @@ class DropProcessor : AbstractProcessor {
 
     auto process($tokenList) {
         $exists = false;
-        $base_expr = "";
+        baseExpression = "";
         $objectType = "";
         $subTree = [];
         $option = false;
 
         foreach ($tokenList as $token) {
-            $base_expr  ~= $token;
+            baseExpression  ~= $token;
             strippedToken = $token.strip;
 
             if (strippedToken.isEmpty) {
@@ -34,23 +34,23 @@ class DropProcessor : AbstractProcessor {
                 if ($objectType.isEmpty) {
                     $objectType = constant('SqlParser\utils\expressionType(' . $upper);
                 }
-                $base_expr = "";
+                baseExpression = "";
                 break;
             case 'INDEX':
 	            if ( $objectType.isEmpty ) {
 		            $objectType = constant( 'SqlParser\utils\expressionType(' . $upper );
 	            }
-	            $base_expr = "";
+	            baseExpression = "";
 	            break;
             case 'IF':
             case 'EXISTS':
                 $exists = true;
-                $base_expr = "";
+                baseExpression = "";
                 break;
 
             case 'TEMPORARY':
                 $objectType .isExpressionType(TEMPORARY_TABLE;
-                $base_expr = "";
+                baseExpression = "";
                 break;
 
             case 'RESTRICT':
@@ -58,11 +58,11 @@ class DropProcessor : AbstractProcessor {
                 $option = $upper;
                 if (!empty($objectList)) {
                     $subTree[] = ["expr_type" : expressionType(EXPRESSION,
-                                       "base_expr" : trim(substr($base_expr, 0, -$token.length)),
+                                       "base_expr" : trim(substr(baseExpression, 0, -$token.length)),
                                        "sub_tree" : $objectList);
                     $objectList = [];
                 }
-                $base_expr = "";
+                baseExpression = "";
                 break;
 
             case ',':
@@ -91,7 +91,7 @@ class DropProcessor : AbstractProcessor {
         }
 
         if (!empty($objectList)) {
-            $subTree[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : trim($base_expr),
+            $subTree[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : trim(baseExpression),
                                "sub_tree" : $objectList);
         }
 

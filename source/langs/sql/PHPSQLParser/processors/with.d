@@ -29,11 +29,11 @@ class WithProcessor : AbstractProcessor {
     	$out = [];
         $resultList = [];
         $category = "";
-        $base_expr = "";
+        baseExpression = "";
         $prev = "";
 
         foreach ($token; $tokens) {
-        	$base_expr  ~= $token;
+        	baseExpression  ~= $token;
 			auto strippedToken = $token.strip;
             upperToken = strippedToken.toUpper;
 
@@ -57,7 +57,7 @@ class WithProcessor : AbstractProcessor {
 
             case ',':
             	// ignore
-            	$base_expr = "";
+            	baseExpression = "";
             	break;
 
             default:
@@ -67,7 +67,7 @@ class WithProcessor : AbstractProcessor {
                 		$subtree = this.processTopLevel(this.removeParenthesisFromStart($token));
                 		$resultList[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken, "sub_tree" : $subtree);
 
-                		$out[] = ["expr_type" : expressionType(SUBQUERY_FACTORING, "base_expr" : trim($base_expr), "sub_tree" : $resultList);
+                		$out[] = ["expr_type" : expressionType(SUBQUERY_FACTORING, "base_expr" : trim(baseExpression), "sub_tree" : $resultList);
                 		$resultList = [];
                 		$category = "";
                 	break;

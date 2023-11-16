@@ -34,8 +34,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         return $res;
     }
 
-    protected auto buildColDef($expr, $base_expr, $options, $refs, $key) {
-        $expr = ["expr_type" : expressionType(COLUMN_TYPE, "base_expr" : $base_expr, "sub_tree" : $expr];
+    protected auto buildColDef($expr, baseExpression, $options, $refs, $key) {
+        $expr = ["expr_type" : expressionType(COLUMN_TYPE, "base_expr" : baseExpression, "sub_tree" : $expr];
 
         // add options first
         $expr["sub_tree"] = array_merge($expr["sub_tree"], $options["sub_tree"]);
@@ -54,7 +54,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     auto process($tokens) {
 
         strippedToken = "";
-        $base_expr = "";
+        baseExpression = "";
         $currCategory = "";
         $expr = [];
         $refs = [];
@@ -65,7 +65,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         foreach ($key : $token; $tokens as ) {
 
             auto strippedToken = $token.strip;
-            $base_expr  ~= $token;
+            baseExpression  ~= $token;
 
             if ($skip > 0) {
                 $skip--;
@@ -87,7 +87,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case ',':
             // we stop on a single comma and return
             // the $expr entry and the index $key
-                $expr = this.buildColDef($expr, trim(substr($base_expr, 0, -$token.length)), $options, $refs,
+                $expr = this.buildColDef($expr, trim(substr(baseExpression, 0, -$token.length)), $options, $refs,
                     $key - 1);
                 break 2;
 
@@ -402,7 +402,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
         if (!isset($expr["till"])) {
             // end of $tokens array
-            $expr = this.buildColDef($expr, trim($base_expr), $options, $refs, -1);
+            $expr = this.buildColDef($expr, trim(baseExpression), $options, $refs, -1);
         }
         return $expr;
     }

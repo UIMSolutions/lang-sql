@@ -18,12 +18,12 @@ class IndexColumnListProcessor : AbstractProcessor {
 
         $expr = this.initExpression();
         $result = [];
-        $base_expr = "";
+        baseExpression = "";
 
         foreach ($tokens as $k : $token) {
 
             auto strippedToken = $token.strip;
-            $base_expr  ~= $token;
+            baseExpression  ~= $token;
 
             if (strippedToken.isEmpty) {
                 continue;
@@ -41,10 +41,10 @@ class IndexColumnListProcessor : AbstractProcessor {
 
             case ',':
             # the next column
-                $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : $base_expr),
+                $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression),
                         $expr);
                 $expr = this.initExpression();
-                $base_expr = "";
+                baseExpression = "";
                 break;
 
             default:
@@ -59,7 +59,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : $base_expr), $expr);
+        $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression), $expr);
         return $result;
     }
 }

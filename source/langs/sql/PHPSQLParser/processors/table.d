@@ -38,9 +38,9 @@ class TableProcessor : AbstractProcessor {
         return myProcessor.process($tokens);
     }
 
-    protected auto clear(&$expr, &$base_expr, &$category) {
+    protected auto clear(&$expr, &baseExpression, &$category) {
         $expr = [];
-        $base_expr = "";
+        baseExpression = "";
         $category = 'CREATE_DEF';
     }
 
@@ -50,12 +50,12 @@ class TableProcessor : AbstractProcessor {
         $result = ["base_expr" : false, 'name' : false, 'no_quotes' : false, 'create-def' : false,
                         'options' : [], 'like' : false, 'select-option' : false);
         $expr = [];
-        $base_expr = "";
+        baseExpression = "";
         $skip = 0;
 
         foreach ($tokens as $tokenKey : $token) {
             auto strippedToken = $token.strip;
-            $base_expr  ~= $token;
+            baseExpression  ~= $token;
 
             if ($skip > 0) {
                 $skip--;
@@ -79,7 +79,7 @@ class TableProcessor : AbstractProcessor {
                     $last = array_pop($result["options"]);
                     $last["delim"] = ',';
                     $result["options"][] = $last;
-                    $base_expr = "";
+                    baseExpression = "";
                 }
                 continue 2;
 
@@ -204,15 +204,15 @@ class TableProcessor : AbstractProcessor {
                     // all assignments with the keywords
                     $expr[] = this.getReservedType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $currCategory);
+                                                 "base_expr" : trim(baseExpression), 'delim' : " ", "sub_tree" : $expr];
+                    this.clear($expr, baseExpression, $currCategory);
                 }
                 break;
 
             case 'IGNORE':
             case 'REPLACE':
                 $expr[] = this.getReservedType(strippedToken);
-                $result["select-option"] = ["base_expr" : trim($base_expr), 'duplicates' : strippedToken, 'as' : false,
+                $result["select-option"] = ["base_expr" : trim(baseExpression), 'duplicates' : strippedToken, 'as' : false,
                                                  "sub_tree" : $expr];
                 continue 2;
 
@@ -222,7 +222,7 @@ class TableProcessor : AbstractProcessor {
                     $result["select-option"]["duplicates"] = false;
                 }
                 $result["select-option"]["as"] = true;
-                $result["select-option"]["base_expr"] = trim($base_expr);
+                $result["select-option"]["base_expr"] = trim(baseExpression);
                 $result["select-option"]["sub_tree"] = $expr;
                 continue 2;
 
@@ -243,44 +243,44 @@ class TableProcessor : AbstractProcessor {
                 // the charset name
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType(CHARSET,
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $currCategory);
+                                                 "base_expr" : trim(baseExpression), 'delim' : " ", "sub_tree" : $expr];
+                    this.clear($expr, baseExpression, $currCategory);
                     break;
 
                 case 'COLLATE':
                 // the collate name
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType(COLLATE,
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $currCategory);
+                                                 "base_expr" : trim(baseExpression), 'delim' : " ", "sub_tree" : $expr];
+                    this.clear($expr, baseExpression, $currCategory);
                     break;
 
                 case 'DATA_DIRECTORY':
                 // we have the directory name
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType(DIRECTORY, 'kind' : 'DATA',
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $prevCategory);
+                                                 "base_expr" : trim(baseExpression), 'delim' : " ", "sub_tree" : $expr];
+                    this.clear($expr, baseExpression, $prevCategory);
                     continue 3;
 
                 case 'INDEX_DIRECTORY':
                 // we have the directory name
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType(DIRECTORY, 'kind' : 'INDEX',
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $prevCategory);
+                                                 "base_expr" : trim(baseExpression), 'delim' : " ", "sub_tree" : $expr];
+                    this.clear($expr, baseExpression, $prevCategory);
                     continue 3;
 
                 case 'TABLE_NAME':
                     $result["base_expr"] = $result["name"] = strippedToken;
                     $result["no_quotes"] = this.revokeQuotation(strippedToken);
-                    this.clear($expr, $base_expr, $prevCategory);
+                    this.clear($expr, baseExpression, $prevCategory);
                     break;
 
                 case 'LIKE':
                     $result["like"] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
                                             "base_expr" : strippedToken, 'no_quotes' : this.revokeQuotation(strippedToken));
-                    this.clear($expr, $base_expr, $currCategory);
+                    this.clear($expr, baseExpression, $currCategory);
                     break;
 
                 case "":
@@ -289,9 +289,9 @@ class TableProcessor : AbstractProcessor {
                         $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
                         $coldef = this.processCreateDefinition($unparsed);
                         $result["create-def"] = ["expr_type" : expressionType(BRACKET_EXPRESSION,
-                                                      "base_expr" : $base_expr, "sub_tree" : $coldef["create-def"]);
+                                                      "base_expr" : baseExpression, "sub_tree" : $coldef["create-def"]);
                         $expr = [];
-                        $base_expr = "";
+                        baseExpression = "";
                         $currCategory = 'CREATE_DEF';
                     }
                     break;
@@ -305,17 +305,17 @@ class TableProcessor : AbstractProcessor {
                     $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
                     $expr[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken,
                                     "sub_tree" : '***TODO***');
-                    $result["options"][] = ["expr_type" : expressionType(UNION, "base_expr" : trim($base_expr),
+                    $result["options"][] = ["expr_type" : expressionType(UNION, "base_expr" : trim(baseExpression),
                                                  'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $currCategory);
+                    this.clear($expr, baseExpression, $currCategory);
                     break;
 
                 default:
                 // strings and numeric constants
                     $expr[] = this.getConstantType(strippedToken);
                     $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
-                                                 "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
-                    this.clear($expr, $base_expr, $currCategory);
+                                                 "base_expr" : trim(baseExpression), 'delim' : " ", "sub_tree" : $expr];
+                    this.clear($expr, baseExpression, $currCategory);
                     break;
                 }
                 break;

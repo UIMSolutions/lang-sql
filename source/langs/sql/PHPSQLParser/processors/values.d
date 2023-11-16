@@ -30,7 +30,7 @@ class ValuesProcessor : AbstractProcessor {
 
         $currCategory = "";
         $parsed = [];
-        $base_expr = "";
+        auto baseExpression = "";
 
         foreach (myKey, myToken; $tokens["VALUES"]) {
 	        if (this.isCommentToken(myToken)) {
@@ -38,7 +38,7 @@ class ValuesProcessor : AbstractProcessor {
 		        continue;
 	        }
 
-	        $base_expr  ~= myToken;
+	        baseExpression  ~= myToken;
 	        strippedToken = myToken.strip;
 
             if (this.isWhitespaceToken(myToken)) {
@@ -51,10 +51,10 @@ class ValuesProcessor : AbstractProcessor {
             case 'ON':
                 if ($currCategory.isEmpty) {
 
-                    $base_expr = trim(substr($base_expr, 0, -strlen(myToken)));
-                    $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : $base_expr,
-                                      'data' : this.processRecord($base_expr), 'delim' : false);
-                    $base_expr = "";
+                    baseExpression = trim(substr(baseExpression, 0, -strlen(myToken)));
+                    $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : baseExpression,
+                                      'data' : this.processRecord(baseExpression), 'delim' : false);
+                    baseExpression = "";
 
                     $currCategory = 'DUPLICATE';
                     $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
@@ -67,7 +67,7 @@ class ValuesProcessor : AbstractProcessor {
             case 'UPDATE':
                 if ($currCategory == 'DUPLICATE') {
                     $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $base_expr = "";
+                    baseExpression = "";
                 }
                 // else ?
                 break;
@@ -75,17 +75,17 @@ class ValuesProcessor : AbstractProcessor {
             case ',':
                 if ($currCategory == 'DUPLICATE') {
 
-                    $base_expr = trim(substr($base_expr, 0, -strlen(myToken)));
-                    $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
-                    $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : $base_expr,
+                    baseExpression = trim(substr(baseExpression, 0, -strlen(myToken)));
+                    $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+                    $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression,
                                       "sub_tree" : (empty($res) ? false : $res), 'delim': strippedToken];
-                    $base_expr = "";
+                    baseExpression = "";
                     continue 2;
                 }
 
-                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim($base_expr),
-                                  'data' : this.processRecord(trim($base_expr)), 'delim': strippedToken];
-                $base_expr = "";
+                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim(baseExpression),
+                                  'data' : this.processRecord(trim(baseExpression)), 'delim': strippedToken];
+                baseExpression = "";
                 break;
 
             default:
@@ -94,14 +94,14 @@ class ValuesProcessor : AbstractProcessor {
 
         }
 
-        if (trim($base_expr) != "") {
+        if (trim(baseExpression) != "") {
             if ($currCategory.isEmpty) {
-                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim($base_expr),
-                                  'data' : this.processRecord(trim($base_expr)), 'delim' : false);
+                $parsed[] = ["expr_type" : expressionType(RECORD, "base_expr" : trim(baseExpression),
+                                  'data' : this.processRecord(trim(baseExpression)), 'delim' : false);
             }
             if ($currCategory == 'DUPLICATE') {
-                $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
-                $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim($base_expr),
+                $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+                $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim(baseExpression),
                                   "sub_tree" : (empty($res) ? false : $res), 'delim' : false);
             }
         }

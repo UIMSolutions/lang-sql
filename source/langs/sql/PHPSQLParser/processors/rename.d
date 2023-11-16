@@ -11,7 +11,7 @@ import lang.sql;
 class RenameProcessor : AbstractProcessor {
 
     auto process($tokenList) {
-        $base_expr = "";
+        baseExpression = "";
         $resultList = [];
         $tablePair = [];
 
@@ -25,20 +25,20 @@ class RenameProcessor : AbstractProcessor {
             switch ($token.getUpper()) {
             case 'TO':
             // separate source table from destination
-                $tablePair["source"] = ["expr_type" : expressionType(TABLE, 'table' : trim($base_expr),
-                                             'no_quotes' : this.revokeQuotation($base_expr),
-                                             "base_expr" : $base_expr];
-                $base_expr = "";
+                $tablePair["source"] = ["expr_type" : expressionType(TABLE, 'table' : trim(baseExpression),
+                                             'no_quotes' : this.revokeQuotation(baseExpression),
+                                             "base_expr" : baseExpression];
+                baseExpression = "";
                 break;
 
             case ',':
             // split rename operations
-                $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : trim($base_expr),
-                                                  'no_quotes' : this.revokeQuotation($base_expr),
-                                                  "base_expr" : $base_expr);
+                $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : trim(baseExpression),
+                                                  'no_quotes' : this.revokeQuotation(baseExpression),
+                                                  "base_expr" : baseExpression);
                 $resultList[] = $tablePair;
                 $tablePair = [];
-                $base_expr = "";
+                baseExpression = "";
                 break;
 
             case 'TABLE':
@@ -47,15 +47,15 @@ class RenameProcessor : AbstractProcessor {
                 continue 2; 
                 
             default:
-                $base_expr  ~= $token.getToken();
+                baseExpression  ~= $token.getToken();
                 break;
             }
         }
 
-        if ($base_expr != "") {
-            $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : trim($base_expr),
-                                              'no_quotes' : this.revokeQuotation($base_expr),
-                                              "base_expr" : $base_expr);
+        if (baseExpression != "") {
+            $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : trim(baseExpression),
+                                              'no_quotes' : this.revokeQuotation(baseExpression),
+                                              "base_expr" : baseExpression);
             $resultList[] = $tablePair;
         }
 

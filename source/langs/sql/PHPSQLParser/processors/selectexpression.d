@@ -41,7 +41,7 @@ class SelectExpressionProcessor : AbstractProcessor {
          * If AS is found, then the next non-whitespace token is captured as the alias.
          * The tokens after (and including) the AS are removed.
          */
-        $base_expr = "";
+        baseExpression = "";
         $stripped = [];
         $capture = false;
         $alias = false;
@@ -74,7 +74,7 @@ class SelectExpressionProcessor : AbstractProcessor {
                 continue;
             }
 
-            $base_expr  ~= $token;
+            baseExpression  ~= $token;
         }
 
         if ($alias) {
@@ -110,7 +110,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             }
         }
 
-        $base_expr = $expression;
+        baseExpression = $expression;
 
         // TODO: this is always done with $stripped, how we do it twice?
         $processed = this.processExpressionList($tokens);
@@ -121,7 +121,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         if (count($processed) == 1) {
             if (!this.isSubQuery($processed[0])) {
                 $type = $processed[0]["expr_type"];
-                $base_expr = $processed[0]["base_expr"];
+                baseExpression = $processed[0]["base_expr"];
                 $no_quotes = isset($processed[0]["no_quotes"]) ? $processed[0]["no_quotes"] : null;
                 $processed = $processed[0]["sub_tree"]; // it can be FALSE
             }
@@ -130,7 +130,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         $result = [];
         $result["expr_type"] = $type;
         $result["alias"] = $alias;
-        $result["base_expr"] = trim($base_expr);
+        $result["base_expr"] = trim(baseExpression);
         if (!empty($no_quotes)) {
             $result["no_quotes"] = $no_quotes;
         }

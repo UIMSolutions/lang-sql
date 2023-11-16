@@ -18,21 +18,21 @@ import lang.sql;
 */
 class ReferenceDefinitionProcessor : AbstractProcessor {
 
-    protected auto buildReferenceDef($expr, $base_expr, $key) {
+    protected auto buildReferenceDef($expr, baseExpression, $key) {
         $expr["till"] = $key;
-        $expr["base_expr"] = $base_expr;
+        $expr["base_expr"] = baseExpression;
         return $expr;
     }
 
     auto process($tokens) {
 
         $expr = ["expr_type" : expressionType(REFERENCE, "base_expr" : false, "sub_tree" : []);
-        $base_expr = "";
+        baseExpression = "";
 
         foreach ($key : $token; $tokens) {
 
             auto strippedToken = $token.strip;
-            $base_expr  ~= $token;
+            baseExpression  ~= $token;
 
             if (strippedToken.isEmpty) {
                 continue;
@@ -45,7 +45,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case ',':
             # we stop on a single comma
             # or at the end of the array $tokens
-                $expr = this.buildReferenceDef($expr, trim(substr($base_expr, 0, -$token.length)), $key - 1);
+                $expr = this.buildReferenceDef($expr, trim(substr(baseExpression, 0, -$token.length)), $key - 1);
                 break 2;
 
             case 'REFERENCES':
@@ -152,7 +152,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         }
 
         if (!isset($expr["till"])) {
-            $expr = this.buildReferenceDef($expr, trim($base_expr), -1);
+            $expr = this.buildReferenceDef($expr, trim(baseExpression), -1);
         }
         return $expr;
     }

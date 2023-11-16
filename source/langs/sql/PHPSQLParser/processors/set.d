@@ -28,12 +28,12 @@ class SetProcessor : AbstractProcessor {
      * A SET list is simply a list of key = value expressions separated by comma (,).
      * This auto produces a list of the key/value expressions.
      */
-    protected auto processAssignment($base_expr) {
-        $assignment = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
+    protected auto processAssignment(baseExpression) {
+        $assignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
-        return ["expr_type" : expressionType(EXPRESSION, "base_expr" : trim($base_expr),
+        return ["expr_type" : expressionType(EXPRESSION, "base_expr" : trim(baseExpression),
                      "sub_tree" : (empty($assignment) ? false : $assignment));
     }
 

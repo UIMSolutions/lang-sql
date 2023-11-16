@@ -12,12 +12,12 @@ class CreateProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $result = $expr = [];
-        $base_expr = "";
+        baseExpression = "";
 
         foreach (myToken; $tokens) {
             
             auto strippedToken = myToken.strip;
-            $base_expr  ~= myToken;
+            baseExpression  ~= myToken;
 
             if (strippedToken.isEmpty) {
                 continue;
@@ -75,7 +75,7 @@ class CreateProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result["base_expr"] = trim($base_expr);
+        $result["base_expr"] = trim(baseExpression);
         $result["sub_tree"] = $expr;
         return $result;
     }

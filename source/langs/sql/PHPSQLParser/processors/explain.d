@@ -21,7 +21,7 @@ class ExplainProcessor : AbstractProcessor {
     // TODO: refactor that function
     auto process($tokens, $keys = []) {
 
-        $base_expr = "";
+        baseExpression = "";
         $expr = [];
         $currCategory = "";
 
@@ -29,7 +29,7 @@ class ExplainProcessor : AbstractProcessor {
             foreach (myToken; $tokens) {
 
                 auto strippedToken = myToken.strip;
-                $base_expr  ~= myToken;
+                baseExpression  ~= myToken;
 
                 if (strippedToken.isEmpty) {
                     continue;
@@ -63,7 +63,7 @@ class ExplainProcessor : AbstractProcessor {
                 case 'JSON':
                     if ($currCategory == 'FORMAT') {
                         $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim($base_expr),
+                        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim(baseExpression),
                                      "sub_tree" : $expr];
                     }
                     // else?
