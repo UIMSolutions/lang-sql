@@ -89,10 +89,10 @@ class FromProcessor : AbstractProcessor {
                     $sub_tree = $unionQueries;
                 }
                 $parseInfo["sub_tree"] = $sub_tree;
-                $res["expr_type"] .isExpressionType(TABLE_EXPRESSION;
+                $res["expr_type"} = expressionType("TABLE_EXPRESSION");
             }
         } else {
-            $res["expr_type"] .isExpressionType(TABLE;
+            $res["expr_type"] = expressionType("TABLE");
             $res["table"] = $parseInfo["table"];
             $res["no_quotes"] = this.revokeQuotation($parseInfo["table"]);
         }
