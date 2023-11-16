@@ -40,7 +40,7 @@ class DropExpressionBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue, 0);
             mySql  ~= this.buildView(myValue);
             mySql  ~= this.buildSchema(myValue);

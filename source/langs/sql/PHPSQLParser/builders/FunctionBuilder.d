@@ -69,7 +69,7 @@ class FunctionBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach ($k :  myValue, $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.build(myValue);
             mySql  ~= this.buildConstant(myValue);
             mySql  ~= this.buildSubQuery(myValue);

@@ -78,7 +78,7 @@ class SubTreeBuilder : ISqlBuilder {
         }
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);
             mySql  ~= this.buildFunction(myValue);
             mySql  ~= this.buildOperator(myValue);

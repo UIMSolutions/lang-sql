@@ -37,7 +37,7 @@ class GroupByBuilder : ISqlBuilder {
     string build(array $parsed) {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);
             mySql  ~= this.buildPosition(myValue);
             mySql  ~= this.buildFunction(myValue);

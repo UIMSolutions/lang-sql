@@ -23,7 +23,7 @@ class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
         
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);
             mySql  ~= this.buildConstant(myValue);
             mySql  ~= this.buildOperator(myValue);

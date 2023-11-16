@@ -30,7 +30,7 @@ class CollationBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (key, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildOperator(myValue);
             mySql  ~= this.buildConstant(myValue);

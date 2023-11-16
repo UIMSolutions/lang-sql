@@ -48,7 +48,7 @@ class FromBuilder : ISqlBuilder {
 
                     $select_builder = new SelectStatementBuilder();
 
-                    auto oldSqlLength = mySql.length;
+                    size_t oldSqlLength = mySql.length;
                     mySql  ~= $select_builder.build($item);
 
                     if (oldSqlLength == mySql.length) { // No change
@@ -59,7 +59,7 @@ class FromBuilder : ISqlBuilder {
         }
         else {
             foreach (myKey, myValue; $parsed) {
-                auto oldSqlLength = mySql.length;
+                size_t oldSqlLength = mySql.length;
                 mySql  ~= this.buildTable(myValue, $k);
                 mySql  ~= this.buildTableExpression(myValue, $k);
                 mySql  ~= this.buildSubquery(myValue, $k);

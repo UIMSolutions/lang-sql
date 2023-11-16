@@ -62,7 +62,7 @@ class ColumnTypeBuilder : ISqlBuilder {
         }
         string mySql = "";
         foreach ($k :  myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildDataType(myValue);
             mySql  ~= this.buildColumnTypeBracketExpression(myValue);
             mySql  ~= this.buildReserved(myValue);

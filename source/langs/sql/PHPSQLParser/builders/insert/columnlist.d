@@ -20,7 +20,7 @@ class InsertColumnListBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildColumn(myValue);
 
             if (oldSqlLength == mySql.length) { // No change

@@ -33,7 +33,7 @@ class ForeignRefBuilder : ISqlBuilder {
         }
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue);
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildColumnList(myValue);

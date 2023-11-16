@@ -23,7 +23,7 @@ class IndexTypeBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change

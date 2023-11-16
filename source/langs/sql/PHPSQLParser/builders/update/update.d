@@ -19,7 +19,7 @@ class UpdateBuilder : ISqlBuilder {
         string mySql = "";
 
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue, $k);
 
             if (oldSqlLength == mySql.length) { // No change

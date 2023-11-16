@@ -24,7 +24,7 @@ class BracketStatementBuilder : ISqlBuilder {
     string build(array $parsed) {
         string mySql = "";
         foreach (myKey, myValue; $parsed["BRACKET"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildSelectBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change

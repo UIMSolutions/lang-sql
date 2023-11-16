@@ -45,7 +45,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildConstraint(myValue);
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildColumnList(myValue);

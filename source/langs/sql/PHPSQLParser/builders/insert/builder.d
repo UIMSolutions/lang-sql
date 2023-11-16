@@ -44,7 +44,7 @@ class InsertBuilder : ISqlBuilder {
     string build(array $parsed) {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue);
             mySql  ~= this.buildSubQuery(myValue);
             mySql  ~= this.buildColumnList(myValue);

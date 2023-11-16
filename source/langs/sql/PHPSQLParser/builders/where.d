@@ -70,7 +70,7 @@ class WhereBuilder : ISqlBuilder {
     string build(array $parsed) {
         mySql = "WHERE ";
         foreach (myKey, myValue; $parsed) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
 
             mySql  ~= this.buildOperator(myValue);
             mySql  ~= this.buildConstant(myValue);

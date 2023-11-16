@@ -53,7 +53,7 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
         
         string mySql = "";
         foreach (myKey, myValue; $parsed["options"]) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildIndexAlgorithm(myValue);
             mySql  ~= this.buildIndexLock(myValue);
             mySql  ~= this.buildIndexComment(myValue);

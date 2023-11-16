@@ -48,7 +48,7 @@ class SetExpressionBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             string myDelim = " ";
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);
             mySql  ~= this.buildConstant(myValue);
             mySql  ~= this.buildOperator(myValue);

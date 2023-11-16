@@ -50,7 +50,7 @@ class ShowBuilder : ISqlBuilder {
         
         string mySql = "";
         foreach (myKey, myValue; $show) {
-            auto oldSqlLength = mySql.length;
+            size_t oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildConstant(myValue);
             mySql  ~= this.buildEngine(myValue);
