@@ -22,7 +22,7 @@ class ExplainProcessor : AbstractProcessor {
     auto process($tokens, $keys = []) {
 
         baseExpression = "";
-        $expr = [];
+        myExpression = [];
         currentCategory = "";
 
         if (this.isStatement($keys)) {
@@ -47,14 +47,14 @@ class ExplainProcessor : AbstractProcessor {
                 case 'FORMAT':
                     if (currentCategory.isEmpty) {
                         currentCategory = upperToken;
-                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                        myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     }
                     // else?
                     break;
 
                 case '=':
                     if (currentCategory == 'FORMAT') {
-                        $expr[] = ["expr_type" : expressionType(OPERATOR, "base_expr": strippedToken];
+                        myExpression[] = ["expr_type" : expressionType(OPERATOR, "base_expr": strippedToken];
                     }
                     // else?
                     break;
@@ -62,9 +62,9 @@ class ExplainProcessor : AbstractProcessor {
                 case 'TRADITIONAL':
                 case 'JSON':
                     if (currentCategory == 'FORMAT') {
-                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                        myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                         return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
-                                     "sub_tree" : $expr];
+                                     "sub_tree" : myExpression];
                     }
                     // else?
                     break;
@@ -74,7 +74,7 @@ class ExplainProcessor : AbstractProcessor {
                     break;
                 }
             }
-            return $expr.isEmpty ? null : $expr;
+            return myExpression.isEmpty ? null : myExpression;
         }
 
         foreach (myToken; $tokens) {
@@ -89,13 +89,13 @@ class ExplainProcessor : AbstractProcessor {
 
             case 'TABLENAME':
                 currentCategory = 'WILD';
-                $expr[] = ["expr_type" : expressionType(COLREF, "base_expr" : strippedToken,
+                myExpression[] = ["expr_type" : expressionType(COLREF, "base_expr" : strippedToken,
                                 'no_quotes' : this.revokeQuotation(strippedToken));
                 break;
 
             case "":
                 currentCategory = 'TABLENAME';
-                $expr[] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
+                myExpression[] = ["expr_type" : expressionType(TABLE, 'table' : strippedToken,
                                 'no_quotes' : this.revokeQuotation(strippedToken), 'alias' : false, "base_expr": strippedToken];
                 break;
 
@@ -103,7 +103,7 @@ class ExplainProcessor : AbstractProcessor {
                 break;
             }
         }
-        return $expr.isEmpty ? null : $expr;
+        return myExpression.isEmpty ? null : myExpression;
     }
 }
 

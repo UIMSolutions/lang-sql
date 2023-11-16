@@ -264,15 +264,15 @@ abstract class DProcessor {
      * translates an array of objects into an associative array
      */
     auto toArray($tokenList) {
-        $expr = [];
+        myExpression = [];
         foreach ($tokenList as $token) {
             if ($token instanceof \SqlParser\utils\ExpressionToken) {
-                $expr[] = $token.toArray();
+                myExpression[] = $token.toArray();
             } else {
-                $expr[] = $token;
+                myExpression[] = $token;
             }
         }
-        return $expr;
+        return myExpression;
     }
 
     protected auto array_insert_after($array, $key, $entry) {

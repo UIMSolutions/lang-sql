@@ -109,7 +109,7 @@ class FromProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $parseInfo = this.initParseInfo();
-        $expr = [];
+        myExpression = [];
         $token_category = "";
         $prevToken = "";
 
@@ -130,7 +130,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (this.isCommentToken($token)) {
-                $expr[] = super.processComment($token];
+                myExpression[] = super.processComment($token];
                 continue;
             }
 
@@ -254,7 +254,7 @@ class FromProcessor : AbstractProcessor {
                     $parseInfo["expression"] = $parseInfo["subquery"];
                 }
 
-                $expr[] = this.processFromExpression($parseInfo);
+                myExpression[] = this.processFromExpression($parseInfo);
                 $parseInfo = this.initParseInfo($parseInfo);
                 break;
 
@@ -273,7 +273,7 @@ class FromProcessor : AbstractProcessor {
                     $parseInfo["expression"] = $parseInfo["subquery"];
                 }
 
-                $expr[] = this.processFromExpression($parseInfo);
+                myExpression[] = this.processFromExpression($parseInfo);
                 $parseInfo = this.initParseInfo($parseInfo);
                 break;
 
@@ -310,8 +310,8 @@ class FromProcessor : AbstractProcessor {
             $i++;
         }
 
-        $expr[] = this.processFromExpression($parseInfo);
-        return $expr;
+        myExpression[] = this.processFromExpression($parseInfo);
+        return myExpression;
     }
 
 }

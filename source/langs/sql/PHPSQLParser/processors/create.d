@@ -11,7 +11,7 @@ import lang.sql;
 class CreateProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $result = $expr = [];
+        $result = myExpression = [];
         baseExpression = "";
 
         foreach (myToken; $tokens) {
@@ -30,20 +30,20 @@ class CreateProcessor : AbstractProcessor {
                 // CREATE TEMPORARY TABLE
                 $result["expr_type"] .isExpressionType(TEMPORARY_TABLE;
                 $result["not-exists"] = false;
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'TABLE':
                 // CREATE TABLE
                 $result["expr_type"] =  expressionType("TABLE");
                 $result["not-exists"] = false;
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'INDEX':
                 // CREATE INDEX
                 $result["expr_type"] .isExpressionType(INDEX;
-                $expr[] = ["expr_type" : expressionType("RESERVED", "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED", "base_expr" : strippedToken);
                 break;
 
             case 'UNIQUE':
@@ -52,23 +52,23 @@ class CreateProcessor : AbstractProcessor {
                 // options of CREATE INDEX
                 $result["base_expr"] = $result["expr_type"] = false;
                 $result["constraint"] = upperToken; 
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;                
                                 
             case 'IF':
                 // option of CREATE TABLE
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'NOT':
                 // option of CREATE TABLE
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case 'EXISTS':
                 // option of CREATE TABLE
                 $result["not-exists"] = true;
-                $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             default:
@@ -76,7 +76,7 @@ class CreateProcessor : AbstractProcessor {
             }
         }
         $result["base_expr"] = baseExpression.strip;
-        $result["sub_tree"] = $expr;
+        $result["sub_tree"] = myExpression;
         return $result;
     }
 }

@@ -32,7 +32,7 @@ class UniqueIndexBuilder : ISqlBuilder {
     }
     
     string build(array $parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(UNIQUE_IDX) {
+        if (!$parsed["expr_type"].isExpressionType("UNIQUE_IDX") {
             return "";
         }
         

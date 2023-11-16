@@ -16,7 +16,7 @@ class IndexColumnListProcessor : AbstractProcessor {
     auto process($sql) {
         $tokens = this.splitSQLIntoTokens($sql);
 
-        $expr = this.initExpression();
+        myExpression = this.initExpression();
         $result = [];
         baseExpression = "";
 
@@ -36,30 +36,30 @@ class IndexColumnListProcessor : AbstractProcessor {
             case 'ASC':
             case 'DESC':
             # the optional order
-                $expr["dir"] = strippedToken;
+                myExpression["dir"] = strippedToken;
                 break;
 
             case ",":
             # the next column
                 $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression),
-                        $expr);
-                $expr = this.initExpression();
+                        myExpression);
+                myExpression = this.initExpression();
                 baseExpression = "";
                 break;
 
             default:
                 if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                     # the optional length
-                    $expr["length"] = this.removeParenthesisFromStart(strippedToken);
+                    myExpression["length"] = this.removeParenthesisFromStart(strippedToken);
                     continue 2;
                 }
                 # the col name
-                $expr["name"] = strippedToken;
-                $expr["no_quotes"] = this.revokeQuotation(strippedToken);
+                myExpression["name"] = strippedToken;
+                myExpression["no_quotes"] = this.revokeQuotation(strippedToken);
                 break;
             }
         }
-        $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression), $expr);
+        $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression), myExpression);
         return $result;
     }
 }

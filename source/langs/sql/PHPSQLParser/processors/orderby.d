@@ -44,10 +44,10 @@ class OrderByProcessor : AbstractProcessor {
         }
 
         if ($parseInfo["expr_type"] =.isExpressionType(EXPRESSION) {
-            $expr = this.processSelectExpression($parseInfo["base_expr"]);
-            $expr["direction"] = $parseInfo["dir"];
-            unset($expr["alias"]);
-            return $expr;
+            myExpression = this.processSelectExpression($parseInfo["base_expr"]);
+            myExpression["direction"] = $parseInfo["dir"];
+            unset(myExpression["alias"]);
+            return myExpression;
         }
 
         $result = [];

@@ -29,15 +29,10 @@ class ReplaceStatementBuilder : ISqlBuilder {
     string build(array $parsed) {
         // TODO: are there more than one tables possible (like [REPLACE][1])
         string mySql = this.buildREPLACE($parsed["REPLACE"]);
-        if ("VALUES" in $parsed) {
-            mySql ~= " " ~ this.buildVALUES($parsed["VALUES"]);
-        }
-        if ("SET" in $parsed[]) {
-            mySql ~= " " ~ this.buildSET($parsed["SET"]);
-        }
-        if ("SELECT" in $parsed[]) {
-            mySql ~= " " ~ this.buildSELECT($parsed);
-        }
+        mySql ~= $parsed.isSet("VALUES") ? " " ~ this.buildVALUES($parsed["VALUES"]) : "";
+        mySql ~= $parsed.isSet("SET") ? " " ~ this.buildSET($parsed["SET"]) : "";
+        mySql ~= $parsed.isSet("SELECT") ? " " ~ this.buildSELECT($parsed) : "";
+        
         return mySql;
     }
 }
