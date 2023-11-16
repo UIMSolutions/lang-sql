@@ -1,16 +1,10 @@
-
-/**
- * CreateIndex.php
- *
- * Builds the CREATE INDEX statement
- * */
-
 module langs.sql.PHPSQLParser.builders.create.index;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the CREATE INDEX statement
  * This class : the builder for the CREATE INDEX statement. You can overwrite
  * all functions to achieve another handling. */
 class CreateIndexBuilder : ISqlBuilder {

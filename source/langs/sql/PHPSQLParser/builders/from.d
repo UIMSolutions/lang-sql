@@ -35,10 +35,10 @@ class FromBuilder : ISqlBuilder {
     string build(array $parsed) {
         auto string mySql = "";
         if (array_key_exists("UNION ALL", $parsed) || array_key_exists("UNION", $parsed)) {
-            foreach ($parsed as $union_type :  $outer_v) {
+            foreach ($union_type :  $outer_v; $parsed) {
                 $first = true;
 
-                foreach ($outer_v as $item) {
+                foreach ($item; $outer_v) {
                     if (!$first) {
                         mySql  ~= " $union_type ";
                     }
@@ -69,6 +69,6 @@ class FromBuilder : ISqlBuilder {
                 }
             }
         }
-        return "FROM " . mySql;
+        return "FROM " ~ mySql;
     }
 }

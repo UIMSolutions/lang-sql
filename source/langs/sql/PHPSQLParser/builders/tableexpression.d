@@ -1,9 +1,3 @@
-
-/**
- * TableExpressionBuilder.php
- *
- * Builds the table name/join options. */
-
 module langs.sql.PHPSQLParser.builders.tableexpression;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the table name/join options. 
  * This class : the builder for the table name and join options. 
  * You can overwrite all functions to achieve another handling. */
 class TableExpressionBuilder : ISqlBuilder {
@@ -41,7 +36,7 @@ class TableExpressionBuilder : ISqlBuilder {
     }
 
     string build(array $parsed, $index = 0) {
-        if ($parsed["expr_type"] !.isExpressionType(TABLE_EXPRESSION) {
+        if (!$parsed["expr_type"].isExpressionType("TABLE_EXPRESSION")) {
             return "";
         }
         

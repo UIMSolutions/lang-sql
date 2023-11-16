@@ -1,9 +1,3 @@
-
-/**
- * DropBuilder.php
- *
- * Builds the CREATE statement */
-
 module langs.sql.PHPSQLParser.builders.drop.builder;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the CREATE statement 
  * This class : the builder for the [DROP] part. You can overwrite
  * all functions to achieve another handling. */
 class DropBuilder : ISqlBuilder {

@@ -1,16 +1,10 @@
-
-/**
- * CreateIndexOptionsBuilder.php
- *
- * Builds index options part of a CREATE INDEX statement.
- * */
-
 module langs.sql.PHPSQLParser.builders.create.indexes.indexoptions;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds index options part of a CREATE INDEX statement.
  * This class : the builder for the index options of a CREATE INDEX
  * statement. 
  * You can overwrite all functions to achieve another handling. */
