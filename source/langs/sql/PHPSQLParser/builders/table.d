@@ -1,9 +1,3 @@
-/**
- * TableBuilder.php
- *
- * Builds the table name/join options.
- */
-
 module langs.sql.PHPSQLParser.builders.table;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the table name/join options.
  * This class : the builder for the table name and join options.
  * You can overwrite all functions to achieve another handling.
  */

@@ -1,16 +1,10 @@
-
-/**
- * BracketProcessor.php
- *
- * This file : the processor for the parentheses around the statements.
- */
-
 module langs.sql.PHPSQLParser.processors.bracket;
 
 import lang.sql;
 
 @safe:
 
+// This file : the processor for the parentheses around the statements.
 // This class processes the parentheses around the statement.
 class BracketProcessor : AbstractProcessor {
 
@@ -25,18 +19,18 @@ class BracketProcessor : AbstractProcessor {
 
         $remainingExpressions = this.getRemainingNotBracketExpression($subtree);
 
-        if (isset($subtree["BRACKET"])) {
+        if ($subtree.isSet("BRACKET")) {
             $subtree = $subtree["BRACKET"];
         }
 
-        if (isset($subtree["SELECT"])) {
+        if ($subtree.isSet("SELECT")) {
             $subtree = [
-                    ["expr_type" : ExpressionType::QUERY, "base_expr" : $token, "sub_tree" : $subtree));
+                    ["expr_type" : ExpressionType::QUERY, "base_expr" : $token, "sub_tree" : $subtree]];
         }
 
         return [
                 ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : trim($tokens[0]),
-                        "sub_tree" : $subtree, 'remaining_expressions' : $remainingExpressions));
+                        "sub_tree" : $subtree, 'remaining_expressions' : $remainingExpressions]];
     }
 
     private auto getRemainingNotBracketExpression($subtree)

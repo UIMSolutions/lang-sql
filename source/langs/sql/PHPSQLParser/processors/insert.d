@@ -31,17 +31,17 @@ class InsertProcessor : AbstractProcessor {
         $cols = false;
         $result = [];
 
-        foreach ($token; $tokenList[$keyword] as ) {
-            $trim = $token.strip;
+        foreach ($token; $tokenList[$keyword]) {
+            auto strippedToken = myToken.strip;
 
-            if ($trim.isEmpty) {
+            if (strippedToken.isEmpty) {
                 continue;
             }
 
-            $upper = $trim.toUpper;
+            $upper = strippedToken.toUpper;
             switch ($upper) {
             case 'INTO':
-                $result[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                $result[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": strippedToken];
                 break;
 
             case 'INSERT':
@@ -50,12 +50,12 @@ class InsertProcessor : AbstractProcessor {
 
             default:
                 if (myTable.isEmpty) {
-                    myTable = $trim;
+                    myTable = strippedToken;
                     break;
                 }
 
                 if ($cols == false) {
-                    $cols = $trim;
+                    $cols = strippedToken;
                 }
                 break;
             }
@@ -90,11 +90,11 @@ class InsertProcessor : AbstractProcessor {
         $cols = false;
         $comments = [];
 
-        foreach ($tokenList as $key : &$token) {
+        foreach ($key : &$token; $tokenList) {
             if ($key == 'VALUES') {
                 continue;
             }
-            foreach ($token as &$value) {
+            foreach (&$value; $token as ) {
                 if (this.isCommentToken($value)) {
                      $comments[] = super.processComment($value);
                      $value = "";

@@ -20,10 +20,10 @@ class CreateProcessor : AbstractProcessor {
         $result = $expr = [];
         $base_expr = "";
 
-        foreach ($token; $tokens) {
+        foreach (myToken; $tokens) {
             
-            $trim = $token.strip;
-            $base_expr  ~= $token;
+            $trim = myToken.strip;
+            $base_expr  ~= myToken;
 
             if ($trim.isEmpty) {
                 continue;
@@ -36,20 +36,20 @@ class CreateProcessor : AbstractProcessor {
                 // CREATE TEMPORARY TABLE
                 $result["expr_type"] .isExpressionType(TEMPORARY_TABLE;
                 $result["not-exists"] = false;
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType("RESERVED"), "base_expr" :  $trim);
                 break;
 
             case 'TABLE':
                 // CREATE TABLE
-                $result["expr_type"] .isExpressionType(TABLE;
+                $result["expr_type"] =  expressionType("TABLE");
                 $result["not-exists"] = false;
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType("RESERVED"), "base_expr" :  $trim);
                 break;
 
             case 'INDEX':
                 // CREATE INDEX
                 $result["expr_type"] .isExpressionType(INDEX;
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType("RESERVED"=, "base_expr" :  $trim);
                 break;
 
             case 'UNIQUE':
@@ -58,23 +58,23 @@ class CreateProcessor : AbstractProcessor {
                 // options of CREATE INDEX
                 $result["base_expr"] = $result["expr_type"] = false;
                 $result["constraint"] = $upper; 
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType(RESERVED, "base_expr" :  $trim);
                 break;                
                                 
             case 'IF':
                 // option of CREATE TABLE
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType(RESERVED, "base_expr" :  $trim);
                 break;
 
             case 'NOT':
                 // option of CREATE TABLE
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType(RESERVED, "base_expr" :  $trim);
                 break;
 
             case 'EXISTS':
                 // option of CREATE TABLE
                 $result["not-exists"] = true;
-                $expr[] = ["expr_type" :  ExpressionType::RESERVED, "base_expr" :  $trim);
+                $expr[] = ["expr_type" :  expressionType(RESERVED, "base_expr" :  $trim);
                 break;
 
             default:
