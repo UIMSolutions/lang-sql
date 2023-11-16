@@ -25,9 +25,12 @@ class ColumnDefinitionBuilder : ISqlBuilder {
     }
 
    string build(array $parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(COLDEF) {
+        // In Check
+        if (!$parsed["expr_type"].isExpressionType("COLDEF")) {
             return "";
         }
+
+        // Main
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
@@ -40,6 +43,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
 
             mySql  ~= " ";
         }
+        
         return substr(mySql, 0, -1);
     }
 }

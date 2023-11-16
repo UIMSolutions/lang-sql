@@ -90,7 +90,7 @@ class PositionCalculator {
     }
 
     protected auto findPositionWithinString($sql, myValue, $expr_type) {
-        if (myValue == "") {
+        if (myValue.isEmpty) {
             return false;
         }
 
@@ -125,10 +125,10 @@ class PositionCalculator {
 
             if (in_array($expr_type,['operator','column-list'),true)) {
 
-                $ok = ($before == "" || in_array($before, this.$allowedOnOperator, true))
+                $ok = ($before.isEmpty || in_array($before, this.$allowedOnOperator, true))
                     || (strtolower($before) >= 'a' && strtolower($before) <= 'z');
                 $ok = $ok
-                    && ($after == "" || in_array($after, this.$allowedOnOperator, true)
+                    && ($after.isEmpty || in_array($after, this.$allowedOnOperator, true)
                         || (strtolower($after) >= 'a' && strtolower($after) <= 'z'));
 
                 if (!$ok) {
@@ -142,10 +142,10 @@ class PositionCalculator {
             // in all other cases we accept
             // whitespace, comma, operators, parenthesis and end_of_string
 
-            $ok = ($before == "" || in_array($before, this.$allowedOnOther, true)
+            $ok = ($before.isEmpty || in_array($before, this.$allowedOnOther, true)
                 || ($quotedBefore && (strtolower($before) >= 'a' && strtolower($before) <= 'z')));
             $ok = $ok
-                && ($after == "" || in_array($after, this.$allowedOnOther, true)
+                && ($after.isEmpty || in_array($after, this.$allowedOnOther, true)
                     || ($quotedAfter && (strtolower($after) >= 'a' && strtolower($after) <= 'z')));
 
             if ($ok) {

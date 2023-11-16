@@ -84,7 +84,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 

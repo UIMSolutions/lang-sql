@@ -16,7 +16,7 @@ import lang.sql;
  *
  
 
- * @author  George Schneeloch <noisecapella@gmail.com>
+
  
  * */
 class FromProcessor : AbstractProcessor {
@@ -175,7 +175,7 @@ class FromProcessor : AbstractProcessor {
 
             default:
                 if ($token_category == 'LEFT' || $token_category == 'RIGHT') {
-                    if ($upper == "") {
+                    if ($upper.isEmpty) {
                         $prevToken  ~= $token;
                         break;
                     } else {
@@ -194,7 +194,7 @@ class FromProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($upper == "") {
+            if ($upper.isEmpty) {
                 $i++;
                 continue;
             }
@@ -205,8 +205,8 @@ class FromProcessor : AbstractProcessor {
                 $parseInfo["token_count"]++;
                 $n = 1;
                 $str = "";
-                while ($str == "" && isset($tokens[$i + $n])) {
-                    $parseInfo["alias"]["base_expr"]  ~= ($tokens[$i + $n] == "" ? " " : $tokens[$i + $n]);
+                while ($str.isEmpty && isset($tokens[$i + $n])) {
+                    $parseInfo["alias"]["base_expr"]  ~= ($tokens[$i + $n].isEmpty ? " " : $tokens[$i + $n]);
                     $str = trim($tokens[$i + $n]);
                     ++$n;
                 }
@@ -306,7 +306,7 @@ class FromProcessor : AbstractProcessor {
                 }
 
                 if ($parseInfo["token_count"] == 0) {
-                    if ($parseInfo["table"] == "") {
+                    if ($parseInfo["table"].isEmpty) {
                         $parseInfo["table"] = $token;
                         $parseInfo["no_quotes"] = this.revokeQuotation($token);
                     }

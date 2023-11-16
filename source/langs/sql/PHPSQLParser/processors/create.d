@@ -25,7 +25,7 @@ class CreateProcessor : AbstractProcessor {
             $trim = $token.strip;
             $base_expr  ~= $token;
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 

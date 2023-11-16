@@ -1,9 +1,3 @@
-
-/**
- * CheckBuilder.php
- *
- * Builds the CHECK statement part of CREATE TABLE. */
-
 module langs.sql.PHPSQLParser.builders.create.tables.check;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the CHECK statement part of CREATE TABLE. 
  * This class : the builder for the CHECK statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class CheckBuilder : ISqlBuilder {
@@ -26,14 +21,17 @@ class CheckBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(CHECK) {
+        if (!$parsed["expr_type"].isExpressionType("CHECK")) {
             return "";
         }
+
+        // Main
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildSelectBracketExpression(myValue);
+            mySql ~= 
+                buildReserved(myValue) ~
+                buildSelectBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE check subtree', myKey, myValue, "expr_type");
@@ -41,6 +39,7 @@ class CheckBuilder : ISqlBuilder {
 
             mySql  ~= " ";
         }
+
         return substr(mySql, 0, -1);
     }
 }

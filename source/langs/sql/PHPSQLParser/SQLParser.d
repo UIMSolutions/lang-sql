@@ -1,13 +1,5 @@
 module langs.sql.PHPSQLParser.SQLParser;
 
-/**
- * SqlParser.php
- *
- * A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
- *
- *
- */
-
 namespace SqlParser;
 
 import lang.sql;
@@ -15,6 +7,7 @@ import lang.sql;
 @safe:
 
 /**
+ * A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
  * This class : the parser functionality.
  *
  * @author  Justin Swanhart <greenlion@gmail.com>

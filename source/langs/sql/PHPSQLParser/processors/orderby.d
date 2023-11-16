@@ -28,7 +28,7 @@ class OrderByProcessor : AbstractProcessor {
     protected auto processOrderExpression(&$parseInfo, $select) {
         $parseInfo["base_expr"] = trim($parseInfo["base_expr"]);
 
-        if ($parseInfo["base_expr"] == "") {
+        if ($parseInfo["base_expr"].isEmpty) {
             return false;
         }
 

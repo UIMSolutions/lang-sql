@@ -75,7 +75,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 

@@ -12,7 +12,7 @@ class LimitBuilder : ISqlBuilder {
 
     string build(array $parsed) {
         string mySql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
-        if (mySql == "") {
+        if (mySql.isEmpty) {
             throw new UnableToCreateSQLException('LIMIT', 'rowcount', $parsed, 'rowcount');
         }
         return "LIMIT " . mySql;

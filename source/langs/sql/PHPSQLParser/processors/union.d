@@ -56,7 +56,7 @@ class UnionProcessor : AbstractProcessor {
             foreach ($key, $tokenList; $queries[myUnionType]) {
                 foreach ($z, $token; $tokenList as ) {
                     $token = $token.strip;
-                    if ($token == "") {
+                    if ($token.isEmpty) {
                         continue;
                     }
 
@@ -143,7 +143,7 @@ class UnionProcessor : AbstractProcessor {
 
             // overread all tokens till that given token
             if ($skipUntilToken) {
-                if ($trim == "") {
+                if ($trim.isEmpty) {
                     continue; // read the next token
                 }
                 if ($trim.toUpper == $skipUntilToken) {
@@ -161,7 +161,7 @@ class UnionProcessor : AbstractProcessor {
 
             // we are looking for an ALL token right after UNION
             for ($i = $key + 1; $i < count($inputArray); ++$i) {
-                if (trim($inputArray[$i]) == "") {
+                if (trim($inputArray[$i]).isEmpty) {
                     continue;
                 }
                 if ($inputArray[$i].toUpper != "ALL") {

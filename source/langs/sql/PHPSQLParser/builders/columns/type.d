@@ -31,28 +31,28 @@ class ColumnTypeBuilder : ISqlBuilder {
     }
 
     protected auto buildCharacterSet($parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(CHARSET) {
+        if (!$parsed["expr_type"].isExpressionType("CHARSET")) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     protected auto buildCollation($parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(COLLATE) {
+        if (!$parsed["expr_type"].isExpressionType("COLLATE")) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     protected auto buildComment($parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(COMMENT) {
+        if (!$parsed["expr_type"].isExpressionType("COMMENT")) {
             return "";
         }
         return $parsed["base_expr"];
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(COLUMN_TYPE) { return ""; }
+        if (!$parsed["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {

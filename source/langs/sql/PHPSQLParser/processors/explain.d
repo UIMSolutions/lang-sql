@@ -37,7 +37,7 @@ class ExplainProcessor : AbstractProcessor {
                 $trim = $token.strip;
                 $base_expr  ~= $token;
 
-                if ($trim == "") {
+                if ($trim.isEmpty) {
                     continue;
                 }
 
@@ -51,7 +51,7 @@ class ExplainProcessor : AbstractProcessor {
                     break;
 
                 case 'FORMAT':
-                    if ($currCategory == "") {
+                    if ($currCategory.isEmpty) {
                         $currCategory = $upper;
                         $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
                     }
@@ -87,7 +87,7 @@ class ExplainProcessor : AbstractProcessor {
 
             $trim = $token.strip;
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 

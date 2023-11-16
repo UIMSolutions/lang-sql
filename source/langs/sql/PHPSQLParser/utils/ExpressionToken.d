@@ -76,7 +76,7 @@ class ExpressionToken {
     }
 
     auto isWhitespaceToken() {
-        return (this.trim == "");
+        return (this.trim.isEmpty);
     }
 
     auto isCommaToken() {

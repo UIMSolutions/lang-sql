@@ -152,7 +152,7 @@ abstract class DProcessor {
             }
 
             if ($trim[$i] == "'") {
-                if ($stringOpened == "") {
+                if ($stringOpened.isEmpty) {
                     $stringOpened = "'";
                 } elseif ($stringOpened == "'") {
                     $stringOpened = "";
@@ -160,18 +160,18 @@ abstract class DProcessor {
             }
 
             if ($trim[$i] == '"') {
-                if ($stringOpened == "") {
+                if ($stringOpened.isEmpty) {
                     $stringOpened = '"';
                 } elseif ($stringOpened == '"') {
                     $stringOpened = "";
                 }
             }
 
-            if (($stringOpened == "") && ($trim[$i] == "(")) {
+            if (($stringOpened.isEmpty) && ($trim[$i] == "(")) {
                 $parenthesis++;
             }
 
-            if (($stringOpened == "") && ($trim[$i] == ")")) {
+            if (($stringOpened.isEmpty) && ($trim[$i] == ")")) {
                 if ($parenthesis == $parenthesisRemoved) {
                     $trim[$i] = " ";
                     $parenthesisRemoved--;
@@ -211,7 +211,7 @@ abstract class DProcessor {
     }
 
     protected auto isWhitespaceToken($token) {
-        return ($token.strip == "");
+        return ($token.strip.isEmpty);
     }
 
     protected auto isCommentToken($token) {

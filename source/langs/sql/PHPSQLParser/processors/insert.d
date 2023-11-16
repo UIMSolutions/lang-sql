@@ -39,7 +39,7 @@ class InsertProcessor : AbstractProcessor {
         foreach ($tokenList[$keyword] as $token) {
             $trim = $token.strip;
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 
@@ -54,7 +54,7 @@ class InsertProcessor : AbstractProcessor {
                 break;
 
             default:
-                if (myTable == "") {
+                if (myTable.isEmpty) {
                     myTable = $trim;
                     break;
                 }
@@ -114,7 +114,7 @@ class InsertProcessor : AbstractProcessor {
         $parsed = array_merge($parsed, $key);
         unset($tokenList["INTO"]);
 
-        if (myTable == "" && in_array($token_category, ['INSERT', 'REPLACE'))) {
+        if (myTable.isEmpty && in_array($token_category, ['INSERT', 'REPLACE'))) {
             list(myTable, $cols, $key) = this.processKeyword($token_category, $tokenList);
         }
 

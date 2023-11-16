@@ -82,7 +82,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 continue;
             }
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 
@@ -101,7 +101,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 continue 2;
 
             case 'FOREIGN':
-                if ($prevCategory == "" || $prevCategory == 'CONSTRAINT') {
+                if ($prevCategory.isEmpty || $prevCategory == 'CONSTRAINT') {
                     $expr[] = ["expr_type" : ExpressionType::FOREIGN_KEY, "base_expr": $trim];
                     $currCategory = $upper;
                     continue 2;
@@ -110,7 +110,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'PRIMARY':
-                if ($prevCategory == "" || $prevCategory == 'CONSTRAINT') {
+                if ($prevCategory.isEmpty || $prevCategory == 'CONSTRAINT') {
                     // next one is KEY
                     $expr[] = ["expr_type" : ExpressionType::PRIMARY_KEY, "base_expr": $trim];
                     $currCategory = $upper;
@@ -120,7 +120,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'UNIQUE':
-                if ($prevCategory == "" || $prevCategory == 'CONSTRAINT' || $prevCategory == 'INDEX_COL_LIST') {
+                if ($prevCategory.isEmpty || $prevCategory == 'CONSTRAINT' || $prevCategory == 'INDEX_COL_LIST') {
                     // next one is KEY
                     $expr[] = ["expr_type" : ExpressionType::UNIQUE_IDX, "base_expr": $trim];
                     $currCategory = $upper;

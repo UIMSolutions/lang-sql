@@ -1,21 +1,16 @@
 
-/**
- * JoinBuilder.php
- *
- * Builds the JOIN statement parts (within FROM).
- */
-
 module langs.sql.PHPSQLParser.builders.join;
 
 import lang.sql;
 
 @safe:
 /**
+ * Builds the JOIN statement parts (within FROM).
  * This class : the builder for the JOIN statement parts (within FROM). 
  * You can overwrite all functions to achieve another handling.
  *
  
- * @author  George Schneeloch <noisecapella@gmail.com>
+
  
  *   */
 class JoinBuilder {

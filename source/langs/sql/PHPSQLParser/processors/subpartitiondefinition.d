@@ -55,7 +55,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 
@@ -63,7 +63,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'SUBPARTITION':
-                if ($currCategory == "") {
+                if ($currCategory.isEmpty) {
                     $expr[] = this.getReservedType($trim);
                     $parsed = ["expr_type" : ExpressionType::SUBPARTITION_DEF, "base_expr" : trim($base_expr),
                                     "sub_tree" : false);
@@ -133,7 +133,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 break;
 
             case ',':
-                if ($prevCategory == 'SUBPARTITION' && $currCategory == "") {
+                if ($prevCategory == 'SUBPARTITION' && $currCategory.isEmpty) {
                     // it separates the subpartition-definitions
                     $result[] = $parsed;
                     $parsed = [);

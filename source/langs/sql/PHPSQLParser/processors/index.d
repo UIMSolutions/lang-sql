@@ -53,7 +53,7 @@ class IndexProcessor : AbstractProcessor {
                 break;
             }
 
-            if ($trim == "") {
+            if ($trim.isEmpty) {
                 continue;
             }
 

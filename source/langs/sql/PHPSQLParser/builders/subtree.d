@@ -1,10 +1,3 @@
-
-/**
- * SubTreeBuilder.php
- *
- * Builds the statements for [sub_tree] fields.
- */
-
 module langs.sql.PHPSQLParser.builders.subtree;
 
 import lang.sql;
@@ -12,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds the statements for [sub_tree] fields.
  * This class : the builder for [sub_tree] fields.
  * You can overwrite all functions to achieve another handling.
  */
@@ -73,9 +67,10 @@ class SubTreeBuilder : ISqlBuilder {
     }
 
     string build(array $parsed, $delim = " ") {
-        if ($parsed["sub_tree"] == "" || $parsed["sub_tree"] == false) {
+        if ($parsed["sub_tree"].isEmpty || $parsed["sub_tree"] == false) {
             return "";
         }
+        
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
@@ -89,15 +84,16 @@ class SubTreeBuilder : ISqlBuilder {
             mySql  ~= this.buildReserved(myValue);
             mySql  ~= this.buildQuery(myValue);
             mySql  ~= this.buildUserVariable(myValue);
-            $sign = this.buildSign(myValue);
-            mySql  ~= $sign;
+
+            string mySign = this.buildSign(myValue);
+            mySql  ~= mySign;
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('expression subtree', myKey, myValue, "expr_type");
             }
 
             // We don't need whitespace between a sign and the following part.
-            if ($sign == "") {
+            if (mySign.isEmpty) {
                 mySql  ~= $delim;
             }
         }

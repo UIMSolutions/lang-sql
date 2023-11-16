@@ -34,7 +34,7 @@ class SQLProcessor : SQLChunkProcessor {
             $trim = $token.strip; // this removes also \n and \t!
 
             // if it starts with an "(", it should follow a SELECT
-            if ($trim != "" && $trim[0] == "(" && $token_category == "") {
+            if ($trim != "" && $trim[0] == "(" && $token_category.isEmpty) {
                 $token_category = 'BRACKET';
                 $prev_category = $token_category;
             }
@@ -43,7 +43,7 @@ class SQLProcessor : SQLChunkProcessor {
              * If it isn't obvious, when $skip_next is set, then we ignore the next real token, that is we ignore whitespace.
              */
             if ($skip_next > 0) {
-                if ($trim == "") {
+                if ($trim.isEmpty) {
                     if ($token_category != "") { // is this correct??
                         $out[$token_category][] = $token;
                     }
@@ -135,7 +135,7 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case 'DESC':
-                if ($token_category == "") {
+                if ($token_category.isEmpty) {
                     // short version of DESCRIBE
                     $token_category = $upper;
                 }
@@ -221,7 +221,7 @@ class SQLProcessor : SQLChunkProcessor {
                 continue 2;
 
             case 'TRUNCATE':
-            	if ($prev_category == "") {
+            	if ($prev_category.isEmpty) {
             		// set the category in case these get subclauses in a future version of MySQL
             		$token_category = $upper;
             		$out[$upper][0] = $trim;
@@ -232,7 +232,7 @@ class SQLProcessor : SQLChunkProcessor {
                 continue 2;
 
             case 'REPLACE':
-            	if ($prev_category == "") {
+            	if ($prev_category.isEmpty) {
             		// set the category in case these get subclauses in a future version of MySQL
             		$token_category = $upper;
             		$out[$upper][0] = $trim;
@@ -326,7 +326,7 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case 'CACHE':
-                if ($prev_category == "" || $prev_category == 'RESET' || $prev_category == 'FLUSH'
+                if ($prev_category.isEmpty || $prev_category == 'RESET' || $prev_category == 'FLUSH'
                     || $prev_category == 'LOAD') {
                     $token_category = $upper;
                     continue 2;
@@ -335,7 +335,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             /* This is either LOCK TABLES or SELECT ... LOCK IN SHARE MODE */
             case 'LOCK':
-                if ($token_category == "") {
+                if ($token_category.isEmpty) {
                     $token_category = $upper;
                     $out[$upper][0] = $trim;
                 } elseif ($token_category == 'INDEX') {
@@ -375,7 +375,7 @@ class SQLProcessor : SQLChunkProcessor {
                 continue 2;
 
             case 'UPDATE':
-                if ($token_category == "") {
+                if ($token_category.isEmpty) {
                     $token_category = $upper;
                     continue 2;
                 }
@@ -451,7 +451,7 @@ class SQLProcessor : SQLChunkProcessor {
                     $out["OPTIONS"][] = 'WITH ROLLUP'; // TODO: this could be generate problems within the position calculator
                     continue 2;
                 }
-                if ($token_category == "") {
+                if ($token_category.isEmpty) {
                 	$token_category = $upper;
                 }
                 break;
