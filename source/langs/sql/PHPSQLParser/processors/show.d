@@ -15,7 +15,7 @@ import lang.sql;
  *
  * This class processes the SHOW statements.
  *
- * @author arothe
+
  * */
 class ShowProcessor : AbstractProcessor {
 
@@ -90,7 +90,7 @@ class ShowProcessor : AbstractProcessor {
             default:
                 switch ($prev) {
                 case 'LIKE':
-                    $resultList[] = ["expr_type" : ExpressionType::CONSTANT, "base_expr" : $token);
+                    $resultList[] = ["expr_type" : expressionType(CONSTANT, "base_expr" : $token);
                     break;
                 case 'LIMIT':
                     $limit = array_pop($resultList);
@@ -100,17 +100,17 @@ class ShowProcessor : AbstractProcessor {
                 case 'FROM':
                 case 'SCHEMA':
                 case 'DATABASE':
-                    $resultList[] = ["expr_type" : ExpressionType::DATABASE, 'name' : $token,
+                    $resultList[] = ["expr_type" : expressionType(DATABASE, 'name' : $token,
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);
                     break;
                 case 'FOR':
-                    $resultList[] = ["expr_type" : ExpressionType::USER, 'name' : $token,
+                    $resultList[] = ["expr_type" : expressionType(USER, 'name' : $token,
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);
                     break;
                 case 'INDEX':
                 case 'COLUMNS':
                 case 'TABLE':
-                    $resultList[] = ["expr_type" : ExpressionType::TABLE, 'table' : $token,
+                    $resultList[] = ["expr_type" : expressionType(TABLE, 'table' : $token,
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);
                     $category = "TABLENAME";
                     break;
@@ -124,11 +124,11 @@ class ShowProcessor : AbstractProcessor {
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);
                     break;
                 case 'PROCEDURE':
-                    $resultList[] = ["expr_type" : ExpressionType::PROCEDURE, 'name' : $token,
+                    $resultList[] = ["expr_type" : expressionType(PROCEDURE, 'name' : $token,
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);
                     break;
                 case 'ENGINE':
-                    $resultList[] = ["expr_type" : ExpressionType::ENGINE, 'name' : $token,
+                    $resultList[] = ["expr_type" : expressionType(ENGINE, 'name' : $token,
                                           'no_quotes' : this.revokeQuotation($token), "base_expr" : $token);
                     break;
                 default:

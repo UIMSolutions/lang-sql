@@ -15,7 +15,7 @@ import lang.sql;
  *
  * This class processes the SELECT expressions.
  *
- * @author arothe
+
  * */
 class SelectExpressionProcessor : AbstractProcessor {
 

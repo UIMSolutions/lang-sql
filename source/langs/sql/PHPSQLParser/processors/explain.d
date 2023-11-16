@@ -54,7 +54,7 @@ class ExplainProcessor : AbstractProcessor {
 
                 case '=':
                     if ($currCategory == 'FORMAT') {
-                        $expr[] = ["expr_type" : ExpressionType::OPERATOR, "base_expr": $trim];
+                        $expr[] = ["expr_type" : expressionType(OPERATOR, "base_expr": $trim];
                     }
                     // else?
                     break;
@@ -89,13 +89,13 @@ class ExplainProcessor : AbstractProcessor {
 
             case 'TABLENAME':
                 $currCategory = 'WILD';
-                $expr[] = ["expr_type" : ExpressionType::COLREF, "base_expr" : $trim,
+                $expr[] = ["expr_type" : expressionType(COLREF, "base_expr" : $trim,
                                 'no_quotes' : this.revokeQuotation($trim));
                 break;
 
             case "":
                 $currCategory = 'TABLENAME';
-                $expr[] = ["expr_type" : ExpressionType::TABLE, 'table' : $trim,
+                $expr[] = ["expr_type" : expressionType(TABLE, 'table' : $trim,
                                 'no_quotes' : this.revokeQuotation($trim), 'alias' : false, "base_expr": $trim];
                 break;
 

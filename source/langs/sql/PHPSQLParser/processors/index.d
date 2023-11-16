@@ -19,11 +19,11 @@ class IndexProcessor : AbstractProcessor {
     }
 
     protected auto getConstantType($token) {
-        return ["expr_type" : ExpressionType::CONSTANT, "base_expr" : $token);
+        return ["expr_type" : expressionType(CONSTANT, "base_expr" : $token);
     }
 
     protected auto getOperatorType($token) {
-        return ["expr_type" : ExpressionType::OPERATOR, "base_expr" : $token);
+        return ["expr_type" : expressionType(OPERATOR, "base_expr" : $token);
     }
 
     protected auto processIndexColumnList($parsed) {
@@ -144,7 +144,7 @@ class IndexProcessor : AbstractProcessor {
                     if ($upper[0] == "(" && substr($upper, -1) == ")") {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart($trim));
                         $result["on"]["base_expr"]  ~= $base_expr;
-                        $result["on"]["sub_tree"] = ["expr_type" : ExpressionType::COLUMN_LIST,
+                        $result["on"]["sub_tree"] = ["expr_type" : expressionType(COLUMN_LIST,
                                                           "base_expr" : $trim, "sub_tree" : $cols);
                     }
 
@@ -157,7 +157,7 @@ class IndexProcessor : AbstractProcessor {
                 // the table name
                     $expr[] = this.getConstantType($trim);
                     // TODO: the base_expr should contain the column-def too
-                    $result["on"] = ["expr_type" : ExpressionType::TABLE, "base_expr" : $base_expr,
+                    $result["on"] = ["expr_type" : expressionType(TABLE, "base_expr" : $base_expr,
                                           'name' : $trim, 'no_quotes' : this.revokeQuotation($trim),
                                           "sub_tree" : false);
                     $expr = [];
@@ -177,7 +177,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'INDEX_PARSER':
                 // the parser name
                     $expr[] = this.getConstantType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::INDEX_PARSER,
+                    $result["options"][] = ["expr_type" : expressionType(INDEX_PARSER,
                                                  "base_expr" : trim($base_expr), "sub_tree" : $expr];
                     $expr = [];
                     $base_expr = "";
@@ -188,7 +188,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'INDEX_COMMENT':
                 // the index comment
                     $expr[] = this.getConstantType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::COMMENT,
+                    $result["options"][] = ["expr_type" : expressionType(COMMENT,
                                                  "base_expr" : trim($base_expr), "sub_tree" : $expr];
                     $expr = [];
                     $base_expr = "";
@@ -199,7 +199,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'INDEX_OPTION':
                 // the key_block_size
                     $expr[] = this.getConstantType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::INDEX_SIZE,
+                    $result["options"][] = ["expr_type" : expressionType(INDEX_SIZE,
                                                  "base_expr" : trim($base_expr), 'size' : $upper,
                                                  "sub_tree" : $expr];
                     $expr = [];
@@ -213,11 +213,11 @@ class IndexProcessor : AbstractProcessor {
                 // BTREE or HASH
                     $expr[] = this.getReservedType($trim);
                     if ($currCategory == 'INDEX_TYPE') {
-                        $result["index-type"] = ["expr_type" : ExpressionType::INDEX_TYPE,
+                        $result["index-type"] = ["expr_type" : expressionType(INDEX_TYPE,
                                                       "base_expr" : trim($base_expr), 'using' : $upper,
                                                       "sub_tree" : $expr];
                     } else {
-                        $result["options"][] = ["expr_type" : ExpressionType::INDEX_TYPE,
+                        $result["options"][] = ["expr_type" : expressionType(INDEX_TYPE,
                                                      "base_expr" : trim($base_expr), 'using' : $upper,
                                                      "sub_tree" : $expr];
                     }
@@ -230,7 +230,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'LOCK_OPTION':
                 // DEFAULT|NONE|SHARED|EXCLUSIVE
                     $expr[] = this.getReservedType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::INDEX_LOCK,
+                    $result["options"][] = ["expr_type" : expressionType(INDEX_LOCK,
                                                  "base_expr" : trim($base_expr), 'lock' : $upper,
                                                  "sub_tree" : $expr];
 
@@ -242,7 +242,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'ALGORITHM_OPTION':
                 // DEFAULT|INPLACE|COPY
                     $expr[] = this.getReservedType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::INDEX_ALGORITHM,
+                    $result["options"][] = ["expr_type" : expressionType(INDEX_ALGORITHM,
                                                  "base_expr" : trim($base_expr), 'algorithm' : $upper,
                                                  "sub_tree" : $expr];
 

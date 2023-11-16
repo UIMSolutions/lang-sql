@@ -32,13 +32,13 @@ class DropProcessor : AbstractProcessor {
             case 'DATABASE':
             case 'TABLE':
                 if ($objectType.isEmpty) {
-                    $objectType = constant('SqlParser\utils\ExpressionType::' . $upper);
+                    $objectType = constant('SqlParser\utils\expressionType(' . $upper);
                 }
                 $base_expr = "";
                 break;
             case 'INDEX':
 	            if ( $objectType.isEmpty ) {
-		            $objectType = constant( 'SqlParser\utils\ExpressionType::' . $upper );
+		            $objectType = constant( 'SqlParser\utils\expressionType(' . $upper );
 	            }
 	            $base_expr = "";
 	            break;

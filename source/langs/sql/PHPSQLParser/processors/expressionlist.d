@@ -40,7 +40,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                 auto myProcessor = new DefaultProcessor(this.options);
                 $curr.setSubTree($processor.process(this.removeParenthesisFromStart($curr.getTrim())));
-                $curr.setTokenType(ExpressionType::SUBQUERY);
+                $curr.setTokenType(expressionType(SUBQUERY);
 
             } elseif ($curr.isEnclosedWithinParenthesis()) {
                 /* is it an in-list? */
@@ -58,7 +58,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                     $localTokenList = array_values($localTokenList);
                     $curr.setSubTree(this.process($localTokenList));
-                    $curr.setTokenType(ExpressionType::IN_LIST);
+                    $curr.setTokenType(expressionType(IN_LIST);
                 } elseif ($prev.getUpper() == 'AGAINST') {
 
                     $match_mode = false;
@@ -85,13 +85,13 @@ class ExpressionListProcessor : AbstractProcessor {
 
                     if ($match_mode != false) {
                         $match_mode = new ExpressionToken(0, $match_mode);
-                        $match_mode.setTokenType(ExpressionType::MATCH_MODE);
+                        $match_mode.setTokenType(expressionType(MATCH_MODE);
                         $tmpToken[] = $match_mode.toArray();
                     }
 
                     $curr.setSubTree($tmpToken);
-                    $curr.setTokenType(ExpressionType::MATCH_ARGUMENTS);
-                    $prev.setTokenType(ExpressionType::SIMPLE_FUNCTION);
+                    $curr.setTokenType(expressionType(MATCH_ARGUMENTS);
+                    $prev.setTokenType(expressionType(SIMPLE_FUNCTION);
 
                 } elseif ($prev.isColumnReference() || $prev.isFunction() || $prev.isAggregateFunction()
                     || $prev.isCustomFunction()) {
@@ -161,9 +161,9 @@ class ExpressionListProcessor : AbstractProcessor {
                     $prev.setSubTree($curr.getSubTree());
                     if ($prev.isColumnReference()) {
                         if (SqlParserConstants::getInstance().isCustomFunction($prev.getUpper())) {
-                            $prev.setTokenType(ExpressionType::CUSTOM_FUNCTION);
+                            $prev.setTokenType(expressionType(CUSTOM_FUNCTION);
                         } else {
-                            $prev.setTokenType(ExpressionType::SIMPLE_FUNCTION);
+                            $prev.setTokenType(expressionType(SIMPLE_FUNCTION);
                         }
                         $prev.setNoQuotes(null, null, this.options);
                     }
@@ -177,7 +177,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     $tmpExprList = array_values($localTokenList);
                     $localExprList = this.process($tmpExprList);
 
-                    $curr.setTokenType(ExpressionType::BRACKET_EXPRESSION);
+                    $curr.setTokenType(expressionType(BRACKET_EXPRESSION);
                     if (!$curr.getSubTree()) {
                         if (!empty($localExprList)) {
                             $curr.setSubTree($localExprList);
@@ -206,7 +206,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                     // single or first element of expression list . all-column-alias
                     if (empty($resultList)) {
-                        $curr.setTokenType(ExpressionType::COLREF);
+                        $curr.setTokenType(expressionType(COLREF);
                         break;
                     }
 
@@ -222,7 +222,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         && !$prev.isVariable()
                         && !$prev.isFunction()
                     ) {
-                        $curr.setTokenType(ExpressionType::COLREF);
+                        $curr.setTokenType(expressionType(COLREF);
                         break;
                     }
 
@@ -231,7 +231,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         continue 2; // skip the current token
                     }
 
-                    $curr.setTokenType(ExpressionType::OPERATOR);
+                    $curr.setTokenType(expressionType(OPERATOR);
                     break;
 
                 case ':=':
@@ -268,12 +268,12 @@ class ExpressionListProcessor : AbstractProcessor {
                 case 'XOR':
                 case 'IN':
                     $curr.setSubTree(false);
-                    $curr.setTokenType(ExpressionType::OPERATOR);
+                    $curr.setTokenType(expressionType(OPERATOR);
                     break;
 
                 case 'NULL':
                     $curr.setSubTree(false);
-                    $curr.setTokenType(ExpressionType::CONSTANT);
+                    $curr.setTokenType(expressionType(CONSTANT);
                     break;
 
                 case '-':
@@ -284,9 +284,9 @@ class ExpressionListProcessor : AbstractProcessor {
                     if ($prev.isColumnReference() || $prev.isFunction() || $prev.isAggregateFunction()
                         || $prev.isConstant() || $prev.isSubQuery() || $prev.isExpression()
                         || $prev.isBracketExpression() || $prev.isVariable() || $prev.isCustomFunction()) {
-                        $curr.setTokenType(ExpressionType::OPERATOR);
+                        $curr.setTokenType(expressionType(OPERATOR);
                     } else {
-                        $curr.setTokenType(ExpressionType::SIGN);
+                        $curr.setTokenType(expressionType(SIGN);
                     }
                     break;
 
@@ -296,18 +296,18 @@ class ExpressionListProcessor : AbstractProcessor {
                     switch ($curr.getToken(0)) {
                     case "'":
                     // it is a string literal
-                        $curr.setTokenType(ExpressionType::CONSTANT);
+                        $curr.setTokenType(expressionType(CONSTANT);
                         break;
                     case '"':
                         if (!this.options.getANSIQuotes()) {
                         // If we're not using ANSI quotes, this is a string literal.
-                            $curr.setTokenType(ExpressionType::CONSTANT);
+                            $curr.setTokenType(expressionType(CONSTANT);
                             break;
                         }
                         // Otherwise continue to the next case
                     case '`':
                     // it is an escaped colum name
-                        $curr.setTokenType(ExpressionType::COLREF);
+                        $curr.setTokenType(expressionType(COLREF);
                         $curr.setNoQuotes($curr.getToken(), null, this.options);
                         break;
 
@@ -316,14 +316,14 @@ class ExpressionListProcessor : AbstractProcessor {
 
                             if ($prev.isSign()) {
                                 $prev.addToken($curr.getToken()); // it is a negative numeric constant
-                                $prev.setTokenType(ExpressionType::CONSTANT);
+                                $prev.setTokenType(expressionType(CONSTANT);
                                 continue 3;
                                 // skip current token
                             } else {
-                                $curr.setTokenType(ExpressionType::CONSTANT);
+                                $curr.setTokenType(expressionType(CONSTANT);
                             }
                         } else {
-                            $curr.setTokenType(ExpressionType::COLREF);
+                            $curr.setTokenType(expressionType(COLREF);
                             $curr.setNoQuotes($curr.getToken(), null, this.options);
                         }
                         break;
@@ -338,31 +338,31 @@ class ExpressionListProcessor : AbstractProcessor {
 	            $next = isset( $tokens[ $k + 1 ] ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
                 $isEnclosedWithinParenthesis = $next.isEnclosedWithinParenthesis();
 	            if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
-                    $curr.setTokenType(ExpressionType::CUSTOM_FUNCTION);
+                    $curr.setTokenType(expressionType(CUSTOM_FUNCTION);
                     $curr.setNoQuotes(null, null, this.options);
 
                 } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isAggregateFunction($curr.getUpper())) {
-                    $curr.setTokenType(ExpressionType::AGGREGATE_FUNCTION);
+                    $curr.setTokenType(expressionType(AGGREGATE_FUNCTION);
                     $curr.setNoQuotes(null, null, this.options);
 
                 } elseif ($curr.getUpper() == 'NULL') {
                     // it is a reserved word, but we would like to set it as constant
-                    $curr.setTokenType(ExpressionType::CONSTANT);
+                    $curr.setTokenType(expressionType(CONSTANT);
 
                 } else {
                     if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
                         // issue 60: check functions with parameters
                         // . colref (we check parameters later)
                         // . if there is no parameter, we leave the colref
-                        $curr.setTokenType(ExpressionType::COLREF);
+                        $curr.setTokenType(expressionType(COLREF);
 
                     } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
-                        $curr.setTokenType(ExpressionType::SIMPLE_FUNCTION);
+                        $curr.setTokenType(expressionType(SIMPLE_FUNCTION);
                         $curr.setNoQuotes(null, null, this.options);
 
                     }  elseif (!$isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
 	                    // Colname using auto name.
-                    	$curr.setTokenType(ExpressionType::COLREF);
+                    	$curr.setTokenType(expressionType(COLREF);
                     } else {
                         $curr.setTokenType(expressionType("RESERVED"));
                         $curr.setNoQuotes(null, null, this.options);

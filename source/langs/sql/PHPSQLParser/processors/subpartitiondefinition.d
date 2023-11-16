@@ -21,15 +21,15 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto getConstantType($token) {
-        return ["expr_type" : ExpressionType::CONSTANT, "base_expr" : $token);
+        return ["expr_type" : expressionType(CONSTANT, "base_expr" : $token);
     }
 
     protected auto getOperatorType($token) {
-        return ["expr_type" : ExpressionType::OPERATOR, "base_expr" : $token);
+        return ["expr_type" : expressionType(OPERATOR, "base_expr" : $token);
     }
 
     protected auto getBracketExpressionType($token) {
-        return ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false);
+        return ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false);
     }
 
     auto process($tokens) {
@@ -65,7 +65,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'SUBPARTITION':
                 if ($currCategory.isEmpty) {
                     $expr[] = this.getReservedType($trim);
-                    $parsed = ["expr_type" : ExpressionType::SUBPARTITION_DEF, "base_expr" : trim($base_expr),
+                    $parsed = ["expr_type" : expressionType(SUBPARTITION_DEF, "base_expr" : trim($base_expr),
                                     "sub_tree" : false);
                     $currCategory = $upper;
                     continue 2;
@@ -75,7 +75,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
 
             case 'COMMENT':
                 if ($prevCategory == 'SUBPARTITION') {
-                    $expr[] = ["expr_type" : ExpressionType::SUBPARTITION_COMMENT, "base_expr" : false,
+                    $expr[] = ["expr_type" : expressionType(SUBPARTITION_COMMENT, "base_expr" : false,
                                     "sub_tree" : false, 'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
@@ -91,7 +91,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'STORAGE':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by ENGINE
-                    $expr[] = ["expr_type" : ExpressionType::ENGINE, "base_expr" : false, "sub_tree" : false,
+                    $expr[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
@@ -111,7 +111,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     continue 2;
                 }
                 if ($prevCategory == 'SUBPARTITION') {
-                    $expr[] = ["expr_type" : ExpressionType::ENGINE, "base_expr" : false, "sub_tree" : false,
+                    $expr[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
                     $parsed["sub_tree"] = $expr;
@@ -146,7 +146,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'INDEX':
                 if ($prevCategory == 'SUBPARTITION') {
                     // followed by DIRECTORY
-                    $expr[] = ["expr_type" : constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper . '_DIR'),
+                    $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . $upper . '_DIR'),
                                     "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 
@@ -172,7 +172,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case 'MAX_ROWS':
             case 'MIN_ROWS':
                 if ($prevCategory == 'SUBPARTITION') {
-                    $expr[] = ["expr_type" : constant('SqlParser\utils\ExpressionType::SUBPARTITION_' . $upper),
+                    $expr[] = ["expr_type" : constant('SqlParser\utils\expressionType(SUBPARTITION_' . $upper),
                                     "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr($base_expr, 0, -$token.length));
 

@@ -22,7 +22,7 @@ class WithProcessor : AbstractProcessor {
     }
 
     protected auto buildTableName($token) {
-    	return ["expr_type" : ExpressionType::TEMPORARY_TABLE, 'name':$token, "base_expr" : $token, 'no_quotes' : this.revokeQuotation($token));
+    	return ["expr_type" : expressionType(TEMPORARY_TABLE, 'name':$token, "base_expr" : $token, 'no_quotes' : this.revokeQuotation($token));
     }
 
     auto process($tokens) {
@@ -65,9 +65,9 @@ class WithProcessor : AbstractProcessor {
                 	case 'AS':
                 		// it follows a parentheses pair
                 		$subtree = this.processTopLevel(this.removeParenthesisFromStart($token));
-                		$resultList[] = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $trim, "sub_tree" : $subtree);
+                		$resultList[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $trim, "sub_tree" : $subtree);
 
-                		$out[] = ["expr_type" : ExpressionType::SUBQUERY_FACTORING, "base_expr" : trim($base_expr), "sub_tree" : $resultList);
+                		$out[] = ["expr_type" : expressionType(SUBQUERY_FACTORING, "base_expr" : trim($base_expr), "sub_tree" : $resultList);
                 		$resultList = [];
                 		$category = "";
                 	break;

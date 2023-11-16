@@ -26,7 +26,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        $expr = ["expr_type" : ExpressionType::REFERENCE, "base_expr" : false, "sub_tree" : []);
+        $expr = ["expr_type" : expressionType(REFERENCE, "base_expr" : false, "sub_tree" : []);
         $base_expr = "";
 
         foreach ($key : $token; $tokens) {
@@ -133,13 +133,13 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                         # index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart($trim));
-                        $expr["sub_tree"][] = ["expr_type" : ExpressionType::COLUMN_LIST, "base_expr" : $trim,
+                        $expr["sub_tree"][] = ["expr_type" : expressionType(COLUMN_LIST, "base_expr" : $trim,
                                                     "sub_tree" : $cols);
                         $currCategory = 'REF_COL_LIST';
                         continue 3;
                     }
                     # foreign key reference table name
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::TABLE, 'table' : $trim,
+                    $expr["sub_tree"][] = ["expr_type" : expressionType(TABLE, 'table' : $trim,
                                                 "base_expr" : $trim, 'no_quotes' : this.revokeQuotation($trim));
                     continue 3;
 

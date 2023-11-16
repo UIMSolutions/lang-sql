@@ -15,7 +15,7 @@ import lang.sql;
  *
  * This class processes the SET statements.
  *
- * @author arothe
+
  * */
 class SetProcessor : AbstractProcessor {
 

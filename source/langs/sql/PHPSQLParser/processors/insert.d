@@ -68,14 +68,14 @@ class InsertProcessor : AbstractProcessor {
             return $cols;
         }
         if ($cols[0] == "(" && substr($cols, -1) == ")") {
-            $parsed = ["expr_type" : ExpressionType::BRACKET_EXPRESSION, "base_expr" : $cols,
+            $parsed = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $cols,
                             "sub_tree" : false);
         }
         $cols = this.removeParenthesisFromStart($cols);
         if (stripos($cols, 'SELECT') == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = [
-                    ["expr_type" : ExpressionType::QUERY, "base_expr" : $cols,
+                    ["expr_type" : expressionType(QUERY, "base_expr" : $cols,
                             "sub_tree" : $processor.process($cols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
@@ -113,7 +113,7 @@ class InsertProcessor : AbstractProcessor {
             list(myTable, $cols, $key) = this.processKeyword($token_category, $tokenList);
         }
 
-        $parsed[] = ["expr_type" : ExpressionType::TABLE, 'table' : myTable,
+        $parsed[] = ["expr_type" : expressionType(TABLE, 'table' : myTable,
                           'no_quotes' : this.revokeQuotation(myTable), 'alias' : false, "base_expr" : myTable);
 
         $cols = this.processColumns($cols);
