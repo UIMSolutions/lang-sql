@@ -30,13 +30,13 @@ class InsertStatementBuilder : ISqlBuilder {
         // TODO: are there more than one tables possible (like [INSERT][1])
         string mySql = this.buildINSERT($parsed["INSERT"]);
         if (isset($parsed["VALUES"])) {
-            mySql  ~= " " ~ this.buildVALUES($parsed["VALUES"]);
+            mySql ~= " " ~ this.buildVALUES($parsed["VALUES"]);
         }
         if (isset($parsed["SET"])) {
-            mySql  ~= " " ~ this.buildSET($parsed["SET"]);
+            mySql ~= " " ~ this.buildSET($parsed["SET"]);
         }
         if (isset($parsed["SELECT"])) {
-            mySql  ~= " " ~ this.buildSELECT($parsed);
+            mySql ~= " " ~ this.buildSELECT($parsed);
         }
         return mySql;
     }

@@ -24,7 +24,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         foreach ($key : $token; $tokens) {
 
             auto strippedToken = $token.strip;
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
 
             if (strippedToken.isEmpty) {
                 continue;
@@ -110,7 +110,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'ACTION':
                 if (strpos(currentCategory, 'SEC_REF_OPTION_') == 0) {
                     $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    $expr["on_" ~ strtolower(substr(currentCategory, -6))]  ~= " " ~ upperToken;
+                    $expr["on_" ~ strtolower(substr(currentCategory, -6))] ~= " " ~ upperToken;
                     currentCategory = 'REF_COL_LIST';
                     continue 2;
                 }

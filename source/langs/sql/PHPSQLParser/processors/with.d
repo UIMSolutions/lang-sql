@@ -26,7 +26,7 @@ class WithProcessor : AbstractProcessor {
         $prev = "";
 
         foreach ($token; $tokens) {
-        	baseExpression  ~= $token;
+        	baseExpression ~= $token;
 			auto strippedToken = $token.strip;
             upperToken = strippedToken.toUpper;
 

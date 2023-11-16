@@ -25,8 +25,8 @@ class IndexColumnBuilder : ISqlBuilder {
         }
 
         string mySql = $parsed["name"];
-        mySql  ~= this.buildLength($parsed["length"]);
-        mySql  ~= this.buildDirection($parsed["dir"]);
+        mySql ~= this.buildLength($parsed["length"]);
+        mySql ~= this.buildDirection($parsed["dir"]);
         return mySql;
     }
 

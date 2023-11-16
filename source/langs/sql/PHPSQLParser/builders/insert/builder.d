@@ -39,17 +39,17 @@ class InsertBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildTable(myValue);
-            mySql  ~= this.buildSubQuery(myValue);
-            mySql  ~= this.buildColumnList(myValue);
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildBracketExpression(myValue);
+            mySql ~= this.buildTable(myValue);
+            mySql ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildColumnList(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('INSERT', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return 'INSERT ' . substr(mySql, 0, -1);
     }

@@ -24,13 +24,13 @@ class IndexTypeBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved(myValue);
+            mySql ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE primary key index type subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return substr(mySql, 0, -1);
     }

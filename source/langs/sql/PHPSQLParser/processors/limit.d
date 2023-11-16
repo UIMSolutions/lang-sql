@@ -37,17 +37,17 @@ class LimitProcessor : AbstractProcessor {
 
         for ($i = 0; $i < $comma; ++$i) {
             if ($exchange) {
-                $rowcount  ~= $tokens[$i];
+                $rowcount ~= $tokens[$i];
             } else {
-                $offset  ~= $tokens[$i];
+                $offset ~= $tokens[$i];
             }
         }
 
         for ($i = $comma + 1; $i < count($tokens); ++$i) {
             if ($exchange) {
-                $offset  ~= $tokens[$i];
+                $offset ~= $tokens[$i];
             } else {
-                $rowcount  ~= $tokens[$i];
+                $rowcount ~= $tokens[$i];
             }
         }
 

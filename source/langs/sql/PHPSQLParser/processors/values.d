@@ -32,7 +32,7 @@ class ValuesProcessor : AbstractProcessor {
 		        continue;
 	        }
 
-	        baseExpression  ~= myToken;
+	        baseExpression ~= myToken;
 	        strippedToken = myToken.strip;
 
             if (this.isWhitespaceToken(myToken)) {

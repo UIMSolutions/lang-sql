@@ -48,18 +48,18 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["options"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildIndexAlgorithm(myValue);
-            mySql  ~= this.buildIndexLock(myValue);
-            mySql  ~= this.buildIndexComment(myValue);
-            mySql  ~= this.buildIndexParser(myValue);
-            mySql  ~= this.buildIndexSize(myValue);
-            mySql  ~= this.buildIndexType(myValue);
+            mySql ~= this.buildIndexAlgorithm(myValue);
+            mySql ~= this.buildIndexLock(myValue);
+            mySql ~= this.buildIndexComment(myValue);
+            mySql ~= this.buildIndexParser(myValue);
+            mySql ~= this.buildIndexSize(myValue);
+            mySql ~= this.buildIndexType(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE INDEX options', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return " " ~ substr(mySql, 0, -1);
     }

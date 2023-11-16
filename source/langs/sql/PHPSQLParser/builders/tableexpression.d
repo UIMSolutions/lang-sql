@@ -42,12 +42,12 @@ class TableExpressionBuilder : ISqlBuilder {
         
         string mySql = substr(this.buildFROM($parsed["sub_tree"]), 5); // remove FROM keyword
         mySql = "(" ~ mySql ~ ")";
-        mySql  ~= this.buildAlias($parsed);
+        mySql ~= this.buildAlias($parsed);
 
         if ($index != 0) {
             mySql = this.buildJoin($parsed["join_type"]) ~ mySql;
-            mySql  ~= this.buildRefType($parsed["ref_type"]);
-            mySql  ~= $parsed["ref_clause"] == false ? "" : this.buildRefClause($parsed["ref_clause"]);
+            mySql ~= this.buildRefType($parsed["ref_type"]);
+            mySql ~= $parsed["ref_clause"] == false ? "" : this.buildRefClause($parsed["ref_clause"]);
         }
         return mySql;
     }

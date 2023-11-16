@@ -147,9 +147,9 @@ class FromProcessor : AbstractProcessor {
                     $token_category = "";
                     $parseInfo["next_join_type"] = trim($prevToken)); // it seems to be a join
                 } elseif ($token_category == 'IDX_HINT') {
-                    $parseInfo["expression"]  ~= $token;
+                    $parseInfo["expression"] ~= $token;
                     if ($parseInfo["ref_type"] != false) { // all after ON / USING
-                        $parseInfo["ref_expr"]  ~= $token;
+                        $parseInfo["ref_expr"] ~= $token;
                     }
                 }
                 break;
@@ -165,20 +165,20 @@ class FromProcessor : AbstractProcessor {
             default:
                 if ($token_category == 'LEFT' || $token_category == 'RIGHT') {
                     if (upperToken.isEmpty) {
-                        $prevToken  ~= $token;
+                        $prevToken ~= $token;
                         break;
                     } else {
                         $token_category = "";     // it seems to be a function
-                        $parseInfo["expression"]  ~= $prevToken;
+                        $parseInfo["expression"] ~= $prevToken;
                         if ($parseInfo["ref_type"] != false) { // all after ON / USING
-                            $parseInfo["ref_expr"]  ~= $prevToken;
+                            $parseInfo["ref_expr"] ~= $prevToken;
                         }
                         $prevToken = "";
                     }
                 }
-                $parseInfo["expression"]  ~= $token;
+                $parseInfo["expression"] ~= $token;
                 if ($parseInfo["ref_type"] != false) { // all after ON / USING
-                    $parseInfo["ref_expr"]  ~= $token;
+                    $parseInfo["ref_expr"] ~= $token;
                 }
                 break;
             }
@@ -195,7 +195,7 @@ class FromProcessor : AbstractProcessor {
                 $n = 1;
                 $str = "";
                 while ($str.isEmpty && isset($tokens[$i + $n])) {
-                    $parseInfo["alias"]["base_expr"]  ~= ($tokens[$i + $n].isEmpty ? " " : $tokens[$i + $n]);
+                    $parseInfo["alias"]["base_expr"] ~= ($tokens[$i + $n].isEmpty ? " " : $tokens[$i + $n]);
                     $str = trim($tokens[$i + $n]);
                     ++$n;
                 }
@@ -219,7 +219,7 @@ class FromProcessor : AbstractProcessor {
                 }
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
+                    $parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
                 break;
@@ -239,7 +239,7 @@ class FromProcessor : AbstractProcessor {
             case 'FOR':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
+                    $parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -264,7 +264,7 @@ class FromProcessor : AbstractProcessor {
             case 'JOIN':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
+                    $parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -280,7 +280,7 @@ class FromProcessor : AbstractProcessor {
             case 'GROUP BY':
                 if ($token_category == 'IDX_HINT') {
                     $cur_hint = (count($parseInfo["hints"]) - 1);
-                    $parseInfo["hints"][$cur_hint]["hint_type"]  ~= " "~ upperToken;
+                    $parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 

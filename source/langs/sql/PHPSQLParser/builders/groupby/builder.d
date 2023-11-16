@@ -38,17 +38,17 @@ class GroupByBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef(myValue);
-            mySql  ~= this.buildPosition(myValue);
-            mySql  ~= this.buildFunction(myValue);
-            mySql  ~= this.buildGroupByExpression(myValue);
-            mySql  ~= this.buildGroupByAlias(myValue);
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildPosition(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildGroupByExpression(myValue);
+            mySql ~= this.buildGroupByAlias(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('GROUP', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= ", ";
+            mySql ~= ", ";
         }
         mySql = substr(mySql, 0, -2);
         return "GROUP BY " ~ mySql;

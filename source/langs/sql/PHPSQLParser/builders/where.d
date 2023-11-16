@@ -66,22 +66,22 @@ class WhereBuilder : ISqlBuilder {
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;
 
-            mySql  ~= this.buildOperator(myValue);
-            mySql  ~= this.buildConstant(myValue);
-            mySql  ~= this.buildColRef(myValue);
-            mySql  ~= this.buildSubQuery(myValue);
-            mySql  ~= this.buildInList(myValue);
-            mySql  ~= this.buildFunction(myValue);
-            mySql  ~= this.buildWhereExpression(myValue);
-            mySql  ~= this.buildWhereBracketExpression(myValue);
-            mySql  ~= this.buildUserVariable(myValue);
-            mySql  ~= this.buildReserved(myValue);
+            mySql ~= this.buildOperator(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildInList(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildWhereExpression(myValue);
+            mySql ~= this.buildWhereBracketExpression(myValue);
+            mySql ~= this.buildUserVariable(myValue);
+            mySql ~= this.buildReserved(myValue);
             
             if (strlen(mySql) == $len) {
                 throw new UnableToCreateSQLException('WHERE', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return substr(mySql, 0, -1);
     }

@@ -28,14 +28,14 @@ class RenameStatementBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; myRename["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.processSourceAndDestTable(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.processSourceAndDestTable(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('RENAME subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         mySql = ("RENAME " ~ mySql).strip;
         return (substr(mySql, -1) == "," ? substr(mySql, 0, -1) : mySql);

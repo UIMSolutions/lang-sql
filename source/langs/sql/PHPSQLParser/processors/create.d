@@ -17,7 +17,7 @@ class CreateProcessor : AbstractProcessor {
         foreach (myToken; $tokens) {
             
             auto strippedToken = myToken.strip;
-            baseExpression  ~= myToken;
+            baseExpression ~= myToken;
 
             if (strippedToken.isEmpty) {
                 continue;

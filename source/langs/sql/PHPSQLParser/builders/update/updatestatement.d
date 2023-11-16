@@ -22,9 +22,9 @@ class UpdateStatementBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        string mySql = this.buildUPDATE($parsed["UPDATE"]) . " "~ this.buildSET($parsed["SET"]);
+        string mySql = this.buildUPDATE($parsed["UPDATE"]) . " " ~ this.buildSET($parsed["SET"]);
         if ("WHERE" in $parsed["WHERE"]) {
-            mySql  ~= " " ~ this.buildWHERE($parsed["WHERE"]);
+            mySql ~= " " ~ this.buildWHERE($parsed["WHERE"]);
         }
         return mySql;
     }

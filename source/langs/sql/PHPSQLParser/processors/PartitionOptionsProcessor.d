@@ -57,7 +57,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
         foreach ($tokenKey : $token; $tokens) {
             auto strippedToken = $token.strip;
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
 
             if ($skip > 0) {
                 $skip--;
@@ -195,7 +195,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     $last = array_pop($parsed);
                     $last["count"] = strippedToken;
                     $last["sub_tree"][] = myExpression;
-                    $last["base_expr"]  ~= baseExpression;
+                    $last["base_expr"] ~= baseExpression;
                     $parsed[] = $last;
                     unset($last);
 

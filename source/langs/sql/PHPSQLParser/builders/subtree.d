@@ -74,19 +74,19 @@ class SubTreeBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef(myValue);
-            mySql  ~= this.buildFunction(myValue);
-            mySql  ~= this.buildOperator(myValue);
-            mySql  ~= this.buildConstant(myValue);
-            mySql  ~= this.buildInList(myValue);
-            mySql  ~= this.buildSubQuery(myValue);
-            mySql  ~= this.buildSelectBracketExpression(myValue);
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildQuery(myValue);
-            mySql  ~= this.buildUserVariable(myValue);
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildOperator(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildInList(myValue);
+            mySql ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildSelectBracketExpression(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildQuery(myValue);
+            mySql ~= this.buildUserVariable(myValue);
 
             string mySign = this.buildSign(myValue);
-            mySql  ~= mySign;
+            mySql ~= mySign;
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('expression subtree', myKey, myValue, "expr_type");
@@ -94,7 +94,7 @@ class SubTreeBuilder : ISqlBuilder {
 
             // We don't need whitespace between a sign and the following part.
             if (mySign.isEmpty) {
-                mySql  ~= $delim;
+                mySql ~= $delim;
             }
         }
         return substr(mySql, 0, -strlen($delim));

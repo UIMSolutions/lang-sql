@@ -59,7 +59,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
         foreach ($tokenKey, $token; $tokens) {
             auto strippedToken = $token.strip;
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
 
             if ($skip > 0) {
                 $skip--;

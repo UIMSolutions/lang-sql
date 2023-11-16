@@ -90,7 +90,7 @@ class OrderByProcessor : AbstractProcessor {
                     break;
                 }
 
-                $parseInfo["base_expr"]  ~= $token;
+                $parseInfo["base_expr"] ~= $token;
             }
         }
 

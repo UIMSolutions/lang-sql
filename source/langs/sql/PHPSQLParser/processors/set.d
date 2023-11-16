@@ -62,7 +62,7 @@ class SetProcessor : AbstractProcessor {
 
             default:
             }
-            $baseExpr  ~= $token;
+            $baseExpr ~= $token;
         }
 
         if (trim($baseExpr) != "") {

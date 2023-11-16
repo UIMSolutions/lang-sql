@@ -26,7 +26,7 @@ class GroupByProcessor : OrderByProcessor {
                 $parseInfo = this.initParseInfo();
                 break;
             default:
-                $parseInfo["base_expr"]  ~= $token;
+                $parseInfo["base_expr"] ~= $token;
             }
         }
 

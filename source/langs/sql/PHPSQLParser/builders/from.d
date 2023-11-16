@@ -34,7 +34,7 @@ class FromBuilder : ISqlBuilder {
 
                 foreach ($item; $outer_v) {
                     if (!$first) {
-                        mySql  ~= " $union_type ";
+                        mySql ~= " $union_type ";
                     }
                     else {
                         $first = false;
@@ -43,7 +43,7 @@ class FromBuilder : ISqlBuilder {
                     $select_builder = new SelectStatementBuilder();
 
                     size_t oldSqlLength = mySql.length;
-                    mySql  ~= $select_builder.build($item);
+                    mySql ~= $select_builder.build($item);
 
                     if (oldSqlLength == mySql.length) { // No change
                         throw new UnableToCreateSQLException('FROM', $union_type, $outer_v, "expr_type");
@@ -54,9 +54,9 @@ class FromBuilder : ISqlBuilder {
         else {
             foreach (myKey, myValue; $parsed) {
                 size_t oldSqlLength = mySql.length;
-                mySql  ~= this.buildTable(myValue, $k);
-                mySql  ~= this.buildTableExpression(myValue, $k);
-                mySql  ~= this.buildSubquery(myValue, $k);
+                mySql ~= this.buildTable(myValue, $k);
+                mySql ~= this.buildTableExpression(myValue, $k);
+                mySql ~= this.buildSubquery(myValue, $k);
 
                 if (oldSqlLength == mySql.length) { // No change
                     throw new UnableToCreateSQLException('FROM', myKey, myValue, "expr_type");

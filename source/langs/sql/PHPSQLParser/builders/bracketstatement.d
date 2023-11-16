@@ -20,12 +20,12 @@ class BracketStatementBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["BRACKET"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildSelectBracketExpression(myValue);
+            mySql ~= this.buildSelectBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('BRACKET', myKey, myValue, "expr_type");
             }
         }
-        return mySql ~ " "~ this.buildSelectStatement($parsed).strip).strip;
+        return mySql ~ " " ~ this.buildSelectStatement($parsed).strip).strip;
     }
 }

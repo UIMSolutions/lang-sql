@@ -18,8 +18,8 @@ class IndexHintListBuilder : ISqlBuilder {
 
         string mySql = "";
         foreach (myKey, myValue; $parsed["hints"]) {
-            mySql  ~= myValue["hint_type"] ~ " "~ myValue["hint_list"] ~ " ";
+            mySql ~= myValue["hint_type"] ~ " " ~ myValue["hint_list"] ~ " ";
         }
-        return " "~ substr(mySql, 0, -1);
+        return " " ~ substr(mySql, 0, -1);
     }
 }

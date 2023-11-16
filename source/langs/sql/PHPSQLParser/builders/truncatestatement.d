@@ -18,7 +18,7 @@ class TruncateStatementBuilder : ISqlBuilder {
     
     string build(array $parsed) {
         string mySql = this.buildTRUNCATE($parsed);
-        // mySql  ~= " "~ this.buildTRUNCATE($parsed) // Uncomment when parser fills in expr_type=table
+        // mySql ~= " " ~ this.buildTRUNCATE($parsed) // Uncomment when parser fills in expr_type=table
         
         return mySql;
     }

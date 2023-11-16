@@ -23,7 +23,7 @@ class IndexColumnListProcessor : AbstractProcessor {
         foreach ($tokens as $k : $token) {
 
             auto strippedToken = $token.strip;
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
 
             if (strippedToken.isEmpty) {
                 continue;

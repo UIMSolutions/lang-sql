@@ -21,7 +21,7 @@ class ConstantBuilder : ISqlBuilder {
         }
         
         string mySql = $parsed["base_expr"];
-        mySql  ~= this.buildAlias($parsed);
+        mySql ~= this.buildAlias($parsed);
         return mySql;
     }
 }

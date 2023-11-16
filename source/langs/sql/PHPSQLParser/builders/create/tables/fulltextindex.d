@@ -39,16 +39,16 @@ class FulltextIndexBuilder : IBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildColumnList(myValue);
-            mySql  ~= this.buildConstant(myValue);
-            mySql  ~= this.buildIndexKey(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildColumnList(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildIndexKey(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE fulltext-index key subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return substr(mySql, 0, -1);
     }

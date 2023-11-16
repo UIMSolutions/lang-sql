@@ -31,15 +31,15 @@ class IndexAlgorithmBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildConstant(myValue);
-            mySql  ~= this.buildOperator(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildOperator(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE INDEX algorithm subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return substr(mySql, 0, -1);
     }

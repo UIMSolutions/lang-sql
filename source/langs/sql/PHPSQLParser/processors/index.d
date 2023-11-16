@@ -36,7 +36,7 @@ class IndexProcessor : AbstractProcessor {
 
         foreach ($tokens as $tokenKey : $token) {
             auto strippedToken = $token.strip;
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
 
             if ($skip > 0) {
                 $skip--;
@@ -137,7 +137,7 @@ class IndexProcessor : AbstractProcessor {
                 case 'COLUMN_DEF':
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
-                        $result["on"]["base_expr"]  ~= baseExpression;
+                        $result["on"]["base_expr"] ~= baseExpression;
                         $result["on"]["sub_tree"] = ["expr_type" : expressionType(COLUMN_LIST,
                                                           "base_expr" : strippedToken, "sub_tree" : $cols);
                     }

@@ -19,13 +19,13 @@ class SetBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildSetExpression(myValue);
+            mySql ~= this.buildSetExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('SET', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= ",";
+            mySql ~= ",";
         }
         return "SET " ~ substr(mySql, 0, -1);
     }

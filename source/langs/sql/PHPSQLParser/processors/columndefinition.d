@@ -65,7 +65,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         foreach ($key : $token; $tokens as ) {
 
             auto strippedToken = $token.strip;
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
 
             if ($skip > 0) {
                 $skip--;

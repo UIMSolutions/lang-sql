@@ -57,19 +57,19 @@ class ColumnTypeBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildDataType(myValue);
-            mySql  ~= this.buildColumnTypeBracketExpression(myValue);
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildDefaultValue(myValue);
-            mySql  ~= this.buildCharacterSet(myValue);
-            mySql  ~= this.buildCollation(myValue);
-            mySql  ~= this.buildComment(myValue);
+            mySql ~= this.buildDataType(myValue);
+            mySql ~= this.buildColumnTypeBracketExpression(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildDefaultValue(myValue);
+            mySql ~= this.buildCharacterSet(myValue);
+            mySql ~= this.buildCollation(myValue);
+            mySql ~= this.buildComment(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE column-type subtree', myKey, myValue, "expr_type");
             }
     
-            mySql  ~= " ";
+            mySql ~= " ";
         }
     
         return substr(mySql, 0, -1);

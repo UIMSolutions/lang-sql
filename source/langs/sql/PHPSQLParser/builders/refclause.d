@@ -57,20 +57,20 @@ class RefClauseBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef(myValue);
-            mySql  ~= this.buildOperator(myValue);
-            mySql  ~= this.buildConstant(myValue);
-            mySql  ~= this.buildFunction(myValue);
-            mySql  ~= this.buildBracketExpression(myValue);
-            mySql  ~= this.buildInList(myValue);
-            mySql  ~= this.buildColumnList(myValue);
-            mySql  ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildOperator(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildBracketExpression(myValue);
+            mySql ~= this.buildInList(myValue);
+            mySql ~= this.buildColumnList(myValue);
+            mySql ~= this.buildSubQuery(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('expression ref_clause', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
         return substr(mySql, 0, -1);
     }

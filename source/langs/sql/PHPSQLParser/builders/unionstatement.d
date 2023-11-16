@@ -17,13 +17,13 @@ class UnionStatementBuilder : ISqlBuilder {
 		$first = true;
 		foreach ($parsed["UNION"] as $clause) {
 			if (!$first) {
-				mySql  ~= " UNION ";
+				mySql ~= " UNION ";
 			}
 			else {
 				$first = false;
 			}
 
-			mySql  ~= $select_builder.build($clause);
+			mySql ~= $select_builder.build($clause);
 		}
 		return mySql;
 	}

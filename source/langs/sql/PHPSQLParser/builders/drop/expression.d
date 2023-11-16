@@ -41,17 +41,17 @@ class DropExpressionBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildTable(myValue, 0);
-            mySql  ~= this.buildView(myValue);
-            mySql  ~= this.buildSchema(myValue);
-            mySql  ~= this.buildDatabase(myValue);
-            mySql  ~= this.buildTemporaryTable(myValue, 0);
+            mySql ~= this.buildTable(myValue, 0);
+            mySql ~= this.buildView(myValue);
+            mySql ~= this.buildSchema(myValue);
+            mySql ~= this.buildDatabase(myValue);
+            mySql ~= this.buildTemporaryTable(myValue, 0);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('DROP object-list subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= ', ';
+            mySql ~= ', ';
         }
         return substr(mySql, 0, -2);
     }

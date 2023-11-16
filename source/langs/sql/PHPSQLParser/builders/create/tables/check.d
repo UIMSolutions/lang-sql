@@ -37,7 +37,7 @@ class CheckBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException('CREATE TABLE check subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
 
         return substr(mySql, 0, -1);

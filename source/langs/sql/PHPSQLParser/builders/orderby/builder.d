@@ -49,22 +49,22 @@ class OrderByBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildAlias(myValue);
-            mySql  ~= this.buildColRef(myValue);
-            mySql  ~= this.buildFunction(myValue);
-            mySql  ~= this.buildExpression(myValue);
-            mySql  ~= this.buildBracketExpression(myValue);
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildPosition(myValue);
+            mySql ~= this.buildAlias(myValue);
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildExpression(myValue);
+            mySql ~= this.buildBracketExpression(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildPosition(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('ORDER', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= ", ";
+            mySql ~= ", ";
         }
         mySql = substr(mySql, 0, -2);
-        
+
         return "ORDER BY " ~ mySql;
     }
 }

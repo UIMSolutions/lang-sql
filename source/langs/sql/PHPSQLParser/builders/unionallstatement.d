@@ -19,13 +19,13 @@ class UnionAllStatementBuilder : ISqlBuilder {
 		$first = true;
 		foreach ($parsed["UNION ALL"] as $clause) {
 			if (!$first) {
-				mySql  ~= " UNION ALL ";
+				mySql ~= " UNION ALL ";
 			}
 			else {
 				$first = false;
 			}
 
-			mySql  ~= $select_builder.build($clause);
+			mySql ~= $select_builder.build($clause);
 		}
 		return mySql;
 	}

@@ -18,7 +18,7 @@ class DropProcessor : AbstractProcessor {
         $option = false;
 
         foreach ($tokenList as $token) {
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
             strippedToken = $token.strip;
 
             if (strippedToken.isEmpty) {

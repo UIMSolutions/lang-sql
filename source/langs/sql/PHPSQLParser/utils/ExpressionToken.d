@@ -30,7 +30,7 @@ class ExpressionToken {
 
     # TODO: we could replace it with a constructor new ExpressionToken(this, "*")
     auto addToken($string) {
-        this.token  ~= $string;
+        this.token ~= $string;
     }
 
     auto isEnclosedWithinParenthesis() {

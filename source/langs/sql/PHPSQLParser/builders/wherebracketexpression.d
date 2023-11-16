@@ -64,23 +64,23 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildColRef(myValue);
-            mySql  ~= this.buildConstant(myValue);
-            mySql  ~= this.buildOperator(myValue);
-            mySql  ~= this.buildInList(myValue);
-            mySql  ~= this.buildFunction(myValue);
-            mySql  ~= this.buildWhereExpression(myValue);
-            mySql  ~= this.build(myValue);
-            mySql  ~= this.buildUserVariable(myValue);
-           // mySql  ~= this.buildSubQuery(myValue);
-            mySql  ~= this.buildReserved(myValue);
-            mySql  ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildOperator(myValue);
+            mySql ~= this.buildInList(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildWhereExpression(myValue);
+            mySql ~= this.build(myValue);
+            mySql ~= this.buildUserVariable(myValue);
+           // mySql ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildSubQuery(myValue);
             
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('WHERE expression subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= " ";
+            mySql ~= " ";
         }
 
         mySql = "(" ~ substr(mySql, 0, -1) ~ ")";

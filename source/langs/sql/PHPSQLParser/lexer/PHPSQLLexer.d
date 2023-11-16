@@ -103,13 +103,13 @@ class PHPSQLLexer {
 
             if ($scientific == true) {
                 if ($token == '-' || $token == '+') {
-                    $tokens[$i - 1]  ~= $tokens[$i];
-                    $tokens[$i - 1]  ~= $tokens[$i + 1];
+                    $tokens[$i - 1] ~= $tokens[$i];
+                    $tokens[$i - 1] ~= $tokens[$i + 1];
                     unset($tokens[$i]);
                     unset($tokens[$i + 1]);
 
                 } elseif (is_numeric($token)) {
-                    $tokens[$i - 1]  ~= $tokens[$i];
+                    $tokens[$i - 1] ~= $tokens[$i];
                     unset($tokens[$i]);
                 }
                 $scientific = false;
@@ -141,7 +141,7 @@ class PHPSQLLexer {
             $token = $tokens[$i];
 
             if ($userdef != false) {
-                $tokens[$userdef]  ~= $token;
+                $tokens[$userdef] ~= $token;
                 unset($tokens[$i]);
                 if ($token != "@") {
                     $userdef = false;
@@ -201,7 +201,7 @@ class PHPSQLLexer {
                         $comment = false;
                     } else {
                         unset($tokens[$i]);
-                        $tokens[$comment]  ~= $token;
+                        $tokens[$comment] ~= $token;
                     }
                     if ($inline == false && ($token == "*/")) {
                         $comment = false;
@@ -270,7 +270,7 @@ class PHPSQLLexer {
             }
 
             auto myToken = $tokens[$i];
-            $tokens[$idx]  ~= myToken;
+            $tokens[$idx] ~= myToken;
             unset($tokens[$i]);
 
             if (myToken == $char) {
@@ -327,7 +327,7 @@ class PHPSQLLexer {
                         $k++;
                         continue;
                     }
-                    $tokens[$i]  ~= $tokens[$k];
+                    $tokens[$i] ~= $tokens[$k];
                     unset($tokens[$k]);
                     $k++;
                 }
@@ -347,7 +347,7 @@ class PHPSQLLexer {
             if (this.endsWith($tokens[$i], "\\")) {
                 $i++;
                 if (isset($tokens[$i])) {
-                    $tokens[$i - 1]  ~= $tokens[$i];
+                    $tokens[$i - 1] ~= $tokens[$i];
                     unset($tokens[$i]);
                 }
             }
@@ -373,7 +373,7 @@ class PHPSQLLexer {
                 if ($token == ")") {
                     $count--;
                 }
-                $tokens[$i]  ~= $token;
+                $tokens[$i] ~= $token;
                 unset($tokens[$n]);
                 if ($count == 0) {
                     $n++;

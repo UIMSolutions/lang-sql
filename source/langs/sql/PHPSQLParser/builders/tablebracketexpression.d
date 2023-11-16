@@ -59,20 +59,20 @@ class TableBracketExpressionBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql  ~= this.buildColDef(myValue);
-            mySql  ~= this.buildPrimaryKey(myValue);
-            mySql  ~= this.buildCheck(myValue);
-            mySql  ~= this.buildLikeExpression(myValue);
-            mySql  ~= this.buildForeignKey(myValue);
-            mySql  ~= this.buildIndexKey(myValue);
-            mySql  ~= this.buildUniqueIndex(myValue);
-            mySql  ~= this.buildFulltextIndex(myValue);
+            mySql ~= this.buildColDef(myValue);
+            mySql ~= this.buildPrimaryKey(myValue);
+            mySql ~= this.buildCheck(myValue);
+            mySql ~= this.buildLikeExpression(myValue);
+            mySql ~= this.buildForeignKey(myValue);
+            mySql ~= this.buildIndexKey(myValue);
+            mySql ~= this.buildUniqueIndex(myValue);
+            mySql ~= this.buildFulltextIndex(myValue);
                         
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException('CREATE TABLE create-def expression subtree', myKey, myValue, "expr_type");
             }
 
-            mySql  ~= ", ";
+            mySql ~= ", ";
         }
 
         mySql = " (" ~ substr(mySql, 0, -2) ~ ")";

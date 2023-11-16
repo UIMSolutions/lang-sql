@@ -41,7 +41,7 @@ class SelectProcessor : SelectExpressionProcessor {
                     break;
 
                 default:
-                    $expression  ~= myToken;
+                    $expression ~= myToken;
                 }
             }
         }

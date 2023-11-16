@@ -68,7 +68,7 @@ class PositionCalculator {
         $caller = debug_backtrace();
         $i = 1;
         while ($caller[$i]["function"] == 'lookForBaseExpression') {
-            $spaces  ~= "   ";
+            $spaces ~= "   ";
             $i++;
         }
         $holdem = substr($sql, 0, $charPos) . "^" . substr($sql, $charPos);

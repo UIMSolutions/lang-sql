@@ -57,15 +57,15 @@ class SelectExpressionProcessor : AbstractProcessor {
             // but also a comment!
             if ($capture) {
                 if (!this.isWhitespaceToken(upperToken) && !this.isCommentToken(upperToken)) {
-                    $alias["name"]  ~= $token;
+                    $alias["name"] ~= $token;
                     array_pop($stripped);
                 }
-                $alias["base_expr"]  ~= $token;
+                $alias["base_expr"] ~= $token;
                 $tokens[$i] = "";
                 continue;
             }
 
-            baseExpression  ~= $token;
+            baseExpression ~= $token;
         }
 
         if ($alias) {

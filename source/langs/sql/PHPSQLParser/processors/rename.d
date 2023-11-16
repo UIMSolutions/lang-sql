@@ -47,7 +47,7 @@ class RenameProcessor : AbstractProcessor {
                 continue 2; 
                 
             default:
-                baseExpression  ~= $token.getToken();
+                baseExpression ~= $token.getToken();
                 break;
             }
         }
