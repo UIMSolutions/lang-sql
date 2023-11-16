@@ -28,7 +28,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COLDEF) {
             return "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);

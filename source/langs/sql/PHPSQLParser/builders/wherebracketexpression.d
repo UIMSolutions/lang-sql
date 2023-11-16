@@ -66,7 +66,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
             return "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);

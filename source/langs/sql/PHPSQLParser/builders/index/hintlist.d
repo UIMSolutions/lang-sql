@@ -16,7 +16,7 @@ class IndexHintListBuilder : ISqlBuilder {
             return "";
         }
 
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["hints"]) {
             mySql  ~= myValue["hint_type"] ~ " "~ myValue["hint_list"] ~ " ";
         }

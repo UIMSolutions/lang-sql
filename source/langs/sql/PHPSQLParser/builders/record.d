@@ -39,7 +39,7 @@ class RecordBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::RECORD) {
             return isset($parsed["base_expr"]) ? $parsed["base_expr"] : "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["data"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildConstant(myValue);

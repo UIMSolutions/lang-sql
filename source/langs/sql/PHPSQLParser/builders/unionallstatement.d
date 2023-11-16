@@ -14,7 +14,7 @@ class UnionAllStatementBuilder : ISqlBuilder {
 
 	string build(array $parsed)
 	{
-		auto mySql = "";
+		string mySql = "";
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
 		foreach ($parsed["UNION ALL"] as $clause) {

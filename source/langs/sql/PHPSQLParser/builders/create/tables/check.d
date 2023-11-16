@@ -29,7 +29,7 @@ class CheckBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::CHECK) {
             return "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach ($k :  myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

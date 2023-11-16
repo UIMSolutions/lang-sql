@@ -29,7 +29,7 @@ class RenameStatementBuilder : ISqlBuilder {
 
     string build(array $parsed) {
         auto myRename = $parsed["RENAME"];
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; myRename["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

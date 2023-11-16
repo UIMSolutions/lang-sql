@@ -24,7 +24,7 @@ class IndexCommentBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::COMMENT) {
             return "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach ($parsed["sub_tree"] as $k :  myValue) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

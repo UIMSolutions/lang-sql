@@ -25,7 +25,7 @@ class IndexParserBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::INDEX_PARSER) {
             return "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValie; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

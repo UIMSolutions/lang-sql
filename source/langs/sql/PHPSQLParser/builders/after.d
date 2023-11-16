@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 class AlterBuilder : ISqlBuilder {
   auto build(array$parsed) {
-    auto mySql = "";
+    string mySql = "";
 
     foreach (myTerm; $parsed) {
       if (myTerm == " ") {

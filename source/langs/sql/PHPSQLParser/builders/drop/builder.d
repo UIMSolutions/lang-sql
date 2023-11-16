@@ -34,7 +34,7 @@ class DropBuilder : ISqlBuilder {
 	}
 
 	protected auto buildSubTree( $parsed ) {
-		auto mySql = "";
+		string mySql = "";
 		foreach (myKey, myValue; $parsed["sub_tree"]) {
 			auto oldLengthOfSql = mySql.length;
 			mySql  ~= this.buildReserved( myValue );

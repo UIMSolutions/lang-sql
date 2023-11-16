@@ -54,7 +54,7 @@ class RefClauseBuilder : ISqlBuilder {
     string build(array $parsed) {
         if ($parsed == false) { return ""; }
 
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColRef(myValue);

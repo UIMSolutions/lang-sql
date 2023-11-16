@@ -28,7 +28,7 @@ class CollationBuilder : ISqlBuilder {
     string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COLLATE) { return ""; }
 
-        auto mySql = "";
+        string mySql = "";
         foreach (key, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

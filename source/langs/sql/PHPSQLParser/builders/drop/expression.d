@@ -38,7 +38,7 @@ class DropExpressionBuilder : ISqlBuilder {
     string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) { return ""; }
 
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue, 0);

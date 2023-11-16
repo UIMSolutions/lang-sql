@@ -36,7 +36,7 @@ class ReplaceBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildTable(myValue);

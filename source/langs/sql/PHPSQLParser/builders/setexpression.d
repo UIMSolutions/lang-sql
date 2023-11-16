@@ -49,7 +49,7 @@ class SetExpressionBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::EXPRESSION) {
             return "";
         }
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             $delim = " ";
             auto oldSqlLength = mySql.length;

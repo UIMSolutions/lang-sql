@@ -21,7 +21,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
     string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::COLUMN_LIST) { return ""; }
 
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildColumn(myValue);

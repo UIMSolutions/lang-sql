@@ -48,7 +48,7 @@ class ShowBuilder : ISqlBuilder {
     string build(array $parsed) {
         auto $show = $parsed["SHOW"];
         
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $show) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

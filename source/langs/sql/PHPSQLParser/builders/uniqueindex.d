@@ -40,7 +40,7 @@ class UniqueIndexBuilder : ISqlBuilder {
             return "";
         }
         
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

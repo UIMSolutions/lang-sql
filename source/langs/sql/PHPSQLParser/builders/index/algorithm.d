@@ -28,7 +28,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
     string build(array $parsed) {
         if ($parsed["expr_type"] != ExpressionType::INDEX_ALGORITHM) { return ""; }
 
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["sub_tree"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildReserved(myValue);

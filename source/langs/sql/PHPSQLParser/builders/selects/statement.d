@@ -52,7 +52,7 @@ class SelectStatementBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        auto mySql = "";
+        string mySql = "";
         if (isset($parsed["SELECT"])) {
             mySql  ~= this.buildSELECT($parsed["SELECT"]);
         }

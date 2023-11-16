@@ -22,7 +22,7 @@ class BracketStatementBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        auto mySql = "";
+        string mySql = "";
         foreach (myKey, myValue; $parsed["BRACKET"]) {
             auto oldSqlLength = mySql.length;
             mySql  ~= this.buildSelectBracketExpression(myValue);
