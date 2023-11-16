@@ -1,9 +1,3 @@
-
-/**
- * UserVariableBuilder.php
- *
- * Builds an user variable. */
-
 module langs.sql.PHPSQLParser.builders.uservariable;
 
 import lang.sql;
@@ -11,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * Builds an user variable. */
  * This class : the builder for an user variable. 
  * You can overwrite all functions to achieve another handling. */
 class UserVariableBuilder : ISqlBuilder {

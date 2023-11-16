@@ -1,11 +1,3 @@
-
-/**
- * InvalidParameterException.php
- *
- * This file : the InvalidParameterException class which is used within the
- * SqlParser package.
- */
-
 module source.langs.sql.PHPSQLParser.exceptions.invalidparameter;
 
 import lang.sql;
@@ -13,6 +5,7 @@ import lang.sql;
 @safe:
 
 /**
+ * This file : the InvalidParameterException class which is used within the SqlParser package.
  * This exception will occur in the parser, if the given SQL statement
  * is not a String type. */
 class InvalidParameterException : InvalidArgumentException {
@@ -29,4 +22,3 @@ class InvalidParameterException : InvalidArgumentException {
     }
 }
 
-?>

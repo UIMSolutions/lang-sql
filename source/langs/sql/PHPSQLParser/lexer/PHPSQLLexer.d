@@ -58,10 +58,10 @@ class PHPSQLLexer {
     protected auto concatNegativeNumbers($tokens) {
 
     	$i = 0;
-    	$cnt = count($tokens);
+    	numberOfTokens = count($tokens);
     	$possibleSign = true;
 
-    	while ($i < $cnt) {
+    	while ($i < numberOfTokens) {
 
     		if (!isset($tokens[$i])) {
     			$i++;
@@ -96,10 +96,10 @@ class PHPSQLLexer {
     protected auto concatScientificNotations($tokens) {
 
         $i = 0;
-        $cnt = count($tokens);
+        numberOfTokens = $tokens.length;
         $scientific = false;
 
-        while ($i < $cnt) {
+        while ($i < numberOfTokens) {
 
             if (!isset($tokens[$i])) {
                 $i++;
@@ -123,7 +123,7 @@ class PHPSQLLexer {
                 continue;
             }
 
-            if ((substr($token, -1, 1).toUpper == "E") {
+            if (substr($token, -1, 1).toUpper == "E") {
                 $scientific = is_numeric(substr($token, 0, -1));
             }
 
@@ -135,10 +135,10 @@ class PHPSQLLexer {
 
     protected auto concatUserDefinedVariables($tokens) {
         $i = 0;
-        $cnt = count($tokens);
+        numberOfTokens = count($tokens);
         $userdef = false;
 
-        while ($i < $cnt) {
+        while ($i < numberOfTokens) {
 
             if (!isset($tokens[$i])) {
                 $i++;
@@ -168,13 +168,13 @@ class PHPSQLLexer {
     protected auto concatComments($tokens) {
 
         $i = 0;
-        $cnt = count($tokens);
+        numberOfTokens = count($tokens);
         $comment = false;
         $backTicks = [];
         $in_string = false;
         $inline = false;
 
-        while ($i < $cnt) {
+        while ($i < numberOfTokens) {
 
             if (!isset($tokens[$i])) {
                 $i++;
@@ -243,8 +243,8 @@ class PHPSQLLexer {
 
     protected auto balanceBackticks($tokens) {
         $i = 0;
-        $cnt = count($tokens);
-        while ($i < $cnt) {
+        numberOfTokens = count($tokens);
+        while ($i < numberOfTokens) {
 
             if (!isset($tokens[$i])) {
                 $i++;
@@ -299,9 +299,9 @@ class PHPSQLLexer {
      */
     protected auto concatColReferences($tokens) {
 
-        $cnt = count($tokens);
+        numberOfTokens = count($tokens);
         $i = 0;
-        while ($i < $cnt) {
+        while ($i < numberOfTokens) {
 
             if (!isset($tokens[$i])) {
                 $i++;
@@ -329,7 +329,7 @@ class PHPSQLLexer {
                 // concat the next tokens, till the token has been changed
                 $k = $i + 1;
                 $len = strlen($tokens[$i]);
-                while (($k < $cnt) && ($len == strlen($tokens[$i]))) {
+                while (($k < numberOfTokens) && ($len == strlen($tokens[$i]))) {
                     if (!isset($tokens[$k])) {
                         $k++;
                         continue;
@@ -393,4 +393,3 @@ class PHPSQLLexer {
     }
 }
 
-?>

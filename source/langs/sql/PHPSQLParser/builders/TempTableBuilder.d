@@ -35,7 +35,7 @@ class TempTableBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    auto build(array $parsed, $index = 0) {
+    string build(array $parsed, $index = 0) {
         if ($parsed["expr_type"] != ExpressionType::TEMPORARY_TABLE) {
             return "";
         }

@@ -18,4 +18,3 @@ class DescribeProcessor : ExplainProcessor {
     }
 }
 
-?>

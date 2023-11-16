@@ -42,7 +42,7 @@ class LexerSplitter {
     string convertSplittersToRegexPattern( $splitters ) {
 	    $regex_parts = [);
 	    foreach (myPart; splitters) {
-		    myPart = preg_quote( mypPart );
+		    myPart = preg_quote( myPart );
 
 		    switch ( myPart ) {
 			    case "\r\n":

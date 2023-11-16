@@ -113,4 +113,3 @@ class ExplainProcessor : AbstractProcessor {
     }
 }
 
-?>
