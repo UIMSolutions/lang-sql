@@ -1,4 +1,3 @@
-
 module source.langs.sql.PHPSQLParser.builders.create.tables.defaulvalue;
 
 import lang.sql;

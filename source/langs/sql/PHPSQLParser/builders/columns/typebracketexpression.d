@@ -21,10 +21,10 @@ class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
     }
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] !=  = ExpressionType :  : BRACKET_EXPRESSION) {
+        if ($parsed["expr_type"] != ExpressionType :  : BRACKET_EXPRESSION) {
             return "";
         }
-        auto mySql = this.buildSubTree($parsed, ",");
+        string mySql = this.buildSubTree($parsed, ",");
         mySql = "(".mySql.")";
         return mySql;
     }

@@ -1,12 +1,7 @@
-
-/**
- * ReplaceStatement.php
- *
- * Builds the REPLACE statement */
-
 module source.langs.sql.PHPSQLParser.builders.replacestatement;
 
 /**
+ * Builds the REPLACE statement 
  * This class : the builder for the whole Replace statement. You can overwrite
  * all functions to achieve another handling. */
 class ReplaceStatementBuilder : ISqlBuilder {
@@ -33,16 +28,16 @@ class ReplaceStatementBuilder : ISqlBuilder {
     
     string build(array $parsed) {
         // TODO: are there more than one tables possible (like [REPLACE][1])
-        $sql = this.buildREPLACE($parsed["REPLACE"]);
+        auto mySql = this.buildREPLACE($parsed["REPLACE"]);
         if (isset($parsed["VALUES"])) {
-            $sql  ~= " " ~ this.buildVALUES($parsed["VALUES"]);
+            mySql  ~= " " ~ this.buildVALUES($parsed["VALUES"]);
         }
         if (isset($parsed["SET"])) {
-            $sql  ~= " " ~ this.buildSET($parsed["SET"]);
+            mySql  ~= " " ~ this.buildSET($parsed["SET"]);
         }
         if (isset($parsed["SELECT"])) {
-            $sql  ~= " " ~ this.buildSELECT($parsed);
+            mySql  ~= " " ~ this.buildSELECT($parsed);
         }
-        return $sql;
+        return mySql;
     }
 }

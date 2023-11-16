@@ -11,7 +11,7 @@ import lang.sql;
 class LimitBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        mySql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
+        string mySql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
         if (mySql == "") {
             throw new UnableToCreateSQLException('LIMIT', 'rowcount', $parsed, 'rowcount');
         }

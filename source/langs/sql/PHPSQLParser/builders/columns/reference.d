@@ -16,7 +16,7 @@ class ColumnReferenceBuilder : ISqlBuilder {
             return "";
         }
         
-        auto mySql = $parsed["base_expr"];
+        string mySql = $parsed["base_expr"];
         mySql  ~= this.buildAlias($parsed);
         return mySql;
     }

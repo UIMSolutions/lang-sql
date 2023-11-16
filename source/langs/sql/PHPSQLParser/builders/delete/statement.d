@@ -23,8 +23,8 @@ class DeleteStatementBuilder : ISqlBuilder {
     return myBuilder.build($parsed);
   }
 
-  auto build(array$parsed) {
-    auto mySql = this.buildDelete($parsed["DELETE"]) ~ " " ~ this.buildFrom($parsed["FROM"]);
+  auto build(array $parsed) {
+    string mySql = this.buildDelete($parsed["DELETE"]) ~ " " ~ this.buildFrom($parsed["FROM"]);
     if (isset($parsed["WHERE"])) {
       mySql ~= " " ~ this.buildWhere($parsed["WHERE"]);
     }

@@ -27,18 +27,18 @@ class CreateBuilder : ISqlBuilder {
     string build(array $parsed) {
         auto myCreate = $parsed["CREATE"];
         
-        auto mySql = this.buildSubTree(myCreate);
+        string mySql = this.buildSubTree(myCreate);
 
         if ((myCreate["expr_type"] == ExpressionType :  : TABLE)
             || (myCreate["expr_type"] == ExpressionType :  : TEMPORARY_TABLE)) {
-            mySql ~= " ".this.buildCreateTable($parsed["TABLE"]);
+            mySql ~= " " ~ this.buildCreateTable($parsed["TABLE"]);
         }
         if (myCreate["expr_type"] == ExpressionType :  : INDEX) {
-            mySql ~= " ".this.buildCreateIndex($parsed["INDEX"]);
+            mySql ~= " " ~ this.buildCreateIndex($parsed["INDEX"]);
         }
 
         // TODO: add more expr_types here (like VIEW), if available in parser output
-        return "CREATE ".mySql;
+        return "CREATE " ~ mySql;
     }
 
 }

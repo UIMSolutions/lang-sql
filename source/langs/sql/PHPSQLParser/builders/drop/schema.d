@@ -10,10 +10,11 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SchemaBuilder : ISqlBuilder {
 
-    string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::SCHEMA) {
-            return "";
-        }
-        return $parsed["base_expr"];
+  string build(array$parsed) {
+    if ($parsed["expr_type"] != ExpressionType :  : SCHEMA) {
+      return "";
     }
+
+    return $parsed["base_expr"];
+  }
 }

@@ -1,4 +1,3 @@
-
 /**
  * SelectBracketExpressionBuilder.php
  *
@@ -15,21 +14,20 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SelectBracketExpressionBuilder : ISqlBuilder {
 
-    protected auto buildSubTree($parsed, $delim) {
-        auto myBuilder = new SubTreeBuilder();
-        return myBuilder.build($parsed, $delim);
-    }
+  protected auto buildSubTree($parsed, $delim) {
+    auto myBuilder = new SubTreeBuilder();
+    return myBuilder.build($parsed, $delim);
+  }
 
-    protected auto buildAlias($parsed) {
-        auto myBuilder = new AliasBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildAlias($parsed) {
+    auto myBuilder = new AliasBuilder();
+    return myBuilder.build($parsed);
+  }
 
-    string build(array $parsed) {
-        if ($parsed["expr_type"] != ExpressionType::BRACKET_EXPRESSION) {
-            return "";
-        }
-        return "(" ~ this.buildSubTree($parsed, " ") . ")"
-            . this.buildAlias($parsed);
+  string build(array$parsed) {
+    if ($parsed["expr_type"] != ExpressionType :  : BRACKET_EXPRESSION) {
+      return "";
     }
+    return "(" ~ this.buildSubTree($parsed, " ") ~ ")" ~ this.buildAlias($parsed);
+  }
 }

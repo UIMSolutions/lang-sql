@@ -1,16 +1,11 @@
-/**
- * ConstraintBuilder.php
- *
- * Builds the constraint statement part of CREATE TABLE.
-*/
-
-module source.langs.sql.PHPSQLParser.builders.create.tables.ConstraintBuilder;
+module source.langs.sql.PHPSQLParser.builders.create.tables.constraint;
 
 import lang.sql;
 
 @safe:
 
 /**
+ * Builds the constraint statement part of CREATE TABLE.
  * This class : the builder for the constraint statement part of CREATE TABLE. 
  * You can overwrite all functions to achieve another handling. */
 class ConstraintBuilder : ISqlBuilder {
@@ -24,8 +19,8 @@ class ConstraintBuilder : ISqlBuilder {
         if ($parsed["expr_type"] != ExpressionType::CONSTRAINT) {
             return "";
         }
-        $sql = $parsed["sub_tree"] == false ? "" : this.buildConstant($parsed["sub_tree"]);
-        return "CONSTRAINT" . (empty($sql) ? "" : (" " ~ $sql));
+        auto mySql = $parsed["sub_tree"] == false ? "" : this.buildConstant($parsed["sub_tree"]);
+        return "CONSTRAINT" ~ (mySql.isEmpty ? "" : (" " ~ mySql));
     }
 
 }
