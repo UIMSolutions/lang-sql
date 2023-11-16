@@ -51,7 +51,7 @@ class WithProcessor : AbstractProcessor {
             		break;
             	}
 
-            	$resultList[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+            	$resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
             	$category = $upper;
                 break;
 

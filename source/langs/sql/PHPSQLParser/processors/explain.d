@@ -47,13 +47,13 @@ class ExplainProcessor : AbstractProcessor {
 
                 case 'EXTENDED':
                 case 'PARTITIONS':
-                    return ["expr_type" : ExpressionType::RESERVED, "base_expr" : $token);
+                    return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token);
                     break;
 
                 case 'FORMAT':
                     if ($currCategory.isEmpty) {
                         $currCategory = $upper;
-                        $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     }
                     // else?
                     break;
@@ -68,8 +68,8 @@ class ExplainProcessor : AbstractProcessor {
                 case 'TRADITIONAL':
                 case 'JSON':
                     if ($currCategory == 'FORMAT') {
-                        $expr[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
-                        return ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : trim($base_expr),
+                        $expr[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
+                        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim($base_expr),
                                      "sub_tree" : $expr];
                     }
                     // else?

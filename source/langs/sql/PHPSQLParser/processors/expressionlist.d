@@ -118,7 +118,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                             if (count($localExprList) > 1) {
                                 $localExpr.setSubTree($localExprList);
-                                $localExpr.setTokenType(ExpressionType::EXPRESSION);
+                                $localExpr.setTokenType(expressionType("EXPRESSION"));
                                 $localExprList = $localExpr.toArray();
                                 $localExprList["alias"] = false;
                                 $localExprList = [$localExprList);
@@ -143,7 +143,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                     if (count($localExprList) > 1) {
                         $localExpr.setSubTree($localExprList);
-                        $localExpr.setTokenType(ExpressionType::EXPRESSION);
+                        $localExpr.setTokenType(expressionType("EXPRESSION"));
                         $localExprList = $localExpr.toArray();
                         $localExprList["alias"] = false;
                         $localExprList = [$localExprList);
@@ -364,7 +364,7 @@ class ExpressionListProcessor : AbstractProcessor {
 	                    // Colname using auto name.
                     	$curr.setTokenType(ExpressionType::COLREF);
                     } else {
-                        $curr.setTokenType(ExpressionType::RESERVED);
+                        $curr.setTokenType(expressionType("RESERVED"));
                         $curr.setNoQuotes(null, null, this.options);
                     }
                 }
@@ -372,17 +372,17 @@ class ExpressionListProcessor : AbstractProcessor {
 
             // issue 94, INTERVAL 1 MONTH
             if ($curr.isConstant() && SqlParserConstants::getInstance().isParameterizedFunction($prev.getUpper())) {
-                $prev.setTokenType(ExpressionType::RESERVED);
+                $prev.setTokenType(expressionType("RESERVED"));
                 $prev.setNoQuotes(null, null, this.options);
             }
 
             if ($prev.isConstant() && SqlParserConstants::getInstance().isParameterizedFunction($curr.getUpper())) {
-                $curr.setTokenType(ExpressionType::RESERVED);
+                $curr.setTokenType(expressionType("RESERVED"));
                 $curr.setNoQuotes(null, null, this.options);
             }
 
             if ($curr.isUnspecified()) {
-                $curr.setTokenType(ExpressionType::EXPRESSION);
+                $curr.setTokenType(expressionType("EXPRESSION"));
                 $curr.setNoQuotes(null, null, this.options);
                 $curr.setSubTree(this.process(this.splitSQLIntoTokens($curr.getTrim())));
             }

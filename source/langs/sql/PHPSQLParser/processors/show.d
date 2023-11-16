@@ -41,7 +41,7 @@ class ShowProcessor : AbstractProcessor {
             switch ($upper) {
 
             case 'FROM':
-                $resultList[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $token.strip);
+                $resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
                 if ($prev == 'INDEX' || $prev == 'COLUMNS') {
                     break;
                 }
@@ -83,7 +83,7 @@ class ShowProcessor : AbstractProcessor {
             case 'CHARACTER':
             case 'SET':
             case 'COLLATION':
-                $resultList[] = ["expr_type" : ExpressionType::RESERVED, "base_expr" : $token.strip);
+                $resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
                 $category = $upper;
                 break;
 

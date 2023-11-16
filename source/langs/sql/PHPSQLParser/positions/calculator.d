@@ -17,7 +17,7 @@ class PositionCalculator {
                                              "&", "=", "!", ";");
 
     protected $flippedBacktrackingTypes;
-    protected static $backtrackingTypes = [ExpressionType::EXPRESSION, ExpressionType::SUBQUERY,
+    protected static $backtrackingTypes = [expressionType("EXPRESSION"), ExpressionType::SUBQUERY,
                                                 ExpressionType::BRACKET_EXPRESSION, ExpressionType::TABLE_EXPRESSION,
                                                 ExpressionType::RECORD, ExpressionType::IN_LIST,
                                                 ExpressionType::MATCH_ARGUMENTS, ExpressionType::TABLE,

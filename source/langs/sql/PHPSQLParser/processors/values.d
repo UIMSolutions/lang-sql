@@ -57,7 +57,7 @@ class ValuesProcessor : AbstractProcessor {
                     $base_expr = "";
 
                     $currCategory = 'DUPLICATE';
-                    $parsed[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                 }
                 // else ?
                 break;
@@ -66,7 +66,7 @@ class ValuesProcessor : AbstractProcessor {
             case 'KEY':
             case 'UPDATE':
                 if ($currCategory == 'DUPLICATE') {
-                    $parsed[] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $base_expr = "";
                 }
                 // else ?
@@ -77,7 +77,7 @@ class ValuesProcessor : AbstractProcessor {
 
                     $base_expr = trim(substr($base_expr, 0, -strlen(myValue)));
                     $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
-                    $parsed[] = ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : $base_expr,
+                    $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : $base_expr,
                                       "sub_tree" : (empty($res) ? false : $res), 'delim': $trim];
                     $base_expr = "";
                     continue 2;
@@ -101,7 +101,7 @@ class ValuesProcessor : AbstractProcessor {
             }
             if ($currCategory == 'DUPLICATE') {
                 $res = this.processExpressionList(this.splitSQLIntoTokens($base_expr));
-                $parsed[] = ["expr_type" : ExpressionType::EXPRESSION, "base_expr" : trim($base_expr),
+                $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : trim($base_expr),
                                   "sub_tree" : (empty($res) ? false : $res), 'delim' : false);
             }
         }

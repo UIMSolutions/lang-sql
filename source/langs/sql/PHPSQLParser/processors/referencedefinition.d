@@ -49,13 +49,13 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 break 2;
 
             case 'REFERENCES':
-                $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                 $currCategory = $upper;
                 break;
 
             case 'MATCH':
                 if ($currCategory == 'REF_COL_LIST') {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $currCategory = 'REF_MATCH';
                     continue 2;
                 }
@@ -66,7 +66,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'PARTIAL':
             case 'SIMPLE':
                 if ($currCategory == 'REF_MATCH') {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $expr["match"] = $upper;
                     $currCategory = 'REF_COL_LIST';
                     continue 2;
@@ -76,7 +76,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'ON':
                 if ($currCategory == 'REF_COL_LIST') {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $currCategory = 'REF_ACTION';
                     continue 2;
                 }
@@ -86,7 +86,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'UPDATE':
             case 'DELETE':
                 if ($currCategory == 'REF_ACTION') {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $currCategory = 'REF_OPTION_' . $upper;
                     continue 2;
                 }
@@ -96,7 +96,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'RESTRICT':
             case 'CASCADE':
                 if (strpos($currCategory, 'REF_OPTION_') == 0) {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $expr["on_"  ~ strtolower(substr($currCategory, -6))] = $upper;
                     continue 2;
                 }
@@ -106,7 +106,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'SET':
             case 'NO':
                 if (strpos($currCategory, 'REF_OPTION_') == 0) {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $expr["on_" ~ strtolower(substr($currCategory, -6))] = $upper;
                     $currCategory = 'SEC_' . $currCategory;
                     continue 2;
@@ -117,7 +117,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case 'NULL':
             case 'ACTION':
                 if (strpos($currCategory, 'SEC_REF_OPTION_') == 0) {
-                    $expr["sub_tree"][] = ["expr_type" : ExpressionType::RESERVED, "base_expr": $trim];
+                    $expr["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": $trim];
                     $expr["on_" ~ strtolower(substr($currCategory, -6))]  ~= " " ~ $upper;
                     $currCategory = 'REF_COL_LIST';
                     continue 2;

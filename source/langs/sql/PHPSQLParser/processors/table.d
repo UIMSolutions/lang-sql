@@ -17,7 +17,7 @@ import lang.sql;
 class TableProcessor : AbstractProcessor {
 
     protected auto getReservedType($token) {
-        return ["expr_type" : ExpressionType::RESERVED, "base_expr" : $token);
+        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token);
     }
 
     protected auto getConstantType($token) {
@@ -203,7 +203,7 @@ class TableProcessor : AbstractProcessor {
                 if ($prevCategory == 'TABLE_OPTION') {
                     // all assignments with the keywords
                     $expr[] = this.getReservedType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::EXPRESSION,
+                    $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
                                                  "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                 }
@@ -313,7 +313,7 @@ class TableProcessor : AbstractProcessor {
                 default:
                 // strings and numeric constants
                     $expr[] = this.getConstantType($trim);
-                    $result["options"][] = ["expr_type" : ExpressionType::EXPRESSION,
+                    $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
                                                  "base_expr" : trim($base_expr), 'delim' : " ", "sub_tree" : $expr];
                     this.clear($expr, $base_expr, $currCategory);
                     break;

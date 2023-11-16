@@ -33,13 +33,13 @@ class DeleteProcessor : AbstractProcessor {
         }
 
         $options = [];
-        if ("OPTIONS" in $tokens) {
+        if ($tokens.isSet("OPTIONS")) {
             $options = $tokens["OPTIONS"];
             $tokens.remove("OPTIONS");
         }
 
         $tokens["DELETE"] = ['options' : (empty($options) ? false : $options),
-                                  'tables' : (empty($tables) ? false : $tables));
+                                  'tables' : (empty($tables) ? false : $tables)];
         return $tokens;
     }
 }

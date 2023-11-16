@@ -36,7 +36,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
     }
 
     protected auto getReservedType($token) {
-        return ["expr_type" : ExpressionType::RESERVED, "base_expr" : $token);
+        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token);
     }
 
     protected auto getConstantType($token) {
