@@ -320,7 +320,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case 'COMMENT':
                 // this is the comment string
-                    $options["sub_tree"][] = ["expr_type" : expressionType(COMMENT, "base_expr": strippedToken];
+                    $options["sub_tree"][] = ["expr_type" : expressionType("COMMENT"), "base_expr": strippedToken];
                     $options["comment"] = strippedToken;
                     currentCategory = $prevCategory;
                     break;
@@ -341,7 +341,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case 'CHARSET':
                 // this is the character set name
-                    $options["sub_tree"][] = ["expr_type" : expressionType("CHARSET)", "base_expr": strippedToken];
+                    $options["sub_tree"][] = ["expr_type" : expressionType("CHARSET"), "base_expr": strippedToken];
                     $options["charset"] = strippedToken;
                     currentCategory = $prevCategory;
                   break;
@@ -377,11 +377,11 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     $parsed = this.processExpressionList(strippedToken);
 
                     $last = array_pop(myExpression);
-                    $subTree = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken,
-                                     "sub_tree" : $parsed);
+                    $subTree = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+                                     "sub_tree" : $parsed];
 
                     if (this.options.getConsistentSubtrees()) {
-                        $subTree = [$subTree);
+                        $subTree = [$subTree];
                     }
 
                     $last["sub_tree"] = $subTree;
@@ -398,7 +398,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             currentCategory = "";
         }
 
-        if (!isset(myExpression["till"])) {
+        if (!myExpression.isSet("till")) {
             // end of $tokens array
             myExpression = this.buildColDef(myExpression, baseExpression.strip, $options, $refs, -1);
         }

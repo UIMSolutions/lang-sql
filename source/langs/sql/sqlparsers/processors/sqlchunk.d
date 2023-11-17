@@ -18,7 +18,7 @@ class SQLChunkProcessor : AbstractProcessor {
         if (!$out) {
             return false;
         }
-        if (!empty($out["BRACKET"])) {
+        if (!$out["BRACKET"].isEmpty) {
             // TODO: this field should be a global STATEMENT field within the output
             // we could add all other categories as sub_tree, it could also work with multipe UNIONs
             auto myProcessor = new BracketProcessor(this.options);
@@ -28,8 +28,8 @@ class SQLChunkProcessor : AbstractProcessor {
             unset($processedBracket[0]["remaining_expressions"]);
 
             if(!empty($remainingExpressions)) {
-                foreach($remainingExpressions as $key: $expression) {
-                    $processedBracket[][$key] = $expression;
+                foreach(myKey, $expression; $remainingExpressions) {
+                    $processedBracket[][myKey] = $expression;
                 }
             }
 
@@ -100,7 +100,7 @@ class SQLChunkProcessor : AbstractProcessor {
         }
         if (!$out["SET"].isEmpty) {
             auto myProcessor = new SetProcessor(this.options);
-            $out["SET"] = $processor.process($out["SET"], isset($out["UPDATE"]));
+            $out["SET"] = $processor.process($out["SET"], $out.isSet("UPDATE"));
         }
         if (!$out["DUPLICATE"].isEmpty) {
             auto myProcessor = new DuplicateProcessor(this.options);

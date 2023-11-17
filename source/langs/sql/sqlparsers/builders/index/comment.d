@@ -27,6 +27,7 @@ class IndexCommentBuilder : ISqlBuilder {
         string mySql = "";
         foreach ($parsed["sub_tree"] as myKey, myValue) {
             size_t oldSqlLength = mySql.length;
+            
             mySql ~= this.buildReserved(myValue);
             mySql ~= this.buildConstant(myValue);
 

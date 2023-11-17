@@ -52,11 +52,11 @@ class PHPSQLLexer {
 
     	$i = 0;
     	numberOfTokens = count($tokens);
-    	$possibleSign = true;
+    	isPossibleSign = true;
 
     	while ($i < numberOfTokens) {
 
-    		if (!isset($tokens[$i])) {
+    		if (!$tokens.iSet($i)) {
     			$i++;
     			continue;
     		}
@@ -64,20 +64,20 @@ class PHPSQLLexer {
     		$token = $tokens[$i];
 
     		// a sign is also possible on the first position of the tokenlist
-    		if ($possibleSign == true) {
-				if ($token == '-' || $token == '+') {
+    		if (isPossibleSign == true) {
+				if ($token == "-" || $token == "+") {
 					if (is_numeric($tokens[$i + 1])) {
 						$tokens[$i + 1] = $token . $tokens[$i + 1];
 						unset($tokens[$i]);
 					}
 				}
-				$possibleSign = false;
+				isPossibleSign = false;
 				continue;
     		}
 
     		// TODO: we can have sign of a number after "(" and ",", are others possible?
     		if (substr($token, -1, 1) == "," || substr($token, -1, 1) == "(") {
-    			$possibleSign = true;
+    			isPossibleSign = true;
     		}
 
     		$i++;
@@ -94,7 +94,7 @@ class PHPSQLLexer {
 
         while ($i < numberOfTokens) {
 
-            if (!isset($tokens[$i])) {
+            if (!$tokens.iSet($i)) {
                 $i++;
                 continue;
             }
@@ -102,7 +102,7 @@ class PHPSQLLexer {
             $token = $tokens[$i];
 
             if ($scientific == true) {
-                if ($token == '-' || $token == '+') {
+                if ($token == "-" || $token == "+") {
                     $tokens[$i - 1] ~= $tokens[$i];
                     $tokens[$i - 1] ~= $tokens[$i + 1];
                     unset($tokens[$i]);
@@ -133,7 +133,7 @@ class PHPSQLLexer {
 
         while ($i < numberOfTokens) {
 
-            if (!isset($tokens[$i])) {
+            if (!$tokens.iSet($i)) {
                 $i++;
                 continue;
             }
@@ -169,7 +169,7 @@ class PHPSQLLexer {
 
         while ($i < numberOfTokens) {
 
-            if (!isset($tokens[$i])) {
+            if (!$tokens.iSet($i)) {
                 $i++;
                 continue;
             }
@@ -177,7 +177,7 @@ class PHPSQLLexer {
             $token = $tokens[$i];
 
             /*
-             * Check to see if we're inside a value (i.e. back ticks).
+             * Check to see if we"re inside a value (i.e. back ticks).
              * If so inline comments are not valid.
              */
             if ($comment == false && this.isBacktick($token)) {
@@ -192,7 +192,7 @@ class PHPSQLLexer {
                 }
             }
 
-            if($comment == false && ($token == "\"" || $token == "'")) {
+            if($comment == false && ($token == "\"" || $token == """)) {
                 $in_string = !$in_string;
             }
             if(!$in_string) {
@@ -231,7 +231,7 @@ class PHPSQLLexer {
     }
 
     protected auto isBacktick($token) {
-        return ($token == "'" || $token == "\"" || $token == "`");
+        return ($token == """ || $token == "\"" || $token == "`");
     }
 
     protected auto balanceBackticks($tokens) {
@@ -239,7 +239,7 @@ class PHPSQLLexer {
         numberOfTokens = count($tokens);
         while ($i < numberOfTokens) {
 
-            if (!isset($tokens[$i])) {
+            if (!$tokens.iSet($i)) {
                 $i++;
                 continue;
             }
@@ -264,7 +264,7 @@ class PHPSQLLexer {
         $i = $idx + 1;
         while ($i < $token_count) {
 
-            if (!isset($tokens[$i])) {
+            if (!$tokens.iSet($i)) {
                 $i++;
                 continue;
             }
@@ -296,7 +296,7 @@ class PHPSQLLexer {
         $i = 0;
         while ($i < numberOfTokens) {
 
-            if (!isset($tokens[$i])) {
+            if (!$tokens.iSet($i)) {
                 $i++;
                 continue;
             }
@@ -317,7 +317,7 @@ class PHPSQLLexer {
                 }
             }
 
-            if (this.endsWith($tokens[$i], '.') && !is_numeric($tokens[$i])) {
+            if (this.endsWith($tokens[$i], ".") && !is_numeric($tokens[$i])) {
 
                 // concat the next tokens, till the token has been changed
                 $k = $i + 1;
@@ -346,7 +346,7 @@ class PHPSQLLexer {
 
             if (this.endsWith($tokens[$i], "\\")) {
                 $i++;
-                if (isset($tokens[$i])) {
+                if ($tokens.iSet($i)) {
                     $tokens[$i - 1] ~= $tokens[$i];
                     unset($tokens[$i]);
                 }

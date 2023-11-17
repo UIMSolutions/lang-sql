@@ -335,7 +335,7 @@ class ExpressionListProcessor : AbstractProcessor {
             if (!$curr.isOperator() && !$curr.isInList() && !$curr.isFunction() && !$curr.isAggregateFunction()
                 && !$curr.isCustomFunction() && SqlParserConstants::getInstance().isReserved($curr.getUpper())) {
 
-	            $next = isset( $tokens[ $k + 1 ] ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
+	            $next = $tokens.isSet( $k + 1 ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
                 $isEnclosedWithinParenthesis = $next.isEnclosedWithinParenthesis();
 	            if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
                     $curr.setTokenType(expressionType("CUSTOM_FUNCTION"));

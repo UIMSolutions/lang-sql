@@ -32,25 +32,25 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
     protected auto correctExpressionType(&myExpression) {
         $type .isExpressionType(EXPRESSION;
-        if (!isset(myExpression[0]) || !isset(myExpression[0]["expr_type"])) {
+        if (!myExpression.isSet(0) || !myExpression[0].isSet("expr_type")) {
             return $type;
         }
 
         // replace the constraint type with a more descriptive one
         switch (myExpression[0]["expr_type"]) {
 
-        case expressionType(CONSTRAINT:
+        case expressionType("CONSTRAINT"):
             $type = myExpression[1]["expr_type"];
             myExpression[1]["expr_type"] .isExpressionType(RESERVED;
             break;
 
-        case expressionType(COLREF:
+        case expressionType("COLREF"):
             $type .isExpressionType(COLDEF;
             break;
 
         default:
             $type = myExpression[0]["expr_type"];
-            myExpression[0]["expr_type"] .isExpressionType(RESERVED;
+            myExpression[0]["expr_type"] .isExpressionType("RESERVED");
             break;
 
         }
@@ -59,14 +59,14 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        baseExpression = "";
-        $prevCategory = "";
-        currentCategory = "";
+        string baseExpression = "";
+        string prevCategory = "";
+        string currentCategory = "";
         myExpression = [];
         $result = [];
         $skip = 0;
 
-        foreach ($tokens as $k : $token) {
+        foreach ($k : $token; $tokens) {
 
             auto strippedToken = $token.strip;
             baseExpression ~= $token;
@@ -86,16 +86,16 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
             case 'CONSTRAINT':
                 myExpression[] = ["expr_type" : expressionType(CONSTRAINT, "base_expr" : strippedToken, "sub_tree" : false];
-                currentCategory = $prevCategory = upperToken;
+                currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case 'LIKE':
                 myExpression[] = ["expr_type" : expressionType(LIKE, "base_expr": strippedToken];
-                currentCategory = $prevCategory = upperToken;
+                currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case 'FOREIGN':
-                if ($prevCategory.isEmpty || $prevCategory == 'CONSTRAINT') {
+                if (prevCategory.isEmpty || prevCategory == 'CONSTRAINT') {
                     myExpression[] = ["expr_type" : expressionType(FOREIGN_KEY, "base_expr": strippedToken];
                     currentCategory = upperToken;
                     continue 2;
@@ -104,7 +104,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'PRIMARY':
-                if ($prevCategory.isEmpty || $prevCategory == 'CONSTRAINT') {
+                if (prevCategory.isEmpty || prevCategory == 'CONSTRAINT') {
                     // next one is KEY
                     myExpression[] = ["expr_type" : expressionType(PRIMARY_KEY, "base_expr": strippedToken];
                     currentCategory = upperToken;
@@ -114,7 +114,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'UNIQUE':
-                if ($prevCategory.isEmpty || $prevCategory == 'CONSTRAINT' || $prevCategory == 'INDEX_COL_LIST') {
+                if (prevCategory.isEmpty || prevCategory == 'CONSTRAINT' || prevCategory == 'INDEX_COL_LIST') {
                     // next one is KEY
                     myExpression[] = ["expr_type" : expressionType(UNIQUE_IDX, "base_expr": strippedToken];
                     currentCategory = upperToken;
@@ -149,12 +149,12 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
             case 'FULLTEXT':
                 myExpression[] = ["expr_type" : expressionType(FULLTEXT_IDX, "base_expr": strippedToken];
-                currentCategory = $prevCategory = upperToken;
+                currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case 'SPATIAL':
                 myExpression[] = ["expr_type" : expressionType(SPATIAL_IDX, "base_expr": strippedToken];
-                currentCategory = $prevCategory = upperToken;
+                currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case 'WITH':
@@ -197,7 +197,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'REFERENCES':
-                if (currentCategory == 'INDEX_COL_LIST' && $prevCategory == 'FOREIGN') {
+                if (currentCategory == 'INDEX_COL_LIST' && prevCategory == 'FOREIGN') {
                     $refs = this.processReferenceDefinition(array_slice($tokens, $k - 1, null, true));
                     $skip = $refs["till"] - $k;
                     unset($refs["till"]);
@@ -268,7 +268,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
                         myExpression[] = ["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : strippedToken,
                                         "sub_tree" : $cols);
-                        $prevCategory = currentCategory;
+                        prevCategory = currentCategory;
                         currentCategory = 'INDEX_COL_LIST';
                         continue 3;
                     }
@@ -280,7 +280,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
                         myExpression[] = ["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : strippedToken,
                                         "sub_tree" : $cols);
-                        $prevCategory = currentCategory;
+                        prevCategory = currentCategory;
                         currentCategory = 'INDEX_COL_LIST';
                         continue 3;
                     }
@@ -295,7 +295,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
                         myExpression[] = ["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : strippedToken,
                                         "sub_tree" : $cols];
-                        $prevCategory = currentCategory;
+                        prevCategory = currentCategory;
                         currentCategory = 'INDEX_COL_LIST';
                         continue 3;
                     }
@@ -365,7 +365,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 }
                 break;
             }
-            $prevCategory = currentCategory;
+            prevCategory = currentCategory;
             currentCategory = "";
         }
 

@@ -11,7 +11,7 @@ import lang.sql;
 class DataTypeBuilder : IBuilder {
 
     string build(array $parsed) {
-        if ($parsed["expr_type"] !.isExpressionType(DATA_TYPE) {
+        if (!$parsed["expr_type"].isExpressionType("DATA_TYPE")) {
             return "";
         }
         return $parsed["base_expr"];
