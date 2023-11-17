@@ -45,7 +45,7 @@ class ValuesProcessor : AbstractProcessor {
             case 'ON':
                 if (currentCategory.isEmpty) {
 
-                    baseExpression = trim(substr(baseExpression, 0, -myToken.length));
+                    baseExpression = substr(baseExpression, 0, -myToken.length).strip;
                     $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression,
                                       'data' : this.processRecord(baseExpression), "delim" : false];
                     baseExpression = "";
@@ -69,7 +69,7 @@ class ValuesProcessor : AbstractProcessor {
             case ",":
                 if (currentCategory == 'DUPLICATE') {
 
-                    baseExpression = trim(substr(baseExpression, 0, -strlen(myToken)));
+                    baseExpression = substr(baseExpression, 0, -strlen(myToken)).strip;
                     $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
                     $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression,
                                       "sub_tree" : (empty($res) ? false : $res), 'delim': strippedToken];

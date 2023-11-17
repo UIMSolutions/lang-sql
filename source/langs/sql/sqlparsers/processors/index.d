@@ -139,7 +139,7 @@ class IndexProcessor : AbstractProcessor {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
                         $result["on"]["base_expr"] ~= baseExpression;
                         $result["on"]["sub_tree"] = ["expr_type" : expressionType("COLUMN_LIST"),
-                                                          "base_expr" : strippedToken, "sub_tree" : $cols);
+                                                          "base_expr" : strippedToken, "sub_tree" : $cols];
                     }
 
                     myExpression = [];

@@ -327,33 +327,33 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case 'DEFAULT':
                 // this is the default value
-                    $options["sub_tree"][] = ["expr_type" : expressionType(DEF_VALUE, "base_expr": strippedToken];
+                    $options["sub_tree"][] = ["expr_type" : expressionType("DEF_VALUE"), "base_expr": strippedToken];
                     $options["default"] = strippedToken;
                     currentCategory = $prevCategory;
                     break;
 
                 case 'COLLATE':
                 // this is the collation name
-                    $options["sub_tree"][] = ["expr_type" : expressionType(COLLATE, "base_expr": strippedToken];
+                    $options["sub_tree"][] = ["expr_type" : expressionType("COLLATE"), "base_expr": strippedToken];
                     $options["collate"] = strippedToken;
                     currentCategory = $prevCategory;
                     break;
 
                 case 'CHARSET':
                 // this is the character set name
-                    $options["sub_tree"][] = ["expr_type" : expressionType(CHARSET, "base_expr": strippedToken];
+                    $options["sub_tree"][] = ["expr_type" : expressionType("CHARSET)", "base_expr": strippedToken];
                     $options["charset"] = strippedToken;
                     currentCategory = $prevCategory;
                   break;
 
                 case 'SINGLE_PARAM_PARENTHESIS':
                     $parsed = this.removeParenthesisFromStart(strippedToken);
-                    $parsed = ["expr_type" : expressionType("CONSTANT"), "base_expr" : trim($parsed));
+                    $parsed = ["expr_type" : expressionType("CONSTANT"), "base_expr" : $parsed.strip);
                     $last = array_pop(myExpression);
                     $last["length"] = $parsed["base_expr"];
 
                     myExpression[] = $last;
-                    myExpression[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken,
+                    myExpression[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
                                     "sub_tree" : [$parsed));
                     currentCategory = $prevCategory;
                     break;
@@ -367,7 +367,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     $last["decimals"] = isset($parsed[1]) ? $parsed[1]["base_expr"] : false;
 
                     myExpression[] = $last;
-                    myExpression[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken,
+                    myExpression[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
                                     "sub_tree" : $parsed);
                     currentCategory = $prevCategory;
                     break;

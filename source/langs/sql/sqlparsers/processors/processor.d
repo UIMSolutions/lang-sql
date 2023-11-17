@@ -55,44 +55,44 @@ abstract class DProcessor {
      *   a  .  `b` : [a,b]
      */
     protected auto revokeQuotation($sql) {
-        auto mySqlBuffer = trim($sql);
+        auto mySqlBuffer = $sql.strip;
         $result = [];
 
-        $quote = false;
+        bool isQuote = false;
         $start = 0;
         $i = 0;
-        $len = mySqlBuffer.length;
+        size_t bufferLength = mySqlBuffer.length;
 
-        while ($i < $len) {
+        while ($i < bufferLength) {
 
             $char = mySqlBuffer[$i];
             switch ($char) {
             case "`":
             case "\'":
             case "\"":
-                if ($quote == false) {
+                if (isQuote == false) {
                     // start
-                    $quote = $char;
+                    isQuote = $char;
                     $start = $i + 1;
                     break;
                 }
-                if ($quote != $char) {
+                if (isQuote != $char) {
                     break;
                 }
-                if (isset(mySqlBuffer[$i + 1]) && ($quote == mySqlBuffer[$i + 1])) {
+                if (mySqlBuffer.isSet($i + 1) && isQuote == mySqlBuffer[$i + 1]) {
                     // escaped
                     $i++;
                     break;
                 }
                 // end
                 $char = substr(mySqlBuffer, $start, $i - $start);
-                $result[] = str_replace($quote ~ $quote, $quote, $char);
+                $result[] = str_replace(isQuote ~ isQuote, isQuote, $char);
                 $start = $i + 1;
-                $quote = false;
+                isQuote = false;
                 break;
 
             case '.':
-                if ($quote == false) {
+                if (isQuote == false) {
                     // we have found a separator
                     $char = substr(mySqlBuffer, $start, $i - $start).strip;
                     if ($char != "") {
@@ -109,7 +109,7 @@ abstract class DProcessor {
             $i++;
         }
 
-        if ($quote == false && ($start < $len)) {
+        if (isQuote == false && ($start < bufferLength)) {
             $char = substr(mySqlBuffer, $start, $i - $start).strip;
             if ($char != "") {
                 $result[] = $char;
@@ -174,7 +174,7 @@ abstract class DProcessor {
             }
             $i++;
         }
-        return trim(strippedToken);
+        return strippedToken.strip;
     }
 
     protected auto getVariableType($expression) {

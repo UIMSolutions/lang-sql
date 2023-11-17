@@ -20,19 +20,19 @@ class SetProcessor : AbstractProcessor {
      * This auto produces a list of the key/value expressions.
      */
     protected auto processAssignment(baseExpression) {
-        $assignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+        isAssignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
         return ["expr_type" : expressionType(EXPRESSION, "base_expr" : baseExpression.strip,
-                     "sub_tree" : (empty($assignment) ? false : $assignment));
+                     "sub_tree" : (empty(isAssignment) ? false : isAssignment));
     }
 
     auto process($tokens, $isUpdate = false) {
         $result = [];
         $baseExpr = "";
-        $assignment = false;
-        $varType = false;
+        bool isAssignment = false;
+        bool isVarType = false;
 
         foreach ($token; $tokens) {
             auto strippedToken = $token.strip;
@@ -43,21 +43,21 @@ class SetProcessor : AbstractProcessor {
             case 'SESSION':
             case 'GLOBAL':
                 if (!$isUpdate) {
-                    $result[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
-                    $varType = this.getVariableType("@@" . upperToken . ".");
+                    $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                    isVarType = this.getVariableType("@@" ~ upperToken ~ ".");
                     $baseExpr = "";
                     continue 2;
                 }
                 break;
 
             case ",":
-                $assignment = this.processAssignment($baseExpr);
-                if (!$isUpdate && $varType != false) {
-                    $assignment["sub_tree"][0]["expr_type"] = $varType;
+                isAssignment = this.processAssignment($baseExpr);
+                if (!$isUpdate && isVarType != false) {
+                    isAssignment["sub_tree"][0]["expr_type"] = isVarType;
                 }
-                $result[] = $assignment;
+                $result[] = isAssignment;
                 $baseExpr = "";
-                $varType = false;
+                isVarType = false;
                 continue 2;
 
             default:
@@ -65,12 +65,12 @@ class SetProcessor : AbstractProcessor {
             $baseExpr ~= $token;
         }
 
-        if (trim($baseExpr) != "") {
-            $assignment = this.processAssignment($baseExpr);
-            if (!$isUpdate && $varType != false) {
-                $assignment["sub_tree"][0]["expr_type"] = $varType;
+        if ($baseExpr.strip != "") {
+            isAssignment = this.processAssignment($baseExpr);
+            if (!$isUpdate && isVarType != false) {
+                isAssignment["sub_tree"][0]["expr_type"] = isVarType;
             }
-            $result[] = $assignment;
+            $result[] = isAssignment;
         }
 
         return $result;

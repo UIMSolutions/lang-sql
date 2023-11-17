@@ -14,13 +14,13 @@ class DeleteProcessor : AbstractProcessor {
         foreach (myExpression; $tokens["DELETE"]) {
             if (myExpression.toUpper != 'DELETE' && (myExpression, " \t\n\r\0\x0B.*").strip != ""
                 && !this.isCommaToken(myExpression)) {
-                $tables[] = trim(myExpression, " \t\n\r\0\x0B.*");
+                $tables[] = (myExpression, " \t\n\r\0\x0B.*").strip;
             }
         }
 
-        if (empty($tables) && "USING" in $tokens)) {
-            foreach ($table; $tokens["FROM"] ) {
-                $tables[] = ($table["table"], " \t\n\r\0\x0B.*").strip;
+        if ($tables.isEmpty &&  $tokens.isSet("USING")) {
+            foreach (myTable; $tokens["FROM"] ) {
+                $tables[] = (myTable["table"], " \t\n\r\0\x0B.*").strip;
             }
             $tokens["FROM"] = $tokens["USING"];
             unset($tokens["USING"]);
@@ -29,11 +29,11 @@ class DeleteProcessor : AbstractProcessor {
         $options = [];
         if ($tokens.isSet("OPTIONS")) {
             $options = $tokens["OPTIONS"];
-            $tokens.remove("OPTIONS");
+            $tokens.unSet("OPTIONS");
         }
 
-        $tokens["DELETE"] = ['options' : (empty($options) ? false : $options),
-                                  'tables' : (empty($tables) ? false : $tables)];
+        $tokens["DELETE"] = ['options' : ($options.isEmpty ? false : $options),
+                                  'tables' : ($tables.isEmpty ? false : $tables)];
         return $tokens;
     }
 }

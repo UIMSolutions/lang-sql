@@ -118,12 +118,12 @@ class PartitionOptionsProcessor : AbstractProcessor {
                                 'storage' : substr(baseExpression, 0, -$token.length));
 
                 $last = array_pop($parsed);
-                $last["by"] = trim(currentCategory . " " ~ upperToken); // currentCategory will be empty or LINEAR!
+                $last["by"] = (currentCategory . " " ~ upperToken).strip; // currentCategory will be empty or LINEAR!
                 $last["sub_tree"] = myExpression;
                 $parsed[] = $last;
 
                 baseExpression = $token;
-                myExpression = [this.getReservedType(strippedToken));
+                myExpression = [this.getReservedType(strippedToken)];
 
                 currentCategory = upperToken;
                 continue 2;

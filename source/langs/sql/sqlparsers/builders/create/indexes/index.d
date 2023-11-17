@@ -27,9 +27,9 @@ class CreateIndexBuilder : ISqlBuilder {
     string build(array $parsed) {
         string mySql = $parsed["name"];
         mySql ~= " " ~ this.buildIndexType($parsed);
-        mySql = trim(mySql);
+        mySql = mySql.strip;
         mySql ~= " " ~ this.buildIndexTable($parsed);
-        mySql = trim(mySql);
+        mySql = mySql.strip;
         mySql ~= this.buildIndexOptions($parsed);
         return mySql.strip;
     }

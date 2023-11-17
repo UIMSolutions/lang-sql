@@ -80,7 +80,7 @@ class UnionProcessor : AbstractProcessor {
         //If this token contains a matching pair of brackets at the start and end, use it as the final query
         $finalQueryFound = false;
         if (count($outputArray) == 1) {
-            $tokenAsArray = str_split(trim($outputArray[0]));
+            $tokenAsArray = str_split($outputArray[0].strip);
             if ($tokenAsArray[0] == "(" && $tokenAsArray[count($tokenAsArray)-1] == ")") {
                 $queries[$unionType][] = $outputArray;
                 $finalQueryFound = true;
@@ -99,14 +99,14 @@ class UnionProcessor : AbstractProcessor {
         }
 
 
-        $finalQueryString = trim(implode($finalQuery));
+        $finalQueryString = implode($finalQuery).strip;
 
-        if (!empty($finalQuery) && $finalQueryString != "") {
+        if (!$finalQuery.isEmpty && $finalQueryString != "") {
             $queries[$unionType][] = $finalQuery;
         }
 
         $defaultProcessor = new DefaultProcessor(this.options);
-        $rePrepareSqlString = trim(implode($outputArray));
+        $rePrepareSqlString = implode($outputArray).strip;
 
         if (!empty($rePrepareSqlString)) {
             $remainingQueries = $defaultProcessor.process($rePrepareSqlString);

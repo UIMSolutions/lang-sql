@@ -33,7 +33,7 @@ class CreateTableOptionsBuilder : IBuilder {
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter($parsed) {
-        return ($parsed["delim"] == false ? "" : (trim($parsed["delim"]) . " "));
+        return ($parsed["delim"] == false ? "" : ($parsed["delim"]) . " ").strip;
     }
 
     string build(array $parsed) {

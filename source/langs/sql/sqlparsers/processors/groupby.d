@@ -15,8 +15,8 @@ class GroupByProcessor : OrderByProcessor {
             return false;
         }
 
-        foreach ($token; $tokens) {
-            auto strippedToken = $token.strip.toUpper;
+        foreach (myToken; $tokens) {
+            auto strippedToken = myToken.strip.toUpper;
             switch (strippedToken) {
             case ",":
                 $parsed = this.processOrderExpression($parseInfo, $select);
@@ -26,7 +26,7 @@ class GroupByProcessor : OrderByProcessor {
                 $parseInfo = this.initParseInfo();
                 break;
             default:
-                $parseInfo["base_expr"] ~= $token;
+                $parseInfo["base_expr"] ~= myToken;
             }
         }
 

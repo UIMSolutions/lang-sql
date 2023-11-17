@@ -10,13 +10,14 @@ import lang.sql;
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
     string build(array $parsed) {
-        if ("select-option" !in $parsed || $parsed["select-option"] == false) {
+        if (!$parsed.isSet("select-option") || $parsed["select-option"] == false) {
             return "";
         }
-        $option = $parsed["select-option"];
 
-        string mySql = ($option["duplicates"] == false ? "" : (" " ~ $option["duplicates"]));
-        mySql ~= ($option["as"] == false ? "" : ' AS');
+        auto selectOption = $parsed["select-option"];
+
+        string mySql = (selectOption["duplicates"] == false ? "" : (" " ~ selectOption["duplicates"]));
+        mySql ~= (selectOption["as"] == false ? "" : ' AS');
         return mySql;
     }
 }

@@ -177,7 +177,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     $tmpExprList = array_values($localTokenList);
                     $localExprList = this.process($tmpExprList);
 
-                    $curr.setTokenType(expressionType(BRACKET_EXPRESSION);
+                    $curr.setTokenType(expressionType("BRACKET_EXPRESSION"));
                     if (!$curr.getSubTree()) {
                         if (!empty($localExprList)) {
                             $curr.setSubTree($localExprList);
@@ -195,7 +195,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                 $curr.setTokenType(this.getVariableType($curr.getUpper()));
                 $curr.setSubTree(false);
-                $curr.setNoQuotes(trim(trim($curr.getToken()), '@'), "`'\"", this.options);
+                $curr.setNoQuotes(($curr.getToken().strip, '@').strip, "`'\"", this.options);
 
             } else {
                 /* it is either an operator, a colref or a constant */
@@ -206,7 +206,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
                     // single or first element of expression list . all-column-alias
                     if (empty($resultList)) {
-                        $curr.setTokenType(expressionType(COLREF);
+                        $curr.setTokenType(expressionType("COLREF"));
                         break;
                     }
 

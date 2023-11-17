@@ -14,13 +14,14 @@ class HavingProcessor : ExpressionListProcessor {
     $parsed = super.process($tokens);
 
     foreach (myKey, myValue; $parsed) {
-      if (myValue["expr_type"].isExpressionType(COLREF) {
-        foreach ($select as $clause) {
-          if (!$clause.isSet("alias")) {
+      if (myValue["expr_type"].isExpressionType("COLREF")) {
+        foreach ($clause; $select) {
+          auto aliasClause = $clause.get("alias", null);
+          if (aliasClause.isNull) {
             continue;
           }
 
-          if (!$clause["alias"]) {
+          if (!aliasClause) {
             continue;
           }
           if ($clause["alias"]["no_quotes"] == myValue["no_quotes"]) {
@@ -34,7 +35,3 @@ class HavingProcessor : ExpressionListProcessor {
     return $parsed;
   }
 }
-
-
-
-?  >

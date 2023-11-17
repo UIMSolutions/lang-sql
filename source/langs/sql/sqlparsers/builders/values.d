@@ -27,7 +27,7 @@ class ValuesBuilder : ISqlBuilder {
 
             mySql ~= this.getRecordDelimiter(myValue);
         }
-        return "VALUES " . trim(mySql);
+        return "VALUES " . ySql.strip;
     }
 
     protected auto getRecordDelimiter($parsed) {
