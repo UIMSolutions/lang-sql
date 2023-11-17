@@ -1,10 +1,10 @@
-module langs.sql.PHPSQLParser.builders.columns.definition;
+module langs.sql.sqlparsers.builders.columns.definition;
 
 import lang.sql;
 
 @safe:
 /**
- * Builds the column definition statement part of CREATE TABLE. */
+ * Builds the column definition statement part of CREATE TABLE. 
  * This class : the builder for the columndefinition statement part 
  * of CREATE TABLE. You can overwrite all functions to achieve another handling. */
 class ColumnDefinitionBuilder : ISqlBuilder {

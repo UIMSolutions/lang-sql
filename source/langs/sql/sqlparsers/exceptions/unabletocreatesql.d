@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.exceptions.unabletocreatesql;
+module langs.sql.sqlparsers.exceptions.unabletocreatesql;
 
 import lang.sql;
 
@@ -22,7 +22,7 @@ class UnableToCreateSQLException : Exception {
         this.partkey = $partkey;
         this.entry = $entry;
         this.entrykey = $entrykey;
-        super.(
+        super(
             "unknown [" . $entrykey . "] = " . $entry[$entrykey] . " in \"" . $part . "\" [" . $partkey . "] ", 15);
     }
 

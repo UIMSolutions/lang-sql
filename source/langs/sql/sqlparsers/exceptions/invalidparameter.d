@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.exceptions.invalidparameter;
+module langs.sql.sqlparsers.exceptions.invalidparameter;
 
 import lang.sql;
 
@@ -10,15 +10,14 @@ import lang.sql;
  * is not a String type. */
 class InvalidParameterException : InvalidArgumentException {
 
-    protected $argument;
+  protected _argument;
 
-    this($argument) {
-        this.argument = $argument;
-        super.("no SQL string to parse: \n" . $argument, 10);
-    }
+  this(anArgument) {
+    _argument = anArgument;
+    super("no SQL string to parse: \n" ~ _argument, 10);
+  }
 
-    auto getArgument() {
-        return this.argument;
-    }
+  auto argument() {
+    return _argument;
+  }
 }
-

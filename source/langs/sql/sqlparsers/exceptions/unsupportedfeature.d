@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.exceptions.unsupportedfeature;
+module langs.sql.sqlparsers.exceptions.unsupportedfeature;
 
 import lang.sql;
 
@@ -12,14 +12,14 @@ import lang.sql;
  * enhanced. Please open an issue in such a case. */
 class UnsupportedFeatureException : Exception {
 
-    protected $key;
+    protected string _key;
 
-    this($key) {
-        this.key = $key;
-        super.($key . " not implemented.", 20);
+    this(string aKey) {
+        _key = aKey;
+        super(_key ~ " not implemented.", 20);
     }
 
     auto getKey() {
-        return this.key;
+        return _key;
     }
 }

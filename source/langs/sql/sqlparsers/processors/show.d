@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.show;
+module langs.sql.sqlparsers.processors.show;
 
 import lang.sql;
 
@@ -13,7 +13,7 @@ class ShowProcessor : AbstractProcessor {
     private $limitProcessor;
 
     this(Options $options) {
-        super.($options);
+        super($options);
         this.limitProcessor = new LimitProcessor($options);
     }
 

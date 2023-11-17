@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.exceptions.unabletocalculateposition;
+module langs.sql.sqlparsers.exceptions.unabletocalculateposition;
 
 import lang.sql;
 
@@ -17,7 +17,7 @@ class UnableToCalculatePositionException : Exception {
     this(aNeedle, aHaystack) {
         _needle = aNeedle;
         _haystack = aHaystack;
-        super.("cannot calculate position of " ~ _needle ~ " within " ~ _haystack, 5);
+        super("cannot calculate position of " ~ _needle ~ " within " ~ _haystack, 5);
     }
 
     auto getNeedle() {
