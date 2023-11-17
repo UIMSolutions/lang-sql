@@ -108,7 +108,7 @@ class PHPSQLLexer {
                     unset($tokens[$i]);
                     unset($tokens[$i + 1]);
 
-                } elseif (is_numeric($token)) {
+                } else if (is_numeric($token)) {
                     $tokens[$i - 1] ~= $tokens[$i];
                     unset($tokens[$i]);
                 }

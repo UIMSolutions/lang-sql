@@ -333,7 +333,7 @@ class SQLProcessor : SQLChunkProcessor {
                 if ($token_category.isEmpty) {
                     $token_category = upperToken;
                     $out[upperToken][0] = strippedToken;
-                } elseif ($token_category == 'INDEX') {
+                } else if ($token_category == 'INDEX') {
                     break;
                 } else {
                     strippedToken = 'LOCK IN SHARE MODE';

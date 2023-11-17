@@ -8,8 +8,8 @@ import lang.sql;
 // This class processes the REPLACE statements. 
 class ReplaceProcessor : InsertProcessor {
 
-    auto process($tokenList, $token_category = "REPLACE") {
-        return super.process($tokenList, $token_category);
-    }
+  auto process($tokenList, string aTokenCategory = "REPLACE") {
+    return super.process($tokenList, aTokenCategory);
+  }
 
 }

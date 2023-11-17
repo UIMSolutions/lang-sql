@@ -12,10 +12,10 @@ class ExpressionListProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $resultList = [];
-        $skip_next = false;
+        bool isSkipNext = false;
         $prev = new ExpressionToken();
 
-        foreach ($tokens as myKey, myValue) {
+        foreach (myKey, myValue; $tokens) {
 
 
             if (this.isCommentToken(myValue)) {
@@ -29,9 +29,9 @@ class ExpressionListProcessor : AbstractProcessor {
                 continue;
             }
 
-            if ($skip_next) {
+            if (isSkipNext) {
                 // skip the next non-whitespace token
-                $skip_next = false;
+                isSkipNext = false;
                 continue;
             }
 
@@ -40,75 +40,75 @@ class ExpressionListProcessor : AbstractProcessor {
 
                 auto myProcessor = new DefaultProcessor(this.options);
                 $curr.setSubTree($processor.process(this.removeParenthesisFromStart($curr.getTrim())));
-                $curr.setTokenType(expressionType(SUBQUERY);
+                $curr.setTokenType(expressionType("SUBQUERY"));
 
-            } elseif ($curr.isEnclosedWithinParenthesis()) {
+            } else if ($curr.isEnclosedWithinParenthesis()) {
                 /* is it an in-list? */
 
                 $localTokenList = this.splitSQLIntoTokens(this.removeParenthesisFromStart($curr.getTrim()));
 
-                if ($prev.getUpper() == 'IN') {
+                if ($prev.getUpper() == "IN") {
 
                     foreach (myKey, myValue; $localTokenList) {
-                        $tmpToken = new ExpressionToken(myKey, myValue);
-                        if ($tmpToken.isCommaToken()) {
+                        tempToken = new ExpressionToken(myKey, myValue);
+                        if (tempToken.isCommaToken()) {
                             unset($localTokenList[$k]);
                         }
                     }
 
                     $localTokenList = array_values($localTokenList);
                     $curr.setSubTree(this.process($localTokenList));
-                    $curr.setTokenType(expressionType(IN_LIST);
-                } elseif ($prev.getUpper() == 'AGAINST') {
+                    $curr.setTokenType(expressionType("IN_LIST"));
+                } else if ($prev.getUpper() == "AGAINST") {
 
-                    $match_mode = false;
+                    matchModeToken = false;
                     foreach ($localTokenList as myKey, myValue) {
 
-                        $tmpToken = new ExpressionToken(myKey, myValue);
-                        switch ($tmpToken.getUpper()) {
-                        case 'WITH':
-                            $match_mode = 'WITH QUERY EXPANSION';
+                        ExpressionToken tempToken = new ExpressionToken(myKey, myValue);
+                        switch (tempToken.getUpper()) {
+                        case "WITH":
+                            matchModeToken = "WITH QUERY EXPANSION";
                             break;
-                        case 'IN':
-                            $match_mode = 'IN BOOLEAN MODE';
+                        case "IN":
+                            matchModeToken = "IN BOOLEAN MODE";
                             break;
 
                         default:
                         }
 
-                        if ($match_mode != false) {
+                        if (matchModeToken != false) {
                             unset($localTokenList[$k]);
                         }
                     }
 
-                    $tmpToken = this.process($localTokenList);
+                    tempToken = this.process($localTokenList);
 
-                    if ($match_mode != false) {
-                        $match_mode = new ExpressionToken(0, $match_mode);
-                        $match_mode.setTokenType(expressionType(MATCH_MODE);
-                        $tmpToken[] = $match_mode.toArray();
+                    if (matchModeToken != false) {
+                        ExpressionToken matchModeToken = new ExpressionToken(0, matchModeToken);
+                        matchModeToken.setTokenType(expressionType("MATCH_MODE"));
+                        tempToken[] = matchModeToken.toArray();
                     }
 
-                    $curr.setSubTree($tmpToken);
-                    $curr.setTokenType(expressionType(MATCH_ARGUMENTS);
-                    $prev.setTokenType(expressionType(SIMPLE_FUNCTION);
+                    $curr.setSubTree(tempToken);
+                    $curr.setTokenType(expressionType("MATCH_ARGUMENTS"));
+                    $prev.setTokenType(expressionType("SIMPLE_FUNCTION"));
 
-                } elseif ($prev.isColumnReference() || $prev.isFunction() || $prev.isAggregateFunction()
+                } else if ($prev.isColumnReference() || $prev.isFunction() || $prev.isAggregateFunction()
                     || $prev.isCustomFunction()) {
 
                     // if we have a colref followed by a parenthesis pair,
-                    // it isn't a colref, it is a user-function
+                    // it isn"t a colref, it is a user-function
 
                     // TODO: this should be a method, because we need the same code
                     // below for unspecified tokens (expressions).
 
-                    $localExpr = new ExpressionToken();
+                    localExpressionToken = new ExpressionToken();
                     $tmpExprList = [];
 
-                    foreach ($localTokenList as myKey, myValue) {
-                        $tmpToken = new ExpressionToken(myKey, myValue);
-                        if (!$tmpToken.isCommaToken()) {
-                            $localExpr.addToken(myValue);
+                    foreach (myKey, myValue; $localTokenList) {
+                        ExpressionToken tempToken = new ExpressionToken(myKey, myValue);
+                        if (!tempToken.isCommaToken()) {
+                            localExpressionToken.addToken(myValue);
                             $tmpExprList[] = myValue;
                         } else {
                             // an expression could have multiple parts split by operands
@@ -116,16 +116,16 @@ class ExpressionListProcessor : AbstractProcessor {
                             $tmpExprList = array_values($tmpExprList);
                             $localExprList = this.process($tmpExprList);
 
-                            if (count($localExprList) > 1) {
-                                $localExpr.setSubTree($localExprList);
-                                $localExpr.setTokenType(expressionType("EXPRESSION"));
-                                $localExprList = $localExpr.toArray();
+                            if ($localExprList.length > 1) {
+                                localExpressionToken.setSubTree($localExprList);
+                                localExpressionToken.setTokenType(expressionType("EXPRESSION"));
+                                $localExprList = localExpressionToken.toArray();
                                 $localExprList["alias"] = false;
                                 $localExprList = [$localExprList);
                             }
 
                             if (!$curr.getSubTree()) {
-                                if (!empty($localExprList)) {
+                                if (!$localExprList.isEmpty) {
                                     $curr.setSubTree($localExprList);
                                 }
                             } else {
@@ -134,19 +134,19 @@ class ExpressionListProcessor : AbstractProcessor {
                             }
 
                             $tmpExprList = [];
-                            $localExpr = new ExpressionToken();
+                            ExpressionToken localExpressionToken = new ExpressionToken();
                         }
                     }
 
                     $tmpExprList = array_values($tmpExprList);
                     $localExprList = this.process($tmpExprList);
 
-                    if (count($localExprList) > 1) {
-                        $localExpr.setSubTree($localExprList);
-                        $localExpr.setTokenType(expressionType("EXPRESSION"));
-                        $localExprList = $localExpr.toArray();
+                    if ($localExprList.length > 1) {
+                        localExpressionToken.setSubTree($localExprList);
+                        localExpressionToken.setTokenType(expressionType("EXPRESSION"));
+                        $localExprList = localExpressionToken.toArray();
                         $localExprList["alias"] = false;
-                        $localExprList = [$localExprList);
+                        $localExprList = [$localExprList];
                     }
 
                     if (!$curr.getSubTree()) {
@@ -161,9 +161,9 @@ class ExpressionListProcessor : AbstractProcessor {
                     $prev.setSubTree($curr.getSubTree());
                     if ($prev.isColumnReference()) {
                         if (SqlParserConstants::getInstance().isCustomFunction($prev.getUpper())) {
-                            $prev.setTokenType(expressionType(CUSTOM_FUNCTION);
+                            $prev.setTokenType(expressionType("CUSTOM_FUNCTION"));
                         } else {
-                            $prev.setTokenType(expressionType(SIMPLE_FUNCTION);
+                            $prev.setTokenType(expressionType("SIMPLE_FUNCTION"));
                         }
                         $prev.setNoQuotes(null, null, this.options);
                     }
@@ -188,20 +188,20 @@ class ExpressionListProcessor : AbstractProcessor {
                     }
                 }
 
-            } elseif ($curr.isVariableToken()) {
+            } else if ($curr.isVariableToken()) {
 
-                # a variable
-                # it can be quoted
+                // a variable
+                 it can be quoted
 
                 $curr.setTokenType(this.getVariableType($curr.getUpper()));
                 $curr.setSubTree(false);
-                $curr.setNoQuotes(($curr.getToken().strip, '@').strip, "`'\"", this.options);
+                $curr.setNoQuotes(($curr.getToken().strip, "@").strip, "`"\"", this.options);
 
             } else {
                 /* it is either an operator, a colref or a constant */
                 switch ($curr.getUpper()) {
 
-                case '*':
+                case "*":
                     $curr.setSubTree(false); // o subtree
 
                     // single or first element of expression list . all-column-alias
@@ -222,62 +222,62 @@ class ExpressionListProcessor : AbstractProcessor {
                         && !$prev.isVariable()
                         && !$prev.isFunction()
                     ) {
-                        $curr.setTokenType(expressionType(COLREF);
+                        $curr.setTokenType(expressionType("COLREF"));
                         break;
                     }
 
                     if ($prev.isColumnReference() && $prev.endsWith(".")) {
-                        $prev.addToken('*'); // tablealias dot *
+                        $prev.addToken("*"); // tablealias dot *
                         continue 2; // skip the current token
                     }
 
-                    $curr.setTokenType(expressionType(OPERATOR);
+                    $curr.setTokenType(expressionType("OPERATOR"));
                     break;
 
-                case ':=':
-                case 'AND':
-                case '&&':
-                case 'BETWEEN':
-                case 'BINARY':
-                case '&':
-                case '~':
-                case '|':
-                case '^':
-                case 'DIV':
-                case '/':
-                case '<: ':
-                case '=':
-                case '>=':
-                case '>':
-                case 'IS':
-                case 'NOT':
-                case '<<':
-                case '<=':
-                case '<':
-                case 'LIKE':
-                case '%':
-                case '!=':
-                case '!=':
-                case 'REGEXP':
-                case '!':
-                case '||':
-                case 'OR':
-                case '>>':
-                case 'RLIKE':
-                case 'SOUNDS':
-                case 'XOR':
-                case 'IN':
+                case ":=":
+                case "AND":
+                case "&&":
+                case "BETWEEN":
+                case "BINARY":
+                case "&":
+                case "~":
+                case "|":
+                case "^":
+                case "DIV":
+                case "/":
+                case "<: ":
+                case "=":
+                case ">=":
+                case ">":
+                case "IS":
+                case "NOT":
+                case "<<":
+                case "<=":
+                case "<":
+                case "LIKE":
+                case "%":
+                case "!=":
+                case "!=":
+                case "REGEXP":
+                case "!":
+                case "||":
+                case "OR":
+                case ">>":
+                case "RLIKE":
+                case "SOUNDS":
+                case "XOR":
+                case "IN":
                     $curr.setSubTree(false);
-                    $curr.setTokenType(expressionType(OPERATOR);
+                    $curr.setTokenType(expressionType("OPERATOR"));
                     break;
 
-                case 'NULL':
+                case "NULL":
                     $curr.setSubTree(false);
-                    $curr.setTokenType(expressionType(CONSTANT);
+                    $curr.setTokenType(expressionType("CONSTANT"));
                     break;
 
-                case '-':
-                case '+':
+                case "-":
+                case "+":
                 // differ between preceding sign and operator
                     $curr.setSubTree(false);
 
@@ -294,25 +294,25 @@ class ExpressionListProcessor : AbstractProcessor {
                     $curr.setSubTree(false);
 
                     switch ($curr.getToken(0)) {
-                    case "'":
+                    case "\"":
                     // it is a string literal
                         $curr.setTokenType(expressionType("CONSTANT"));
                         break;
-                    case '"':
+                    case "\"":
                         if (!this.options.getANSIQuotes()) {
-                        // If we're not using ANSI quotes, this is a string literal.
+                        // If we"re not using ANSI quotes, this is a string literal.
                             $curr.setTokenType(expressionType("CONSTANT"));
                             break;
                         }
                         // Otherwise continue to the next case
-                    case '`':
+                    case "`":
                     // it is an escaped colum name
                         $curr.setTokenType(expressionType("COLREF"));
                         $curr.setNoQuotes($curr.getToken(), null, this.options);
                         break;
 
                     default:
-                        if (is_numeric($curr.getToken())) {
+                        if ($curr.getToken().isNumeric) {
 
                             if ($prev.isSign()) {
                                 $prev.addToken($curr.getToken()); // it is a negative numeric constant
@@ -338,14 +338,14 @@ class ExpressionListProcessor : AbstractProcessor {
 	            $next = isset( $tokens[ $k + 1 ] ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
                 $isEnclosedWithinParenthesis = $next.isEnclosedWithinParenthesis();
 	            if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
-                    $curr.setTokenType(expressionType("CUSTOM_FUNCTION");
+                    $curr.setTokenType(expressionType("CUSTOM_FUNCTION"));
                     $curr.setNoQuotes(null, null, this.options);
 
-                } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isAggregateFunction($curr.getUpper())) {
-                    $curr.setTokenType(expressionType("AGGREGATE_FUNCTION");
+                } else if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isAggregateFunction($curr.getUpper())) {
+                    $curr.setTokenType(expressionType("AGGREGATE_FUNCTION"));
                     $curr.setNoQuotes(null, null, this.options);
 
-                } elseif ($curr.getUpper() == 'NULL') {
+                } else if ($curr.getUpper() == "NULL") {
                     // it is a reserved word, but we would like to set it as constant
                     $curr.setTokenType(expressionType("CONSTANT");
 
@@ -356,11 +356,11 @@ class ExpressionListProcessor : AbstractProcessor {
                         // . if there is no parameter, we leave the colref
                         $curr.setTokenType(expressionType("COLREF"));
 
-                    } elseif ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
+                    } else if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
                         $curr.setTokenType(expressionType("SIMPLE_FUNCTION"));
                         $curr.setNoQuotes(null, null, this.options);
 
-                    }  elseif (!$isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
+                    }  else if (!$isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction($curr.getUpper())) {
 	                    // Colname using auto name.
                     	$curr.setTokenType(expressionType("COLREF"));
                     } else {

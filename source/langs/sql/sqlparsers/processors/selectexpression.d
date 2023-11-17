@@ -22,7 +22,7 @@ class SelectExpressionProcessor : AbstractProcessor {
      */
     auto process($expression) {
         $tokens = this.splitSQLIntoTokens($expression);
-        size_t numberOfTokens = count($tokens);
+        size_t numberOfTokens = $tokens.length;
         if (numberOfTokens == 0) {
             return null;
         }

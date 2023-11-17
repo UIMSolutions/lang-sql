@@ -7,11 +7,11 @@ module langs.sql.sqlparsers.processors.limit;
 class LimitProcessor : AbstractProcessor {
 
     auto process($tokens) {
-        $rowcount = "";
+        string countRows = "";
         $offset = "";
 
         $comma = -1;
-        $exchange = false;
+        isExchange = false;
         
         $comments = [];
         
@@ -22,7 +22,7 @@ class LimitProcessor : AbstractProcessor {
             }
         }
         
-        for (myPos = 0; myPos < count($tokens); ++myPos) {
+        for (myPos = 0; myPos < $tokens.length; ++myPos) {
             auto trimmedToken = $tokens[myPos].strip.toUpper;
             if (trimmedToken == ",") {
                 $comma = myPos;
@@ -30,28 +30,28 @@ class LimitProcessor : AbstractProcessor {
             }
             if (trimmedToken == "OFFSET") {
                 $comma = myPos;
-                $exchange = true;
+                isExchange = true;
                 break;
             }
         }
 
         for ($i = 0; $i < $comma; ++$i) {
-            if ($exchange) {
-                $rowcount ~= $tokens[$i];
+            if (isExchange) {
+                countRows ~= $tokens[$i];
             } else {
                 $offset ~= $tokens[$i];
             }
         }
 
-        for ($i = $comma + 1; $i < count($tokens); ++$i) {
-            if ($exchange) {
+        for ($i = $comma + 1; $i < $tokens.length; ++$i) {
+            if (isExchange) {
                 $offset ~= $tokens[$i];
             } else {
-                $rowcount ~= $tokens[$i];
+                countRows ~= $tokens[$i];
             }
         }
 
-        $return = ['offset' : $offset.strip, 'rowcount' : $rowcount.strip];
+        $return = ['offset' : $offset.strip, 'rowcount' : countRows.strip];
         if (count($comments)) {
             $return["comments"] = $comments;
         }

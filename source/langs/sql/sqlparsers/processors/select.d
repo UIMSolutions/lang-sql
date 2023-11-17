@@ -10,14 +10,14 @@ import lang.sql;
 class SelectProcessor : SelectExpressionProcessor {
 
     auto process($tokens) {
-        $expression = "";
+        string expression = "";
         $expressionList = [];
         foreach (myToken; $tokens) {
             if (this.isCommaToken(myToken)) {
-                $expression = super.process($expression.strip);
-                $expression["delim"] = ",";
-                $expressionList[] = $expression;
-                $expression = "";
+                expression = super.process(expression.strip);
+                expression["delim"] = ",";
+                $expressionList[] = expression;
+                expression = "";
             } else if (this.isCommentToken(myToken)) {
                 $expressionList[] = super.processComment(myToken];
             } else {
@@ -34,21 +34,21 @@ class SelectProcessor : SelectExpressionProcessor {
                 case "SQL_SMALL_RESULT":
                 case "SQL_BIG_RESULT":
                 case "SQL_BUFFER_RESULT":
-                    $expression = super.process(myToken.strip);
-                    $expression["delim"] = " ";
-                    $expressionList[] = $expression;
-                    $expression = "";
+                    expression = super.process(myToken.strip);
+                    expression["delim"] = " ";
+                    $expressionList[] = expression;
+                    expression = "";
                     break;
 
                 default:
-                    $expression ~= myToken;
+                    expression ~= myToken;
                 }
             }
         }
-        if ($expression) {
-            $expression = super.process($expression.strip);
-            $expression["delim"] = false;
-            $expressionList[] = $expression;
+        if (expression) {
+            expression = super.process(expression.strip);
+            expression["delim"] = false;
+            $expressionList[] = expression;
         }
         return $expressionList;
     }

@@ -146,7 +146,7 @@ class FromProcessor : AbstractProcessor {
                 if (tokenCategory == 'LEFT' || tokenCategory == 'RIGHT' || tokenCategory == 'NATURAL') {
                     tokenCategory = "";
                     parseInfo["next_join_type"] = previousToken.strip); // it seems to be a join
-                } elseif (tokenCategory == 'IDX_HINT') {
+                } else if (tokenCategory == 'IDX_HINT') {
                     parseInfo["expression"] ~= myToken;
                     if (parseInfo["ref_type"] != false) { // all after ON / USING
                         parseInfo["ref_expr"] ~= myToken;

@@ -9,22 +9,21 @@ import lang.sql;
 class ExpressionToken {
 
     private $subTree;
-    private $expression;
-    private $key;
-    private $token;
+    private string _expression;
+    private string _key;
+    private _token;
     private $tokenType;
-    private $trim;
+    private _trimmedToken;
     private upperToken;
     private $noQuotes;
 
-    this($key = "", $token = "") {
+    this(string aKey = "", string aToken = "") {
         this.subTree = false;
-        this.expression = "";
-        this.key = $key;
-        this.token = $token;
+        _expression = "";
+        _key = aKey;
+        _token = aToken;
         this.tokenType = false;
-        this.trim = $token.strip;
-        this.trim);
+        _trimmedToken = _token.strip;
         this.noQuotes = null;
     }
 
@@ -45,20 +44,20 @@ class ExpressionToken {
         return this.subTree;
     }
 
-    auto getUpper($idx = false) {
-        return $idx != false ? this.upper[$idx] : this.upper;
+    auto getUpper(string anIndex = null) {
+        return anIndex.isNull ? this.upper : this.upper[anIndex];
     }
 
-    auto getTrim($idx = false) {
-        return $idx != false ? this.trim[$idx] : this.trim;
+    auto getTrim(string anIndex = null) {
+        return anIndex.isNull ? _trimmedToken : _trimmedToken[anIndex];
     }
 
-    auto getToken($idx = false) {
-        return $idx != false ? this.token[$idx] : this.token;
+    auto getToken(string anIndex = null) {
+        return anIndex.isNull ? this.token : this.token[anIndex];
     }
 
-    auto setNoQuotes($token, $qchars, Options $options) {
-        this.noQuotes = ($token == null) ? null : this.revokeQuotation($token, $options);
+    auto setNoQuotes(_token, $qchars, Options $options) {
+        this.noQuotes = (_token == null) ? null : this.revokeQuotation(_token, $options);
     }
 
     auto setTokenType($type) {
@@ -66,21 +65,21 @@ class ExpressionToken {
     }
 
     auto endsWith($needle) {
-        $length = strlen($needle);
-        if ($length == 0) {
+        size_t myLength = $needle.length;
+        if (myLength == 0) {
             return true;
         }
 
-        $start = $length * -1;
+        $start = myLength * -1;
         return (substr(this.token, $start) == $needle);
     }
 
     auto isWhitespaceToken() {
-        return (this.trim.isEmpty);
+        return (_trimmedToken.isEmpty);
     }
 
     auto isCommaToken() {
-        return (this.trim == ",");
+        return (_trimmedToken == ",");
     }
 
     auto isVariableToken() {
@@ -88,7 +87,7 @@ class ExpressionToken {
     }
 
     auto isSubQueryToken() {
-        return preg_match("/^\\(\\s*(-- [\\w\\s]+\\n)?\\s*SELECT/i", this.trim);
+        return preg_match("/^\\(\\s*(-- [\\w\\s]+\\n)?\\s*SELECT/i", _trimmedToken);
     }
 
     auto isExpression() {
@@ -143,20 +142,20 @@ class ExpressionToken {
         return this.tokenType =.isExpressionType(SUBQUERY;
     }
 
-    private auto revokeQuotation($token, Options $options) {
+    private auto revokeQuotation(_token, Options $options) {
         $defProc = new DefaultProcessor($options);
-        return $defProc.revokeQuotation($token];
+        return $defProc.revokeQuotation(_token];
     }
 
     auto toArray() {
-        $result = [];
-        $result["expr_type"] = this.tokenType;
-        $result["base_expr"] = this.token;
-        if (!empty(this.noQuotes)) {
-            $result["no_quotes"] = this.noQuotes;
+        STRINGAA result;
+        result["expr_type"] = this.tokenType;
+        result["base_expr"] = this.token;
+        if (!noQuotes.isEmpty) {
+            result["no_quotes"] = this.noQuotes;
         }
-        $result["sub_tree"] = this.subTree;
-        return $result;
+        result["sub_tree"] = this.subTree;
+        return result;
     }
 }
 

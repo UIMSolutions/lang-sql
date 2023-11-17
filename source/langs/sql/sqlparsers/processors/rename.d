@@ -11,21 +11,21 @@ import lang.sql;
 class RenameProcessor : AbstractProcessor {
 
     auto process($tokenList) {
-        baseExpression = "";
+        string baseExpression = "";
         $resultList = [];
         $tablePair = [];
 
-        foreach ($k : myValue; $tokenList) {
-            $token = new ExpressionToken(myKey, myValue);
+        foreach (myKey : myValue; $tokenList) {
+            auto myToken = new ExpressionToken(myKey, myValue);
 
-            if ($token.isWhitespaceToken()) {
+            if (myToken.isWhitespaceToken()) {
                 continue;
             }
 
-            switch ($token.getUpper()) {
+            switch (myToken.getUpper()) {
             case 'TO':
             // separate source table from destination
-                $tablePair["source"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
+                $tablePair["source"] = ["expr_type" : expressionType("TABLE"), 'table' : baseExpression.strip,
                                              "no_quotes" : this.revokeQuotation(baseExpression),
                                              "base_expr" : baseExpression];
                 baseExpression = "";
@@ -33,9 +33,9 @@ class RenameProcessor : AbstractProcessor {
 
             case ",":
             // split rename operations
-                $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
+                $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), 'table' : baseExpression.strip,
                                                   "no_quotes" : this.revokeQuotation(baseExpression),
-                                                  "base_expr" : baseExpression);
+                                                  "base_expr" : baseExpression];
                 $resultList[] = $tablePair;
                 $tablePair = [];
                 baseExpression = "";
@@ -43,23 +43,23 @@ class RenameProcessor : AbstractProcessor {
 
             case 'TABLE':
                 $objectType .isExpressionType(TABLE;
-                $resultList[] = ["expr_type":expressionType("RESERVED"), "base_expr":$token.getTrim());   
+                $resultList[] = ["expr_type":expressionType("RESERVED"), "base_expr":myToken.getTrim()];   
                 continue 2; 
                 
             default:
-                baseExpression ~= $token.getToken();
+                baseExpression ~= myToken.getToken();
                 break;
             }
         }
 
         if (baseExpression != "") {
-            $tablePair["destination"] = ["expr_type" : expressionType(TABLE, 'table' : baseExpression.strip,
+            $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), 'table' : baseExpression.strip,
                                               "no_quotes" : this.revokeQuotation(baseExpression),
-                                              "base_expr" : baseExpression);
+                                              "base_expr" : baseExpression];
             $resultList[] = $tablePair;
         }
 
-        return ["expr_type" : $objectType, "sub_tree":$resultList);
+        return ["expr_type" : $objectType, "sub_tree":$resultList];
     }
 
 }

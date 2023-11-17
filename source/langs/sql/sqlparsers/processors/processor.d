@@ -123,10 +123,10 @@ abstract class DProcessor {
      * This method removes parenthesis from start of the given string.
      * It removes also the associated closing parenthesis.
      */
-    protected auto removeParenthesisFromStart($token) {
+    protected auto removeParenthesisFromStart(myToken) {
         $parenthesisRemoved = 0;
 
-        auto strippedToken = $token.strip;
+        auto strippedToken = myToken.strip;
         if (strippedToken != "" && strippedToken[0] == "(") { // remove only one parenthesis pair now!
             $parenthesisRemoved++;
             strippedToken[0] = " ";
@@ -148,7 +148,7 @@ abstract class DProcessor {
             if (strippedToken[$i] == "'") {
                 if ($stringOpened.isEmpty) {
                     $stringOpened = "'";
-                } elseif ($stringOpened == "'") {
+                } else if ($stringOpened == "'") {
                     $stringOpened = "";
                 }
             }
@@ -156,7 +156,7 @@ abstract class DProcessor {
             if (strippedToken[$i] == '"') {
                 if ($stringOpened.isEmpty) {
                     $stringOpened = '"';
-                } elseif ($stringOpened == '"') {
+                } else if ($stringOpened == '"') {
                     $stringOpened = "";
                 }
             }
@@ -200,17 +200,17 @@ abstract class DProcessor {
         return $type;
     }
 
-    protected auto isCommaToken($token) {
-        return ($token.strip == ",");
+    protected auto isCommaToken(myToken) {
+        return (myToken.strip == ",");
     }
 
-    protected auto isWhitespaceToken($token) {
-        return ($token.strip.isEmpty);
+    protected auto isWhitespaceToken(myToken) {
+        return (myToken.strip.isEmpty);
     }
 
-    protected auto isCommentToken($token) {
-        return $token.isSet(0) && $token.isSet(1)
-                && (($token[0] == "-" && $token[1] == "-") || ($token[0] == "/" && $token[1] == "*"));
+    protected auto isCommentToken(myToken) {
+        return myToken.isSet(0) && myToken.isSet(1)
+                && ((myToken[0] == "-" && myToken[1] == "-") || (myToken[0] == "/" && myToken[1] == "*"));
     }
 
     protected auto isColumnReference($out) {
@@ -265,11 +265,11 @@ abstract class DProcessor {
      */
     auto toArray($tokenList) {
         myExpression = [];
-        foreach ($tokenList as $token) {
-            if ($token instanceof \SqlParser\utils\ExpressionToken) {
-                myExpression[] = $token.toArray();
+        foreach (myToken; $tokenList) {
+            if (cast(ExpressionToken)myToken) {
+                myExpression[] = myToken.toArray();
             } else {
-                myExpression[] = $token;
+                myExpression[] = myToken;
             }
         }
         return myExpression;
