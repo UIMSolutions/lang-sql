@@ -28,46 +28,46 @@ class SetProcessor : AbstractProcessor {
                      "sub_tree" : (empty(isAssignment) ? false : isAssignment));
     }
 
-    auto process($tokens, $isUpdate = false) {
+    auto process($tokens, bool isUpdate = false) {
         $result = [];
-        $baseExpr = "";
+        string baseExpression = "";
         bool isAssignment = false;
         bool isVarType = false;
 
-        foreach ($token; $tokens) {
-            auto strippedToken = $token.strip;
-            upperToken = strippedToken.toUpper;
+        foreach (myToken; $tokens) {
+            auto strippedToken = myToken.strip;
+            auto upperToken = strippedToken.toUpper;
 
             switch (upperToken) {
             case 'LOCAL':
             case 'SESSION':
             case 'GLOBAL':
-                if (!$isUpdate) {
+                if (!isUpdate) {
                     $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                     isVarType = this.getVariableType("@@" ~ upperToken ~ ".");
-                    $baseExpr = "";
+                    baseExpression = "";
                     continue 2;
                 }
                 break;
 
             case ",":
-                isAssignment = this.processAssignment($baseExpr);
-                if (!$isUpdate && isVarType != false) {
+                isAssignment = this.processAssignment(baseExpression);
+                if (!isUpdate && isVarType != false) {
                     isAssignment["sub_tree"][0]["expr_type"] = isVarType;
                 }
                 $result[] = isAssignment;
-                $baseExpr = "";
+                baseExpression = "";
                 isVarType = false;
                 continue 2;
 
             default:
             }
-            $baseExpr ~= $token;
+            baseExpression ~= myToken;
         }
 
-        if ($baseExpr.strip != "") {
-            isAssignment = this.processAssignment($baseExpr);
-            if (!$isUpdate && isVarType != false) {
+        if (baseExpression.strip != "") {
+            isAssignment = this.processAssignment(baseExpression);
+            if (!isUpdate && isVarType != false) {
                 isAssignment["sub_tree"][0]["expr_type"] = isVarType;
             }
             $result[] = isAssignment;

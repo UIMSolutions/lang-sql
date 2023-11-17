@@ -9,14 +9,14 @@ import lang.sql;
  */
 class UnionProcessor : AbstractProcessor {
 
-    protected auto processDefault($token) {
+    protected auto processDefault(myToken) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return myProcessor$processor.process($token];
+        return myProcessor$processor.process(myToken];
     }
 
-    protected auto processSQL($token) {
+    protected auto processSQL(myToken) {
         auto myProcessor = new SQLProcessor(this.options);
-        return myProcessor.process($token];
+        return myProcessor.process(myToken];
     }
 
     static auto isUnion($queries) {
@@ -47,19 +47,19 @@ class UnionProcessor : AbstractProcessor {
                 continue;
             }
 
-            foreach ($key, $tokenList; $queries[myUnionType]) {
-                foreach ($z, $token; $tokenList as ) {
-                    $token = $token.strip;
-                    if ($token.isEmpty) {
+            foreach (myKey, $tokenList; $queries[myUnionType]) {
+                foreach ($z, myToken; $tokenList as ) {
+                    myToken = myToken.strip;
+                    if (myToken.isEmpty) {
                         continue;
                     }
 
                     // starts with "(select"
-                    if (preg_match("/^\\(\\s*select\\s*/i", $token)) {
-                        $queries[myUnionType][$key] = this.processDefault(this.removeParenthesisFromStart($token));
+                    if (preg_match("/^\\(\\s*select\\s*/i", myToken)) {
+                        $queries[myUnionType][myKey] = this.processDefault(this.removeParenthesisFromStart(myToken));
                         break;
                     }
-                    $queries[myUnionType][$key] = this.processSQL($queries[myUnionType][$key]);
+                    $queries[myUnionType][myKey] = this.processSQL($queries[myUnionType][myKey]);
                     break;
                 }
             }
@@ -73,27 +73,27 @@ class UnionProcessor : AbstractProcessor {
      * Moves the final union query into a separate output, so the remainder (such as ORDER BY) can
      * be processed separately.
      */
-    protected auto splitUnionRemainder($queries, $unionType, $outputArray)
+    protected auto splitUnionRemainder($queries, isUnionType, $outputArray)
     {
         $finalQuery = [];
 
         //If this token contains a matching pair of brackets at the start and end, use it as the final query
         $finalQueryFound = false;
-        if (count($outputArray) == 1) {
-            $tokenAsArray = str_split($outputArray[0].strip);
-            if ($tokenAsArray[0] == "(" && $tokenAsArray[count($tokenAsArray)-1] == ")") {
-                $queries[$unionType][] = $outputArray;
+        if ($outputArray.length == 1) {
+            $tokenAsArray = $outputArray[0].strip.split;
+            if ($tokenAsArray[0] == "(" && $tokenAsArray[$tokenAsArray.length-1] == ")") {
+                $queries[isUnionType][] = $outputArray;
                 $finalQueryFound = true;
             }
         }
 
         if (!$finalQueryFound) {
-            foreach ($outputArray as $key : $token) {
-                if ($token.toUpper == 'ORDER') {
+            foreach (myKey, myToken; $outputArray) {
+                if (myToken.toUpper == 'ORDER') {
                     break;
                 } else {
-                    $finalQuery[] = $token;
-                    unset($outputArray[$key]);
+                    $finalQuery[] = myToken;
+                    unset($outputArray[myKey]);
                 }
             }
         }
@@ -102,7 +102,7 @@ class UnionProcessor : AbstractProcessor {
         $finalQueryString = implode($finalQuery).strip;
 
         if (!$finalQuery.isEmpty && $finalQueryString != "") {
-            $queries[$unionType][] = $finalQuery;
+            $queries[isUnionType][] = $finalQuery;
         }
 
         $defaultProcessor = new DefaultProcessor(this.options);
@@ -121,61 +121,61 @@ class UnionProcessor : AbstractProcessor {
 
         // ometimes the parser needs to skip ahead until a particular
         // oken is found
-        $skipUntilToken = false;
+        bool isSkipUntilToken = false;
 
         // his is the last type of union used (UNION or UNION ALL)
         // ndicates a) presence of at least one union in this query
         // b) the type of union if this is the first or last query
-        $unionType = false;
+        bool isUnionType = false;
 
         // ometimes a "query" consists of more than one query (like a UNION query)
         // his array holds all the queries
         $queries = [];
 
-        foreach ($inputArray as $key : $token) {
-            auto strippedToken = $token.strip;
+        foreach (myKey : myToken; $inputArray) {
+            auto strippedToken = myToken.strip;
 
             // overread all tokens till that given token
-            if ($skipUntilToken) {
+            if (isSkipUntilToken) {
                 if (strippedToken.isEmpty) {
                     continue; // read the next token
                 }
-                if (strippedToken.toUpper == $skipUntilToken) {
-                    $skipUntilToken = false;
+                if (strippedToken.toUpper == isSkipUntilToken) {
+                    isSkipUntilToken = false;
                     continue; // read the next token
                 }
             }
 
             if (strippedToken.toUpper != "UNION") {
-                $outputArray[] = $token; // here we get empty tokens, if we remove these, we get problems in parse_sql()
+                $outputArray[] = myToken; // here we get empty tokens, if we remove these, we get problems in parse_sql()
                 continue;
             }
 
-            $unionType = "UNION";
+            isUnionType = "UNION";
 
             // we are looking for an ALL token right after UNION
-            for ($i = $key + 1; $i < count($inputArray); ++$i) {
-                if (trim($inputArray[$i]).isEmpty) {
+            for ($i = myKey + 1; $i < count($inputArray); ++$i) {
+                if ($inputArray[$i].strip.isEmpty) {
                     continue;
                 }
                 if ($inputArray[$i].toUpper != "ALL") {
                     break;
                 }
                 // the other for-loop should overread till "ALL"
-                $skipUntilToken = "ALL";
-                $unionType = "UNION ALL";
+                isSkipUntilToken = "ALL";
+                isUnionType = "UNION ALL";
             }
 
             // store the tokens related to the unionType
-            $queries[$unionType][] = $outputArray;
+            $queries[isUnionType][] = $outputArray;
             $outputArray = [];
         }
 
         // the query tokens after the last UNION or UNION ALL
         // or we don't have an UNION/UNION ALL
         if (!empty($outputArray)) {
-            if ($unionType) {
-                $queries = this.splitUnionRemainder($queries, $unionType, $outputArray);
+            if (isUnionType) {
+                $queries = this.splitUnionRemainder($queries, isUnionType, $outputArray);
             } else {
                 $queries[] = $outputArray;
             }

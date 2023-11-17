@@ -9,13 +9,15 @@ import lang.sql;
  * This class processes column-lists.
  */
 class ColumnListProcessor : AbstractProcessor {
-    auto process($tokens) {
-        $columns = explode(",", $tokens);
-        auto myCols = [];
-        foreach (myKey, myValue; $columns) {
-            myCols = ["expr_type" : expressionType(COLREF, "base_expr" : trim(myValue),
-                            "no_quotes" : this.revokeQuotation(myValue));
+    auto process(string stringWithTokens) {
+        string[] tokenNames = stringWithTokens.split(",");
+        auto myColumns = [];
+        foreach (myKey, myTokenName; tokenNames) {
+            myColumns = [
+                "expr_type" : expressionType("COLREF"), 
+                "base_expr" : myTokenName.strip,
+                "no_quotes" : this.revokeQuotation(myTokenName)];
         }
-        return myCols;
+        return myColumns;
     }
 }

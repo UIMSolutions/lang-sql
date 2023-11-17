@@ -50,7 +50,7 @@ class FromProcessor : AbstractProcessor {
 
         // we have a reg_expr, so we have to parse it
         if (parseInfo["ref_expr"] != false) {
-            $unparsed = this.splitSQLIntoTokens(trim(parseInfo["ref_expr"]));
+            $unparsed = this.splitSQLIntoTokens(parseInfo["ref_expr"].strip);
 
             // here we can get a comma separated list
             foreach (myKey, myValue; $unparsed) {
@@ -89,7 +89,7 @@ class FromProcessor : AbstractProcessor {
                     $sub_tree = $unionQueries;
                 }
                 parseInfo["sub_tree"] = $sub_tree;
-                result["expr_type"} = expressionType("TABLE_EXPRESSION");
+                result["expr_type"] = expressionType("TABLE_EXPRESSION");
             }
         } else {
             result["expr_type"] = expressionType("TABLE");
@@ -110,16 +110,16 @@ class FromProcessor : AbstractProcessor {
     auto process($tokens) {
         auto parseInfo = this.initParseInfo();
         auto myExpression = [];
-        $token_category = "";
-        $prevToken = "";
+        string tokenCategory = "";
+        string previousToken = "";
 
         $skip_next = false;
         $i = 0;
 
-        foreach ($token; $tokens) {
-            upperToken = $token.strip.toUpper;
+        foreach (myToken; $tokens) {
+            upperToken = myToken.strip.toUpper;
 
-            if ($skip_next && $token != "") {
+            if ($skip_next && myToken != "") {
                 parseInfo["token_count"]++;
                 $skip_next = false;
                 continue;
@@ -129,8 +129,8 @@ class FromProcessor : AbstractProcessor {
                 }
             }
 
-            if (this.isCommentToken($token)) {
-                myExpression[] = super.processComment($token];
+            if (this.isCommentToken(myToken)) {
+                myExpression[] = super.processComment(myToken];
                 continue;
             }
 
@@ -143,13 +143,13 @@ class FromProcessor : AbstractProcessor {
 
             case 'OUTER':
             case 'JOIN':
-                if ($token_category == 'LEFT' || $token_category == 'RIGHT' || $token_category == 'NATURAL') {
-                    $token_category = "";
-                    parseInfo["next_join_type"] = trim($prevToken)); // it seems to be a join
-                } elseif ($token_category == 'IDX_HINT') {
-                    parseInfo["expression"] ~= $token;
+                if (tokenCategory == 'LEFT' || tokenCategory == 'RIGHT' || tokenCategory == 'NATURAL') {
+                    tokenCategory = "";
+                    parseInfo["next_join_type"] = previousToken.strip); // it seems to be a join
+                } elseif (tokenCategory == 'IDX_HINT') {
+                    parseInfo["expression"] ~= myToken;
                     if (parseInfo["ref_type"] != false) { // all after ON / USING
-                        parseInfo["ref_expr"] ~= $token;
+                        parseInfo["ref_expr"] ~= myToken;
                     }
                 }
                 break;
@@ -157,28 +157,28 @@ class FromProcessor : AbstractProcessor {
             case 'LEFT':
             case 'RIGHT':
             case 'NATURAL':
-                $token_category = upperToken;
-                $prevToken = $token;
+                tokenCategory = upperToken;
+                previousToken = myToken;
                 $i++;
                 continue 2;
 
             default:
-                if ($token_category == 'LEFT' || $token_category == 'RIGHT') {
+                if (tokenCategory == 'LEFT' || tokenCategory == 'RIGHT') {
                     if (upperToken.isEmpty) {
-                        $prevToken ~= $token;
+                        previousToken ~= myToken;
                         break;
                     } else {
-                        $token_category = "";     // it seems to be a function
-                        parseInfo["expression"] ~= $prevToken;
+                        tokenCategory = "";     // it seems to be a function
+                        parseInfo["expression"] ~= previousToken;
                         if (parseInfo["ref_type"] != false) { // all after ON / USING
-                            parseInfo["ref_expr"] ~= $prevToken;
+                            parseInfo["ref_expr"] ~= previousToken;
                         }
-                        $prevToken = "";
+                        previousToken = "";
                     }
                 }
-                parseInfo["expression"] ~= $token;
+                parseInfo["expression"] ~= myToken;
                 if (parseInfo["ref_type"] != false) { // all after ON / USING
-                    parseInfo["ref_expr"] ~= $token;
+                    parseInfo["ref_expr"] ~= myToken;
                 }
                 break;
             }
@@ -190,13 +190,13 @@ class FromProcessor : AbstractProcessor {
 
             switch (upperToken) {
             case 'AS':
-                parseInfo["alias"] = ['as' : true, 'name' : "", "base_expr" : $token];
+                parseInfo["alias"] = ['as' : true, 'name' : "", "base_expr" : myToken];
                 parseInfo["token_count"]++;
                 $n = 1;
                 $str = "";
-                while ($str.isEmpty && isset($tokens[$i + $n])) {
+                while ($str.isEmpty && $tokens.isSet($i + $n)) {
                     parseInfo["alias"]["base_expr"] ~= ($tokens[$i + $n].isEmpty ? " " : $tokens[$i + $n]);
-                    $str = trim($tokens[$i + $n]);
+                    $str = $tokens[$i + $n].strip;
                     ++$n;
                 }
                 parseInfo["alias"]["name"] = $str;
@@ -207,17 +207,17 @@ class FromProcessor : AbstractProcessor {
             case 'IGNORE':
             case 'USE':
             case 'FORCE':
-                $token_category = 'IDX_HINT';
+                tokenCategory = 'IDX_HINT';
                 parseInfo["hints"][]["hint_type"] = upperToken;
                 continue 2;
 
             case 'KEY':
             case 'INDEX':
-                if ($token_category == 'CREATE') {
-                    $token_category = upperToken; // TODO: what is it for a statement?
+                if (tokenCategory == 'CREATE') {
+                    tokenCategory = upperToken; // TODO: what is it for a statement?
                     continue 2;
                 }
-                if ($token_category == 'IDX_HINT') {
+                if (tokenCategory == 'IDX_HINT') {
                     $cur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
@@ -237,7 +237,7 @@ class FromProcessor : AbstractProcessor {
                 break;
 
             case 'FOR':
-                if ($token_category == 'IDX_HINT') {
+                if (tokenCategory == 'IDX_HINT') {
                     $cur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
@@ -262,7 +262,7 @@ class FromProcessor : AbstractProcessor {
                 parseInfo["next_join_type"] = 'CROSS';
 
             case 'JOIN':
-                if ($token_category == 'IDX_HINT') {
+                if (tokenCategory == 'IDX_HINT') {
                     $cur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
@@ -278,7 +278,7 @@ class FromProcessor : AbstractProcessor {
                 break;
 
             case 'GROUP BY':
-                if ($token_category == 'IDX_HINT') {
+                if (tokenCategory == 'IDX_HINT') {
                     $cur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
@@ -287,22 +287,22 @@ class FromProcessor : AbstractProcessor {
             default:
                 // TODO: enhance it, so we can have base_expr to calculate the position of the keywords
                 // build a subtree under "hints"
-                if ($token_category == 'IDX_HINT') {
-                    $token_category = "";
+                if (tokenCategory == 'IDX_HINT') {
+                    tokenCategory = "";
                     $cur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][$cur_hint]["hint_list"] = $token;
+                    parseInfo["hints"][$cur_hint]["hint_list"] = myToken;
                     break;
                 }
 
                 if (parseInfo["token_count"] == 0) {
                     if (parseInfo["table"].isEmpty) {
-                        parseInfo["table"] = $token;
-                        parseInfo["no_quotes"] = this.revokeQuotation($token];
+                        parseInfo["table"] = myToken;
+                        parseInfo["no_quotes"] = this.revokeQuotation(myToken];
                     }
                 } else if (parseInfo["token_count"] == 1) {
-                    parseInfo["alias"] = ['as' : false, 'name' : $token.strip,
-                                                "no_quotes" : this.revokeQuotation($token),
-                                                "base_expr" : $token.strip);
+                    parseInfo["alias"] = ['as' : false, 'name' : myToken.strip,
+                                                "no_quotes" : this.revokeQuotation(myToken),
+                                                "base_expr" : myToken.strip);
                 }
                 parseInfo["token_count"]++;
                 break;

@@ -89,7 +89,7 @@ class PositionCalculator {
         }
 
         $offset = 0;
-        $ok = false;
+        bool isOK = false;
         while (true) {
 
             $pos = strpos($sql, myValue, $offset);
@@ -119,13 +119,13 @@ class PositionCalculator {
 
             if (in_array($expr_type,['operator","column-list'),true)) {
 
-                $ok = ($before.isEmpty || in_array($before, this.$allowedOnOperator, true))
-                    || (strtolower($before) >= 'a' && strtolower($before) <= 'z');
-                $ok = $ok
+                isOK = ($before.isEmpty || in_array($before, this.$allowedOnOperator, true))
+                    || ($before.toLower >= 'a' && $before.toLower <= 'z');
+                isOK = isOK
                     && ($after.isEmpty || in_array($after, this.$allowedOnOperator, true)
-                        || (strtolower($after) >= 'a' && strtolower($after) <= 'z'));
+                        || ($after.toLower >= 'a' && $after.toLower <= 'z'));
 
-                if (!$ok) {
+                if (!isOK) {
                     $offset = $pos + 1;
                     continue;
                 }
@@ -136,13 +136,13 @@ class PositionCalculator {
             // in all other cases we accept
             // whitespace, comma, operators, parenthesis and end_of_string
 
-            $ok = ($before.isEmpty || in_array($before, this.$allowedOnOther, true)
-                || ($quotedBefore && (strtolower($before) >= 'a' && strtolower($before) <= 'z')));
-            $ok = $ok
+            isOK = ($before.isEmpty || in_array($before, this.$allowedOnOther, true)
+                || ($quotedBefore && ($before.toLower >= 'a' && $before.toLower <= 'z')));
+            isOK = isOK
                 && ($after.isEmpty || in_array($after, this.$allowedOnOther, true)
-                    || ($quotedAfter && (strtolower($after) >= 'a' && strtolower($after) <= 'z')));
+                    || ($quotedAfter && ($after.toLower >= 'a' && $after.toLower <= 'z')));
 
-            if ($ok) {
+            if (isOK) {
                 break;
             }
 

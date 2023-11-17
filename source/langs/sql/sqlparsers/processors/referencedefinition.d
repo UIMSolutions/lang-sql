@@ -35,9 +35,9 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case ",":
-            # we stop on a single comma
-            # or at the end of the array $tokens
-                myExpression = this.buildReferenceDef(myExpression, trim(substr(baseExpression, 0, -$token.length)), $key - 1);
+            // we stop on a single comma
+            //  or at the end of the array $tokens
+                myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -$token.length).strip, $key - 1);
                 break 2;
 
             case 'REFERENCES':
@@ -87,7 +87,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'RESTRICT':
             case 'CASCADE':
-                if (strpos(currentCategory, 'REF_OPTION_') == 0) {
+                if (strpos(currentCategory, "REF_OPTION_") == 0) {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_"  ~ strtolower(substr(currentCategory, -6))] = upperToken;
                     continue 2;
@@ -97,9 +97,9 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'SET':
             case 'NO':
-                if (strpos(currentCategory, 'REF_OPTION_') == 0) {
+                if (strpos(currentCategory, "REF_OPTION_") == 0) {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    myExpression["on_" ~ strtolower(substr(currentCategory, -6))] = upperToken;
+                    myExpression["on_" ~ substr(currentCategory, -6).toLower] = upperToken;
                     currentCategory = 'SEC_' . currentCategory;
                     continue 2;
                 }
@@ -108,9 +108,9 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case 'NULL':
             case 'ACTION':
-                if (strpos(currentCategory, 'SEC_REF_OPTION_') == 0) {
+                if (strpos(currentCategory, "SEC_REF_OPTION_") == 0) {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    myExpression["on_" ~ strtolower(substr(currentCategory, -6))] ~= " " ~ upperToken;
+                    myExpression["on_" ~ substr(currentCategory, -6).toLower] ~= " " ~ upperToken;
                     currentCategory = 'REF_COL_LIST';
                     continue 2;
                 }
@@ -122,17 +122,22 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
                 case 'REFERENCES':
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
-                        # index_col_name list
+                        // index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
                         $cols = $processor.process(this.removeParenthesisFromStart(strippedToken));
-                        myExpression["sub_tree"][] = ["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : strippedToken,
-                                                    "sub_tree" : $cols);
+                        myExpression["sub_tree"][] = [
+                            "expr_type" : expressionType("COLUMN_LIST"), 
+                            "base_expr" : strippedToken,
+                            "sub_tree" : $cols];
                         currentCategory = 'REF_COL_LIST';
                         continue 3;
                     }
-                    # foreign key reference table name
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("TABLE"), 'table' : strippedToken,
-                                                "base_expr" : strippedToken, "no_quotes" : this.revokeQuotation(strippedToken));
+                    // foreign key reference table name
+                    myExpression["sub_tree"][] = [
+                        "expr_type" : expressionType("TABLE"), 
+                        'table' : strippedToken,
+                        "base_expr" : strippedToken, 
+                        "no_quotes" : this.revokeQuotation(strippedToken)];
                     continue 3;
 
                 default:

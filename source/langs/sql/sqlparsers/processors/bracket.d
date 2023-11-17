@@ -14,8 +14,8 @@ class BracketProcessor : AbstractProcessor {
     }
 
     auto process($tokens) {
-        $token = this.removeParenthesisFromStart($tokens[0]);
-        $subtree = this.processTopLevel($token];
+        myToken = this.removeParenthesisFromStart($tokens[0]);
+        $subtree = this.processTopLevel(myToken);
 
         $remainingExpressions = this.getRemainingNotBracketExpression($subtree);
 
@@ -25,11 +25,11 @@ class BracketProcessor : AbstractProcessor {
 
         if ($subtree.isSet("SELECT")) {
             $subtree = [
-                    ["expr_type" : expressionType("QUERY"), "base_expr" : $token, "sub_tree" : $subtree]];
+                    ["expr_type" : expressionType("QUERY"), "base_expr" : myToken, "sub_tree" : $subtree]];
         }
 
         return [
-                ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : trim($tokens[0]),
+                ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $tokens[0].trim,
                         "sub_tree" : $subtree, 'remaining_expressions' : $remainingExpressions]];
     }
 

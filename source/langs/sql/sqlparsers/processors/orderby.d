@@ -20,13 +20,13 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto processOrderExpression(&$parseInfo, $select) {
-        $parseInfo["base_expr"] = trim($parseInfo["base_expr"]);
+        $parseInfo["base_expr"] = $parseInfo["base_expr"].strip;
 
         if ($parseInfo["base_expr"].isEmpty) {
             return false;
         }
 
-        if (is_numeric($parseInfo["base_expr"])) {
+        if ($parseInfo["base_expr"].isNumeric) {
             $parseInfo["expr_type"] = expressionType("POSITION");
         } else {
             $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo["base_expr"]);
