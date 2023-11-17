@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.builders.show;
+module langs.sql.sqlparsers.builders.show;
 

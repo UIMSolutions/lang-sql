@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.lexer;
+module langs.sql.sqlparsers.lexer;
 

@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.builders.columns;
+module langs.sql.sqlparsers.builders.columns;
 

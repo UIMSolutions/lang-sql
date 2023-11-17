@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.record;
+module langs.sql.sqlparsers.processors.record;
 
 /**
  * This file : a processor, which processes records of data for an INSERT statement.

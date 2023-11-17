@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.builders.delete;
+module langs.sql.sqlparsers.builders.delete;
 

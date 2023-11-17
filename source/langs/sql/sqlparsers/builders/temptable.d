@@ -1,4 +1,4 @@
-module source.langs.sql.PHPSQLParser.builders.temptable;
+module source.langs.sql.sqlparsers.builders.temptable;
 
 import lang.sql;
 

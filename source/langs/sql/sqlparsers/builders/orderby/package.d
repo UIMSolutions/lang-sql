@@ -1,6 +1,6 @@
-module langs.sql.PHPSQLParser.builders.orderby;
+module langs.sql.sqlparsers.builders.orderby;
 
 public {
-    import langs.sql.PHPSQLParser.builders.orderby.builder;
+    import langs.sql.sqlparsers.builders.orderby.builder;
     
 }

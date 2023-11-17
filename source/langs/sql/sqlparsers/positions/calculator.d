@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.positions.calculator;
+module langs.sql.sqlparsers.positions.calculator;
 
 import lang.sql;
 

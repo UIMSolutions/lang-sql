@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.wherebracketexpression;
+module langs.sql.sqlparsers.builders.wherebracketexpression;
 
 import lang.sql;
 

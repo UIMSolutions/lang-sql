@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.insert.InsertStatementBuilder;
+module langs.sql.sqlparsers.builders.insert.InsertStatementBuilder;
 
 /**
  * Builds the INSERT statement

@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.join;
+module langs.sql.sqlparsers.builders.join;
 
 import lang.sql;
 

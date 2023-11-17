@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.update.updatestatement;
+module langs.sql.sqlparsers.builders.update.updatestatement;
 
 /**
  * Builds the UPDATE statement 

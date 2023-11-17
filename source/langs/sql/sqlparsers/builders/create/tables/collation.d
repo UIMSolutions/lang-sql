@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.create.tables.collation;
+module langs.sql.sqlparsers.builders.create.tables.collation;
 
 import lang.sql;
 

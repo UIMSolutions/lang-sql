@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.index.IndexHintListBuilder;
+module langs.sql.sqlparsers.builders.index.IndexHintListBuilder;
 
 /**
  * Builds the index hint list of a table.

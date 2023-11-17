@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.expressionlist;
+module langs.sql.sqlparsers.processors.expressionlist;
 
 import lang.sql;
 

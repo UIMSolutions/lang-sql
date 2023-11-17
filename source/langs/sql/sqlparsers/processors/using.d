@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.using;
+module langs.sql.sqlparsers.processors.using;
 
 /**
  * This file : the processor for the USING statements.

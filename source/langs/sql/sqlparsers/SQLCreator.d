@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.SQLCreator;
+module langs.sql.sqlparsers.SQLCreator;
 
 import lang.sql;
 

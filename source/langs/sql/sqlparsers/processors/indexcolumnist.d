@@ -1,7 +1,7 @@
 
 
 
-module langs.sql.PHPSQLParser.processors.indexcolumnist;
+module langs.sql.sqlparsers.processors.indexcolumnist;
 
 import lang.sql;
 

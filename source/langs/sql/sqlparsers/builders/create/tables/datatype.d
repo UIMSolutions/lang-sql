@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.create.tables.datatype;
+module langs.sql.sqlparsers.builders.create.tables.datatype;
 
 import lang.sql;
 

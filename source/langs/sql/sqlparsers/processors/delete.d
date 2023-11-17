@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.delete;
+module langs.sql.sqlparsers.processors.delete;
 
 /**
  * Processes the DELETE statement parts and splits multi-table deletes.

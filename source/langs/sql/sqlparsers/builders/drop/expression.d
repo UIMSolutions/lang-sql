@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.drop.expression;
+module langs.sql.sqlparsers.builders.drop.expression;
 
 import lang.sql;
 

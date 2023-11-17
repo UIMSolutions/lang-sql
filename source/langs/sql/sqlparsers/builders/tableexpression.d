@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.tableexpression;
+module langs.sql.sqlparsers.builders.tableexpression;
 
 import lang.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.refclause;
+module langs.sql.sqlparsers.builders.refclause;
 
 import lang.sql;
 

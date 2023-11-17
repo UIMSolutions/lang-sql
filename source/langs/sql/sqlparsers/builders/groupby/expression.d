@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.groupby.expression;
+module langs.sql.sqlparsers.builders.groupby.expression;
 
 import lang.sql;
 

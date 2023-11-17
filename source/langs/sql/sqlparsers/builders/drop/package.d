@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.builders.drop;
+module langs.sql.sqlparsers.builders.drop;
 

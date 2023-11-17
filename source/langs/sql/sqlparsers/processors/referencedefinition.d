@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.referencedefinition;
+module langs.sql.sqlparsers.processors.referencedefinition;
 
 import lang.sql;
 

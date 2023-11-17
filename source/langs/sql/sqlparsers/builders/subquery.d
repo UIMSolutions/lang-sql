@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.subquery;
+module langs.sql.sqlparsers.builders.subquery;
 
 import lang.sql;
 

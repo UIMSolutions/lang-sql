@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.drop.index;
+module langs.sql.sqlparsers.builders.drop.index;
 
 import lang.sql;
 

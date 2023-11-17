@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.set;
+module langs.sql.sqlparsers.builders.set;
 
 import lang.sql;
 

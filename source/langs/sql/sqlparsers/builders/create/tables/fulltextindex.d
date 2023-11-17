@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.create.tables.fulltextindex;
+module langs.sql.sqlparsers.builders.create.tables.fulltextindex;
 
 import lang.sql;
 

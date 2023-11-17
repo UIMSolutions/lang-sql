@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.SQLParser;
+module langs.sql.sqlparsers.SQLParser;
 
 namespace SqlParser;
 

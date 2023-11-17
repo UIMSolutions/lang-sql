@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.truncate;
+module langs.sql.sqlparsers.builders.truncate;
 
 /**
  * Builds the TRUNCATE statement

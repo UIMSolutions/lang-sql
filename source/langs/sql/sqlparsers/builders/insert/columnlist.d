@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.insert.columnlist;
+module langs.sql.sqlparsers.builders.insert.columnlist;
 
 import lang.sql;
 

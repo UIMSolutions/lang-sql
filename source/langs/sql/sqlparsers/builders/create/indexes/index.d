@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.create.index;
+module langs.sql.sqlparsers.builders.create.index;
 
 import lang.sql;
 

@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.processors.columndefinition;
+module langs.sql.sqlparsers.processors.columndefinition;
 
 import lang.sql;
 

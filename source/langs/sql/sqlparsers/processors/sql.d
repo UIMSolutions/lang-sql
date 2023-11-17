@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.sql;
+module langs.sql.sqlparsers.processors.sql;
 
 // This file : the processor for the base SQL statements.
 //This class processes the base SQL statements.

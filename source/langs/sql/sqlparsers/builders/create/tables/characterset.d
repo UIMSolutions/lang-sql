@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.create.tables.characterset;
+module langs.sql.sqlparsers.builders.create.tables.characterset;
 
 import lang.sql;
 

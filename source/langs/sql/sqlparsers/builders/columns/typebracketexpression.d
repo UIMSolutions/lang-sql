@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.columns.typebracketexpression;
+module langs.sql.sqlparsers.builders.columns.typebracketexpression;
 
 import lang.sql;
 

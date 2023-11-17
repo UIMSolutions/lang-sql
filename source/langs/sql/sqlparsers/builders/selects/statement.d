@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.selects.statement;
+module langs.sql.sqlparsers.builders.selects.statement;
 
 /**
  * Builds the SELECT statement 

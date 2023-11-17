@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.sqlchunk;
+module langs.sql.sqlparsers.processors.sqlchunk;
 
 /**
  * This file : the processor for the SQL chunks.

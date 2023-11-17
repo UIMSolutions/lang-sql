@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.processors.groupby;
+module langs.sql.sqlparsers.processors.groupby;
 
 /**
  * This file : the processor for the GROUP-BY statements.

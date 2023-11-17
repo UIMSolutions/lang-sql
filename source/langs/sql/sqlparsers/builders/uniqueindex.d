@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.uniqueindex;
+module langs.sql.sqlparsers.builders.uniqueindex;
 
 import lang.sql;
 

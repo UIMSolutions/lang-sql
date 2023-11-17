@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.uservariable;
+module langs.sql.sqlparsers.builders.uservariable;
 
 import lang.sql;
 

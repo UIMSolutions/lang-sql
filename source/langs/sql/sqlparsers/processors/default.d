@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.default;
+module langs.sql.sqlparsers.processors.default;
 
 /**
  * This file : the processor the unparsed sql string given by the user.

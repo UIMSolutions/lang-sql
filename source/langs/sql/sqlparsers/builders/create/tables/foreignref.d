@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.create.tables.foreignref;
+module langs.sql.sqlparsers.builders.create.tables.foreignref;
 
 import lang.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.showstatement;
+module langs.sql.sqlparsers.builders.showstatement;
 
 /**
  * Builds the SHOW statement. */

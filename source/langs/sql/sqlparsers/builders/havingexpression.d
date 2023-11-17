@@ -1,5 +1,5 @@
 
-module langs.sql.PHPSQLParser.builders.havingexpression;
+module langs.sql.sqlparsers.builders.havingexpression;
 
 import lang.sql;
 

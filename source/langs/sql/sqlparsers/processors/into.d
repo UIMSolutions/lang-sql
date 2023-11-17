@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.into;
+module langs.sql.sqlparsers.processors.into;
 
 /**
  * This file : the processor for the INTO statements.

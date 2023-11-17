@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.drop.indextable;
+module langs.sql.sqlparsers.builders.drop.indextable;
 
 import lang.sql;
 

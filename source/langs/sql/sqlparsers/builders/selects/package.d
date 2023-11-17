@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.builders.selects;
+module langs.sql.sqlparsers.builders.selects;
 

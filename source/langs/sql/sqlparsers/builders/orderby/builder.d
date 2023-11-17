@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.orderby.builder;
+module langs.sql.sqlparsers.builders.orderby.builder;
 
 import lang.sql;
 

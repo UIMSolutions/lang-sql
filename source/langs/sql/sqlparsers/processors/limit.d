@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.limit;
+module langs.sql.sqlparsers.processors.limit;
 
 /**
  * This file : the processor for the LIMIT statements.

@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.create.tables.size;
+module langs.sql.sqlparsers.builders.create.tables.size;
 
 import lang.sql;
 

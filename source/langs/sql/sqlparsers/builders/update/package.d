@@ -1,2 +1,2 @@
-module langs.sql.PHPSQLParser.builders.update;
+module langs.sql.sqlparsers.builders.update;
 

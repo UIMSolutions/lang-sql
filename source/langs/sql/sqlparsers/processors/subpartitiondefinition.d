@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.subpartitiondefinition;
+module langs.sql.sqlparsers.processors.subpartitiondefinition;
 
 import lang.sql;
 

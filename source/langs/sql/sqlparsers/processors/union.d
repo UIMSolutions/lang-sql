@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.processors.union;
+module langs.sql.sqlparsers.processors.union;
 
 import lang.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.whereexpression;
+module langs.sql.sqlparsers.builders.whereexpression;
 
 import lang.sql;
 

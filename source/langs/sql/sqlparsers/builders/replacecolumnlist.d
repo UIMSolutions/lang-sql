@@ -1,4 +1,4 @@
-module langs.sql.PHPSQLParser.builders.replacecolumnlist;
+module langs.sql.sqlparsers.builders.replacecolumnlist;
 use SqlParser\exceptions\UnableToCreateSQLException;
 use SqlParser\utils\ExpressionType;
 
