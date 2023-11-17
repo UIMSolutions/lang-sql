@@ -31,7 +31,7 @@ class CreateIndexBuilder : ISqlBuilder {
         mySql ~= " " ~ this.buildIndexTable($parsed);
         mySql = trim(mySql);
         mySql ~= this.buildIndexOptions($parsed);
-        return trim(mySql);
+        return mySql.strip;
     }
 
 }

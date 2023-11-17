@@ -12,8 +12,8 @@ class DropProcessor : AbstractProcessor {
 
     auto process($tokenList) {
         $exists = false;
-        baseExpression = "";
-        $objectType = "";
+        string baseExpression = "";
+        auto objectType = "";
         $subTree = [];
         $option = false;
 
@@ -31,14 +31,14 @@ class DropProcessor : AbstractProcessor {
             case 'SCHEMA':
             case 'DATABASE':
             case 'TABLE':
-                if ($objectType.isEmpty) {
-                    $objectType = constant('SqlParser\utils\expressionType(' . upperToken);
+                if (objectType.isEmpty) {
+                    objectType = constant('SqlParser\utils\expressionType(' . upperToken);
                 }
                 baseExpression = "";
                 break;
             case 'INDEX':
-	            if ( $objectType.isEmpty ) {
-		            $objectType = constant( 'SqlParser\utils\expressionType(' . upperToken );
+	            if ( objectType.isEmpty ) {
+		            objectType = constant( 'SqlParser\utils\expressionType(' ~ upperToken );
 	            }
 	            baseExpression = "";
 	            break;
@@ -49,7 +49,7 @@ class DropProcessor : AbstractProcessor {
                 break;
 
             case 'TEMPORARY':
-                $objectType .isExpressionType(TEMPORARY_TABLE;
+                objectType = expressionType("TEMPORARY_TABLE");
                 baseExpression = "";
                 break;
 
@@ -58,7 +58,7 @@ class DropProcessor : AbstractProcessor {
                 $option = upperToken;
                 if (!empty($objectList)) {
                     $subTree[] = ["expr_type" : expressionType(EXPRESSION,
-                                       "base_expr" : trim(substr(baseExpression, 0, -$token.length)),
+                                       "base_expr" : substr(baseExpression, 0, -$token.length).strip,
                                        "sub_tree" : $objectList);
                     $objectList = [];
                 }
@@ -73,8 +73,8 @@ class DropProcessor : AbstractProcessor {
 
             default:
                 $object = [];
-                $object["expr_type"] = $objectType;
-                if ($objectType =.isExpressionType(TABLE || $objectType =.isExpressionType(TEMPORARY_TABLE) {
+                $object["expr_type"] = objectType;
+                if (objectType.isExpressionType("TABLE") || objectType.isExpressionType("TEMPORARY_TABLE")) {
                     $object["table"] = strippedToken;
                     $object["no_quotes"] = false;
                     $object["alias"] = false;
@@ -87,14 +87,14 @@ class DropProcessor : AbstractProcessor {
                 continue 2;
             }
 
-            $subTree[] = ["expr_type" : expressionType(RESERVED, "base_expr" : strippedToken);
+            $subTree[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
         }
 
         if (!empty($objectList)) {
-            $subTree[] = ["expr_type" : expressionType(EXPRESSION, "base_expr" : baseExpression.strip,
-                               "sub_tree" : $objectList);
+            $subTree[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
+                               "sub_tree" : $objectList];
         }
 
-        return ["expr_type" : $objectType, 'option' : $option, 'if-exists' : $exists, "sub_tree" : $subTree);
+        return ["expr_type" : objectType, 'option' : $option, 'if-exists' : $exists, "sub_tree" : $subTree);
     }
 }

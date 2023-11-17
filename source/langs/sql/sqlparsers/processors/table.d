@@ -15,7 +15,7 @@ class TableProcessor : AbstractProcessor {
     }
 
     protected auto getConstantType($token) {
-        return ["expr_type" : expressionType(CONSTANT, "base_expr" : $token];
+        return ["expr_type" : expressionType("CONSTANT"), "base_expr" : $token];
     }
 
     protected auto getOperatorType($token) {

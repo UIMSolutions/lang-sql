@@ -21,7 +21,7 @@ class ColumnListBuilder : ISqlBuilder {
     }
     
     string build(array $parsed, $delim = ', ') {
-        if ($parsed["expr_type"] !.isExpressionType(COLUMN_LIST) {
+        if (!$parsed["expr_type"].isExpressionType("COLUMN_LIST")) {
             return "";
         }
 
@@ -37,7 +37,7 @@ class ColumnListBuilder : ISqlBuilder {
 
             mySql ~= $delim;
         }
-        return "(" . substr(mySql, 0, -strlen($delim)) . ")";
+        return "(" ~ substr(mySql, 0, -strlen($delim)) ~ ")";
     }
 
 }

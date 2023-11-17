@@ -348,7 +348,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case 'SINGLE_PARAM_PARENTHESIS':
                     $parsed = this.removeParenthesisFromStart(strippedToken);
-                    $parsed = ["expr_type" : expressionType(CONSTANT, "base_expr" : trim($parsed));
+                    $parsed = ["expr_type" : expressionType("CONSTANT"), "base_expr" : trim($parsed));
                     $last = array_pop(myExpression);
                     $last["length"] = $parsed["base_expr"];
 

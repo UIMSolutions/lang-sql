@@ -23,7 +23,7 @@ class PositionCalculator {
                                                 expressionType(MATCH_ARGUMENTS, expressionType(TABLE,
                                                 expressionType(TEMPORARY_TABLE, expressionType(COLUMN_TYPE,
                                                 expressionType(COLDEF, expressionType(PRIMARY_KEY,
-                                                expressionType(CONSTRAINT, expressionType(COLUMN_LIST,
+                                                expressionType(CONSTRAINT, expressionType("COLUMN_LIST"),
                                                 expressionType(CHECK, expressionType(COLLATE, expressionType(LIKE,
                                                 expressionType(INDEX, expressionType(INDEX_TYPE,
                                                 expressionType(INDEX_SIZE, expressionType(INDEX_PARSER,
