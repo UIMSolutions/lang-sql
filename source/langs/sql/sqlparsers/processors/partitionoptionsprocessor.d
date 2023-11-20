@@ -210,16 +210,16 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                     $last = array_pop($parsed);
                     $subtree = array_pop($last["sub_tree"]);
-                    $key = array_pop($subtree["sub_tree"]);
+                    myKey = array_pop($subtree["sub_tree"]);
 
-                    $key["sub_tree"] = myExpression;
-                    $key["base_expr"] = baseExpression.strip;
+                    myKey["sub_tree"] = myExpression;
+                    myKey["base_expr"] = baseExpression.strip;
 
-                    baseExpression = $key["storage"] . baseExpression;
-                    unset($key["storage"]);
+                    baseExpression = myKey["storage"] . baseExpression;
+                    unset(myKey["storage"]);
 
-                    $subtree["sub_tree"][] = $key;
-                    unset($key);
+                    $subtree["sub_tree"][] = myKey;
+                    unset(myKey);
 
                     myExpression = $subtree["sub_tree"];
                     $subtree["sub_tree"] = false;

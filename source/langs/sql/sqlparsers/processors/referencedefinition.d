@@ -10,8 +10,8 @@ import lang.sql;
 */
 class ReferenceDefinitionProcessor : AbstractProcessor {
 
-    protected auto buildReferenceDef(myExpression, baseExpression, $key) {
-        myExpression["till"] = $key;
+    protected auto buildReferenceDef(myExpression, baseExpression, myKey) {
+        myExpression["till"] = myKey;
         myExpression["base_expr"] = baseExpression;
         return myExpression;
     }
@@ -21,7 +21,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         myExpression = ["expr_type" : expressionType(REFERENCE, "base_expr" : false, "sub_tree" : []);
         baseExpression = "";
 
-        foreach ($key : $token; $tokens) {
+        foreach (myKey : $token; $tokens) {
 
             auto strippedToken = $token.strip;
             baseExpression ~= $token;
@@ -37,7 +37,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case ",":
             // we stop on a single comma
             //  or at the end of the array $tokens
-                myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -$token.length).strip, $key - 1);
+                myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -$token.length).strip, myKey - 1);
                 break 2;
 
             case "REFERENCES":

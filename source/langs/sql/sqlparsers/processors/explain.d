@@ -10,22 +10,22 @@ import lang.sql;
  */
 class ExplainProcessor : AbstractProcessor {
 
-    protected auto isStatement($keys, $needle = "EXPLAIN") {
-        $pos = array_search($needle, $keys);
-        if (isset($keys[$pos + 1])) {
-            return in_array($keys[$pos + 1], ["SELECT", "DELETE", "INSERT", "REPLACE", "UPDATE"), true);
+    protected auto isStatement(myKeys, $needle = "EXPLAIN") {
+        $pos = array_search($needle, myKeys);
+        if (isset(myKeys[$pos + 1])) {
+            return in_array(myKeys[$pos + 1], ["SELECT", "DELETE", "INSERT", "REPLACE", "UPDATE"), true);
         }
         return false;
     }
 
     // TODO: refactor that function
-    auto process($tokens, $keys = []) {
+    auto process($tokens, myKeys = []) {
 
         baseExpression = "";
         myExpression = [];
         currentCategory = "";
 
-        if (this.isStatement($keys)) {
+        if (this.isStatement(myKeys)) {
             foreach (myToken; $tokens) {
 
                 auto strippedToken = myToken.strip;

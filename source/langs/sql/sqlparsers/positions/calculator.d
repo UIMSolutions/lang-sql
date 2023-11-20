@@ -59,7 +59,7 @@ class PositionCalculator {
         this.flippedBacktrackingTypes = array_flip(this.$backtrackingTypes);
     }
 
-    protected auto printPos($text, $sql, $charPos, $key, $parsed, $backtracking) {
+    protected auto printPos($text, $sql, $charPos, myKey, $parsed, $backtracking) {
         if (!isset($_SERVER["DEBUG"])) {
             return;
         }
@@ -72,7 +72,7 @@ class PositionCalculator {
             $i++;
         }
         $holdem = substr($sql, 0, $charPos) . "^" . substr($sql, $charPos);
-        echo $spaces . $text . " key:" . $key . "  parsed:" . $parsed . " back:" . serialize($backtracking) . " "
+        echo $spaces . $text . " key:" . myKey . "  parsed:" . $parsed . " back:" . serialize($backtracking) . " "
             . $holdem . "\n";
     }
 
@@ -152,17 +152,17 @@ class PositionCalculator {
         return $pos;
     }
 
-    protected auto lookForBaseExpression($sql, &$charPos, &$parsed, $key, &$backtracking) {
-        if (!is_numeric($key)) {
-            if (($key == "UNION" || $key == "UNION ALL")
-                || ($key == "expr_type" && isset(this.flippedBacktrackingTypes[$parsed]))
-                || ($key == "select-option" && $parsed != false) || ($key == "alias" && $parsed != false)) {
+    protected auto lookForBaseExpression($sql, &$charPos, &$parsed, myKey, &$backtracking) {
+        if (!is_numeric(myKey)) {
+            if ((myKey == "UNION" || myKey == "UNION ALL")
+                || (myKey == "expr_type" && isset(this.flippedBacktrackingTypes[$parsed]))
+                || (myKey == "select-option" && $parsed != false) || (myKey == "alias" && $parsed != false)) {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record
                 // and we have to look into it too
                 $backtracking[] = $charPos;
 
-            } else if (($key == "ref_clause" || $key == "columns") && $parsed != false) {
+            } else if ((myKey == "ref_clause" || myKey == "columns") && $parsed != false) {
                 // we hold the current position and come back after n base_expr(s)
                 // there is an array of sub-elements before (!) the base_expr clause of the current element
                 // so we go through the sub-elements and must come at the end
@@ -170,21 +170,21 @@ class PositionCalculator {
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false; // backtracking only after n base_expr!
                 }
-            } else if (($key == "sub_tree" && $parsed != false) || ($key == "options" && $parsed != false)) {
+            } else if ((myKey == "sub_tree" && $parsed != false) || (myKey == "options" && $parsed != false)) {
                 // we prevent wrong backtracking on subtrees (too much array_pop())
                 // there is an array of sub-elements after(!) the base_expr clause of the current element
                 // so we go through the sub-elements and must not come back at the end
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false;
                 }
-            } else if (($key == "TABLE") || ($key == "create-def" && $parsed != false)) {
+            } else if ((myKey == "TABLE") || (myKey == "create-def" && $parsed != false)) {
                 // do nothing
             } else {
                 // move the current pos after the keyword
                 // SELECT, WHERE, INSERT etc.
-                if (SqlParserConstants::getInstance().isReserved($key)) {
-                    $charPos = stripos($sql, $key, $charPos);
-                    $charPos += strlen($key);
+                if (SqlParserConstants::getInstance().isReserved(myKey)) {
+                    $charPos = stripos($sql, myKey, $charPos);
+                    $charPos += strlen(myKey);
                 }
             }
         }
@@ -193,10 +193,10 @@ class PositionCalculator {
             return;
         }
 
-        foreach ($key : myValue; $parsed) {
-            if ($key == "base_expr") {
+        foreach (myKey : myValue; $parsed) {
+            if (myKey == "base_expr") {
 
-                //this.printPos("0", $sql, $charPos, $key, myValue, $backtracking);
+                //this.printPos("0", $sql, $charPos, myKey, myValue, $backtracking);
 
                 $subject = substr($sql, $charPos);
                 $pos = this.findPositionWithinString($subject, myValue,
@@ -208,17 +208,17 @@ class PositionCalculator {
                 $parsed["position"] = $charPos + $pos;
                 $charPos += $pos + strlen(myValue);
 
-                //this.printPos("1", $sql, $charPos, $key, myValue, $backtracking);
+                //this.printPos("1", $sql, $charPos, myKey, myValue, $backtracking);
 
                 $oldPos = array_pop($backtracking);
                 if (isset($oldPos) && $oldPos != false) {
                     $charPos = $oldPos;
                 }
 
-                //this.printPos("2", $sql, $charPos, $key, myValue, $backtracking);
+                //this.printPos("2", $sql, $charPos, myKey, myValue, $backtracking);
 
             } else {
-                this.lookForBaseExpression($sql, $charPos, $parsed[$key], $key, $backtracking);
+                this.lookForBaseExpression($sql, $charPos, $parsed[myKey], myKey, $backtracking);
             }
         }
     }

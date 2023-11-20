@@ -22,8 +22,8 @@ class InsertProcessor : AbstractProcessor {
         return $result;
     }
 
-    protected auto processKeyword($keyword, $tokenList) {
-        if (!$tokenList.isSet($keyword)) {
+    protected auto processKeyword(myKeyword, $tokenList) {
+        if (!$tokenList.isSet(myKeyword)) {
             return ["", false, []);
         }
 
@@ -31,7 +31,7 @@ class InsertProcessor : AbstractProcessor {
         $cols = false;
         $result = [];
 
-        foreach ($token; $tokenList[$keyword]) {
+        foreach ($token; $tokenList[myKeyword]) {
             auto strippedToken = myToken.strip;
 
             if (strippedToken.isEmpty) {
@@ -90,8 +90,8 @@ class InsertProcessor : AbstractProcessor {
         $cols = false;
         $comments = [];
 
-        foreach ($key : &$token; $tokenList) {
-            if ($key == "VALUES") {
+        foreach (myKey : &$token; $tokenList) {
+            if (myKey == "VALUES") {
                 continue;
             }
             foreach (&$value; $token as ) {
@@ -105,12 +105,12 @@ class InsertProcessor : AbstractProcessor {
         $parsed = this.processOptions($tokenList);
         unset($tokenList["OPTIONS"]);
 
-        list(myTable, $cols, $key) = this.processKeyword("INTO", $tokenList);
-        $parsed = array_merge($parsed, $key);
+        list(myTable, $cols, myKey) = this.processKeyword("INTO", $tokenList);
+        $parsed = array_merge($parsed, myKey);
         unset($tokenList["INTO"]);
 
         if (myTable.isEmpty && in_array($token_category, ["INSERT", "REPLACE"))) {
-            list(myTable, $cols, $key) = this.processKeyword($token_category, $tokenList);
+            list(myTable, $cols, myKey) = this.processKeyword($token_category, $tokenList);
         }
 
         $parsed[] = ["expr_type" : expressionType(TABLE, "table" : myTable,

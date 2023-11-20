@@ -11,19 +11,19 @@ import lang.sql;
  */
 class FromBuilder : ISqlBuilder {
 
-    protected auto buildTable($parsed, $key) {
+    protected auto buildTable($parsed, myKey) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build($parsed, $key);
+        return myBuilder.build($parsed, myKey);
     }
 
-    protected auto buildTableExpression($parsed, $key) {
+    protected auto buildTableExpression($parsed, myKey) {
         auto myBuilder = new TableExpressionBuilder();
-        return myBuilder.build($parsed, $key);
+        return myBuilder.build($parsed, myKey);
     }
 
-    protected auto buildSubQuery($parsed, $key) {
+    protected auto buildSubQuery($parsed, myKey) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build($parsed, $key);
+        return myBuilder.build($parsed, myKey);
     }
 
     string build(array $parsed) {

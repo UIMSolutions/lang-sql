@@ -8,7 +8,7 @@ import lang.sql;
  * This class processes the DESC statement.
  */
 class DescProcessor : ExplainProcessor {
-    protected auto isStatement($keys, string aNeedle = "DESC") {
-        return super.isStatement($keys, aNeedle);
+    protected auto isStatement(myKeys, string aNeedle = "DESC") {
+        return super.isStatement(myKeys, aNeedle);
     }
 }
