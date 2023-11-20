@@ -31,19 +31,19 @@ class OrderByProcessor : AbstractProcessor {
         } else {
             $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo["base_expr"]);
             // search to see if the expression matches an alias
-            foreach ($clause; $select) {
-                if ($clause["alias"].isEmpty) {
+            foreach (myClause; $select) {
+                if (myClause["alias"].isEmpty) {
                     continue;
                 }
 
-                if ($clause["alias"]["no_quotes"] == $parseInfo["no_quotes"]) {
+                if (myClause["alias"]["no_quotes"] == $parseInfo["no_quotes"]) {
                     $parseInfo["expr_type"] = expressionType("ALIAS");
                     break;
                 }
             }
         }
 
-        if ($parseInfo["expr_type"] = expressionType("EXPRESSION") {
+        if ($parseInfo["expr_type"] = expressionType("EXPRESSION")) {
             myExpression = this.processSelectExpression($parseInfo["base_expr"]);
             myExpression["direction"] = $parseInfo["dir"];
             unset(myExpression["alias"]);

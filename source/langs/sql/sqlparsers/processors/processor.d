@@ -271,8 +271,8 @@ abstract class DProcessor {
         return myExpression;
     }
 
-    protected auto array_insert_after($array, $key, $entry) {
-        $idx = array_search($key, array_keys($array));
+    protected auto array_insert_after($array, string aKey, $entry) {
+        $idx = array_search(aKey, array_keys($array));
         $array = array_slice($array, 0, $idx + 1, true) + $entry
                 + array_slice($array, $idx + 1, count($array) - 1, true);
         return $array;

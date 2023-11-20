@@ -23,9 +23,9 @@ class RenameProcessor : AbstractProcessor {
             }
 
             switch (myToken.getUpper()) {
-            case 'TO':
+            case "TO":
             // separate source table from destination
-                $tablePair["source"] = ["expr_type" : expressionType("TABLE"), 'table' : baseExpression.strip,
+                $tablePair["source"] = ["expr_type" : expressionType("TABLE"), "table" : baseExpression.strip,
                                              "no_quotes" : this.revokeQuotation(baseExpression),
                                              "base_expr" : baseExpression];
                 baseExpression = "";
@@ -33,7 +33,7 @@ class RenameProcessor : AbstractProcessor {
 
             case ",":
             // split rename operations
-                $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), 'table' : baseExpression.strip,
+                $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), "table" : baseExpression.strip,
                                                   "no_quotes" : this.revokeQuotation(baseExpression),
                                                   "base_expr" : baseExpression];
                 $resultList[] = $tablePair;
@@ -41,7 +41,7 @@ class RenameProcessor : AbstractProcessor {
                 baseExpression = "";
                 break;
 
-            case 'TABLE':
+            case "TABLE":
                 $objectType .isExpressionType(TABLE;
                 $resultList[] = ["expr_type":expressionType("RESERVED"), "base_expr":myToken.getTrim()];   
                 continue 2; 
@@ -53,7 +53,7 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if (baseExpression != "") {
-            $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), 'table' : baseExpression.strip,
+            $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), "table" : baseExpression.strip,
                                               "no_quotes" : this.revokeQuotation(baseExpression),
                                               "base_expr" : baseExpression];
             $resultList[] = $tablePair;

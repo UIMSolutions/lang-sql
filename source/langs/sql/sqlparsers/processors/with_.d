@@ -1,11 +1,11 @@
-module langs.sql.sqlparsers.processors.with;
+module langs.sql.sqlparsers.processors.with_;
 
 import lang.sql;
 
 @safe: 
 /**
- * This file : the processor for Oracle's WITH statements.
- * This class processes Oracle's WITH statements.
+ * This file : the processor for Oracle"s WITH statements.
+ * This class processes Oracle"s WITH statements.
  */
 class WithProcessor : AbstractProcessor {
 
@@ -15,14 +15,14 @@ class WithProcessor : AbstractProcessor {
     }
 
     protected auto buildTableName($token) {
-    	return ["expr_type" : expressionType("TEMPORARY_TABLE"), 'name':$token, "base_expr" : $token, "no_quotes" : this.revokeQuotation($token)];
+    	return ["expr_type" : expressionType("TEMPORARY_TABLE"), "name":$token, "base_expr" : $token, "no_quotes" : this.revokeQuotation($token)];
     }
 
     auto process($tokens) {
     	$out = [];
         $resultList = [];
-        $category = "";
-        baseExpression = "";
+        string myCategory = "";
+        string baseExpression = "";
         $prev = "";
 
         foreach ($token; $tokens) {
@@ -36,16 +36,16 @@ class WithProcessor : AbstractProcessor {
 
             switch (upperToken) {
 
-            case 'AS':
-            	if ($prev != 'TABLENAME') {
+            case "AS":
+            	if ($prev != "TABLENAME") {
             		// error or tablename is AS
             		$resultList[] = this.buildTableName(strippedToken);
-            		$category = 'TABLENAME';
+            		myCategory = "TABLENAME";
             		break;
             	}
 
             	$resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-            	$category = upperToken;
+            	myCategory = upperToken;
                 break;
 
             case ",":
@@ -55,20 +55,20 @@ class WithProcessor : AbstractProcessor {
 
             default:
                 switch ($prev) {
-                	case 'AS':
+                	case "AS":
                 		// it follows a parentheses pair
                 		$subtree = this.processTopLevel(this.removeParenthesisFromStart($token));
                 		$resultList[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" : $subtree];
 
                 		$out[] = ["expr_type" : expressionType("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" : $resultList];
                 		$resultList = [];
-                		$category = "";
+                		myCategory = "";
                 	break;
 
                 	case "":
                 		// we have the name of the table
                 		$resultList[] = this.buildTableName(strippedToken);
-                		$category = 'TABLENAME';
+                		myCategory = "TABLENAME";
                 		break;
 
                 default:
@@ -77,7 +77,7 @@ class WithProcessor : AbstractProcessor {
                 }
                 break;
             }
-            $prev = $category;
+            $prev = myCategory;
         }
         return $out;
     }

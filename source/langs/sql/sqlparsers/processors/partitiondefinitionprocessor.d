@@ -40,21 +40,21 @@ class PartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto getOperatorType($token) {
-        return ["expr_type" : expressionType(OPERATOR, "base_expr" : $token];
+        return ["expr_type" : expressionType("OPERATOR"), "base_expr" : $token];
     }
 
     protected auto getBracketExpressionType($token) {
-        return ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : $token, "sub_tree" : false];
+        return ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $token, "sub_tree" : false];
     }
 
     auto process($tokens) {
 
         $result = [];
-        $prevCategory = "";
-        currentCategory = "";
+        string myPreviousCategory = "";
+        string myCurrentCategory = "";
         $parsed = [];
         myExpression = [];
-        baseExpression = "";
+        string baseExpression = "";
         $skip = 0;
 
         foreach ($tokenKey, $token; $tokens) {
@@ -78,33 +78,33 @@ class PartitionDefinitionProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case 'PARTITION':
-                if (currentCategory.isEmpty) {
+                if (myCurrentCategory.isEmpty) {
                     myExpression[] = this.getReservedType(strippedToken);
-                    $parsed = ["expr_type" : expressionType(PARTITION_DEF, "base_expr" : baseExpression.strip,
+                    $parsed = ["expr_type" : expressionType("PARTITION_DEF"), "base_expr" : baseExpression.strip,
                                     "sub_tree" : false];
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             case 'VALUES':
-                if ($prevCategory == 'PARTITION') {
-                    myExpression[] = ["expr_type" : expressionType(PARTITION_VALUES, "base_expr" : false,
+                if (myPreviousCategory == 'PARTITION') {
+                    myExpression[] = ["expr_type" : expressionType("PARTITION_VALUES"), "base_expr" : false,
                                     "sub_tree" : false, 'storage' : substr(baseExpression, 0, -$token.length));
                     $parsed["sub_tree"] = myExpression;
 
                     baseExpression = $token;
                     myExpression = [this.getReservedType(strippedToken));
 
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             case 'LESS':
-                if (currentCategory == 'VALUES') {
+                if (myCurrentCategory == 'VALUES') {
                     myExpression[] = this.getReservedType(strippedToken);
                     continue 2;
                 }
@@ -112,7 +112,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'THAN':
-                if (currentCategory == 'VALUES') {
+                if (myCurrentCategory == 'VALUES') {
                     // followed by parenthesis and (value-list or expr)
                     myExpression[] = this.getReservedType(strippedToken);
                     continue 2;
@@ -121,7 +121,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'MAXVALUE':
-                if (currentCategory == 'VALUES') {
+                if (myCurrentCategory == 'VALUES') {
                     myExpression[] = this.getConstantType(strippedToken);
 
                     $last = array_pop($parsed["sub_tree"]);
@@ -135,13 +135,13 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
                     myExpression = $parsed["sub_tree"];
                     unset($last);
-                    currentCategory = $prevCategory;
+                    myCurrentCategory = myPreviousCategory;
                 }
                 // else ?
                 break;
 
             case 'IN':
-                if (currentCategory == 'VALUES') {
+                if (myCurrentCategory == 'VALUES') {
                     // followed by parenthesis and value-list
                     myExpression[] = this.getReservedType(strippedToken);
                     continue 2;
@@ -149,7 +149,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
 
             case 'COMMENT':
-                if ($prevCategory == 'PARTITION') {
+                if (myPreviousCategory == 'PARTITION') {
                     myExpression[] = ["expr_type" : expressionType(PARTITION_COMMENT, "base_expr" : false,
                                     "sub_tree" : false, 'storage' : substr(baseExpression, 0, -$token.length));
 
@@ -157,14 +157,14 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     myExpression = [this.getReservedType(strippedToken));
 
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             case 'STORAGE':
-                if ($prevCategory == 'PARTITION') {
+                if (myPreviousCategory == 'PARTITION') {
                     // followed by ENGINE
                     myExpression[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr(baseExpression, 0, -$token.length));
@@ -173,19 +173,19 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     myExpression = [this.getReservedType(strippedToken));
 
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             case 'ENGINE':
-                if (currentCategory == 'STORAGE') {
+                if (myCurrentCategory == 'STORAGE') {
                     myExpression[] = this.getReservedType(strippedToken);
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
-                if ($prevCategory == 'PARTITION') {
+                if (myPreviousCategory == 'PARTITION') {
                     myExpression[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr(baseExpression, 0, -$token.length));
 
@@ -193,14 +193,14 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     myExpression = [this.getReservedType(strippedToken));
 
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             case '=':
-                if (in_array(currentCategory, ['ENGINE', 'COMMENT', 'DIRECTORY', 'MAX_ROWS', 'MIN_ROWS'))) {
+                if (in_array(myCurrentCategory, ['ENGINE', 'COMMENT', 'DIRECTORY', 'MAX_ROWS', 'MIN_ROWS'))) {
                     myExpression[] = this.getOperatorType(strippedToken);
                     continue 2;
                 }
@@ -208,7 +208,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
 
             case ",":
-                if ($prevCategory == 'PARTITION' && currentCategory.isEmpty) {
+                if (myPreviousCategory == 'PARTITION' && myCurrentCategory.isEmpty) {
                     // it separates the partition-definitions
                     $result[] = $parsed;
                     $parsed = [];
@@ -219,7 +219,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case 'DATA':
             case 'INDEX':
-                if ($prevCategory == 'PARTITION') {
+                if (myPreviousCategory == 'PARTITION') {
                     // followed by DIRECTORY
                     myExpression[] = ["expr_type" : constant('SqlParser\utils\expressionType(PARTITION_' . upperToken . '_DIR'),
                                     "base_expr" : false, "sub_tree" : false,
@@ -229,16 +229,16 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     myExpression = [this.getReservedType(strippedToken));
 
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             case 'DIRECTORY':
-                if (currentCategory == 'DATA' || currentCategory == 'INDEX') {
+                if (myCurrentCategory == 'DATA' || myCurrentCategory == 'INDEX') {
                     myExpression[] = this.getReservedType(strippedToken);
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
@@ -246,7 +246,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
 
             case 'MAX_ROWS':
             case 'MIN_ROWS':
-                if ($prevCategory == 'PARTITION') {
+                if (myPreviousCategory == 'PARTITION') {
                     myExpression[] = ["expr_type" : constant('SqlParser\utils\expressionType(PARTITION_' . upperToken),
                                     "base_expr" : false, "sub_tree" : false,
                                     'storage' : substr(baseExpression, 0, -$token.length));
@@ -255,14 +255,14 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     baseExpression = $token;
                     myExpression = [this.getReservedType(strippedToken));
 
-                    currentCategory = upperToken;
+                    myCurrentCategory = upperToken;
                     continue 2;
                 }
                 // else ?
                 break;
 
             default:
-                switch (currentCategory) {
+                switch (myCurrentCategory) {
 
                 case 'MIN_ROWS':
                 case 'MAX_ROWS':
@@ -283,7 +283,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     myExpression = $parsed["sub_tree"];
                     unset($last);
 
-                    currentCategory = $prevCategory;
+                    myCurrentCategory = myPreviousCategory;
                     break;
 
                 case 'PARTITION':
@@ -316,11 +316,11 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     myExpression = $parsed["sub_tree"];
                     unset($last);
 
-                    currentCategory = $prevCategory;
+                    myCurrentCategory = myPreviousCategory;
                     break;
 
                 case "":
-                    if ($prevCategory == 'PARTITION') {
+                    if (myPreviousCategory == 'PARTITION') {
                         // last part to process, it is only one token!
                         if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                             $last = this.getBracketExpressionType(strippedToken);
@@ -331,7 +331,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                             $parsed["base_expr"] = baseExpression.strip;
                             $parsed["sub_tree"] = myExpression;
 
-                            currentCategory = $prevCategory;
+                            myCurrentCategory = myPreviousCategory;
                             break;
                         }
                     }
@@ -344,8 +344,8 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 break;
             }
 
-            $prevCategory = currentCategory;
-            currentCategory = "";
+            myPreviousCategory = myCurrentCategory;
+            myCurrentCategory = "";
         }
 
         $result[] = $parsed;

@@ -236,7 +236,7 @@ class TableProcessor : AbstractProcessor {
                 case "CHARSET":
                 // the charset name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType(CHARSET,
+                    $result["options"][] = ["expr_type" : expressionType("CHARSET"),
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;
@@ -244,7 +244,7 @@ class TableProcessor : AbstractProcessor {
                 case "COLLATE":
                 // the collate name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType(COLLATE,
+                    $result["options"][] = ["expr_type" : expressionType("COLLATE"),
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;
@@ -252,7 +252,7 @@ class TableProcessor : AbstractProcessor {
                 case "DATA_DIRECTORY":
                 // we have the directory name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType(DIRECTORY, "kind" : "DATA",
+                    $result["options"][] = ["expr_type" : expressionType("DIRECTORY"), "kind" : "DATA",
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, $prevCategory);
                     continue 3;
@@ -260,7 +260,7 @@ class TableProcessor : AbstractProcessor {
                 case "INDEX_DIRECTORY":
                 // we have the directory name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType(DIRECTORY, "kind" : "INDEX",
+                    $result["options"][] = ["expr_type" : expressionType("DIRECTORY"), "kind" : "INDEX",
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, $prevCategory);
                     continue 3;
@@ -272,7 +272,7 @@ class TableProcessor : AbstractProcessor {
                     break;
 
                 case "LIKE":
-                    $result["like"] = ["expr_type" : expressionType(TABLE, "table" : strippedToken,
+                    $result["like"] = ["expr_type" : expressionType("TABLE"), "table" : strippedToken,
                                             "base_expr" : strippedToken, "no_quotes" : this.revokeQuotation(strippedToken));
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;
@@ -282,7 +282,7 @@ class TableProcessor : AbstractProcessor {
                     if ($prevCategory == "TABLE_NAME" && upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
                         $coldef = this.processCreateDefinition($unparsed);
-                        $result["create-def"] = ["expr_type" : expressionType(BRACKET_EXPRESSION,
+                        $result["create-def"] = ["expr_type" : expressionType("BRACKET_EXPRESSION"),
                                                       "base_expr" : baseExpression, "sub_tree" : $coldef["create-def"]);
                         myExpression = [];
                         baseExpression = "";
@@ -297,7 +297,7 @@ class TableProcessor : AbstractProcessor {
                 // we must change the DefaultProcessor
 
                     $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
-                    myExpression[] = ["expr_type" : expressionType(BRACKET_EXPRESSION, "base_expr" : strippedToken,
+                    myExpression[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
                                     "sub_tree" : "***TODO***");
                     $result["options"][] = ["expr_type" : expressionType(UNION, "base_expr" : baseExpression.strip,
                                                  "delim" : " ", "sub_tree" : myExpression];
