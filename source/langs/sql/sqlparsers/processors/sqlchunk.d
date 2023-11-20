@@ -10,7 +10,7 @@ class SQLChunkProcessor : AbstractProcessor {
         if (!isset($out["TABLE"]["like"])) {
             return;
         }
-        $out = this.array_insert_after($out, 'TABLE', ['LIKE' : $out["TABLE"]["like"]));
+        $out = this.array_insert_after($out, "TABLE", ["LIKE" : $out["TABLE"]["like"]));
         unset($out["TABLE"]["like"]);
     }
 

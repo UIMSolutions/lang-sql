@@ -16,7 +16,7 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto initParseInfo() {
-        return ["base_expr" : "", 'dir' : "ASC", "expr_type" : expressionType("EXPRESSION")];
+        return ["base_expr" : "", "dir" : "ASC", "expr_type" : expressionType("EXPRESSION")];
     }
 
     protected auto processOrderExpression(&$parseInfo, $select) {
@@ -76,11 +76,11 @@ class OrderByProcessor : AbstractProcessor {
                 $parseInfo = this.initParseInfo();
                 break;
 
-            case 'DESC':
+            case "DESC":
                 $parseInfo["dir"] = "DESC";
                 break;
 
-            case 'ASC':
+            case "ASC":
                 $parseInfo["dir"] = "ASC";
                 break;
 

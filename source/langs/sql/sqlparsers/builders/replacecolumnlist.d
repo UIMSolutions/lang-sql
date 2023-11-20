@@ -22,7 +22,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
             mySql ~= this.buildColumn(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('REPLACE column-list subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("REPLACE column-list subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= ", ";

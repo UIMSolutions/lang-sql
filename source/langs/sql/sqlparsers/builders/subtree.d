@@ -89,10 +89,10 @@ class SubTreeBuilder : ISqlBuilder {
             mySql ~= mySign;
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('expression subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("expression subtree", myKey, myValue, "expr_type");
             }
 
-            // We don't need whitespace between a sign and the following part.
+            // We don"t need whitespace between a sign and the following part.
             if (mySign.isEmpty) {
                 mySql ~= $delim;
             }

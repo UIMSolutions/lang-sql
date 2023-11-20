@@ -45,7 +45,7 @@ class UniqueIndexBuilder : ISqlBuilder {
             mySql ~= this.buildIndexType(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE unique-index key subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE TABLE unique-index key subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

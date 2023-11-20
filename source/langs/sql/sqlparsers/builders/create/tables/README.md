@@ -4,7 +4,7 @@ This tutorial will teach you how to use SQL to create tables. For a more detail 
 
 ## The SQL CREATE TABLE Statement
 
-SQL provides the **CREATE TABLE** statement to create a new table in a given database. An SQL query to create a table must define the structure of a table. The structure consists of the name of a table and names of columns in the table with each column's data type. Note that each table must be uniquely named in a database.
+SQL provides the **CREATE TABLE** statement to create a new table in a given database. An SQL query to create a table must define the structure of a table. The structure consists of the name of a table and names of columns in the table with each column"s data type. Note that each table must be uniquely named in a database.
 
 ### Syntax
 
@@ -44,7 +44,7 @@ Now, you have CUSTOMERS table available in your database which you can use to st
 
 Consider a situation where you will try to create a table which already exists, in such situation MySQL will throw the following error.
 
-ERROR 1050 (42S01): Table 'CUSTOMERS' already exists
+ERROR 1050 (42S01): Table "CUSTOMERS" already exists
 
 So to avoid such error we can use SQL command **CREATE TABLE IF NOT EXISTS** to create a table.
 

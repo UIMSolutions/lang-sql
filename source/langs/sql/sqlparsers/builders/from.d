@@ -46,7 +46,7 @@ class FromBuilder : ISqlBuilder {
                     mySql ~= $select_builder.build($item);
 
                     if (oldSqlLength == mySql.length) { // No change
-                        throw new UnableToCreateSQLException('FROM', $union_type, $outer_v, "expr_type");
+                        throw new UnableToCreateSQLException("FROM", $union_type, $outer_v, "expr_type");
                     }
                 }
             }
@@ -59,7 +59,7 @@ class FromBuilder : ISqlBuilder {
                 mySql ~= this.buildSubquery(myValue, $k);
 
                 if (oldSqlLength == mySql.length) { // No change
-                    throw new UnableToCreateSQLException('FROM', myKey, myValue, "expr_type");
+                    throw new UnableToCreateSQLException("FROM", myKey, myValue, "expr_type");
                 }
             }
         }

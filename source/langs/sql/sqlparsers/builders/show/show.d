@@ -60,7 +60,7 @@ class ShowBuilder : ISqlBuilder {
             mySql ~= this.buildTable(myValue, 0);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SHOW', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("SHOW", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

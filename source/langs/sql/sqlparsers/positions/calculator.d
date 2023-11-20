@@ -11,7 +11,7 @@ import lang.sql;
  * base_expr elements within the output of the SqlParser. */
 class PositionCalculator {
 
-    protected static $allowedOnOperator = ["\t", "\n", "\r", " ", ",", "(", ")", "_", "'", "\"", "?", "@", "0",
+    protected static $allowedOnOperator = ["\t", "\n", "\r", " ", ",", "(", ")", "_", """, "\"", "?", "@", "0",
                                                 "1", "2", "3", "4", "5", "6", "7", "8", "9");
     protected static $allowedOnOther = ["\t", "\n", "\r", " ", ",", "(", ")", "<", ">", "*", "+", "-", "/", "|",
                                              "&", "=", "!", ";");
@@ -67,7 +67,7 @@ class PositionCalculator {
         $spaces = "";
         $caller = debug_backtrace();
         $i = 1;
-        while ($caller[$i]["function"] == 'lookForBaseExpression') {
+        while ($caller[$i]["function"] == "lookForBaseExpression") {
             $spaces ~= "   ";
             $i++;
         }
@@ -106,8 +106,8 @@ class PositionCalculator {
 
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
-            $quotedBefore = in_array($sql[$pos], ['`', "("), true);
-            $quotedAfter = in_array($sql[$pos + strlen(myValue) - 1], ['`', ")"), true);
+            $quotedBefore = in_array($sql[$pos], ["`", "("), true);
+            $quotedAfter = in_array($sql[$pos + strlen(myValue) - 1], ["`", ")"), true);
             $after = "";
             if (isset($sql[$pos + strlen(myValue)])) {
                 $after = $sql[$pos + strlen(myValue)];
@@ -117,13 +117,13 @@ class PositionCalculator {
             // whitespace, comma, parenthesis, digit or letter, end_of_string
             // an operator should not be surrounded by another operator
 
-            if (in_array($expr_type,['operator","column-list'),true)) {
+            if (in_array($expr_type,["operator","column-list"),true)) {
 
                 isOK = ($before.isEmpty || in_array($before, this.$allowedOnOperator, true))
-                    || ($before.toLower >= 'a' && $before.toLower <= 'z');
+                    || ($before.toLower >= "a" && $before.toLower <= "z");
                 isOK = isOK
                     && ($after.isEmpty || in_array($after, this.$allowedOnOperator, true)
-                        || ($after.toLower >= 'a' && $after.toLower <= 'z'));
+                        || ($after.toLower >= "a" && $after.toLower <= "z"));
 
                 if (!isOK) {
                     $offset = $pos + 1;
@@ -137,10 +137,10 @@ class PositionCalculator {
             // whitespace, comma, operators, parenthesis and end_of_string
 
             isOK = ($before.isEmpty || in_array($before, this.$allowedOnOther, true)
-                || ($quotedBefore && ($before.toLower >= 'a' && $before.toLower <= 'z')));
+                || ($quotedBefore && ($before.toLower >= "a" && $before.toLower <= "z")));
             isOK = isOK
                 && ($after.isEmpty || in_array($after, this.$allowedOnOther, true)
-                    || ($quotedAfter && ($after.toLower >= 'a' && $after.toLower <= 'z')));
+                    || ($quotedAfter && ($after.toLower >= "a" && $after.toLower <= "z")));
 
             if (isOK) {
                 break;
@@ -154,15 +154,15 @@ class PositionCalculator {
 
     protected auto lookForBaseExpression($sql, &$charPos, &$parsed, $key, &$backtracking) {
         if (!is_numeric($key)) {
-            if (($key == 'UNION' || $key == 'UNION ALL')
+            if (($key == "UNION" || $key == "UNION ALL")
                 || ($key == "expr_type" && isset(this.flippedBacktrackingTypes[$parsed]))
-                || ($key == 'select-option' && $parsed != false) || ($key == 'alias' && $parsed != false)) {
+                || ($key == "select-option" && $parsed != false) || ($key == "alias" && $parsed != false)) {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record
                 // and we have to look into it too
                 $backtracking[] = $charPos;
 
-            } else if (($key == 'ref_clause' || $key == 'columns') && $parsed != false) {
+            } else if (($key == "ref_clause" || $key == "columns") && $parsed != false) {
                 // we hold the current position and come back after n base_expr(s)
                 // there is an array of sub-elements before (!) the base_expr clause of the current element
                 // so we go through the sub-elements and must come at the end
@@ -170,14 +170,14 @@ class PositionCalculator {
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false; // backtracking only after n base_expr!
                 }
-            } else if (($key == "sub_tree" && $parsed != false) || ($key == 'options' && $parsed != false)) {
+            } else if (($key == "sub_tree" && $parsed != false) || ($key == "options" && $parsed != false)) {
                 // we prevent wrong backtracking on subtrees (too much array_pop())
                 // there is an array of sub-elements after(!) the base_expr clause of the current element
                 // so we go through the sub-elements and must not come back at the end
                 for ($i = 1; $i < count($parsed); $i++) {
                     $backtracking[] = false;
                 }
-            } else if (($key == 'TABLE') || ($key == 'create-def' && $parsed != false)) {
+            } else if (($key == "TABLE") || ($key == "create-def" && $parsed != false)) {
                 // do nothing
             } else {
                 // move the current pos after the keyword
@@ -200,7 +200,7 @@ class PositionCalculator {
 
                 $subject = substr($sql, $charPos);
                 $pos = this.findPositionWithinString($subject, myValue,
-                    isset($parsed["expr_type"]) ? $parsed["expr_type"] : 'alias');
+                    isset($parsed["expr_type"]) ? $parsed["expr_type"] : "alias");
                 if ($pos == false) {
                     throw new UnableToCalculatePositionException(myValue, $subject);
                 }

@@ -39,7 +39,7 @@ class ForeignRefBuilder : ISqlBuilder {
             mySql ~= this.buildColumnList(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE foreign ref subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE TABLE foreign ref subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

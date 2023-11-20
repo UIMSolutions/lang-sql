@@ -40,7 +40,7 @@ class SelectBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     /**
-     * Returns a well-formatted delimiter string. If you don't need nice SQL,
+     * Returns a well-formatted delimiter string. If you don"t need nice SQL,
      * you could simply return $parsed["delim"].
      * 
      * @param array $parsed The part of the output array, which contains the current expression.
@@ -62,7 +62,7 @@ class SelectBuilder : ISqlBuilder {
             mySql ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('SELECT', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("SELECT", myKey, myValue, "expr_type");
             }
 
             mySql ~= this.getDelimiter(myValue);

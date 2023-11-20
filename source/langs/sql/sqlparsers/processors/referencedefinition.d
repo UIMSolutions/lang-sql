@@ -40,53 +40,53 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -$token.length).strip, $key - 1);
                 break 2;
 
-            case 'REFERENCES':
+            case "REFERENCES":
                 myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 currentCategory = upperToken;
                 break;
 
-            case 'MATCH':
-                if (currentCategory == 'REF_COL_LIST') {
+            case "MATCH":
+                if (currentCategory == "REF_COL_LIST") {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    currentCategory = 'REF_MATCH';
+                    currentCategory = "REF_MATCH";
                     continue 2;
                 }
                 # else?
                 break;
 
-            case 'FULL':
-            case 'PARTIAL':
-            case 'SIMPLE':
-                if (currentCategory == 'REF_MATCH') {
+            case "FULL":
+            case "PARTIAL":
+            case "SIMPLE":
+                if (currentCategory == "REF_MATCH") {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     myExpression["match"] = upperToken;
-                    currentCategory = 'REF_COL_LIST';
+                    currentCategory = "REF_COL_LIST";
                     continue 2;
                 }
                 # else?
                 break;
 
-            case 'ON':
-                if (currentCategory == 'REF_COL_LIST') {
+            case "ON":
+                if (currentCategory == "REF_COL_LIST") {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    currentCategory = 'REF_ACTION';
+                    currentCategory = "REF_ACTION";
                     continue 2;
                 }
                 # else ?
                 break;
 
-            case 'UPDATE':
-            case 'DELETE':
-                if (currentCategory == 'REF_ACTION') {
+            case "UPDATE":
+            case "DELETE":
+                if (currentCategory == "REF_ACTION") {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    currentCategory = 'REF_OPTION_' . upperToken;
+                    currentCategory = "REF_OPTION_" . upperToken;
                     continue 2;
                 }
                 # else ?
                 break;
 
-            case 'RESTRICT':
-            case 'CASCADE':
+            case "RESTRICT":
+            case "CASCADE":
                 if (strpos(currentCategory, "REF_OPTION_") == 0) {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_"  ~ strtolower(substr(currentCategory, -6))] = upperToken;
@@ -95,23 +95,23 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 # else ?
                 break;
 
-            case 'SET':
-            case 'NO':
+            case "SET":
+            case "NO":
                 if (strpos(currentCategory, "REF_OPTION_") == 0) {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_" ~ substr(currentCategory, -6).toLower] = upperToken;
-                    currentCategory = 'SEC_' . currentCategory;
+                    currentCategory = "SEC_" . currentCategory;
                     continue 2;
                 }
                 # else ?
                 break;
 
-            case 'NULL':
-            case 'ACTION':
+            case "NULL":
+            case "ACTION":
                 if (strpos(currentCategory, "SEC_REF_OPTION_") == 0) {
                     myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_" ~ substr(currentCategory, -6).toLower] ~= " " ~ upperToken;
-                    currentCategory = 'REF_COL_LIST';
+                    currentCategory = "REF_COL_LIST";
                     continue 2;
                 }
                 # else ?
@@ -120,7 +120,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             default:
                 switch (currentCategory) {
 
-                case 'REFERENCES':
+                case "REFERENCES":
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         // index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
@@ -129,13 +129,13 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                             "expr_type" : expressionType("COLUMN_LIST"), 
                             "base_expr" : strippedToken,
                             "sub_tree" : $cols];
-                        currentCategory = 'REF_COL_LIST';
+                        currentCategory = "REF_COL_LIST";
                         continue 3;
                     }
                     // foreign key reference table name
                     myExpression["sub_tree"][] = [
                         "expr_type" : expressionType("TABLE"), 
-                        'table' : strippedToken,
+                        "table" : strippedToken,
                         "base_expr" : strippedToken, 
                         "no_quotes" : this.revokeQuotation(strippedToken)];
                     continue 3;

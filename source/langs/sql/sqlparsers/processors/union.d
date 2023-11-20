@@ -20,7 +20,7 @@ class UnionProcessor : AbstractProcessor {
     }
 
     static auto isUnion($queries) {
-        $unionTypes = ['UNION', 'UNION ALL');
+        $unionTypes = ["UNION", "UNION ALL");
         foreach (myUnionType; $unionTypes) {
             if (!empty($queries[myUnionType])) {
                 return true;
@@ -40,7 +40,7 @@ class UnionProcessor : AbstractProcessor {
      * The extra queries will be silently ignored.
      */
     protected auto processMySQLUnion($queries) {
-        $unionTypes = ['UNION', 'UNION ALL');
+        $unionTypes = ["UNION", "UNION ALL");
         foreach (myUnionType; $unionTypes) {
 
             if (empty($queries[myUnionType])) {
@@ -89,7 +89,7 @@ class UnionProcessor : AbstractProcessor {
 
         if (!$finalQueryFound) {
             foreach (myKey, myToken; $outputArray) {
-                if (myToken.toUpper == 'ORDER') {
+                if (myToken.toUpper == "ORDER") {
                     break;
                 } else {
                     $finalQuery[] = myToken;
@@ -172,7 +172,7 @@ class UnionProcessor : AbstractProcessor {
         }
 
         // the query tokens after the last UNION or UNION ALL
-        // or we don't have an UNION/UNION ALL
+        // or we don"t have an UNION/UNION ALL
         if (!empty($outputArray)) {
             if (isUnionType) {
                 $queries = this.splitUnionRemainder($queries, isUnionType, $outputArray);

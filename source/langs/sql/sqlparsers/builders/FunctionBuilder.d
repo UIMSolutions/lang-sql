@@ -80,7 +80,7 @@ class FunctionBuilder : ISqlBuilder {
             mySql ~= this.buildUserVariableExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('auto subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("auto subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= (this.isReserved(myValue) ? " " : ",");

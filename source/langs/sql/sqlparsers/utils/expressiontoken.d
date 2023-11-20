@@ -83,7 +83,7 @@ class ExpressionToken {
     }
 
     auto isVariableToken() {
-        return this.upper[0] == '@';
+        return this.upper[0] == "@";
     }
 
     auto isSubQueryToken() {

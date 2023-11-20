@@ -27,12 +27,12 @@ class IndexCommentBuilder : ISqlBuilder {
         string mySql = "";
         foreach ($parsed["sub_tree"] as myKey, myValue) {
             size_t oldSqlLength = mySql.length;
-            
+
             mySql ~= this.buildReserved(myValue);
             mySql ~= this.buildConstant(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE INDEX comment subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE INDEX comment subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

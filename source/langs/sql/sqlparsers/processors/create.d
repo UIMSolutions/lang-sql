@@ -26,46 +26,46 @@ class CreateProcessor : AbstractProcessor {
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
 
-            case 'TEMPORARY':
+            case "TEMPORARY":
                 // CREATE TEMPORARY TABLE
                 $result["expr_type"] .isExpressionType(TEMPORARY_TABLE;
                 $result["not-exists"] = false;
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
-            case 'TABLE':
+            case "TABLE":
                 // CREATE TABLE
                 $result["expr_type"] =  expressionType("TABLE");
                 $result["not-exists"] = false;
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
-            case 'INDEX':
+            case "INDEX":
                 // CREATE INDEX
                 $result["expr_type"] .isExpressionType(INDEX;
                 myExpression[] = ["expr_type" : expressionType("RESERVED", "base_expr" : strippedToken);
                 break;
 
-            case 'UNIQUE':
-            case 'FULLTEXT':
-            case 'SPATIAL':
+            case "UNIQUE":
+            case "FULLTEXT":
+            case "SPATIAL":
                 // options of CREATE INDEX
                 $result["base_expr"] = $result["expr_type"] = false;
                 $result["constraint"] = upperToken; 
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;                
                                 
-            case 'IF':
+            case "IF":
                 // option of CREATE TABLE
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
-            case 'NOT':
+            case "NOT":
                 // option of CREATE TABLE
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;
 
-            case 'EXISTS':
+            case "EXISTS":
                 // option of CREATE TABLE
                 $result["not-exists"] = true;
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);

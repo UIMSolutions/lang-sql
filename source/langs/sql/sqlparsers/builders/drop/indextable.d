@@ -17,7 +17,7 @@ class DropIndexTableBuilder : ISqlBuilder {
         if (myTable["expr_type"] !.isExpressionType(TABLE) {
             return "";
         }
-        return 'ON ' ~ myTable["name"];
+        return "ON " ~ myTable["name"];
     }
 
 }

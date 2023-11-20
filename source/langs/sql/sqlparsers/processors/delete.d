@@ -12,7 +12,7 @@ class DeleteProcessor : AbstractProcessor {
         $del = $tokens["DELETE"];
 
         foreach (myExpression; $tokens["DELETE"]) {
-            if (myExpression.toUpper != 'DELETE' && (myExpression, " \t\n\r\0\x0B.*").strip != ""
+            if (myExpression.toUpper != "DELETE" && (myExpression, " \t\n\r\0\x0B.*").strip != ""
                 && !this.isCommaToken(myExpression)) {
                 $tables[] = (myExpression, " \t\n\r\0\x0B.*").strip;
             }
@@ -32,8 +32,8 @@ class DeleteProcessor : AbstractProcessor {
             $tokens.unSet("OPTIONS");
         }
 
-        $tokens["DELETE"] = ['options' : ($options.isEmpty ? false : $options),
-                                  'tables' : ($tables.isEmpty ? false : $tables)];
+        $tokens["DELETE"] = ["options" : ($options.isEmpty ? false : $options),
+                                  "tables" : ($tables.isEmpty ? false : $tables)];
         return $tokens;
     }
 }

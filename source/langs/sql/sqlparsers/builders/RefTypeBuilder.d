@@ -14,10 +14,10 @@ class RefTypeBuilder {
         if ($parsed.isEmpty) {
             return "";
         }
-        if ($parsed == 'ON') {
+        if ($parsed == "ON") {
             return " ON ";
         }
-        if ($parsed == 'USING') {
+        if ($parsed == "USING") {
             return " USING ";
         }
         // TODO: add more

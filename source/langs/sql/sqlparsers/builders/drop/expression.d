@@ -48,10 +48,10 @@ class DropExpressionBuilder : ISqlBuilder {
             mySql ~= this.buildTemporaryTable(myValue, 0);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('DROP object-list subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("DROP object-list subtree", myKey, myValue, "expr_type");
             }
 
-            mySql ~= ', ';
+            mySql ~= ", ";
         }
         return substr(mySql, 0, -2);
     }

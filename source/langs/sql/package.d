@@ -44,7 +44,7 @@ alias STRINGAA = string[string];
 
 //auto tableNames(Database db) {
 //	string[] names;
-//	foreach (row; db.execute("SELECT name FROM sqlite_master WHERE (type='table')")) {
+//	foreach (row; db.execute("SELECT name FROM sqlite_master WHERE (type="table")")) {
 //		auto name = row[0].as!string.toUpper;
 //		if (name == "SQLITE_STAT1") continue;
 //		
@@ -129,7 +129,7 @@ void readFromDB(T)(DataSplice!T splice, size_t pos, QueryCache.CachedRow dbRow, 
 void save(T)(Database db, DataTable!T rows, string[] sources, string company) {
 	writeln("--- void save(Database db, DRow[] rows, string[] sources)...");
 	
-	auto pre = "(IDAY = %s) AND (NAME = '" ~company~"')";	
+	auto pre = "(IDAY = %s) AND (NAME = "" ~company~"")";	
 	foreach(iday, row; rows) if (row) {				
 		auto sel = pre.format(iday);
 		auto update = "";
@@ -154,7 +154,7 @@ void save(T)(Database db, DataTable!T rows, string[] sources, string company) {
 void save(T)(Database db, DataRow!(T)[] rows, string[] tableNames) {
 	// writeln("--- void save(Database db, DRow[] rows, string[] sources)...");
 	
-	auto pre = "(IDAY = %s) AND (NAME = '%s')";	
+	auto pre = "(IDAY = %s) AND (NAME = "%s")";	
 	foreach(row; rows) if (row) {	
 		auto name = row["NAME"].value!string;
 		auto iday = row["IDAY"].value!int;
@@ -194,7 +194,7 @@ void save(T)(Database db, DataRow!(T)[] rows, string[] tableNames) {
 //void save(T)(Database db, T[size_t][] changedCellsInRows, string[][string] tableCells, string companyName, size_t start = 0, bool dMode = false) {
 //	writeln("--- void save(Database db, DRow[] rows, string[] sources)...");
 //	
-//	auto pre = "(NAME = '" ~companyName~"') AND (IDAY = %s)";	
+//	auto pre = "(NAME = "" ~companyName~"") AND (IDAY = %s)";	
 //	foreach(iday, row; changedCellsInRows) if (row) {	
 //		if (iday < start) continue; 
 //		auto where = pre.format(iday);
@@ -332,7 +332,7 @@ string[] quote(string[] source, string start, string end) {
 //}
 
 string deleteStrategy(string strategy) {
-	return sqlDeleteFrom("trades", "(ID = '%')".format(strategy));
+	return sqlDeleteFrom("trades", "(ID = "%")".format(strategy));
 }
 
 //string[] colNames(Database db, string[] exclusiveCols = []) { return colNames(db, db.tableNames, exclusiveCols); }
@@ -363,14 +363,14 @@ string deleteStrategy(string strategy) {
 //
 //enum TABLEINITHEIGHT = 7000;
 //
-//string[] readCompanies(Database db, string select = "(ID > '%')") {
+//string[] readCompanies(Database db, string select = "(ID > "%")") {
 //	string[] result;
 //	foreach (row; QueryCache(db.execute("SELECT ID FROM COMPANIES WHERE %s ORDER BY ID".format(select)))) 
 //		result ~= row[0].as!string;
 //	return result;
 //}
 //
-//string[] readGens(Database db, string select = "(NAME > '%')") {
+//string[] readGens(Database db, string select = "(NAME > "%")") {
 //	string[] result;
 //	foreach(row; db.execute("SELECT NAME FROM GENS")) result ~= row[0].as!string;
 //	return result;

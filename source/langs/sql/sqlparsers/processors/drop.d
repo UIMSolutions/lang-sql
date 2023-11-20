@@ -27,34 +27,34 @@ class DropProcessor : AbstractProcessor {
 
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
-            case 'VIEW':
-            case 'SCHEMA':
-            case 'DATABASE':
-            case 'TABLE':
+            case "VIEW":
+            case "SCHEMA":
+            case "DATABASE":
+            case "TABLE":
                 if (objectType.isEmpty) {
-                    objectType = constant('SqlParser\utils\expressionType(' . upperToken);
+                    objectType = constant("SqlParser\utils\expressionType(" . upperToken);
                 }
                 baseExpression = "";
                 break;
-            case 'INDEX':
+            case "INDEX":
 	            if ( objectType.isEmpty ) {
-		            objectType = constant( 'SqlParser\utils\expressionType(' ~ upperToken );
+		            objectType = constant( "SqlParser\utils\expressionType(" ~ upperToken );
 	            }
 	            baseExpression = "";
 	            break;
-            case 'IF':
-            case 'EXISTS':
+            case "IF":
+            case "EXISTS":
                 $exists = true;
                 baseExpression = "";
                 break;
 
-            case 'TEMPORARY':
+            case "TEMPORARY":
                 objectType = expressionType("TEMPORARY_TABLE");
                 baseExpression = "";
                 break;
 
-            case 'RESTRICT':
-            case 'CASCADE':
+            case "RESTRICT":
+            case "CASCADE":
                 $option = upperToken;
                 if (!empty($objectList)) {
                     $subTree[] = ["expr_type" : expressionType(EXPRESSION,
@@ -95,6 +95,6 @@ class DropProcessor : AbstractProcessor {
                                "sub_tree" : $objectList];
         }
 
-        return ["expr_type" : objectType, 'option' : $option, 'if-exists' : $exists, "sub_tree" : $subTree);
+        return ["expr_type" : objectType, "option" : $option, "if-exists" : $exists, "sub_tree" : $subTree);
     }
 }

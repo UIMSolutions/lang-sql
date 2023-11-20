@@ -23,7 +23,7 @@ class BracketStatementBuilder : ISqlBuilder {
             mySql ~= this.buildSelectBracketExpression(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('BRACKET', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("BRACKET", myKey, myValue, "expr_type");
             }
         }
         return mySql ~ " " ~ this.buildSelectStatement($parsed).strip).strip;

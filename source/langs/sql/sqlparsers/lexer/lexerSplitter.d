@@ -8,7 +8,7 @@ module lang.sql.parsers.lexer;
 class LexerSplitter {
 
     protected static _splitters = ["<: ", "\r\n", "!=", ">=", "<=", "!=", "<<", ">>", ":=", "\\", "&&", "||", ":=",
-                                       "/*", "*/", "--", ">", "<", "|", "=", "^", "(", ")", "\t", "\n", "'", "\"", "`",
+                                       "/*", "*/", "--", ">", "<", "|", "=", "^", "(", ")", "\t", "\n", """, "\"", "`",
                                        ",", "@", " ", "+", "-", "*", "/", ";"];
 
 	//Regex string pattern of splitters.
@@ -40,16 +40,16 @@ class LexerSplitter {
 
 		    switch ( myPart ) {
 			    case "\r\n":
-				    mypart = '\r\n';
+				    mypart = "\r\n";
 				    break;
 			    case "\t":
-				    mypart = '\t';
+				    mypart = "\t";
 				    break;
 			    case "\n":
-				    myPart = '\n';
+				    myPart = "\n";
 				    break;
 			    case " ":
-				    myPart = '\s';
+				    myPart = "\s";
 				    break;
 			    case "/":
 				    myPart = "\/";
@@ -65,8 +65,8 @@ class LexerSplitter {
 		    $regex_parts[] = myPart;
 	    }
 
-	    $pattern = implode( '|', $regex_parts );
+	    $pattern = implode( "|", $regex_parts );
 
-	    return '/(' . $pattern . ')/';
+	    return "/(" . $pattern . ")/";
     }
 }

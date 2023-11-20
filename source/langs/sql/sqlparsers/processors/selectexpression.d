@@ -42,8 +42,8 @@ class SelectExpressionProcessor : AbstractProcessor {
             $token = $tokens[$i];
             upperToken = $token.toUpper;
 
-            if (upperToken == 'AS') {
-                $alias = ['as' : true, "name":  "", "base_expr":  $token];
+            if (upperToken == "AS") {
+                $alias = ["as" : true, "name":  "", "base_expr":  $token];
                 $tokens[$i] = "";
                 $capture = true;
                 continue;
@@ -77,14 +77,14 @@ class SelectExpressionProcessor : AbstractProcessor {
 
         $stripped = this.processExpressionList($stripped);
 
-        // TODO: the last part can also be a comment, don't use array_pop
+        // TODO: the last part can also be a comment, don"t use array_pop
 
         // we remove the last token, if it is a colref,
         // it can be an alias without an AS
         $last = array_pop($stripped);
         if (!$alias && this.isColumnReference($last)) {
 
-            // TODO: it can be a comment, don't use array_pop
+            // TODO: it can be a comment, don"t use array_pop
 
             // check the token before the colref
             $prev = array_pop($stripped);
@@ -93,7 +93,7 @@ class SelectExpressionProcessor : AbstractProcessor {
                     || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
                     || this.isColumnReference($prev) || this.isBracketExpression($prev)|| this.isCustomFunction($prev)) {
 
-                $alias = ['as' : false, 'name' : $last["base_expr"].strip),
+                $alias = ["as" : false, "name" : $last["base_expr"].strip),
                                "no_quotes" : this.revokeQuotation($last["base_expr"]),
                                "base_expr":  $last["base_expr"].strip];
                 // remove the last token

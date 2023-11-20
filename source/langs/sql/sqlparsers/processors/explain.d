@@ -13,7 +13,7 @@ class ExplainProcessor : AbstractProcessor {
     protected auto isStatement($keys, $needle = "EXPLAIN") {
         $pos = array_search($needle, $keys);
         if (isset($keys[$pos + 1])) {
-            return in_array($keys[$pos + 1], ['SELECT', 'DELETE', 'INSERT', 'REPLACE', 'UPDATE'), true);
+            return in_array($keys[$pos + 1], ["SELECT", "DELETE", "INSERT", "REPLACE", "UPDATE"), true);
         }
         return false;
     }
@@ -39,12 +39,12 @@ class ExplainProcessor : AbstractProcessor {
 
                 switch (upperToken) {
 
-                case 'EXTENDED':
-                case 'PARTITIONS':
+                case "EXTENDED":
+                case "PARTITIONS":
                     return ["expr_type" : expressionType("RESERVED"), "base_expr" : myToken];
                     break;
 
-                case 'FORMAT':
+                case "FORMAT":
                     if (currentCategory.isEmpty) {
                         currentCategory = upperToken;
                         myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
@@ -52,16 +52,16 @@ class ExplainProcessor : AbstractProcessor {
                     // else?
                     break;
 
-                case '=':
-                    if (currentCategory == 'FORMAT') {
+                case "=":
+                    if (currentCategory == "FORMAT") {
                         myExpression[] = ["expr_type" : expressionType("OPERATOR"), "base_expr": strippedToken];
                     }
                     // else?
                     break;
 
-                case 'TRADITIONAL':
-                case 'JSON':
-                    if (currentCategory == 'FORMAT') {
+                case "TRADITIONAL":
+                case "JSON":
+                    if (currentCategory == "FORMAT") {
                         myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                         return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
                                      "sub_tree" : myExpression];
@@ -84,13 +84,13 @@ class ExplainProcessor : AbstractProcessor {
             switch (currentCategory) {
 
             case "TABLENAME":
-                currentCategory = 'WILD';
+                currentCategory = "WILD";
                 myExpression[] = ["expr_type" : expressionType("COLREF"), "base_expr" : strippedToken,
                     "no_quotes" : this.revokeQuotation(strippedToken));
                 break;
 
             case "":
-                currentCategory = 'TABLENAME';
+                currentCategory = "TABLENAME";
                 myExpression[] = ["expr_type" : expressionType("TABLE"), "table" : strippedToken,
                     "no_quotes" : this.revokeQuotation(strippedToken), "alias" : false, "base_expr": strippedToken];
                 break;

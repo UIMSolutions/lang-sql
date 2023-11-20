@@ -36,7 +36,7 @@ class DropBuilder : ISqlBuilder {
 			mySql ~= this.buildExpression( myValue );
 
 			if ( oldLengthOfSql == mySql.length ) {
-				throw new UnableToCreateSQLException( 'DROP subtree', myKey, myValue, "expr_type" );
+				throw new UnableToCreateSQLException( "DROP subtree", myKey, myValue, "expr_type" );
 			}
 
 			mySql ~= " ";

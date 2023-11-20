@@ -20,7 +20,7 @@ class ColumnListBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    string build(array $parsed, $delim = ', ') {
+    string build(array $parsed, $delim = ", ") {
         if (!$parsed["expr_type"].isExpressionType("COLUMN_LIST")) {
             return "";
         }
@@ -32,7 +32,7 @@ class ColumnListBuilder : ISqlBuilder {
             mySql ~= this.buildColumnReference(value);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE column-list subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE TABLE column-list subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= $delim;

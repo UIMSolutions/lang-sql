@@ -26,7 +26,7 @@ class CreateTableOptionsBuilder : IBuilder {
     }
 
     /**
-     * Returns a well-formatted delimiter string. If you don't need nice SQL,
+     * Returns a well-formatted delimiter string. If you don"t need nice SQL,
      * you could simply return $parsed["delim"].
      * 
      * @param array $parsed The part of the output array, which contains the current expression.
@@ -49,7 +49,7 @@ class CreateTableOptionsBuilder : IBuilder {
             mySql ~= this.buildCollation(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE options', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE TABLE options", myKey, myValue, "expr_type");
             }
 
             mySql ~= this.getDelimiter(myValue);

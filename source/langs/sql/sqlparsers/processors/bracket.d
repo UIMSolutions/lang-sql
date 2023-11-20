@@ -30,7 +30,7 @@ class BracketProcessor : AbstractProcessor {
 
         return [
                 ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $tokens[0].trim,
-                        "sub_tree" : $subtree, 'remaining_expressions' : $remainingExpressions]];
+                        "sub_tree" : $subtree, "remaining_expressions" : $remainingExpressions]];
     }
 
     private auto getRemainingNotBracketExpression($subtree)
@@ -40,7 +40,7 @@ class BracketProcessor : AbstractProcessor {
         // as there is no pull request for 279 by the user. His solution works and tested.
         if ($subtree.isEmpty) $subtree = [];// as a fix by Sinri 20180528
         $remainingExpressions = [];
-        $ignoredKeys = ['BRACKET', 'SELECT', 'FROM');
+        $ignoredKeys = ["BRACKET", "SELECT", "FROM");
         $subtreeKeys = array_keys($subtree);
 
         foreach(myKey; $subtreeKeys) {

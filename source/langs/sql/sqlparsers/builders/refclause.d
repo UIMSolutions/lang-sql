@@ -67,7 +67,7 @@ class RefClauseBuilder : ISqlBuilder {
             mySql ~= this.buildSubQuery(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('expression ref_clause', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("expression ref_clause", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

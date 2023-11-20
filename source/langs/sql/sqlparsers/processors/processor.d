@@ -42,7 +42,7 @@ abstract class DProcessor {
      * Revokes the quoting characters from an expression
      * Possibibilies:
      *   `a`
-     *   'a'
+     *   "a"
      *   "a"
      *   `a`.`b`
      *   `a.b`
@@ -68,7 +68,7 @@ abstract class DProcessor {
             $char = mySqlBuffer[$i];
             switch ($char) {
             case "`":
-            case "\'":
+            case "\"":
             case "\"":
                 if (isQuote == false) {
                     // start
@@ -91,7 +91,7 @@ abstract class DProcessor {
                 isQuote = false;
                 break;
 
-            case '.':
+            case ".":
                 if (isQuote == false) {
                     // we have found a separator
                     $char = substr(mySqlBuffer, $start, $i - $start).strip;
@@ -116,7 +116,7 @@ abstract class DProcessor {
             }
         }
 
-        return ['delim' : (count($result) == 1 ? false : '.'), 'parts' : $result);
+        return ["delim" : (count($result) == 1 ? false : "."), "parts" : $result);
     }
 
     /**
@@ -136,7 +136,7 @@ abstract class DProcessor {
         $parenthesis = $parenthesisRemoved;
         $i = 0;
         $string = 0;
-        // Whether a string was opened or not, and with which character it was open (' or ")
+        // Whether a string was opened or not, and with which character it was open (" or ")
         $stringOpened = "";
         while ($i < strippedToken.length) {
 
@@ -145,18 +145,18 @@ abstract class DProcessor {
                 continue;
             }
 
-            if (strippedToken[$i] == "'") {
+            if (strippedToken[$i] == """) {
                 if ($stringOpened.isEmpty) {
-                    $stringOpened = "'";
-                } else if ($stringOpened == "'") {
+                    $stringOpened = """;
+                } else if ($stringOpened == """) {
                     $stringOpened = "";
                 }
             }
 
-            if (strippedToken[$i] == '"') {
+            if (strippedToken[$i] == """) {
                 if ($stringOpened.isEmpty) {
-                    $stringOpened = '"';
-                } else if ($stringOpened == '"') {
+                    $stringOpened = """;
+                } else if ($stringOpened == """) {
                     $stringOpened = "";
                 }
             }
@@ -179,20 +179,20 @@ abstract class DProcessor {
 
     protected auto getVariableType($expression) {
         // $expression must contain only upper-case characters
-        if ($expression[1] != '@') {
+        if ($expression[1] != "@") {
             return expressionType("USER_VARIABLE");
         }
 
-        $type = substr($expression, 2, strpos($expression, '.', 2));
+        $type = substr($expression, 2, strpos($expression, ".", 2));
 
         switch ($type) {
-        case 'GLOBAL':
+        case "GLOBAL":
             $type = expressionType("GLOBAL_VARIABLE");
             break;
-        case 'LOCAL':
+        case "LOCAL":
             $type = expressionType("LOCAL_VARIABLE");
             break;
-        case 'SESSION':
+        case "SESSION":
         default:
             $type = expressionType("SESSION_VARIABLE");
             break;

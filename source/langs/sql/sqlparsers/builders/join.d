@@ -16,19 +16,19 @@ import lang.sql;
 class JoinBuilder {
 
     auto build($parsed) {
-        if ($parsed == 'CROSS') {
+        if ($parsed == "CROSS") {
             return ", ";
         }
-        if ($parsed == 'JOIN') {
+        if ($parsed == "JOIN") {
             return " INNER JOIN ";
         }
-        if ($parsed == 'LEFT') {
+        if ($parsed == "LEFT") {
             return " LEFT JOIN ";
         }
-        if ($parsed == 'RIGHT') {
+        if ($parsed == "RIGHT") {
             return " RIGHT JOIN ";
         }
-        if ($parsed == 'STRAIGHT_JOIN') {
+        if ($parsed == "STRAIGHT_JOIN") {
             return " STRAIGHT_JOIN ";
         }
         // TODO: add more

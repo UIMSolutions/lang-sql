@@ -27,7 +27,7 @@ class IndexTypeBuilder : ISqlBuilder {
             mySql ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE TABLE primary key index type subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE TABLE primary key index type subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

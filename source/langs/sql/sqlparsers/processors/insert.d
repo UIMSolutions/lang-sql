@@ -40,12 +40,12 @@ class InsertProcessor : AbstractProcessor {
 
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
-            case 'INTO':
+            case "INTO":
                 $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                 break;
 
-            case 'INSERT':
-            case 'REPLACE':
+            case "INSERT":
+            case "REPLACE":
                 break;
 
             default:
@@ -72,7 +72,7 @@ class InsertProcessor : AbstractProcessor {
                             "sub_tree" : false];
         }
         $cols = this.removeParenthesisFromStart($cols);
-        if (stripos($cols, 'SELECT') == 0) {
+        if (stripos($cols, "SELECT") == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
             $parsed["sub_tree"] = [
                     ["expr_type" : expressionType("QUERY"), "base_expr" : $cols,
@@ -85,13 +85,13 @@ class InsertProcessor : AbstractProcessor {
         return $parsed;
     }
 
-    auto process($tokenList, $token_category = 'INSERT') {
+    auto process($tokenList, $token_category = "INSERT") {
         string myTable = "";
         $cols = false;
         $comments = [];
 
         foreach ($key : &$token; $tokenList) {
-            if ($key == 'VALUES') {
+            if ($key == "VALUES") {
                 continue;
             }
             foreach (&$value; $token as ) {
@@ -105,16 +105,16 @@ class InsertProcessor : AbstractProcessor {
         $parsed = this.processOptions($tokenList);
         unset($tokenList["OPTIONS"]);
 
-        list(myTable, $cols, $key) = this.processKeyword('INTO', $tokenList);
+        list(myTable, $cols, $key) = this.processKeyword("INTO", $tokenList);
         $parsed = array_merge($parsed, $key);
         unset($tokenList["INTO"]);
 
-        if (myTable.isEmpty && in_array($token_category, ['INSERT', 'REPLACE'))) {
+        if (myTable.isEmpty && in_array($token_category, ["INSERT", "REPLACE"))) {
             list(myTable, $cols, $key) = this.processKeyword($token_category, $tokenList);
         }
 
-        $parsed[] = ["expr_type" : expressionType(TABLE, 'table' : myTable,
-                          "no_quotes" : this.revokeQuotation(myTable), 'alias' : false, "base_expr" : myTable);
+        $parsed[] = ["expr_type" : expressionType(TABLE, "table" : myTable,
+                          "no_quotes" : this.revokeQuotation(myTable), "alias" : false, "base_expr" : myTable);
 
         $cols = this.processColumns($cols);
         if ($cols != false) {

@@ -36,7 +36,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
             mySql ~= this.buildOperator(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('CREATE INDEX algorithm subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("CREATE INDEX algorithm subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

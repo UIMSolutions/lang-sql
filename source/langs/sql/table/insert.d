@@ -52,5 +52,5 @@ auto SQLInsert(string table = "", string names = "", string values = "") { retur
 unittest {
 	writeln("Testing ", __MODULE__);
 
-	assert(SQLInsert.table("tab").columns("id, name").values("1, 'test1'") == "INSERT INTO tab (id, name) VALUES(1, 'test1')");
+	assert(SQLInsert.table("tab").columns("id, name").values("1, "test1"") == "INSERT INTO tab (id, name) VALUES(1, "test1")");
 }

@@ -38,7 +38,7 @@ class SqlParser {
      * output array for every part of the statement. The method can
      * also generate [position] fields within the output, which hold
      * the character position for every statement part. The calculation
-     * of the positions needs some time, if you don't need positions in
+     * of the positions needs some time, if you don"t need positions in
      * your application, set the parameter to false.
      *
      * @param String  $sql           The SQL statement.

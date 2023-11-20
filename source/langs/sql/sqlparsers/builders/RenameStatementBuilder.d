@@ -32,7 +32,7 @@ class RenameStatementBuilder : ISqlBuilder {
             mySql ~= this.processSourceAndDestTable(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException('RENAME subtree', myKey, myValue, "expr_type");
+                throw new UnableToCreateSQLException("RENAME subtree", myKey, myValue, "expr_type");
             }
 
             mySql ~= " ";

@@ -51,7 +51,7 @@ class LimitProcessor : AbstractProcessor {
             }
         }
 
-        $return = ['offset' : $offset.strip, 'rowcount' : countRows.strip];
+        $return = ["offset" : $offset.strip, "rowcount" : countRows.strip];
         if (count($comments)) {
             $return["comments"] = $comments;
         }
