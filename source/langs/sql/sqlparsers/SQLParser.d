@@ -1,7 +1,5 @@
 module langs.sql.sqlparsers.SQLParser;
 
-namespace SqlParser;
-
 import lang.sql;
 
 @safe:
@@ -17,9 +15,6 @@ class SqlParser {
 
     $parsed;
 
-    /**
-     * @var Options
-     */
     private $options;
 
     /**
@@ -75,7 +70,7 @@ class SqlParser {
      * @return null
      */
     auto addCustomFunction($token) {
-        SqlParserConstants::getInstance().addCustomFunction($token];
+        SqlParserConstants::getInstance().addCustomFunction($token);
     }
 
     /**
@@ -86,7 +81,7 @@ class SqlParser {
      * @return null
      */
     auto removeCustomFunction($token) {
-        SqlParserConstants::getInstance().removeCustomFunction($token];
+        SqlParserConstants::getInstance().removeCustomFunction($token);
     }
 
     /**

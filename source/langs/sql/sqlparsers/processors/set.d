@@ -39,9 +39,9 @@ class SetProcessor : AbstractProcessor {
             auto upperToken = strippedToken.toUpper;
 
             switch (upperToken) {
-            case 'LOCAL':
-            case 'SESSION':
-            case 'GLOBAL':
+            case "LOCAL":
+            case "SESSION":
+            case "GLOBAL":
                 if (!isUpdate) {
                     $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                     isVarType = this.getVariableType("@@" ~ upperToken ~ ".");

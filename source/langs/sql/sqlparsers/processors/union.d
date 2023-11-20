@@ -132,7 +132,7 @@ class UnionProcessor : AbstractProcessor {
         // his array holds all the queries
         $queries = [];
 
-        foreach (myKey : myToken; $inputArray) {
+        foreach (myKey, myToken; $inputArray) {
             auto strippedToken = myToken.strip;
 
             // overread all tokens till that given token

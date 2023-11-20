@@ -15,7 +15,7 @@ class RenameProcessor : AbstractProcessor {
         $resultList = [];
         $tablePair = [];
 
-        foreach (myKey : myValue; $tokenList) {
+        foreach (myKey, myValue; $tokenList) {
             auto myToken = new ExpressionToken(myKey, myValue);
 
             if (myToken.isWhitespaceToken()) {

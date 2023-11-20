@@ -1,7 +1,3 @@
-/**
- * @author     mfris
- * */
-
 namespace SqlParser;
 
 import lang.sql;

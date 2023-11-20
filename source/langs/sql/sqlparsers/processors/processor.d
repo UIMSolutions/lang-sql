@@ -264,14 +264,10 @@ abstract class DProcessor {
      * translates an array of objects into an associative array
      */
     auto toArray($tokenList) {
-        myExpression = [];
-        foreach (myToken; $tokenList) {
-            if (cast(ExpressionToken)myToken) {
-                myExpression[] = myToken.toArray();
-            } else {
-                myExpression[] = myToken;
-            }
-        }
+        auto myExpression = [];
+
+        $tokenList.each!(token => myExpresson = cast(ExpressionToken)token ? token.toArray() : token);
+
         return myExpression;
     }
 

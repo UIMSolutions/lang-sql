@@ -21,7 +21,7 @@ class SelectExpressionProcessor : AbstractProcessor {
      * is provided, and we set the type of expression.
      */
     auto process($expression) {
-        $tokens = this.splitSQLIntoTokens($expression);
+        auto $tokens = this.splitSQLIntoTokens($expression);
         size_t numberOfTokens = $tokens.length;
         if (numberOfTokens == 0) {
             return null;
@@ -108,7 +108,7 @@ class SelectExpressionProcessor : AbstractProcessor {
 
         // if there is only one part, we copy the expr_type
         // in all other cases we use "EXPRESSION" as global type
-        $type .isExpressionType(EXPRESSION;
+        $type .isExpressionType("EXPRESSION");
         if (count($processed) == 1) {
             if (!this.isSubQuery($processed[0])) {
                 $type = $processed[0]["expr_type"];
@@ -118,15 +118,15 @@ class SelectExpressionProcessor : AbstractProcessor {
             }
         }
 
-        $result = [];
-        $result["expr_type"] = $type;
-        $result["alias"] = $alias;
-        $result["base_expr"] = baseExpression.strip;
+        auto result = [];
+        result["expr_type"] = $type;
+        result["alias"] = $alias;
+        result["base_expr"] = baseExpression.strip;
         if (!$no_quotes.isEmpty) {
-            $result["no_quotes"] = $no_quotes;
+            result["no_quotes"] = $no_quotes;
         }
-        $result["sub_tree"] = ($processed.isEmpty ? false : $processed);
-        return $result;
+        result["sub_tree"] = ($processed.isEmpty ? false : $processed);
+        return result;
     }
 
 }

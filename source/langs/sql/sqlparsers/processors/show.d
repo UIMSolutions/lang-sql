@@ -10,11 +10,11 @@ import lang.sql;
  * */
 class ShowProcessor : AbstractProcessor {
 
-    private $limitProcessor;
+    private LimitProcessor _limitProcessor;
 
     this(Options $options) {
         super($options);
-        this.limitProcessor = new LimitProcessor($options);
+        _limitProcessor = new LimitProcessor($options);
     }
 
     auto process($tokens) {
