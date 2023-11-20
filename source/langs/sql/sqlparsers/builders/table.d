@@ -12,17 +12,17 @@ import lang.sql;
 class TableBuilder : ISqlBuilder {
 
   protected auto buildAlias($parsed) {
-    auto myBuilder = new AliasBuilder();
+    AliasBuilder myBuilder = new AliasBuilder();
     return myBuilder.build($parsed);
   }
 
   protected auto buildIndexHintList($parsed) {
-    auto myBuilder = new IndexHintListBuilder();
+    IndexHintListBuilder myBuilder = new IndexHintListBuilder();
     return myBuilder.build($parsed);
   }
 
   protected auto buildJoin($parsed) {
-    auto myBuilder = new JoinBuilder();
+    JoinBuilder myBuilder = new JoinBuilder();
     return myBuilder.build($parsed);
   }
 

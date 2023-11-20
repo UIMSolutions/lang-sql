@@ -17,13 +17,13 @@ class PositionCalculator {
                                              "&", "=", "!", ";");
 
     protected $flippedBacktrackingTypes;
-    protected static $backtrackingTypes = [expressionType("EXPRESSION"), expressionType(SUBQUERY,
-                                                expressionType(BRACKET_EXPRESSION, expressionType(TABLE_EXPRESSION,
-                                                expressionType("RECORD"), expressionType(IN_LIST,
+    protected static $backtrackingTypes = [expressionType("EXPRESSION"), expressionType("SUBQUERY"),
+                                                expressionType(BRACKET_EXPRESSION, expressionType("TABLE_EXPRESSION"),
+                                                expressionType("RECORD"), expressionType("IN_LIST"),
                                                 expressionType(MATCH_ARGUMENTS, expressionType(TABLE,
                                                 expressionType(TEMPORARY_TABLE, expressionType(COLUMN_TYPE,
                                                 expressionType(COLDEF, expressionType(PRIMARY_KEY,
-                                                expressionType(CONSTRAINT, expressionType("COLUMN_LIST"),
+                                                expressionType("CONSTRAINT"), expressionType("COLUMN_LIST"),
                                                 expressionType(CHECK, expressionType(COLLATE, expressionType(LIKE,
                                                 expressionType(INDEX, expressionType(INDEX_TYPE,
                                                 expressionType(INDEX_SIZE, expressionType(INDEX_PARSER,
@@ -42,12 +42,12 @@ class PositionCalculator {
                                                 expressionType(SUBPARTITION_KEY,
                                                 expressionType(SUBPARTITION_KEY_ALGORITHM,
                                                 expressionType(SUBPARTITION_MAX_ROWS,
-                                                expressionType(SUBPARTITION_MIN_ROWS, expressionType(SUBPARTITION,
+                                                expressionType("SUBPARTITION_MIN_ROWS"), expressionType(SUBPARTITION,
                                                 expressionType(SUBPARTITION_HASH, expressionType(SUBPARTITION_COUNT,
                                                 expressionType(CHARSET, expressionType(ENGINE, expressionType(QUERY,
                                                 expressionType(INDEX_ALGORITHM, expressionType(INDEX_LOCK,
-    											expressionType(SUBQUERY_FACTORING, expressionType(CUSTOM_FUNCTION,
-                                                expressionType(SIMPLE_FUNCTION
+    											expressionType("SUBQUERY_FACTORING"), expressionType(CUSTOM_FUNCTION,
+                                                expressionType("SIMPLE_FUNCTION")
     );
 
     /**
@@ -64,15 +64,15 @@ class PositionCalculator {
             return;
         }
 
-        $spaces = "";
+        string mySpaces = "";
         $caller = debug_backtrace();
         $i = 1;
         while ($caller[$i]["function"] == "lookForBaseExpression") {
-            $spaces ~= "   ";
+            mySpaces ~= "   ";
             $i++;
         }
         $holdem = substr($sql, 0, $charPos) . "^" . substr($sql, $charPos);
-        echo $spaces . $text . " key:" . myKey . "  parsed:" . $parsed . " back:" . serialize($backtracking) . " "
+        echo mySpaces . $text . " key:" . myKey . "  parsed:" . $parsed . " back:" . serialize($backtracking) . " "
             . $holdem . "\n";
     }
 

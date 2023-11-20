@@ -33,9 +33,9 @@ abstract class DProcessor {
      * this auto splits up a SQL statement into easy to "parse"
      * tokens for the SQL processor
      */
-    auto splitSQLIntoTokens($sql) {
-        auto myLexer = new PHPSQLLexer();
-        return myLexer.split($sql);
+    auto splitSQLIntoTokens(sqlString) {
+        PHPSQLLexer myLexer = new PHPSQLLexer();
+        return myLexer.split(sqlString);
     }
 
     /**
@@ -54,51 +54,51 @@ abstract class DProcessor {
      * And you can use whitespace between the parts:
      *   a  .  `b` : [a,b]
      */
-    protected auto revokeQuotation($sql) {
-        auto mySqlBuffer = $sql.strip;
+    protected auto revokeQuotation(string sqlString) {
+        string mySqlBuffer = sqlString.strip;
         $result = [];
 
         bool isQuote = false;
-        $start = 0;
-        $i = 0;
+        size_t myStart = 0;
+        size_t myPos = 0;
         size_t bufferLength = mySqlBuffer.length;
 
-        while ($i < bufferLength) {
+        while (myPos < bufferLength) {
 
-            $char = mySqlBuffer[$i];
-            switch ($char) {
+            auto myChar = mySqlBuffer[myPos];
+            switch (myChar) {
             case "`":
             case "\"":
             case "\"":
                 if (isQuote == false) {
                     // start
-                    isQuote = $char;
-                    $start = $i + 1;
+                    isQuote = myChar;
+                    myStart = myPos + 1;
                     break;
                 }
-                if (isQuote != $char) {
+                if (isQuote != myChar) {
                     break;
                 }
-                if (mySqlBuffer.isSet($i + 1) && isQuote == mySqlBuffer[$i + 1]) {
+                if (mySqlBuffer.isSet(myPos + 1) && isQuote == mySqlBuffer[myPos + 1]) {
                     // escaped
-                    $i++;
+                    myPos++;
                     break;
                 }
                 // end
-                $char = substr(mySqlBuffer, $start, $i - $start);
-                $result[] = str_replace(isQuote ~ isQuote, isQuote, $char);
-                $start = $i + 1;
+                myChar = substr(mySqlBuffer, myStart, myPos - myStart);
+                $result[] = str_replace(isQuote ~ isQuote, isQuote, myChar);
+                myStart = myPos + 1;
                 isQuote = false;
                 break;
 
             case ".":
                 if (isQuote == false) {
                     // we have found a separator
-                    $char = substr(mySqlBuffer, $start, $i - $start).strip;
-                    if ($char != "") {
-                        $result[] = $char;
+                    myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
+                    if (myChar != "") {
+                        $result[] = myChar;
                     }
-                    $start = $i + 1;
+                    myStart = myPos + 1;
                 }
                 break;
 
@@ -106,13 +106,13 @@ abstract class DProcessor {
             // ignore
                 break;
             }
-            $i++;
+            myPos++;
         }
 
-        if (isQuote == false && ($start < bufferLength)) {
-            $char = substr(mySqlBuffer, $start, $i - $start).strip;
-            if ($char != "") {
-                $result[] = $char;
+        if (isQuote == false && (myStart < bufferLength)) {
+            myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
+            if (myChar != "") {
+                $result[] = myChar;
             }
         }
 
@@ -134,18 +134,18 @@ abstract class DProcessor {
         }
 
         $parenthesis = $parenthesisRemoved;
-        $i = 0;
+        myPos = 0;
         $string = 0;
         // Whether a string was opened or not, and with which character it was open (" or ")
         $stringOpened = "";
-        while ($i < strippedToken.length) {
+        while (myPos < strippedToken.length) {
 
-            if (strippedToken[$i] == "\\") {
-                $i += 2; // an escape character, the next character is irrelevant
+            if (strippedToken[myPos] == "\\") {
+                myPos += 2; // an escape character, the next character is irrelevant
                 continue;
             }
 
-            if (strippedToken[$i] == """) {
+            if (strippedToken[myPos] == """) {
                 if ($stringOpened.isEmpty) {
                     $stringOpened = """;
                 } else if ($stringOpened == """) {
@@ -153,7 +153,7 @@ abstract class DProcessor {
                 }
             }
 
-            if (strippedToken[$i] == """) {
+            if (strippedToken[myPos] == """) {
                 if ($stringOpened.isEmpty) {
                     $stringOpened = """;
                 } else if ($stringOpened == """) {
@@ -161,18 +161,18 @@ abstract class DProcessor {
                 }
             }
 
-            if (($stringOpened.isEmpty) && (strippedToken[$i] == "(")) {
+            if (($stringOpened.isEmpty) && (strippedToken[myPos] == "(")) {
                 $parenthesis++;
             }
 
-            if (($stringOpened.isEmpty) && (strippedToken[$i] == ")")) {
+            if (($stringOpened.isEmpty) && (strippedToken[myPos] == ")")) {
                 if ($parenthesis == $parenthesisRemoved) {
-                    strippedToken[$i] = " ";
+                    strippedToken[myPos] = " ";
                     $parenthesisRemoved--;
                 }
                 $parenthesis--;
             }
-            $i++;
+            myPos++;
         }
         return strippedToken.strip;
     }
