@@ -7,8 +7,7 @@ import lang.sql;
 //This class processes the DESCRIBE statements.
 class DescribeProcessor : ExplainProcessor {
 
-    protected auto isStatement(myKeys, string aNeedle = "DESCRIBE") {
-        return super.isStatement(myKeys, $needle);
+    protected auto isStatement(someKeys, string aNeedle = "DESCRIBE") {
+        return super.isStatement(someKeys, aNeedle);
     }
 }
-

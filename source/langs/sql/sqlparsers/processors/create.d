@@ -12,7 +12,7 @@ class CreateProcessor : AbstractProcessor {
 
     auto process($tokens) {
         $result = myExpression = [];
-        baseExpression = "";
+        string baseExpression = "";
 
         foreach (myToken; $tokens) {
             
@@ -28,9 +28,9 @@ class CreateProcessor : AbstractProcessor {
 
             case "TEMPORARY":
                 // CREATE TEMPORARY TABLE
-                $result["expr_type"] .isExpressionType(TEMPORARY_TABLE;
+                $result["expr_type"] .isExpressionType("TEMPORARY_TABLE");
                 $result["not-exists"] = false;
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken];
                 break;
 
             case "TABLE":

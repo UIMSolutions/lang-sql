@@ -85,18 +85,18 @@ class CreateDefinitionProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case "CONSTRAINT":
-                myExpression[] = ["expr_type" : expressionType(CONSTRAINT, "base_expr" : strippedToken, "sub_tree" : false];
+                myExpression[] = ["expr_type" : expressionType("CONSTRAINT"), "base_expr" : strippedToken, "sub_tree" : false];
                 currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case "LIKE":
-                myExpression[] = ["expr_type" : expressionType(LIKE, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("LIKE"), "base_expr": strippedToken];
                 currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case "FOREIGN":
                 if (prevCategory.isEmpty || prevCategory == "CONSTRAINT") {
-                    myExpression[] = ["expr_type" : expressionType(FOREIGN_KEY, "base_expr": strippedToken];
+                    myExpression[] = ["expr_type" : expressionType("FOREIGN_KEY"), "base_expr": strippedToken];
                     currentCategory = upperToken;
                     continue 2;
                 }
@@ -106,7 +106,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case "PRIMARY":
                 if (prevCategory.isEmpty || prevCategory == "CONSTRAINT") {
                     // next one is KEY
-                    myExpression[] = ["expr_type" : expressionType(PRIMARY_KEY, "base_expr": strippedToken];
+                    myExpression[] = ["expr_type" : expressionType("PRIMARY_KEY"), "base_expr": strippedToken];
                     currentCategory = upperToken;
                     continue 2;
                 }
@@ -116,7 +116,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case "UNIQUE":
                 if (prevCategory.isEmpty || prevCategory == "CONSTRAINT" || prevCategory == "INDEX_COL_LIST") {
                     // next one is KEY
-                    myExpression[] = ["expr_type" : expressionType(UNIQUE_IDX, "base_expr": strippedToken];
+                    myExpression[] = ["expr_type" : expressionType("UNIQUE_IDX"), "base_expr": strippedToken];
                     currentCategory = upperToken;
                     continue 2;
                 }
@@ -129,12 +129,12 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     continue 2;
                 }
-                myExpression[] = ["expr_type" : expressionType(INDEX, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("INDEX"), "base_expr": strippedToken];
                 currentCategory = upperToken;
                 continue 2;
 
             case "CHECK":
-                myExpression[] = ["expr_type" : expressionType(CHECK, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("CHECK"), "base_expr": strippedToken];
                 currentCategory = upperToken;
                 continue 2;
 
@@ -143,17 +143,17 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     continue 2;
                 }
-                myExpression[] = ["expr_type" : expressionType(INDEX, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("INDEX"), "base_expr": strippedToken];
                 currentCategory = upperToken;
                 continue 2;
 
             case "FULLTEXT":
-                myExpression[] = ["expr_type" : expressionType(FULLTEXT_IDX, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("FULLTEXT_IDX"), "base_expr": strippedToken];
                 currentCategory = prevCategory = upperToken;
                 continue 2;
 
             case "SPATIAL":
-                myExpression[] = ["expr_type" : expressionType(SPATIAL_IDX, "base_expr": strippedToken];
+                myExpression[] = ["expr_type" : expressionType("SPATIAL_IDX"), "base_expr": strippedToken];
                 currentCategory = prevCategory = upperToken;
                 continue 2;
 
@@ -161,9 +161,9 @@ class CreateDefinitionProcessor : AbstractProcessor {
             // starts an index option
                 if (currentCategory == "INDEX_COL_LIST") {
                     $option = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    myExpression[] = ["expr_type" : expressionType(INDEX_PARSER,
+                    myExpression[] = ["expr_type" : expressionType("INDEX_PARSER"),
                                     "base_expr" : substr(baseExpression, 0, -myToken.length),
-                                    "sub_tree" : [$option));
+                                    "sub_tree" : [$option)];
                     baseExpression = myToken;
                     currentCategory = "INDEX_PARSER";
                     continue 2;
@@ -174,9 +174,9 @@ class CreateDefinitionProcessor : AbstractProcessor {
             // starts an index option
                 if (currentCategory == "INDEX_COL_LIST") {
                     $option = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    myExpression[] = ["expr_type" : expressionType(INDEX_SIZE,
+                    myExpression[] = ["expr_type" : expressionType("INDEX_SIZE"),
                                     "base_expr" : substr(baseExpression, 0, -myToken.length),
-                                    "sub_tree" : [$option));
+                                    "sub_tree" : [$option)];
                     baseExpression = myToken;
                     currentCategory = "INDEX_SIZE";
                     continue 2;
@@ -212,7 +212,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 if (currentCategory == "INDEX_TYPE") {
                     $last = array_pop(myExpression);
                     $last["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                    myExpression[] = ["expr_type" : expressionType(INDEX_TYPE, "base_expr" : baseExpression,
+                    myExpression[] = ["expr_type" : expressionType("INDEX_TYPE"), "base_expr" : baseExpression,
                                     "sub_tree" : $last["sub_tree"]);
                     baseExpression = $last["base_expr"] . baseExpression;
 
@@ -315,7 +315,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 // index parser name
                     $last = array_pop(myExpression);
                     $last["sub_tree"][] = ["expr_type" : expressionType("CONSTANT"), "base_expr": strippedToken];
-                    myExpression[] = ["expr_type" : expressionType(INDEX_PARSER, "base_expr" : baseExpression,
+                    myExpression[] = ["expr_type" : expressionType("INDEX_PARSER"), "base_expr" : baseExpression,
                                     "sub_tree" : $last["sub_tree"]);
                     baseExpression = $last["base_expr"] . baseExpression;
                     currentCategory = "INDEX_COL_LIST";
