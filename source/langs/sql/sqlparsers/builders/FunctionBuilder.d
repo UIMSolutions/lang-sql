@@ -11,64 +11,64 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling.   */
 class FunctionBuilder : ISqlBuilder {
 
-    protected auto buildAlias($parsed) {
+    protected auto buildAlias(parsedSQL) {
         auto myBuilder = new AliasBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildColRef($parsed) {
+    protected auto buildColRef(parsedSQL) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto isReserved($parsed) {
+    protected auto isReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilderr.isReserved($parsed);
+        return myBuilderr.isReserved(parsedSQL);
     }
     
-    protected auto buildSelectExpression($parsed) {
+    protected auto buildSelectExpression(parsedSQL) {
         auto myBuilder = new SelectExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSelectBracketExpression($parsed) {
+    protected auto buildSelectBracketExpression(parsedSQL) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildSubQuery($parsed) {
+    protected auto buildSubQuery(parsedSQL) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildUserVariableExpression($parsed) {
+    protected auto buildUserVariableExpression(parsedSQL) {
         auto myBuilder = new UserVariableBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if (($parsed["expr_type"] !.isExpressionType(AGGREGATE_FUNCTION)
-            && ($parsed["expr_type"] !.isExpressionType(SIMPLE_FUNCTION)
-            && ($parsed["expr_type"] !.isExpressionType(CUSTOM_FUNCTION)) {
+        if ((parsedSQL["expr_type"] !.isExpressionType(AGGREGATE_FUNCTION)
+            && (parsedSQL["expr_type"] !.isExpressionType(SIMPLE_FUNCTION)
+            && (parsedSQL["expr_type"] !.isExpressionType(CUSTOM_FUNCTION)) {
             return "";
         }
 
-        if ($parsed["sub_tree"] == false) {
-            return $parsed["base_expr"] . "()" . this.buildAlias($parsed);
+        if (parsedSQL["sub_tree"] == false) {
+            return parsedSQL["base_expr"] . "()" . this.buildAlias(parsedSQL);
         }
 
         string mySql = "";
-        foreach (myKey, myValue, $parsed["sub_tree"]) {
+        foreach (myKey, myValue, parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.build(myValue);
             mySql ~= this.buildConstant(myValue);
@@ -85,7 +85,7 @@ class FunctionBuilder : ISqlBuilder {
 
             mySql ~= (this.isReserved(myValue) ? " " : ",");
         }
-        return $parsed["base_expr"] . "(" . substr(mySql, 0, -1) . ")" . this.buildAlias($parsed);
+        return parsedSQL["base_expr"] . "(" . substr(mySql, 0, -1) . ")" . this.buildAlias(parsedSQL);
     }
 
 }

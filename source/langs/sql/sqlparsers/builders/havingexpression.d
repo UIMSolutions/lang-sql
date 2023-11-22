@@ -12,22 +12,22 @@ import lang.sql;
  *   */
 class HavingExpressionBuilder : WhereExpressionBuilder {
 
-    protected auto buildHavingExpression($parsed) {
-        return this.build($parsed);
+    protected auto buildHavingExpression(parsedSQL) {
+        return this.build(parsedSQL);
     }
 
-    protected auto buildHavingBracketExpression($parsed) {
+    protected auto buildHavingBracketExpression(parsedSQL) {
         auto myBuilder = new HavingBracketExpressionBuilder();
-        return myBuilderr.build($parsed);
+        return myBuilderr.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) {
+        if (parsedSQL["expr_type"] !.isExpressionType(EXPRESSION) {
             return "";
         }
         
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildConstant(myValue);

@@ -10,12 +10,12 @@ class AliasBuilder : ISqlBuilder {
   }
 
   string build(Json parsedSQL) {
-    if ("alias" !in parsed || $parsed["alias"] == false) {
+    if ("alias" !in parsed || parsedSQL["alias"] == false) {
       return "";
     }
 
     string mySql = "";
-    auto subParsed = $parsed["alias"];
+    auto subParsed = parsedSQL["alias"];
     if ("as" in subParsed) {
       mySql ~= " AS";
     }

@@ -10,16 +10,16 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class InListBuilder : ISqlBuilder {
 
-    protected auto buildSubTree($parsed, $delim) {
+    protected auto buildSubTree(parsedSQL, $delim) {
         auto myBuilder = new SubTreeBuilder();
-        return myBuilder.build($parsed, $delim);
+        return myBuilder.build(parsedSQL, $delim);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(IN_LIST) {
+        if (parsedSQL["expr_type"] !.isExpressionType(IN_LIST) {
             return "";
         }
-        string mySql = this.buildSubTree($parsed, ", ");
+        string mySql = this.buildSubTree(parsedSQL, ", ");
         return "(" ~ mySql ~ ")";
     }
 }

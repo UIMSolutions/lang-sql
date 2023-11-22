@@ -9,10 +9,10 @@ import lang.sql;
 class AliasReferenceBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(ALIAS) {
+        if (parsedSQL["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }
-        string mySql = $parsed["base_expr"];
+        string mySql = parsedSQL["base_expr"];
         return mySql;
     }
 }

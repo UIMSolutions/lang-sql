@@ -7,7 +7,7 @@ class AlterBuilder : ISqlBuilder {
   auto build(Json parsedSQL) {
     string mySql = "";
 
-    foreach (myTerm; $parsed) {
+    foreach (myTerm; parsedSQL) {
       if (myTerm == " ") {
         continue;
       }

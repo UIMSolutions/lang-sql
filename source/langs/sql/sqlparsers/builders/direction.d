@@ -11,9 +11,9 @@ import lang.sql;
 class DirectionBuilder : IBuilder {
 
     string build(Json parsedSQL) {
-        if ("direction" !in $parsed["direction"] || $parsed["direction"] == false) {
+        if ("direction" !in parsedSQL["direction"] || parsedSQL["direction"] == false) {
             return "";
         }
-        return (" " ~ $parsed["direction"]);
+        return (" " ~ parsedSQL["direction"]);
     }
 }

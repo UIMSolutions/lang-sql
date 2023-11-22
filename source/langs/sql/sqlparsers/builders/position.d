@@ -11,9 +11,9 @@ import lang.sql;
 class PositionBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(POSITION) {
+        if (parsedSQL["expr_type"] !.isExpressionType(POSITION) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

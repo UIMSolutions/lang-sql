@@ -15,23 +15,23 @@ import lang.sql;
  *   */
 class JoinBuilder {
 
-    auto build($parsed) {
-        if ($parsed == "CROSS") {
+    auto build(parsedSQL) {
+        if (parsedSQL == "CROSS") {
             return ", ";
         }
-        if ($parsed == "JOIN") {
+        if (parsedSQL == "JOIN") {
             return " INNER JOIN ";
         }
-        if ($parsed == "LEFT") {
+        if (parsedSQL == "LEFT") {
             return " LEFT JOIN ";
         }
-        if ($parsed == "RIGHT") {
+        if (parsedSQL == "RIGHT") {
             return " RIGHT JOIN ";
         }
-        if ($parsed == "STRAIGHT_JOIN") {
+        if (parsedSQL == "STRAIGHT_JOIN") {
             return " STRAIGHT_JOIN ";
         }
         // TODO: add more
-        throw new UnsupportedFeatureException($parsed);
+        throw new UnsupportedFeatureException(parsedSQL);
     }
 }

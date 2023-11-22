@@ -6,19 +6,19 @@ import lang.sql;
 // Builds the parentheses around a statement. */
 class BracketStatementBuilder : ISqlBuilder {
 
-    protected auto buildSelectBracketExpression($parsed) {
+    protected auto buildSelectBracketExpression(parsedSQL) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build($parsed, " ");
+        return myBuilder.build(parsedSQL, " ");
     }
 
-    protected auto buildSelectStatement($parsed) {
+    protected auto buildSelectStatement(parsedSQL) {
         auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
         string mySql = "";
-        foreach (myKey, myValue; $parsed["BRACKET"]) {
+        foreach (myKey, myValue; parsedSQL["BRACKET"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildSelectBracketExpression(myValue);
 
@@ -26,6 +26,6 @@ class BracketStatementBuilder : ISqlBuilder {
                 throw new UnableToCreateSQLException("BRACKET", myKey, myValue, "expr_type");
             }
         }
-        return mySql ~ " " ~ this.buildSelectStatement($parsed).strip).strip;
+        return mySql ~ " " ~ this.buildSelectStatement(parsedSQL).strip).strip;
     }
 }

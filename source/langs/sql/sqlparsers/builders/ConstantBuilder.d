@@ -10,18 +10,18 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ConstantBuilder : ISqlBuilder {
 
-    protected auto buildAlias($parsed) {
+    protected auto buildAlias(parsedSQL) {
         auto myBuilder = new AliasBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(CONSTANT) {
+        if (parsedSQL["expr_type"] !.isExpressionType(CONSTANT) {
             return "";
         }
         
-        string mySql = $parsed["base_expr"];
-        mySql ~= this.buildAlias($parsed);
+        string mySql = parsedSQL["base_expr"];
+        mySql ~= this.buildAlias(parsedSQL);
         return mySql;
     }
 }

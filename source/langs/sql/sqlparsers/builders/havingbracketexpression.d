@@ -11,18 +11,18 @@ import lang.sql;
  */
 class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
     
-    protected auto buildHavingExpression($parsed) {
+    protected auto buildHavingExpression(parsedSQL) {
         auto myBuilder = new HavingExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
+        if (parsedSQL["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
             return "";
         }
         
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildConstant(myValue);

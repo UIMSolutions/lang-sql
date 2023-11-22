@@ -13,12 +13,12 @@ class DeleteBuilder : ISqlBuilder {
     string mySql = "DELETE ";
     $right =  - 1;
 
-    if ($parsed["options"] != false) {
-      $parsed["options"].byKeyValue.each!(kv : mySql ~= kv.value + " ");
+    if (parsedSQL["options"] != false) {
+      parsedSQL["options"].byKeyValue.each!(kv : mySql ~= kv.value + " ");
     }
 
-    if ($parsed["tables"] != false) {
-      foreach (k, v; $parsed["tables"]) {
+    if (parsedSQL["tables"] != false) {
+      foreach (k, v; parsedSQL["tables"]) {
         mySql ~= myValue.", ";
         $right =  - 2;
       }

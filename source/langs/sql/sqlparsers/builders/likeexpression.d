@@ -12,22 +12,22 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class LikeExpressionBuilder : ISqlBuilder {
 
-    protected auto buildTable($parsed, $index) {
+    protected auto buildTable(parsedSQL, $index) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build($parsed, $index);
+        return myBuilder.build(parsedSQL, $index);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(LIKE) {
+        if (parsedSQL["expr_type"] !.isExpressionType(LIKE) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildReserved(myValue);
             mySql ~= this.buildTable(myValue, 0);
