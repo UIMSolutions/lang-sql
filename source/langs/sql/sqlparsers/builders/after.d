@@ -14,10 +14,10 @@ class AlterBuilder : ISqlBuilder {
 
       if (substr(myTerm, 0, 1) == "(" ||
         strpos(myTerm, "\n") != false) {
-        mySql = rtrim(mySql);
+        mySql = mySql.rstrip;
       }
 
-      mySql ~= myTerm." ";
+      mySql ~= myTerm ~ " ";
     }
 
     mySql = mySql.rstrip;

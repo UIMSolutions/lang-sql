@@ -22,7 +22,7 @@ class GroupByExpressionBuilder : ISqlBuilder {
 	}
 	
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
+        if (parsedSql["expr_type"] !.isExpressionType("EXPRESSION")) { return ""; }
         
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {

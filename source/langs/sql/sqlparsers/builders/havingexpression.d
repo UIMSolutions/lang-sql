@@ -22,7 +22,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(EXPRESSION) {
+        if (parsedSql["expr_type"] !.isExpressionType("EXPRESSION")) {
             return "";
         }
         

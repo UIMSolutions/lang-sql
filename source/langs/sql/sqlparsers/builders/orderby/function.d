@@ -1,6 +1,8 @@
-
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 /**
  * Builds functions within the ORDER-BY part. 
  * This class : the builder for functions within the ORDER-BY part. 
@@ -8,17 +10,17 @@ module lang.sql.parsers.builders;
  *  */
 class OrderByFunctionBuilder : FunctionBuilder {
 
-    protected auto buildDirection(parsedSql) {
-        auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildDirection(parsedSql) {
+    auto myBuilder = new DirectionBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    string build(Json parsedSql) {
-        $sql = super.build(parsedSql);
-        if ($sql != "") {
-            $sql ~= this.buildDirection(parsedSql);
-        }
-        return $sql;
+  string build(Json parsedSql) {
+    auto mySql = super.build(parsedSql);
+    if (mySql != "") {
+      mySql ~= this.buildDirection(parsedSql);
     }
+    return mySql;
+  }
 
 }

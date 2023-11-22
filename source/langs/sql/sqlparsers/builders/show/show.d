@@ -10,63 +10,68 @@ import lang.sql;
  *  */
 class ShowBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSql, $delim) {
-        auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSql, $delim);
+  string build(Json parsedSql) {
+    auto showSql = parsedSql["SHOW"];
+
+    string result = showSql.byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    result = "SHOW " ~ substr(result, 0, -1);
+    return result;
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildReserved(myValue);
+    result ~= this.buildConstant(myValue);
+    result ~= this.buildEngine(myValue);
+    result ~= this.buildDatabase(myValue);
+    result ~= this.buildProcedure(myValue);
+    result ~= this.buildFunction(myValue);
+    result ~= this.buildTable(myValue, 0);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("SHOW", myKey, myValue, "expr_type");
     }
 
-    protected auto buildFunction(parsedSql) {
-        auto myBuilder = new FunctionBuilder();
-        return myBuilder.build(parsedSql);
-    }
+    result ~= " ";
+    return result;
+  }
 
-    protected auto buildProcedure(parsedSql) {
-        auto myBuilder = new ProcedureBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildTable(Json parsedSql, $delim) {
+    auto myBuilder = new TableBuilder();
+    return myBuilder.build(parsedSql, $delim);
+  }
 
-    protected auto buildDatabase(parsedSql) {
-        auto myBuilder = new DatabaseBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildFunction(Json parsedSql) {
+    auto myBuilder = new FunctionBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    protected auto buildEngine(parsedSql) {
-        auto myBuilder = new EngineBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildProcedure(Json parsedSql) {
+    auto myBuilder = new ProcedureBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    protected auto buildConstant(parsedSql) {
-        auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildDatabase(Json parsedSql) {
+    auto myBuilder = new DatabaseBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    protected auto buildReserved(parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildEngine(Json parsedSql) {
+    auto myBuilder = new EngineBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    string build(Json parsedSql) {
-        auto $show = parsedSql["SHOW"];
-        
-        string mySql = "";
-        foreach (myKey, myValue; $show) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildEngine(myValue);
-            mySql ~= this.buildDatabase(myValue);
-            mySql ~= this.buildProcedure(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildTable(myValue, 0);
+  protected auto buildConstant(Json parsedSql) {
+    auto myBuilder = new ConstantBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("SHOW", myKey, myValue, "expr_type");
-            }
+  protected auto buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-            mySql ~= " ";
-        }
-
-        mySql = substr(mySql, 0, -1);
-        return "SHOW " . mySql;
-    }
 }
