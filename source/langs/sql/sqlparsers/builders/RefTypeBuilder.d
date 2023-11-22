@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds reference type within a JOIN. */
  * This class : the references type within a JOIN. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class RefTypeBuilder {
 
     auto build(parsedSql) {

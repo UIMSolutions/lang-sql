@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds reference clauses within a JOIN.
  * This class : the references clause within a JOIN.
- * You can overwrite all functions to achieve another handling.
+ * 
  */
 class RefClauseBuilder : ISqlBuilder {
 

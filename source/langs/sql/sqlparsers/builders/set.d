@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the SET part of the INSERT statement. */
  * This class : the builder for the SET part of INSERT statement. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class SetBuilder : ISqlBuilder {
 
     protected auto buildSetExpression(parsedSql) {

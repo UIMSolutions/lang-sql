@@ -3,7 +3,7 @@ module langs.sql.sqlparsers.builders.showstatement;
 /**
  * Builds the SHOW statement. */
  * This class : the builder for the SHOW statement. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class ShowStatementBuilder : ISqlBuilder {
 
     protected auto buildWHERE(parsedSql) {

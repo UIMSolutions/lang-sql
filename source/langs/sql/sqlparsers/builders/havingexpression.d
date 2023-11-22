@@ -8,7 +8,7 @@ import lang.sql;
 /**
  * Builds expressions within the HAVING part.
  * This class : the builder for expressions within the HAVING part. 
- * You can overwrite all functions to achieve another handling.
+ * 
  *   */
 class HavingExpressionBuilder : WhereExpressionBuilder {
 

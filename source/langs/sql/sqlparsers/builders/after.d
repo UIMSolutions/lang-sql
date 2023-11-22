@@ -4,7 +4,7 @@ import lang.sql;
 
 @safe:
 class AlterBuilder : ISqlBuilder {
-  auto build(Json parsedSql) {
+  string build(Json parsedSql) {
     string mySql = "";
 
     foreach (myTerm; parsedSql) {

@@ -8,7 +8,7 @@ import lang.sql;
 /**
  * Builds auto statements. 
  * This class : the builder for auto calls. 
- * You can overwrite all functions to achieve another handling.   */
+ *    */
 class FunctionBuilder : ISqlBuilder {
 
     protected auto buildAlias(parsedSql) {

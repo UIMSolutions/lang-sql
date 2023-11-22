@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the records within the INSERT statement. 
 * This class : the builder for the records within INSERT statement.
-  * You can overwrite all functions to achieve another handling. */
+  *  */
 
 class RecordBuilder : ISqlBuilder {
 

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the JOIN statement parts (within FROM).
  * This class : the builder for the JOIN statement parts (within FROM). 
- * You can overwrite all functions to achieve another handling.
+ * 
  *
  
 

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the SELECT statements within parentheses. 
  * This class : the builder for queries within parentheses (no subqueries). 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class QueryBuilder : ISqlBuilder {
 
   string build(Json parsedSql, anIndex = 0) {

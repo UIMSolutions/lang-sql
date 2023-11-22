@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the HAVING part.
  * This class : the builder for the HAVING part. 
- * You can overwrite all functions to achieve another handling.
+ * 
  */
 class HavingBuilder : WhereBuilder {
 

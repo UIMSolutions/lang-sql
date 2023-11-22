@@ -14,7 +14,7 @@ class AlterStatementBuilder : IBuilder {
     return myBuilder.build(parsedSql);
   }
 
-  auto build(Json parsedSql) {
+  string build(Json parsedSql) {
     auto myAlter = parsedSql["ALTER"];
     string mySql = this.buildAlter(myAlterr);
 
