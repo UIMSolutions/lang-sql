@@ -11,92 +11,96 @@ import lang.sql;
  */
 class SubTreeBuilder : ISqlBuilder {
 
-    protected auto buildColRef($parsed) {
-        auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+  string build(Json parsedSQL, $delim = " ") {
+    if (parsedSQL["sub_tree"].isEmpty || parsedSQL["sub_tree"] == false) {
+      return "";
     }
 
-    protected auto buildFunction($parsed) {
-        auto myBuilder = new FunctionBuilder();
-        return myBuilder.build($parsed);
+    string mySql = parsedSQL["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    return substr(mySql, 0,  - strlen($delim));
+  }
+
+  string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildColRef(aValue);
+    result ~= this.buildFunction(aValue);
+    result ~= this.buildOperator(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildInList(aValue);
+    result ~= this.buildSubQuery(aValue);
+    result ~= this.buildSelectBracketExpression(aValue);
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildQuery(aValue);
+    result ~= this.buildUserVariable(aValue);
+
+    string mySign = this.buildSign(aValue);
+    result ~= mySign;
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("expression subtree", myKey, aValue.toString, "expr_type");
     }
 
-    protected auto buildOperator($parsed) {
-        auto myBuilder = new OperatorBuilder();
-        return myBuilder.build($parsed);
+    // We don"t need whitespace between a sign and the following part.
+    if (mySign.isEmpty) {
+      result ~= $delim;
     }
+  }
 
-    protected auto buildConstant($parsed) {
-        auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildColRef(parsedSQL) {
+    auto myBuilder = new ColumnReferenceBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildInList($parsed) {
-        auto myBuilder = new InListBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildFunction(parsedSQL) {
+    auto myBuilder = new FunctionBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildReserved($parsed) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildOperator(parsedSQL) {
+    auto myBuilder = new OperatorBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildSubQuery($parsed) {
-        auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildConstant(parsedSQL) {
+    auto myBuilder = new ConstantBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildQuery($parsed) {
-        auto myBuilder = new QueryBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildInList(parsedSQL) {
+    auto myBuilder = new InListBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildSelectBracketExpression($parsed) {
-        auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildReserved(parsedSQL) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildUserVariable($parsed) {
-        auto myBuilder = new UserVariableBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildSubQuery(parsedSQL) {
+    auto myBuilder = new SubQueryBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    protected auto buildSign($parsed) {
-        auto myBuilder = new SignBuilder();
-        return myBuilder.build($parsed);
-    }
+  protected auto buildQuery(parsedSQL) {
+    auto myBuilder = new QueryBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-    string build(Json parsedSQL, $delim = " ") {
-        if ($parsed["sub_tree"].isEmpty || $parsed["sub_tree"] == false) {
-            return "";
-        }
-        
-        string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildInList(myValue);
-            mySql ~= this.buildSubQuery(myValue);
-            mySql ~= this.buildSelectBracketExpression(myValue);
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildQuery(myValue);
-            mySql ~= this.buildUserVariable(myValue);
+  protected auto buildSelectBracketExpression(parsedSQL) {
+    auto myBuilder = new SelectBracketExpressionBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-            string mySign = this.buildSign(myValue);
-            mySql ~= mySign;
+  protected auto buildUserVariable(parsedSQL) {
+    auto myBuilder = new UserVariableBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("expression subtree", myKey, myValue, "expr_type");
-            }
-
-            // We don"t need whitespace between a sign and the following part.
-            if (mySign.isEmpty) {
-                mySql ~= $delim;
-            }
-        }
-        return substr(mySql, 0, -strlen($delim));
-    }
+  protected auto buildSign(parsedSQL) {
+    auto myBuilder = new SignBuilder();
+    return myBuilder.build(parsedSQL);
+  }
 }

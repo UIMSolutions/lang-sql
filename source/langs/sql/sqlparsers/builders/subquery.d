@@ -11,45 +11,45 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SubQueryBuilder : ISqlBuilder {
 
-    protected auto buildRefClause($parsed) {
+    protected auto buildRefClause(parsedSQL) {
         auto myBuilder = new RefClauseBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildRefType($parsed) {
+    protected auto buildRefType(parsedSQL) {
         auto myBuilder = new RefTypeBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildJoin($parsed) {
+    protected auto buildJoin(parsedSQL) {
         auto myBuilder = new JoinBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildAlias($parsed) {
+    protected auto buildAlias(parsedSQL) {
         auto myBuilder = new AliasBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSelectStatement($parsed) {
+    protected auto buildSelectStatement(parsedSQL) {
         auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL, $index = 0) {
-        if ($parsed["expr_type"] !.isExpressionType(SUBQUERY) {
+        if (parsedSQL["expr_type"] !.isExpressionType(SUBQUERY) {
             return "";
         }
 
         // TODO: should we add a numeric level (0) between sub_tree and SELECT?
-        string mySql = this.buildSelectStatement($parsed["sub_tree"]);
+        string mySql = this.buildSelectStatement(parsedSQL["sub_tree"]);
         mySql = "(" ~ mySql ~ ")";
-        mySql ~= this.buildAlias($parsed);
+        mySql ~= this.buildAlias(parsedSQL);
 
         if ($index != 0) {
-            mySql = this.buildJoin($parsed["join_type"]) . mySql;
-            mySql ~= this.buildRefType($parsed["ref_type"]);
-            mySql ~= $parsed["ref_clause"] == false ? "" : this.buildRefClause($parsed["ref_clause"]);
+            mySql = this.buildJoin(parsedSQL["join_type"]) . mySql;
+            mySql ~= this.buildRefType(parsedSQL["ref_type"]);
+            mySql ~= parsedSQL["ref_clause"] == false ? "" : this.buildRefClause(parsedSQL["ref_clause"]);
         }
         return mySql;
     }

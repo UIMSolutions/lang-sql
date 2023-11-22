@@ -11,51 +11,51 @@ import lang.sql;
  */
 class RefClauseBuilder : ISqlBuilder {
 
-    protected auto buildInList($parsed) {
+    protected auto buildInList(parsedSQL) {
         auto myBuilder = new InListBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildColRef($parsed) {
+    protected auto buildColRef(parsedSQL) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildOperator($parsed) {
+    protected auto buildOperator(parsedSQL) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildFunction($parsed) {
+    protected auto buildFunction(parsedSQL) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildBracketExpression($parsed) {
+    protected auto buildBracketExpression(parsedSQL) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildColumnList($parsed) {
+    protected auto buildColumnList(parsedSQL) {
         auto myBuilder = new ColumnListBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSubQuery($parsed) {
+    protected auto buildSubQuery(parsedSQL) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed.isEmpty) { return ""; }
+        if (parsedSQL.isEmpty) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; $parsed) {
+        foreach (myKey, myValue; parsedSQL) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildOperator(myValue);

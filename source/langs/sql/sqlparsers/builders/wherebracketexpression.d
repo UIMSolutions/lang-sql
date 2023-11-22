@@ -12,57 +12,57 @@ import lang.sql;
  */
 class WhereBracketExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColRef($parsed) {
+    protected auto buildColRef(parsedSQL) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildOperator($parsed) {
+    protected auto buildOperator(parsedSQL) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildFunction($parsed) {
+    protected auto buildFunction(parsedSQL) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildInList($parsed) {
+    protected auto buildInList(parsedSQL) {
         auto myBuilder = new InListBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildWhereExpression($parsed) {
+    protected auto buildWhereExpression(parsedSQL) {
         auto myBuilder = new WhereExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildUserVariable($parsed) {
+    protected auto buildUserVariable(parsedSQL) {
         auto myBuilder = new UserVariableBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSubQuery($parsed) {
+    protected auto buildSubQuery(parsedSQL) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
       auto myBuilder = new ReservedBuilder();
-      return myBuilder.build($parsed);
+      return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
+        if (parsedSQL["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildConstant(myValue);

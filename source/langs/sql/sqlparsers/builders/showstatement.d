@@ -6,20 +6,20 @@ module langs.sql.sqlparsers.builders.showstatement;
  * You can overwrite all functions to achieve another handling. */
 class ShowStatementBuilder : ISqlBuilder {
 
-    protected auto buildWHERE($parsed) {
+    protected auto buildWHERE(parsedSQL) {
         auto myBuilder = new WhereBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSHOW($parsed) {
+    protected auto buildSHOW(parsedSQL) {
         auto myBuilder = new ShowBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        string mySql = this.buildSHOW($parsed);
-        if ($parsed.isSet("WHERE")) {
-            mySql ~= " " ~ this.buildWHERE($parsed["WHERE"]);
+        string mySql = this.buildSHOW(parsedSQL);
+        if (parsedSQL.isSet("WHERE")) {
+            mySql ~= " " ~ this.buildWHERE(parsedSQL["WHERE"]);
         }
         return mySql;
     }

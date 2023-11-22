@@ -11,10 +11,10 @@ class TruncateBuilder : ISqlBuilder {
     $right =  - 1;
 
     // works for one table only
-    $parsed["tables"] = [$parsed["TABLE"]["base_expr"]];
+    parsedSQL["tables"] = [parsedSQL["TABLE"]["base_expr"]];
 
-    if ($parsed["tables"] != false) {
-      foreach (myKey, myValue; $parsed["tables"]) {
+    if (parsedSQL["tables"] != false) {
+      foreach (myKey, myValue; parsedSQL["tables"]) {
         mySql ~= myValue ~ ", ";
         $right =  - 2;
       }

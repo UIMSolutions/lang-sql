@@ -6,32 +6,32 @@ module langs.sql.sqlparsers.builders.replacestatement;
  * all functions to achieve another handling. */
 class ReplaceStatementBuilder : ISqlBuilder {
 
-    protected auto buildVALUES($parsed) {
+    protected auto buildVALUES(parsedSQL) {
         auto myBuilder = new ValuesBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildREPLACE($parsed) {
+    protected auto buildREPLACE(parsedSQL) {
         auto myBuilder = new ReplaceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSELECT($parsed) {
+    protected auto buildSELECT(parsedSQL) {
         auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildSET($parsed) {
+    protected auto buildSET(parsedSQL) {
         auto myBuilder = new SetBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
         // TODO: are there more than one tables possible (like [REPLACE][1])
-        string mySql = this.buildREPLACE($parsed["REPLACE"]);
-        mySql ~= $parsed.isSet("VALUES") ? " " ~ this.buildVALUES($parsed["VALUES"]) : "";
-        mySql ~= $parsed.isSet("SET") ? " " ~ this.buildSET($parsed["SET"]) : "";
-        mySql ~= $parsed.isSet("SELECT") ? " " ~ this.buildSELECT($parsed) : "";
+        string mySql = this.buildREPLACE(parsedSQL["REPLACE"]);
+        mySql ~= parsedSQL.isSet("VALUES") ? " " ~ this.buildVALUES(parsedSQL["VALUES"]) : "";
+        mySql ~= parsedSQL.isSet("SET") ? " " ~ this.buildSET(parsedSQL["SET"]) : "";
+        mySql ~= parsedSQL.isSet("SELECT") ? " " ~ this.buildSELECT(parsedSQL) : "";
         
         return mySql;
     }

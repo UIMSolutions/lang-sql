@@ -14,9 +14,9 @@ import lang.sql;
 class ViewBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(VIEW) {
+        if (parsedSQL["expr_type"] !.isExpressionType(VIEW) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

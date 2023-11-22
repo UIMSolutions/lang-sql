@@ -11,10 +11,10 @@ import lang.sql;
 class UserVariableBuilder : ISqlBuilder {
 
   string build(Json parsedSQL) {
-    if (!$parsed["expr_type"].isExpressionType("USER_VARIABLE")) {
+    if (!parsedSQL["expr_type"].isExpressionType("USER_VARIABLE")) {
       return "";
     }
 
-    return $parsed["base_expr"];
+    return parsedSQL["base_expr"];
   }
 }

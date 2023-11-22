@@ -11,9 +11,9 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class RenameStatementBuilder : ISqlBuilder {
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     protected auto processSourceAndDestTable(auto[string] myValue) {
@@ -24,7 +24,7 @@ class RenameStatementBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSQL) {
-        auto myRename = $parsed["RENAME"];
+        auto myRename = parsedSQL["RENAME"];
         string mySql = "";
         foreach (myKey, myValue; myRename["sub_tree"]) {
             size_t oldSqlLength = mySql.length;

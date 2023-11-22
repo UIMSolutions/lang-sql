@@ -10,14 +10,14 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ReservedBuilder : ISqlBuilder {
 
-    auto isReserved($parsed) {
-        return ("expr_type" in $parsed) && $parsed["expr_type"].isExpressionType("RESERVED");
+    auto isReserved(parsedSQL) {
+        return ("expr_type" in parsedSQL) && parsedSQL["expr_type"].isExpressionType("RESERVED");
     }
 
     string build(Json parsedSQL) {
-        if (!this.isReserved($parsed)) {
+        if (!this.isReserved(parsedSQL)) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

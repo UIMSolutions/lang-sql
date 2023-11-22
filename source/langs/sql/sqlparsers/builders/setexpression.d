@@ -11,42 +11,42 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SetExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColRef($parsed) {
+    protected auto buildColRef(parsedSQL) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildOperator($parsed) {
+    protected auto buildOperator(parsedSQL) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildFunction($parsed) {
+    protected auto buildFunction(parsedSQL) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildBracketExpression($parsed) {
+    protected auto buildBracketExpression(parsedSQL) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildSign($parsed) {
+    protected auto buildSign(parsedSQL) {
         auto myBuilder = new SignBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) {
+        if (parsedSQL["expr_type"] !.isExpressionType(EXPRESSION) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             string myDelim = " ";
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);

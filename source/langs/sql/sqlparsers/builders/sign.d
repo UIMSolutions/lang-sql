@@ -11,9 +11,9 @@ import lang.sql;
 class SignBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(SIGN) {
+        if (parsedSQL["expr_type"] !.isExpressionType(SIGN) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

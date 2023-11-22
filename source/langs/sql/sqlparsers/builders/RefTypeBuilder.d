@@ -10,17 +10,17 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class RefTypeBuilder {
 
-    auto build($parsed) {
-        if ($parsed.isEmpty) {
+    auto build(parsedSQL) {
+        if (parsedSQL.isEmpty) {
             return "";
         }
-        if ($parsed == "ON") {
+        if (parsedSQL == "ON") {
             return " ON ";
         }
-        if ($parsed == "USING") {
+        if (parsedSQL == "USING") {
             return " USING ";
         }
         // TODO: add more
-        throw new UnsupportedFeatureException($parsed);
+        throw new UnsupportedFeatureException(parsedSQL);
     }
 }

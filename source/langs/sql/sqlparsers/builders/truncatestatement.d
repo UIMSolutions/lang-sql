@@ -6,19 +6,19 @@ module lang.sql.parsers.builders;
  * all functions to achieve another handling. */
 class TruncateStatementBuilder : ISqlBuilder {
 
-    protected auto buildTRUNCATE($parsed) {
+    protected auto buildTRUNCATE(parsedSQL) {
         auto myBuilder = new TruncateBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildFROM($parsed) {
+    protected auto buildFROM(parsedSQL) {
         auto myBuilder = new FromBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
-        string mySql = this.buildTRUNCATE($parsed);
-        // mySql ~= " " ~ this.buildTRUNCATE($parsed) // Uncomment when parser fills in expr_type=table
+        string mySql = this.buildTRUNCATE(parsedSQL);
+        // mySql ~= " " ~ this.buildTRUNCATE(parsedSQL) // Uncomment when parser fills in expr_type=table
         
         return mySql;
     }

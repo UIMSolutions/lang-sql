@@ -15,7 +15,7 @@ class UnionStatementBuilder : ISqlBuilder {
 		string mySql = "";
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
-		foreach ($parsed["UNION"] as $clause) {
+		foreach (parsedSQL["UNION"] as $clause) {
 			if (!$first) {
 				mySql ~= " UNION ";
 			}

@@ -11,45 +11,45 @@ import lang.sql;
  */
 class TableBuilder : ISqlBuilder {
 
-  protected auto buildAlias($parsed) {
+  protected auto buildAlias(parsedSQL) {
     AliasBuilder myBuilder = new AliasBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildIndexHintList($parsed) {
+  protected auto buildIndexHintList(parsedSQL) {
     IndexHintListBuilder myBuilder = new IndexHintListBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildJoin($parsed) {
+  protected auto buildJoin(parsedSQL) {
     JoinBuilder myBuilder = new JoinBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildRefType($parsed) {
+  protected auto buildRefType(parsedSQL) {
     auto myBuilder = new RefTypeBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildRefClause($parsed) {
+  protected auto buildRefClause(parsedSQL) {
     auto myBuilder = new RefClauseBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
   string build(Json parsedSQL, $index = 0) {
-    if (!$parsed["expr_type"].isExpressionType("TABLE")) {
+    if (!parsedSQL["expr_type"].isExpressionType("TABLE")) {
       return "";
     }
 
     // Main
-    auto mySql = $parsed["table"];
-    mySql ~= this.buildAlias($parsed);
-    mySql ~= this.buildIndexHintList($parsed);
+    auto mySql = parsedSQL["table"];
+    mySql ~= this.buildAlias(parsedSQL);
+    mySql ~= this.buildIndexHintList(parsedSQL);
 
     if ($index != 0) {
-      mySql = this.buildJoin($parsed["join_type"]).mySql;
-      mySql ~= this.buildRefType($parsed["ref_type"]);
-      mySql ~= $parsed["ref_clause"] == false ? "" : this.buildRefClause($parsed["ref_clause"]);
+      mySql = this.buildJoin(parsedSQL["join_type"]).mySql;
+      mySql ~= this.buildRefType(parsedSQL["ref_type"]);
+      mySql ~= parsedSQL["ref_clause"] == false ? "" : this.buildRefClause(parsedSQL["ref_clause"]);
     }
 
     return mySql;

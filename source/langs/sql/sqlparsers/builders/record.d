@@ -10,33 +10,33 @@ import lang.sql;
   * You can overwrite all functions to achieve another handling. *  /
   class RecordBuilder : ISqlBuilder {
 
-    protected auto buildOperator($parsed) {
+    protected auto buildOperator(parsedSQL) {
       auto myBuilder = new OperatorBuilder();
-      return myBuilder.build($parsed);
+      return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildFunction($parsed) {
+    protected auto buildFunction(parsedSQL) {
       auto myBuilder = new FunctionBuilder();
-      return myBuilder.build($parsed);
+      return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
       auto myBuilder = new ConstantBuilder();
-      return myBuilder.build($parsed);
+      return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildColRef($parsed) {
+    protected auto buildColRef(parsedSQL) {
       auto myBuilder = new ColumnReferenceBuilder();
-      return myBuilder.build($parsed);
+      return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-      if ($parsed["expr_type"] !.isExpressionType(RECORD) {
-        return $parsed.get("base_expr", "");
+      if (parsedSQL["expr_type"] !.isExpressionType(RECORD) {
+        return parsedSQL.get("base_expr", "");
       }
       
       string mySql = "";
-      foreach (myKey, myValue; $parsed["data"]) {
+      foreach (myKey, myValue; parsedSQL["data"]) {
         size_t oldSqlLength = mySql.length;
         mySql ~= this.buildConstant(myValue);
         mySql ~= this.buildFunction(myValue);

@@ -12,9 +12,9 @@ import lang.sql;
 class ProcedureBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("PROCEDURE")) {
+        if (!parsedSQL["expr_type"].isExpressionType("PROCEDURE")) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }
