@@ -14,7 +14,7 @@ class CreateTableDefinitionBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!isset($parsed) || $parsed["create-def"] == false) {
             return "";
         }

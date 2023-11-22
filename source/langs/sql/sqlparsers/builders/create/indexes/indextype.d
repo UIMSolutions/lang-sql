@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!$parsed["index-type"]) || $parsed["index-type"] == false) {
             return "";
         }

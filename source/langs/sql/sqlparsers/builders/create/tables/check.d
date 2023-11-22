@@ -20,7 +20,7 @@ class CheckBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!$parsed["expr_type"].isExpressionType("CHECK")) {
             return "";
         }

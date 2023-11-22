@@ -29,14 +29,14 @@ class CreateTableOptionsBuilder : IBuilder {
      * Returns a well-formatted delimiter string. If you don"t need nice SQL,
      * you could simply return $parsed["delim"].
      * 
-     * @param array $parsed The part of the output array, which contains the current expression.
+     * @param auto[string] parsedSQL The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter($parsed) {
         return ($parsed["delim"] == false ? "" : ($parsed["delim"]) . " ").strip;
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!isset($parsed["options"]) || $parsed["options"] == false) {
             return "";
         }
