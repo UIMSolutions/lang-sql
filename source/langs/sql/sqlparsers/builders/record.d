@@ -30,7 +30,7 @@ import lang.sql;
       return myBuilder.build($parsed);
     }
 
-    string build(array$parsed) {
+    string build(Json parsedSQL) {
       if ($parsed["expr_type"] !.isExpressionType(RECORD) {
         return $parsed.get("base_expr", "");
       }

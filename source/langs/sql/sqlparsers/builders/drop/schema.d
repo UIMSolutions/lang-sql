@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SchemaBuilder : ISqlBuilder {
 
-  string build(array$parsed) {
+  string build(Json parsedSQL) {
     if (!$parsed["expr_type"].isExpressionType("SCHEMA")) {
       return "";
     }

@@ -9,7 +9,7 @@ import lang.sql;
  * all functions to achieve another handling. */
 class DeleteBuilder : ISqlBuilder {
 
-  auto build(array$parsed) {
+  auto build(Json parsedSQL) {
     string mySql = "DELETE ";
     $right =  - 1;
 

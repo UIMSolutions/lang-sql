@@ -30,7 +30,7 @@ class TempTableBuilder : ISqlBuilder {
     return myBuilder.build($parsed);
   }
 
-  string build(array$parsed, $index = 0) {
+  string build(Json parsedSQL, $index = 0) {
     if (!$parsed["expr_type"].isExpressionType("TEMPORARY_TABLE")) {
       return "";
     }

@@ -14,7 +14,7 @@ class AlterStatementBuilder : IBuilder {
     return myBuilder.build($parsed);
   }
 
-  auto build(array$parsed) {
+  auto build(Json parsedSQL) {
     auto myAlter = $parsed["ALTER"];
     string mySql = this.buildAlter(myAlterr);
 

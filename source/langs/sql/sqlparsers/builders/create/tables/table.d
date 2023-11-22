@@ -24,7 +24,7 @@ class CreateTableBuilder : ISqlBuilder {
     return myBuilder.build($parsed);
   }
 
-  string build(array$parsed) {
+  string build(Json parsedSQL) {
     string mySql = $parsed["name"];
     mySql ~= this.buildCreateTableDefinition($parsed);
     mySql ~= this.buildCreateTableOptions($parsed);

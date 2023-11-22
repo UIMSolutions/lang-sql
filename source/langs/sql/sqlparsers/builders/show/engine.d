@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling */
 class EngineBuilder : ISqlBuilder {
 
-  auto build(array$parsed) {
+  auto build(Json parsedSQL) {
     if ($parsed["expr_type"] !.isExpressionType(ENGINE) {
       return "";
     }

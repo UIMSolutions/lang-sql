@@ -6,7 +6,7 @@ module langs.sql.sqlparsers.builders.truncate;
  * all functions to achieve another handling. */
 class TruncateBuilder : ISqlBuilder {
 
-  string build(array$parsed) {
+  string build(Json parsedSQL) {
     string mySql = "TRUNCATE TABLE ";
     $right =  - 1;
 

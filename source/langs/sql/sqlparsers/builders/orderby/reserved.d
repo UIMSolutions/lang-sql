@@ -12,7 +12,7 @@ class OrderByReservedBuilder : ReservedBuilder {
     return myBuilder.build($parsed);
   }
 
-  auto build(array$parsed) {
+  auto build(Json parsedSQL) {
     string mySql = super.build($parsed);
     if (!mySql.isEmpty) {
       mySql ~= this.buildDirection($parsed);

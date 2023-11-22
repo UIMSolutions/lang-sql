@@ -20,7 +20,7 @@ class SelectBracketExpressionBuilder : ISqlBuilder {
     return myBuilder.build($parsed);
   }
 
-  string build(array$parsed) {
+  string build(Json parsedSQL) {
     if ($parsed["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
       return "";
     }
