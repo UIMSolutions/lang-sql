@@ -20,7 +20,7 @@ class IndexCommentBuilder : ISqlBuilder {
         return myBuilderr.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(COMMENT) {
             return "";
         }

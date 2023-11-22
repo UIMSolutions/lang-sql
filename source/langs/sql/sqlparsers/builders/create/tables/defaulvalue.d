@@ -11,7 +11,7 @@ import lang.sql;
  */
 class DefaultValueBuilder : ISqlBuilder {
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if (!$parsed["expr_type"].isExpressionType("DEF_VALUE") {
             return "";
         }

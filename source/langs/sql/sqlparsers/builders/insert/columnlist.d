@@ -15,7 +15,7 @@ class InsertColumnListBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
 
         string mySql = "";

@@ -34,7 +34,7 @@ class GroupByBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         string mySql = "";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;

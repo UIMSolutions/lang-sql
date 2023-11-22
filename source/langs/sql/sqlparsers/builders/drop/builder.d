@@ -45,7 +45,7 @@ class DropBuilder : ISqlBuilder {
 		return mySql;
 	}
 
-	auto build( auto[string] parsedSQL ) {
+	auto build( Json parsedSQL ) {
 		$drop = $parsed["DROP"];
 		string mySql  = this.buildSubTree( $drop );
 

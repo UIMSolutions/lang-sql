@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DataTypeBuilder : IBuilder {
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if (!$parsed["expr_type"].isExpressionType("DATA_TYPE")) {
             return "";
         }

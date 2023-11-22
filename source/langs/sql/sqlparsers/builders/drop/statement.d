@@ -14,7 +14,7 @@ class DropStatementBuilder : IBuilder {
 		return myBuilder.build( $parsed );
 	}
 
-	auto build( auto[string] parsedSQL ) {
+	auto build( Json parsedSQL ) {
 		return this.buildDROP( $parsed );
 	}
 }
