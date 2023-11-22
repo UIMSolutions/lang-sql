@@ -15,7 +15,7 @@ class UpdateBuilder : ISqlBuilder {
         return myBuilder.build($parsed, $idx);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         string mySql = "";
 
         foreach (myKey, myValue; $parsed) {

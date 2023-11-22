@@ -11,7 +11,7 @@ class IndexHintListBuilder : ISqlBuilder {
     }
 
     // TODO: the hint list should be enhanced to get base_expr fro position calculation
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!isset($parsed["hints"]) || $parsed["hints"] == false) {
             return "";
         }

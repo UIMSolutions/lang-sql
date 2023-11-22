@@ -27,7 +27,7 @@ class IndexLockBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(INDEX_LOCK) {
             return "";
         }

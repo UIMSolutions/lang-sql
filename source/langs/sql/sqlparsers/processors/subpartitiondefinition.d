@@ -30,7 +30,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
         auto $result = [];
         string previousCategory = "";
         string currentCategory = "";
-        auto $parsed = [];
+        auto[string] parsedSQL = [];
         auto myExpression = [];
         string baseExpression = "";
         auto $skip = 0;

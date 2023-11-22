@@ -26,7 +26,7 @@ class InsertStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         // TODO: are there more than one tables possible (like [INSERT][1])
         string mySql = this.buildINSERT($parsed["INSERT"]);
         if ($parsed.isSet("VALUES")) {

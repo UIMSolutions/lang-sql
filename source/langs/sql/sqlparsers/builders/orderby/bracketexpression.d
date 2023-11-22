@@ -12,7 +12,7 @@ class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         string mySql = super.build($parsed);
         if (!mySql.isEmpty) {
             mySql ~= this.buildDirection($parsed);

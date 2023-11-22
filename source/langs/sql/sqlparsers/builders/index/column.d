@@ -19,7 +19,7 @@ class IndexColumnBuilder : ISqlBuilder {
         return ($parsed.isEmpty ? "" : (" " ~ $parsed));
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(INDEX_COLUMN) {
             return "";
         }
