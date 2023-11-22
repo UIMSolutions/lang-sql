@@ -10,32 +10,32 @@ import lang.sql;
  * all functions to achieve another handling. */
 class SelectBuilder : ISqlBuilder {
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSql) {
+    protected auto buildFunction(Json parsedSql) {
         auto myBuilder = new FunctionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectExpression(parsedSql) {
+    protected auto buildSelectExpression(Json parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectBracketExpression(parsedSql) {
+    protected auto buildSelectBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColRef(parsedSql) {
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -46,7 +46,7 @@ class SelectBuilder : ISqlBuilder {
      * @param Json parsedSql The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
-    protected auto getDelimiter(parsedSql) {
+    protected auto getDelimiter(Json parsedSql) {
         return (!parsedSql.isSet("delim") || parsedSql["delim"] == false ? "" : (parsedSql["delim"]) ~ " ").strip;
     }
 

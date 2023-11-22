@@ -13,7 +13,7 @@ class SelectExpressionBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql, $delim);
   }
 
-  protected auto buildAlias(parsedSql) {
+  protected auto buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
   }

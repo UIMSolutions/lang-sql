@@ -7,7 +7,7 @@ module lang.sql.parsers.builders;
  *  */
 class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
 
-    protected auto buildDirection(parsedSql) {
+    protected auto buildDirection(Json parsedSql) {
         auto myBuilder = new DirectionBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -9,7 +9,7 @@ import lang.sql;
  * This class : the builder for positions of the GROUP-BY clause. 
  *  */
 class OrderByPositionBuilder : ISqlBuilder {
-    protected auto buildDirection(parsedSql) {
+    protected auto buildDirection(Json parsedSql) {
         auto myBuilder = new DirectionBuilder();
         return myBuilder.build(parsedSql);
     }

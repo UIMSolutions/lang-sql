@@ -6,17 +6,17 @@ module langs.sql.sqlparsers.builders.update.updatestatement;
  * all functions to achieve another handling. */
 class UpdateStatementBuilder : ISqlBuilder {
 
-    protected auto buildWHERE(parsedSql) {
+    protected auto buildWHERE(Json parsedSql) {
         auto myBuilder = new WhereBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSET(parsedSql) {
+    protected auto buildSET(Json parsedSql) {
         auto myBuilder = new SetBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildUPDATE(parsedSql) {
+    protected auto buildUPDATE(Json parsedSql) {
         auto myBuilder = new UpdateBuilder();
         return myBuilder.build(parsedSql);
     }
