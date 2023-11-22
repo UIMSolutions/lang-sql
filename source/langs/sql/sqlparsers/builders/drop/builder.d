@@ -4,29 +4,10 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the CREATE statement 
- * This class : the builder for the [DROP] part. You can overwrite
- * all functions to achieve another handling. */
+// This class : the builder for the [DROP] part. */
 class DropBuilder : ISqlBuilder {
-  protected auto buildSubTree(Json parsedSql) {
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-      auto oldLengthOfSql = mySql.length;
-      mySql ~= this.buildReserved(myValue);
-      mySql ~= this.buildExpression(myValue);
 
-      if (oldLengthOfSql == mySql.length) {
-        throw new UnableToCreateSQLException("DROP subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
-
-    return mySql;
-  }
-
-  auto build(Json parsedSql) {
+  string build(Json parsedSql) {
     auto dropSql = parsedSql["DROP"];
     string mySql = this.buildSubTree(dropSql);
 
@@ -35,6 +16,27 @@ class DropBuilder : ISqlBuilder {
     }
 
     return "DROP " ~ substr(mySql, 0, -1);
+  }
+
+  protected string buildSubTree(Json parsedSql) {
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.ley, kv.value))
+      .join;
+
+    return mySql;
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildReserved(myValue);
+    result ~= this.buildExpression(myValue);
+
+    if (result.isEmpty) {
+      throw new UnableToCreateSQLException("DROP subtree", myKey, myValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected auto buildDropIndex(Json parsedSql) {

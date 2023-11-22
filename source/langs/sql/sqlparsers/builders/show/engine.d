@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling */
 class EngineBuilder : ISqlBuilder {
 
-  auto build(Json parsedSql) {
+  string build(Json parsedSql) {
     if (parsedSql["expr_type"] !.isExpressionType(ENGINE) {
       return "";
     }

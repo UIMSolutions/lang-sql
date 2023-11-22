@@ -6,7 +6,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the GROUP-BY clause. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class GroupByBuilder : ISqlBuilder {
 
     protected auto buildColRef(parsedSql) {

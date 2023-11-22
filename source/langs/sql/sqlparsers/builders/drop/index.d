@@ -3,10 +3,10 @@ module langs.sql.sqlparsers.builders.drop.index;
 import lang.sql;
 
 @safe:
-/**
- * This class : the builder for the DROP INDEX statement. You can overwrite
- * all functions to achieve another handling. */
-class DropIndexBuilder : IBuilder {
+// This class : the builder for the DROP INDEX statement.
+class DDropIndexBuilder : IBuilder {
+  this() {
+  }
 
   string build(Json parsedSql) {
     if (!parsedSql.isSet("name")) {
@@ -23,4 +23,8 @@ class DropIndexBuilder : IBuilder {
     auto myBuilder = new DropIndexTableBuilder();
     return myBuilder.build(parsedSql);
   }
+}
+
+auto DropIndexBuilder() {
+  return new DDropIndexBuilder;
 }

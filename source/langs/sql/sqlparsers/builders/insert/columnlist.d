@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds column-list parts of INSERT statements.
  * This class : the builder for column-list parts of INSERT statements. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class InsertColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn(parsedSql) {

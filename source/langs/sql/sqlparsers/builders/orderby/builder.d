@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the ORDERBY clause. */
  * This class : the builder for the ORDER-BY clause. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class OrderByBuilder : ISqlBuilder {
 
     protected auto buildFunction(parsedSql) {

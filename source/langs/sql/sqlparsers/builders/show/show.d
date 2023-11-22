@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the SHOW statement. 
  * This class : the builder for the SHOW statement. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class ShowBuilder : ISqlBuilder {
 
     protected auto buildTable(parsedSql, $delim) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds an expression within a GROUP-BY clause.
  * This class : the builder for an alias within the GROUP-BY clause. 
- * You can overwrite all functions to achieve another handling.
+ * 
  *   */
 class GroupByExpressionBuilder : ISqlBuilder {
 

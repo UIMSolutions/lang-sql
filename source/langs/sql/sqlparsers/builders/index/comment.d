@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds index comment part of a CREATE INDEX statement. 
  * This class : the builder for the index comment of CREATE INDEX statement. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class IndexCommentBuilder : ISqlBuilder {
 
     protected auto buildReserved(parsedSql) {

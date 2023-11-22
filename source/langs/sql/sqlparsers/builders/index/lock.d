@@ -9,7 +9,7 @@ import lang.sql;
 /**
  * Builds index lock part of a CREATE INDEX statement.
  * This class : the builder for the index lock of CREATE INDEX statement. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class IndexLockBuilder : ISqlBuilder {
 
     protected auto buildReserved(parsedSql) {

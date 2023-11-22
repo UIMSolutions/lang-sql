@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the [INSERT] statement part.
  * This class : the builder for the [INSERT] statement parts. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class InsertBuilder : ISqlBuilder {
 
     protected auto buildTable(parsedSql) {
