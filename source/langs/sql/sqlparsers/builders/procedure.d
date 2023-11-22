@@ -11,7 +11,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ProcedureBuilder : ISqlBuilder {
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!$parsed["expr_type"].isExpressionType("PROCEDURE")) {
             return "";
         }

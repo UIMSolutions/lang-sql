@@ -66,7 +66,7 @@ class SubTreeBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed, $delim = " ") {
+    string build(auto[string] parsedSQL, $delim = " ") {
         if ($parsed["sub_tree"].isEmpty || $parsed["sub_tree"] == false) {
             return "";
         }

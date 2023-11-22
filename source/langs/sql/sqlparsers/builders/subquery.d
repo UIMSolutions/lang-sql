@@ -36,7 +36,7 @@ class SubQueryBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed, $index = 0) {
+    string build(auto[string] parsedSQL, $index = 0) {
         if ($parsed["expr_type"] !.isExpressionType(SUBQUERY) {
             return "";
         }

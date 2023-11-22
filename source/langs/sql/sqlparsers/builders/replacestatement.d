@@ -26,7 +26,7 @@ class ReplaceStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         // TODO: are there more than one tables possible (like [REPLACE][1])
         string mySql = this.buildREPLACE($parsed["REPLACE"]);
         mySql ~= $parsed.isSet("VALUES") ? " " ~ this.buildVALUES($parsed["VALUES"]) : "";

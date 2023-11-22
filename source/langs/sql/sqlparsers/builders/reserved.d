@@ -14,7 +14,7 @@ class ReservedBuilder : ISqlBuilder {
         return ("expr_type" in $parsed) && $parsed["expr_type"].isExpressionType("RESERVED");
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!this.isReserved($parsed)) {
             return "";
         }
