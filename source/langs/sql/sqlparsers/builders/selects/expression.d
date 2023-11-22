@@ -11,23 +11,23 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SelectExpressionBuilder : ISqlBuilder {
 
-  protected auto buildSubTree($parsed, $delim) {
+  protected auto buildSubTree(parsedSQL, $delim) {
     auto myBuilder = new SubTreeBuilder();
-    return myBuilder.build($parsed, $delim);
+    return myBuilder.build(parsedSQL, $delim);
   }
 
-  protected auto buildAlias($parsed) {
+  protected auto buildAlias(parsedSQL) {
     auto myBuilder = new AliasBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
   string build(Json parsedSQL) {
-    if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) {
+    if (parsedSQL["expr_type"] !.isExpressionType(EXPRESSION) {
       return "";
     }
 
-    string mySql = this.buildSubTree($parsed, " ");
-    mySql ~= this.buildAlias($parsed);
+    string mySql = this.buildSubTree(parsedSQL, " ");
+    mySql ~= this.buildAlias(parsedSQL);
     return mySql;
   }
 }

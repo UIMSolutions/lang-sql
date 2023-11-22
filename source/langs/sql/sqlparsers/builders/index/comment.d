@@ -10,22 +10,22 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class IndexCommentBuilder : ISqlBuilder {
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilderr.build($parsed);
+        return myBuilderr.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(COMMENT) {
+        if (parsedSQL["expr_type"] !.isExpressionType(COMMENT) {
             return "";
         }
         string mySql = "";
-        foreach ($parsed["sub_tree"] as myKey, myValue) {
+        foreach (parsedSQL["sub_tree"] as myKey, myValue) {
             size_t oldSqlLength = mySql.length;
 
             mySql ~= this.buildReserved(myValue);

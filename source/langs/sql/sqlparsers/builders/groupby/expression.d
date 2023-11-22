@@ -11,21 +11,21 @@ import lang.sql;
  *   */
 class GroupByExpressionBuilder : ISqlBuilder {
 
-	protected auto buildColRef($parsed) {
+	protected auto buildColRef(parsedSQL) {
 		auto myBuilder = new ColumnReferenceBuilder();
-		return myBuilder.build($parsed);
+		return myBuilder.build(parsedSQL);
 	}
 	
-	protected auto buildReserved($parsed) {
+	protected auto buildReserved(parsedSQL) {
 		auto myBuilder = new ReservedBuilder();
-		return myBuilderr.build($parsed);
+		return myBuilderr.build(parsedSQL);
 	}
 	
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
+        if (parsedSQL["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
         
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildReserved(myValue);

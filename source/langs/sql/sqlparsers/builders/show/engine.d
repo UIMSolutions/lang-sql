@@ -11,10 +11,10 @@ import lang.sql;
 class EngineBuilder : ISqlBuilder {
 
   auto build(Json parsedSQL) {
-    if ($parsed["expr_type"] !.isExpressionType(ENGINE) {
+    if (parsedSQL["expr_type"] !.isExpressionType(ENGINE) {
       return "";
     }
 
-    return $parsed["base_expr"];
+    return parsedSQL["base_expr"];
   }
 }

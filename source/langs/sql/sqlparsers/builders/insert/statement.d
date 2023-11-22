@@ -6,37 +6,37 @@ module langs.sql.sqlparsers.builders.insert.InsertStatementBuilder;
  * all functions to achieve another handling. */
 class InsertStatementBuilder : ISqlBuilder {
 
-    protected auto buildVALUES($parsed) {
+    protected auto buildVALUES(parsedSQL) {
         auto myBuilder = new ValuesBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildINSERT($parsed) {
+    protected auto buildINSERT(parsedSQL) {
         auto myBuilder = new InsertBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSELECT($parsed) {
+    protected auto buildSELECT(parsedSQL) {
         auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildSET($parsed) {
+    protected auto buildSET(parsedSQL) {
         auto myBuilder = new SetBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
         // TODO: are there more than one tables possible (like [INSERT][1])
-        string mySql = this.buildINSERT($parsed["INSERT"]);
-        if ($parsed.isSet("VALUES")) {
-            mySql ~= " " ~ this.buildVALUES($parsed["VALUES"]);
+        string mySql = this.buildINSERT(parsedSQL["INSERT"]);
+        if (parsedSQL.isSet("VALUES")) {
+            mySql ~= " " ~ this.buildVALUES(parsedSQL["VALUES"]);
         }
-        if ($parsed.isSet("SET")) {
-            mySql ~= " " ~ this.buildSET($parsed["SET"]);
+        if (parsedSQL.isSet("SET")) {
+            mySql ~= " " ~ this.buildSET(parsedSQL["SET"]);
         }
-        if ($parsed.isSet("SELECT")) {
-            mySql ~= " " ~ this.buildSELECT($parsed);
+        if (parsedSQL.isSet("SELECT")) {
+            mySql ~= " " ~ this.buildSELECT(parsedSQL);
         }
         return mySql;
     }

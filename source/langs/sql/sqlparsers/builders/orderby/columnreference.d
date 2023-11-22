@@ -7,15 +7,15 @@ module lang.sql.parsers.builders;
  * You can overwrite all functions to achieve another handling. */
 class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
 
-    protected auto buildDirection($parsed) {
+    protected auto buildDirection(parsedSQL) {
         auto myBuilder = new DirectionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        $sql = super.build($parsed);
+        $sql = super.build(parsedSQL);
         if ($sql != "") {
-            $sql ~= this.buildDirection($parsed);
+            $sql ~= this.buildDirection(parsedSQL);
         }
         return $sql;
     }

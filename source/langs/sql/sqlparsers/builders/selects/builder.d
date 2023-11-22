@@ -10,49 +10,49 @@ import lang.sql;
  * all functions to achieve another handling. */
 class SelectBuilder : ISqlBuilder {
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildFunction($parsed) {
+    protected auto buildFunction(parsedSQL) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSelectExpression($parsed) {
+    protected auto buildSelectExpression(parsedSQL) {
         auto myBuilder = new SelectExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSelectBracketExpression($parsed) {
+    protected auto buildSelectBracketExpression(parsedSQL) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildColRef($parsed) {
+    protected auto buildColRef(parsedSQL) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     /**
      * Returns a well-formatted delimiter string. If you don"t need nice SQL,
-     * you could simply return $parsed["delim"].
+     * you could simply return parsedSQL["delim"].
      * 
      * @param Json parsedSQL The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
-    protected auto getDelimiter($parsed) {
-        return (!$parsed.isSet("delim") || $parsed["delim"] == false ? "" : ($parsed["delim"]) ~ " ").strip;
+    protected auto getDelimiter(parsedSQL) {
+        return (!parsedSQL.isSet("delim") || parsedSQL["delim"] == false ? "" : (parsedSQL["delim"]) ~ " ").strip;
     }
 
     string build(Json parsedSQL) {
         string mySql = "";
-        foreach (myKey, myValue; $parsed) {
+        foreach (myKey, myValue; parsedSQL) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildSelectBracketExpression(myValue);

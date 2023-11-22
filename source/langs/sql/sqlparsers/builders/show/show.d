@@ -10,43 +10,43 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ShowBuilder : ISqlBuilder {
 
-    protected auto buildTable($parsed, $delim) {
+    protected auto buildTable(parsedSQL, $delim) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build($parsed, $delim);
+        return myBuilder.build(parsedSQL, $delim);
     }
 
-    protected auto buildFunction($parsed) {
+    protected auto buildFunction(parsedSQL) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildProcedure($parsed) {
+    protected auto buildProcedure(parsedSQL) {
         auto myBuilder = new ProcedureBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildDatabase($parsed) {
+    protected auto buildDatabase(parsedSQL) {
         auto myBuilder = new DatabaseBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildEngine($parsed) {
+    protected auto buildEngine(parsedSQL) {
         auto myBuilder = new EngineBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        auto $show = $parsed["SHOW"];
+        auto $show = parsedSQL["SHOW"];
         
         string mySql = "";
         foreach (myKey, myValue; $show) {

@@ -10,16 +10,16 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class InsertColumnListBuilder : ISqlBuilder {
 
-    protected auto buildColumn($parsed) {
+    protected auto buildColumn(parsedSQL) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
+        if (parsedSQL["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColumn(myValue);
 

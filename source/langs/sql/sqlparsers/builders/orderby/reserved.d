@@ -7,15 +7,15 @@ module lang.sql.parsers.builders;
  * You can overwrite all functions to achieve another handling. */
 class OrderByReservedBuilder : ReservedBuilder {
 
-  protected auto buildDirection($parsed) {
+  protected auto buildDirection(parsedSQL) {
     auto myBuilder = new DirectionBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
   auto build(Json parsedSQL) {
-    string mySql = super.build($parsed);
+    string mySql = super.build(parsedSQL);
     if (!mySql.isEmpty) {
-      mySql ~= this.buildDirection($parsed);
+      mySql ~= this.buildDirection(parsedSQL);
     }
     return mySql;
   }

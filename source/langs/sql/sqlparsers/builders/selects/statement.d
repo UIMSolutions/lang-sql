@@ -6,79 +6,79 @@ module langs.sql.sqlparsers.builders.selects.statement;
  * all functions to achieve another handling. */
 class SelectStatementBuilder : ISqlBuilder {
 
-    protected auto buildSELECT($parsed) {
+    protected auto buildSELECT(parsedSQL) {
         auto myBuilder = new SelectBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildFROM($parsed) {
+    protected auto buildFROM(parsedSQL) {
         auto myBuilder = new FromBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildWHERE($parsed) {
+    protected auto buildWHERE(parsedSQL) {
         auto myBuilder = new WhereBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildGROUP($parsed) {
+    protected auto buildGROUP(parsedSQL) {
         auto myBuilder = new GroupByBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildHAVING($parsed) {
+    protected auto buildHAVING(parsedSQL) {
         auto myBuilder = new HavingBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildORDER($parsed) {
+    protected auto buildORDER(parsedSQL) {
         auto myBuilder = new OrderByBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildLIMIT($parsed) {
+    protected auto buildLIMIT(parsedSQL) {
         auto myBuilder = new LimitBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildUNION($parsed) {
+    protected auto buildUNION(parsedSQL) {
     	auto myBuilder = new UnionStatementBuilder();
-    	return myBuilder.build($parsed);
+    	return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildUNIONALL($parsed) {
+    protected auto buildUNIONALL(parsedSQL) {
     	auto myBuilder = new UnionAllStatementBuilder();
-    	return myBuilder.build($parsed);
+    	return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
         string mySql = "";
-        if ($parsed.isSet("SELECT")) {
-            mySql ~= this.buildSELECT($parsed["SELECT"]);
+        if (parsedSQL.isSet("SELECT")) {
+            mySql ~= this.buildSELECT(parsedSQL["SELECT"]);
         }
-        if ($parsed.isSet("FROM")) {
-            mySql ~= " " ~ this.buildFROM($parsed["FROM"]);
+        if (parsedSQL.isSet("FROM")) {
+            mySql ~= " " ~ this.buildFROM(parsedSQL["FROM"]);
         }
-        if ($parsed.isSet("WHERE")) {
-            mySql ~= " " ~ this.buildWHERE($parsed["WHERE"]);
+        if (parsedSQL.isSet("WHERE")) {
+            mySql ~= " " ~ this.buildWHERE(parsedSQL["WHERE"]);
         }
-        if ($parsed.isSet("GROUP")) {
-            mySql ~= " " ~ this.buildGROUP($parsed["GROUP"]);
+        if (parsedSQL.isSet("GROUP")) {
+            mySql ~= " " ~ this.buildGROUP(parsedSQL["GROUP"]);
         }
-        if ($parsed.isSet("HAVING")) {
-            mySql ~= " " ~ this.buildHAVING($parsed["HAVING"]);
+        if (parsedSQL.isSet("HAVING")) {
+            mySql ~= " " ~ this.buildHAVING(parsedSQL["HAVING"]);
         }
-        if ($parsed.isSet("ORDER")) {
-            mySql ~= " " ~ this.buildORDER($parsed["ORDER"]);
+        if (parsedSQL.isSet("ORDER")) {
+            mySql ~= " " ~ this.buildORDER(parsedSQL["ORDER"]);
         }
-        if ($parsed.isSet("LIMIT")) {
-            mySql ~= " " ~ this.buildLIMIT($parsed["LIMIT"]);
+        if (parsedSQL.isSet("LIMIT")) {
+            mySql ~= " " ~ this.buildLIMIT(parsedSQL["LIMIT"]);
         }       
-        if ($parsed.isSet("UNION")) {
-            mySql ~= " " ~ this.buildUNION($parsed);
+        if (parsedSQL.isSet("UNION")) {
+            mySql ~= " " ~ this.buildUNION(parsedSQL);
         }
-        if ($parsed.isSet("UNION ALL")) {
-        	mySql ~= " " ~ this.buildUNIONALL($parsed);
+        if (parsedSQL.isSet("UNION ALL")) {
+        	mySql ~= " " ~ this.buildUNIONALL(parsedSQL);
         }
         return mySql;
     }
