@@ -11,7 +11,7 @@ import lang.sql;
 class SchemaBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!parsedSql["expr_type"].isExpressionType("SCHEMA")) {
+    if (!parsedSql.isExpressionType("SCHEMA")) {
       return "";
     }
 

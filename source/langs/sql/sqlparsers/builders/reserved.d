@@ -11,7 +11,7 @@ import lang.sql;
 class ReservedBuilder : ISqlBuilder {
 
     auto isReserved(parsedSql) {
-        return ("expr_type" in parsedSql) && parsedSql["expr_type"].isExpressionType("RESERVED");
+        return ("expr_type" in parsedSql) && parsedSql.isExpressionType("RESERVED");
     }
 
     string build(Json parsedSql) {

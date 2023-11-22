@@ -11,7 +11,7 @@ class DropBuilder : ISqlBuilder {
     auto dropSql = parsedSql["DROP"];
     string mySql = this.buildSubTree(dropSql);
 
-    if (dropSql["expr_type"].isExpressionType("INDEX")) {
+    if (dropSql.isExpressionType("INDEX")) {
       mySql ~= "" ~ this.buildDropIndex(parsedSql["INDEX"]) ~ " ";
     }
 

@@ -32,7 +32,7 @@ class UniqueIndexBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("UNIQUE_IDX") {
+        if (!parsedSql.isExpressionType("UNIQUE_IDX") {
             return "";
         }
         

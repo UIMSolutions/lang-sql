@@ -12,7 +12,7 @@ class ColumnReferenceBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("COLREF") {
+        if (!parsedSql.isExpressionType("COLREF") {
             return "";
         }
         

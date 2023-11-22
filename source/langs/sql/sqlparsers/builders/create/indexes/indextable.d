@@ -19,7 +19,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
             return "";
         }
         $table = parsedSql["on"];
-        if (!$table["expr_type"].isExpressionType("TABLE") {
+        if (!$table.isExpressionType("TABLE") {
             return "";
         }
         return "ON " ~ $table["name"] ~ " " ~ this.buildColumnList($table["sub_tree"]);

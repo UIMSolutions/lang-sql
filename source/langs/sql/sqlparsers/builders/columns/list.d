@@ -21,7 +21,7 @@ class ColumnListBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql, $delim = ", ") {
-        if (!parsedSql["expr_type"].isExpressionType("COLUMN_LIST")) {
+        if (!parsedSql.isExpressionType("COLUMN_LIST")) {
             return "";
         }
 

@@ -31,28 +31,28 @@ class ColumnTypeBuilder : ISqlBuilder {
     }
 
     protected auto buildCharacterSet(parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("CHARSET")) {
+        if (!parsedSql.isExpressionType("CHARSET")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
     protected auto buildCollation(parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("COLLATE")) {
+        if (!parsedSql.isExpressionType("COLLATE")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
     protected auto buildComment(parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("COMMENT")) {
+        if (!parsedSql.isExpressionType("COMMENT")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
+        if (!parsedSql.isExpressionType("COLUMN_TYPE")) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {

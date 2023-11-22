@@ -19,11 +19,11 @@ class CreateBuilder : ISqlBuilder {
     auto myCreate = parsedSql["CREATE"];
     string mySql = this.buildSubTree(myCreate);
 
-    if (myCreate["expr_type"].isExpressionType("TABLE")
-      || myCreate["expr_type"].isExpressionType("TEMPORARY_TABLE")) {
+    if (myCreate.isExpressionType("TABLE")
+      || myCreate.isExpressionType("TEMPORARY_TABLE")) {
       mySql ~= " " ~ this.buildCreateTable(parsedSql["TABLE"]);
     }
-    if (myCreate["expr_type"].isExpressionType("INDEX")) {
+    if (myCreate.isExpressionType("INDEX")) {
       mySql ~= " " ~ this.buildCreateIndex(parsedSql["INDEX"]);
     }
 

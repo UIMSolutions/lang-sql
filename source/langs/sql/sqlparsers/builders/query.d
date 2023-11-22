@@ -11,7 +11,7 @@ import lang.sql;
 class QueryBuilder : ISqlBuilder {
 
   string build(Json parsedSql, anIndex = 0) {
-    if (!parsedSql["expr_type"].isExpressionType("QUERY")) {
+    if (!parsedSql.isExpressionType("QUERY")) {
       return "";
     }
 

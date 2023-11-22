@@ -11,7 +11,7 @@ import lang.sql;
 class UserVariableBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!parsedSql["expr_type"].isExpressionType("USER_VARIABLE")) {
+    if (!parsedSql.isExpressionType("USER_VARIABLE")) {
       return "";
     }
 

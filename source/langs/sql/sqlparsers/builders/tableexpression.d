@@ -36,7 +36,7 @@ class TableExpressionBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql, $index = 0) {
-        if (!parsedSql["expr_type"].isExpressionType("TABLE_EXPRESSION")) {
+        if (!parsedSql.isExpressionType("TABLE_EXPRESSION")) {
             return "";
         }
         

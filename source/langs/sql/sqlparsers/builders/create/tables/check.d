@@ -21,7 +21,7 @@ class CheckBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("CHECK")) {
+        if (!parsedSql.isExpressionType("CHECK")) {
             return "";
         }
 

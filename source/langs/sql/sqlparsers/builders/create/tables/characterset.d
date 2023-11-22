@@ -26,7 +26,7 @@ class CharacterSetBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql["expr_type"].isExpressionType("CHARSET")) {
+        if (!parsedSql.isExpressionType("CHARSET")) {
             return "";
         }
         

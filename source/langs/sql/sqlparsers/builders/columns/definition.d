@@ -21,7 +21,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
 
    string build(Json parsedSql) {
         // In Check
-        if (!parsedSql["expr_type"].isExpressionType("COLDEF")) {
+        if (!parsedSql.isExpressionType("COLDEF")) {
             return "";
         }
 
