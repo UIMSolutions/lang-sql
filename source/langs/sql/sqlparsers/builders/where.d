@@ -61,7 +61,7 @@ class WhereBuilder : ISqlBuilder {
       return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         mySql = "WHERE ";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;

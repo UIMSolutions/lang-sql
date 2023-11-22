@@ -19,7 +19,7 @@ class ColumnDefinitionBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-   string build(array $parsed) {
+   string build(auto[string] parsedSQL) {
         // In Check
         if (!$parsed["expr_type"].isExpressionType("COLDEF")) {
             return "";

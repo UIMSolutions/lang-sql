@@ -20,7 +20,7 @@ class ColumnListBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
     
-    string build(array $parsed, $delim = ", ") {
+    string build(auto[string] parsedSQL, $delim = ", ") {
         if (!$parsed["expr_type"].isExpressionType("COLUMN_LIST")) {
             return "";
         }

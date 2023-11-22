@@ -14,7 +14,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if ($parsed.isSet("on") || $parsed["on"] == false) {
             return "";
         }

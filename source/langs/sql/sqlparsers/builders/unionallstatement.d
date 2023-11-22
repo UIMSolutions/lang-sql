@@ -12,7 +12,7 @@ class UnionAllStatementBuilder : ISqlBuilder {
 
 
 
-	string build(array $parsed)
+	string build(auto[string] parsedSQL)
 	{
 		string mySql = "";
 		$select_builder = new SelectStatementBuilder();

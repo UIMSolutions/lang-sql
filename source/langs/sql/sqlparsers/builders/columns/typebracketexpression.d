@@ -15,7 +15,7 @@ class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
         return myBuilder.build($parsed, $delim);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (!$parsed["expr_type"].isExpressionType("BRACKET_EXPRESSION")) {
             return "";
         }
