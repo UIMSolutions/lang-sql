@@ -51,7 +51,7 @@ class SelectStatementBuilder : ISqlBuilder {
     	return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         string mySql = "";
         if ($parsed.isSet("SELECT")) {
             mySql ~= this.buildSELECT($parsed["SELECT"]);

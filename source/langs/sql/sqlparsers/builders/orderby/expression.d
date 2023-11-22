@@ -12,7 +12,7 @@ class OrderByExpressionBuilder : WhereExpressionBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         string mySql = super.build($parsed);
         if (!mySql.isEmpty) {
             mySql ~= this.buildDirection($parsed);

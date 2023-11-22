@@ -13,7 +13,7 @@ class OrderByFunctionBuilder : FunctionBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         $sql = super.build($parsed);
         if ($sql != "") {
             $sql ~= this.buildDirection($parsed);
