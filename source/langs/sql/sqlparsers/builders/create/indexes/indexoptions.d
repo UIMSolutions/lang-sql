@@ -7,7 +7,7 @@ import lang.sql;
  * Builds index options part of a CREATE INDEX statement.
  * This class : the builder for the index options of a CREATE INDEX
  * statement. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
     protected auto buildIndexParser(parsedSql) {

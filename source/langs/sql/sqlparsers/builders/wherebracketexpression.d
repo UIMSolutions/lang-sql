@@ -8,7 +8,7 @@ import lang.sql;
 /**
  * Builds bracket expressions within the WHERE part.
  * This class : the builder for bracket expressions within the WHERE part.
- * You can overwrite all functions to achieve another handling.
+ * 
  */
 class WhereBracketExpressionBuilder : ISqlBuilder {
 

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the statements for [sub_tree] fields.
  * This class : the builder for [sub_tree] fields.
- * You can overwrite all functions to achieve another handling.
+ * 
  */
 class SubTreeBuilder : ISqlBuilder {
 

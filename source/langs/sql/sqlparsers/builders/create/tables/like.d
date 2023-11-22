@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the LIKE statement part of a CREATE TABLE statement.
  * This class : the builder for the LIKE statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class LikeBuilder : ISqlBuilder {
 
     protected auto buildTable(parsedSql, $index) {

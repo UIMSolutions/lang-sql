@@ -9,7 +9,7 @@ import lang.sql;
  * Builds the table expressions within the create definitions of CREATE TABLE. */
  * This class : the builder for the table expressions 
  * within the create definitions of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class TableBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildColDef(parsedSql) {

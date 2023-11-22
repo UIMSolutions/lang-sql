@@ -6,7 +6,7 @@ import lang.sql;
 /**
  * Builds the column definition statement part of CREATE TABLE. 
  * This class : the builder for the columndefinition statement part 
- * of CREATE TABLE. You can overwrite all functions to achieve another handling. */
+ * of CREATE TABLE.  */
 class ColumnDefinitionBuilder : ISqlBuilder {
 
     protected auto buildColRef(parsedSql) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds an user variable. 
  * This class : the builder for an user variable. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class UserVariableBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

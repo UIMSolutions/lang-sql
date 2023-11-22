@@ -6,7 +6,7 @@ import lang.sql;
 /**
  * Builds the create definitions of CREATE TABLE.
  * This class : the builder for the create definitions of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class CreateTableDefinitionBuilder : ISqlBuilder {
 
     protected auto buildTableBracketExpression(parsedSql) {

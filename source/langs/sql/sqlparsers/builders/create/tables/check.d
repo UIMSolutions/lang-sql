@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the CHECK statement part of CREATE TABLE. 
  * This class : the builder for the CHECK statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class CheckBuilder : ISqlBuilder {
 
     protected auto buildSelectBracketExpression(parsedSql) {

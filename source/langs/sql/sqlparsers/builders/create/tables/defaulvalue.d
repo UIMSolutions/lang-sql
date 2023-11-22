@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the default value statement part of a column of a CREATE TABLE. 
  * This class : the builder for the default value statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling.
+ * 
  */
 class DefaultValueBuilder : ISqlBuilder {
 

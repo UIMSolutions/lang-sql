@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the constraint statement part of CREATE TABLE.
  * This class : the builder for the constraint statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class ConstraintBuilder : ISqlBuilder {
 
     protected auto buildConstant(parsedSql) {

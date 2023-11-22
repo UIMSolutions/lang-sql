@@ -9,7 +9,7 @@ import lang.sql;
  * Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE. */
  * This class : the builder for the FOREIGN KEY REFERENCES statement
  * part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class ForeignRefBuilder : ISqlBuilder {
 
     protected auto buildTable(parsedSql) {

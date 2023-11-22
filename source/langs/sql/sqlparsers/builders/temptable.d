@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the temporary table name/join options. 
  * This class : the builder for the temporary table name and join options. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class TempTableBuilder : ISqlBuilder {
 
   protected auto buildAlias(parsedSql) {

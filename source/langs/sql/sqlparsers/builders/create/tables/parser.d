@@ -8,7 +8,7 @@ import lang.sql;
  * Builds index parser part of a PRIMARY KEY statement part of CREATE TABLE.
  * This class : the builder for the index parser of a PRIMARY KEY
  * statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class IndexParserBuilder : ISqlBuilder {
 
     protected auto buildReserved(parsedSql) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the CHARACTER SET part of a CREATE TABLE statement. */
  * This class : the builder for the CHARACTER SET statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class CharacterSetBuilder : ISqlBuilder {
 
     protected auto buildConstant(parsedSql) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the table-options statement part of CREATE TABLE.
  * This class : the builder for the table-options statement part of CREATE TABLE. 
- * You can overwrite all functions to achieve another handling. */
+ *  */
 class CreateTableOptionsBuilder : IBuilder {
 
     protected auto buildExpression(parsedSql) {
