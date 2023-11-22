@@ -56,7 +56,7 @@ class FunctionBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if (($parsed["expr_type"] !.isExpressionType(AGGREGATE_FUNCTION)
             && ($parsed["expr_type"] !.isExpressionType(SIMPLE_FUNCTION)
             && ($parsed["expr_type"] !.isExpressionType(CUSTOM_FUNCTION)) {

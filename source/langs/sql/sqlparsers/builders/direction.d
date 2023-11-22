@@ -10,7 +10,7 @@ import lang.sql;
  * */
 class DirectionBuilder : IBuilder {
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if ("direction" !in $parsed["direction"] || $parsed["direction"] == false) {
             return "";
         }

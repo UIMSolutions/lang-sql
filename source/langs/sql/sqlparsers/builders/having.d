@@ -26,7 +26,7 @@ class HavingBuilder : WhereBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         string mySql = "HAVING ";
         foreach (myKey, myValue; $parsed) {
             size_t oldSqlLength = mySql.length;

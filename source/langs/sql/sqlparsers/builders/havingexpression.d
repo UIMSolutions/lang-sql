@@ -21,7 +21,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
         return myBuilderr.build($parsed);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) {
             return "";
         }

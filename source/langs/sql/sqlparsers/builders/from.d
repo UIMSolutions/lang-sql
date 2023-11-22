@@ -26,7 +26,7 @@ class FromBuilder : ISqlBuilder {
         return myBuilder.build($parsed, myKey);
     }
 
-    string build(array $parsed) {
+    string build(auto[string] parsedSQL) {
         auto string mySql = "";
         if (array_key_exists("UNION ALL", $parsed) || array_key_exists("UNION", $parsed)) {
             foreach ($union_type : $outer_v; $parsed) {
