@@ -11,52 +11,52 @@ import lang.sql;
  */
 class WhereBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSql) {
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildOperator(parsedSql) {
+    protected auto buildOperator(Json parsedSql) {
         auto myBuilder = new OperatorBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSql) {
+    protected auto buildFunction(Json parsedSql) {
         auto myBuilder = new FunctionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSubQuery(parsedSql) {
+    protected auto buildSubQuery(Json parsedSql) {
         auto myBuilder = new SubQueryBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildInList(parsedSql) {
+    protected auto buildInList(Json parsedSql) {
         auto myBuilder = new InListBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildWhereExpression(parsedSql) {
+    protected auto buildWhereExpression(Json parsedSql) {
         auto myBuilder = new WhereExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildWhereBracketExpression(parsedSql) {
+    protected auto buildWhereBracketExpression(Json parsedSql) {
         auto myBuilder = new WhereBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildUserVariable(parsedSql) {
+    protected auto buildUserVariable(Json parsedSql) {
         auto myBuilder = new UserVariableBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
       auto myBuilder = new ReservedBuilder();
       return myBuilder.build(parsedSql);
     }

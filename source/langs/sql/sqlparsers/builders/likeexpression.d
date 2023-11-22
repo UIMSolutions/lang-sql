@@ -17,7 +17,7 @@ class LikeExpressionBuilder : ISqlBuilder {
         return myBuilder.build(parsedSql, $index);
     }
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

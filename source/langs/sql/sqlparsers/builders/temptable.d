@@ -10,22 +10,22 @@ import lang.sql;
  *  */
 class TempTableBuilder : ISqlBuilder {
 
-  protected auto buildAlias(parsedSql) {
+  protected auto buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildJoin(parsedSql) {
+  protected auto buildJoin(Json parsedSql) {
     auto myBuilder = new JoinBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildRefType(parsedSql) {
+  protected auto buildRefType(Json parsedSql) {
     auto myBuilder = new RefTypeBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildRefClause(parsedSql) {
+  protected auto buildRefClause(Json parsedSql) {
     auto myBuilder = new RefClauseBuilder();
     return myBuilder.build(parsedSql);
   }

@@ -11,42 +11,42 @@ import lang.sql;
  */
 class RefClauseBuilder : ISqlBuilder {
 
-    protected auto buildInList(parsedSql) {
+    protected auto buildInList(Json parsedSql) {
         auto myBuilder = new InListBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColRef(parsedSql) {
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildOperator(parsedSql) {
+    protected auto buildOperator(Json parsedSql) {
         auto myBuilder = new OperatorBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSql) {
+    protected auto buildFunction(Json parsedSql) {
         auto myBuilder = new FunctionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildBracketExpression(parsedSql) {
+    protected auto buildBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnList(parsedSql) {
+    protected auto buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSubQuery(parsedSql) {
+    protected auto buildSubQuery(Json parsedSql) {
         auto myBuilder = new SubQueryBuilder();
         return myBuilder.build(parsedSql);
     }

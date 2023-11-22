@@ -11,7 +11,7 @@ import lang.sql;
  *  */
 class RenameStatementBuilder : ISqlBuilder {
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -9,12 +9,12 @@ import lang.sql;
  * of CREATE TABLE.  */
 class ColumnDefinitionBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSql) {
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnType(parsedSql) {
+    protected auto buildColumnType(Json parsedSql) {
         auto myBuilder = new ColumnTypeBuilder();
         return myBuilder.build(parsedSql);
     }

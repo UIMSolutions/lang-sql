@@ -8,7 +8,7 @@ use SqlParser\utils\ExpressionType;
  *  */
 class ReplaceColumnListBuilder : ISqlBuilder {
 
-    protected auto buildColumn(parsedSql) {
+    protected auto buildColumn(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }

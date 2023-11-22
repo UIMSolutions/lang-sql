@@ -10,12 +10,12 @@ import lang.sql;
  *  */
 class ColumnListBuilder : ISqlBuilder {
 
-    protected auto buildIndexColumn(parsedSql) {
+    protected auto buildIndexColumn(Json parsedSql) {
         auto myBuilder = new IndexColumnBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnReference(parsedSql) {
+    protected auto buildColumnReference(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }

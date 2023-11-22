@@ -10,7 +10,7 @@ import lang.sql;
  *  */
 class ReservedBuilder : ISqlBuilder {
 
-    auto isReserved(parsedSql) {
+    auto isReserved(Json parsedSql) {
         return ("expr_type" in parsedSql) && parsedSql.isExpressionType("RESERVED");
     }
 

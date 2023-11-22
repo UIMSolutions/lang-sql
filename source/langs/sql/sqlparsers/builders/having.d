@@ -11,17 +11,17 @@ import lang.sql;
  */
 class HavingBuilder : WhereBuilder {
 
-    protected auto buildAliasReference(parsedSql) {
+    protected auto buildAliasReference(Json parsedSql) {
         auto myBuilder = new AliasReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 	
-	protected auto buildHavingExpression(parsedSql) {
+	protected auto buildHavingExpression(Json parsedSql) {
         auto myBuilder = new HavingExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildHavingBracketExpression(parsedSql) {
+    protected auto buildHavingBracketExpression(Json parsedSql) {
         auto myBuilder = new HavingBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }

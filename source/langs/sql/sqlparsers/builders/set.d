@@ -10,7 +10,7 @@ import lang.sql;
  *  */
 class SetBuilder : ISqlBuilder {
 
-    protected auto buildSetExpression(parsedSql) {
+    protected auto buildSetExpression(Json parsedSql) {
         auto myBuilder = new SetExpressionBuilder();
         return myBuilder.build(parsedSql);
     }

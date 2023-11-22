@@ -15,7 +15,7 @@ import lang.sql;
  *   */
 class JoinBuilder {
 
-    auto build(parsedSql) {
+    auto build(Json parsedSql) {
         if (parsedSql == "CROSS") {
             return ", ";
         }

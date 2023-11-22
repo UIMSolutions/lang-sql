@@ -6,12 +6,12 @@ import lang.sql;
 // Builds the parentheses around a statement. */
 class BracketStatementBuilder : ISqlBuilder {
 
-    protected auto buildSelectBracketExpression(parsedSql) {
+    protected auto buildSelectBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql, " ");
     }
 
-    protected auto buildSelectStatement(parsedSql) {
+    protected auto buildSelectStatement(Json parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
         return myBuilder.build(parsedSql);
     }

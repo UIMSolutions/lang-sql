@@ -10,7 +10,7 @@ import lang.sql;
  *  */
 class ValuesBuilder : ISqlBuilder {
 
-    protected auto buildRecord(parsedSql) {
+    protected auto buildRecord(Json parsedSql) {
         auto myBuilder = new RecordBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -30,7 +30,7 @@ class ValuesBuilder : ISqlBuilder {
         return "VALUES " . ySql.strip;
     }
 
-    protected auto getRecordDelimiter(parsedSql) {
+    protected auto getRecordDelimiter(Json parsedSql) {
         return empty(parsedSql["delim"]) ? " " : parsedSql["delim"] . " ";
     }
 }

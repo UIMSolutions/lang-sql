@@ -11,32 +11,32 @@ import lang.sql;
  *  */
 class SetExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSql) {
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildOperator(parsedSql) {
+    protected auto buildOperator(Json parsedSql) {
         auto myBuilder = new OperatorBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildFunction(parsedSql) {
+    protected auto buildFunction(Json parsedSql) {
         auto myBuilder = new FunctionBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildBracketExpression(parsedSql) {
+    protected auto buildBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildSign(parsedSql) {
+    protected auto buildSign(Json parsedSql) {
         auto myBuilder = new SignBuilder();
         return myBuilder.build(parsedSql);
     }

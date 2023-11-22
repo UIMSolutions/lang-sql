@@ -11,27 +11,27 @@ import lang.sql;
  *  */
 class SubQueryBuilder : ISqlBuilder {
 
-    protected auto buildRefClause(parsedSql) {
+    protected auto buildRefClause(Json parsedSql) {
         auto myBuilder = new RefClauseBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildRefType(parsedSql) {
+    protected auto buildRefType(Json parsedSql) {
         auto myBuilder = new RefTypeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildJoin(parsedSql) {
+    protected auto buildJoin(Json parsedSql) {
         auto myBuilder = new JoinBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildAlias(parsedSql) {
+    protected auto buildAlias(Json parsedSql) {
         auto myBuilder = new AliasBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectStatement(parsedSql) {
+    protected auto buildSelectStatement(Json parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
         return myBuilder.build(parsedSql);
     }

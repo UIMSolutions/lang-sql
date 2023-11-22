@@ -6,22 +6,22 @@ module langs.sql.sqlparsers.builders.replacestatement;
  * all functions to achieve another handling. */
 class ReplaceStatementBuilder : ISqlBuilder {
 
-    protected auto buildVALUES(parsedSql) {
+    protected auto buildVALUES(Json parsedSql) {
         auto myBuilder = new ValuesBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildREPLACE(parsedSql) {
+    protected auto buildREPLACE(Json parsedSql) {
         auto myBuilder = new ReplaceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSELECT(parsedSql) {
+    protected auto buildSELECT(Json parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildSET(parsedSql) {
+    protected auto buildSET(Json parsedSql) {
         auto myBuilder = new SetBuilder();
         return myBuilder.build(parsedSql);
     }

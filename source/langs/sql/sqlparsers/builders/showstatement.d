@@ -6,12 +6,12 @@ module langs.sql.sqlparsers.builders.showstatement;
  *  */
 class ShowStatementBuilder : ISqlBuilder {
 
-    protected auto buildWHERE(parsedSql) {
+    protected auto buildWHERE(Json parsedSql) {
         auto myBuilder = new WhereBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSHOW(parsedSql) {
+    protected auto buildSHOW(Json parsedSql) {
         auto myBuilder = new ShowBuilder();
         return myBuilder.build(parsedSql);
     }

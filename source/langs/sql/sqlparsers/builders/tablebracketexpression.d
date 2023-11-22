@@ -12,42 +12,42 @@ import lang.sql;
  *  */
 class TableBracketExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColDef(parsedSql) {
+    protected auto buildColDef(Json parsedSql) {
         auto myBuilder = new ColumnDefinitionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildPrimaryKey(parsedSql) {
+    protected auto buildPrimaryKey(Json parsedSql) {
         auto myBuilder = new PrimaryKeyBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildForeignKey(parsedSql) {
+    protected auto buildForeignKey(Json parsedSql) {
         auto myBuilder = new ForeignKeyBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildCheck(parsedSql) {
+    protected auto buildCheck(Json parsedSql) {
         auto myBuilder = new CheckBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildLikeExpression(parsedSql) {
+    protected auto buildLikeExpression(Json parsedSql) {
         auto myBuilder = new LikeExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildIndexKey(parsedSql) {
+    protected auto buildIndexKey(Json parsedSql) {
         auto myBuilder = new IndexKeyBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildUniqueIndex(parsedSql) {
+    protected auto buildUniqueIndex(Json parsedSql) {
         auto myBuilder = new UniqueIndexBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildFulltextIndex(parsedSql) {
+    protected auto buildFulltextIndex(Json parsedSql) {
         auto myBuilder = new FulltextIndexBuilder();
         return myBuilder.build(parsedSql);
     }
