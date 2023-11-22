@@ -5,10 +5,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds simple expressions within a SELECT statement.
- * This class : the builder for simple expressions within a SELECT statement. 
- *  */
+// Builds simple expressions within a SELECT statement.
 class SelectExpressionBuilder : ISqlBuilder {
 
   protected auto buildSubTree(parsedSql, $delim) {

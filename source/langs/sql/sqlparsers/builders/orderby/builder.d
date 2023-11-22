@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the ORDERBY clause. */
- * This class : the builder for the ORDER-BY clause. 
- *  */
+// Builds the ORDERBY clause. 
 class OrderByBuilder : ISqlBuilder {
 
     protected auto buildFunction(parsedSql) {
