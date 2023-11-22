@@ -9,25 +9,25 @@ import lang.sql;
  * of CREATE TABLE. You can overwrite all functions to achieve another handling. */
 class ColumnDefinitionBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSQL) {
+    protected auto buildColRef(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnType(parsedSQL) {
+    protected auto buildColumnType(parsedSql) {
         auto myBuilder = new ColumnTypeBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-   string build(Json parsedSQL) {
+   string build(Json parsedSql) {
         // In Check
-        if (!parsedSQL["expr_type"].isExpressionType("COLDEF")) {
+        if (!parsedSql["expr_type"].isExpressionType("COLDEF")) {
             return "";
         }
 
         // Main
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildColumnType(myValue);

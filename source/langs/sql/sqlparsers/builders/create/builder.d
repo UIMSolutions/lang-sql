@@ -11,38 +11,38 @@ class CreateBuilder : ISqlBuilder {
   this() {
   }
 
-  string build(Json parsedSQL) {
-    if (!parsedSQL.isObject) {
+  string build(Json parsedSql) {
+    if (!parsedSql.isObject) {
       return null;
     }
 
-    auto myCreate = parsedSQL["CREATE"];
+    auto myCreate = parsedSql["CREATE"];
     string mySql = this.buildSubTree(myCreate);
 
     if (myCreate["expr_type"].isExpressionType("TABLE")
       || myCreate["expr_type"].isExpressionType("TEMPORARY_TABLE")) {
-      mySql ~= " " ~ this.buildCreateTable(parsedSQL["TABLE"]);
+      mySql ~= " " ~ this.buildCreateTable(parsedSql["TABLE"]);
     }
     if (myCreate["expr_type"].isExpressionType("INDEX")) {
-      mySql ~= " " ~ this.buildCreateIndex(parsedSQL["INDEX"]);
+      mySql ~= " " ~ this.buildCreateIndex(parsedSql["INDEX"]);
     }
 
     // TODO: add more expr_types here (like VIEW), if available in parser output
     return "CREATE " ~ mySql;
   }
 
-  protected auto buildCreateTable(parsedSQL) {
+  protected auto buildCreateTable(parsedSql) {
     auto myBuilder = new CreateTableBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildCreateIndex(parsedSQL) {
+  protected auto buildCreateIndex(parsedSql) {
     auto myBuilder = new CreateIndexBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSubTree(parsedSQL) {
+  protected auto buildSubTree(parsedSql) {
     auto myBuilder = new SubTreeBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 }

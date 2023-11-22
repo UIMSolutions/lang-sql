@@ -11,59 +11,59 @@ import lang.sql;
  */
 class WhereBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSQL) {
+    protected auto buildColRef(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSQL) {
+    protected auto buildConstant(parsedSql) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildOperator(parsedSQL) {
+    protected auto buildOperator(parsedSql) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSQL) {
+    protected auto buildFunction(parsedSql) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSubQuery(parsedSQL) {
+    protected auto buildSubQuery(parsedSql) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildInList(parsedSQL) {
+    protected auto buildInList(parsedSql) {
         auto myBuilder = new InListBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildWhereExpression(parsedSQL) {
+    protected auto buildWhereExpression(parsedSql) {
         auto myBuilder = new WhereExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildWhereBracketExpression(parsedSQL) {
+    protected auto buildWhereBracketExpression(parsedSql) {
         auto myBuilder = new WhereBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildUserVariable(parsedSQL) {
+    protected auto buildUserVariable(parsedSql) {
         auto myBuilder = new UserVariableBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
       auto myBuilder = new ReservedBuilder();
-      return myBuilder.build(parsedSQL);
+      return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         mySql = "WHERE ";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
 
             mySql ~= this.buildOperator(myValue);

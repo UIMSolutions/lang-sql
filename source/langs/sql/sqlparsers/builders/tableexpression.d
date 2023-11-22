@@ -10,44 +10,44 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class TableExpressionBuilder : ISqlBuilder {
 
-    protected auto buildFROM(parsedSQL) {
+    protected auto buildFROM(parsedSql) {
         auto myBuilder = new FromBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildAlias(parsedSQL) {
+    protected auto buildAlias(parsedSql) {
         auto myBuilder = new AliasBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildJoin(parsedSQL) {
+    protected auto buildJoin(parsedSql) {
         auto myBuilder = new JoinBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildRefType(parsedSQL) {
+    protected auto buildRefType(parsedSql) {
         auto myBuilder = new RefTypeBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildRefClause(parsedSQL) {
+    protected auto buildRefClause(parsedSql) {
         auto myBuilder = new RefClauseBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL, $index = 0) {
-        if (!parsedSQL["expr_type"].isExpressionType("TABLE_EXPRESSION")) {
+    string build(Json parsedSql, $index = 0) {
+        if (!parsedSql["expr_type"].isExpressionType("TABLE_EXPRESSION")) {
             return "";
         }
         
-        string mySql = substr(this.buildFROM(parsedSQL["sub_tree"]), 5); // remove FROM keyword
+        string mySql = substr(this.buildFROM(parsedSql["sub_tree"]), 5); // remove FROM keyword
         mySql = "(" ~ mySql ~ ")";
-        mySql ~= this.buildAlias(parsedSQL);
+        mySql ~= this.buildAlias(parsedSql);
 
         if ($index != 0) {
-            mySql = this.buildJoin(parsedSQL["join_type"]) ~ mySql;
-            mySql ~= this.buildRefType(parsedSQL["ref_type"]);
-            mySql ~= parsedSQL["ref_clause"] == false ? "" : this.buildRefClause(parsedSQL["ref_clause"]);
+            mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
+            mySql ~= this.buildRefType(parsedSql["ref_type"]);
+            mySql ~= parsedSql["ref_clause"] == false ? "" : this.buildRefClause(parsedSql["ref_clause"]);
         }
         return mySql;
     }

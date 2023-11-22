@@ -10,10 +10,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SignBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(SIGN) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(SIGN) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

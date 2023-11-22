@@ -10,52 +10,52 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ColumnTypeBuilder : ISqlBuilder {
 
-    protected auto buildColumnTypeBracketExpression(parsedSQL) {
+    protected auto buildColumnTypeBracketExpression(parsedSql) {
         auto myBuilder = new ColumnTypeBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildDataType(parsedSQL) {
+    protected auto buildDataType(parsedSql) {
         auto myBuilder = new DataTypeBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildDefaultValue(parsedSQL) {
+    protected auto buildDefaultValue(parsedSql) {
         auto myBuilder = new DefaultValueBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCharacterSet(parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("CHARSET")) {
+    protected auto buildCharacterSet(parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("CHARSET")) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 
-    protected auto buildCollation(parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("COLLATE")) {
+    protected auto buildCollation(parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("COLLATE")) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 
-    protected auto buildComment(parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("COMMENT")) {
+    protected auto buildComment(parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("COMMENT")) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 
-    string build(Json parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
+    string build(Json parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildDataType(myValue);
             mySql ~= this.buildColumnTypeBracketExpression(myValue);

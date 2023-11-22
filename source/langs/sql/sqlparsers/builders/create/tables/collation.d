@@ -10,26 +10,26 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CollationBuilder : ISqlBuilder {
 
-    protected auto buildOperator(parsedSQL) {
+    protected auto buildOperator(parsedSql) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSQL) {
+    protected auto buildConstant(parsedSql) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(COLLATE) { return ""; }
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(COLLATE) { return ""; }
 
         string mySql = "";
-        foreach (key, myValue; parsedSQL["sub_tree"]) {
+        foreach (key, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildReserved(myValue);
             mySql ~= this.buildOperator(myValue);

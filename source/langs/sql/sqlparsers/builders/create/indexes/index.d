@@ -9,28 +9,28 @@ import lang.sql;
  * all functions to achieve another handling. */
 class CreateIndexBuilder : ISqlBuilder {
 
-    protected auto buildIndexType(parsedSQL) {
+    protected auto buildIndexType(parsedSql) {
         auto myBuilder = new CreateIndexTypeBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexTable(parsedSQL) {
+    protected auto buildIndexTable(parsedSql) {
         auto myBuilder = new CreateIndexTableBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexOptions(parsedSQL) {
+    protected auto buildIndexOptions(parsedSql) {
         auto myBuilder = new CreateIndexOptionsBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        string mySql = parsedSQL["name"];
-        mySql ~= " " ~ this.buildIndexType(parsedSQL);
+    string build(Json parsedSql) {
+        string mySql = parsedSql["name"];
+        mySql ~= " " ~ this.buildIndexType(parsedSql);
         mySql = mySql.strip;
-        mySql ~= " " ~ this.buildIndexTable(parsedSQL);
+        mySql ~= " " ~ this.buildIndexTable(parsedSql);
         mySql = mySql.strip;
-        mySql ~= this.buildIndexOptions(parsedSQL);
+        mySql ~= this.buildIndexOptions(parsedSql);
         return mySql.strip;
     }
 

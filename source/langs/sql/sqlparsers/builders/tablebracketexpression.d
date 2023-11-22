@@ -12,52 +12,52 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class TableBracketExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColDef(parsedSQL) {
+    protected auto buildColDef(parsedSql) {
         auto myBuilder = new ColumnDefinitionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildPrimaryKey(parsedSQL) {
+    protected auto buildPrimaryKey(parsedSql) {
         auto myBuilder = new PrimaryKeyBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildForeignKey(parsedSQL) {
+    protected auto buildForeignKey(parsedSql) {
         auto myBuilder = new ForeignKeyBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildCheck(parsedSQL) {
+    protected auto buildCheck(parsedSql) {
         auto myBuilder = new CheckBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildLikeExpression(parsedSQL) {
+    protected auto buildLikeExpression(parsedSql) {
         auto myBuilder = new LikeExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildIndexKey(parsedSQL) {
+    protected auto buildIndexKey(parsedSql) {
         auto myBuilder = new IndexKeyBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildUniqueIndex(parsedSQL) {
+    protected auto buildUniqueIndex(parsedSql) {
         auto myBuilder = new UniqueIndexBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildFulltextIndex(parsedSQL) {
+    protected auto buildFulltextIndex(parsedSql) {
         auto myBuilder = new FulltextIndexBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColDef(myValue);
             mySql ~= this.buildPrimaryKey(myValue);

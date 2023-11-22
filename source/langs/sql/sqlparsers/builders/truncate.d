@@ -6,15 +6,15 @@ module langs.sql.sqlparsers.builders.truncate;
  * all functions to achieve another handling. */
 class TruncateBuilder : ISqlBuilder {
 
-  string build(Json parsedSQL) {
+  string build(Json parsedSql) {
     string mySql = "TRUNCATE TABLE ";
     $right =  - 1;
 
     // works for one table only
-    parsedSQL["tables"] = [parsedSQL["TABLE"]["base_expr"]];
+    parsedSql["tables"] = [parsedSql["TABLE"]["base_expr"]];
 
-    if (parsedSQL["tables"] != false) {
-      foreach (myKey, myValue; parsedSQL["tables"]) {
+    if (parsedSql["tables"] != false) {
+      foreach (myKey, myValue; parsedSql["tables"]) {
         mySql ~= myValue ~ ", ";
         $right =  - 2;
       }

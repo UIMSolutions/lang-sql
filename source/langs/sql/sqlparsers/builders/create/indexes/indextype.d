@@ -10,10 +10,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
-    string build(Json parsedSQL) {
-        if (!parsedSQL["index-type"]) || parsedSQL["index-type"] == false) {
+    string build(Json parsedSql) {
+        if (!parsedSql["index-type"]) || parsedSql["index-type"] == false) {
             return "";
         }
-        return super.build(parsedSQL["index-type"]);
+        return super.build(parsedSql["index-type"]);
     }
 }

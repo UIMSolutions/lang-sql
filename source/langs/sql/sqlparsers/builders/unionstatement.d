@@ -10,12 +10,12 @@ module langs.sql.sqlparsers.builders.unionstatement;
  * */
 class UnionStatementBuilder : ISqlBuilder {
 
-	string build(Json parsedSQL)
+	string build(Json parsedSql)
 	{
 		string mySql = "";
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
-		foreach (parsedSQL["UNION"] as $clause) {
+		foreach (parsedSql["UNION"] as $clause) {
 			if (!$first) {
 				mySql ~= " UNION ";
 			}

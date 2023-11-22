@@ -9,26 +9,26 @@ import lang.sql;
  * all functions to achieve another handling. */
 class CreateStatementBuilder : ISqlBuilder {
 
-    protected auto buildLike(parsedSQL) {
+    protected auto buildLike(parsedSql) {
         auto myBuilder = new LikeBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectStatement(parsedSQL) {
+    protected auto buildSelectStatement(parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCreate(parsedSQL) {
+    protected auto buildCreate(parsedSql) {
         auto myBuilder = new CreateBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        string mySql = this.buildCreate(parsedSQL);
+    string build(Json parsedSql) {
+        string mySql = this.buildCreate(parsedSql);
         
-        mySql ~= parsedSQL.isSet("LIKE") ? " " ~ this.buildLike(parsedSQL["LIKE"]) : "";
-        mySql ~= parsedSQL.isSet("SELECT") ? " " ~ this.buildSelectStatement(parsedSQL) : "";
+        mySql ~= parsedSql.isSet("LIKE") ? " " ~ this.buildLike(parsedSql["LIKE"]) : "";
+        mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSelectStatement(parsedSql) : "";
 
         return mySql;
     }

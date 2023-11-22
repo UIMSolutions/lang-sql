@@ -10,14 +10,14 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ValuesBuilder : ISqlBuilder {
 
-    protected auto buildRecord(parsedSQL) {
+    protected auto buildRecord(parsedSql) {
         auto myBuilder = new RecordBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildRecord(myValue);
 
@@ -30,7 +30,7 @@ class ValuesBuilder : ISqlBuilder {
         return "VALUES " . ySql.strip;
     }
 
-    protected auto getRecordDelimiter(parsedSQL) {
-        return empty(parsedSQL["delim"]) ? " " : parsedSQL["delim"] . " ";
+    protected auto getRecordDelimiter(parsedSql) {
+        return empty(parsedSql["delim"]) ? " " : parsedSql["delim"] . " ";
     }
 }

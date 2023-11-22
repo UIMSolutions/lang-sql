@@ -11,61 +11,61 @@ import lang.sql;
  */
 class WhereExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSQL) {
+    protected auto buildColRef(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSQL) {
+    protected auto buildConstant(parsedSql) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildOperator(parsedSQL) {
+    protected auto buildOperator(parsedSql) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSQL) {
+    protected auto buildFunction(parsedSql) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildInList(parsedSQL) {
+    protected auto buildInList(parsedSql) {
         auto myBuilder = new InListBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildWhereExpression(parsedSQL) {
-        return this.build(parsedSQL);
+    protected auto buildWhereExpression(parsedSql) {
+        return this.build(parsedSql);
     }
 
-    protected auto buildWhereBracketExpression(parsedSQL) {
+    protected auto buildWhereBracketExpression(parsedSql) {
         auto myBuilder = new WhereBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildUserVariable(parsedSQL) {
+    protected auto buildUserVariable(parsedSql) {
         auto myBuilder = new UserVariableBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSubQuery(parsedSQL) {
+    protected auto buildSubQuery(parsedSql) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
       auto myBuilder = new ReservedBuilder();
-      return myBuilder.build(parsedSQL);
+      return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("EXPRESSION")) {
+    string build(Json parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("EXPRESSION")) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildConstant(myValue);

@@ -10,10 +10,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DataTypeBuilder : IBuilder {
 
-    string build(Json parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("DATA_TYPE")) {
+    string build(Json parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("DATA_TYPE")) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

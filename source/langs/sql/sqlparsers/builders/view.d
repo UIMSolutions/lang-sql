@@ -13,10 +13,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ViewBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(VIEW) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(VIEW) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

@@ -11,12 +11,12 @@ import lang.sql;
  */
 class SubTreeBuilder : ISqlBuilder {
 
-  string build(Json parsedSQL, $delim = " ") {
-    if (parsedSQL["sub_tree"].isEmpty || parsedSQL["sub_tree"] == false) {
+  string build(Json parsedSql, $delim = " ") {
+    if (parsedSql["sub_tree"].isEmpty || parsedSql["sub_tree"] == false) {
       return "";
     }
 
-    string mySql = parsedSQL["sub_tree"].byKeyValue
+    string mySql = parsedSql["sub_tree"].byKeyValue
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
@@ -49,58 +49,58 @@ class SubTreeBuilder : ISqlBuilder {
     }
   }
 
-  protected auto buildColRef(parsedSQL) {
+  protected auto buildColRef(parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildFunction(parsedSQL) {
+  protected auto buildFunction(parsedSql) {
     auto myBuilder = new FunctionBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildOperator(parsedSQL) {
+  protected auto buildOperator(parsedSql) {
     auto myBuilder = new OperatorBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildConstant(parsedSQL) {
+  protected auto buildConstant(parsedSql) {
     auto myBuilder = new ConstantBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildInList(parsedSQL) {
+  protected auto buildInList(parsedSql) {
     auto myBuilder = new InListBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildReserved(parsedSQL) {
+  protected auto buildReserved(parsedSql) {
     auto myBuilder = new ReservedBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSubQuery(parsedSQL) {
+  protected auto buildSubQuery(parsedSql) {
     auto myBuilder = new SubQueryBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildQuery(parsedSQL) {
+  protected auto buildQuery(parsedSql) {
     auto myBuilder = new QueryBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSelectBracketExpression(parsedSQL) {
+  protected auto buildSelectBracketExpression(parsedSql) {
     auto myBuilder = new SelectBracketExpressionBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildUserVariable(parsedSQL) {
+  protected auto buildUserVariable(parsedSql) {
     auto myBuilder = new UserVariableBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSign(parsedSQL) {
+  protected auto buildSign(parsedSql) {
     auto myBuilder = new SignBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 }

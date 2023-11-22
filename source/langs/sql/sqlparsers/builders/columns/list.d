@@ -10,23 +10,23 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ColumnListBuilder : ISqlBuilder {
 
-    protected auto buildIndexColumn(parsedSQL) {
+    protected auto buildIndexColumn(parsedSql) {
         auto myBuilder = new IndexColumnBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnReference(parsedSQL) {
+    protected auto buildColumnReference(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    string build(Json parsedSQL, $delim = ", ") {
-        if (!parsedSQL["expr_type"].isExpressionType("COLUMN_LIST")) {
+    string build(Json parsedSql, $delim = ", ") {
+        if (!parsedSql["expr_type"].isExpressionType("COLUMN_LIST")) {
             return "";
         }
 
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildIndexColumn(value);
             mySql ~= this.buildColumnReference(value);

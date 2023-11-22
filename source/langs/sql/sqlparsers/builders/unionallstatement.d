@@ -12,12 +12,12 @@ class UnionAllStatementBuilder : ISqlBuilder {
 
 
 
-	string build(Json parsedSQL)
+	string build(Json parsedSql)
 	{
 		string mySql = "";
 		$select_builder = new SelectStatementBuilder();
 		$first = true;
-		foreach (parsedSQL["UNION ALL"] as $clause) {
+		foreach (parsedSql["UNION ALL"] as $clause) {
 			if (!$first) {
 				mySql ~= " UNION ALL ";
 			}
