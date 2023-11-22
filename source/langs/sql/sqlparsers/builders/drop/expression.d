@@ -10,36 +10,36 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DropExpressionBuilder : ISqlBuilder {
 
-    protected auto buildTable($parsed, $index) {
+    protected auto buildTable(parsedSQL, $index) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build($parsed, $index);
+        return myBuilder.build(parsedSQL, $index);
     }
 
-    protected auto buildDatabase($parsed) {
+    protected auto buildDatabase(parsedSQL) {
         auto myBuilder = new DatabaseBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildSchema($parsed) {
+    protected auto buildSchema(parsedSQL) {
         auto myBuilder = new SchemaBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildTemporaryTable($parsed) {
+    protected auto buildTemporaryTable(parsedSQL) {
         auto myBuilder = new TempTableBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildView($parsed) {
+    protected auto buildView(parsedSQL) {
         auto myBuilder = new ViewBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
+        if (parsedSQL["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildTable(myValue, 0);
             mySql ~= this.buildView(myValue);

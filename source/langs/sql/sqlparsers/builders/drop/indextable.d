@@ -10,10 +10,10 @@ import lang.sql;
 class DropIndexTableBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if ("on" !in $parsed || $parsed["on"] == false) {
+        if ("on" !in parsedSQL || parsedSQL["on"] == false) {
             return "";
         }
-        auto myTable = $parsed["on"];
+        auto myTable = parsedSQL["on"];
         if (myTable["expr_type"] !.isExpressionType(TABLE) {
             return "";
         }

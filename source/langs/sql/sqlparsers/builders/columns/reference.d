@@ -6,18 +6,18 @@ import lang.sql;
 
 class ColumnReferenceBuilder : ISqlBuilder {
 
-    protected auto buildAlias($parsed) {
+    protected auto buildAlias(parsedSQL) {
         auto myBuilder = new AliasBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("COLREF") {
+        if (!parsedSQL["expr_type"].isExpressionType("COLREF") {
             return "";
         }
         
-        string mySql = $parsed["base_expr"];
-        mySql ~= this.buildAlias($parsed);
+        string mySql = parsedSQL["base_expr"];
+        mySql ~= this.buildAlias(parsedSQL);
         return mySql;
     }
 }

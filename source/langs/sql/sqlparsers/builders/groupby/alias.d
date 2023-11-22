@@ -11,9 +11,9 @@ import lang.sql;
 class GroupByAliasBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(ALIAS) {
+        if (parsedSQL["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

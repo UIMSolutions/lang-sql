@@ -10,43 +10,43 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
-    protected auto buildIndexParser($parsed) {
+    protected auto buildIndexParser(parsedSQL) {
         auto myBuilder = new IndexParserBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildIndexSize($parsed) {
+    protected auto buildIndexSize(parsedSQL) {
         auto myBuilder = new IndexSizeBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildIndexType($parsed) {
+    protected auto buildIndexType(parsedSQL) {
         auto myBuilder = new IndexTypeBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildIndexComment($parsed) {
+    protected auto buildIndexComment(parsedSQL) {
         auto myBuilder = new IndexCommentBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildIndexAlgorithm($parsed) {
+    protected auto buildIndexAlgorithm(parsedSQL) {
         auto myBuilder = new IndexAlgorithmBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildIndexLock($parsed) {
+    protected auto buildIndexLock(parsedSQL) {
         auto myBuilder = new IndexLockBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["options"] == false) {
+        if (parsedSQL["options"] == false) {
             return "";
         }
         
         string mySql = "";
-        foreach (myKey, myValue; $parsed["options"]) {
+        foreach (myKey, myValue; parsedSQL["options"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildIndexAlgorithm(myValue);
             mySql ~= this.buildIndexLock(myValue);

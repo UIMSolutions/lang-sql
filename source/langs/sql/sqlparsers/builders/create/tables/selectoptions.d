@@ -10,11 +10,11 @@ import lang.sql;
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if (!$parsed.isSet("select-option") || $parsed["select-option"] == false) {
+        if (!parsedSQL.isSet("select-option") || parsedSQL["select-option"] == false) {
             return "";
         }
 
-        auto selectOption = $parsed["select-option"];
+        auto selectOption = parsedSQL["select-option"];
 
         string mySql = (selectOption["duplicates"] == false ? "" : (" " ~ selectOption["duplicates"]));
         mySql ~= (selectOption["as"] == false ? "" : " AS");

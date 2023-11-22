@@ -12,27 +12,27 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ForeignRefBuilder : ISqlBuilder {
 
-    protected auto buildTable($parsed) {
+    protected auto buildTable(parsedSQL) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build($parsed, 0);
+        return myBuilder.build(parsedSQL, 0);
     }
 
-    protected auto buildColumnList($parsed) {
+    protected auto buildColumnList(parsedSQL) {
         auto myBuilder = new ColumnListBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(REFERENCE) {
+        if (parsedSQL["expr_type"] !.isExpressionType(REFERENCE) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildTable(myValue);
             mySql ~= this.buildReserved(myValue);

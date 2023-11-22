@@ -10,27 +10,27 @@ import lang.sql;
  * all functions to achieve another handling. */
 class DropBuilder : ISqlBuilder {
 
-	protected auto buildDropIndex( $parsed ) {
+	protected auto buildDropIndex( parsedSQL ) {
 		auto myBuilder = new DropIndexBuilder();
 
-		return myBuilder.build( $parsed );
+		return myBuilder.build( parsedSQL );
 	}
 
-	protected auto buildReserved( $parsed ) {
+	protected auto buildReserved( parsedSQL ) {
 		auto myBuilder = new ReservedBuilder();
 
-		return myBuilder.build( $parsed );
+		return myBuilder.build( parsedSQL );
 	}
 
-	protected auto buildExpression( $parsed ) {
+	protected auto buildExpression( parsedSQL ) {
 		auto myBuilder = new DropExpressionBuilder();
 
-		return myBuilder.build( $parsed );
+		return myBuilder.build( parsedSQL );
 	}
 
-	protected auto buildSubTree( $parsed ) {
+	protected auto buildSubTree( parsedSQL ) {
 		string mySql = "";
-		foreach (myKey, myValue; $parsed["sub_tree"]) {
+		foreach (myKey, myValue; parsedSQL["sub_tree"]) {
 			auto oldLengthOfSql = mySql.length;
 			mySql ~= this.buildReserved( myValue );
 			mySql ~= this.buildExpression( myValue );
@@ -46,11 +46,11 @@ class DropBuilder : ISqlBuilder {
 	}
 
 	auto build( Json parsedSQL ) {
-		$drop = $parsed["DROP"];
+		$drop = parsedSQL["DROP"];
 		string mySql  = this.buildSubTree( $drop );
 
 		if ( $drop["expr_type"] =.isExpressionType(INDEX ) {
-			mySql ~= "" ~ this.buildDropIndex( $parsed["INDEX"] ) . " ";
+			mySql ~= "" ~ this.buildDropIndex( parsedSQL["INDEX"] ) . " ";
 		}
 
 		return "DROP " ~ substr( mySql, 0, -1 );

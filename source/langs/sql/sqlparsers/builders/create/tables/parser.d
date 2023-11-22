@@ -11,22 +11,22 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class IndexParserBuilder : ISqlBuilder {
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(INDEX_PARSER) {
+        if (parsedSQL["expr_type"] !.isExpressionType(INDEX_PARSER) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValie; $parsed["sub_tree"]) {
+        foreach (myKey, myValie; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildReserved(myValue);
             mySql ~= this.buildConstant(myValue);

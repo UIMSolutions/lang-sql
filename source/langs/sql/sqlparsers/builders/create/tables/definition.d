@@ -9,15 +9,15 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateTableDefinitionBuilder : ISqlBuilder {
 
-    protected auto buildTableBracketExpression($parsed) {
+    protected auto buildTableBracketExpression(parsedSQL) {
         auto myBuilder = new TableBracketExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if (!isset($parsed) || $parsed["create-def"] == false) {
+        if (!isset(parsedSQL) || parsedSQL["create-def"] == false) {
             return "";
         }
-        return this.buildTableBracketExpression($parsed["create-def"]);
+        return this.buildTableBracketExpression(parsedSQL["create-def"]);
     }
 }

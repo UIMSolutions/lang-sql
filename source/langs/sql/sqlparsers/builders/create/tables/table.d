@@ -9,26 +9,26 @@ import lang.sql;
  * all functions to achieve another handling.   */
 class CreateTableBuilder : ISqlBuilder {
 
-  protected auto buildCreateTableDefinition($parsed) {
+  protected auto buildCreateTableDefinition(parsedSQL) {
     auto myBuilder = new CreateTableDefinitionBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildCreateTableOptions($parsed) {
+  protected auto buildCreateTableOptions(parsedSQL) {
     auto myBuilder = new CreateTableOptionsBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildCreateTableSelectOption($parsed) {
+  protected auto buildCreateTableSelectOption(parsedSQL) {
     auto myBuilder = new CreateTableSelectOptionBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
   string build(Json parsedSQL) {
-    string mySql = $parsed["name"];
-    mySql ~= this.buildCreateTableDefinition($parsed);
-    mySql ~= this.buildCreateTableOptions($parsed);
-    mySql ~= this.buildCreateTableSelectOption($parsed);
+    string mySql = parsedSQL["name"];
+    mySql ~= this.buildCreateTableDefinition(parsedSQL);
+    mySql ~= this.buildCreateTableOptions(parsedSQL);
+    mySql ~= this.buildCreateTableSelectOption(parsedSQL);
     return mySql;
   }
 

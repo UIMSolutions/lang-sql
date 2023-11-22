@@ -10,37 +10,37 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateTableOptionsBuilder : IBuilder {
 
-    protected auto buildExpression($parsed) {
+    protected auto buildExpression(parsedSQL) {
         auto myBuilder = new SelectExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildCharacterSet($parsed) {
+    protected auto buildCharacterSet(parsedSQL) {
         auto myBuilder = new CharacterSetBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildCollation($parsed) {
+    protected auto buildCollation(parsedSQL) {
         auto myBuilder = new CollationBuilder();
-        return myBuilderr.build($parsed);
+        return myBuilderr.build(parsedSQL);
     }
 
     /**
      * Returns a well-formatted delimiter string. If you don"t need nice SQL,
-     * you could simply return $parsed["delim"].
+     * you could simply return parsedSQL["delim"].
      * 
      * @param Json parsedSQL The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
-    protected auto getDelimiter($parsed) {
-        return ($parsed["delim"] == false ? "" : ($parsed["delim"]) . " ").strip;
+    protected auto getDelimiter(parsedSQL) {
+        return (parsedSQL["delim"] == false ? "" : (parsedSQL["delim"]) . " ").strip;
     }
 
     string build(Json parsedSQL) {
-        if (!isset($parsed["options"]) || $parsed["options"] == false) {
+        if (!isset(parsedSQL["options"]) || parsedSQL["options"] == false) {
             return "";
         }
-        $options = $parsed["options"];
+        $options = parsedSQL["options"];
         string mySql = "";
         foreach ($options as myKey, myValue) {
             size_t oldSqlLength = mySql.length;

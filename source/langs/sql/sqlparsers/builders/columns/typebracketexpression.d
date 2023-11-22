@@ -10,16 +10,16 @@ import lang.sql;
  */
 class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
 
-    protected string buildSubTree($parsed, $delim) {
+    protected string buildSubTree(parsedSQL, $delim) {
         auto myBuilder = new SubTreeBuilder();
-        return myBuilder.build($parsed, $delim);
+        return myBuilder.build(parsedSQL, $delim);
     }
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("BRACKET_EXPRESSION")) {
+        if (!parsedSQL["expr_type"].isExpressionType("BRACKET_EXPRESSION")) {
             return "";
         }
-        string mySql = this.buildSubTree($parsed, ",");
+        string mySql = this.buildSubTree(parsedSQL, ",");
         mySql = "(" ~ mySql ~ ")";
         return mySql;
     }

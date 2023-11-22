@@ -10,28 +10,28 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CharacterSetBuilder : ISqlBuilder {
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildOperator($parsed) {
+    protected auto buildOperator(parsedSQL) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("CHARSET")) {
+        if (!parsedSQL["expr_type"].isExpressionType("CHARSET")) {
             return "";
         }
         
         string mySql = "";
-        foreach (k, myValue; $parsed["sub_tree"]) {
+        foreach (k, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildOperator(myValue);
             mySql ~= this.buildReserved(myValue);

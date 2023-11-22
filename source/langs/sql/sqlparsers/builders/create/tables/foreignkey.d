@@ -10,32 +10,32 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ForeignKeyBuilder : IBuilder {
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildColumnList($parsed) {
+    protected auto buildColumnList(parsedSQL) {
         auto myBuilder = new ColumnListBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildForeignRef($parsed) {
+    protected auto buildForeignRef(parsedSQL) {
         auto myBuilder = new ForeignRefBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(FOREIGN_KEY) {
+        if (parsedSQL["expr_type"] !.isExpressionType(FOREIGN_KEY) {
             return "";
         }
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildConstant(myValue);
             mySql ~= this.buildReserved(myValue);

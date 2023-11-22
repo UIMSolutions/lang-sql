@@ -10,16 +10,16 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ConstraintBuilder : ISqlBuilder {
 
-    protected auto buildConstant($parsed) {
+    protected auto buildConstant(parsedSQL) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed["expr_type"] !.isExpressionType(CONSTRAINT) {
+        if (parsedSQL["expr_type"] !.isExpressionType(CONSTRAINT) {
             return "";
         }
-        string mySql = $parsed["sub_tree"] == false ? "" : this.buildConstant($parsed["sub_tree"]);
+        string mySql = parsedSQL["sub_tree"] == false ? "" : this.buildConstant(parsedSQL["sub_tree"]);
         return "CONSTRAINT" ~ (mySql.isEmpty ? "" : (" " ~ mySql));
     }
 

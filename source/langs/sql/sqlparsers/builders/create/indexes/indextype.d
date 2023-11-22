@@ -11,9 +11,9 @@ import lang.sql;
 class CreateIndexTypeBuilder : IndexTypeBuilder {
 
     string build(Json parsedSQL) {
-        if (!$parsed["index-type"]) || $parsed["index-type"] == false) {
+        if (!parsedSQL["index-type"]) || parsedSQL["index-type"] == false) {
             return "";
         }
-        return super.build($parsed["index-type"]);
+        return super.build(parsedSQL["index-type"]);
     }
 }

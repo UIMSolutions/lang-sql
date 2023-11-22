@@ -11,9 +11,9 @@ import lang.sql;
 class DataTypeBuilder : IBuilder {
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("DATA_TYPE")) {
+        if (!parsedSQL["expr_type"].isExpressionType("DATA_TYPE")) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

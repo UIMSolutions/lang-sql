@@ -12,9 +12,9 @@ import lang.sql;
 class DefaultValueBuilder : ISqlBuilder {
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("DEF_VALUE") {
+        if (!parsedSQL["expr_type"].isExpressionType("DEF_VALUE") {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 }

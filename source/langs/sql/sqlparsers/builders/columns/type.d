@@ -10,52 +10,52 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ColumnTypeBuilder : ISqlBuilder {
 
-    protected auto buildColumnTypeBracketExpression($parsed) {
+    protected auto buildColumnTypeBracketExpression(parsedSQL) {
         auto myBuilder = new ColumnTypeBracketExpressionBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildReserved($parsed) {
+    protected auto buildReserved(parsedSQL) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildDataType($parsed) {
+    protected auto buildDataType(parsedSQL) {
         auto myBuilder = new DataTypeBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
     
-    protected auto buildDefaultValue($parsed) {
+    protected auto buildDefaultValue(parsedSQL) {
         auto myBuilder = new DefaultValueBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
-    protected auto buildCharacterSet($parsed) {
-        if (!$parsed["expr_type"].isExpressionType("CHARSET")) {
+    protected auto buildCharacterSet(parsedSQL) {
+        if (!parsedSQL["expr_type"].isExpressionType("CHARSET")) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 
-    protected auto buildCollation($parsed) {
-        if (!$parsed["expr_type"].isExpressionType("COLLATE")) {
+    protected auto buildCollation(parsedSQL) {
+        if (!parsedSQL["expr_type"].isExpressionType("COLLATE")) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 
-    protected auto buildComment($parsed) {
-        if (!$parsed["expr_type"].isExpressionType("COMMENT")) {
+    protected auto buildComment(parsedSQL) {
+        if (!parsedSQL["expr_type"].isExpressionType("COMMENT")) {
             return "";
         }
-        return $parsed["base_expr"];
+        return parsedSQL["base_expr"];
     }
 
     string build(Json parsedSQL) {
-        if (!$parsed["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
+        if (!parsedSQL["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; $parsed["sub_tree"]) {
+        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildDataType(myValue);
             mySql ~= this.buildColumnTypeBracketExpression(myValue);

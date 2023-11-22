@@ -11,10 +11,10 @@ import lang.sql;
 class SchemaBuilder : ISqlBuilder {
 
   string build(Json parsedSQL) {
-    if (!$parsed["expr_type"].isExpressionType("SCHEMA")) {
+    if (!parsedSQL["expr_type"].isExpressionType("SCHEMA")) {
       return "";
     }
 
-    return $parsed["base_expr"];
+    return parsedSQL["base_expr"];
   }
 }

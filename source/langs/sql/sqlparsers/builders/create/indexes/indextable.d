@@ -9,16 +9,16 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateIndexTableBuilder : ISqlBuilder {
 
-    protected auto buildColumnList($parsed) {
+    protected auto buildColumnList(parsedSQL) {
         auto myBuilder = new ColumnListBuilder();
-        return myBuilder.build($parsed);
+        return myBuilder.build(parsedSQL);
     }
 
     string build(Json parsedSQL) {
-        if ($parsed.isSet("on") || $parsed["on"] == false) {
+        if (parsedSQL.isSet("on") || parsedSQL["on"] == false) {
             return "";
         }
-        $table = $parsed["on"];
+        $table = parsedSQL["on"];
         if (!$table["expr_type"].isExpressionType("TABLE") {
             return "";
         }

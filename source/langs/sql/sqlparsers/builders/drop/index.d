@@ -9,15 +9,15 @@ import lang.sql;
  * all functions to achieve another handling. */
 class DropIndexBuilder : IBuilder {
 
-	protected auto buildIndexTable($parsed) {
+	protected auto buildIndexTable(parsedSQL) {
 		auto myBuilder = new DropIndexTableBuilder();
-		return myBuilder.build($parsed);
+		return myBuilder.build(parsedSQL);
 	}
 
     string build(Json parsedSQL) {
-        string mySql = $parsed["name"];
+        string mySql = parsedSQL["name"];
 	    mySql = mySql.strip;
-	    mySql ~= " " ~ this.buildIndexTable($parsed);
+	    mySql ~= " " ~ this.buildIndexTable(parsedSQL);
         return mySql.strip;
     }
 }
