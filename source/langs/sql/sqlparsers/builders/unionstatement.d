@@ -10,7 +10,7 @@ module langs.sql.sqlparsers.builders.unionstatement;
  * */
 class UnionStatementBuilder : ISqlBuilder {
 
-	string build(auto[string] parsedSQL)
+	string build(Json parsedSQL)
 	{
 		string mySql = "";
 		$select_builder = new SelectStatementBuilder();

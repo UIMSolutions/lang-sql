@@ -40,7 +40,7 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if ($parsed["options"] == false) {
             return "";
         }

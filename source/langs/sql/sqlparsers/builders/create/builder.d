@@ -9,32 +9,32 @@ import lang.sql;
  * all functions to achieve another handling. */
 class CreateBuilder : ISqlBuilder {
 
-  protected auto buildCreateTable($parsed) {
+  protected auto buildCreateTable(parsedSQL) {
     auto myBuilder = new CreateTableBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildCreateIndex($parsed) {
+  protected auto buildCreateIndex(parsedSQL) {
     auto myBuilder = new CreateIndexBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  protected auto buildSubTree($parsed) {
+  protected auto buildSubTree(parsedSQL) {
     auto myBuilder = new SubTreeBuilder();
-    return myBuilder.build($parsed);
+    return myBuilder.build(parsedSQL);
   }
 
-  string build(auto[string] parsedSQL) {
-    auto myCreate = $parsed["CREATE"];
+  string build(Json parsedSQL) {
+    auto myCreate = parsedSQL["CREATE"];
 
     string mySql = this.buildSubTree(myCreate);
 
     if (myCreate["expr_type"].isExpressionType("TABLE")
       || myCreate["expr_type"].isExpressionType("TEMPORARY_TABLE")) {
-      mySql ~= " " ~ this.buildCreateTable($parsed["TABLE"]);
+      mySql ~= " " ~ this.buildCreateTable(parsedSQL["TABLE"]);
     }
     if (myCreate["expr_type"].isExpressionType("INDEX")) {
-      mySql ~= " " ~ this.buildCreateIndex($parsed["INDEX"]);
+      mySql ~= " " ~ this.buildCreateIndex(parsedSQL["INDEX"]);
     }
 
     // TODO: add more expr_types here (like VIEW), if available in parser output

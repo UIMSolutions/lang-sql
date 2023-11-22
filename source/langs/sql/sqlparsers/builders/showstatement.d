@@ -16,7 +16,7 @@ class ShowStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         string mySql = this.buildSHOW($parsed);
         if ($parsed.isSet("WHERE")) {
             mySql ~= " " ~ this.buildWHERE($parsed["WHERE"]);

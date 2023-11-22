@@ -51,7 +51,7 @@ class ColumnTypeBuilder : ISqlBuilder {
         return $parsed["base_expr"];
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if (!$parsed["expr_type"].isExpressionType("COLUMN_TYPE")) { return ""; }
 
         string mySql = "";

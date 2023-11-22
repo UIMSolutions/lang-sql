@@ -24,7 +24,7 @@ class CreateIndexBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         string mySql = $parsed["name"];
         mySql ~= " " ~ this.buildIndexType($parsed);
         mySql = mySql.strip;
