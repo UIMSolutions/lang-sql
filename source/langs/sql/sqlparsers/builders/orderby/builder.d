@@ -10,44 +10,44 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class OrderByBuilder : ISqlBuilder {
 
-    protected auto buildFunction(parsedSQL) {
+    protected auto buildFunction(parsedSql) {
         auto myBuilder = new OrderByFunctionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new OrderByReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildColRef(parsedSQL) {
+    protected auto buildColRef(parsedSql) {
         auto myBuilder = new OrderByColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildAlias(parsedSQL) {
+    protected auto buildAlias(parsedSql) {
         auto myBuilder = new OrderByAliasBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildExpression(parsedSQL) {
+    protected auto buildExpression(parsedSql) {
         auto myBuilder = new OrderByExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildBracketExpression(parsedSQL) {
+    protected auto buildBracketExpression(parsedSql) {
         auto myBuilder = new OrderByBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildPosition(parsedSQL) {
+    protected auto buildPosition(parsedSql) {
         auto myBuilder = new OrderByPositionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildAlias(myValue);
             mySql ~= this.buildColRef(myValue);

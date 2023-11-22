@@ -6,25 +6,25 @@ module langs.sql.sqlparsers.builders.update.updatestatement;
  * all functions to achieve another handling. */
 class UpdateStatementBuilder : ISqlBuilder {
 
-    protected auto buildWHERE(parsedSQL) {
+    protected auto buildWHERE(parsedSql) {
         auto myBuilder = new WhereBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSET(parsedSQL) {
+    protected auto buildSET(parsedSql) {
         auto myBuilder = new SetBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildUPDATE(parsedSQL) {
+    protected auto buildUPDATE(parsedSql) {
         auto myBuilder = new UpdateBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        string mySql = this.buildUPDATE(parsedSQL["UPDATE"]) . " " ~ this.buildSET(parsedSQL["SET"]);
-        if ("WHERE" in parsedSQL["WHERE"]) {
-            mySql ~= " " ~ this.buildWHERE(parsedSQL["WHERE"]);
+    string build(Json parsedSql) {
+        string mySql = this.buildUPDATE(parsedSql["UPDATE"]) . " " ~ this.buildSET(parsedSql["SET"]);
+        if ("WHERE" in parsedSql["WHERE"]) {
+            mySql ~= " " ~ this.buildWHERE(parsedSql["WHERE"]);
         }
         return mySql;
     }

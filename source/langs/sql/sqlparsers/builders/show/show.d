@@ -10,43 +10,43 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ShowBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSQL, $delim) {
+    protected auto buildTable(parsedSql, $delim) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSQL, $delim);
+        return myBuilder.build(parsedSql, $delim);
     }
 
-    protected auto buildFunction(parsedSQL) {
+    protected auto buildFunction(parsedSql) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildProcedure(parsedSQL) {
+    protected auto buildProcedure(parsedSql) {
         auto myBuilder = new ProcedureBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildDatabase(parsedSQL) {
+    protected auto buildDatabase(parsedSql) {
         auto myBuilder = new DatabaseBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildEngine(parsedSQL) {
+    protected auto buildEngine(parsedSql) {
         auto myBuilder = new EngineBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSQL) {
+    protected auto buildConstant(parsedSql) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        auto $show = parsedSQL["SHOW"];
+    string build(Json parsedSql) {
+        auto $show = parsedSql["SHOW"];
         
         string mySql = "";
         foreach (myKey, myValue; $show) {

@@ -7,15 +7,15 @@ module lang.sql.parsers.builders;
  * You can overwrite all functions to achieve another handling. */
 class OrderByExpressionBuilder : WhereExpressionBuilder {
 
-    protected auto buildDirection(parsedSQL) {
+    protected auto buildDirection(parsedSql) {
         auto auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        string mySql = super.build(parsedSQL);
+    string build(Json parsedSql) {
+        string mySql = super.build(parsedSql);
         if (!mySql.isEmpty) {
-            mySql ~= this.buildDirection(parsedSQL);
+            mySql ~= this.buildDirection(parsedSql);
         }
         return mySql;
     }

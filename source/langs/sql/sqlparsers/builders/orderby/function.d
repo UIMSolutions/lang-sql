@@ -8,15 +8,15 @@ module lang.sql.parsers.builders;
  * You can overwrite all functions to achieve another handling. */
 class OrderByFunctionBuilder : FunctionBuilder {
 
-    protected auto buildDirection(parsedSQL) {
+    protected auto buildDirection(parsedSql) {
         auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        $sql = super.build(parsedSQL);
+    string build(Json parsedSql) {
+        $sql = super.build(parsedSql);
         if ($sql != "") {
-            $sql ~= this.buildDirection(parsedSQL);
+            $sql ~= this.buildDirection(parsedSql);
         }
         return $sql;
     }

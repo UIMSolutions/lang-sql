@@ -10,15 +10,15 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class UpdateBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSQL, $idx) {
+    protected auto buildTable(parsedSql, $idx) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSQL, $idx);
+        return myBuilder.build(parsedSql, $idx);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
 
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildTable(myValue, $k);
 

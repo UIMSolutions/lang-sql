@@ -10,20 +10,20 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SelectBracketExpressionBuilder : ISqlBuilder {
 
-  protected auto buildSubTree(parsedSQL, $delim) {
+  protected auto buildSubTree(parsedSql, $delim) {
     auto myBuilder = new SubTreeBuilder();
-    return myBuilder.build(parsedSQL, $delim);
+    return myBuilder.build(parsedSql, $delim);
   }
 
-  protected auto buildAlias(parsedSQL) {
+  protected auto buildAlias(parsedSql) {
     auto myBuilder = new AliasBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  string build(Json parsedSQL) {
-    if (parsedSQL["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
+  string build(Json parsedSql) {
+    if (parsedSql["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
       return "";
     }
-    return "(" ~ this.buildSubTree(parsedSQL, " ") ~ ")" ~ this.buildAlias(parsedSQL);
+    return "(" ~ this.buildSubTree(parsedSql, " ") ~ ")" ~ this.buildAlias(parsedSql);
   }
 }

@@ -9,15 +9,15 @@ import lang.sql;
  * This class : the builder for positions of the GROUP-BY clause. 
  * You can overwrite all functions to achieve another handling. */
 class OrderByPositionBuilder : ISqlBuilder {
-    protected auto buildDirection(parsedSQL) {
+    protected auto buildDirection(parsedSql) {
         auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(POSITION) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(POSITION) {
             return "";
         }
-        return parsedSQL["base_expr"] ~ this.buildDirection(parsedSQL);
+        return parsedSql["base_expr"] ~ this.buildDirection(parsedSql);
     }
 }

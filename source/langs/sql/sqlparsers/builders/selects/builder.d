@@ -10,49 +10,49 @@ import lang.sql;
  * all functions to achieve another handling. */
 class SelectBuilder : ISqlBuilder {
 
-    protected auto buildConstant(parsedSQL) {
+    protected auto buildConstant(parsedSql) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSQL) {
+    protected auto buildFunction(parsedSql) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectExpression(parsedSQL) {
+    protected auto buildSelectExpression(parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectBracketExpression(parsedSQL) {
+    protected auto buildSelectBracketExpression(parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColRef(parsedSQL) {
+    protected auto buildColRef(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     /**
      * Returns a well-formatted delimiter string. If you don"t need nice SQL,
-     * you could simply return parsedSQL["delim"].
+     * you could simply return parsedSql["delim"].
      * 
-     * @param Json parsedSQL The part of the output array, which contains the current expression.
+     * @param Json parsedSql The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
-    protected auto getDelimiter(parsedSQL) {
-        return (!parsedSQL.isSet("delim") || parsedSQL["delim"] == false ? "" : (parsedSQL["delim"]) ~ " ").strip;
+    protected auto getDelimiter(parsedSql) {
+        return (!parsedSql.isSet("delim") || parsedSql["delim"] == false ? "" : (parsedSql["delim"]) ~ " ").strip;
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildSelectBracketExpression(myValue);
