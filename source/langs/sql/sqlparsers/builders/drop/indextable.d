@@ -9,11 +9,11 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DropIndexTableBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if ("on" !in parsedSQL || parsedSQL["on"] == false) {
+    string build(Json parsedSql) {
+        if ("on" !in parsedSql || parsedSql["on"] == false) {
             return "";
         }
-        auto myTable = parsedSQL["on"];
+        auto myTable = parsedSql["on"];
         if (myTable["expr_type"] !.isExpressionType(TABLE) {
             return "";
         }

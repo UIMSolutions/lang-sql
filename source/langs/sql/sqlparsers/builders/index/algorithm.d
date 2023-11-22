@@ -10,26 +10,26 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class IndexAlgorithmBuilder : ISqlBuilder {
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSQL) {
+    protected auto buildConstant(parsedSql) {
         auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildOperator(parsedSQL) {
+    protected auto buildOperator(parsedSql) {
         auto myBuilder = new OperatorBuilder();
-        return myBuilderr.build(parsedSQL);
+        return myBuilderr.build(parsedSql);
     }
     
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(INDEX_ALGORITHM) { return ""; }
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(INDEX_ALGORITHM) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildReserved(myValue);
             mySql ~= this.buildConstant(myValue);

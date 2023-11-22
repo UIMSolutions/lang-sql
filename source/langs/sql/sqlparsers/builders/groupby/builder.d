@@ -9,34 +9,34 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class GroupByBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSQL) {
+    protected auto buildColRef(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildPosition(parsedSQL) {
+    protected auto buildPosition(parsedSql) {
         auto myBuilder = new PositionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSQL) {
+    protected auto buildFunction(parsedSql) {
         auto myBuilder = new FunctionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildGroupByAlias(parsedSQL) {
+    protected auto buildGroupByAlias(parsedSql) {
         auto myBuilder = new GroupByAliasBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildGroupByExpression(parsedSQL) {
+    protected auto buildGroupByExpression(parsedSql) {
     	auto myBuilder = new GroupByExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColRef(myValue);
             mySql ~= this.buildPosition(myValue);

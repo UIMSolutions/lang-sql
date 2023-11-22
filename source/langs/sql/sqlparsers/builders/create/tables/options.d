@@ -10,37 +10,37 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateTableOptionsBuilder : IBuilder {
 
-    protected auto buildExpression(parsedSQL) {
+    protected auto buildExpression(parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCharacterSet(parsedSQL) {
+    protected auto buildCharacterSet(parsedSql) {
         auto myBuilder = new CharacterSetBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCollation(parsedSQL) {
+    protected auto buildCollation(parsedSql) {
         auto myBuilder = new CollationBuilder();
-        return myBuilderr.build(parsedSQL);
+        return myBuilderr.build(parsedSql);
     }
 
     /**
      * Returns a well-formatted delimiter string. If you don"t need nice SQL,
-     * you could simply return parsedSQL["delim"].
+     * you could simply return parsedSql["delim"].
      * 
-     * @param Json parsedSQL The part of the output array, which contains the current expression.
+     * @param Json parsedSql The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
-    protected auto getDelimiter(parsedSQL) {
-        return (parsedSQL["delim"] == false ? "" : (parsedSQL["delim"]) . " ").strip;
+    protected auto getDelimiter(parsedSql) {
+        return (parsedSql["delim"] == false ? "" : (parsedSql["delim"]) . " ").strip;
     }
 
-    string build(Json parsedSQL) {
-        if (!isset(parsedSQL["options"]) || parsedSQL["options"] == false) {
+    string build(Json parsedSql) {
+        if (!isset(parsedSql["options"]) || parsedSql["options"] == false) {
             return "";
         }
-        $options = parsedSQL["options"];
+        $options = parsedSql["options"];
         string mySql = "";
         foreach ($options as myKey, myValue) {
             size_t oldSqlLength = mySql.length;

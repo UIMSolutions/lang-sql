@@ -6,37 +6,37 @@ module langs.sql.sqlparsers.builders.insert.InsertStatementBuilder;
  * all functions to achieve another handling. */
 class InsertStatementBuilder : ISqlBuilder {
 
-    protected auto buildVALUES(parsedSQL) {
+    protected auto buildVALUES(parsedSql) {
         auto myBuilder = new ValuesBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildINSERT(parsedSQL) {
+    protected auto buildINSERT(parsedSql) {
         auto myBuilder = new InsertBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSELECT(parsedSQL) {
+    protected auto buildSELECT(parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildSET(parsedSQL) {
+    protected auto buildSET(parsedSql) {
         auto myBuilder = new SetBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         // TODO: are there more than one tables possible (like [INSERT][1])
-        string mySql = this.buildINSERT(parsedSQL["INSERT"]);
-        if (parsedSQL.isSet("VALUES")) {
-            mySql ~= " " ~ this.buildVALUES(parsedSQL["VALUES"]);
+        string mySql = this.buildINSERT(parsedSql["INSERT"]);
+        if (parsedSql.isSet("VALUES")) {
+            mySql ~= " " ~ this.buildVALUES(parsedSql["VALUES"]);
         }
-        if (parsedSQL.isSet("SET")) {
-            mySql ~= " " ~ this.buildSET(parsedSQL["SET"]);
+        if (parsedSql.isSet("SET")) {
+            mySql ~= " " ~ this.buildSET(parsedSql["SET"]);
         }
-        if (parsedSQL.isSet("SELECT")) {
-            mySql ~= " " ~ this.buildSELECT(parsedSQL);
+        if (parsedSql.isSet("SELECT")) {
+            mySql ~= " " ~ this.buildSELECT(parsedSql);
         }
         return mySql;
     }

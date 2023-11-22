@@ -10,11 +10,11 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SchemaBuilder : ISqlBuilder {
 
-  string build(Json parsedSQL) {
-    if (!parsedSQL["expr_type"].isExpressionType("SCHEMA")) {
+  string build(Json parsedSql) {
+    if (!parsedSql["expr_type"].isExpressionType("SCHEMA")) {
       return "";
     }
 
-    return parsedSQL["base_expr"];
+    return parsedSql["base_expr"];
   }
 }

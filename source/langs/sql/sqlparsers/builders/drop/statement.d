@@ -9,12 +9,12 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DropStatementBuilder : IBuilder {
 
-	protected auto buildDROP( parsedSQL ) {
+	protected auto buildDROP( parsedSql ) {
 		auto myBuilder = new DropBuilder();
-		return myBuilder.build( parsedSQL );
+		return myBuilder.build( parsedSql );
 	}
 
-	auto build( Json parsedSQL ) {
-		return this.buildDROP( parsedSQL );
+	auto build( Json parsedSql ) {
+		return this.buildDROP( parsedSql );
 	}
 }

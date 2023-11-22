@@ -10,34 +10,34 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class InsertBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSQL) {
+    protected auto buildTable(parsedSql) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSQL, 0);
+        return myBuilder.build(parsedSql, 0);
     }
 
-    protected auto buildSubQuery(parsedSQL) {
+    protected auto buildSubQuery(parsedSql) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build(parsedSQL, 0);
+        return myBuilder.build(parsedSql, 0);
     }
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildBracketExpression(parsedSQL) {
+    protected auto buildBracketExpression(parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnList(parsedSQL) {
+    protected auto buildColumnList(parsedSql) {
         auto myBuilder = new InsertColumnListBuilder();
-        return myBuilder.build(parsedSQL, 0);
+        return myBuilder.build(parsedSql, 0);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildTable(myValue);
             mySql ~= this.buildSubQuery(myValue);

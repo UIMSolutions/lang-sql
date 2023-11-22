@@ -11,10 +11,10 @@ import lang.sql;
  */
 class DefaultValueBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (!parsedSQL["expr_type"].isExpressionType("DEF_VALUE") {
+    string build(Json parsedSql) {
+        if (!parsedSql["expr_type"].isExpressionType("DEF_VALUE") {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

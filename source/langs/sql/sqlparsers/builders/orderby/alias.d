@@ -10,15 +10,15 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class OrderByAliasBuilder : ISqlBuilder {
 
-    protected auto buildDirection(parsedSQL) {
+    protected auto buildDirection(parsedSql) {
         auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(ALIAS) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }
-        return parsedSQL["base_expr"] . this.buildDirection(parsedSQL);
+        return parsedSql["base_expr"] . this.buildDirection(parsedSql);
     }
 }

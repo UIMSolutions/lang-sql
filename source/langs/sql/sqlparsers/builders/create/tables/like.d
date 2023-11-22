@@ -10,15 +10,15 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class LikeBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSQL, $index) {
+    protected auto buildTable(parsedSql, $index) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSQL, $index);
+        return myBuilder.build(parsedSql, $index);
     }
 
-    string build(Json parsedSQL) {
-        string mySql = this.buildTable(parsedSQL, 0);
+    string build(Json parsedSql) {
+        string mySql = this.buildTable(parsedSql, 0);
         if (mySql.isEmpty) {
-            throw new UnableToCreateSQLException("LIKE", "", parsedSQL, "table");
+            throw new UnableToCreateSQLException("LIKE", "", parsedSql, "table");
         }
         return "LIKE " ~ mySql;
     }

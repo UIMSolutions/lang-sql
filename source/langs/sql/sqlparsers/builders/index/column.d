@@ -11,22 +11,22 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class IndexColumnBuilder : ISqlBuilder {
 
-    protected auto buildLength(parsedSQL) {
-        return (parsedSQL.isEmpty ? "" : ("(" ~ parsedSQL ~ ")"));
+    protected auto buildLength(parsedSql) {
+        return (parsedSql.isEmpty ? "" : ("(" ~ parsedSql ~ ")"));
     }
 
-    protected auto buildDirection(parsedSQL) {
-        return (parsedSQL.isEmpty ? "" : (" " ~ parsedSQL));
+    protected auto buildDirection(parsedSql) {
+        return (parsedSql.isEmpty ? "" : (" " ~ parsedSql));
     }
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(INDEX_COLUMN) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(INDEX_COLUMN) {
             return "";
         }
 
-        string mySql = parsedSQL["name"];
-        mySql ~= this.buildLength(parsedSQL["length"]);
-        mySql ~= this.buildDirection(parsedSQL["dir"]);
+        string mySql = parsedSql["name"];
+        mySql ~= this.buildLength(parsedSql["length"]);
+        mySql ~= this.buildDirection(parsedSql["dir"]);
         return mySql;
     }
 

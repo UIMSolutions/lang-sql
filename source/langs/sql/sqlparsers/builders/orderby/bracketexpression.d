@@ -7,15 +7,15 @@ module langs.sql.sqlparsers.builders.orderby.bracketexpression;
  * You can overwrite all functions to achieve another handling. */
 class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
 
-    protected auto buildDirection(parsedSQL) {
+    protected auto buildDirection(parsedSql) {
         auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        string mySql = super.build(parsedSQL);
+    string build(Json parsedSql) {
+        string mySql = super.build(parsedSql);
         if (!mySql.isEmpty) {
-            mySql ~= this.buildDirection(parsedSQL);
+            mySql ~= this.buildDirection(parsedSql);
         }
         return mySql;
     }

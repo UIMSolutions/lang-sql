@@ -9,52 +9,49 @@ import lang.sql;
  * This class : the builder for the [DROP] part. You can overwrite
  * all functions to achieve another handling. */
 class DropBuilder : ISqlBuilder {
+  protected auto buildSubTree(Json parsedSql) {
+    string mySql = "";
+    foreach (myKey, myValue; parsedSql["sub_tree"]) {
+      auto oldLengthOfSql = mySql.length;
+      mySql ~= this.buildReserved(myValue);
+      mySql ~= this.buildExpression(myValue);
 
-	protected auto buildDropIndex( parsedSQL ) {
-		auto myBuilder = new DropIndexBuilder();
+      if (oldLengthOfSql == mySql.length) {
+        throw new UnableToCreateSQLException("DROP subtree", myKey, myValue, "expr_type");
+      }
 
-		return myBuilder.build( parsedSQL );
-	}
+      mySql ~= " ";
+    }
 
-	protected auto buildReserved( parsedSQL ) {
-		auto myBuilder = new ReservedBuilder();
+    return mySql;
+  }
 
-		return myBuilder.build( parsedSQL );
-	}
+  auto build(Json parsedSql) {
+    auto dropSql = parsedSql["DROP"];
+    string mySql = this.buildSubTree(dropSql);
 
-	protected auto buildExpression( parsedSQL ) {
-		auto myBuilder = new DropExpressionBuilder();
+    if (dropSql["expr_type"].isExpressionType("INDEX")) {
+      mySql ~= "" ~ this.buildDropIndex(parsedSql["INDEX"]) ~ " ";
+    }
 
-		return myBuilder.build( parsedSQL );
-	}
+    return "DROP " ~ substr(mySql, 0, -1);
+  }
 
-	protected auto buildSubTree( parsedSQL ) {
-		string mySql = "";
-		foreach (myKey, myValue; parsedSQL["sub_tree"]) {
-			auto oldLengthOfSql = mySql.length;
-			mySql ~= this.buildReserved( myValue );
-			mySql ~= this.buildExpression( myValue );
+  protected auto buildDropIndex(Json parsedSql) {
+    auto myBuilder = new DropIndexBuilder();
 
-			if ( oldLengthOfSql == mySql.length ) {
-				throw new UnableToCreateSQLException( "DROP subtree", myKey, myValue, "expr_type" );
-			}
+    return myBuilder.build(parsedSql);
+  }
 
-			mySql ~= " ";
-		}
+  protected auto buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
 
-		return mySql;
-	}
+    return myBuilder.build(parsedSql);
+  }
 
-	auto build( Json parsedSQL ) {
-		$drop = parsedSQL["DROP"];
-		string mySql  = this.buildSubTree( $drop );
+  protected auto buildExpression(Json parsedSql) {
+    auto myBuilder = new DropExpressionBuilder();
 
-		if ( $drop["expr_type"] =.isExpressionType(INDEX ) {
-			mySql ~= "" ~ this.buildDropIndex( parsedSQL["INDEX"] ) . " ";
-		}
-
-		return "DROP " ~ substr( mySql, 0, -1 );
-	}
-
+    return myBuilder.build(parsedSql);
+  }
 }
-

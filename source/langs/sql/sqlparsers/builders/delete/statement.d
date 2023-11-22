@@ -8,25 +8,25 @@ import lang.sql;
  * This class : the builder for the whole Delete statement. You can overwrite
  * all functions to achieve another handling. */
 class DeleteStatementBuilder : ISqlBuilder {
-  protected auto buildWhere(parsedSQL) {
+  protected auto buildWhere(parsedSql) {
     auto myBuilder = new WhereBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildFrom(parsedSQL) {
+  protected auto buildFrom(parsedSql) {
     auto myBuilder = new FromBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  protected auto buildDelete(parsedSQL) {
+  protected auto buildDelete(parsedSql) {
     auto myBuilder = new DeleteBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  string build(Json parsedSQL) {
-    string mySql = this.buildDelete(parsedSQL["DELETE"]) ~ " " ~ this.buildFrom(parsedSQL["FROM"]);
-    if (parsedSQL.isSet("WHERE")) {
-      mySql ~= " " ~ this.buildWhere(parsedSQL["WHERE"]);
+  string build(Json parsedSql) {
+    string mySql = this.buildDelete(parsedSql["DELETE"]) ~ " " ~ this.buildFrom(parsedSql["FROM"]);
+    if (parsedSql.isSet("WHERE")) {
+      mySql ~= " " ~ this.buildWhere(parsedSql["WHERE"]);
     }
     return mySql;
   }

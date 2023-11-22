@@ -10,36 +10,36 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class DropExpressionBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSQL, $index) {
+    protected auto buildTable(parsedSql, $index) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSQL, $index);
+        return myBuilder.build(parsedSql, $index);
     }
 
-    protected auto buildDatabase(parsedSQL) {
+    protected auto buildDatabase(parsedSql) {
         auto myBuilder = new DatabaseBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSchema(parsedSQL) {
+    protected auto buildSchema(parsedSql) {
         auto myBuilder = new SchemaBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildTemporaryTable(parsedSQL) {
+    protected auto buildTemporaryTable(parsedSql) {
         auto myBuilder = new TempTableBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    protected auto buildView(parsedSQL) {
+    protected auto buildView(parsedSql) {
         auto myBuilder = new ViewBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
     
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(EXPRESSION) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildTable(myValue, 0);
             mySql ~= this.buildView(myValue);

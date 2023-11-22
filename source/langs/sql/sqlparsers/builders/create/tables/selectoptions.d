@@ -9,12 +9,12 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (!parsedSQL.isSet("select-option") || parsedSQL["select-option"] == false) {
+    string build(Json parsedSql) {
+        if (!parsedSql.isSet("select-option") || parsedSql["select-option"] == false) {
             return "";
         }
 
-        auto selectOption = parsedSQL["select-option"];
+        auto selectOption = parsedSql["select-option"];
 
         string mySql = (selectOption["duplicates"] == false ? "" : (" " ~ selectOption["duplicates"]));
         mySql ~= (selectOption["as"] == false ? "" : " AS");
