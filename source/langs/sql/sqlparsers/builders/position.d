@@ -10,10 +10,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class PositionBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(POSITION) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(POSITION) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

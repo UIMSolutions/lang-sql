@@ -10,14 +10,14 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class SetBuilder : ISqlBuilder {
 
-    protected auto buildSetExpression(parsedSQL) {
+    protected auto buildSetExpression(parsedSql) {
         auto myBuilder = new SetExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildSetExpression(myValue);
 

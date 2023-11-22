@@ -4,18 +4,18 @@ import lang.sql;
 
 @safe:
 class AlterStatementBuilder : IBuilder {
-  protected auto buildSubTree(parsedSQL) {
+  protected auto buildSubTree(parsedSql) {
     auto myBuilder = new SubTreeBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  private auto buildAlter(parsedSQL) {
+  private auto buildAlter(parsedSql) {
     auto myBuilder = new AlterBuilder();
-    return myBuilder.build(parsedSQL);
+    return myBuilder.build(parsedSql);
   }
 
-  auto build(Json parsedSQL) {
-    auto myAlter = parsedSQL["ALTER"];
+  auto build(Json parsedSql) {
+    auto myAlter = parsedSql["ALTER"];
     string mySql = this.buildAlter(myAlterr);
 
     return mySql;

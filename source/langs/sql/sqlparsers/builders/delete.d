@@ -9,16 +9,16 @@ import lang.sql;
  * all functions to achieve another handling. */
 class DeleteBuilder : ISqlBuilder {
 
-  auto build(Json parsedSQL) {
+  auto build(Json parsedSql) {
     string mySql = "DELETE ";
     $right =  - 1;
 
-    if (parsedSQL["options"] != false) {
-      parsedSQL["options"].byKeyValue.each!(kv : mySql ~= kv.value + " ");
+    if (parsedSql["options"] != false) {
+      parsedSql["options"].byKeyValue.each!(kv : mySql ~= kv.value + " ");
     }
 
-    if (parsedSQL["tables"] != false) {
-      foreach (k, v; parsedSQL["tables"]) {
+    if (parsedSql["tables"] != false) {
+      foreach (k, v; parsedSql["tables"]) {
         mySql ~= myValue.", ";
         $right =  - 2;
       }

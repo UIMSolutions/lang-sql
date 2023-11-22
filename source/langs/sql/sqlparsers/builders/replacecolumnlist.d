@@ -8,16 +8,16 @@ use SqlParser\utils\ExpressionType;
  * You can overwrite all functions to achieve another handling. */
 class ReplaceColumnListBuilder : ISqlBuilder {
 
-    protected auto buildColumn(parsedSQL) {
+    protected auto buildColumn(parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
 
         string mySql = "";
-        foreach (myKey, myValue; parsedSQL["sub_tree"]) {
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildColumn(myValue);
 

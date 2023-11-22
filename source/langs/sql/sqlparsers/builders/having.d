@@ -11,24 +11,24 @@ import lang.sql;
  */
 class HavingBuilder : WhereBuilder {
 
-    protected auto buildAliasReference(parsedSQL) {
+    protected auto buildAliasReference(parsedSql) {
         auto myBuilder = new AliasReferenceBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 	
-	protected auto buildHavingExpression(parsedSQL) {
+	protected auto buildHavingExpression(parsedSql) {
         auto myBuilder = new HavingExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    protected auto buildHavingBracketExpression(parsedSQL) {
+    protected auto buildHavingBracketExpression(parsedSql) {
         auto myBuilder = new HavingBracketExpressionBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         string mySql = "HAVING ";
-        foreach (myKey, myValue; parsedSQL) {
+        foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
 
             mySql ~= this.buildAliasReference(myValue);

@@ -11,25 +11,25 @@ import lang.sql;
  */
 class FromBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSQL, myKey) {
+    protected auto buildTable(parsedSql, myKey) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSQL, myKey);
+        return myBuilder.build(parsedSql, myKey);
     }
 
-    protected auto buildTableExpression(parsedSQL, myKey) {
+    protected auto buildTableExpression(parsedSql, myKey) {
         auto myBuilder = new TableExpressionBuilder();
-        return myBuilder.build(parsedSQL, myKey);
+        return myBuilder.build(parsedSql, myKey);
     }
 
-    protected auto buildSubQuery(parsedSQL, myKey) {
+    protected auto buildSubQuery(parsedSql, myKey) {
         auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build(parsedSQL, myKey);
+        return myBuilder.build(parsedSql, myKey);
     }
 
-    string build(Json parsedSQL) {
+    string build(Json parsedSql) {
         auto string mySql = "";
-        if (array_key_exists("UNION ALL", parsedSQL) || array_key_exists("UNION", parsedSQL)) {
-            foreach ($union_type : $outer_v; parsedSQL) {
+        if (array_key_exists("UNION ALL", parsedSql) || array_key_exists("UNION", parsedSql)) {
+            foreach ($union_type : $outer_v; parsedSql) {
                 $first = true;
 
                 foreach ($item; $outer_v) {
@@ -52,7 +52,7 @@ class FromBuilder : ISqlBuilder {
             }
         }
         else {
-            foreach (myKey, myValue; parsedSQL) {
+            foreach (myKey, myValue; parsedSql) {
                 size_t oldSqlLength = mySql.length;
                 mySql ~= this.buildTable(myValue, $k);
                 mySql ~= this.buildTableExpression(myValue, $k);

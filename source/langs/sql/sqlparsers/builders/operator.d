@@ -10,10 +10,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class OperatorBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(OPERATOR) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(OPERATOR) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

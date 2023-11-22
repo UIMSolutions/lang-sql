@@ -10,14 +10,14 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class ReservedBuilder : ISqlBuilder {
 
-    auto isReserved(parsedSQL) {
-        return ("expr_type" in parsedSQL) && parsedSQL["expr_type"].isExpressionType("RESERVED");
+    auto isReserved(parsedSql) {
+        return ("expr_type" in parsedSql) && parsedSql["expr_type"].isExpressionType("RESERVED");
     }
 
-    string build(Json parsedSQL) {
-        if (!this.isReserved(parsedSQL)) {
+    string build(Json parsedSql) {
+        if (!this.isReserved(parsedSql)) {
             return "";
         }
-        return parsedSQL["base_expr"];
+        return parsedSql["base_expr"];
     }
 }

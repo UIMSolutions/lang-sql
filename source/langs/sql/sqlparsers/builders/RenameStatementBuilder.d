@@ -11,9 +11,9 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class RenameStatementBuilder : ISqlBuilder {
 
-    protected auto buildReserved(parsedSQL) {
+    protected auto buildReserved(parsedSql) {
         auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSQL);
+        return myBuilder.build(parsedSql);
     }
 
     protected auto processSourceAndDestTable(auto[string] myValue) {
@@ -23,8 +23,8 @@ class RenameStatementBuilder : ISqlBuilder {
         return myValue["source"]["base_expr"] ~ " TO " ~ myValue["destination"]["base_expr"] ~ ",";
     }
 
-    string build(Json parsedSQL) {
-        auto myRename = parsedSQL["RENAME"];
+    string build(Json parsedSql) {
+        auto myRename = parsedSql["RENAME"];
         string mySql = "";
         foreach (myKey, myValue; myRename["sub_tree"]) {
             size_t oldSqlLength = mySql.length;

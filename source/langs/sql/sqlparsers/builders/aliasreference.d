@@ -8,11 +8,11 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class AliasReferenceBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        if (parsedSQL["expr_type"] !.isExpressionType(ALIAS) {
+    string build(Json parsedSql) {
+        if (parsedSql["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }
-        string mySql = parsedSQL["base_expr"];
+        string mySql = parsedSql["base_expr"];
         return mySql;
     }
 }

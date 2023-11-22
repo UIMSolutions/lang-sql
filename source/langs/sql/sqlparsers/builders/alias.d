@@ -9,13 +9,13 @@ class AliasBuilder : ISqlBuilder {
     return ("alias" in parsed);
   }
 
-  string build(Json parsedSQL) {
-    if ("alias" !in parsed || parsedSQL["alias"] == false) {
+  string build(Json parsedSql) {
+    if ("alias" !in parsed || parsedSql["alias"] == false) {
       return "";
     }
 
     string mySql = "";
-    auto subParsed = parsedSQL["alias"];
+    auto subParsed = parsedSql["alias"];
     if ("as" in subParsed) {
       mySql ~= " AS";
     }

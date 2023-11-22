@@ -10,10 +10,10 @@ import lang.sql;
  * */
 class DirectionBuilder : IBuilder {
 
-    string build(Json parsedSQL) {
-        if ("direction" !in parsedSQL["direction"] || parsedSQL["direction"] == false) {
+    string build(Json parsedSql) {
+        if ("direction" !in parsedSql["direction"] || parsedSql["direction"] == false) {
             return "";
         }
-        return (" " ~ parsedSQL["direction"]);
+        return (" " ~ parsedSql["direction"]);
     }
 }

@@ -10,10 +10,10 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class LimitBuilder : ISqlBuilder {
 
-    string build(Json parsedSQL) {
-        string mySql = (parsedSQL["rowcount"]) . (parsedSQL["offset"] ? " OFFSET " . parsedSQL["offset"] : "");
+    string build(Json parsedSql) {
+        string mySql = (parsedSql["rowcount"]) . (parsedSql["offset"] ? " OFFSET " . parsedSql["offset"] : "");
         if (mySql.isEmpty) {
-            throw new UnableToCreateSQLException("LIMIT", "rowcount", parsedSQL, "rowcount");
+            throw new UnableToCreateSQLException("LIMIT", "rowcount", parsedSql, "rowcount");
         }
         return "LIMIT " . mySql;
     }

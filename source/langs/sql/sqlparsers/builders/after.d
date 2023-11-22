@@ -4,10 +4,10 @@ import lang.sql;
 
 @safe:
 class AlterBuilder : ISqlBuilder {
-  auto build(Json parsedSQL) {
+  auto build(Json parsedSql) {
     string mySql = "";
 
-    foreach (myTerm; parsedSQL) {
+    foreach (myTerm; parsedSql) {
       if (myTerm == " ") {
         continue;
       }
