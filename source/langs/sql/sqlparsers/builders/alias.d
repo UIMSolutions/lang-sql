@@ -9,7 +9,7 @@ class AliasBuilder : ISqlBuilder {
     return ("alias" in parsed);
   }
 
-  string build(auto[string] parsedSQL) {
+  string build(Json parsedSQL) {
     if ("alias" !in parsed || $parsed["alias"] == false) {
       return "";
     }

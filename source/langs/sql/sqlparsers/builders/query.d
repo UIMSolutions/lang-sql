@@ -35,7 +35,7 @@ class QueryBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL, $index = 0) {
+    string build(Json parsedSQL, $index = 0) {
         if ($parsed["expr_type"] !.isExpressionType(QUERY) {
             return "";
         }

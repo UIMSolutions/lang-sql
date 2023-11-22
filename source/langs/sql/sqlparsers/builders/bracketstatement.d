@@ -16,7 +16,7 @@ class BracketStatementBuilder : ISqlBuilder {
         return myBuilder.build($parsed);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         string mySql = "";
         foreach (myKey, myValue; $parsed["BRACKET"]) {
             size_t oldSqlLength = mySql.length;

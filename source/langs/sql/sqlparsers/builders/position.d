@@ -10,7 +10,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class PositionBuilder : ISqlBuilder {
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(POSITION) {
             return "";
         }

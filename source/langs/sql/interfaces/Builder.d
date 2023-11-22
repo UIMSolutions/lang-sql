@@ -11,8 +11,8 @@ import lang.sql;
 interface ISqlBuilder {
   /**
      * Builds a part of an SQL statement.
-     * @param auto[string] parsedSQL a subtree of the SqlParser output array
+     * @param Json parsedSQL a subtree of the SqlParser output array
      * returns part of an SQL statement.
      */
-  string build(auto[string] parsedSQL);
+  string build(Json parsedSQL);
 }

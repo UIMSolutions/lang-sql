@@ -23,7 +23,7 @@ class RenameStatementBuilder : ISqlBuilder {
         return myValue["source"]["base_expr"] ~ " TO " ~ myValue["destination"]["base_expr"] ~ ",";
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         auto myRename = $parsed["RENAME"];
         string mySql = "";
         foreach (myKey, myValue; myRename["sub_tree"]) {

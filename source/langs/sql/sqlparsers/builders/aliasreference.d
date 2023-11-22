@@ -8,7 +8,7 @@ import lang.sql;
  * You can overwrite all functions to achieve another handling. */
 class AliasReferenceBuilder : ISqlBuilder {
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(ALIAS) {
             return "";
         }

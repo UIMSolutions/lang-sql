@@ -15,7 +15,7 @@ class InListBuilder : ISqlBuilder {
         return myBuilder.build($parsed, $delim);
     }
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         if ($parsed["expr_type"] !.isExpressionType(IN_LIST) {
             return "";
         }

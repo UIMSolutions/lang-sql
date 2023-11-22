@@ -10,7 +10,7 @@
  * You can overwrite all functions to achieve another handling. */
 class LimitBuilder : ISqlBuilder {
 
-    string build(auto[string] parsedSQL) {
+    string build(Json parsedSQL) {
         mySql = ($parsed["rowcount"]) . ($parsed["offset"] ? " OFFSET " . $parsed["offset"] : "");
         if (mySql.isEmpty) {
             throw new UnableToCreateSQLException("LIMIT", "rowcount", $parsed, "rowcount");
