@@ -10,7 +10,7 @@ import lang.sql;
  *  */
 class InsertColumnListBuilder : ISqlBuilder {
 
-    protected auto buildColumn(parsedSql) {
+    protected auto buildColumn(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }

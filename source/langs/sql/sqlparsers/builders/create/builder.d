@@ -31,17 +31,17 @@ class CreateBuilder : ISqlBuilder {
     return "CREATE " ~ mySql;
   }
 
-  protected auto buildCreateTable(parsedSql) {
+  protected auto buildCreateTable(Json parsedSql) {
     auto myBuilder = new CreateTableBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildCreateIndex(parsedSql) {
+  protected auto buildCreateIndex(Json parsedSql) {
     auto myBuilder = new CreateIndexBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSubTree(parsedSql) {
+  protected auto buildSubTree(Json parsedSql) {
     auto myBuilder = new SubTreeBuilder();
     return myBuilder.build(parsedSql);
   }

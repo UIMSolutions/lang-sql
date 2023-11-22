@@ -10,17 +10,17 @@ import lang.sql;
  *  */
 class CreateTableOptionsBuilder : IBuilder {
 
-    protected auto buildExpression(parsedSql) {
+    protected auto buildExpression(Json parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCharacterSet(parsedSql) {
+    protected auto buildCharacterSet(Json parsedSql) {
         auto myBuilder = new CharacterSetBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCollation(parsedSql) {
+    protected auto buildCollation(Json parsedSql) {
         auto myBuilder = new CollationBuilder();
         return myBuilderr.build(parsedSql);
     }
@@ -32,7 +32,7 @@ class CreateTableOptionsBuilder : IBuilder {
      * @param Json parsedSql The part of the output array, which contains the current expression.
      * @return a string, which is added right after the expression
      */
-    protected auto getDelimiter(parsedSql) {
+    protected auto getDelimiter(Json parsedSql) {
         return (parsedSql["delim"] == false ? "" : (parsedSql["delim"]) . " ").strip;
     }
 

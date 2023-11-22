@@ -9,7 +9,7 @@ import lang.sql;
  *  */
 class CreateTableDefinitionBuilder : ISqlBuilder {
 
-    protected auto buildTableBracketExpression(parsedSql) {
+    protected auto buildTableBracketExpression(Json parsedSql) {
         auto myBuilder = new TableBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }

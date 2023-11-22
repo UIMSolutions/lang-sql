@@ -10,7 +10,7 @@ import lang.sql;
  *  */
 class OrderByAliasBuilder : ISqlBuilder {
 
-    protected auto buildDirection(parsedSql) {
+    protected auto buildDirection(Json parsedSql) {
         auto myBuilder = new DirectionBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -11,12 +11,12 @@ import lang.sql;
  *  */
 class IndexSizeBuilder : ISqlBuilder {
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -10,32 +10,32 @@ import lang.sql;
  *  */
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
-    protected auto buildIndexParser(parsedSql) {
+    protected auto buildIndexParser(Json parsedSql) {
         auto myBuilder = new IndexParserBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexSize(parsedSql) {
+    protected auto buildIndexSize(Json parsedSql) {
         auto myBuilder = new IndexSizeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexType(parsedSql) {
+    protected auto buildIndexType(Json parsedSql) {
         auto myBuilder = new IndexTypeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexComment(parsedSql) {
+    protected auto buildIndexComment(Json parsedSql) {
         auto myBuilder = new IndexCommentBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexAlgorithm(parsedSql) {
+    protected auto buildIndexAlgorithm(Json parsedSql) {
         auto myBuilder = new IndexAlgorithmBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexLock(parsedSql) {
+    protected auto buildIndexLock(Json parsedSql) {
         auto myBuilder = new IndexLockBuilder();
         return myBuilder.build(parsedSql);
     }

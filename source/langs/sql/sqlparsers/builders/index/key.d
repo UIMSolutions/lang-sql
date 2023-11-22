@@ -10,22 +10,22 @@ import lang.sql;
  *  */
 class IndexKeyBuilder : ISqlBuilder {
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildIndexType(parsedSql) {
+    protected auto buildIndexType(Json parsedSql) {
         auto myBuilder = new IndexTypeBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildColumnList(parsedSql) {
+    protected auto buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }

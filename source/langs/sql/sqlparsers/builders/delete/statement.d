@@ -17,17 +17,17 @@ class DeleteStatementBuilder : ISqlBuilder {
     return mySql;
   }
 
-  protected auto buildWhere(parsedSql) {
+  protected auto buildWhere(Json parsedSql) {
     auto myBuilder = new WhereBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildFrom(parsedSql) {
+  protected auto buildFrom(Json parsedSql) {
     auto myBuilder = new FromBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildDelete(parsedSql) {
+  protected auto buildDelete(Json parsedSql) {
     auto myBuilder = new DeleteBuilder();
     return myBuilder.build(parsedSql);
   }

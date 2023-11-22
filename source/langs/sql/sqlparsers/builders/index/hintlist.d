@@ -6,7 +6,7 @@ module langs.sql.sqlparsers.builders.index.IndexHintListBuilder;
  *  */
 class IndexHintListBuilder : ISqlBuilder {
 
-    auto hasHint(parsedSql) {
+    auto hasHint(Json parsedSql) {
         return isset(parsedSql["hints"]);
     }
 

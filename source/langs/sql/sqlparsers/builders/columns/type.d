@@ -10,41 +10,41 @@ import lang.sql;
  *  */
 class ColumnTypeBuilder : ISqlBuilder {
 
-    protected auto buildColumnTypeBracketExpression(parsedSql) {
+    protected auto buildColumnTypeBracketExpression(Json parsedSql) {
         auto myBuilder = new ColumnTypeBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(parsedSql) {
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildDataType(parsedSql) {
+    protected auto buildDataType(Json parsedSql) {
         auto myBuilder = new DataTypeBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildDefaultValue(parsedSql) {
+    protected auto buildDefaultValue(Json parsedSql) {
         auto myBuilder = new DefaultValueBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCharacterSet(parsedSql) {
+    protected auto buildCharacterSet(Json parsedSql) {
         if (!parsedSql.isExpressionType("CHARSET")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
-    protected auto buildCollation(parsedSql) {
+    protected auto buildCollation(Json parsedSql) {
         if (!parsedSql.isExpressionType("COLLATE")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
-    protected auto buildComment(parsedSql) {
+    protected auto buildComment(Json parsedSql) {
         if (!parsedSql.isExpressionType("COMMENT")) {
             return "";
         }

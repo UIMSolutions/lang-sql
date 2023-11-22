@@ -9,7 +9,7 @@ import lang.sql;
  *  */
 class CreateIndexTableBuilder : ISqlBuilder {
 
-    protected auto buildColumnList(parsedSql) {
+    protected auto buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }

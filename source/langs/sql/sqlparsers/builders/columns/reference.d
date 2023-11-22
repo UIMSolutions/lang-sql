@@ -6,7 +6,7 @@ import lang.sql;
 
 class ColumnReferenceBuilder : ISqlBuilder {
 
-    protected auto buildAlias(parsedSql) {
+    protected auto buildAlias(Json parsedSql) {
         auto myBuilder = new AliasBuilder();
         return myBuilder.build(parsedSql);
     }

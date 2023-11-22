@@ -11,11 +11,11 @@ import lang.sql;
  *  */
 class IndexColumnBuilder : ISqlBuilder {
 
-    protected auto buildLength(parsedSql) {
+    protected auto buildLength(Json parsedSql) {
         return (parsedSql.isEmpty ? "" : ("(" ~ parsedSql ~ ")"));
     }
 
-    protected auto buildDirection(parsedSql) {
+    protected auto buildDirection(Json parsedSql) {
         return (parsedSql.isEmpty ? "" : (" " ~ parsedSql));
     }
 

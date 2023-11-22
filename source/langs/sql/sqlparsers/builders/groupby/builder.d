@@ -9,27 +9,27 @@ import lang.sql;
  *  */
 class GroupByBuilder : ISqlBuilder {
 
-    protected auto buildColRef(parsedSql) {
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildPosition(parsedSql) {
+    protected auto buildPosition(Json parsedSql) {
         auto myBuilder = new PositionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(parsedSql) {
+    protected auto buildFunction(Json parsedSql) {
         auto myBuilder = new FunctionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildGroupByAlias(parsedSql) {
+    protected auto buildGroupByAlias(Json parsedSql) {
         auto myBuilder = new GroupByAliasBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildGroupByExpression(parsedSql) {
+    protected auto buildGroupByExpression(Json parsedSql) {
     	auto myBuilder = new GroupByExpressionBuilder();
         return myBuilder.build(parsedSql);
     }

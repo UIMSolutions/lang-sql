@@ -10,7 +10,7 @@ import lang.sql;
  *  */
 class ConstraintBuilder : ISqlBuilder {
 
-    protected auto buildConstant(parsedSql) {
+    protected auto buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
