@@ -12,11 +12,11 @@ import lang.sql;
  *   */
 class HavingExpressionBuilder : WhereExpressionBuilder {
 
-    protected auto buildHavingExpression(parsedSql) {
+    protected auto buildHavingExpression(Json parsedSql) {
         return this.build(parsedSql);
     }
 
-    protected auto buildHavingBracketExpression(parsedSql) {
+    protected auto buildHavingBracketExpression(Json parsedSql) {
         auto myBuilder = new HavingBracketExpressionBuilder();
         return myBuilderr.build(parsedSql);
     }

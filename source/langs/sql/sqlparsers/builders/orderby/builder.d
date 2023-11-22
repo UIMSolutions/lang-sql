@@ -7,61 +7,64 @@ import lang.sql;
 // Builds the ORDERBY clause. 
 class OrderByBuilder : ISqlBuilder {
 
-    protected auto buildFunction(parsedSql) {
+    string build(Json parsedSql) {
+        string result = parsedSql.myKeyValue
+            .map!(kv => buildKeyValue(kv.key, kv.value))
+            .join;
+
+        return "ORDER BY " ~ substr(result, 0, -2);
+    }
+
+    string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        result ~= this.buildAlias(aValue);
+        result ~= this.buildColRef(aValue);
+        result ~= this.buildFunction(aValue);
+        result ~= this.buildExpression(aValue);
+        result ~= this.buildBracketExpression(aValue);
+        result ~= this.buildReserved(aValue);
+        result ~= this.buildPosition(aValue);
+
+        if (result.isEmpty) { // No change
+            throw new UnableToCreateSQLException("ORDER", aKey, aValue, "expr_type");
+        }
+
+        result ~= ", ";
+        return result;
+    }
+
+    protected auto buildFunction(Json parsedSql) {
         auto myBuilder = new OrderByFunctionBuilder();
         return myBuilder.build(parsedSql);
     }
-    
-    protected auto buildReserved(parsedSql) {
+
+    protected auto buildReserved(Json parsedSql) {
         auto myBuilder = new OrderByReservedBuilder();
         return myBuilder.build(parsedSql);
     }
-    
-    protected auto buildColRef(parsedSql) {
+
+    protected auto buildColRef(Json parsedSql) {
         auto myBuilder = new OrderByColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildAlias(parsedSql) {
+    protected auto buildAlias(Json parsedSql) {
         auto myBuilder = new OrderByAliasBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildExpression(parsedSql) {
+    protected auto buildExpression(Json parsedSql) {
         auto myBuilder = new OrderByExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
-    
-    protected auto buildBracketExpression(parsedSql) {
+
+    protected auto buildBracketExpression(Json parsedSql) {
         auto myBuilder = new OrderByBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
-    
-    protected auto buildPosition(parsedSql) {
+
+    protected auto buildPosition(Json parsedSql) {
         auto myBuilder = new OrderByPositionBuilder();
         return myBuilder.build(parsedSql);
-    }
-
-    string build(Json parsedSql) {
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildAlias(myValue);
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildExpression(myValue);
-            mySql ~= this.buildBracketExpression(myValue);
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildPosition(myValue);
-            
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("ORDER", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= ", ";
-        }
-        mySql = substr(mySql, 0, -2);
-
-        return "ORDER BY " ~ mySql;
     }
 }

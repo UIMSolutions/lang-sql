@@ -11,28 +11,28 @@ import lang.sql;
 
 class RecordBuilder : ISqlBuilder {
 
-  protected auto buildOperator(parsedSql) {
+  protected auto buildOperator(Json parsedSql) {
     auto myBuilder = new OperatorBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildFunction(parsedSql) {
+  protected auto buildFunction(Json parsedSql) {
     auto myBuilder = new FunctionBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildConstant(parsedSql) {
+  protected auto buildConstant(Json parsedSql) {
     auto myBuilder = new ConstantBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildColRef(parsedSql) {
+  protected auto buildColRef(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);
   }
 
   string build(Json parsedSql) {
-    if (parsedSql["expr_type"]!.isExpressionType("RECORD")) {
+    if (!parsedSql.isExpressionType("RECORD")) {
       return parsedSql.get("base_expr", "");
     }
 
