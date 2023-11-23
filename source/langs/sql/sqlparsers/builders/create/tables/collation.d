@@ -26,21 +26,26 @@ class CollationBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(COLLATE) { return ""; }
+        if (!parsedSql.isExpressionType("COLLATE")) {
+            return "";
+        }
 
-        string mySql = "";
-        foreach (key, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildConstant(myValue);
+        string mySql = parsedSql["sub_tree"]) {
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE TABLE options collation subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
         }
         return substr(mySql, 0, -1);
+    }
+
+    protected buildKeyValue(string aKey, Json aValue) {
+        string result;
+        result ~= this.buildReserved(myValue);
+        result ~= this.buildOperator(myValue);
+        result ~= this.buildConstant(myValue);
+
+        if (result.isEmpty) { // No change
+            throw new UnableToCreateSQLException("CREATE TABLE options collation subtree", myKey, myValue, "expr_type");
+        }
+
+        result ~= " ";
     }
 }

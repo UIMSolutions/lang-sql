@@ -4,17 +4,17 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the LIMIT statement.
- * This class : the builder LIMIT statement. 
- *  */
+// Builds the LIMIT statement.
 class LimitBuilder : ISqlBuilder {
 
-    string build(Json parsedSql) {
-        string mySql = (parsedSql["rowcount"]) . (parsedSql["offset"] ? " OFFSET " . parsedSql["offset"] : "");
-        if (mySql.isEmpty) {
-            throw new UnableToCreateSQLException("LIMIT", "rowcount", parsedSql, "rowcount");
-        }
-        return "LIMIT " . mySql;
+  string build(Json parsedSql) {
+    string mySql = (parsedSql["rowcount"].get!string) ~
+      (parsedSql["offset"].get!string
+          ? " OFFSET " ~ parsedSql["offset"].get!string : "");
+
+    if (mySql.isEmpty) {
+      throw new UnableToCreateSQLException("LIMIT", "rowcount", parsedSql, "rowcount");
     }
+    return "LIMIT " ~ mySql;
+  }
 }

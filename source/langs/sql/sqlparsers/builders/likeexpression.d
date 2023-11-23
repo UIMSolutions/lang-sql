@@ -12,32 +12,38 @@ import lang.sql;
  *  */
 class LikeExpressionBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSql, $index) {
-        auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSql, $index);
+  protected auto buildTable(parsedSql, $index) {
+    auto myBuilder = new TableBuilder();
+    return myBuilder.build(parsedSql, $index);
+  }
+
+  protected auto buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("LIKE")) {
+      return null;
     }
 
-    protected auto buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    return substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildReserved(myValue);
+    result ~= this.buildTable(myValue, 0);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE TABLE create-def (like) subtree", aKey, aValue, "expr_type");
     }
 
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(LIKE) {
-            return "";
-        }
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildTable(myValue, 0);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE TABLE create-def (like) subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-        return substr(mySql, 0, -1);
-    }
+    result ~= " ";
+    return result;
+  }
 }

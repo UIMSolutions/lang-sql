@@ -4,11 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the records within the INSERT statement. 
-* This class : the builder for the records within INSERT statement.
-  *  */
-
+// Builds the records within the INSERT statement. 
 class RecordBuilder : ISqlBuilder {
 
   protected auto buildOperator(Json parsedSql) {
@@ -36,21 +32,26 @@ class RecordBuilder : ISqlBuilder {
       return parsedSql.get("base_expr", "");
     }
 
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["data"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildConstant(myValue);
-      mySql ~= this.buildFunction(myValue);
-      mySql ~= this.buildOperator(myValue);
-      mySql ~= this.buildColRef(myValue);
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException(ExpressionType :  : RECORD, myKey, myValue, "expr_type");
-      }
+    string mySql = parsedSql["data"].byKeyValue
+      .map(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-      mySql ~= ", ";
-    }
     mySql = substr(mySql, 0, -2);
     return "(" ~ mySql ~ ")";
   }
 
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildFunction(aValue);
+    result ~= this.buildOperator(aValue);
+    result ~= this.buildColRef(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException(expressionType("RECORD"), aKey, aValue, "expr_type");
+    }
+
+    result ~= ", ";
+    return result;
+  }
 }

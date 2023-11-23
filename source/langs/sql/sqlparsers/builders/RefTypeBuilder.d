@@ -12,7 +12,7 @@ class RefTypeBuilder {
 
     auto build(Json parsedSql) {
         if (parsedSql.isEmpty) {
-            return "";
+            return null;
         }
         if (parsedSql == "ON") {
             return " ON ";

@@ -4,11 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds expressions within the HAVING part.
- * This class : the builder for expressions within the HAVING part. 
- * 
- *   */
+// Builds expressions within the HAVING part.
 class HavingExpressionBuilder : WhereExpressionBuilder {
 
   protected auto buildHavingExpression(Json parsedSql) {

@@ -11,8 +11,8 @@ import lang.sql;
 class PositionBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(POSITION) {
-            return "";
+        if (!parsedSql.isExpressionType("POSITION")) {
+            return null;
         }
         return parsedSql["base_expr"];
     }

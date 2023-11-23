@@ -11,8 +11,8 @@ import lang.sql;
 class OperatorBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(OPERATOR) {
-            return "";
+        if (!parsedSql.isExpressionType("OPERATOR")) {
+            return null;
         }
         return parsedSql["base_expr"];
     }
