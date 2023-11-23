@@ -21,7 +21,7 @@ class IndexCommentBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(COMMENT) {
+        if (!parsedSql.isExpressionType(COMMENT) {
             return "";
         }
         string mySql = "";

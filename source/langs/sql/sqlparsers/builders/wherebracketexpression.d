@@ -58,7 +58,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(BRACKET_EXPRESSION) {
+        if (!parsedSql.isExpressionType(BRACKET_EXPRESSION) {
             return "";
         }
         string mySql = "";

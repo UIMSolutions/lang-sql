@@ -14,7 +14,7 @@ import lang.sql;
 class ViewBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(VIEW) {
+        if (!parsedSql.isExpressionType(VIEW) {
             return "";
         }
         return parsedSql["base_expr"];

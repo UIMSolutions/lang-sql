@@ -9,7 +9,7 @@ import lang.sql;
 class AliasReferenceBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType("ALIAS")) {
+        if (!parsedSql.isExpressionType("ALIAS")) {
             return "";
         }
         string mySql = parsedSql["base_expr"].get!string;

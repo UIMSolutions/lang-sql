@@ -1,4 +1,3 @@
-
 module langs.sql.sqlparsers.builders.havingexpression;
 
 import lang.sql;
@@ -12,41 +11,44 @@ import lang.sql;
  *   */
 class HavingExpressionBuilder : WhereExpressionBuilder {
 
-    protected auto buildHavingExpression(Json parsedSql) {
-        return this.build(parsedSql);
+  protected auto buildHavingExpression(Json parsedSql) {
+    return this.build(parsedSql);
+  }
+
+  protected auto buildHavingBracketExpression(Json parsedSql) {
+    auto myBuilder = new HavingBracketExpressionBuilder();
+    return myBuilderr.build(parsedSql);
+  }
+
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("EXPRESSION")) {
+      return "";
     }
 
-    protected auto buildHavingBracketExpression(Json parsedSql) {
-        auto myBuilder = new HavingBracketExpressionBuilder();
-        return myBuilderr.build(parsedSql);
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    mySql = substr(mySql, 0, -1);
+    return mySql;
+  }
+
+  string buildKeyValue(string aKey, Json aValue) {
+    string result; 
+    result ~= this.buildColRef(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildOperator(aValue);
+    result ~= this.buildInList(aValue);
+    result ~= this.buildFunction(aValue);
+    result ~= this.buildHavingExpression(aValue);
+    result ~= this.buildHavingBracketExpression(aValue);
+    result ~= this.buildUserVariable(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("HAVING expression subtree", aKey, aValue, "expr_type");
     }
 
-    string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType("EXPRESSION")) {
-            return "";
-        }
-        
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildInList(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildHavingExpression(myValue);
-            mySql ~= this.buildHavingBracketExpression(myValue);
-            mySql ~= this.buildUserVariable(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("HAVING expression subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-
-        mySql = substr(mySql, 0, -1);
-        return mySql;
-    }
-
+    result ~= " ";
+    return result; 
+  }
 }

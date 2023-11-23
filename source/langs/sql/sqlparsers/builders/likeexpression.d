@@ -23,7 +23,7 @@ class LikeExpressionBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(LIKE) {
+        if (!parsedSql.isExpressionType(LIKE) {
             return "";
         }
         string mySql = "";

@@ -14,7 +14,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(COLUMN_LIST) { return ""; }
+        if (!parsedSql.isExpressionType(COLUMN_LIST) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {

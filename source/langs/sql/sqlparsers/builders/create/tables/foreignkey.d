@@ -31,7 +31,7 @@ class ForeignKeyBuilder : IBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(FOREIGN_KEY) {
+        if (!parsedSql.isExpressionType(FOREIGN_KEY) {
             return "";
         }
         string mySql = "";

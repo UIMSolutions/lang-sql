@@ -22,7 +22,7 @@ class IndexSizeBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX_SIZE) {
+        if (!parsedSql.isExpressionType(INDEX_SIZE) {
             return "";
         }
         string mySql = "";

@@ -11,7 +11,7 @@ import lang.sql;
 class DatabaseBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(DATABASE) {
+        if (!parsedSql.isExpressionType(DATABASE) {
             return "";
         }
         return parsedSql["base_expr"];

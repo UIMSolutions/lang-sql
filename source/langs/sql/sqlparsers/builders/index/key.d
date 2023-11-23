@@ -31,7 +31,7 @@ class IndexKeyBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX) {
+        if (!parsedSql.isExpressionType(INDEX) {
             return "";
         }
 

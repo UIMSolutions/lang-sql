@@ -26,7 +26,7 @@ class CollationBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(COLLATE) { return ""; }
+        if (!parsedSql.isExpressionType(COLLATE) { return ""; }
 
         string mySql = "";
         foreach (key, myValue; parsedSql["sub_tree"]) {

@@ -41,7 +41,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(PRIMARY_KEY) { return ""; }
+        if (!parsedSql.isExpressionType(PRIMARY_KEY) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {

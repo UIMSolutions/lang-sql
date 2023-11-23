@@ -16,7 +16,7 @@ class OrderByAliasBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(ALIAS) {
+        if (!parsedSql.isExpressionType(ALIAS) {
             return "";
         }
         return parsedSql["base_expr"] . this.buildDirection(parsedSql);

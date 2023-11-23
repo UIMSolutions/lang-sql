@@ -42,7 +42,7 @@ class SetExpressionBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType("EXPRESSION")) {
+        if (!parsedSql.isExpressionType("EXPRESSION")) {
             return "";
         }
         string mySql = "";

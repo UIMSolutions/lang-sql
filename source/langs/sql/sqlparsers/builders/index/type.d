@@ -17,7 +17,7 @@ class IndexTypeBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX_TYPE) {
+        if (!parsedSql.isExpressionType(INDEX_TYPE) {
             return "";
         }
 

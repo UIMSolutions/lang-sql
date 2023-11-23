@@ -28,7 +28,7 @@ class IndexLockBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX_LOCK) {
+        if (!parsedSql.isExpressionType(INDEX_LOCK) {
             return "";
         }
 

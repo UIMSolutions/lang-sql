@@ -21,7 +21,7 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     protected auto buildIndexKey(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX) {
+        if (!parsedSql.isExpressionType(INDEX) {
             return "";
         }
         return parsedSql["base_expr"];
@@ -33,7 +33,7 @@ class FulltextIndexBuilder : IBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(FULLTEXT_IDX) { 
+        if (!parsedSql.isExpressionType(FULLTEXT_IDX) { 
             return "";
         }
         string mySql = "";

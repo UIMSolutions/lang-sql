@@ -20,7 +20,7 @@ class IndexColumnBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX_COLUMN) {
+        if (!parsedSql.isExpressionType(INDEX_COLUMN) {
             return "";
         }
 

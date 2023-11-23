@@ -12,8 +12,8 @@ class FunctionBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
         if (!parsedSql.isExpressionType("AGGREGATE_FUNCTION")
-            && !parsedSql.isExpressionType("SIMPLE_FUNCTION")
-            && !parsedSql.isExpressionType("CUSTOM_FUNCTION")) {
+            && (Json parsedSql) {("SIMPLE_FUNCTION")
+            && (Json parsedSql) {("CUSTOM_FUNCTION")) {
             return "";
         }
 

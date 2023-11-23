@@ -16,7 +16,7 @@ class ConstraintBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(CONSTRAINT) {
+        if (!parsedSql.isExpressionType(CONSTRAINT) {
             return "";
         }
         string mySql = parsedSql["sub_tree"] == false ? "" : this.buildConstant(parsedSql["sub_tree"]);

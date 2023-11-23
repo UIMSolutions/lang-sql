@@ -26,7 +26,7 @@ class IndexAlgorithmBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(INDEX_ALGORITHM) { return ""; }
+        if (!parsedSql.isExpressionType(INDEX_ALGORITHM) { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {

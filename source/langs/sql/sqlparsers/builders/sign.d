@@ -11,7 +11,7 @@ import lang.sql;
 class SignBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(SIGN) {
+        if (!parsedSql.isExpressionType(SIGN) {
             return "";
         }
         return parsedSql["base_expr"];

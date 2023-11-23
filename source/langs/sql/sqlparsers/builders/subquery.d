@@ -37,7 +37,7 @@ class SubQueryBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql, $index = 0) {
-        if (parsedSql["expr_type"] !.isExpressionType(SUBQUERY) {
+        if (!parsedSql.isExpressionType(SUBQUERY) {
             return "";
         }
 

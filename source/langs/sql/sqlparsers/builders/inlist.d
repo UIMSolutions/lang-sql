@@ -16,7 +16,7 @@ class InListBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (parsedSql["expr_type"] !.isExpressionType(IN_LIST) {
+        if (!parsedSql.isExpressionType(IN_LIST) {
             return "";
         }
         string mySql = this.buildSubTree(parsedSql, ", ");

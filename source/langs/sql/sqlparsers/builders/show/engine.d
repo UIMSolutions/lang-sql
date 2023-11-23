@@ -11,7 +11,7 @@ import lang.sql;
 class EngineBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (parsedSql["expr_type"] !.isExpressionType(ENGINE) {
+    if (!parsedSql.isExpressionType(ENGINE) {
       return "";
     }
 
