@@ -8,11 +8,27 @@ import lang.sql;
 class InsertBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql) {
-
-    }
+    string mySql = parsedSql.byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .json;
+      
     return "INSERT ".substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildTable(aValue);
+    result ~= this.buildSubQuery(aValue);
+    result ~= this.buildColumnList(aValue);
+    result ~= this.buildReserved(myValue);
+    result ~= this.buildBracketExpression(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("INSERT", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected string buildTable(Json parsedSql) {

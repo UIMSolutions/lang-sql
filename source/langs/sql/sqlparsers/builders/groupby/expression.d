@@ -4,11 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds an expression within a GROUP-BY clause.
- * This class : the builder for an alias within the GROUP-BY clause. 
- * 
- *   */
+// Builds an expression within a GROUP-BY clause.
 class GroupByExpressionBuilder : ISqlBuilder {
 
 	protected string buildColRef(Json parsedSql) {

@@ -4,14 +4,11 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds an alias within a GROUP-BY clause.
- * This class : the builder for an alias within the GROUP-BY clause. 
- */
+// Builds an alias within a GROUP-BY clause.
 class GroupByAliasBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(ALIAS) {
+        if (!parsedSql.isExpressionType("ALIAS")) {
             return "";
         }
         return parsedSql["base_expr"];

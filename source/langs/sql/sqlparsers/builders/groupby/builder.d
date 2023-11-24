@@ -4,9 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This class : the builder for the GROUP-BY clause. 
- */
+// Builder for the GROUP-BY clause. 
 class GroupByBuilder : ISqlBuilder {
 
     protected string buildColRef(Json parsedSql) {

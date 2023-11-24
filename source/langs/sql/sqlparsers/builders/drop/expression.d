@@ -3,7 +3,6 @@ module langs.sql.sqlparsers.builders.drop.expression;
 import lang.sql;
 
 @safe:
-
 // Builds the object list of a DROP statement. 
 class DropExpressionBuilder : ISqlBuilder {
   this() {
