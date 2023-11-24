@@ -4,7 +4,7 @@ module lang.sql.parsers.builders;
  * Builds reserved keywords within the ORDER-BY part. 
  * This class : the builder for reserved keywords within the ORDER-BY part. 
  * It must contain the direction. 
- *  */
+ */
 class OrderByReservedBuilder : ReservedBuilder {
 
   protected auto buildDirection(Json parsedSql) {

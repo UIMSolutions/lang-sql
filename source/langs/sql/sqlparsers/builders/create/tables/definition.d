@@ -6,7 +6,7 @@ import lang.sql;
 /**
  * Builds the create definitions of CREATE TABLE.
  * This class : the builder for the create definitions of CREATE TABLE. 
- *  */
+ */
 class CreateTableDefinitionBuilder : ISqlBuilder {
 
     protected auto buildTableBracketExpression(Json parsedSql) {

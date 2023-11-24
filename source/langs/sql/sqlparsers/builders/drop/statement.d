@@ -6,7 +6,7 @@ import lang.sql;
 /**
  * Builds the DROP statement
  * This class : the builder for the whole DROP TABLE statement. 
- *  */
+ */
 class DropStatementBuilder : IBuilder {
 
 	protected auto buildDROP( parsedSql ) {

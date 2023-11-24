@@ -6,7 +6,7 @@ import lang.sql;
 
 /**
  * This class : the builder for the table part of a DROP INDEX statement.
- *  */
+ */
 class DropIndexTableBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

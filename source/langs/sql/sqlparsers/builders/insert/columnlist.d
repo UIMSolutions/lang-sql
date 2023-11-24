@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds column-list parts of INSERT statements.
  * This class : the builder for column-list parts of INSERT statements. 
- *  */
+ */
 class InsertColumnListBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

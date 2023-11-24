@@ -1,5 +1,9 @@
 module langs.sql.sqlparsers.builders.insert.InsertStatementBuilder;
 
+import lang.sql;
+
+@safe:
+
 /**
  * Builds the INSERT statement
  * This class : the builder for the whole Insert statement. You can overwrite

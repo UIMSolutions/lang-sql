@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the PRIMARY KEY statement part of CREATE TABLE. 
  * This class : the builder for the PRIMARY KEY  statement part of CREATE TABLE. 
- *  */
+ */
 class PrimaryKeyBuilder : ISqlBuilder {
 
     protected auto buildColumnList(Json parsedSql) {

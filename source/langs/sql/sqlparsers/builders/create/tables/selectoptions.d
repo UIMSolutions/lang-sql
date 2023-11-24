@@ -6,7 +6,7 @@ import lang.sql;
 /**
  * Builds the select-options statement part of CREATE TABLE. 
  * This class : the builder for the select-options statement part of CREATE TABLE. 
- *  */
+ */
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

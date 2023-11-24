@@ -8,7 +8,7 @@ import lang.sql;
  * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
  * This class : the builder for the index type of a PRIMARY KEY
  * statement part of CREATE TABLE. 
- *  */
+ */
 class IndexTypeBuilder : ISqlBuilder {
 
     protected auto buildReserved(Json parsedSql) {

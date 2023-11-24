@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds an alias within an ORDER-BY clause.
  * This class : the builder for an alias within the ORDER-BY clause. 
- *  */
+ */
 class OrderByAliasBuilder : ISqlBuilder {
 
     protected auto buildDirection(Json parsedSql) {

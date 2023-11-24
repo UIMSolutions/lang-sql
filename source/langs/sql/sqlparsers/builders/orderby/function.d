@@ -7,7 +7,7 @@ import lang.sql;
  * Builds functions within the ORDER-BY part. 
  * This class : the builder for functions within the ORDER-BY part. 
  * It must contain the direction. 
- *  */
+ */
 class OrderByFunctionBuilder : FunctionBuilder {
 
   protected auto buildDirection(Json parsedSql) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the b racket expressions within a SELECT statement. */
  * This class : the builder for bracket expressions within a SELECT statement. 
- *  */
+ */
 class SelectBracketExpressionBuilder : ISqlBuilder {
 
   protected auto buildSubTree(parsedSql, $delim) {

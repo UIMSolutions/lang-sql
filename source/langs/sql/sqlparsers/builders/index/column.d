@@ -8,7 +8,7 @@ import lang.sql;
  * Builds the column entries of the column-list parts of CREATE TABLE.
  * This class : the builder for index column entries of the column-list 
  * parts of CREATE TABLE. 
- *  */
+ */
 class IndexColumnBuilder : ISqlBuilder {
 
 

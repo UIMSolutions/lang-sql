@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the [INSERT] statement part.
  * This class : the builder for the [INSERT] statement parts. 
- *  */
+ */
 class InsertBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

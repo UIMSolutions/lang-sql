@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the table-options statement part of CREATE TABLE.
  * This class : the builder for the table-options statement part of CREATE TABLE. 
- *  */
+ */
 class CreateTableOptionsBuilder : IBuilder {
 
     protected auto buildExpression(Json parsedSql) {

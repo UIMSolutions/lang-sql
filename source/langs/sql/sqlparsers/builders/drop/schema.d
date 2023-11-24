@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the schema within the DROP statement. 
  * This class : the builder for a schema within DROP statement. 
- *  */
+ */
 class SchemaBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

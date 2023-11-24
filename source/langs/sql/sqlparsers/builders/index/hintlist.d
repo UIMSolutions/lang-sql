@@ -3,7 +3,7 @@ module langs.sql.sqlparsers.builders.index.IndexHintListBuilder;
 /**
  * Builds the index hint list of a table.
  * This class : the builder for index hint lists. 
- *  */
+ */
 class IndexHintListBuilder : ISqlBuilder {
 
     auto hasHint(Json parsedSql) {

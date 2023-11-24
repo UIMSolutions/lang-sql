@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the FOREIGN KEY statement part of CREATE TABLE. 
  * This class : the builder for the FOREIGN KEY statement part of CREATE TABLE. 
- *  */
+ */
 class ForeignKeyBuilder : IBuilder {
 
     protected auto buildConstant(Json parsedSql) {
