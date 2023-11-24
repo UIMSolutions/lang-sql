@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.builders.create.tables.selectoptions;
 import lang.sql;
 
 @safe:
-/**
- * Builds the select-options statement part of CREATE TABLE. 
- * This class : the builder for the select-options statement part of CREATE TABLE. 
- */
+// Builds the select-options statement part of CREATE TABLE. 
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

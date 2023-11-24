@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the CHECK statement part of CREATE TABLE. 
- * This class : the builder for the CHECK statement part of CREATE TABLE. 
- */
+// Builds the CHECK statement part of CREATE TABLE. 
 class CheckBuilder : ISqlBuilder {
 
     protected string buildSelectBracketExpression(Json parsedSql) {

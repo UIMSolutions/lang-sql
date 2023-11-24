@@ -10,7 +10,30 @@ import lang.sql;
  */
 class PrimaryKeyBuilder : ISqlBuilder {
 
-    protected string buildColumnList(Json parsedSql) {
+
+
+    string build(Json parsedSql) {
+        if (!parsedSql.isExpressionType(PRIMARY_KEY) { return ""; }
+
+        string mySql = "";
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
+            size_t oldSqlLength = mySql.length;
+            mySql ~= this.buildConstraint(myValue);
+            mySql ~= this.buildReserved(myValue);
+            mySql ~= this.buildColumnList(myValue);
+            mySql ~= this.buildIndexType(myValue);
+            mySql ~= this.buildIndexSize(myValue);
+            mySql ~= this.buildIndexParser(myValue);
+
+            if (oldSqlLength == mySql.length) { // No change
+                throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", myKey, myValue, "expr_type");
+            }
+
+            mySql ~= " ";
+        }
+        return substr(mySql, 0, -1);
+    }
+        protected string buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -38,27 +61,5 @@ class PrimaryKeyBuilder : ISqlBuilder {
     protected string buildIndexParser(Json parsedSql) {
         auto myBuilder = new IndexParserBuilder();
         return myBuilder.build(parsedSql);
-    }
-
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(PRIMARY_KEY) { return ""; }
-
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildConstraint(myValue);
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildColumnList(myValue);
-            mySql ~= this.buildIndexType(myValue);
-            mySql ~= this.buildIndexSize(myValue);
-            mySql ~= this.buildIndexParser(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-        return substr(mySql, 0, -1);
     }
 }

@@ -10,10 +10,11 @@ import lang.sql;
  */
 class DataTypeBuilder : IBuilder {
 
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("DATA_TYPE")) {
-            return "";
-        }
-        return parsedSql["base_expr"];
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("DATA_TYPE")) {
+      return "";
     }
+    
+    return parsedSql["base_expr"];
+  }
 }

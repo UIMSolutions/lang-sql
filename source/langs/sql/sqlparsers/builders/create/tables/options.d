@@ -10,21 +10,6 @@ import lang.sql;
  */
 class CreateTableOptionsBuilder : IBuilder {
 
-    protected string buildExpression(Json parsedSql) {
-        auto myBuilder = new SelectExpressionBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected string buildCharacterSet(Json parsedSql) {
-        auto myBuilder = new CharacterSetBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected string buildCollation(Json parsedSql) {
-        auto myBuilder = new CollationBuilder();
-        return myBuilderr.build(parsedSql);
-    }
-
     /**
      * Returns a well-formatted delimiter string. If you don"t need nice SQL,
      * you could simply return parsedSql["delim"].
@@ -33,7 +18,7 @@ class CreateTableOptionsBuilder : IBuilder {
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter(Json parsedSql) {
-        return (parsedSql["delim"] == false ? "" : (parsedSql["delim"]) . " ").strip;
+        return (parsedSql["delim"] == false ? "" : (parsedSql["delim"])." ").strip;
     }
 
     string build(Json parsedSql) {
@@ -56,4 +41,20 @@ class CreateTableOptionsBuilder : IBuilder {
         }
         return " " ~ substr(mySql, 0, -1);
     }
+
+    protected string buildExpression(Json parsedSql) {
+        auto myBuilder = new SelectExpressionBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildCharacterSet(Json parsedSql) {
+        auto myBuilder = new CharacterSetBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildCollation(Json parsedSql) {
+        auto myBuilder = new CollationBuilder();
+        return myBuilderr.build(parsedSql);
+    }
+
 }

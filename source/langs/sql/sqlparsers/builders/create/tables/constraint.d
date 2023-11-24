@@ -4,24 +4,20 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the constraint statement part of CREATE TABLE.
- * This class : the builder for the constraint statement part of CREATE TABLE. 
- */
+// Builds the constraint statement part of CREATE TABLE.
 class ConstraintBuilder : ISqlBuilder {
+
+    string build(Json parsedSql) {
+        if (!parsedSql.isExpressionType("CONSTRAINT")) {
+            return "";
+        }
+        string mySql = parsedSql["sub_tree"] == false ? "" : this.buildConstant(
+            parsedSql["sub_tree"]);
+        return "CONSTRAINT" ~ (mySql.isEmpty ? "" : (" " ~ mySql));
+    }
 
     protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
-
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(CONSTRAINT) {
-            return "";
-        }
-        string mySql = parsedSql["sub_tree"] == false ? "" : this.buildConstant(parsedSql["sub_tree"]);
-        return "CONSTRAINT" ~ (mySql.isEmpty ? "" : (" " ~ mySql));
-    }
-
 }
-

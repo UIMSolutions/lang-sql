@@ -5,11 +5,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE. */
- * This class : the builder for the FOREIGN KEY REFERENCES statement
- * part of CREATE TABLE. 
- */
+// Builds the FOREIGN KEY REFERENCES statement part of CREATE TABLE. */
 class ForeignRefBuilder : ISqlBuilder {
 
     protected string buildTable(Json parsedSql) {

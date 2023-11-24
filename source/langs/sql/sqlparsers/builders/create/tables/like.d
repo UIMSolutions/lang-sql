@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the LIKE statement part of a CREATE TABLE statement.
- * This class : the builder for the LIKE statement part of CREATE TABLE. 
- */
+// Builds the LIKE statement part of a CREATE TABLE statement.
 class LikeBuilder : ISqlBuilder {
 
     protected string buildTable(parsedSql, $index) {
