@@ -7,15 +7,6 @@ import lang.sql;
 // Builds expressions within the HAVING part.
 class HavingExpressionBuilder : WhereExpressionBuilder {
 
-  protected auto buildHavingExpression(Json parsedSql) {
-    return this.build(parsedSql);
-  }
-
-  protected auto buildHavingBracketExpression(Json parsedSql) {
-    auto myBuilder = new HavingBracketExpressionBuilder();
-    return myBuilderr.build(parsedSql);
-  }
-
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("EXPRESSION")) {
       return "";
@@ -30,7 +21,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
   }
 
   string buildKeyValue(string aKey, Json aValue) {
-    string result; 
+    string result;
     result ~= this.buildColRef(aValue);
     result ~= this.buildConstant(aValue);
     result ~= this.buildOperator(aValue);
@@ -45,6 +36,16 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
     }
 
     result ~= " ";
-    return result; 
+    return result;
   }
+
+  protected auto buildHavingExpression(Json parsedSql) {
+    return this.build(parsedSql);
+  }
+
+  protected auto buildHavingBracketExpression(Json parsedSql) {
+    auto myBuilder = new HavingBracketExpressionBuilder();
+    return myBuilderr.build(parsedSql);
+  }
+
 }

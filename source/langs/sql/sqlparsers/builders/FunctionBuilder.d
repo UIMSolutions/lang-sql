@@ -12,8 +12,8 @@ class FunctionBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
         if (!parsedSql.isExpressionType("AGGREGATE_FUNCTION")
-            && (Json parsedSql) {("SIMPLE_FUNCTION")
-            && (Json parsedSql) {("CUSTOM_FUNCTION")) {
+            && parsedSql.isExpressionType("SIMPLE_FUNCTION")
+            && parsedSql.isExpressionType("CUSTOM_FUNCTION")) {
             return "";
         }
 
@@ -33,17 +33,13 @@ class FunctionBuilder : ISqlBuilder {
     string buildKeyValue(string aKey, Json aValue) {
         string result;
         result ~= this.build(aValue);
-        result ~= this.buildConstant(
-            aValue);
+        result ~= this.buildConstant(aValue);
         result ~= this.buildSubQuery(aValue);
-        result ~= this.buildColRef(
-            aValue);
+        result ~= this.buildColRef(aValue);
         result ~= this.buildReserved(aValue);
-        result ~= this.buildSelectBracketExpression(
-            aValue);
+        result ~= this.buildSelectBracketExpression(aValue);
         result ~= this.buildSelectExpression(aValue);
-        result ~= this
-            .buildUserVariableExpression(aValue);
+        result ~= this.buildUserVariableExpression(aValue);
         if (result.isEmpty) { // No change
             throw new UnableToCreateSQLException("auto subtree", myKey, aValue, "expr_type");
         }

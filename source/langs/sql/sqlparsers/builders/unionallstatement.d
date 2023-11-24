@@ -9,9 +9,6 @@ module langs.sql.sqlparsers.builders.unionallstatement;
  
  * */
 class UnionAllStatementBuilder : ISqlBuilder {
-
-
-
 	string build(Json parsedSql)
 	{
 		string mySql = "";

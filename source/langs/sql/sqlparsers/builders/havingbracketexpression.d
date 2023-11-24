@@ -4,16 +4,8 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds bracket expressions within the HAVING part.
- * This class : the builder for bracket expressions within the HAVING part. 
- */
+// Builds bracket expressions within the HAVING part.
 class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
-
-  protected auto buildHavingExpression(Json parsedSql) {
-    auto myBuilder = new HavingExpressionBuilder();
-    return myBuilder.build(parsedSql);
-  }
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
@@ -41,6 +33,11 @@ class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
 
     mySql = "(" ~ substr(mySql, 0, -1) ~ ")";
     return mySql;
+  }
+
+  protected auto buildHavingExpression(Json parsedSql) {
+    auto myBuilder = new HavingExpressionBuilder();
+    return myBuilder.build(parsedSql);
   }
 
 }

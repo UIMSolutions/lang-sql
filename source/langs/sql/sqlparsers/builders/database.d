@@ -4,9 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the database within the SHOW statement.
- */
+//Builds the database within the SHOW statement.
 class DatabaseBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

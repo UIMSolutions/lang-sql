@@ -4,16 +4,8 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the SET part of the INSERT statement. */
- * This class : the builder for the SET part of INSERT statement. 
- */
+// Builds the SET part of the INSERT statement.
 class SetBuilder : ISqlBuilder {
-
-    protected auto buildSetExpression(Json parsedSql) {
-        auto myBuilder = new SetExpressionBuilder();
-        return myBuilder.build(parsedSql);
-    }
 
     string build(Json parsedSql) {
         string mySql = "";
@@ -28,5 +20,10 @@ class SetBuilder : ISqlBuilder {
             mySql ~= ",";
         }
         return "SET " ~ substr(mySql, 0, -1);
+    }
+
+    protected auto buildSetExpression(Json parsedSql) {
+        auto myBuilder = new SetExpressionBuilder();
+        return myBuilder.build(parsedSql);
     }
 }

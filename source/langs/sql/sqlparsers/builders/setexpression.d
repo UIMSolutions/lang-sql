@@ -19,7 +19,7 @@ class SetExpressionBuilder : ISqlBuilder {
     return mySql;
   }
 
-  protected buildKeyValue(string aKey; Json aValue) {
+  protected string buildKeyValue(string aKey; Json aValue) {
     string myDelim = " ";
     string result;
     result ~= this.buildColRef(aValue);
@@ -43,32 +43,32 @@ class SetExpressionBuilder : ISqlBuilder {
     result ~= myDelim;
     return result;
   }
-  protected auto buildColRef(Json parsedSql) {
+  protected string buildColRef(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildConstant(Json parsedSql) {
+  protected string buildConstant(Json parsedSql) {
     auto myBuilder = new ConstantBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildOperator(Json parsedSql) {
+  protected string buildOperator(Json parsedSql) {
     auto myBuilder = new OperatorBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildFunction(Json parsedSql) {
+  protected string buildFunction(Json parsedSql) {
     auto myBuilder = new FunctionBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildBracketExpression(Json parsedSql) {
+  protected string buildBracketExpression(Json parsedSql) {
     auto myBuilder = new SelectBracketExpressionBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSign(Json parsedSql) {
+  protected austringto buildSign(Json parsedSql) {
     auto myBuilder = new SignBuilder();
     return myBuilder.build(parsedSql);
   }

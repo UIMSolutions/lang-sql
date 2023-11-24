@@ -5,11 +5,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the table expressions within the create definitions of CREATE TABLE. */
- * This class : the builder for the table expressions 
- * within the create definitions of CREATE TABLE. 
- */
+// Builds the table expressions within the create definitions of CREATE TABLE. 
 class TableBracketExpressionBuilder : ISqlBuilder {
 
     protected auto buildColDef(Json parsedSql) {
@@ -53,7 +49,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
     }
     
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(BRACKET_EXPRESSION) {
+        if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
             return "";
         }
         string mySql = "";

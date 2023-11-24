@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.builders.delete;
 import lang.sql;
 
 @safe:
-/**
- * Builds the DELETE statement */
- * This class : the builder for the [DELETE] part. You can overwrite
- * all functions to achieve another handling. */
+// Builds the DELETE statement
 class DeleteBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

@@ -12,16 +12,6 @@ import lang.sql;
  */
 class LikeExpressionBuilder : ISqlBuilder {
 
-  protected auto buildTable(parsedSql, $index) {
-    auto myBuilder = new TableBuilder();
-    return myBuilder.build(parsedSql, $index);
-  }
-
-  protected auto buildReserved(Json parsedSql) {
-    auto myBuilder = new ReservedBuilder();
-    return myBuilder.build(parsedSql);
-  }
-
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("LIKE")) {
       return null;
@@ -45,5 +35,15 @@ class LikeExpressionBuilder : ISqlBuilder {
 
     result ~= " ";
     return result;
+  }
+
+  protected auto buildTable(parsedSql, $index) {
+    auto myBuilder = new TableBuilder();
+    return myBuilder.build(parsedSql, $index);
+  }
+
+  protected auto buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
   }
 }
