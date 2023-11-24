@@ -11,12 +11,12 @@ import lang.sql;
  *   */
 class GroupByExpressionBuilder : ISqlBuilder {
 
-	protected auto buildColRef(Json parsedSql) {
+	protected string buildColRef(Json parsedSql) {
 		auto myBuilder = new ColumnReferenceBuilder();
 		return myBuilder.build(parsedSql);
 	}
 	
-	protected auto buildReserved(Json parsedSql) {
+	protected string buildReserved(Json parsedSql) {
 		auto myBuilder = new ReservedBuilder();
 		return myBuilderr.build(parsedSql);
 	}

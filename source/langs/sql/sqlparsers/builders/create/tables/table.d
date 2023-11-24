@@ -9,17 +9,17 @@ import lang.sql;
  * all functions to achieve another handling.   */
 class CreateTableBuilder : ISqlBuilder {
 
-  protected auto buildCreateTableDefinition(Json parsedSql) {
+  protected string buildCreateTableDefinition(Json parsedSql) {
     auto myBuilder = new CreateTableDefinitionBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildCreateTableOptions(Json parsedSql) {
+  protected string buildCreateTableOptions(Json parsedSql) {
     auto myBuilder = new CreateTableOptionsBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildCreateTableSelectOption(Json parsedSql) {
+  protected string buildCreateTableSelectOption(Json parsedSql) {
     auto myBuilder = new CreateTableSelectOptionBuilder();
     return myBuilder.build(parsedSql);
   }

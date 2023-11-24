@@ -9,12 +9,12 @@ import lang.sql;
  */
 class DropStatementBuilder : IBuilder {
 
-	protected auto buildDROP( parsedSql ) {
+	protected string buildDROP( parsedSql ) {
 		auto myBuilder = new DropBuilder();
 		return myBuilder.build( parsedSql );
 	}
 
-	auto build( Json parsedSql ) {
+	string build( Json parsedSql ) {
 		return this.buildDROP( parsedSql );
 	}
 }

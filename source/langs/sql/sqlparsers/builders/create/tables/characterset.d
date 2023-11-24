@@ -10,17 +10,17 @@ import lang.sql;
  */
 class CharacterSetBuilder : ISqlBuilder {
 
-    protected auto buildConstant(Json parsedSql) {
+    protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildOperator(Json parsedSql) {
+    protected string buildOperator(Json parsedSql) {
         auto myBuilder = new OperatorBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -10,7 +10,7 @@ import lang.sql;
  */
 class LikeBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSql, $index) {
+    protected string buildTable(parsedSql, $index) {
         auto myBuilder = new TableBuilder();
         return myBuilder.build(parsedSql, $index);
     }

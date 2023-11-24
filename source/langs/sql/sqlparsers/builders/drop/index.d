@@ -19,7 +19,7 @@ class DDropIndexBuilder : IBuilder {
     return mySql.strip;
   }
 
-  protected auto buildIndexTable(Json parsedSql) {
+  protected string buildIndexTable(Json parsedSql) {
     auto myBuilder = new DropIndexTableBuilder();
     return myBuilder.build(parsedSql);
   }

@@ -9,17 +9,17 @@ import lang.sql;
  * all functions to achieve another handling. */
 class CreateIndexBuilder : ISqlBuilder {
 
-    protected auto buildIndexType(Json parsedSql) {
+    protected string buildIndexType(Json parsedSql) {
         auto myBuilder = new CreateIndexTypeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexTable(Json parsedSql) {
+    protected string buildIndexTable(Json parsedSql) {
         auto myBuilder = new CreateIndexTableBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexOptions(Json parsedSql) {
+    protected string buildIndexOptions(Json parsedSql) {
         auto myBuilder = new CreateIndexOptionsBuilder();
         return myBuilder.build(parsedSql);
     }

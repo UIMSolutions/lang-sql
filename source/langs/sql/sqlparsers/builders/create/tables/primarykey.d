@@ -10,32 +10,32 @@ import lang.sql;
  */
 class PrimaryKeyBuilder : ISqlBuilder {
 
-    protected auto buildColumnList(Json parsedSql) {
+    protected string buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstraint(Json parsedSql) {
+    protected string buildConstraint(Json parsedSql) {
         auto myBuilder = new ConstraintBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexType(Json parsedSql) {
+    protected string buildIndexType(Json parsedSql) {
         auto myBuilder = new IndexTypeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexSize(Json parsedSql) {
+    protected string buildIndexSize(Json parsedSql) {
         auto myBuilder = new IndexSizeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildIndexParser(Json parsedSql) {
+    protected string buildIndexParser(Json parsedSql) {
         auto myBuilder = new IndexParserBuilder();
         return myBuilder.build(parsedSql);
     }

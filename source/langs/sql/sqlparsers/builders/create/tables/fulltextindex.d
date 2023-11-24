@@ -10,24 +10,24 @@ import lang.sql;
  */
 class FulltextIndexBuilder : IBuilder {
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(Json parsedSql) {
+    protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildIndexKey(Json parsedSql) {
+    protected string buildIndexKey(Json parsedSql) {
         if (!parsedSql.isExpressionType(INDEX) {
             return "";
         }
         return parsedSql["base_expr"];
     }
     
-    protected auto buildColumnList(Json parsedSql) {
+    protected string buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }

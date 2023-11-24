@@ -39,19 +39,19 @@ class DropBuilder : ISqlBuilder {
     return result;
   }
 
-  protected auto buildDropIndex(Json parsedSql) {
+  protected string buildDropIndex(Json parsedSql) {
     auto myBuilder = new DropIndexBuilder();
 
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildReserved(Json parsedSql) {
+  protected string buildReserved(Json parsedSql) {
     auto myBuilder = new ReservedBuilder();
 
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildExpression(Json parsedSql) {
+  protected string buildExpression(Json parsedSql) {
     auto myBuilder = new DropExpressionBuilder();
 
     return myBuilder.build(parsedSql);

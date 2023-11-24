@@ -37,27 +37,27 @@ class DropExpressionBuilder : ISqlBuilder {
     return result;
   }
 
-  protected auto buildTable(Json parsedSql, long anIndex) {
+  protected string buildTable(Json parsedSql, long anIndex) {
     auto myBuilder = new TableBuilder();
     return myBuilder.build(parsedSql, anIndex);
   }
 
-  protected auto buildDatabase(Json parsedSql) {
+  protected string buildDatabase(Json parsedSql) {
     auto myBuilder = new DatabaseBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSchema(Json parsedSql) {
+  protected string buildSchema(Json parsedSql) {
     auto myBuilder = new SchemaBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildTemporaryTable(Json parsedSql) {
+  protected string buildTemporaryTable(Json parsedSql) {
     auto myBuilder = new TempTableBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildView(Json parsedSql) {
+  protected string buildView(Json parsedSql) {
     auto myBuilder = new ViewBuilder();
     return myBuilder.build(parsedSql);
   }

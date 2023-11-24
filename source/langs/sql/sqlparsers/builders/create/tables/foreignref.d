@@ -12,17 +12,17 @@ import lang.sql;
  */
 class ForeignRefBuilder : ISqlBuilder {
 
-    protected auto buildTable(Json parsedSql) {
+    protected string buildTable(Json parsedSql) {
         auto myBuilder = new TableBuilder();
         return myBuilder.build(parsedSql, 0);
     }
 
-    protected auto buildColumnList(Json parsedSql) {
+    protected string buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -33,12 +33,12 @@ class ColumnDefinitionBuilder : ISqlBuilder {
     return result;
   }
 
-  protected auto buildColRef(Json parsedSql) {
+  protected string buildColRef(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildColumnType(Json parsedSql) {
+  protected string buildColumnType(Json parsedSql) {
     auto myBuilder = new ColumnTypeBuilder();
     return myBuilder.build(parsedSql);
   }

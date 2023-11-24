@@ -10,12 +10,12 @@ import lang.sql;
  */
 class CheckBuilder : ISqlBuilder {
 
-    protected auto buildSelectBracketExpression(Json parsedSql) {
+    protected string buildSelectBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

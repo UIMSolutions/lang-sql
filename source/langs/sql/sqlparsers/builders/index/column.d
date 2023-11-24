@@ -23,11 +23,11 @@ class IndexColumnBuilder : ISqlBuilder {
         mySql ~= this.buildDirection(parsedSql["dir"]);
         return mySql;
     }
-    protected auto buildLength(Json parsedSql) {
+    protected string buildLength(Json parsedSql) {
         return (parsedSql.isEmpty ? "" : ("(" ~ parsedSql ~ ")"));
     }
 
-    protected auto buildDirection(Json parsedSql) {
+    protected string buildDirection(Json parsedSql) {
         return (parsedSql.isEmpty ? "" : (" " ~ parsedSql));
     }
 }

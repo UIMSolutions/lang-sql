@@ -33,41 +33,41 @@ class ColumnTypeBuilder : ISqlBuilder {
         return substr(mySql, 0, -1);
     }
 
-    protected auto buildColumnTypeBracketExpression(Json parsedSql) {
+    protected string buildColumnTypeBracketExpression(Json parsedSql) {
         auto myBuilder = new ColumnTypeBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildDataType(Json parsedSql) {
+    protected string buildDataType(Json parsedSql) {
         auto myBuilder = new DataTypeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildDefaultValue(Json parsedSql) {
+    protected string buildDefaultValue(Json parsedSql) {
         auto myBuilder = new DefaultValueBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCharacterSet(Json parsedSql) {
+    protected string buildCharacterSet(Json parsedSql) {
         if (!parsedSql.isExpressionType("CHARSET")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
-    protected auto buildCollation(Json parsedSql) {
+    protected string buildCollation(Json parsedSql) {
         if (!parsedSql.isExpressionType("COLLATE")) {
             return "";
         }
         return parsedSql["base_expr"];
     }
 
-    protected auto buildComment(Json parsedSql) {
+    protected string buildComment(Json parsedSql) {
         if (!parsedSql.isExpressionType("COMMENT")) {
             return "";
         }

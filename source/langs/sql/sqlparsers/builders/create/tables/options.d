@@ -10,17 +10,17 @@ import lang.sql;
  */
 class CreateTableOptionsBuilder : IBuilder {
 
-    protected auto buildExpression(Json parsedSql) {
+    protected string buildExpression(Json parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCharacterSet(Json parsedSql) {
+    protected string buildCharacterSet(Json parsedSql) {
         auto myBuilder = new CharacterSetBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildCollation(Json parsedSql) {
+    protected string buildCollation(Json parsedSql) {
         auto myBuilder = new CollationBuilder();
         return myBuilderr.build(parsedSql);
     }

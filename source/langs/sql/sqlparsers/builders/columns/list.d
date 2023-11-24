@@ -29,12 +29,12 @@ class ColumnListBuilder : ISqlBuilder {
         }
         return "(" ~ substr(mySql, 0,  - strlen($delim)) ~ ")";
     }
-    protected auto buildIndexColumn(Json parsedSql) {
+    protected string buildIndexColumn(Json parsedSql) {
         auto myBuilder = new IndexColumnBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnReference(Json parsedSql) {
+    protected string buildColumnReference(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
