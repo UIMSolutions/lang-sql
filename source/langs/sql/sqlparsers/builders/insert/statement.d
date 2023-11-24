@@ -25,22 +25,22 @@ class InsertStatementBuilder : ISqlBuilder {
         return mySql;
     }
 
-    protected auto buildVALUES(Json parsedSql) {
+    protected string buildVALUES(Json parsedSql) {
         auto myBuilder = new ValuesBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildINSERT(Json parsedSql) {
+    protected string buildINSERT(Json parsedSql) {
         auto myBuilder = new InsertBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSELECT(Json parsedSql) {
+    protected string buildSELECT(Json parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSET(Json parsedSql) {
+    protected string buildSET(Json parsedSql) {
         auto myBuilder = new SetBuilder();
         return myBuilder.build(parsedSql);
     }

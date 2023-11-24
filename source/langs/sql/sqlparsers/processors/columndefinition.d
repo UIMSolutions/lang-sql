@@ -34,7 +34,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         return $res;
     }
 
-    protected auto buildColDef(myExpression, baseExpression, $options, $refs, myKey) {
+    protected string buildColDef(myExpression, baseExpression, $options, $refs, myKey) {
         myExpression = ["expr_type" : expressionType("COLUMN_TYPE"), "base_expr" : baseExpression, "sub_tree" : myExpression];
 
         // add options first

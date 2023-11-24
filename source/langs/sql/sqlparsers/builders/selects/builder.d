@@ -10,32 +10,32 @@ import lang.sql;
  * all functions to achieve another handling. */
 class SelectBuilder : ISqlBuilder {
 
-    protected auto buildConstant(Json parsedSql) {
+    protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFunction(Json parsedSql) {
+    protected string buildFunction(Json parsedSql) {
         auto myBuilder = new FunctionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectExpression(Json parsedSql) {
+    protected string buildSelectExpression(Json parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectBracketExpression(Json parsedSql) {
+    protected string buildSelectBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColRef(Json parsedSql) {
+    protected string buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

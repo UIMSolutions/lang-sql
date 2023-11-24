@@ -10,7 +10,7 @@ import lang.sql;
  */
 class UpdateBuilder : ISqlBuilder {
 
-    protected auto buildTable(parsedSql, $idx) {
+    protected string buildTable(parsedSql, $idx) {
         auto myBuilder = new TableBuilder();
         return myBuilder.build(parsedSql, $idx);
     }

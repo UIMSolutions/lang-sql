@@ -39,37 +39,37 @@ class ShowBuilder : ISqlBuilder {
     return result;
   }
 
-  protected auto buildTable(Json parsedSql, $delim) {
+  protected string buildTable(Json parsedSql, $delim) {
     auto myBuilder = new TableBuilder();
     return myBuilder.build(parsedSql, $delim);
   }
 
-  protected auto buildFunction(Json parsedSql) {
+  protected string buildFunction(Json parsedSql) {
     auto myBuilder = new FunctionBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildProcedure(Json parsedSql) {
+  protected string buildProcedure(Json parsedSql) {
     auto myBuilder = new ProcedureBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildDatabase(Json parsedSql) {
+  protected string buildDatabase(Json parsedSql) {
     auto myBuilder = new DatabaseBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildEngine(Json parsedSql) {
+  protected string buildEngine(Json parsedSql) {
     auto myBuilder = new EngineBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildConstant(Json parsedSql) {
+  protected string buildConstant(Json parsedSql) {
     auto myBuilder = new ConstantBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildReserved(Json parsedSql) {
+  protected string buildReserved(Json parsedSql) {
     auto myBuilder = new ReservedBuilder();
     return myBuilder.build(parsedSql);
   }

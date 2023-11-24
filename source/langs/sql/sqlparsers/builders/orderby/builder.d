@@ -33,37 +33,37 @@ class OrderByBuilder : ISqlBuilder {
         return result;
     }
 
-    protected auto buildFunction(Json parsedSql) {
+    protected string buildFunction(Json parsedSql) {
         auto myBuilder = new OrderByFunctionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new OrderByReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColRef(Json parsedSql) {
+    protected string buildColRef(Json parsedSql) {
         auto myBuilder = new OrderByColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildAlias(Json parsedSql) {
+    protected string buildAlias(Json parsedSql) {
         auto myBuilder = new OrderByAliasBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildExpression(Json parsedSql) {
+    protected string buildExpression(Json parsedSql) {
         auto myBuilder = new OrderByExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildBracketExpression(Json parsedSql) {
+    protected string buildBracketExpression(Json parsedSql) {
         auto myBuilder = new OrderByBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildPosition(Json parsedSql) {
+    protected string buildPosition(Json parsedSql) {
         auto myBuilder = new OrderByPositionBuilder();
         return myBuilder.build(parsedSql);
     }

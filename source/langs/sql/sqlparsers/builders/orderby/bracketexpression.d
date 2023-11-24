@@ -7,7 +7,7 @@ module langs.sql.sqlparsers.builders.orderby.bracketexpression;
  */
 class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {
 
-    protected auto buildDirection(Json parsedSql) {
+    protected string buildDirection(Json parsedSql) {
         auto myBuilder = new DirectionBuilder();
         return myBuilder.build(parsedSql);
     }

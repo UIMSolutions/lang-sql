@@ -10,7 +10,7 @@ import lang.sql;
 */
 class ReferenceDefinitionProcessor : AbstractProcessor {
 
-    protected auto buildReferenceDef(myExpression, baseExpression, myKey) {
+    protected string buildReferenceDef(myExpression, baseExpression, myKey) {
         myExpression["till"] = myKey;
         myExpression["base_expr"] = baseExpression;
         return myExpression;

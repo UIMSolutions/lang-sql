@@ -14,7 +14,7 @@ class OrderByExpressionBuilder : WhereExpressionBuilder {
     return result;
   }
 
-  protected auto buildDirection(Json parsedSql) {
+  protected string buildDirection(Json parsedSql) {
     auto auto myBuilder = new DirectionBuilder();
     return myBuilder.build(parsedSql);
   }

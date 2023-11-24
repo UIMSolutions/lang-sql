@@ -8,12 +8,12 @@ import lang.sql;
 // Builds simple expressions within a SELECT statement.
 class SelectExpressionBuilder : ISqlBuilder {
 
-  protected auto buildSubTree(parsedSql, $delim) {
+  protected string buildSubTree(parsedSql, $delim) {
     auto myBuilder = new SubTreeBuilder();
     return myBuilder.build(parsedSql, $delim);
   }
 
-  protected auto buildAlias(Json parsedSql) {
+  protected string buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
   }
