@@ -1,6 +1,6 @@
- */
+ *  /
 
-module langs.sql.sqlparsers.builders.index.lock;
+  module langs.sql.sqlparsers.builders.index.lock;
 
 import lang.sql;
 
@@ -12,39 +12,39 @@ import lang.sql;
  *  */
 class IndexLockBuilder : ISqlBuilder {
 
-    protected auto buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("INDEX_LOCK")) {
+      return "";
     }
 
-    protected auto buildConstant(Json parsedSql) {
-        auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSql);
-    }
-    
-    protected auto buildOperator(Json parsedSql) {
-        auto myBuilder = new OperatorBuilder();
-        return myBuilder.build(parsedSql);
-    }
-    
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(INDEX_LOCK) {
-            return "";
-        }
+    string mySql = "";
+    foreach (myKey, myValue; parsedSql["sub_tree"]) {
+      size_t oldSqlLength = mySql.length;
+      mySql ~= this.buildReserved(myValue);
+      mySql ~= this.buildConstant(myValue);
+      mySql ~= this.buildOperator(myValue);
 
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildOperator(myValue);
+      if (oldSqlLength == mySql.length) { // No change
+        throw new UnableToCreateSQLException("CREATE INDEX lock subtree", myKey, myValue, "expr_type");
+      }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE INDEX lock subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-        return substr(mySql, 0, -1);
+      mySql ~= " ";
     }
+    return substr(mySql, 0, -1);
+  }
+
+  protected auto buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected auto buildConstant(Json parsedSql) {
+    auto myBuilder = new ConstantBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected auto buildOperator(Json parsedSql) {
+    auto myBuilder = new OperatorBuilder();
+    return myBuilder.build(parsedSql);
+  }
 }

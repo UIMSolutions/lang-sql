@@ -11,16 +11,10 @@ import lang.sql;
  *  */
 class IndexColumnBuilder : ISqlBuilder {
 
-    protected auto buildLength(Json parsedSql) {
-        return (parsedSql.isEmpty ? "" : ("(" ~ parsedSql ~ ")"));
-    }
 
-    protected auto buildDirection(Json parsedSql) {
-        return (parsedSql.isEmpty ? "" : (" " ~ parsedSql));
-    }
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(INDEX_COLUMN) {
+        if (!parsedSql.isExpressionType("INDEX_COLUMN")) {
             return "";
         }
 
@@ -29,5 +23,11 @@ class IndexColumnBuilder : ISqlBuilder {
         mySql ~= this.buildDirection(parsedSql["dir"]);
         return mySql;
     }
+    protected auto buildLength(Json parsedSql) {
+        return (parsedSql.isEmpty ? "" : ("(" ~ parsedSql ~ ")"));
+    }
 
+    protected auto buildDirection(Json parsedSql) {
+        return (parsedSql.isEmpty ? "" : (" " ~ parsedSql));
+    }
 }

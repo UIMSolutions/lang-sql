@@ -10,18 +10,8 @@ import lang.sql;
  *  */
 class IndexCommentBuilder : ISqlBuilder {
 
-    protected auto buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected auto buildConstant(Json parsedSql) {
-        auto myBuilder = new ConstantBuilder();
-        return myBuilderr.build(parsedSql);
-    }
-
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(COMMENT) {
+        if (!parsedSql.isExpressionType("COMMENT")) {
             return "";
         }
         string mySql = "";
@@ -38,5 +28,15 @@ class IndexCommentBuilder : ISqlBuilder {
             mySql ~= " ";
         }
         return substr(mySql, 0, -1);
+    }
+
+    protected auto buildReserved(Json parsedSql) {
+        auto myBuilder = new ReservedBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected auto buildConstant(Json parsedSql) {
+        auto myBuilder = new ConstantBuilder();
+        return myBuilderr.build(parsedSql);
     }
 }

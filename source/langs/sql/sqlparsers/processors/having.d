@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Parses the HAVING statements. 
  * This class : the processor for the HAVING statement. 
- * You can overwrite all functions to achieve another handling. */
+ * . */
 class HavingProcessor : ExpressionListProcessor {
 
   auto process($tokens, $select = []) {

@@ -6,26 +6,6 @@ module langs.sql.sqlparsers.builders.insert.InsertStatementBuilder;
  * all functions to achieve another handling. */
 class InsertStatementBuilder : ISqlBuilder {
 
-    protected auto buildVALUES(Json parsedSql) {
-        auto myBuilder = new ValuesBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected auto buildINSERT(Json parsedSql) {
-        auto myBuilder = new InsertBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected auto buildSELECT(Json parsedSql) {
-        auto myBuilder = new SelectStatementBuilder();
-        return myBuilder.build(parsedSql);
-    }
-    
-    protected auto buildSET(Json parsedSql) {
-        auto myBuilder = new SetBuilder();
-        return myBuilder.build(parsedSql);
-    }
-    
     string build(Json parsedSql) {
         // TODO: are there more than one tables possible (like [INSERT][1])
         string mySql = this.buildINSERT(parsedSql["INSERT"]);
@@ -40,4 +20,25 @@ class InsertStatementBuilder : ISqlBuilder {
         }
         return mySql;
     }
+
+    protected auto buildVALUES(Json parsedSql) {
+        auto myBuilder = new ValuesBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected auto buildINSERT(Json parsedSql) {
+        auto myBuilder = new InsertBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected auto buildSELECT(Json parsedSql) {
+        auto myBuilder = new SelectStatementBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected auto buildSET(Json parsedSql) {
+        auto myBuilder = new SetBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
 }

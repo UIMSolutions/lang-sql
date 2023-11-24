@@ -6,25 +6,8 @@ import lang.sql;
 
 /**
  * Builds the FROM statement
- * This class : the builder for the [FROM] part. You can overwrite
- * all functions to achieve another handling.
  */
 class FromBuilder : ISqlBuilder {
-
-    protected auto buildTable(parsedSql, myKey) {
-        auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSql, myKey);
-    }
-
-    protected auto buildTableExpression(parsedSql, myKey) {
-        auto myBuilder = new TableExpressionBuilder();
-        return myBuilder.build(parsedSql, myKey);
-    }
-
-    protected auto buildSubQuery(parsedSql, myKey) {
-        auto myBuilder = new SubQueryBuilder();
-        return myBuilder.build(parsedSql, myKey);
-    }
 
     string build(Json parsedSql) {
         auto string mySql = "";
@@ -64,5 +47,19 @@ class FromBuilder : ISqlBuilder {
             }
         }
         return "FROM " ~ mySql;
+    }    protected auto buildTable(parsedSql, myKey) {
+        auto myBuilder = new TableBuilder();
+        return myBuilder.build(parsedSql, myKey);
     }
+
+    protected auto buildTableExpression(parsedSql, myKey) {
+        auto myBuilder = new TableExpressionBuilder();
+        return myBuilder.build(parsedSql, myKey);
+    }
+
+    protected auto buildSubQuery(parsedSql, myKey) {
+        auto myBuilder = new SubQueryBuilder();
+        return myBuilder.build(parsedSql, myKey);
+    }
+
 }

@@ -16,7 +16,7 @@ class ConstantBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(CONSTANT) {
+        if (!parsedSql.isExpressionType("CONSTANT")) {
             return "";
         }
         

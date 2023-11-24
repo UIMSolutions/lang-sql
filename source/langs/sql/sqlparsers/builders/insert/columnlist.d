@@ -10,13 +10,10 @@ import lang.sql;
  *  */
 class InsertColumnListBuilder : ISqlBuilder {
 
-    protected auto buildColumn(Json parsedSql) {
-        auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(COLUMN_LIST) { return ""; }
+        if (!parsedSql.isExpressionType("COLUMN_LIST")) {
+            return "";
+        }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {
@@ -28,9 +25,13 @@ class InsertColumnListBuilder : ISqlBuilder {
             }
 
             mySql ~= ", ";
-        } 
+        }
 
         return "(" ~ substr(mySql, 0, -2) ~ ")";
     }
 
+    protected auto buildColumn(Json parsedSql) {
+        auto myBuilder = new ColumnReferenceBuilder();
+        return myBuilder.build(parsedSql);
+    }
 }

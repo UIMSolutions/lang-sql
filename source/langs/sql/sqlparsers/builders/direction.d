@@ -5,8 +5,6 @@ import lang.sql;
 @safe:
 /**
  * Builds direction (e.g. of the order-by clause).
- * This class : the builder for directions (e.g. of the order-by clause). 
- * 
  * */
 class DirectionBuilder : IBuilder {
 
