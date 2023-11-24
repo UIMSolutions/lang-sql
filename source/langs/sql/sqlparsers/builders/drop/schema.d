@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the schema within the DROP statement. 
- * This class : the builder for a schema within DROP statement. 
- */
+// Builds the schema within the DROP statement. 
 class SchemaBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

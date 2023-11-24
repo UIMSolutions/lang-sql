@@ -4,11 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
- * This class : the builder for the index type of a PRIMARY KEY
- * statement part of CREATE TABLE. 
- */
+// Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
 class IndexTypeBuilder : ISqlBuilder {
 
     protected string buildReserved(Json parsedSql) {
@@ -17,7 +13,7 @@ class IndexTypeBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(INDEX_TYPE) {
+        if (!parsedSql.isExpressionType("INDEX_TYPE")) {
             return "";
         }
 

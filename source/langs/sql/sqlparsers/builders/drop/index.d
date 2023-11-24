@@ -4,10 +4,8 @@ import lang.sql;
 
 @safe:
 // This class : the builder for the DROP INDEX statement.
-class DDropIndexBuilder : IBuilder {
-  this() {
-  }
-
+class DropIndexBuilder : IBuilder {
+  
   string build(Json parsedSql) {
     if (!parsedSql.isSet("name")) {
       debug writeln("WARNING: In DropIndexBuilder: 'name' is missing.");
@@ -25,6 +23,4 @@ class DDropIndexBuilder : IBuilder {
   }
 }
 
-auto DropIndexBuilder() {
-  return new DDropIndexBuilder;
-}
+

@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.builders.create.statement;
 import lang.sql;
 
 @safe:
-/**
- * Builds the CREATE statement 
- * This class : the builder for the whole Create statement. You can overwrite
- * all functions to achieve another handling. */
+// Builds the CREATE statement 
 class CreateStatementBuilder : ISqlBuilder {
 
     protected string buildLike(Json parsedSql) {

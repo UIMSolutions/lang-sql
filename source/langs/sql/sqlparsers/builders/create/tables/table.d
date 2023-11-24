@@ -9,6 +9,14 @@ import lang.sql;
  * all functions to achieve another handling.   */
 class CreateTableBuilder : ISqlBuilder {
 
+  string build(Json parsedSql) {
+    string mySql = parsedSql["name"].get!string;
+    mySql ~= this.buildCreateTableDefinition(parsedSql);
+    mySql ~= this.buildCreateTableOptions(parsedSql);
+    mySql ~= this.buildCreateTableSelectOption(parsedSql);
+    return mySql;
+  }
+
   protected string buildCreateTableDefinition(Json parsedSql) {
     auto myBuilder = new CreateTableDefinitionBuilder();
     return myBuilder.build(parsedSql);
@@ -23,13 +31,4 @@ class CreateTableBuilder : ISqlBuilder {
     auto myBuilder = new CreateTableSelectOptionBuilder();
     return myBuilder.build(parsedSql);
   }
-
-  string build(Json parsedSql) {
-    string mySql = parsedSql["name"];
-    mySql ~= this.buildCreateTableDefinition(parsedSql);
-    mySql ~= this.buildCreateTableOptions(parsedSql);
-    mySql ~= this.buildCreateTableSelectOption(parsedSql);
-    return mySql;
-  }
-
 }

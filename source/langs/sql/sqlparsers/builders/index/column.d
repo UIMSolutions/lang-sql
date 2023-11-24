@@ -9,7 +9,7 @@ class IndexColumnBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("INDEX_COLUMN")) {
-      return "";
+      return null;
     }
 
     string mySql = parsedSql["name"];
