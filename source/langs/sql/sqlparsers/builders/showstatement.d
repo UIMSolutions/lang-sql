@@ -1,26 +1,27 @@
 module langs.sql.sqlparsers.builders.showstatement;
 
-/**
- * Builds the SHOW statement. */
- * This class : the builder for the SHOW statement. 
- *  */
+import lang.sql;
+
+@safe:
+
+// Builds the SHOW statement.
 class ShowStatementBuilder : ISqlBuilder {
 
-    protected auto buildWHERE(Json parsedSql) {
-        auto myBuilder = new WhereBuilder();
-        return myBuilder.build(parsedSql);
+  string build(Json parsedSql) {
+    string mySql = this.buildShow(parsedSql);
+    if (parsedSql.isSet("WHERE")) {
+      mySql ~= " " ~ this.buildWhere(parsedSql["WHERE"]);
     }
+    return mySql;
+  }
 
-    protected auto buildSHOW(Json parsedSql) {
-        auto myBuilder = new ShowBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected auto buildWhere(Json parsedSql) {
+    auto myBuilder = new WhereBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    string build(Json parsedSql) {
-        string mySql = this.buildSHOW(parsedSql);
-        if (parsedSql.isSet("WHERE")) {
-            mySql ~= " " ~ this.buildWHERE(parsedSql["WHERE"]);
-        }
-        return mySql;
-    }
+  protected auto buildShow(Json parsedSql) {
+    auto myBuilder = new ShowBuilder();
+    return myBuilder.build(parsedSql);
+  }
 }

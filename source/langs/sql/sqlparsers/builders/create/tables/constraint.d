@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the constraint statement part of CREATE TABLE.
  * This class : the builder for the constraint statement part of CREATE TABLE. 
- *  */
+ */
 class ConstraintBuilder : ISqlBuilder {
 
     protected auto buildConstant(Json parsedSql) {

@@ -8,7 +8,7 @@ import lang.sql;
 /**
  * Builds the statements for sub-queries. */
  * This class : the builder for sub-queries. 
- *  */
+ */
 class SubQueryBuilder : ISqlBuilder {
 
     protected auto buildRefClause(Json parsedSql) {

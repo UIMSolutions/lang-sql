@@ -10,7 +10,7 @@ import lang.sql;
 
 /**
  * This class : the builder for a view within DROP statement. 
- *  */
+ */
 class ViewBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

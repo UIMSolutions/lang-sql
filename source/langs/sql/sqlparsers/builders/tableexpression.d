@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the table name/join options. 
  * This class : the builder for the table name and join options. 
- *  */
+ */
 class TableExpressionBuilder : ISqlBuilder {
 
     protected auto buildFROM(Json parsedSql) {

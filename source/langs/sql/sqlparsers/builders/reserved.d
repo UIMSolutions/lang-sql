@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds reserved keywords. 
  * This class : the builder for reserved keywords.
- *  */
+ */
 class ReservedBuilder : ISqlBuilder {
 
     auto isReserved(Json parsedSql) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds constant (String, Integer, etc.) parts.
  * This class : the builder for constants. 
- *  */
+ */
 class ConstantBuilder : ISqlBuilder {
 
     protected auto buildAlias(Json parsedSql) {

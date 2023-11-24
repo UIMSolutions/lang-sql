@@ -7,7 +7,7 @@
  /**
  * Builds the LIMIT statement.
  * This class : the builder LIMIT statement. 
- *  */
+ */
 class LimitBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

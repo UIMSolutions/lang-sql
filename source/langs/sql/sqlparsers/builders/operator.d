@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds operators.
  * This class : the builder for operators. 
- *  */
+ */
 class OperatorBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {

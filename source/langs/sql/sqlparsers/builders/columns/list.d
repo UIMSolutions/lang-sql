@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds column-list parts of CREATE TABLE. 
  * This class : the builder for column-list parts of CREATE TABLE. 
- *  */
+ */
 class ColumnListBuilder : ISqlBuilder {
 
     string build(Json parsedSql, $delim = ", ") {

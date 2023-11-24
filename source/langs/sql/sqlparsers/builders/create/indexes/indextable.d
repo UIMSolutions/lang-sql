@@ -6,7 +6,7 @@ import lang.sql;
 /**
  * Builds the table part of a CREATE INDEX statement */
  * This class : the builder for the table part of a CREATE INDEX statement. 
- *  */
+ */
 class CreateIndexTableBuilder : ISqlBuilder {
 
     protected auto buildColumnList(Json parsedSql) {

@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the [REPLACE] statement part. 
  * This class : the builder for the [REPLACE] statement parts. 
- *  */
+ */
 class ReplaceBuilder : ISqlBuilder {
 
     protected auto buildTable(Json parsedSql) {

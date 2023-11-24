@@ -8,7 +8,7 @@ import lang.sql;
 /**
  * Builds the RENAME statement */
  * This class : the builder for the RENAME statement. 
- *  */
+ */
 class RenameStatementBuilder : ISqlBuilder {
 
     protected auto buildReserved(Json parsedSql) {

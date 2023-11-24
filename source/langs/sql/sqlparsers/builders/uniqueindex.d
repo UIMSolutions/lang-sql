@@ -8,7 +8,7 @@ import lang.sql;
 /**
  * Builds index key part of a CREATE TABLE statement. */
  * This class : the builder for the index key part of a CREATE TABLE statement. 
- *  */
+ */
 class UniqueIndexBuilder : ISqlBuilder {
 
     protected auto buildReserved(Json parsedSql) {

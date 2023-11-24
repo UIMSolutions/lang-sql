@@ -6,7 +6,7 @@ import lang.sql;
 
 /**
  * Builds the database within the SHOW statement.
- *  */
+ */
 class DatabaseBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

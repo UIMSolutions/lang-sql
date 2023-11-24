@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the collation expression part of CREATE TABLE.
  * This class : the builder for the collation statement part of CREATE TABLE. 
- *  */
+ */
 class CollationBuilder : ISqlBuilder {
 
     protected auto buildOperator(Json parsedSql) {

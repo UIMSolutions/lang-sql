@@ -5,7 +5,7 @@ use SqlParser\utils\ExpressionType;
 /**
  * Builds column-list parts of REPLACE statements. 
  * This class : the builder for column-list parts of REPLACE statements. 
- *  */
+ */
 class ReplaceColumnListBuilder : ISqlBuilder {
 
     protected auto buildColumn(Json parsedSql) {

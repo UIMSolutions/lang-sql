@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the VALUES part of the INSERT statement. */
  * This class : the builder for the VALUES part of INSERT statement. 
- *  */
+ */
 class ValuesBuilder : ISqlBuilder {
 
     protected auto buildRecord(Json parsedSql) {

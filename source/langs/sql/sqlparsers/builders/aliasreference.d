@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 /**
  * This class : the builder for alias references. 
- *  */
+ */
 class AliasReferenceBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
