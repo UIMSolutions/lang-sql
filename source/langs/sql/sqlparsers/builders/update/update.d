@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the UPDATE statement parts. 
  * This class : the builder for the UPDATE statement parts. 
- *  */
+ */
 class UpdateBuilder : ISqlBuilder {
 
     protected auto buildTable(parsedSql, $idx) {

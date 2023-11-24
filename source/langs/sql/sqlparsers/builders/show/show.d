@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * Builds the SHOW statement. 
  * This class : the builder for the SHOW statement. 
- *  */
+ */
 class ShowBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
