@@ -7,7 +7,6 @@ import lang.sql;
 /**
  * Builds the statements for [sub_tree] fields.
  * This class : the builder for [sub_tree] fields.
- * 
  */
 class SubTreeBuilder : ISqlBuilder {
 

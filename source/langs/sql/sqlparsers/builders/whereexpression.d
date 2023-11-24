@@ -7,7 +7,6 @@ import lang.sql;
 /**
  * Builds expressions within the WHERE part.
  * This class : the builder for expressions within the WHERE part.
- * 
  */
 class WhereExpressionBuilder : ISqlBuilder {
 

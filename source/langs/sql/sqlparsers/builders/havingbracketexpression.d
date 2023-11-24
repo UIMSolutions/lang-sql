@@ -7,7 +7,6 @@ import lang.sql;
 /**
  * Builds bracket expressions within the HAVING part.
  * This class : the builder for bracket expressions within the HAVING part. 
- * 
  */
 class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
 

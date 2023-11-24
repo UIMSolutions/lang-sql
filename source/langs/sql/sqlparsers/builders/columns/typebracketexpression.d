@@ -6,7 +6,6 @@ import lang.sql;
 /**
  * Builds the bracket expressions within a column type.
  * This class : the builder for bracket expressions within a column type. 
- * 
  */
 class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
 
