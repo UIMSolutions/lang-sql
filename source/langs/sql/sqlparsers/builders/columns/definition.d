@@ -3,42 +3,44 @@ module langs.sql.sqlparsers.builders.columns.definition;
 import lang.sql;
 
 @safe:
-/**
- * Builds the column definition statement part of CREATE TABLE. 
- * This class : the builder for the columndefinition statement part 
- * of CREATE TABLE.  */
+// Builds the column definition statement part of CREATE TABLE. 
 class ColumnDefinitionBuilder : ISqlBuilder {
 
-    protected auto buildColRef(Json parsedSql) {
-        auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSql);
+  string build(Json parsedSql) {
+    // In Check
+    if (!parsedSql.isExpressionType("COLDEF")) {
+      return null;
     }
 
-    protected auto buildColumnType(Json parsedSql) {
-        auto myBuilder = new ColumnTypeBuilder();
-        return myBuilder.build(parsedSql);
+    // Main
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    return substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildColRef(aValue);
+    result ~= this.buildColumnType(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", aKey, aValue, "expr_type");
     }
 
-   string build(Json parsedSql) {
-        // In Check
-        if (!parsedSql.isExpressionType("COLDEF")) {
-            return "";
-        }
+    result ~= " ";
+    return result;
+  }
 
-        // Main
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildColumnType(myValue);
+  protected auto buildColRef(Json parsedSql) {
+    auto myBuilder = new ColumnReferenceBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", myKey, myValue, "expr_type");
-            }
+  protected auto buildColumnType(Json parsedSql) {
+    auto myBuilder = new ColumnTypeBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-            mySql ~= " ";
-        }
-
-        return substr(mySql, 0, -1);
-    }
 }
