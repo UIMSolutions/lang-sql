@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the CHARACTER SET part of a CREATE TABLE statement. */
- * This class : the builder for the CHARACTER SET statement part of CREATE TABLE. 
- */
+// Builds the CHARACTER SET part of a CREATE TABLE statement. 
 class CharacterSetBuilder : ISqlBuilder {
 
     protected string buildConstant(Json parsedSql) {

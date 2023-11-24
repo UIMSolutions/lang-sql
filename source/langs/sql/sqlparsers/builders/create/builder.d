@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.builders.create.builder;
 import lang.sql;
 
 @safe:
-/**
- * Builds the CREATE statement
- * This class : the builder for the [CREATE] part. You can overwrite
- * all functions to achieve another handling. */
+// Builds the CREATE statement
 class CreateBuilder : ISqlBuilder {
   this() {
   }

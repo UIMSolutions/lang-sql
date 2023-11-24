@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds index algorithm part of a CREATE INDEX statement.
- * This class : the builder for the index algorithm of CREATE INDEX statement. 
- */
+// Builds index algorithm part of a CREATE INDEX statement.
 class IndexAlgorithmBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

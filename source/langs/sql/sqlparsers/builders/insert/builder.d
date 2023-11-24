@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the [INSERT] statement part.
- * This class : the builder for the [INSERT] statement parts. 
- */
+// Builds the [INSERT] statement part.
 class InsertBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

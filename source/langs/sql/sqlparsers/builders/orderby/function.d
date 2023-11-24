@@ -3,17 +3,8 @@ module lang.sql.parsers.builders;
 import lang.sql;
 
 @safe:
-/**
- * Builds functions within the ORDER-BY part. 
- * This class : the builder for functions within the ORDER-BY part. 
- * It must contain the direction. 
- */
+// Builds functions within the ORDER-BY part. 
 class OrderByFunctionBuilder : FunctionBuilder {
-
-  protected string buildDirection(Json parsedSql) {
-    auto myBuilder = new DirectionBuilder();
-    return myBuilder.build(parsedSql);
-  }
 
   string build(Json parsedSql) {
     auto mySql = super.build(parsedSql);
@@ -23,4 +14,8 @@ class OrderByFunctionBuilder : FunctionBuilder {
     return mySql;
   }
 
+  protected string buildDirection(Json parsedSql) {
+    auto myBuilder = new DirectionBuilder();
+    return myBuilder.build(parsedSql);
+  }
 }

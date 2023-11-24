@@ -6,10 +6,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds index lock part of a CREATE INDEX statement.
- * This class : the builder for the index lock of CREATE INDEX statement. 
- */
+// Builds index lock part of a CREATE INDEX statement.
 class IndexLockBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
