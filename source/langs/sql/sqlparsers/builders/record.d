@@ -7,22 +7,22 @@ import lang.sql;
 // Builds the records within the INSERT statement. 
 class RecordBuilder : ISqlBuilder {
 
-  protected auto buildOperator(Json parsedSql) {
+  protected string buildOperator(Json parsedSql) {
     auto myBuilder = new OperatorBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildFunction(Json parsedSql) {
+  protected string buildFunction(Json parsedSql) {
     auto myBuilder = new FunctionBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildConstant(Json parsedSql) {
+  protected string buildConstant(Json parsedSql) {
     auto myBuilder = new ConstantBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildColRef(Json parsedSql) {
+  protected string buildColRef(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);
   }

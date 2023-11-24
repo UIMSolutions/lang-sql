@@ -15,12 +15,12 @@ class ShowStatementBuilder : ISqlBuilder {
     return mySql;
   }
 
-  protected auto buildWhere(Json parsedSql) {
+  protected string buildWhere(Json parsedSql) {
     auto myBuilder = new WhereBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildShow(Json parsedSql) {
+  protected string buildShow(Json parsedSql) {
     auto myBuilder = new ShowBuilder();
     return myBuilder.build(parsedSql);
   }

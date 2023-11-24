@@ -10,7 +10,7 @@ import lang.sql;
  */
 class ValuesBuilder : ISqlBuilder {
 
-    protected auto buildRecord(Json parsedSql) {
+    protected string buildRecord(Json parsedSql) {
         auto myBuilder = new RecordBuilder();
         return myBuilder.build(parsedSql);
     }

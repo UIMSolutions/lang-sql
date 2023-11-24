@@ -10,27 +10,27 @@ import lang.sql;
  */
 class TableExpressionBuilder : ISqlBuilder {
 
-    protected auto buildFROM(Json parsedSql) {
+    protected string buildFROM(Json parsedSql) {
         auto myBuilder = new FromBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildAlias(Json parsedSql) {
+    protected string buildAlias(Json parsedSql) {
         auto myBuilder = new AliasBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildJoin(Json parsedSql) {
+    protected string buildJoin(Json parsedSql) {
         auto myBuilder = new JoinBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildRefType(Json parsedSql) {
+    protected string buildRefType(Json parsedSql) {
         auto myBuilder = new RefTypeBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildRefClause(Json parsedSql) {
+    protected string buildRefClause(Json parsedSql) {
         auto myBuilder = new RefClauseBuilder();
         return myBuilder.build(parsedSql);
     }

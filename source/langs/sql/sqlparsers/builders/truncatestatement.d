@@ -13,12 +13,12 @@ class TruncateStatementBuilder : ISqlBuilder {
         return mySql;
     }
 
-    protected auto buildTRUNCATE(Json parsedSql) {
+    protected string buildTRUNCATE(Json parsedSql) {
         auto myBuilder = new TruncateBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildFROM(Json parsedSql) {
+    protected string buildFROM(Json parsedSql) {
         auto myBuilder = new FromBuilder();
         return myBuilder.build(parsedSql);
     }

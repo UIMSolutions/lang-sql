@@ -22,7 +22,7 @@ class SetBuilder : ISqlBuilder {
         return "SET " ~ substr(mySql, 0, -1);
     }
 
-    protected auto buildSetExpression(Json parsedSql) {
+    protected string buildSetExpression(Json parsedSql) {
         auto myBuilder = new SetExpressionBuilder();
         return myBuilder.build(parsedSql);
     }

@@ -47,17 +47,17 @@ class FromBuilder : ISqlBuilder {
             }
         }
         return "FROM " ~ mySql;
-    }    protected auto buildTable(parsedSql, myKey) {
+    }    protected string buildTable(parsedSql, myKey) {
         auto myBuilder = new TableBuilder();
         return myBuilder.build(parsedSql, myKey);
     }
 
-    protected auto buildTableExpression(parsedSql, myKey) {
+    protected string buildTableExpression(parsedSql, myKey) {
         auto myBuilder = new TableExpressionBuilder();
         return myBuilder.build(parsedSql, myKey);
     }
 
-    protected auto buildSubQuery(parsedSql, myKey) {
+    protected string buildSubQuery(parsedSql, myKey) {
         auto myBuilder = new SubQueryBuilder();
         return myBuilder.build(parsedSql, myKey);
     }

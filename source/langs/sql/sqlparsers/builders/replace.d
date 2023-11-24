@@ -10,27 +10,27 @@ import lang.sql;
  */
 class ReplaceBuilder : ISqlBuilder {
 
-    protected auto buildTable(Json parsedSql) {
+    protected string buildTable(Json parsedSql) {
         auto myBuilder = new TableBuilder();
         return myBuilder.build(parsedSql, 0);
     }
 
-    protected auto buildSubQuery(Json parsedSql) {
+    protected string buildSubQuery(Json parsedSql) {
         auto myBuilder = new SubQueryBuilder();
         return myBuilder.build(parsedSql, 0);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildBracketExpression(Json parsedSql) {
+    protected string buildBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColumnList(Json parsedSql) {
+    protected string buildColumnList(Json parsedSql) {
         auto myBuilder = new ReplaceColumnListBuilder();
         return myBuilder.build(parsedSql, 0);
     }

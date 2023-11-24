@@ -48,22 +48,22 @@ class FunctionBuilder : ISqlBuilder {
         return result;
     }
 
-    protected auto buildAlias(Json parsedSql) {
+    protected string buildAlias(Json parsedSql) {
         auto myBuilder = new AliasBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildColRef(Json parsedSql) {
+    protected string buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildConstant(Json parsedSql) {
+    protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -73,22 +73,22 @@ class FunctionBuilder : ISqlBuilder {
         return myBuilderr.isReserved(parsedSql);
     }
 
-    protected auto buildSelectExpression(Json parsedSql) {
+    protected string buildSelectExpression(Json parsedSql) {
         auto myBuilder = new SelectExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSelectBracketExpression(Json parsedSql) {
+    protected string buildSelectBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildSubQuery(Json parsedSql) {
+    protected string buildSubQuery(Json parsedSql) {
         auto myBuilder = new SubQueryBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildUserVariableExpression(Json parsedSql) {
+    protected string buildUserVariableExpression(Json parsedSql) {
         auto myBuilder = new UserVariableBuilder();
         return myBuilder.build(parsedSql);
     }

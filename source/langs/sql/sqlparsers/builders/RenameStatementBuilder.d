@@ -5,13 +5,10 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the RENAME statement */
- * This class : the builder for the RENAME statement. 
- */
+// Builds the RENAME statement 
 class RenameStatementBuilder : ISqlBuilder {
 
-    protected auto buildReserved(Json parsedSql) {
+    protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
     }

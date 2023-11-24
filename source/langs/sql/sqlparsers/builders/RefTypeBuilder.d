@@ -10,7 +10,7 @@ import lang.sql;
  */
 class RefTypeBuilder {
 
-    auto build(Json parsedSql) {
+    string build(Json parsedSql) {
         if (parsedSql.isEmpty) {
             return null;
         }

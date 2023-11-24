@@ -39,11 +39,11 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
     return result;
   }
 
-  protected auto buildHavingExpression(Json parsedSql) {
+  protected string buildHavingExpression(Json parsedSql) {
     return this.build(parsedSql);
   }
 
-  protected auto buildHavingBracketExpression(Json parsedSql) {
+  protected string buildHavingBracketExpression(Json parsedSql) {
     auto myBuilder = new HavingBracketExpressionBuilder();
     return myBuilderr.build(parsedSql);
   }

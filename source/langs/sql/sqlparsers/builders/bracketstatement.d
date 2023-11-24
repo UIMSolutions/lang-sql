@@ -19,12 +19,12 @@ class BracketStatementBuilder : ISqlBuilder {
             }
         }
         return mySql ~ " " ~ this.buildSelectStatement(parsedSql).strip).strip;
-    }    protected auto buildSelectBracketExpression(Json parsedSql) {
+    }    protected string buildSelectBracketExpression(Json parsedSql) {
         auto myBuilder = new SelectBracketExpressionBuilder();
         return myBuilder.build(parsedSql, " ");
     }
 
-    protected auto buildSelectStatement(Json parsedSql) {
+    protected string buildSelectStatement(Json parsedSql) {
         auto myBuilder = new SelectStatementBuilder();
         return myBuilder.build(parsedSql);
     }

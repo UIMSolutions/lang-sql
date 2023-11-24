@@ -27,27 +27,27 @@ class QueryBuilder : ISqlBuilder {
     return mySql;
   }
 
-  protected auto buildRefClause(Json parsedSql) {
+  protected string buildRefClause(Json parsedSql) {
     auto myBuilder = new RefClauseBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildRefType(Json parsedSql) {
+  protected string buildRefType(Json parsedSql) {
     auto myBuilder = new RefTypeBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildJoin(Json parsedSql) {
+  protected string buildJoin(Json parsedSql) {
     auto myBuilder = new JoinBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildAlias(Json parsedSql) {
+  protected string buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  protected auto buildSelectStatement(Json parsedSql) {
+  protected string buildSelectStatement(Json parsedSql) {
     auto myBuilder = new SelectStatementBuilder();
     return myBuilder.build(parsedSql);
   }

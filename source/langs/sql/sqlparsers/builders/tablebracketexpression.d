@@ -8,42 +8,42 @@ import lang.sql;
 // Builds the table expressions within the create definitions of CREATE TABLE. 
 class TableBracketExpressionBuilder : ISqlBuilder {
 
-    protected auto buildColDef(Json parsedSql) {
+    protected string buildColDef(Json parsedSql) {
         auto myBuilder = new ColumnDefinitionBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildPrimaryKey(Json parsedSql) {
+    protected string buildPrimaryKey(Json parsedSql) {
         auto myBuilder = new PrimaryKeyBuilder();
         return myBuilder.build(parsedSql);
     }
 
-    protected auto buildForeignKey(Json parsedSql) {
+    protected string buildForeignKey(Json parsedSql) {
         auto myBuilder = new ForeignKeyBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildCheck(Json parsedSql) {
+    protected string buildCheck(Json parsedSql) {
         auto myBuilder = new CheckBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildLikeExpression(Json parsedSql) {
+    protected string buildLikeExpression(Json parsedSql) {
         auto myBuilder = new LikeExpressionBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildIndexKey(Json parsedSql) {
+    protected string buildIndexKey(Json parsedSql) {
         auto myBuilder = new IndexKeyBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildUniqueIndex(Json parsedSql) {
+    protected string buildUniqueIndex(Json parsedSql) {
         auto myBuilder = new UniqueIndexBuilder();
         return myBuilder.build(parsedSql);
     }
     
-    protected auto buildFulltextIndex(Json parsedSql) {
+    protected string buildFulltextIndex(Json parsedSql) {
         auto myBuilder = new FulltextIndexBuilder();
         return myBuilder.build(parsedSql);
     }

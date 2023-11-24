@@ -10,7 +10,7 @@ import lang.sql;
  */
 class ConstantBuilder : ISqlBuilder {
 
-    protected auto buildAlias(Json parsedSql) {
+    protected string buildAlias(Json parsedSql) {
         auto myBuilder = new AliasBuilder();
         return myBuilder.build(parsedSql);
     }

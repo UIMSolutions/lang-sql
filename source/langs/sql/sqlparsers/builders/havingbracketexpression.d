@@ -35,7 +35,7 @@ class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
     return mySql;
   }
 
-  protected auto buildHavingExpression(Json parsedSql) {
+  protected string buildHavingExpression(Json parsedSql) {
     auto myBuilder = new HavingExpressionBuilder();
     return myBuilder.build(parsedSql);
   }

@@ -7,7 +7,7 @@ import lang.sql;
 // Builds lists of values for the IN statement.
 class InListBuilder : ISqlBuilder {
 
-  protected auto buildSubTree(parsedSql, $delim) {
+  protected string buildSubTree(parsedSql, $delim) {
     auto myBuilder = new SubTreeBuilder();
     return myBuilder.build(parsedSql, $delim);
   }

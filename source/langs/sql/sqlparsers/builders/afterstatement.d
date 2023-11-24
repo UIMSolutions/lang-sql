@@ -4,12 +4,12 @@ import lang.sql;
 
 @safe:
 class AlterStatementBuilder : IBuilder {
-  protected auto buildSubTree(Json parsedSql) {
+  protected string buildSubTree(Json parsedSql) {
     auto myBuilder = new SubTreeBuilder();
     return myBuilder.build(parsedSql);
   }
 
-  private auto buildAlter(Json parsedSql) {
+  private string buildAlter(Json parsedSql) {
     auto myBuilder = new AlterBuilder();
     return myBuilder.build(parsedSql);
   }
