@@ -12,27 +12,31 @@ class HavingBracketExpressionBuilder : WhereBracketExpressionBuilder {
       return "";
     }
 
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildColRef(myValue);
-      mySql ~= this.buildConstant(myValue);
-      mySql ~= this.buildOperator(myValue);
-      mySql ~= this.buildInList(myValue);
-      mySql ~= this.buildFunction(myValue);
-      mySql ~= this.buildHavingExpression(myValue);
-      mySql ~= this.build(myValue);
-      mySql ~= this.buildUserVariable(myValue);
-
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("HAVING expression subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
     mySql = "(" ~ substr(mySql, 0, -1) ~ ")";
     return mySql;
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildColRef(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildOperator(aValue);
+    result ~= this.buildInList(aValue);
+    result ~= this.buildFunction(aValue);
+    result ~= this.buildHavingExpression(aValue);
+    result ~= this.build(aValue);
+    result ~= this.buildUserVariable(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("HAVING expression subtree", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected string buildHavingExpression(Json parsedSql) {

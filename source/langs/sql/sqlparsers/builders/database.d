@@ -9,7 +9,7 @@ class DatabaseBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("DATABASE")) {
-      return "";
+      return null;
     }
     return parsedSql["base_expr"];
   }

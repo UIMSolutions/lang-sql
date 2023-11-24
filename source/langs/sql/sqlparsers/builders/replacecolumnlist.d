@@ -1,4 +1,9 @@
 module langs.sql.sqlparsers.builders.replacecolumnlist;
+import lang.sql;
+
+@safe:
+
+/*alias Alias = ;
 use SqlParser\exceptions\UnableToCreateSQLException;
 use SqlParser\utils\ExpressionType;
 
@@ -8,13 +13,10 @@ use SqlParser\utils\ExpressionType;
  */
 class ReplaceColumnListBuilder : ISqlBuilder {
 
-    protected string buildColumn(Json parsedSql) {
-        auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSql);
-    }
+
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(COLUMN_LIST) { return ""; }
+        if (!parsedSql.isExpressionType("COLUMN_LIST")) { return null; }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {
@@ -29,5 +31,8 @@ class ReplaceColumnListBuilder : ISqlBuilder {
         } 
         return "(" ~ substr(mySql, 0, -2) ~ ")";
     }
-
+    protected string buildColumn(Json parsedSql) {
+        auto myBuilder = new ColumnReferenceBuilder();
+        return myBuilder.build(parsedSql);
+    }
 }

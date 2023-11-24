@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds an user variable. 
- * This class : the builder for an user variable. 
- */
+// Builds an user variable. 
 class UserVariableBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

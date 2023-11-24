@@ -8,10 +8,10 @@ import lang.sql;
  * */
 class DirectionBuilder : IBuilder {
 
-    string build(Json parsedSql) {
-        if ("direction" !in parsedSql["direction"] || parsedSql["direction"] == false) {
-            return "";
-        }
-        return (" " ~ parsedSql["direction"]);
+  string build(Json parsedSql) {
+    if (!parsedSql.isSet("direction") || parsedSql["direction"] == false) {
+      return "";
     }
+    return (" " ~ parsedSql["direction"].get!string);
+  }
 }

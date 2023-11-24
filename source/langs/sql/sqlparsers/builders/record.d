@@ -7,26 +7,6 @@ import lang.sql;
 // Builds the records within the INSERT statement. 
 class RecordBuilder : ISqlBuilder {
 
-  protected string buildOperator(Json parsedSql) {
-    auto myBuilder = new OperatorBuilder();
-    return myBuilder.build(parsedSql);
-  }
-
-  protected string buildFunction(Json parsedSql) {
-    auto myBuilder = new FunctionBuilder();
-    return myBuilder.build(parsedSql);
-  }
-
-  protected string buildConstant(Json parsedSql) {
-    auto myBuilder = new ConstantBuilder();
-    return myBuilder.build(parsedSql);
-  }
-
-  protected string buildColRef(Json parsedSql) {
-    auto myBuilder = new ColumnReferenceBuilder();
-    return myBuilder.build(parsedSql);
-  }
-
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("RECORD")) {
       return parsedSql.get("base_expr", "");
@@ -53,5 +33,25 @@ class RecordBuilder : ISqlBuilder {
 
     result ~= ", ";
     return result;
+  }
+
+  protected string buildOperator(Json parsedSql) {
+    auto myBuilder = new OperatorBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildFunction(Json parsedSql) {
+    auto myBuilder = new FunctionBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildConstant(Json parsedSql) {
+    auto myBuilder = new ConstantBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildColRef(Json parsedSql) {
+    auto myBuilder = new ColumnReferenceBuilder();
+    return myBuilder.build(parsedSql);
   }
 }

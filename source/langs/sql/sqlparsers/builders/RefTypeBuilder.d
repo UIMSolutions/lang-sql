@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds reference type within a JOIN. */
- * This class : the references type within a JOIN. 
- */
+// Builds reference type within a JOIN. 
 class RefTypeBuilder {
 
     string build(Json parsedSql) {

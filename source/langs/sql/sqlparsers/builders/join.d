@@ -4,15 +4,7 @@ module langs.sql.sqlparsers.builders.join;
 import lang.sql;
 
 @safe:
-/**
- * Builds the JOIN statement parts (within FROM).
- * This class : the builder for the JOIN statement parts (within FROM). 
- * 
- *
- 
-
- 
- *   */
+// Builds the JOIN statement parts (within FROM).
 class JoinBuilder {
 
     string build(Json parsedSql) {

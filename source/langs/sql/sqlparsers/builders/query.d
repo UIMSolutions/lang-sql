@@ -12,7 +12,7 @@ class QueryBuilder : ISqlBuilder {
 
   string build(Json parsedSql, anIndex = 0) {
     if (!parsedSql.isExpressionType("QUERY")) {
-      return "";
+      return null;
     }
 
     // TODO: should we add a numeric level (0) between sub_tree and SELECT?

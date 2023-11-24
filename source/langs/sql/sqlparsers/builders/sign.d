@@ -4,14 +4,12 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds unary operators. 
- */
+// Builds unary operators. 
 class SignBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("SIGN")) {
-      return "";
+      return null;
     }
     return parsedSql["base_expr"];
   }

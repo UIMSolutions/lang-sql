@@ -10,6 +10,35 @@ import lang.sql;
  */
 class WhereExpressionBuilder : ISqlBuilder {
 
+    string build(Json parsedSql) {
+        if (!parsedSql.isExpressionType("EXPRESSION")) {
+            return "";
+        }
+        string mySql = "";
+        foreach (myKey, myValue; parsedSql["sub_tree"]) {
+            size_t oldSqlLength = mySql.length;
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildOperator(myValue);
+            mySql ~= this.buildInList(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildWhereExpression(myValue);
+            mySql ~= this.buildWhereBracketExpression(myValue);
+            mySql ~= this.buildUserVariable(myValue);
+            mySql ~= this.buildSubQuery(myValue);
+            mySql ~= this.buildReserved(myValue);
+
+            if (oldSqlLength == mySql.length) { // No change
+                throw new UnableToCreateSQLException("WHERE expression subtree", myKey, myValue, "expr_type");
+            }
+
+            mySql ~= " ";
+        }
+
+        mySql = substr(mySql, 0, -1);
+        return mySql;
+    }
+
     protected string buildColRef(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);
@@ -55,37 +84,7 @@ class WhereExpressionBuilder : ISqlBuilder {
     }
 
     protected string buildReserved(Json parsedSql) {
-      auto myBuilder = new ReservedBuilder();
-      return myBuilder.build(parsedSql);
+        auto myBuilder = new ReservedBuilder();
+        return myBuilder.build(parsedSql);
     }
-
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("EXPRESSION")) {
-            return "";
-        }
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildInList(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildWhereExpression(myValue);
-            mySql ~= this.buildWhereBracketExpression(myValue);
-            mySql ~= this.buildUserVariable(myValue);
-            mySql ~= this.buildSubQuery(myValue);
-            mySql ~= this.buildReserved(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("WHERE expression subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-
-        mySql = substr(mySql, 0, -1);
-        return mySql;
-    }
-
 }

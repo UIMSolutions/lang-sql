@@ -7,23 +7,28 @@ import lang.sql;
 // Builds the SET part of the INSERT statement.
 class SetBuilder : ISqlBuilder {
 
-    string build(Json parsedSql) {
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildSetExpression(myValue);
+  string build(Json parsedSql) {
+    string mySql = parsedSql.myKeyValue
+      .ap!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("SET", myKey, myValue, "expr_type");
-            }
+    return "SET " ~ substr(mySql, 0, -1);
+  }
 
-            mySql ~= ",";
-        }
-        return "SET " ~ substr(mySql, 0, -1);
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildSetExpression(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("SET", aKey, aValue, "expr_type");
     }
 
-    protected string buildSetExpression(Json parsedSql) {
-        auto myBuilder = new SetExpressionBuilder();
-        return myBuilder.build(parsedSql);
-    }
+    result ~= ",";
+    return result;
+  }
+
+  protected string buildSetExpression(Json parsedSql) {
+    auto myBuilder = new SetExpressionBuilder();
+    return myBuilder.build(parsedSql);
+  }
 }

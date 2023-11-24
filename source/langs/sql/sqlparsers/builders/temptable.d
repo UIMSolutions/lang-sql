@@ -10,7 +10,25 @@ import lang.sql;
  */
 class TempTableBuilder : ISqlBuilder {
 
-  protected string buildAlias(Json parsedSql) {
+
+
+  string build(Json parsedSql, $index = 0) {
+    if (!parsedSql.isExpressionType("TEMPORARY_TABLE")) {
+      return "";
+    }
+
+    auto mySql = parsedSql["table"];
+    mySql ~= this.buildAlias(parsedSql);
+
+    if ($index != 0) {
+      mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
+      mySql ~= this.buildRefType(parsedSql["ref_type"]);
+      mySql ~= parsedSql["ref_clause"] == false ? "" : this.buildRefClause(parsedSql["ref_clause"]);
+    }
+    return mySql;
+  }
+
+    protected string buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
   }
@@ -28,21 +46,5 @@ class TempTableBuilder : ISqlBuilder {
   protected string buildRefClause(Json parsedSql) {
     auto myBuilder = new RefClauseBuilder();
     return myBuilder.build(parsedSql);
-  }
-
-  string build(Json parsedSql, $index = 0) {
-    if (!parsedSql.isExpressionType("TEMPORARY_TABLE")) {
-      return "";
-    }
-
-    auto mySql = parsedSql["table"];
-    mySql ~= this.buildAlias(parsedSql);
-
-    if ($index != 0) {
-      mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
-      mySql ~= this.buildRefType(parsedSql["ref_type"]);
-      mySql ~= parsedSql["ref_clause"] == false ? "" : this.buildRefClause(parsedSql["ref_clause"]);
-    }
-    return mySql;
   }
 }

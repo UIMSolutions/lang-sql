@@ -10,7 +10,31 @@ import lang.sql;
  */
 class RefClauseBuilder : ISqlBuilder {
 
-    protected string buildInList(Json parsedSql) {
+    
+
+    string build(Json parsedSql) {
+        if (parsedSql.isEmpty) { return ""; }
+
+        string mySql = "";
+        foreach (myKey, myValue; parsedSql) {
+            size_t oldSqlLength = mySql.length;
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildOperator(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildBracketExpression(myValue);
+            mySql ~= this.buildInList(myValue);
+            mySql ~= this.buildColumnList(myValue);
+            mySql ~= this.buildSubQuery(myValue);
+
+            if (oldSqlLength == mySql.length) { // No change
+                throw new UnableToCreateSQLException("expression ref_clause", myKey, myValue, "expr_type");
+            }
+
+            mySql ~= " ";
+        }
+        return substr(mySql, 0, -1);
+    }protected string buildInList(Json parsedSql) {
         auto myBuilder = new InListBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -48,29 +72,5 @@ class RefClauseBuilder : ISqlBuilder {
     protected string buildSubQuery(Json parsedSql) {
         auto myBuilder = new SubQueryBuilder();
         return myBuilder.build(parsedSql);
-    }
-
-    string build(Json parsedSql) {
-        if (parsedSql.isEmpty) { return ""; }
-
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildBracketExpression(myValue);
-            mySql ~= this.buildInList(myValue);
-            mySql ~= this.buildColumnList(myValue);
-            mySql ~= this.buildSubQuery(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("expression ref_clause", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-        return substr(mySql, 0, -1);
     }
 }

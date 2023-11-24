@@ -9,7 +9,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("EXPRESSION")) {
-      return "";
+      return null;
     }
 
     string mySql = parsedSql["sub_tree"].byKeyValue

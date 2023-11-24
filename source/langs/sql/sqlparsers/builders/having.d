@@ -10,21 +10,6 @@ import lang.sql;
  */
 class HavingBuilder : WhereBuilder {
 
-    protected string buildAliasReference(Json parsedSql) {
-        auto myBuilder = new AliasReferenceBuilder();
-        return myBuilder.build(parsedSql);
-    }
-	
-	protected string buildHavingExpression(Json parsedSql) {
-        auto myBuilder = new HavingExpressionBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected string buildHavingBracketExpression(Json parsedSql) {
-        auto myBuilder = new HavingBracketExpressionBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
     string build(Json parsedSql) {
         string mySql = "HAVING ";
         foreach (myKey, myValue; parsedSql) {
@@ -50,4 +35,18 @@ class HavingBuilder : WhereBuilder {
         return substr(mySql, 0, -1);
     }
 
+    protected string buildAliasReference(Json parsedSql) {
+        auto myBuilder = new AliasReferenceBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildHavingExpression(Json parsedSql) {
+        auto myBuilder = new HavingExpressionBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildHavingBracketExpression(Json parsedSql) {
+        auto myBuilder = new HavingBracketExpressionBuilder();
+        return myBuilder.build(parsedSql);
+    }
 }

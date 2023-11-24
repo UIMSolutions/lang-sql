@@ -11,6 +11,7 @@ class ProcedureBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("PROCEDURE")) {
       return null;
     }
+    
     return parsedSql["base_expr"];
   }
 }

@@ -10,7 +10,26 @@ import lang.sql;
  */
 class TableExpressionBuilder : ISqlBuilder {
 
-    protected string buildFROM(Json parsedSql) {
+
+
+    string build(Json parsedSql, $index = 0) {
+        if (!parsedSql.isExpressionType("TABLE_EXPRESSION")) {
+            return "";
+        }
+        
+        string mySql = substr(this.buildFROM(parsedSql["sub_tree"]), 5); // remove FROM keyword
+        mySql = "(" ~ mySql ~ ")";
+        mySql ~= this.buildAlias(parsedSql);
+
+        if ($index != 0) {
+            mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
+            mySql ~= this.buildRefType(parsedSql["ref_type"]);
+            mySql ~= parsedSql["ref_clause"] == false ? "" : this.buildRefClause(parsedSql["ref_clause"]);
+        }
+        return mySql;
+    }
+
+        protected string buildFROM(Json parsedSql) {
         auto myBuilder = new FromBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -33,22 +52,5 @@ class TableExpressionBuilder : ISqlBuilder {
     protected string buildRefClause(Json parsedSql) {
         auto myBuilder = new RefClauseBuilder();
         return myBuilder.build(parsedSql);
-    }
-
-    string build(Json parsedSql, $index = 0) {
-        if (!parsedSql.isExpressionType("TABLE_EXPRESSION")) {
-            return "";
-        }
-        
-        string mySql = substr(this.buildFROM(parsedSql["sub_tree"]), 5); // remove FROM keyword
-        mySql = "(" ~ mySql ~ ")";
-        mySql ~= this.buildAlias(parsedSql);
-
-        if ($index != 0) {
-            mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
-            mySql ~= this.buildRefType(parsedSql["ref_type"]);
-            mySql ~= parsedSql["ref_clause"] == false ? "" : this.buildRefClause(parsedSql["ref_clause"]);
-        }
-        return mySql;
     }
 }

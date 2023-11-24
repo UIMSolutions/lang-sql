@@ -1,9 +1,6 @@
 module lang.sql.parsers.builders;
 
-/**
- * Builds the TRUNCATE statement 
- * This class : the builder for the whole Truncate statement. You can overwrite
- * all functions to achieve another handling. */
+// Builds the TRUNCATE statement 
 class TruncateStatementBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
