@@ -20,16 +20,16 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto processOrderExpression(&$parseInfo, $select) {
-        $parseInfo["base_expr"] = $parseInfo["base_expr"].strip;
+        $parseInfo.baseExpression = $parseInfo.baseExpression.strip;
 
-        if ($parseInfo["base_expr"].isEmpty) {
+        if ($parseInfo.baseExpression.isEmpty) {
             return false;
         }
 
-        if ($parseInfo["base_expr"].isNumeric) {
+        if ($parseInfo.baseExpression.isNumeric) {
             $parseInfo["expr_type"] = expressionType("POSITION");
         } else {
-            $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo["base_expr"]);
+            $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo.baseExpression);
             // search to see if the expression matches an alias
             foreach (myClause; $select) {
                 if (myClause["alias"].isEmpty) {
@@ -44,7 +44,7 @@ class OrderByProcessor : AbstractProcessor {
         }
 
         if ($parseInfo["expr_type"] = expressionType("EXPRESSION")) {
-            myExpression = this.processSelectExpression($parseInfo["base_expr"]);
+            myExpression = this.processSelectExpression($parseInfo.baseExpression);
             myExpression["direction"] = $parseInfo["dir"];
             unset(myExpression["alias"]);
             return myExpression;
@@ -52,7 +52,7 @@ class OrderByProcessor : AbstractProcessor {
 
         $result = [];
         $result["expr_type"] = $parseInfo["expr_type"];
-        $result["base_expr"] = $parseInfo["base_expr"];
+        $result.baseExpression = $parseInfo.baseExpression;
         if ($parseInfoisSet("no_quotes")) {
             $result["no_quotes"] = $parseInfo["no_quotes"];
         }
@@ -90,7 +90,7 @@ class OrderByProcessor : AbstractProcessor {
                     break;
                 }
 
-                $parseInfo["base_expr"] ~= myToken;
+                $parseInfo.baseExpression ~= myToken;
             }
         }
 

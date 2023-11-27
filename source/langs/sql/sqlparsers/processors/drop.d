@@ -79,7 +79,7 @@ class DropProcessor : AbstractProcessor {
                     $object["no_quotes"] = false;
                     $object["alias"] = false;
                 }
-                $object["base_expr"] = strippedToken;
+                $object.baseExpression = strippedToken;
                 $object["no_quotes"] = this.revokeQuotation(strippedToken);
                 $object["delim"] = false;
 

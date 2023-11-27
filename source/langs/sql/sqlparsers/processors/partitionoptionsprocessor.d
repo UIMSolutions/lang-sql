@@ -187,7 +187,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                 case "PARTITION_NUM":
                 // the number behind PARTITIONS or SUBPARTITIONS
-                    myExpression["base_expr"] = baseExpression.strip;
+                    myExpression.baseExpression = baseExpression.strip;
                     myExpression["sub_tree"][] = this.getConstantType(strippedToken);
                     baseExpression = myExpression["storage"] . baseExpression;
                     unset(myExpression["storage"]);
@@ -195,7 +195,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     $last = array_pop($parsed);
                     $last["count"] = strippedToken;
                     $last["sub_tree"][] = myExpression;
-                    $last["base_expr"] ~= baseExpression;
+                    $last.baseExpression ~= baseExpression;
                     $parsed[] = $last;
                     unset($last);
 
@@ -213,7 +213,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                     myKey = array_pop($subtree["sub_tree"]);
 
                     myKey["sub_tree"] = myExpression;
-                    myKey["base_expr"] = baseExpression.strip;
+                    myKey.baseExpression = baseExpression.strip;
 
                     baseExpression = myKey["storage"] . baseExpression;
                     unset(myKey["storage"]);
@@ -243,13 +243,13 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                     $last = array_pop($parsed);
                     $subtree = array_pop($last["sub_tree"]);
-                    $subtree["base_expr"] = baseExpression;
+                    $subtree.baseExpression = baseExpression;
                     $subtree["sub_tree"] = myExpression;
 
                     baseExpression = $subtree["storage"] ~ baseExpression;
                     unset($subtree["storage"]);
                     $last["sub_tree"][] = $subtree;
-                    $last["base_expr"] = baseExpression.strip;
+                    $last.baseExpression = baseExpression.strip;
                     $parsed[] = $last;
                     unset($last);
                     unset($subtree);
@@ -268,13 +268,13 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
                     $last = array_pop($parsed);
                     $subtree = array_pop($last["sub_tree"]);
-                    $subtree["base_expr"] = baseExpression;
+                    $subtree.baseExpression = baseExpression;
                     $subtree["sub_tree"] = myExpression;
 
                     baseExpression = $subtree["storage"] . baseExpression;
                     unset($subtree["storage"]);
                     $last["sub_tree"][] = $subtree;
-                    $last["base_expr"] = baseExpression.strip;
+                    $last.baseExpression = baseExpression.strip;
                     $parsed[] = $last;
                     unset($last);
                     unset($subtree);

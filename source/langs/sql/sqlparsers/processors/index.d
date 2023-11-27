@@ -137,7 +137,7 @@ class IndexProcessor : AbstractProcessor {
                 case "COLUMN_DEF":
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
-                        $result["on"]["base_expr"] ~= baseExpression;
+                        $result["on"].baseExpression ~= baseExpression;
                         $result["on"]["sub_tree"] = ["expr_type" : expressionType("COLUMN_LIST"),
                                                           "base_expr" : strippedToken, "sub_tree" : $cols];
                     }
@@ -160,7 +160,7 @@ class IndexProcessor : AbstractProcessor {
                     continue 3;
 
                 case "INDEX_NAME":
-                    $result["base_expr"] = $result["name"] = strippedToken;
+                    $result.baseExpression = $result["name"] = strippedToken;
                     $result["no_quotes"] = this.revokeQuotation(strippedToken);
 
                     myExpression = [];

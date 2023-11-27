@@ -3,10 +3,22 @@ module langs.sql.sqlparsers.helpers.json;
 import langs.sql;
 
 @safe:
-bool isExpressionType(Json sqlPart, string typeName) {
-  if (!sqlPart.isObject || !sqlPart.isSet("expr_type")) {
+bool isExpressionType(Json parsedSql, string typeName) {
+  return parsedSql.expressionType == typeName;
+}
+
+bool expressionType(Json parsedSql, string typeName) {
+  if (!parsedSql.isObject || !parsedSql.isSet("expr_type")) {
     return false;
   }
 
-  return sqlPart["expr_type"].get!string == typeName;
+  return parsedSql["expr_type"].get!string;
+}
+
+string baseExpression(Json parsedSql) {
+  if (!parsedSql.isObject || !parsedSql.isSet("base_expr")) {
+    return null;
+  }
+
+  return parsedSql.baseExpression;
 }

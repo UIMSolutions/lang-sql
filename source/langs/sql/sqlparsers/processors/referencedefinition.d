@@ -12,7 +12,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
     protected string buildReferenceDef(myExpression, baseExpression, myKey) {
         myExpression["till"] = myKey;
-        myExpression["base_expr"] = baseExpression;
+        myExpression.baseExpression = baseExpression;
         return myExpression;
     }
 

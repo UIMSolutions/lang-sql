@@ -50,7 +50,7 @@ class CreateProcessor : AbstractProcessor {
             case "FULLTEXT":
             case "SPATIAL":
                 // options of CREATE INDEX
-                $result["base_expr"] = $result["expr_type"] = false;
+                $result.baseExpression = $result["expr_type"] = false;
                 $result["constraint"] = upperToken; 
                 myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
                 break;                
@@ -75,7 +75,7 @@ class CreateProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result["base_expr"] = baseExpression.strip;
+        $result.baseExpression = baseExpression.strip;
         $result["sub_tree"] = myExpression;
         return $result;
     }

@@ -350,7 +350,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     $parsed = this.removeParenthesisFromStart(strippedToken);
                     $parsed = ["expr_type" : expressionType("CONSTANT"), "base_expr" : $parsed.strip);
                     $last = array_pop(myExpression);
-                    $last["length"] = $parsed["base_expr"];
+                    $last["length"] = $parsed.baseExpression;
 
                     myExpression[] = $last;
                     myExpression[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
@@ -363,8 +363,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                     $parsed = this.processExpressionList(strippedToken);
 
                     $last = array_pop(myExpression);
-                    $last["length"] = $parsed[0]["base_expr"];
-                    $last["decimals"] = isset($parsed[1]) ? $parsed[1]["base_expr"] : false;
+                    $last["length"] = $parsed[0].baseExpression;
+                    $last["decimals"] = isset($parsed[1]) ? $parsed[1].baseExpression : false;
 
                     myExpression[] = $last;
                     myExpression[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,

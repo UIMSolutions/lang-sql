@@ -214,7 +214,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $last["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
                     myExpression[] = ["expr_type" : expressionType("INDEX_TYPE"), "base_expr" : baseExpression,
                                     "sub_tree" : $last["sub_tree"]);
-                    baseExpression = $last["base_expr"] . baseExpression;
+                    baseExpression = $last.baseExpression . baseExpression;
 
                     // FIXME: it could be wrong for index_type within index_option
                     currentCategory = $last["category"];
@@ -306,7 +306,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case "CONSTRAINT":
                 // constraint name
                     $last = array_pop(myExpression);
-                    $last["base_expr"] = baseExpression;
+                    $last.baseExpression = baseExpression;
                     $last["sub_tree"] = ["expr_type" : expressionType("CONSTANT"), "base_expr": strippedToken];
                     myExpression[] = $last;
                     continue 3;
@@ -317,7 +317,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $last["sub_tree"][] = ["expr_type" : expressionType("CONSTANT"), "base_expr": strippedToken];
                     myExpression[] = ["expr_type" : expressionType("INDEX_PARSER"), "base_expr" : baseExpression,
                                     "sub_tree" : $last["sub_tree"]);
-                    baseExpression = $last["base_expr"] . baseExpression;
+                    baseExpression = $last.baseExpression . baseExpression;
                     currentCategory = "INDEX_COL_LIST";
                     continue 3;
 
@@ -327,7 +327,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     $last["sub_tree"][] = ["expr_type" : expressionType("CONSTANT"), "base_expr": strippedToken];
                     myExpression[] = ["expr_type" : expressionType("INDEX_SIZE"), "base_expr" : baseExpression,
                                     "sub_tree" : $last["sub_tree"]);
-                    baseExpression = $last["base_expr"] . baseExpression;
+                    baseExpression = $last.baseExpression . baseExpression;
                     currentCategory = "INDEX_COL_LIST";
                     continue 3;
 
