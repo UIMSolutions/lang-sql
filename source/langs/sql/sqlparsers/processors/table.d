@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This class processes the TABLE statements.
- * This file : the processor for the TABLE statements.
- */
+// This class processes the TABLE statements.
 class TableProcessor : AbstractProcessor {
 
     protected auto getReservedType($token) {

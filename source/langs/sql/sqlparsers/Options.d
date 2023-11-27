@@ -1,14 +1,11 @@
-namespace SqlParser;
+module langs.sql.sqlparsers.optionsx;
 
 import lang.sql;
 
 @safe:
 final class Options {
 
-  /**
-     * @var array
-     */
-  private$options;
+  private $options;
 
   const string CONSISTENT_SUB_TREES = "consistent_sub_trees";
 
