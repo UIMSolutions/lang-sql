@@ -4,15 +4,10 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the table name/join options. 
- * This class : the builder for the table name and join options. 
- */
+// Builds the table name/join options. 
 class TableExpressionBuilder : ISqlBuilder {
 
-
-
-    string build(Json parsedSql, $index = 0) {
+    string build(Json parsedSql, size_t index = 0) {
         if (!parsedSql.isExpressionType("TABLE_EXPRESSION")) {
             return "";
         }
@@ -21,10 +16,10 @@ class TableExpressionBuilder : ISqlBuilder {
         mySql = "(" ~ mySql ~ ")";
         mySql ~= this.buildAlias(parsedSql);
 
-        if ($index != 0) {
+        if (index != 0) {
             mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
             mySql ~= this.buildRefType(parsedSql["ref_type"]);
-            mySql ~= parsedSql["ref_clause"] == false ? "" : this.buildRefClause(parsedSql["ref_clause"]);
+            mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);
         }
         return mySql;
     }

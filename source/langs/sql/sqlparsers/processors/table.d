@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the TABLE statements.
 class TableProcessor : AbstractProcessor {
 
-    protected auto getReservedType($token) {
+    protected auto getReservedType(myToken) {
         return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token];
     }
 
@@ -44,9 +44,9 @@ class TableProcessor : AbstractProcessor {
         baseExpression = "";
         $skip = 0;
 
-        foreach ($tokenKey : $token; $tokens) {
-            auto strippedToken = $token.strip;
-            baseExpression ~= $token;
+        foreach ($tokenKey : myToken; $tokens) {
+            auto strippedToken = myToken.strip;
+            baseExpression ~= myToken;
 
             if ($skip > 0) {
                 $skip--;

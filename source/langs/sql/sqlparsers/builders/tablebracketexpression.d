@@ -51,24 +51,9 @@ class TableBracketExpressionBuilder : ISqlBuilder {
         if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
             return "";
         }
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColDef(myValue);
-            mySql ~= this.buildPrimaryKey(myValue);
-            mySql ~= this.buildCheck(myValue);
-            mySql ~= this.buildLikeExpression(myValue);
-            mySql ~= this.buildForeignKey(myValue);
-            mySql ~= this.buildIndexKey(myValue);
-            mySql ~= this.buildUniqueIndex(myValue);
-            mySql ~= this.buildFulltextIndex(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE TABLE create-def expression subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= ", ";
-        }
+        string mySql = parsedSql["sub_tree"].byKeyValue
+            .map!(kv => buildKeyValue(kv.key, kv.value))
+            .join;
 
         mySql = " (" ~ substr(mySql, 0, -2) ~ ")";
         return mySql;
@@ -76,6 +61,21 @@ class TableBracketExpressionBuilder : ISqlBuilder {
 
     protected string buildKeyValue(string aKey, Json aValue) {
         string result;
+
+        result ~= this.buildColDef(aValue);
+        result ~= this.buildPrimaryKey(aValue);
+        result ~= this.buildCheck(aValue);
+        result ~= this.buildLikeExpression(aValue);
+        result ~= this.buildForeignKey(aValue);
+        result ~= this.buildIndexKey(aValue);
+        result ~= this.buildUniqueIndex(aValue);
+        result ~= this.buildFulltextIndex(aValue);
+
+        if (result.isEmpty) { // No change
+            throw new UnableToCreateSQLException("CREATE TABLE create-def expression subtree", aKey, aValue, "expr_type");
+        }
+
+        result ~= ", ";
         return result;
     }
 }

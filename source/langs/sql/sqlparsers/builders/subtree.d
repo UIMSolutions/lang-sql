@@ -10,8 +10,8 @@ import lang.sql;
  */
 class SubTreeBuilder : ISqlBuilder {
 
-  string build(Json parsedSql, $delim = " ") {
-    if (parsedSql["sub_tree"].isEmpty || parsedSql["sub_tree"] == false) {
+  string build(Json parsedSql, string delim = " ") {
+    if (parsedSql["sub_tree"].isEmpty) {
       return "";
     }
 
@@ -19,11 +19,12 @@ class SubTreeBuilder : ISqlBuilder {
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
-    return substr(mySql, 0,  - strlen($delim));
+    return substr(mySql, 0,  -delim.length);
   }
 
   string buildKeyValue(string aKey, Json aValue) {
     string result;
+
     result ~= this.buildColRef(aValue);
     result ~= this.buildFunction(aValue);
     result ~= this.buildOperator(aValue);
@@ -44,8 +45,10 @@ class SubTreeBuilder : ISqlBuilder {
 
     // We don"t need whitespace between a sign and the following part.
     if (mySign.isEmpty) {
-      result ~= $delim;
+      result ~= delim;
     }
+
+    return result;
   }
 
   protected string buildColRef(Json parsedSql) {

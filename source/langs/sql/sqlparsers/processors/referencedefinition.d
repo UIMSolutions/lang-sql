@@ -20,10 +20,10 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         myExpression = ["expr_type" : expressionType("REFERENCE"), "base_expr" : false, "sub_tree" : []];
         baseExpression = "";
 
-        foreach (myKey : $token; $tokens) {
+        foreach (myKey : myToken; $tokens) {
 
-            auto strippedToken = $token.strip;
-            baseExpression ~= $token;
+            auto strippedToken = myToken.strip;
+            baseExpression ~= myToken;
 
             if (strippedToken.isEmpty) {
                 continue;
@@ -36,7 +36,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case ",":
             // we stop on a single comma
             //  or at the end of the array $tokens
-                myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -$token.length).strip, myKey - 1);
+                myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -myToken.length).strip, myKey - 1);
                 break 2;
 
             case "REFERENCES":

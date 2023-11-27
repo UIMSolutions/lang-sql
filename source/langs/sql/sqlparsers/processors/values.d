@@ -7,16 +7,6 @@ import lang.sql;
 // This class processes the VALUES statements.
 class ValuesProcessor : AbstractProcessor {
 
-    protected auto processExpressionList($unparsed) {
-        auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process($unparsed);
-    }
-
-    protected auto processRecord($unparsed) {
-        auto myProcessor = new RecordProcessor(this.options);
-        return myProcessor.process($unparsed);
-    }
-
     auto process($tokens) {
 
         string currentCategory = "";
@@ -99,6 +89,16 @@ class ValuesProcessor : AbstractProcessor {
 
         $tokens["VALUES"] = $parsed;
         return $tokens;
+    }
+
+    protected auto processExpressionList($unparsed) {
+        auto myProcessor = new ExpressionListProcessor(this.options);
+        return myProcessor.process($unparsed);
+    }
+
+    protected auto processRecord($unparsed) {
+        auto myProcessor = new RecordProcessor(this.options);
+        return myProcessor.process($unparsed);
     }
 
 }
