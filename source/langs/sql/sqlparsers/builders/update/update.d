@@ -7,22 +7,27 @@ import lang.sql;
 // Builds the UPDATE statement parts. 
 class UpdateBuilder : ISqlBuilder {
 
-    protected string buildTable(parsedSql, string idx) {
-        auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSql, idx);
+  protected string buildTable(parsedSql, string idx) {
+    auto myBuilder = new TableBuilder();
+    return myBuilder.build(parsedSql, idx);
+  }
+
+  string build(Json parsedSql) {
+    string mySql = parsedSql.byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+         
+    return "UPDATE " ~ mySql;
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildTable(aValue, aKey);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("UPDATE table list", aKey, aValue, "expr_type");
     }
 
-    string build(Json parsedSql) {
-        string mySql = "";
-
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildTable(myValue, $k);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("UPDATE table list", myKey, myValue, "expr_type");
-            }
-        }
-        return "UPDATE " ~ mySql;
-    }
+    return result;
+  }
 }

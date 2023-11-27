@@ -17,9 +17,9 @@ class SelectExpressionBuilder : ISqlBuilder {
     return mySql;
   }
 
-  protected string buildSubTree(parsedSql, $delim) {
+  protected string buildSubTree(parsedSql, string delim) {
     auto myBuilder = new SubTreeBuilder();
-    return myBuilder.build(parsedSql, $delim);
+    return myBuilder.build(parsedSql, delim);
   }
 
   protected string buildAlias(Json parsedSql) {

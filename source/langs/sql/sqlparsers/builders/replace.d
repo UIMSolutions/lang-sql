@@ -8,22 +8,27 @@ import lang.sql;
 class ReplaceBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildTable(myValue);
-      mySql ~= this.buildSubQuery(myValue);
-      mySql ~= this.buildColumnList(myValue);
-      mySql ~= this.buildReserved(myValue);
-      mySql ~= this.buildBracketExpression(myValue);
+    string mySql = parsedSql.byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("REPLACE", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
     return "REPLACE " ~ substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildTable(aValue);
+    result ~= this.buildSubQuery(aValue);
+    result ~= this.buildColumnList(aValue);
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildBracketExpression(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("REPLACE", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected string buildTable(Json parsedSql) {

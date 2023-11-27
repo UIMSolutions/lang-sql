@@ -3,20 +3,15 @@ import lang.sql;
 
 @safe:
 
-/*alias Alias = ;
-use SqlParser\exceptions\UnableToCreateSQLException;
-use SqlParser\utils\ExpressionType;
+/*alias Alias = ;*/
 
-/**
- * Builds column-list parts of REPLACE statements. 
- * This class : the builder for column-list parts of REPLACE statements. 
- */
+// Builds column-list parts of REPLACE statements. 
 class ReplaceColumnListBuilder : ISqlBuilder {
 
-
-
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("COLUMN_LIST")) { return null; }
+        if (!parsedSql.isExpressionType("COLUMN_LIST")) {
+            return null;
+        }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {
@@ -28,9 +23,10 @@ class ReplaceColumnListBuilder : ISqlBuilder {
             }
 
             mySql ~= ", ";
-        } 
+        }
         return "(" ~ substr(mySql, 0, -2) ~ ")";
     }
+
     protected string buildColumn(Json parsedSql) {
         auto myBuilder = new ColumnReferenceBuilder();
         return myBuilder.build(parsedSql);

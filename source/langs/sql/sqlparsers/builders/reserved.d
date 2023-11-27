@@ -7,14 +7,14 @@ import lang.sql;
 // Builds reserved keywords. 
 class ReservedBuilder : ISqlBuilder {
 
-  auto isReserved(Json parsedSql) {
-    return ("expr_type" in parsedSql) && parsedSql.isExpressionType("RESERVED");
-  }
-
   string build(Json parsedSql) {
     if (!this.isReserved(parsedSql)) {
       return "";
     }
     return parsedSql.baseExpression;
+  }
+
+  auto isReserved(Json parsedSql) {
+    return ("expr_type" in parsedSql) && parsedSql.isExpressionType("RESERVED");
   }
 }

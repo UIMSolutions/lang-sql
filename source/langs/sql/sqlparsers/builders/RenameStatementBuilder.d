@@ -9,20 +9,25 @@ class RenameStatementBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     auto myRename = parsedSql["RENAME"];
-    string mySql = "";
-    foreach (myKey, myValue; myRename["sub_tree"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildReserved(myValue);
-      mySql ~= this.processSourceAndDestTable(myValue);
+    string mySql = myRename["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("RENAME subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
     mySql = ("RENAME " ~ mySql).strip;
     return (substr(mySql, -1) == "," ? substr(mySql, 0, -1) : mySql);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildReserved(myValue);
+    result ~= this.processSourceAndDestTable(myValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("RENAME subtree", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected string buildReserved(Json parsedSql) {

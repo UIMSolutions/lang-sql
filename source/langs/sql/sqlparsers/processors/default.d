@@ -5,7 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- * This file : the processor the unparsed sql string given by the user.
  * This class processes the incoming sql string.
  */
 class DefaultProcessor : AbstractProcessor {

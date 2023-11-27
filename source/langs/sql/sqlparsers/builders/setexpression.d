@@ -19,7 +19,7 @@ class SetExpressionBuilder : ISqlBuilder {
     return mySql;
   }
 
-  protected string buildKeyValue(string aKey; Json aValue) {
+  protected string buildKeyValue(string aKey, Json aValue) {
     string myDelim = " ";
     string result;
     result ~= this.buildColRef(aValue);

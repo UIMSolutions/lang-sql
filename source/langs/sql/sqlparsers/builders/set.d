@@ -9,7 +9,7 @@ class SetBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     string mySql = parsedSql.myKeyValue
-      .ap!(kv => buildKeyValue(kv.key, kv.value))
+      .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
     return "SET " ~ substr(mySql, 0, -1);
