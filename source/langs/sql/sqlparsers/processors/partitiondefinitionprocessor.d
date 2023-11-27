@@ -1,20 +1,10 @@
-
-/**
- * PartitionDefinitionProcessor.php
- *
- * This file : the processor for the PARTITION statements
- * within CREATE TABLE.
- */
-
 module lang.sql.parsers.processors;
 
 import lang.sql;
 
 @safe:
 
-/**
- * This class processes the PARTITION statements within CREATE TABLE.
- */
+// This class processes the PARTITION statements within CREATE TABLE.
 class PartitionDefinitionProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {

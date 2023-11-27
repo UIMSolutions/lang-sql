@@ -1,13 +1,9 @@
-
-
-
 module langs.sql.sqlparsers.processors.indexcolumnist;
 
 import lang.sql;
 
 @safe:
 // Processor for index column lists.
-// This class processes the index column lists.
 class IndexColumnListProcessor : AbstractProcessor {
     protected auto initExpression() {
         return ["name" : false, "no_quotes" : false, "length" : false, "dir" : false];

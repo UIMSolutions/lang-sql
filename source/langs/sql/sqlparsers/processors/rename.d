@@ -5,7 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- * This file : the processor for the RENAME statements.
  * This class processes the RENAME statements.
  */
 class RenameProcessor : AbstractProcessor {

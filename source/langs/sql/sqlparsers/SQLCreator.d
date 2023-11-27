@@ -2,7 +2,7 @@ module langs.sql.sqlparsers.sqlcreator;
 
 import lang.sql;
 
-@safe:;
+@safe:
 
 // A creator, which generates SQL from the output of SqlParser.
 class PHPSQLCreator {

@@ -10,9 +10,6 @@ import lang.sql;
  */
 abstract class DProcessor {
 
-    /**
-     * @var Options
-     */
     protected $options;
 
     /**

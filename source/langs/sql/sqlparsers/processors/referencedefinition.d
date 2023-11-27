@@ -5,7 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- * This file : the processor reference definition part of the CREATE TABLE statements.
  * This class processes the reference definition part of the CREATE TABLE statements.
 */
 class ReferenceDefinitionProcessor : AbstractProcessor {
@@ -18,7 +17,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        myExpression = ["expr_type" : expressionType(REFERENCE, "base_expr" : false, "sub_tree" : []);
+        myExpression = ["expr_type" : expressionType("REFERENCE"), "base_expr" : false, "sub_tree" : []);
         baseExpression = "";
 
         foreach (myKey : $token; $tokens) {

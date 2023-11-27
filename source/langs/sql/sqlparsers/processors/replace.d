@@ -4,7 +4,6 @@ import lang.sql;
 
 @safe:
 
-// This file : the processor for the REPLACE statements. 
 // This class processes the REPLACE statements. 
 class ReplaceProcessor : InsertProcessor {
 

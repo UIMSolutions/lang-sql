@@ -4,7 +4,6 @@ import lang.sql;
 
 @safe:
 
-// This file : the processor for the parentheses around the statements.
 // This class processes the parentheses around the statement.
 class BracketProcessor : AbstractProcessor {
 

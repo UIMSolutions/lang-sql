@@ -5,7 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- * This file : the processor for the SET statements.
  * This class processes the SET statements.
  * */
 class SetProcessor : AbstractProcessor {

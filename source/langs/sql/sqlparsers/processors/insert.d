@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for the INSERT statements.
- * This class processes the INSERT statements.
- */
+// This class processes the INSERT statements.
 class InsertProcessor : AbstractProcessor {
 
     protected auto processOptions($tokenList) {

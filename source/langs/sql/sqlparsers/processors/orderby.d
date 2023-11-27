@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for the ORDER-BY statements.
- * This class processes the ORDER-BY statements.
- */
+// This class processes the ORDER-BY statements.
 class OrderByProcessor : AbstractProcessor {
 
     protected auto processSelectExpression($unparsed) {

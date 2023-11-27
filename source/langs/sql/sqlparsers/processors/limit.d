@@ -8,7 +8,7 @@ class LimitProcessor : AbstractProcessor {
 
     auto process($tokens) {
         string countRows = "";
-        $offset = "";
+        string offset = "";
 
         $comma = -1;
         isExchange = false;
@@ -39,22 +39,22 @@ class LimitProcessor : AbstractProcessor {
             if (isExchange) {
                 countRows ~= $tokens[$i];
             } else {
-                $offset ~= $tokens[$i];
+                offset ~= $tokens[$i];
             }
         }
 
         for ($i = $comma + 1; $i < $tokens.length; ++$i) {
             if (isExchange) {
-                $offset ~= $tokens[$i];
+                offset ~= $tokens[$i];
             } else {
                 countRows ~= $tokens[$i];
             }
         }
 
-        $return = ["offset" : $offset.strip, "rowcount" : countRows.strip];
+        auto results = ["offset" : offset.strip, "rowcount" : countRows.strip];
         if (count($comments)) {
-            $return["comments"] = $comments;
+            results["comments"] = $comments;
         }
-        return $return;
+        return results;
     }
 }

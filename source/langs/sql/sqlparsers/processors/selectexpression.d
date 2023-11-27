@@ -5,7 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- * This file : the processor for SELECT expressions.
  * This class processes the SELECT expressions.
  * */
 class SelectExpressionProcessor : AbstractProcessor {

@@ -11,11 +11,6 @@ final class Options {
 
   const string ANSI_QUOTES = "ansi_quotes";
 
-  /**
-     * Options constructor.
-     *
-     * @param array $options
-     */
   this(array $options) {
     this.options = $options;
   }

@@ -9,19 +9,19 @@ import lang.sql;
  */
 class RecordProcessor : AbstractProcessor {
 
-    protected auto processExpressionList($unparsed) {
-        auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process($unparsed);
-    }
+  protected auto processExpressionList($unparsed) {
+    auto myProcessor = new ExpressionListProcessor(this.options);
+    return myProcessor.process($unparsed);
+  }
 
-    auto process($unparsed) {
-        auto unparsedCorrected = this.removeParenthesisFromStart($unparsed);
-        auto myTokens = this.splitSQLIntoTokens(unparsedCorrected);
+  auto process($unparsed) {
+    auto unparsedCorrected = this.removeParenthesisFromStart($unparsed);
+    auto myTokens = this.splitSQLIntoTokens(unparsedCorrected);
 
-        myTokens.byKeyValue
-            .filter!(kv => this.isCommaToken(kv.value))
-            .each!(kv => myTokens[kv.key] = "");
-        
-        return this.processExpressionList(myTokens);
-    }
+    myTokens.byKeyValue
+      .filter!(kv => this.isCommaToken(kv.value))
+      .each!(kv => myTokens[kv.key] = "");
+
+    return this.processExpressionList(myTokens);
+  }
 }
