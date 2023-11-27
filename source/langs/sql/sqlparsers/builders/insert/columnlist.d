@@ -12,24 +12,26 @@ class InsertColumnListBuilder : ISqlBuilder {
       return "";
     }
 
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildColumn(myValue);
-
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("INSERT column-list subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= ", ";
-    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
     return "(" ~ substr(mySql, 0, -2) ~ ")";
   }
-    protected string buildKeyValue(string aKey, Json aValue) {
-        string result;
-        return result;
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+
+    result ~= this.buildColumn(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("INSERT column-list subtree", aKey, aValue, "expr_type");
     }
+
+    result ~= ", ";
+    return result;
+  }
+
   protected string buildColumn(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);

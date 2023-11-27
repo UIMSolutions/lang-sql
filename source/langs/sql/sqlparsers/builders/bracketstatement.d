@@ -7,20 +7,21 @@ import lang.sql;
 class BracketStatementBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["BRACKET"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildSelectBracketExpression(myValue);
+    string mySql = parsedSql["BRACKET"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("BRACKET", myKey, myValue, "expr_type");
-      }
-    }
-    return mySql ~ " " ~ this.buildSelectStatement(parsedSql).strip).strip;
+    return (mySql ~ " " ~ this.buildSelectStatement(parsedSql).strip).strip;
   }
 
   protected string buildKeyValue(string aKey, Json aValue) {
     string result;
+    result ~= this.buildSelectBracketExpression(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("BRACKET", aKey, aValue, "expr_type");
+    }
+
     return result;
   }
 
