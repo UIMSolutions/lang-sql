@@ -9,7 +9,7 @@ class IndexHintListBuilder : ISqlBuilder {
 
     // TODO: the hint list should be enhanced to get base_expr fro position calculation
     string build(Json parsedSql) {
-        if (!isset(parsedSql["hints"]) || parsedSql["hints"] == false) {
+        if (!parsedSql.isSet("hints")) || parsedSql["hints"] == false) {
             return "";
         }
 

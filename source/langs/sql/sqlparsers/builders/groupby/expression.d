@@ -7,19 +7,11 @@ import lang.sql;
 // Builds an expression within a GROUP-BY clause.
 class GroupByExpressionBuilder : ISqlBuilder {
 
-	protected string buildColRef(Json parsedSql) {
-		auto myBuilder = new ColumnReferenceBuilder();
-		return myBuilder.build(parsedSql);
-	}
-	
-	protected string buildReserved(Json parsedSql) {
-		auto myBuilder = new ReservedBuilder();
-		return myBuilderr.build(parsedSql);
-	}
-	
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("EXPRESSION")) { return ""; }
-        
+        if (!parsedSql.isExpressionType("EXPRESSION")) {
+            return "";
+        }
+
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
@@ -35,5 +27,15 @@ class GroupByExpressionBuilder : ISqlBuilder {
 
         mySql = substr(mySql, 0, -1);
         return mySql;
+    }
+
+    protected string buildColRef(Json parsedSql) {
+        auto myBuilder = new ColumnReferenceBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildReserved(Json parsedSql) {
+        auto myBuilder = new ReservedBuilder();
+        return myBuilderr.build(parsedSql);
     }
 }

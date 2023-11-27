@@ -7,33 +7,38 @@ import lang.sql;
 // Builds index comment part of a CREATE INDEX statement. 
 class IndexCommentBuilder : ISqlBuilder {
 
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("COMMENT")) {
-            return "";
-        }
-        string mySql = "";
-        foreach (parsedSql["sub_tree"] as myKey, myValue) {
-            size_t oldSqlLength = mySql.length;
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("COMMENT")) {
+      return null;
+    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-            mySql ~= this.buildReserved(myValue);
-            mySql ~= this.buildConstant(myValue);
+    return substr(mySql, 0, -1);
+  }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE INDEX comment subtree", myKey, myValue, "expr_type");
-            }
+  string buildKeyValue(string aKey, Json aValue) {
+    string result;
 
-            mySql ~= " ";
-        }
-        return substr(mySql, 0, -1);
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildConstant(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE INDEX comment subtree", aKey, aValue, "expr_type");
     }
 
-    protected string buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
-    }
+    result ~= " ";
+    return result;
+  }
 
-    protected string buildConstant(Json parsedSql) {
-        auto myBuilder = new ConstantBuilder();
-        return myBuilderr.build(parsedSql);
-    }
+  protected string buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildConstant(Json parsedSql) {
+    auto myBuilder = new ConstantBuilder();
+    return myBuilderr.build(parsedSql);
+  }
 }

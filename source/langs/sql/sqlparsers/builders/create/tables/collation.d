@@ -10,21 +10,6 @@ import lang.sql;
  */
 class CollationBuilder : ISqlBuilder {
 
-    protected string buildOperator(Json parsedSql) {
-        auto myBuilder = new OperatorBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected string buildConstant(Json parsedSql) {
-        auto myBuilder = new ConstantBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
-    protected string buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
     string build(Json parsedSql) {
         if (!parsedSql.isExpressionType("COLLATE")) {
             return "";
@@ -47,5 +32,20 @@ class CollationBuilder : ISqlBuilder {
         }
 
         result ~= " ";
+    }
+
+    protected string buildOperator(Json parsedSql) {
+        auto myBuilder = new OperatorBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildConstant(Json parsedSql) {
+        auto myBuilder = new ConstantBuilder();
+        return myBuilder.build(parsedSql);
+    }
+
+    protected string buildReserved(Json parsedSql) {
+        auto myBuilder = new ReservedBuilder();
+        return myBuilder.build(parsedSql);
     }
 }

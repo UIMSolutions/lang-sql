@@ -24,7 +24,7 @@ class ForeignRefBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(REFERENCE) {
+        if (!parsedSql.isExpressionType("REFERENCE")) {
             return "";
         }
         string mySql = "";

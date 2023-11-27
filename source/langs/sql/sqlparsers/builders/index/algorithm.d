@@ -9,23 +9,28 @@ class IndexAlgorithmBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("INDEX_ALGORITHM")) {
-      return "";
+      return null;
     }
 
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildReserved(myValue);
-      mySql ~= this.buildConstant(myValue);
-      mySql ~= this.buildOperator(myValue);
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("CREATE INDEX algorithm subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
     return substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildOperator(aValue);
+
+    if (oldSqlLength == mySql.length) { // No change
+      throw new UnableToCreateSQLException("CREATE INDEX algorithm subtree", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected string buildReserved(Json parsedSql) {

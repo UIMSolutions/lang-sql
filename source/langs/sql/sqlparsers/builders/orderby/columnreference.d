@@ -7,17 +7,17 @@ module lang.sql.parsers.builders;
  */
 class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
 
-    protected string buildDirection(Json parsedSql) {
-        auto myBuilder = new DirectionBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected string buildDirection(Json parsedSql) {
+    auto myBuilder = new DirectionBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    string build(Json parsedSql) {
-        $sql = super.build(parsedSql);
-        if ($sql != "") {
-            $sql ~= this.buildDirection(parsedSql);
-        }
-        return $sql;
+  string build(Json parsedSql) {
+    string result = super.build(parsedSql);
+    if (result != "") {
+      result ~= this.buildDirection(parsedSql);
     }
+    return result;
+  }
 
 }

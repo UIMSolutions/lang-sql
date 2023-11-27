@@ -12,7 +12,7 @@ class DropIndexTableBuilder : ISqlBuilder {
       return "";
     }
     auto onSql = parsedSql["on"];
-    if (onSql["expr_type"]!.isExpressionType("TABLE")) {
+    if (!onSql.isExpressionType("TABLE")) {
       return "";
     }
     return "ON " ~ onSql["name"];
