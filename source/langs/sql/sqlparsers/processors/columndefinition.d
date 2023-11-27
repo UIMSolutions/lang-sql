@@ -25,13 +25,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto removeComma($tokens) {
-        $res = [];
+        auto result = [];
         foreach (myToken; $tokens) {
             if (myToken.strip != ",") {
-                $res[] = myToken;
+                result[] = myToken;
             }
         }
-        return $res;
+        return result;
     }
 
     protected string buildColDef(myExpression, baseExpression, $options, $refs, myKey) {
