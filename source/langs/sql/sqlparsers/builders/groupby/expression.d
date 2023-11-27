@@ -12,10 +12,9 @@ class GroupByExpressionBuilder : ISqlBuilder {
       return "";
     }
 
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-
-    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
     mySql = substr(mySql, 0, -1);
     return mySql;

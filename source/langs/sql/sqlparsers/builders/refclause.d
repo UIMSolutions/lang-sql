@@ -10,31 +10,38 @@ import lang.sql;
  */
 class RefClauseBuilder : ISqlBuilder {
 
-    
-
     string build(Json parsedSql) {
-        if (parsedSql.isEmpty) { return ""; }
-
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildBracketExpression(myValue);
-            mySql ~= this.buildInList(myValue);
-            mySql ~= this.buildColumnList(myValue);
-            mySql ~= this.buildSubQuery(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("expression ref_clause", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
+        if (parsedSql.isEmpty) {
+            return "";
         }
+
+        string mySql = parsedSql.byKeyValue
+            .map!(kv => buildKeyValue(kv.key, kv.value))
+            .join;
+
         return substr(mySql, 0, -1);
-    }protected string buildInList(Json parsedSql) {
+    }
+
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        result ~= this.buildColRef(aValue);
+        result ~= this.buildOperator(aValue);
+        result ~= this.buildConstant(aValue);
+        result ~= this.buildFunction(aValue);
+        result ~= this.buildBracketExpression(aValue);
+        result ~= this.buildInList(aValue);
+        result ~= this.buildColumnList(aValue);
+        result ~= this.buildSubQuery(aValue);
+
+        if (result.isEmpty) { // No change
+            throw new UnableToCreateSQLException("expression ref_clause", aKey, aValue, "expr_type");
+        }
+
+        result ~= " ";
+        return result;
+    }
+
+    protected string buildInList(Json parsedSql) {
         auto myBuilder = new InListBuilder();
         return myBuilder.build(parsedSql);
     }

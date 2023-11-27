@@ -26,6 +26,11 @@ class IndexSizeBuilder : ISqlBuilder {
         return substr(mySql, 0, -1);
     }
 
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
+    }
+
     protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);

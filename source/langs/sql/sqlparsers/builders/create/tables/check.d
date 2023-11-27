@@ -13,15 +13,14 @@ class CheckBuilder : ISqlBuilder {
     }
 
     // Main
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-
-    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
     return substr(mySql, 0, -1);
   }
 
-  protected string buildKeyVAlue(string aKey, Json aValue) {
+  protected string buildKeyValue(string aKey, Json aValue) {
     string result;
     result ~=
       buildReserved(aValue) ~

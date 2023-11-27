@@ -11,20 +11,27 @@ class FulltextIndexBuilder : IBuilder {
     if (!parsedSql.isExpressionType("FULLTEXT_IDX")) {
       return "";
     }
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildReserved(myValue);
-      mySql ~= this.buildColumnList(myValue);
-      mySql ~= this.buildConstant(myValue);
-      mySql ~= this.buildIndexKey(myValue);
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("CREATE TABLE fulltext-index key subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+      
     return substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildColumnList(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildIndexKey(aValue);
+
+    if (result.isEmpty) { // No change aValue
+      throw new UnableToCreateSQLException("CREATE TABLE fulltext-index key subtree", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
   }
 
   protected string buildReserved(Json parsedSql) {

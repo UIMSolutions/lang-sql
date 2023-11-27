@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the VALUES part of the INSERT statement. */
- * This class : the builder for the VALUES part of INSERT statement. 
- */
+// Builds the VALUES part of the INSERT statement.
 class ValuesBuilder : ISqlBuilder {
 
     protected string buildRecord(Json parsedSql) {
@@ -16,21 +13,26 @@ class ValuesBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildRecord(myValue);
+        string mySql = parsedSql.byKeyValue
+            .map!(kv => buildKeyValue(kv.key, kv.value))
+            .join;
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("VALUES", myKey, myValue, "expr_type");
-            }
+        return "VALUES "~mySql.strip;
+    }
 
-            mySql ~= this.getRecordDelimiter(myValue);
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        result ~= this.buildRecord(aValue);
+
+        if (result.isEmpty) { // No change
+            throw new UnableToCreateSQLException("VALUES", aKey, aValue, "expr_type");
         }
-        return "VALUES " . ySql.strip;
+
+        result ~= this.getRecordDelimiter(aValue);
+        return result;
     }
 
     protected auto getRecordDelimiter(Json parsedSql) {
-        return empty(parsedSql["delim"]) ? " " : parsedSql["delim"] . " ";
+        return empty(parsedSql["delim"]) ? " " : parsedSql["delim"]." ";
     }
 }

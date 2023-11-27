@@ -7,6 +7,13 @@ import lang.sql;
 // Builds the b racket expressions within a SELECT statement. */
 class SelectBracketExpressionBuilder : ISqlBuilder {
 
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
+      return "";
+    }
+    return "(" ~ this.buildSubTree(parsedSql, " ") ~ ")" ~ this.buildAlias(parsedSql);
+  }
+
   protected string buildSubTree(parsedSql, string delim) {
     auto myBuilder = new SubTreeBuilder();
     return myBuilder.build(parsedSql, delim);
@@ -15,12 +22,5 @@ class SelectBracketExpressionBuilder : ISqlBuilder {
   protected string buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
-  }
-
-  string build(Json parsedSql) {
-    if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
-      return "";
-    }
-    return "(" ~ this.buildSubTree(parsedSql, " ") ~ ")" ~ this.buildAlias(parsedSql);
   }
 }
