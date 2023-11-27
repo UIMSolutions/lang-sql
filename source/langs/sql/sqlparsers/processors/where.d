@@ -5,5 +5,4 @@ import lang.sql;
 @safe:
 // This class processes the WHERE statements. 
 class WhereProcessor : ExpressionListProcessor {
-
 }

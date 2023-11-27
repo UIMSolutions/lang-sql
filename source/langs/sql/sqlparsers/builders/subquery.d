@@ -5,10 +5,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the statements for sub-queries. */
- * This class : the builder for sub-queries. 
- */
+// Builds the statements for sub-queries. 
 class SubQueryBuilder : ISqlBuilder {
 
     protected string buildRefClause(Json parsedSql) {

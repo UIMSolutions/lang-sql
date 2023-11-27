@@ -1,11 +1,13 @@
 module langs.sql.sqlparsers.builders.truncate;
+import lang.sql;
 
+@safe:
 // Builds the TRUNCATE statement
 class TruncateBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     string mySql = "TRUNCATE TABLE ";
-    $right =  - 1;
+    auto myRight =  - 1;
 
     // works for one table only
     parsedSql["tables"] = [parsedSql["TABLE"].baseExpression];
@@ -13,10 +15,10 @@ class TruncateBuilder : ISqlBuilder {
     if (parsedSql["tables"] != false) {
       foreach (myKey, myValue; parsedSql["tables"]) {
         mySql ~= myValue ~ ", ";
-        $right =  - 2;
+        myRight =  - 2;
       }
     }
 
-    return substr(mySql, 0, $right);
+    return substr(mySql, 0, myRight);
   }
 }

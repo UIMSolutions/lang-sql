@@ -15,6 +15,6 @@ class ReservedBuilder : ISqlBuilder {
   }
 
   auto isReserved(Json parsedSql) {
-    return ("expr_type" in parsedSql) && parsedSql.isExpressionType("RESERVED");
+    return parsedSql.isExpressionType("RESERVED");
   }
 }

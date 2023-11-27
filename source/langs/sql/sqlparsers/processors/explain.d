@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for the EXPLAIN statements.
- * This class processes the EXPLAIN statements.
- */
+// This class processes the EXPLAIN statements.
 class ExplainProcessor : AbstractProcessor {
 
     protected auto isStatement(myKeys, $needle = "EXPLAIN") {

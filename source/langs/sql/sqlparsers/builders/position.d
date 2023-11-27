@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds positions of the GROUP BY clause. 
- * This class : the builder for positions of the GROUP-BY clause. 
- */
+// Builds positions of the GROUP BY clause. 
 class PositionBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

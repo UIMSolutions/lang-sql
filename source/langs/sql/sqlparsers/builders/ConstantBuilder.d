@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds constant (String, Integer, etc.) parts.
- * This class : the builder for constants. 
- */
+// Builds constant (String, Integer, etc.) parts.
 class ConstantBuilder : ISqlBuilder {
 
     protected string buildAlias(Json parsedSql) {

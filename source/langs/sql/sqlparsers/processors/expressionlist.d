@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for expression lists.
- * This class processes expression lists.
- */
+// This class processes expression lists.
 class ExpressionListProcessor : AbstractProcessor {
 
     auto process($tokens) {

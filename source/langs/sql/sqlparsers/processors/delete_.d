@@ -1,10 +1,8 @@
-module langs.sql.sqlparsers.processors.delete;
+module langs.sql.sqlparsers.processors.delete_;
+import lang.sql;
 
-/**
- * Processes the DELETE statement parts and splits multi-table deletes.
- * This class processes the DELETE statements.
- * .
- */
+@safe:
+// Processes the DELETE statement parts and splits multi-table deletes.
 class DeleteProcessor : AbstractProcessor {
 
     auto process($tokens) {
