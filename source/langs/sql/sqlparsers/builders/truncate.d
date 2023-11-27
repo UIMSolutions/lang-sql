@@ -1,9 +1,6 @@
 module langs.sql.sqlparsers.builders.truncate;
 
-/**
- * Builds the TRUNCATE statement
- * This class : the builder for the [TRUNCATE] part. You can overwrite
- * all functions to achieve another handling. */
+// Builds the TRUNCATE statement
 class TruncateBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

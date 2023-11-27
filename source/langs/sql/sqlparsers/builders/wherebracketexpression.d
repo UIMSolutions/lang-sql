@@ -5,10 +5,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds bracket expressions within the WHERE part.
- * This class : the builder for bracket expressions within the WHERE part.
- */
+// Builds bracket expressions within the WHERE part.
 class WhereBracketExpressionBuilder : ISqlBuilder {
 
     protected string buildColRef(Json parsedSql) {

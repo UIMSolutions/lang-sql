@@ -2,6 +2,7 @@
 
 import langs.sql;
 
+@safe:
 class DSQLQueryStatement : DSQLStatement {
 	this() {}
 }

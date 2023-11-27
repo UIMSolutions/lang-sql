@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the WHERE part.
- * This class : the builder for the WHERE part.
- */
+// Builds the WHERE part.
 class WhereBuilder : ISqlBuilder {
 
     protected string buildColRef(Json parsedSql) {

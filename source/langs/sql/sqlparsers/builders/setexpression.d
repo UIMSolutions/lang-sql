@@ -34,9 +34,9 @@ class SetExpressionBuilder : ISqlBuilder {
       myDelim = "";
     }
 
-    myresultSql ~= this.buildSign(aValue);
+    result ~= this.buildSign(aValue);
 
-    if (oldSqlLength == mySql.length) { // No change
+    if (result.isEmpty) { // No change
       throw new UnableToCreateSQLException("SET expression subtree", aKey, aValue, "expr_type");
     }
 

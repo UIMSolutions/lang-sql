@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the InvalidParameterException class which is used within the SqlParser package.
- * This exception will occur in the parser, if the given SQL statement
- * is not a String type. */
+// This exception will occur in the parser, if the given SQL statement is not a String type. 
 class InvalidParameterException : InvalidArgumentException {
 
   protected _argument;
