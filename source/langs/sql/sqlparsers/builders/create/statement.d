@@ -6,6 +6,15 @@ import lang.sql;
 // Builds the CREATE statement 
 class CreateStatementBuilder : ISqlBuilder {
 
+    string build(Json parsedSql) {
+        string mySql = this.buildCreate(parsedSql);
+
+        mySql ~= parsedSql.isSet("LIKE") ? " " ~ this.buildLike(parsedSql["LIKE"]) : "";
+        mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSelectStatement(parsedSql) : "";
+
+        return mySql;
+    }
+
     protected string buildLike(Json parsedSql) {
         auto myBuilder = new LikeBuilder();
         return myBuilder.build(parsedSql);
@@ -19,14 +28,5 @@ class CreateStatementBuilder : ISqlBuilder {
     protected string buildCreate(Json parsedSql) {
         auto myBuilder = new CreateBuilder();
         return myBuilder.build(parsedSql);
-    }
-
-    string build(Json parsedSql) {
-        string mySql = this.buildCreate(parsedSql);
-        
-        mySql ~= parsedSql.isSet("LIKE") ? " " ~ this.buildLike(parsedSql["LIKE"]) : "";
-        mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSelectStatement(parsedSql) : "";
-
-        return mySql;
     }
 }

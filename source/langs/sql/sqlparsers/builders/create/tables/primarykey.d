@@ -4,14 +4,13 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the PRIMARY KEY statement part of CREATE TABLE. 
+// Builds the PRIMARY KEY statement part of CREATE TABLE. 
 class PrimaryKeyBuilder : ISqlBuilder {
 
 
 
     string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType(PRIMARY_KEY) { return ""; }
+        if (!parsedSql.isExpressionType("PRIMARY_KEY") { return ""; }
 
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {

@@ -7,9 +7,9 @@ import lang.sql;
 // Builds the LIKE statement part of a CREATE TABLE statement.
 class LikeBuilder : ISqlBuilder {
 
-    protected string buildTable(parsedSql, $index) {
+    protected string buildTable(parsedSql, size_t anIndex) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSql, $index);
+        return myBuilder.build(parsedSql, anIndex);
     }
 
     string build(Json parsedSql) {
