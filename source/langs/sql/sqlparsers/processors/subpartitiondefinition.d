@@ -4,9 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for the SUBPARTITION statements within CREATE TABLE.
- * This class processes the SUBPARTITION statements within CREATE TABLE. */
+// This class processes the SUBPARTITION statements within CREATE TABLE. */
 class SubpartitionDefinitionProcessor : AbstractProcessor {
 
     protected auto getReservedType(myToken) {

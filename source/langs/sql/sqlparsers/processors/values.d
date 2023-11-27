@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for the VALUES statements.
- * This class processes the VALUES statements.
- */
+// This class processes the VALUES statements.
 class ValuesProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {

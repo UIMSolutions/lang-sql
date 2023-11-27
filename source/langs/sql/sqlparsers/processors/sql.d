@@ -3,7 +3,6 @@ module langs.sql.sqlparsers.processors.sql;
 import lang.sql;
 
 @safe:
-// This file : the processor for the base SQL statements.
 //This class processes the base SQL statements.
 class SQLProcessor : SQLChunkProcessor {
 

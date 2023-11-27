@@ -5,7 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- * This file : the processor for the SHOW statements.
  * This class processes the SHOW statements.
  * */
 class ShowProcessor : AbstractProcessor {
