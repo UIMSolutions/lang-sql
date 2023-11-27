@@ -1,5 +1,8 @@
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 // Builds reserved keywords within the ORDER-BY part. 
 class OrderByReservedBuilder : ReservedBuilder {
 

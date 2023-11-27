@@ -1,12 +1,7 @@
 module langs.sql.sqlparsers.builders.selects.statement;
 
-/**
- * Builds the SELECT statement 
- * This class : the builder for the whole Select statement. You can overwrite
- * all functions to achieve another handling. */
+// Builds the SELECT statement 
 class SelectStatementBuilder : ISqlBuilder {
-
-
 
     string build(Json parsedSql) {
         string mySql = "";

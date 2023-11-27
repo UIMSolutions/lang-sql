@@ -7,9 +7,9 @@ import lang.sql;
 // Builds the UPDATE statement parts. 
 class UpdateBuilder : ISqlBuilder {
 
-    protected string buildTable(parsedSql, $idx) {
+    protected string buildTable(parsedSql, string idx) {
         auto myBuilder = new TableBuilder();
-        return myBuilder.build(parsedSql, $idx);
+        return myBuilder.build(parsedSql, idx);
     }
 
     string build(Json parsedSql) {

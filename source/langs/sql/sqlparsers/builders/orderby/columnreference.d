@@ -1,5 +1,8 @@
 module lang.sql.parsers.builders;
 
+import lang.sql;
+
+@safe:
 // Builds column references within the ORDER-BY part.
 class OrderByColumnReferenceBuilder : ColumnReferenceBuilder {
 

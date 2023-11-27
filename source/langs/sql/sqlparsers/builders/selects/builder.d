@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the SELECT statement from the [SELECT] field. 
- * This class : the builder for the [SELECT] field. You can overwrite
- * all functions to achieve another handling. */
+// Builds the SELECT statement from the [SELECT] field. 
 class SelectBuilder : ISqlBuilder {
 
     /**

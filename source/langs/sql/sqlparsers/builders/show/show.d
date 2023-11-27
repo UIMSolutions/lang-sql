@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the SHOW statement. 
- * This class : the builder for the SHOW statement. 
- */
+// Builds the SHOW statement. 
 class ShowBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {

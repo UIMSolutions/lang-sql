@@ -1,4 +1,3 @@
-
 module langs.sql.sqlparsers.builders.selects.selectexpression;
 
 import lang.sql;
@@ -8,8 +7,6 @@ import lang.sql;
 // Builds simple expressions within a SELECT statement.
 class SelectExpressionBuilder : ISqlBuilder {
 
-
-
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("EXPRESSION")) {
       return "";
@@ -18,7 +15,9 @@ class SelectExpressionBuilder : ISqlBuilder {
     string mySql = this.buildSubTree(parsedSql, " ");
     mySql ~= this.buildAlias(parsedSql);
     return mySql;
-  }  protected string buildSubTree(parsedSql, $delim) {
+  }
+
+  protected string buildSubTree(parsedSql, $delim) {
     auto myBuilder = new SubTreeBuilder();
     return myBuilder.build(parsedSql, $delim);
   }
