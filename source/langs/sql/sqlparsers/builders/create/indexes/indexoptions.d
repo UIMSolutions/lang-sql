@@ -6,60 +6,63 @@ import lang.sql;
 // Builds index options part of a CREATE INDEX statement.
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
-    protected string buildIndexParser(Json parsedSql) {
-        auto myBuilder = new IndexParserBuilder();
-        return myBuilder.build(parsedSql);
+  string build(Json parsedSql) {
+    if (parsedSql["options"] == false) {
+      return "";
     }
 
-    protected string buildIndexSize(Json parsedSql) {
-        auto myBuilder = new IndexSizeBuilder();
-        return myBuilder.build(parsedSql);
+    string mySql = parsedSql["options"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    return " " ~ substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+
+    result ~= this.buildIndexAlgorithm(aValue);
+    result ~= this.buildIndexLock(aValue);
+    result ~= this.buildIndexComment(aValue);
+    result ~= this.buildIndexParser(aValue);
+    result ~= this.buildIndexSize(aValue);
+    result ~= this.buildIndexType(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE INDEX options", aKey, aValue, "expr_type");
     }
 
-    protected string buildIndexType(Json parsedSql) {
-        auto myBuilder = new IndexTypeBuilder();
-        return myBuilder.build(parsedSql);
-    }
+    result ~= " ";
+    return result;
+  }
 
-    protected string buildIndexComment(Json parsedSql) {
-        auto myBuilder = new IndexCommentBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected string buildIndexParser(Json parsedSql) {
+    auto myBuilder = new IndexParserBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    protected string buildIndexAlgorithm(Json parsedSql) {
-        auto myBuilder = new IndexAlgorithmBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected string buildIndexSize(Json parsedSql) {
+    auto myBuilder = new IndexSizeBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    protected string buildIndexLock(Json parsedSql) {
-        auto myBuilder = new IndexLockBuilder();
-        return myBuilder.build(parsedSql);
-    }
+  protected string buildIndexType(Json parsedSql) {
+    auto myBuilder = new IndexTypeBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-    string build(Json parsedSql) {
-        if (parsedSql["options"] == false) {
-            return "";
-        }
-        
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["options"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildIndexAlgorithm(myValue);
-            mySql ~= this.buildIndexLock(myValue);
-            mySql ~= this.buildIndexComment(myValue);
-            mySql ~= this.buildIndexParser(myValue);
-            mySql ~= this.buildIndexSize(myValue);
-            mySql ~= this.buildIndexType(myValue);
+  protected string buildIndexComment(Json parsedSql) {
+    auto myBuilder = new IndexCommentBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE INDEX options", myKey, myValue, "expr_type");
-            }
+  protected string buildIndexAlgorithm(Json parsedSql) {
+    auto myBuilder = new IndexAlgorithmBuilder();
+    return myBuilder.build(parsedSql);
+  }
 
-            mySql ~= " ";
-        }
-        return " " ~ substr(mySql, 0, -1);
-    }    protected string buildKeyValue(string aKey, Json aValue) {
-        string result;
-        return result;
-    }
+  protected string buildIndexLock(Json parsedSql) {
+    auto myBuilder = new IndexLockBuilder();
+    return myBuilder.build(parsedSql);
+  }
 }

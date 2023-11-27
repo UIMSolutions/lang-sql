@@ -12,28 +12,31 @@ class PrimaryKeyBuilder : ISqlBuilder {
       return "";
     }
 
-    string mySql = "";
-    foreach (myKey, myValue; parsedSql["sub_tree"]) {
-      size_t oldSqlLength = mySql.length;
-      mySql ~= this.buildConstraint(myValue);
-      mySql ~= this.buildReserved(myValue);
-      mySql ~= this.buildColumnList(myValue);
-      mySql ~= this.buildIndexType(myValue);
-      mySql ~= this.buildIndexSize(myValue);
-      mySql ~= this.buildIndexParser(myValue);
-
-      if (oldSqlLength == mySql.length) { // No change
-        throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", myKey, myValue, "expr_type");
-      }
-
-      mySql ~= " ";
-    }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+      
     return substr(mySql, 0, -1);
   }
-    protected string buildKeyValue(string aKey, Json aValue) {
-        string result;
-        return result;
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+
+    result ~= this.buildConstraint(aValue);
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildColumnList(aValue);
+    result ~= this.buildIndexType(aValue);
+    result ~= this.buildIndexSize(aValue);
+    result ~= this.buildIndexParser(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", aKey, aValue, "expr_type");
     }
+
+    mySql ~= " ";
+    return result;
+  }
+
   protected string buildColumnList(Json parsedSql) {
     auto myBuilder = new ColumnListBuilder();
     return myBuilder.build(parsedSql);

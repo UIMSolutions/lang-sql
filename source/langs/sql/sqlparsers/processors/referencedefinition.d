@@ -17,7 +17,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        myExpression = ["expr_type" : expressionType("REFERENCE"), "base_expr" : false, "sub_tree" : []);
+        myExpression = ["expr_type" : expressionType("REFERENCE"), "base_expr" : false, "sub_tree" : []];
         baseExpression = "";
 
         foreach (myKey : $token; $tokens) {

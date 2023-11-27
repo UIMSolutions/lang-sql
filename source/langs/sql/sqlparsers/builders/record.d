@@ -22,6 +22,7 @@ class RecordBuilder : ISqlBuilder {
 
   protected string buildKeyValue(string aKey, Json aValue) {
     string result;
+    
     result ~= this.buildConstant(aValue);
     result ~= this.buildFunction(aValue);
     result ~= this.buildOperator(aValue);

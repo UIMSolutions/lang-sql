@@ -14,7 +14,7 @@ class LikeExpressionBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("LIKE")) {
-      return null;
+      return "";
     }
 
     string mySql = parsedSql["sub_tree"].byKeyValue
@@ -26,6 +26,7 @@ class LikeExpressionBuilder : ISqlBuilder {
 
   protected string buildKeyValue(string aKey, Json aValue) {
     string result;
+
     result ~= this.buildReserved(myValue);
     result ~= this.buildTable(myValue, 0);
 

@@ -10,7 +10,7 @@ class InvalidParameterException : InvalidArgumentException {
   protected _argument;
 
   this(anArgument) {
-    _argument = anArgument;
+    auto _argument = anArgument;
     super("no SQL string to parse: \n" ~ _argument, 10);
   }
 

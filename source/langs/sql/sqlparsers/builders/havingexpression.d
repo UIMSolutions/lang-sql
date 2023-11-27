@@ -22,6 +22,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
 
   string buildKeyValue(string aKey, Json aValue) {
     string result;
+    
     result ~= this.buildColRef(aValue);
     result ~= this.buildConstant(aValue);
     result ~= this.buildOperator(aValue);

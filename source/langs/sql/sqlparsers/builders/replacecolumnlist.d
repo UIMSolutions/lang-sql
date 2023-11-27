@@ -10,7 +10,7 @@ class ReplaceColumnListBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
         if (!parsedSql.isExpressionType("COLUMN_LIST")) {
-            return null;
+            return "";
         }
 
         string mySql = "";

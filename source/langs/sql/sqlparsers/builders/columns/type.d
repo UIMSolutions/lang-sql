@@ -21,6 +21,7 @@ class ColumnTypeBuilder : ISqlBuilder {
 
   protected string buildKeyValue(string aKey, Json aValue) {
     string result;
+    
     result ~= this.buildDataType(aValue);
     result ~= this.buildColumnTypeBracketExpression(aValue);
     result ~= this.buildReserved(aValue);

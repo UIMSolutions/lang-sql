@@ -9,7 +9,7 @@ class PositionBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("POSITION")) {
-      return null;
+      return "";
     }
     return parsedSql.baseExpression;
   }

@@ -4,46 +4,53 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds index key part of a CREATE TABLE statement. */
-* This class : the builder for the index key part of a CREATE TABLE statement.
-    *  /
-    class UniqueIndexBuilder : ISqlBuilder {
+// Builds index key part of a CREATE TABLE statement. 
+class UniqueIndexBuilder : ISqlBuilder {
 
-        protected string buildReserved(Json parsedSql) {
-            auto myBuilder = new ReservedBuilder();
-            return myBuilder.build(parsedSql);
-        }
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("UNIQUE_IDX")) {
+      return "";
+    }
 
-        protected string buildConstant(Json parsedSql) {
-            auto myBuilder = new ConstantBuilder();
-            return myBuilder.build(parsedSql);
-        }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-        protected string buildIndexType(Json parsedSql) {
-            auto myBuilder = new IndexTypeBuilder();
-            return myBuilder.build(parsedSql);
-        }
+    return substr(mySql, 0, -1);
+  }
 
-        protected string buildColumnList(Json parsedSql) {
-            auto myBuilder = new ColumnListBuilder();
-            return myBuilder.build(parsedSql);
-        }
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
 
-        string build(Json parsedSql) {
-            if (!parsedSql.isExpressionType("UNIQUE_IDX") {
-                    return ""; }
+    result ~= this.buildReserved(aValue);
+    result ~= this.buildColumnList(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildIndexType(aValue);
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE TABLE unique-index key subtree", aKey, aValue, "expr_type");
+    }
 
-                    string mySql = ""; foreach (myKey, myValue; parsedSql["sub_tree"]) {
-                        size_t oldSqlLength = mySql.length; mySql ~= this.buildReserved(myValue);
-                            mySql ~= this.buildColumnList(myValue); mySql ~= this.buildConstant(
-                                myValue); mySql ~= this.buildIndexType(myValue); if (
-                                oldSqlLength == mySql.length) { // No change
-                                throw new UnableToCreateSQLException("CREATE TABLE unique-index key subtree", myKey, myValue, "expr_type");
-                            }
+    result ~= " ";
+    return result;
+  }
 
-                        mySql ~= " "; }
-                        return substr(mySql, 0,  - 1); }
-                        protected string buildKeyValue(string aKey, Json aValue) {
-                            string result; return result; }
-                        }
+  protected string buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildConstant(Json parsedSql) {
+    auto myBuilder = new ConstantBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildIndexType(Json parsedSql) {
+    auto myBuilder = new IndexTypeBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildColumnList(Json parsedSql) {
+    auto myBuilder = new ColumnListBuilder();
+    return myBuilder.build(parsedSql);
+  }
+}
