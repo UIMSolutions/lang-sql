@@ -26,7 +26,10 @@ class InsertColumnListBuilder : ISqlBuilder {
 
     return "(" ~ substr(mySql, 0, -2) ~ ")";
   }
-
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
+    }
   protected string buildColumn(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);

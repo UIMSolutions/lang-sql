@@ -74,5 +74,8 @@ class TableBracketExpressionBuilder : ISqlBuilder {
         mySql = " (" ~ substr(mySql, 0, -2) ~ ")";
         return mySql;
     }
-    
+        protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
+    }
 }

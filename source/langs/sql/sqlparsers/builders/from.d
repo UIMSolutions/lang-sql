@@ -18,8 +18,7 @@ class FromBuilder : ISqlBuilder {
                 foreach ($item; $outer_v) {
                     if (!$first) {
                         mySql ~= " $union_type ";
-                    }
-                    else {
+                    } else {
                         $first = false;
                     }
 
@@ -33,8 +32,7 @@ class FromBuilder : ISqlBuilder {
                     }
                 }
             }
-        }
-        else {
+        } else {
             foreach (myKey, myValue; parsedSql) {
                 size_t oldSqlLength = mySql.length;
                 mySql ~= this.buildTable(myValue, $k);
@@ -47,7 +45,8 @@ class FromBuilder : ISqlBuilder {
             }
         }
         return "FROM " ~ mySql;
-    }    protected string buildTable(parsedSql, myKey) {
+    }
+    protected string buildTable(parsedSql, myKey) {
         auto myBuilder = new TableBuilder();
         return myBuilder.build(parsedSql, myKey);
     }

@@ -3,11 +3,7 @@ module langs.sql.sqlparsers.builders.create.indexes.indexoptions;
 import lang.sql;
 
 @safe:
-/**
- * Builds index options part of a CREATE INDEX statement.
- * This class : the builder for the index options of a CREATE INDEX
- * statement. 
- */
+// Builds index options part of a CREATE INDEX statement.
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
     protected string buildIndexParser(Json parsedSql) {
@@ -62,5 +58,8 @@ class CreateIndexOptionsBuilder : ISqlBuilder {
             mySql ~= " ";
         }
         return " " ~ substr(mySql, 0, -1);
+    }    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
     }
 }

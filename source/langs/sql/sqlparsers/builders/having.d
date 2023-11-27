@@ -34,7 +34,10 @@ class HavingBuilder : WhereBuilder {
         }
         return substr(mySql, 0, -1);
     }
-
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
+    }
     protected string buildKeyValue(string aKey, Json aValue) {
         string result;
         return result;

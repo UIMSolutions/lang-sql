@@ -38,7 +38,10 @@ class SelectBuilder : ISqlBuilder {
         }
         return "SELECT " ~ mySql;
     }
-
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
+    }
     protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);

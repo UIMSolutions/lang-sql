@@ -21,5 +21,8 @@ class IndexHintListBuilder : ISqlBuilder {
             mySql ~= myValue["hint_type"] ~ " " ~ myValue["hint_list"] ~ " ";
         }
         return " " ~ substr(mySql, 0, -1);
+    }    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+        return result;
     }
 }
