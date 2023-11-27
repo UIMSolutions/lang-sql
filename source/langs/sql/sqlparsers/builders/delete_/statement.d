@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.delete.statement;
+module langs.sql.sqlparsers.builders.delete_.statement;
 
 import lang.sql;
 

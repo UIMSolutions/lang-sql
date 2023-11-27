@@ -1,5 +1,8 @@
-module langs.sql.sqlparsers.builders.index.IndexHintListBuilder;
+module langs.sql.sqlparsers.builders.index.hintlist;
 
+import lang.sql;
+
+@safe:
 // Builds the index hint list of a table.
 class IndexHintListBuilder : ISqlBuilder {
 

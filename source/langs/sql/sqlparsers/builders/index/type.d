@@ -14,7 +14,7 @@ class IndexTypeBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("INDEX_TYPE")) {
-      return "";
+      return null;
     }
 
     string mySql = parsedSql["sub_tree"].byKeyValue

@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds column-list parts of INSERT statements.
- * This class : the builder for column-list parts of INSERT statements. 
- */
+// Builds column-list parts of INSERT statements.
 class InsertColumnListBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
