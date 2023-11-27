@@ -1,7 +1,7 @@
 ﻿module langs.sql.index.drop;
 
 import langs.sql;
-
+@safe:
 class DSQLDropIndex : DSQLUpdateStatement {
 	this() { super(); }
 	this(string indexName) { this(); _indexName = indexName; }

@@ -1,7 +1,7 @@
 ﻿module langs.sql.functions.alter;
 
 import langs.sql;
-
+@safe:
 class DSQLAlterFunction : DSQLStatement {
 	this() {}
 	this(string functionName) { this(); _functionName = functionName; } 

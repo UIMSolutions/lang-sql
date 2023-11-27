@@ -1,7 +1,7 @@
 ﻿module langs.sql.tables.insert;
 
 import langs.sql;
-
+@safe:
 class DSQLInsert : DSQLStatement {
     
 	this() { }

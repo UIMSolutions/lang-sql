@@ -1,7 +1,7 @@
 module langs.sql.tables.delete_;
 
 import langs.sql;
-
+@safe:
 class DSQLDelete : DSQLStatement {
     this(string table = "", string condition = "") { from(table).where(condition); }
 	this(string table, string[] conditions) { from(table).where(conditions); }

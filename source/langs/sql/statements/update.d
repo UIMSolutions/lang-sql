@@ -1,7 +1,7 @@
 ﻿module langs.sql.statements.update;
 
 import langs.sql;
-
+@safe:
 class DSQLUpdateStatement : DSQLStatement {
 	this() {}
 }

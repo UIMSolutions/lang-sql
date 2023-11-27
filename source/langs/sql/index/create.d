@@ -1,7 +1,7 @@
 ﻿module langs.sql.index.create;
 
 import langs.sql;
-
+@safe:
 class DSQLCreateIndex : DSQLUpdateStatement {
 	this() { super(); }
 	this(string indexName) { this(); _indexName = indexName; }

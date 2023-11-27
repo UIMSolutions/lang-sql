@@ -1,7 +1,7 @@
 ﻿module langs.sql.functions.create_;
 
 import langs.sql;
-
+@safe:
 class DSQLCreateFunction : DSQLStatement {
 	this() {}
 	this(string functionName) { this(); _functionName = functionName; } 

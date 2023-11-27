@@ -1,7 +1,7 @@
 module langs.sql.tables.update;
 
 import langs.sql;
-
+@safe:
 class DSQLUpdate : DSQLUpdateStatement  {
 	protected string _table;
      

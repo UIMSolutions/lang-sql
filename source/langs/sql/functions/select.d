@@ -1,7 +1,7 @@
 ﻿module langs.sql.functions.select;
 
 import langs.sql;
-
+@safe:
 class DSQLSelectFunction : DSQLStatement {
 	this() {}
 	this(string functionName) { this(); } 

@@ -1,7 +1,7 @@
 ﻿module langs.sql.tables.dropcolumn;
 
 import langs.sql;
-
+@safe:
 class DSQLDropColumn : DSQLUpdateStatement {
 	this() { super(); }
 	this(string aTableName) { this(); _tableName = aTableName; }
