@@ -7,10 +7,10 @@ import lang.sql;
 // Builds an alias within a GROUP-BY clause.
 class GroupByAliasBuilder : ISqlBuilder {
 
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("ALIAS")) {
-            return "";
-        }
-        return parsedSql["base_expr"];
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("ALIAS")) {
+      return null;
     }
+    return parsedSql["base_expr"].get!string;
+  }
 }

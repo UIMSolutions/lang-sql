@@ -7,35 +7,40 @@ import lang.sql;
 // Builds an expression within a GROUP-BY clause.
 class GroupByExpressionBuilder : ISqlBuilder {
 
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("EXPRESSION")) {
-            return "";
-        }
-
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildReserved(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("GROUP expression subtree", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= " ";
-        }
-
-        mySql = substr(mySql, 0, -1);
-        return mySql;
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("EXPRESSION")) {
+      return "";
     }
 
-    protected string buildColRef(Json parsedSql) {
-        auto myBuilder = new ColumnReferenceBuilder();
-        return myBuilder.build(parsedSql);
+    string mySql = "";
+    foreach (myKey, myValue; parsedSql["sub_tree"]) {
+
     }
 
-    protected string buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilderr.build(parsedSql);
+    mySql = substr(mySql, 0, -1);
+    return mySql;
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildColRef(aValue);
+    result ~= this.buildReserved(aValue);
+
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("GROUP expression subtree", aKey, aValue, "expr_type");
     }
+
+    result ~= " ";
+    return result;
+  }
+
+  protected string buildColRef(Json parsedSql) {
+    auto myBuilder = new ColumnReferenceBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  protected string buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilderr.build(parsedSql);
+  }
 }

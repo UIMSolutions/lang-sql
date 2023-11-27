@@ -39,9 +39,9 @@ class ShowBuilder : ISqlBuilder {
     return result;
   }
 
-  protected string buildTable(Json parsedSql, $delim) {
+  protected string buildTable(Json parsedSql, string delim) {
     auto myBuilder = new TableBuilder();
-    return myBuilder.build(parsedSql, $delim);
+    return myBuilder.build(parsedSql, delim);
   }
 
   protected string buildFunction(Json parsedSql) {

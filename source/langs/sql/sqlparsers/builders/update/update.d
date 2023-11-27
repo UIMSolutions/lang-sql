@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the UPDATE statement parts. 
- * This class : the builder for the UPDATE statement parts. 
- */
+// Builds the UPDATE statement parts. 
 class UpdateBuilder : ISqlBuilder {
 
     protected string buildTable(parsedSql, $idx) {

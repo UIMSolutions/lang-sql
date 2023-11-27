@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the b racket expressions within a SELECT statement. */
- * This class : the builder for bracket expressions within a SELECT statement. 
- */
+// Builds the b racket expressions within a SELECT statement. */
 class SelectBracketExpressionBuilder : ISqlBuilder {
 
   protected string buildSubTree(parsedSql, $delim) {
@@ -21,7 +18,7 @@ class SelectBracketExpressionBuilder : ISqlBuilder {
   }
 
   string build(Json parsedSql) {
-    if (!parsedSql.isExpressionType(BRACKET_EXPRESSION) {
+    if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
       return "";
     }
     return "(" ~ this.buildSubTree(parsedSql, " ") ~ ")" ~ this.buildAlias(parsedSql);

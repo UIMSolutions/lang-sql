@@ -10,6 +10,38 @@ import lang.sql;
  * all functions to achieve another handling. */
 class SelectBuilder : ISqlBuilder {
 
+    /**
+     * Returns a well-formatted delimiter string. If you don"t need nice SQL,
+     * you could simply return parsedSql["delim"].
+     * 
+     * @param Json parsedSql The part of the output array, which contains the current expression.
+     * @return a string, which is added right after the expression
+     */
+    protected auto getDelimiter(Json parsedSql) {
+        return (!parsedSql.isSet("delim") || parsedSql["delim"] == false ? "" : (
+                parsedSql["delim"]) ~ " ").strip;
+    }
+
+    string build(Json parsedSql) {
+        string mySql = "";
+        foreach (myKey, myValue; parsedSql) {
+            size_t oldSqlLength = mySql.length;
+            mySql ~= this.buildColRef(myValue);
+            mySql ~= this.buildSelectBracketExpression(myValue);
+            mySql ~= this.buildSelectExpression(myValue);
+            mySql ~= this.buildFunction(myValue);
+            mySql ~= this.buildConstant(myValue);
+            mySql ~= this.buildReserved(myValue);
+
+            if (oldSqlLength == mySql.length) { // No change
+                throw new UnableToCreateSQLException("SELECT", myKey, myValue, "expr_type");
+            }
+
+            mySql ~= this.getDelimiter(myValue);
+        }
+        return "SELECT " ~ mySql;
+    }
+
     protected string buildConstant(Json parsedSql) {
         auto myBuilder = new ConstantBuilder();
         return myBuilder.build(parsedSql);
@@ -38,35 +70,5 @@ class SelectBuilder : ISqlBuilder {
     protected string buildReserved(Json parsedSql) {
         auto myBuilder = new ReservedBuilder();
         return myBuilder.build(parsedSql);
-    }
-    /**
-     * Returns a well-formatted delimiter string. If you don"t need nice SQL,
-     * you could simply return parsedSql["delim"].
-     * 
-     * @param Json parsedSql The part of the output array, which contains the current expression.
-     * @return a string, which is added right after the expression
-     */
-    protected auto getDelimiter(Json parsedSql) {
-        return (!parsedSql.isSet("delim") || parsedSql["delim"] == false ? "" : (parsedSql["delim"]) ~ " ").strip;
-    }
-
-    string build(Json parsedSql) {
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildSelectBracketExpression(myValue);
-            mySql ~= this.buildSelectExpression(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildReserved(myValue);
-
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("SELECT", myKey, myValue, "expr_type");
-            }
-
-            mySql ~= this.getDelimiter(myValue);
-        }
-        return "SELECT " ~ mySql;
     }
 }

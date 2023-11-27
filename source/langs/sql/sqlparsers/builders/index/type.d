@@ -7,27 +7,32 @@ import lang.sql;
 // Builds index type part of a PRIMARY KEY statement part of CREATE TABLE.
 class IndexTypeBuilder : ISqlBuilder {
 
-    protected string buildReserved(Json parsedSql) {
-        auto myBuilder = new ReservedBuilder();
-        return myBuilder.build(parsedSql);
+  protected string buildReserved(Json parsedSql) {
+    auto myBuilder = new ReservedBuilder();
+    return myBuilder.build(parsedSql);
+  }
+
+  string build(Json parsedSql) {
+    if (!parsedSql.isExpressionType("INDEX_TYPE")) {
+      return "";
     }
 
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("INDEX_TYPE")) {
-            return "";
-        }
+    string mySql = parsedSql["sub_tree"].byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
 
-        string mySql = "";
-        foreach (myKey, myValue; parsedSql["sub_tree"]) {
-            size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildReserved(myValue);
+    return substr(mySql, 0, -1);
+  }
 
-            if (oldSqlLength == mySql.length) { // No change
-                throw new UnableToCreateSQLException("CREATE TABLE primary key index type subtree", myKey, myValue, "expr_type");
-            }
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+    result ~= this.buildReserved(myValue);
 
-            mySql ~= " ";
-        }
-        return substr(mySql, 0, -1);
+    if (result.isEmpty) { // No change
+      throw new UnableToCreateSQLException("CREATE TABLE primary key index type subtree", myKey, myValue, "expr_type");
     }
+
+    result ~= " ";
+    return result;
+  }
 }
