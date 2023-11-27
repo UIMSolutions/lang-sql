@@ -12,6 +12,6 @@ class ProcedureBuilder : ISqlBuilder {
       return null;
     }
     
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

@@ -11,6 +11,6 @@ class GroupByAliasBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("ALIAS")) {
       return null;
     }
-    return parsedSql["base_expr"].get!string;
+    return parsedSql.baseExpression;
   }
 }

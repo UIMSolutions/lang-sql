@@ -15,6 +15,6 @@ class DataTypeBuilder : IBuilder {
       return "";
     }
     
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

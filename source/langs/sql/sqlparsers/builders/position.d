@@ -14,6 +14,6 @@ class PositionBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("POSITION")) {
       return null;
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

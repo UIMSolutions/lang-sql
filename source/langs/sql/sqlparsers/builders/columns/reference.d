@@ -11,7 +11,7 @@ class ColumnReferenceBuilder : ISqlBuilder {
       return "";
     }
 
-    string mySql = parsedSql["base_expr"];
+    string mySql = parsedSql.baseExpression;
     mySql ~= this.buildAlias(parsedSql);
     return mySql;
   }

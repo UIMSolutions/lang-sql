@@ -15,6 +15,6 @@ class ReservedBuilder : ISqlBuilder {
     if (!this.isReserved(parsedSql)) {
       return "";
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

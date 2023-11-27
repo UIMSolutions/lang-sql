@@ -18,14 +18,14 @@ class FunctionBuilder : ISqlBuilder {
         }
 
         if (parsedSql["sub_tree"] == false) {
-            return parsedSql["base_expr"] ~ "()" ~ this.buildAlias(parsedSql);
+            return parsedSql.baseExpression ~ "()" ~ this.buildAlias(parsedSql);
         }
 
         string result = parsedSql["sub_tree"].byKeyValue
             .map!(kv => buildKeyValue(kv.key, kv.value))
             .join;
 
-        return parsedSql["base_expr"] ~ "(" ~ substr(result, 0, -1)
+        return parsedSql.baseExpression ~ "(" ~ substr(result, 0, -1)
             ~ ")" ~ this.buildAlias(
                 parsedSql);
     }

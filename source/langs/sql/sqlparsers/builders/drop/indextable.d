@@ -9,7 +9,7 @@ class DropIndexTableBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isSet("on") || parsedSql["on"] == false) {
-      return "";
+      return null;
     }
     auto onSql = parsedSql["on"];
     if (!onSql.isExpressionType("TABLE")) {

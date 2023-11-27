@@ -11,6 +11,6 @@ class SignBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("SIGN")) {
       return null;
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

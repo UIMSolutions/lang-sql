@@ -61,20 +61,20 @@ class ColumnTypeBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("CHARSET")) {
       return "";
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 
   protected string buildCollation(Json parsedSql) {
     if (!parsedSql.isExpressionType("COLLATE")) {
       return "";
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 
   protected string buildComment(Json parsedSql) {
     if (!parsedSql.isExpressionType("COMMENT")) {
       return "";
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

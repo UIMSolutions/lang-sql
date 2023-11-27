@@ -11,6 +11,6 @@ class DatabaseBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("DATABASE")) {
       return null;
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

@@ -11,7 +11,7 @@ class TruncateBuilder : ISqlBuilder {
     $right =  - 1;
 
     // works for one table only
-    parsedSql["tables"] = [parsedSql["TABLE"]["base_expr"]];
+    parsedSql["tables"] = [parsedSql["TABLE"].baseExpression];
 
     if (parsedSql["tables"] != false) {
       foreach (myKey, myValue; parsedSql["tables"]) {

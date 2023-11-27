@@ -17,6 +17,6 @@ class ViewBuilder : ISqlBuilder {
         if (!parsedSql.isExpressionType(VIEW) {
             return "";
         }
-        return parsedSql["base_expr"];
+        return parsedSql.baseExpression;
     }
 }

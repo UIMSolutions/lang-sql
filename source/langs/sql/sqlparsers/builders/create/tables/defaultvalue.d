@@ -14,6 +14,6 @@ class DefaultValueBuilder : ISqlBuilder {
         if (!parsedSql.isExpressionType("DEF_VALUE") {
             return "";
         }
-        return parsedSql["base_expr"];
+        return parsedSql.baseExpression;
     }
 }

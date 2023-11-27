@@ -12,6 +12,6 @@ class UserVariableBuilder : ISqlBuilder {
       return "";
     }
 
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

@@ -11,6 +11,6 @@ class OperatorBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("OPERATOR")) {
       return null;
     }
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

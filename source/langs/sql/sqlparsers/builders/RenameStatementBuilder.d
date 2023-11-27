@@ -35,6 +35,6 @@ class RenameStatementBuilder : ISqlBuilder {
       return "";
     }
 
-    return myValue["source"]["base_expr"] ~ " TO " ~ myValue["destination"]["base_expr"] ~ ",";
+    return myValue["source"].baseExpression ~ " TO " ~ myValue["destination"].baseExpression ~ ",";
   }
 }

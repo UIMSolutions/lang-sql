@@ -11,7 +11,7 @@ class OrderByPositionBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("POSITION")) {
       return "";
     }
-    return parsedSql["base_expr"] ~ this.buildDirection(parsedSql);
+    return parsedSql.baseExpression ~ this.buildDirection(parsedSql);
   }
 
   protected string buildDirection(Json parsedSql) {

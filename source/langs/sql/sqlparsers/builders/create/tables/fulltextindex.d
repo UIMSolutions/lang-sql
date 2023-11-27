@@ -42,7 +42,7 @@ class FulltextIndexBuilder : IBuilder {
       return "";
     }
 
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 
   protected string buildColumnList(Json parsedSql) {

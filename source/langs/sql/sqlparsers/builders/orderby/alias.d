@@ -19,6 +19,6 @@ class OrderByAliasBuilder : ISqlBuilder {
         if (!parsedSql.isExpressionType(ALIAS) {
             return "";
         }
-        return parsedSql["base_expr"] . this.buildDirection(parsedSql);
+        return parsedSql.baseExpression . this.buildDirection(parsedSql);
     }
 }

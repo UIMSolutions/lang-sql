@@ -8,9 +8,9 @@ class SchemaBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("SCHEMA")) {
-      return "";
+      return null;
     }
 
-    return parsedSql["base_expr"];
+    return parsedSql.baseExpression;
   }
 }

@@ -12,7 +12,7 @@ class AliasReferenceBuilder : ISqlBuilder {
         if (!parsedSql.isExpressionType("ALIAS")) {
             return "";
         }
-        string mySql = parsedSql["base_expr"].get!string;
+        string mySql = parsedSql.baseExpression;
         return mySql;
     }
 }
