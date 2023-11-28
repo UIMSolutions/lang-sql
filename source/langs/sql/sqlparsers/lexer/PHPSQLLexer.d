@@ -11,7 +11,7 @@ import lang.sql;
  */
 class SQLLexer {
 
-    protected $splitters;
+    protected  mysplitters;
 
     /**
      * Constructor.
@@ -23,8 +23,8 @@ class SQLLexer {
     }
 
     /**
-     * Ends the given string $haystack with the string $needle?
-     * @return true, if the parameter $haystack ends with the character sequences $needle, false otherwise
+     * Ends the given string  myhaystack with the string  myneedle?
+     * @return true, if the parameter  myhaystack ends with the character sequences  myneedle, false otherwise
      */
     protected bool endsWith(string haystack, string aNeedle) {
         return aNeedle.isEmpty 
@@ -48,27 +48,27 @@ class SQLLexer {
         return myTokens;
     }
 
-    protected auto concatNegativeNumbers($tokens) {
+    protected auto concatNegativeNumbers( mytokens) {
 
-    	size_t $i = 0;
-    	numberOfTokens = count($tokens);
+    	size_t  myi = 0;
+    	numberOfTokens = count( mytokens);
     	bool isPossibleSign = true;
 
-    	while ($i < numberOfTokens) {
+    	while ( myi < numberOfTokens) {
 
-    		if (!$tokens.iSet($i)) {
-    			$i++;
+    		if (! mytokens.iSet( myi)) {
+    			 myi++;
     			continue;
     		}
 
-    		$token = $tokens[$i];
+    		 mytoken =  mytokens[ myi];
 
     		// a sign is also possible on the first position of the tokenlist
     		if (isPossibleSign == true) {
-				if ($token == "-" || $token == "+") {
-					if (is_numeric($tokens[$i + 1])) {
-						$tokens[$i + 1] = $token . $tokens[$i + 1];
-						unset($tokens[$i]);
+				if ( mytoken == "-" ||  mytoken == "+") {
+					if (is_numeric( mytokens[ myi + 1])) {
+						 mytokens[ myi + 1] =  mytoken .  mytokens[ myi + 1];
+						unset( mytokens[ myi]);
 					}
 				}
 				isPossibleSign = false;
@@ -76,210 +76,210 @@ class SQLLexer {
     		}
 
     		// TODO: we can have sign of a number after "(" and ",", are others possible?
-    		if (substr($token, -1, 1) == "," || substr($token, -1, 1) == "(") {
+    		if (substr( mytoken, -1, 1) == "," || substr( mytoken, -1, 1) == "(") {
     			isPossibleSign = true;
     		}
 
-    		$i++;
+    		 myi++;
    		}
 
-   		return array_values($tokens);
+   		return array_values( mytokens);
     }
 
-    protected auto concatScientificNotations($tokens) {
+    protected auto concatScientificNotations( mytokens) {
 
-        $i = 0;
-        numberOfTokens = $tokens.length;
-        $scientific = false;
+         myi = 0;
+        numberOfTokens =  mytokens.length;
+         myscientific = false;
 
-        while ($i < numberOfTokens) {
+        while ( myi < numberOfTokens) {
 
-            if (!$tokens.iSet($i)) {
-                $i++;
+            if (! mytokens.iSet( myi)) {
+                 myi++;
                 continue;
             }
 
-            $token = $tokens[$i];
+             mytoken =  mytokens[ myi];
 
-            if ($scientific == true) {
-                if ($token == "-" || $token == "+") {
-                    $tokens[$i - 1] ~= $tokens[$i];
-                    $tokens[$i - 1] ~= $tokens[$i + 1];
-                    unset($tokens[$i]);
-                    unset($tokens[$i + 1]);
+            if ( myscientific == true) {
+                if ( mytoken == "-" ||  mytoken == "+") {
+                     mytokens[ myi - 1] ~=  mytokens[ myi];
+                     mytokens[ myi - 1] ~=  mytokens[ myi + 1];
+                    unset( mytokens[ myi]);
+                    unset( mytokens[ myi + 1]);
 
-                } else if (is_numeric($token)) {
-                    $tokens[$i - 1] ~= $tokens[$i];
-                    unset($tokens[$i]);
+                } else if (is_numeric( mytoken)) {
+                     mytokens[ myi - 1] ~=  mytokens[ myi];
+                    unset( mytokens[ myi]);
                 }
-                $scientific = false;
+                 myscientific = false;
                 continue;
             }
 
-            if (substr($token, -1, 1).toUpper == "E") {
-                $scientific = is_numeric(substr($token, 0, -1));
+            if (substr( mytoken, -1, 1).toUpper == "E") {
+                 myscientific = is_numeric(substr( mytoken, 0, -1));
             }
 
-            $i++;
+             myi++;
         }
 
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 
-    protected auto concatUserDefinedVariables($tokens) {
-        $i = 0;
-        numberOfTokens = count($tokens);
-        $userdef = false;
+    protected auto concatUserDefinedVariables( mytokens) {
+         myi = 0;
+        numberOfTokens = count( mytokens);
+         myuserdef = false;
 
-        while ($i < numberOfTokens) {
+        while ( myi < numberOfTokens) {
 
-            if (!$tokens.iSet($i)) {
-                $i++;
+            if (! mytokens.iSet( myi)) {
+                 myi++;
                 continue;
             }
 
-            $token = $tokens[$i];
+             mytoken =  mytokens[ myi];
 
-            if ($userdef != false) {
-                $tokens[$userdef] ~= $token;
-                unset($tokens[$i]);
-                if ($token != "@") {
-                    $userdef = false;
+            if ( myuserdef != false) {
+                 mytokens[ myuserdef] ~=  mytoken;
+                unset( mytokens[ myi]);
+                if ( mytoken != "@") {
+                     myuserdef = false;
                 }
             }
 
-            if ($userdef == false && $token == "@") {
-                $userdef = $i;
+            if ( myuserdef == false &&  mytoken == "@") {
+                 myuserdef =  myi;
             }
 
-            $i++;
+             myi++;
         }
 
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 
-    protected auto concatComments($tokens) {
+    protected auto concatComments( mytokens) {
 
-        $i = 0;
-        numberOfTokens = count($tokens);
-        $comment = false;
-        $backTicks = [];
-        $in_string = false;
-        $inline = false;
+         myi = 0;
+        numberOfTokens = count( mytokens);
+         mycomment = false;
+         mybackTicks = [];
+         myin_string = false;
+         myinline = false;
 
-        while ($i < numberOfTokens) {
+        while ( myi < numberOfTokens) {
 
-            if (!$tokens.iSet($i)) {
-                $i++;
+            if (! mytokens.iSet( myi)) {
+                 myi++;
                 continue;
             }
 
-            $token = $tokens[$i];
+             mytoken =  mytokens[ myi];
 
             /*
              * Check to see if we"re inside a value (i.e. back ticks).
              * If so inline comments are not valid.
              */
-            if ($comment == false && this.isBacktick($token)) {
-                if (!empty($backTicks)) {
-                    $lastBacktick = array_pop($backTicks);
-                    if ($lastBacktick != $token) {
-                        $backTicks[] = $lastBacktick; // Re-add last back tick
-                        $backTicks[] = $token;
+            if ( mycomment == false && this.isBacktick( mytoken)) {
+                if (!empty( mybackTicks)) {
+                     mylastBacktick = array_pop( mybackTicks);
+                    if ( mylastBacktick !=  mytoken) {
+                         mybackTicks[] =  mylastBacktick; // Re-add last back tick
+                         mybackTicks[] =  mytoken;
                     }
                 } else {
-                    $backTicks[] = $token;
+                     mybackTicks[] =  mytoken;
                 }
             }
 
-            if($comment == false && ($token == "\"" || $token == """)) {
-                $in_string = !$in_string;
+            if( mycomment == false && ( mytoken == "\"" ||  mytoken == """)) {
+                 myin_string = ! myin_string;
             }
-            if(!$in_string) {
-                if ($comment != false) {
-                    if ($inline == true && ($token == "\n" || $token == "\r\n")) {
-                        $comment = false;
+            if(! myin_string) {
+                if ( mycomment != false) {
+                    if ( myinline == true && ( mytoken == "\n" ||  mytoken == "\r\n")) {
+                         mycomment = false;
                     } else {
-                        unset($tokens[$i]);
-                        $tokens[$comment] ~= $token;
+                        unset( mytokens[ myi]);
+                         mytokens[ mycomment] ~=  mytoken;
                     }
-                    if ($inline == false && ($token == "*/")) {
-                        $comment = false;
+                    if ( myinline == false && ( mytoken == "*/")) {
+                         mycomment = false;
                     }
                 }
 
-                if (($comment == false) && ($token == "--") && empty($backTicks)) {
-                    $comment = $i;
-                    $inline = true;
+                if (( mycomment == false) && ( mytoken == "--") && empty( mybackTicks)) {
+                     mycomment =  myi;
+                     myinline = true;
                 }
 
-                if (($comment == false) && (substr($token, 0, 1) == "#") && empty($backTicks)) {
-                    $comment = $i;
-                    $inline = true;
+                if (( mycomment == false) && (substr( mytoken, 0, 1) == "#") && empty( mybackTicks)) {
+                     mycomment =  myi;
+                     myinline = true;
                 }
 
-                if (($comment == false) && ($token == "/*")) {
-                    $comment = $i;
-                    $inline = false;
+                if (( mycomment == false) && ( mytoken == "/*")) {
+                     mycomment =  myi;
+                     myinline = false;
                 }
             }
 
-            $i++;
+             myi++;
         }
 
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 
-    protected auto isBacktick($token) {
-        return ($token == """ || $token == "\"" || $token == "`");
+    protected auto isBacktick( mytoken) {
+        return ( mytoken == """ ||  mytoken == "\"" ||  mytoken == "`");
     }
 
-    protected auto balanceBackticks($tokens) {
-        $i = 0;
-        numberOfTokens = count($tokens);
-        while ($i < numberOfTokens) {
+    protected auto balanceBackticks( mytokens) {
+         myi = 0;
+        numberOfTokens = count( mytokens);
+        while ( myi < numberOfTokens) {
 
-            if (!$tokens.iSet($i)) {
-                $i++;
+            if (! mytokens.iSet( myi)) {
+                 myi++;
                 continue;
             }
 
-            auto myToken = $tokens[$i];
+            auto myToken =  mytokens[ myi];
 
-            if (this.isBacktick($token)) {
-                $tokens = this.balanceCharacter($tokens, $i, myToken);
+            if (this.isBacktick( mytoken)) {
+                 mytokens = this.balanceCharacter( mytokens,  myi, myToken);
             }
 
-            $i++;
+             myi++;
         }
 
-        return $tokens;
+        return  mytokens;
     }
 
     // backticks are not balanced within one token, so we have
     // to re-combine some tokens
-    protected auto balanceCharacter($tokens, $idx, $char) {
+    protected auto balanceCharacter( mytokens,  myidx,  mychar) {
 
-        $token_count = count($tokens);
-        $i = $idx + 1;
-        while ($i < $token_count) {
+         mytoken_count = count( mytokens);
+         myi =  myidx + 1;
+        while ( myi <  mytoken_count) {
 
-            if (!$tokens.iSet($i)) {
-                $i++;
+            if (! mytokens.iSet( myi)) {
+                 myi++;
                 continue;
             }
 
-            auto myToken = $tokens[$i];
-            $tokens[$idx] ~= myToken;
-            unset($tokens[$i]);
+            auto myToken =  mytokens[ myi];
+             mytokens[ myidx] ~= myToken;
+            unset( mytokens[ myi]);
 
-            if (myToken == $char) {
+            if (myToken ==  mychar) {
                 break;
             }
 
-            $i++;
+             myi++;
         }
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 
     /**
@@ -290,99 +290,99 @@ class SQLLexer {
      * 2. If the next token starts with a dot, we will add it to the previous token
      *
      */
-    protected auto concatColReferences($tokens) {
+    protected auto concatColReferences( mytokens) {
 
-        numberOfTokens = count($tokens);
-        $i = 0;
-        while ($i < numberOfTokens) {
+        numberOfTokens = count( mytokens);
+         myi = 0;
+        while ( myi < numberOfTokens) {
 
-            if (!$tokens.iSet($i)) {
-                $i++;
+            if (! mytokens.iSet( myi)) {
+                 myi++;
                 continue;
             }
 
-            if ($tokens[$i][0] == ".") {
+            if ( mytokens[ myi][0] == ".") {
 
                 // concat the previous tokens, till the token has been changed
-                $k = $i - 1;
-                $len = strlen($tokens[$i]);
-                while (($k >= 0) && ($len == strlen($tokens[$i]))) {
-                    if (!isset($tokens[$k])) { // FIXME: this can be wrong if we have schema . table . column
-                        $k--;
+                 myk =  myi - 1;
+                 mylen = strlen( mytokens[ myi]);
+                while (( myk >= 0) && ( mylen == strlen( mytokens[ myi]))) {
+                    if (!isset( mytokens[ myk])) { // FIXME: this can be wrong if we have schema . table . column
+                         myk--;
                         continue;
                     }
-                    $tokens[$i] = $tokens[$k] . $tokens[$i];
-                    unset($tokens[$k]);
-                    $k--;
+                     mytokens[ myi] =  mytokens[ myk] .  mytokens[ myi];
+                    unset( mytokens[ myk]);
+                     myk--;
                 }
             }
 
-            if (this.endsWith($tokens[$i], ".") && !is_numeric($tokens[$i])) {
+            if (this.endsWith( mytokens[ myi], ".") && !is_numeric( mytokens[ myi])) {
 
                 // concat the next tokens, till the token has been changed
-                $k = $i + 1;
-                $len = strlen($tokens[$i]);
-                while (($k < numberOfTokens) && ($len == strlen($tokens[$i]))) {
-                    if (!isset($tokens[$k])) {
-                        $k++;
+                 myk =  myi + 1;
+                 mylen = strlen( mytokens[ myi]);
+                while (( myk < numberOfTokens) && ( mylen == strlen( mytokens[ myi]))) {
+                    if (!isset( mytokens[ myk])) {
+                         myk++;
                         continue;
                     }
-                    $tokens[$i] ~= $tokens[$k];
-                    unset($tokens[$k]);
-                    $k++;
+                     mytokens[ myi] ~=  mytokens[ myk];
+                    unset( mytokens[ myk]);
+                     myk++;
                 }
             }
 
-            $i++;
+             myi++;
         }
 
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 
-    protected auto concatEscapeSequences($tokens) {
-        $tokenCount = count($tokens);
-        $i = 0;
-        while ($i < $tokenCount) {
+    protected auto concatEscapeSequences( mytokens) {
+         mytokenCount = count( mytokens);
+         myi = 0;
+        while ( myi <  mytokenCount) {
 
-            if (this.endsWith($tokens[$i], "\\")) {
-                $i++;
-                if ($tokens.iSet($i)) {
-                    $tokens[$i - 1] ~= $tokens[$i];
-                    unset($tokens[$i]);
+            if (this.endsWith( mytokens[ myi], "\\")) {
+                 myi++;
+                if ( mytokens.iSet( myi)) {
+                     mytokens[ myi - 1] ~=  mytokens[ myi];
+                    unset( mytokens[ myi]);
                 }
             }
-            $i++;
+             myi++;
         }
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 
-    protected auto balanceParenthesis($tokens) {
-        $token_count = count($tokens);
-        $i = 0;
-        while ($i < $token_count) {
-            if ($tokens[$i] != "(") {
-                $i++;
+    protected auto balanceParenthesis( mytokens) {
+         mytoken_count = count( mytokens);
+         myi = 0;
+        while ( myi <  mytoken_count) {
+            if ( mytokens[ myi] != "(") {
+                 myi++;
                 continue;
             }
-            $count = 1;
-            for ($n = $i + 1; $n < $token_count; $n++) {
-                $token = $tokens[$n];
-                if ($token == "(") {
-                    $count++;
+             mycount = 1;
+            for ( myn =  myi + 1;  myn <  mytoken_count;  myn++) {
+                 mytoken =  mytokens[ myn];
+                if ( mytoken == "(") {
+                     mycount++;
                 }
-                if ($token == ")") {
-                    $count--;
+                if ( mytoken == ")") {
+                     mycount--;
                 }
-                $tokens[$i] ~= $token;
-                unset($tokens[$n]);
-                if ($count == 0) {
-                    $n++;
+                 mytokens[ myi] ~=  mytoken;
+                unset( mytokens[ myn]);
+                if ( mycount == 0) {
+                     myn++;
                     break;
                 }
             }
-            $i = $n;
+             myi =  myn;
         }
-        return array_values($tokens);
+        return array_values( mytokens);
     }
 }
 

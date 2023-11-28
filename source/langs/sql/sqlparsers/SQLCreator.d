@@ -7,7 +7,7 @@ import lang.sql;
 // A creator, which generates SQL from the output of SqlParser.
 class PHPSQLCreator {
 
-    $created;
+     mycreated;
 
     this(aParsed = false) {
         if (aParsed) {
@@ -16,8 +16,8 @@ class PHPSQLCreator {
     }
 
     auto create(Json aParsed) {
-        $k = key(aParsed);
-        switch ($k) {
+         myk = key(aParsed);
+        switch ( myk) {
 
         case "UNION":
 			auto myBuilder = new UnionStatementBuilder();
@@ -76,7 +76,7 @@ class PHPSQLCreator {
             this.created = myBuilder.build(aParsed);
             break;
         default:
-            throw new UnsupportedFeatureException($k);
+            throw new UnsupportedFeatureException( myk);
             break;
         }
         return this.created;

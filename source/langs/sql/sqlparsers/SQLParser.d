@@ -7,19 +7,19 @@ import lang.sql;
 // A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
 class SqlParser {
 
-    $parsed;
+     myparsed;
 
-    private $options;
+    private  myoptions;
 
     /**
      * Constructor. It simply calls the parse() function.
-     * Use the variable $parsed to get the output.
+     * Use the variable  myparsed to get the output.
      *
      * @param bool calcPositions True, if the output should contain [position], false otherwise.
-     * @param array $options
+     * @param array  myoptions
      */
-    this(string sqlStatement = null, bool calcPositions = false, array $options = []) {
-        this.options = new Options($options);
+    this(string sqlStatement = null, bool calcPositions = false, array  myoptions = []) {
+        this.options = new Options( myoptions);
 
         if (sqlStatement !is null) {
             this.parse(sqlStatement, calcPositions);
@@ -41,12 +41,12 @@ class SqlParser {
     auto parse(string sqlStatement, bool calcPositions = false) {
 
         auto myProcessor = new DefaultProcessor(this.options);
-        auto queries = $processor.process(sqlStatement);
+        auto queries =  myprocessor.process(sqlStatement);
 
         // calc the positions of some important tokens
         if (calcPositions) {
-            $calculator = new PositionCalculator();
-            queries = $calculator.setPositionsWithinSQL(sqlStatement, queries);
+             mycalculator = new PositionCalculator();
+            queries =  mycalculator.setPositionsWithinSQL(sqlStatement, queries);
         }
 
         // store the parsed queries
@@ -57,23 +57,23 @@ class SqlParser {
     /**
      * Add a custom auto to the parser.  no return value
      *
-     * @param String $token The name of the auto to add
+     * @param String  mytoken The name of the auto to add
      *
      * @return null
      */
-    auto addCustomFunction($token) {
-        SqlParserConstants::getInstance().addCustomFunction($token);
+    auto addCustomFunction( mytoken) {
+        SqlParserConstants::getInstance().addCustomFunction( mytoken);
     }
 
     /**
      * Remove a custom auto from the parser.  no return value
      *
-     * @param String $token The name of the auto to remove
+     * @param String  mytoken The name of the auto to remove
      *
      * @return null
      */
-    auto removeCustomFunction($token) {
-        SqlParserConstants::getInstance().removeCustomFunction($token);
+    auto removeCustomFunction( mytoken) {
+        SqlParserConstants::getInstance().removeCustomFunction( mytoken);
     }
 
     /**

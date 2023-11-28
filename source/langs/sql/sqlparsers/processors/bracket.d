@@ -7,16 +7,16 @@ import lang.sql;
 // This class processes the parentheses around the statement.
 class BracketProcessor : AbstractProcessor {
 
-    protected auto processTopLevel($sql) {
+    protected auto processTopLevel( mysql) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return myProcessor.process($sql);
+        return myProcessor.process( mysql);
     }
 
-    auto process($tokens) {
-        string myToken = this.removeParenthesisFromStart($tokens[0]);
+    auto process( mytokens) {
+        string myToken = this.removeParenthesisFromStart( mytokens[0]);
         Json subtree = this.processTopLevel(myToken);
 
-        $remainingExpressions = this.getRemainingNotBracketExpression(subtree);
+         myremainingExpressions = this.getRemainingNotBracketExpression(subtree);
 
         if (subtree.isSet("BRACKET")) {
             subtree = subtree["BRACKET"];
@@ -27,9 +27,9 @@ class BracketProcessor : AbstractProcessor {
                     createExpression("QUERY", myToken), "sub_tree" : subtree];
         }
 
-        Json result = createExpression("BRACKET_EXPRESSION", $tokens[0].trim);
+        Json result = createExpression("BRACKET_EXPRESSION",  mytokens[0].trim);
         result["sub_tree"] = subtree;
-        result["remaining_expressions"] = $remainingExpressions;
+        result["remaining_expressions"] =  myremainingExpressions;
 
         return [result];
     }
@@ -39,17 +39,17 @@ class BracketProcessor : AbstractProcessor {
         // https://github.com/sinri/PHP-SQL-Parser/commit/eac592a0e19f1df6f420af3777a6d5504837faa7
         // as there is no pull request for 279 by the user. His solution works and tested.
         if (subtree.isEmpty) subtree = [];// as a fix by Sinri 20180528
-        $remainingExpressions = [];
+         myremainingExpressions = [];
         string[] ignoredKeys = ["BRACKET", "SELECT", "FROM"];
-        $subtreeKeys = array_keys(subtree);
+         mysubtreeKeys = array_keys(subtree);
 
-        foreach(myKey; $subtreeKeys) {
+        foreach(myKey;  mysubtreeKeys) {
             if(!in_array(myKey, ignoredKeys)) {
-                $remainingExpressions[myKey] = subtree[myKey];
+                 myremainingExpressions[myKey] = subtree[myKey];
             }
         }
 
-        return $remainingExpressions;
+        return  myremainingExpressions;
     }
 
 }

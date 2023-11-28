@@ -25,9 +25,9 @@ class CreateTableOptionsBuilder : IBuilder {
         if (!isset(parsedSql["options"]) || parsedSql["options"] == false) {
             return "";
         }
-        $options = parsedSql["options"];
+         myoptions = parsedSql["options"];
         string mySql = "";
-        foreach ($options as myKey, myValue) {
+        foreach ( myoptions as myKey, myValue) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildExpression(myValue);
             mySql ~= this.buildCharacterSet(myValue);

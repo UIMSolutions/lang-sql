@@ -11,18 +11,18 @@ import lang.sql;
  * in such a case. */
 class UnableToCreateSQLException : Exception {
 
-    protected $part;
-    protected $partkey;
-    protected $entry;
-    protected $entrykey;
+    protected  mypart;
+    protected  mypartkey;
+    protected  myentry;
+    protected  myentrykey;
 
-    this($part, $partkey, $entry, $entrykey) {
-        this.part = $part;
-        this.partkey = $partkey;
-        this.entry = $entry;
-        this.entrykey = $entrykey;
+    this( mypart,  mypartkey,  myentry,  myentrykey) {
+        this.part =  mypart;
+        this.partkey =  mypartkey;
+        this.entry =  myentry;
+        this.entrykey =  myentrykey;
         super(
-            "unknown [" ~ $entrykey ~ "] = " ~ $entry[$entrykey] ~ " in \"" ~ $part ~ "\" [" ~ $partkey ~ "] ", 15);
+            "unknown [" ~  myentrykey ~ "] = " ~  myentry[ myentrykey] ~ " in \"" ~  mypart ~ "\" [" ~  mypartkey ~ "] ", 15);
     }
 
     auto getEntry() {

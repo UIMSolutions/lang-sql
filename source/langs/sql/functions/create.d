@@ -18,7 +18,7 @@ class DSQLCreateFunction : DSQLStatement {
 	override string toSQL() {
 		auto lang = "SQL";
 		if (_language) lang = _language;
-		return "CREATE FUNCTION %s(%s) RETURNS %s AS $$ %s $$ LANGUAGE %s;".format(_functionName, _parameters, _returnType, _content, lang);
+		return "CREATE FUNCTION %s(%s) RETURNS %s AS  my my %s  my my LANGUAGE %s;".format(_functionName, _parameters, _returnType, _content, lang);
 	}
 }
 auto SQLCreateFunction() { return new DSQLCreateFunction; }

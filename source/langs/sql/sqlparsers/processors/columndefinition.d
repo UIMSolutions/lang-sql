@@ -11,22 +11,22 @@ import lang.sql;
  * */
 class ColumnDefinitionProcessor : AbstractProcessor {
 
-    protected auto processExpressionList($parsed) {
+    protected auto processExpressionList( myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        myExpression = this.removeParenthesisFromStart($parsed);
+        myExpression = this.removeParenthesisFromStart( myparsed);
         myExpression = this.splitSQLIntoTokens(myExpression);
         myExpression = this.removeComma(myExpression);
         return myProcessor.process(myExpression);
     }
 
-    protected auto processReferenceDefinition($parsed) {
+    protected auto processReferenceDefinition( myparsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
-        return myProcessor.process($parsed);
+        return myProcessor.process( myparsed);
     }
 
-    protected auto removeComma($tokens) {
+    protected auto removeComma( mytokens) {
         auto result = [];
-        foreach (myToken; $tokens) {
+        foreach (myToken;  mytokens) {
             if (myToken.strip != ",") {
                 result[] = myToken;
             }
@@ -34,43 +34,43 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         return result;
     }
 
-    protected string buildColDef(myExpression, baseExpression, $options, $refs, myKey) {
+    protected string buildColDef(myExpression, baseExpression,  myoptions,  myrefs, myKey) {
         myExpression = createExpression("COLUMN_TYPE"), "base_expr" : baseExpression, "sub_tree" : myExpression];
 
         // add options first
-        myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], $options["sub_tree"]);
-        unset($options["sub_tree"]);
-        myExpression = array_merge(myExpression, $options);
+        myExpression["sub_tree"] = array_merge(myExpression["sub_tree"],  myoptions["sub_tree"]);
+        unset( myoptions["sub_tree"]);
+        myExpression = array_merge(myExpression,  myoptions);
 
         // followed by references
-        if (sizeof($refs) != 0) {
-            myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], $refs);
+        if (sizeof( myrefs) != 0) {
+            myExpression["sub_tree"] = array_merge(myExpression["sub_tree"],  myrefs);
         }
 
         myExpression["till"] = myKey;
         return myExpression;
     }
 
-    auto process($tokens) {
+    auto process( mytokens) {
         string baseExpression = "";
         string currentCategory = "";
         myExpression = [];
-        $refs = [];
-        $options = ["unique" : false, "nullable" : true, "auto_inc" : false, "primary" : false,
+         myrefs = [];
+         myoptions = ["unique" : false, "nullable" : true, "auto_inc" : false, "primary" : false,
                          "sub_tree" : []];
-        $skip = 0;
+         myskip = 0;
 
-        foreach (myKey, myToken; $tokens) {
+        foreach (myKey, myToken;  mytokens) {
 
             string strippedToken = myToken.strip;
             baseExpression ~= myToken;
 
-            if ($skip > 0) {
-                $skip--;
+            if ( myskip > 0) {
+                 myskip--;
                 continue;
             }
 
-            if ($skip < 0) {
+            if ( myskip < 0) {
                 break;
             }
 
@@ -85,7 +85,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case ",":
             // we stop on a single comma and return
             // the myExpression entry and the index myKey
-                myExpression = this.buildColDef(myExpression, (substr(baseExpression, 0, -myToken.length)).strip, $options, $refs,
+                myExpression = this.buildColDef(myExpression, (substr(baseExpression, 0, -myToken.length)).strip,  myoptions,  myrefs,
                     myKey - 1);
                 break 2;
 
@@ -103,20 +103,20 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 continue 2;
 
             case "UNSIGNED":
-                foreach (array_reverse(array_keys(myExpression)) as $i) {
-                    if (myExpression[$i].isSet("expr_type") && (expressionType("DATA_TYPE") == myExpression[$i]["expr_type"])) {
-                        myExpression[$i]["unsigned"] = true;
+                foreach (array_reverse(array_keys(myExpression)) as  myi) {
+                    if (myExpression[ myi].isSet("expr_type") && (expressionType("DATA_TYPE") == myExpression[ myi]["expr_type"])) {
+                        myExpression[ myi]["unsigned"] = true;
                         break;
                     }
                 }
-	            $options["sub_tree"][] = createExpression("RESERVED", strippedToken];
+	             myoptions["sub_tree"][] = createExpression("RESERVED", strippedToken];
                 continue 2;
 
             case "ZEROFILL":
-                $last = array_pop(myExpression);
-                $last["zerofill"] = true;
-                myExpression[] = $last;
-	            $options["sub_tree"][] = createExpression("RESERVED", strippedToken);
+                 mylast = array_pop(myExpression);
+                 mylast["zerofill"] = true;
+                myExpression[] =  mylast;
+	             myoptions["sub_tree"][] = createExpression("RESERVED", strippedToken);
                 continue 2;
 
             case "BIT":
@@ -142,10 +142,10 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case "BINARY":
                 if (currentCategory == "TEXT") {
-                    $last = array_pop(myExpression);
-                    $last["binary"] = true;
-                    $last["sub_tree"][] = createEXpression("RESERVED", strippedToken);
-                    myExpression[] = $last;
+                     mylast = array_pop(myExpression);
+                     mylast["binary"] = true;
+                     mylast["sub_tree"][] = createEXpression("RESERVED", strippedToken);
+                    myExpression[] =  mylast;
                     continue 2;
                 }
                 myExpression[] = createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
@@ -228,12 +228,12 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case "CHARACTER":
                 currentCategory = "CHARSET";
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "SET":
 				if (currentCategory == "CHARSET") {
-    	            $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+    	             myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
 				} else {
 	                currentCategory = "MULTIPLE_PARAM_PARENTHESIS";
     	            myPrevousCategory = "TEXT";
@@ -243,57 +243,57 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case "COLLATE":
                 currentCategory = upperToken;
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "NOT":
             case "NULL":
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
-                if ($options["nullable"]) {
-                    $options["nullable"] = (upperToken == "NOT" ? false : true);
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                if ( myoptions["nullable"]) {
+                     myoptions["nullable"] = (upperToken == "NOT" ? false : true);
                 }
                 continue 2;
 
             case "DEFAULT":
             case "COMMENT":
                 currentCategory = upperToken;
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "AUTO_INCREMENT":
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
-                $options["auto_inc"] = true;
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["auto_inc"] = true;
                 continue 2;
 
             case "COLUMN_FORMAT":
             case "STORAGE":
                 currentCategory = upperToken;
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "UNIQUE":
             // it can follow a KEY word
                 currentCategory = upperToken;
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
-                $options["unique"] = true;
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["unique"] = true;
                 continue 2;
 
             case "PRIMARY":
             // it must follow a KEY word
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "KEY":
-                $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                 myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                 if (currentCategory != "UNIQUE") {
-                    $options["primary"] = true;
+                     myoptions["primary"] = true;
                 }
                 continue 2;
 
             case "REFERENCES":
-                $refs = this.processReferenceDefinition(array_splice($tokens, myKey - 1, null, true));
-                $skip = $refs["till"] - myKey;
-                unset($refs["till"]);
+                 myrefs = this.processReferenceDefinition(array_splice( mytokens, myKey - 1, null, true));
+                 myskip =  myrefs["till"] - myKey;
+                unset( myrefs["till"]);
                 // TODO: check this, we need the last comma
                 continue 2;
 
@@ -302,8 +302,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case "STORAGE":
                     if (upperToken == "DISK" || upperToken == "MEMORY" || upperToken == "DEFAULT") {
-                        $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
-                        $options["storage"] = strippedToken;
+                         myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                         myoptions["storage"] = strippedToken;
                         continue 3;
                     }
                     // else ?
@@ -311,8 +311,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case "COLUMN_FORMAT":
                     if (upperToken == "FIXED" || upperToken == "DYNAMIC" || upperToken == "DEFAULT") {
-                        $options["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
-                        $options["col_format"] = strippedToken;
+                         myoptions["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
+                         myoptions["col_format"] = strippedToken;
                         continue 3;
                     }
                     // else ?
@@ -320,72 +320,72 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case "COMMENT":
                 // this is the comment string
-                    $options["sub_tree"][] = createExpression("COMMENT"), "base_expr": strippedToken];
-                    $options["comment"] = strippedToken;
+                     myoptions["sub_tree"][] = createExpression("COMMENT"), "base_expr": strippedToken];
+                     myoptions["comment"] = strippedToken;
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "DEFAULT":
                 // this is the default value
-                    $options["sub_tree"][] = createExpression("DEF_VALUE"), "base_expr": strippedToken];
-                    $options["default"] = strippedToken;
+                     myoptions["sub_tree"][] = createExpression("DEF_VALUE"), "base_expr": strippedToken];
+                     myoptions["default"] = strippedToken;
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "COLLATE":
                 // this is the collation name
-                    $options["sub_tree"][] = createExpression("COLLATE"), "base_expr": strippedToken];
-                    $options["collate"] = strippedToken;
+                     myoptions["sub_tree"][] = createExpression("COLLATE"), "base_expr": strippedToken];
+                     myoptions["collate"] = strippedToken;
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "CHARSET":
                 // this is the character set name
-                    $options["sub_tree"][] = createExpression("CHARSET"), "base_expr": strippedToken];
-                    $options["charset"] = strippedToken;
+                     myoptions["sub_tree"][] = createExpression("CHARSET"), "base_expr": strippedToken];
+                     myoptions["charset"] = strippedToken;
                     currentCategory = myPrevousCategory;
                   break;
 
                 case "SINGLE_PARAM_PARENTHESIS":
-                    $parsed = this.removeParenthesisFromStart(strippedToken);
-                    $parsed = createExpression("CONSTANT"), "base_expr" : $parsed.strip);
-                    $last = array_pop(myExpression);
-                    $last["length"] = $parsed.baseExpression;
+                     myparsed = this.removeParenthesisFromStart(strippedToken);
+                     myparsed = createExpression("CONSTANT"), "base_expr" :  myparsed.strip);
+                     mylast = array_pop(myExpression);
+                     mylast["length"] =  myparsed.baseExpression;
 
-                    myExpression[] = $last;
+                    myExpression[] =  mylast;
                     myExpression[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-                                    "sub_tree" : [$parsed));
+                                    "sub_tree" : [ myparsed));
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "TWO_PARAM_PARENTHESIS":
                 // maximum of two parameters
-                    $parsed = this.processExpressionList(strippedToken);
+                     myparsed = this.processExpressionList(strippedToken);
 
-                    $last = array_pop(myExpression);
-                    $last["length"] = $parsed[0].baseExpression;
-                    $last["decimals"] = isset($parsed[1]) ? $parsed[1].baseExpression : false;
+                     mylast = array_pop(myExpression);
+                     mylast["length"] =  myparsed[0].baseExpression;
+                     mylast["decimals"] = isset( myparsed[1]) ?  myparsed[1].baseExpression : false;
 
-                    myExpression[] = $last;
+                    myExpression[] =  mylast;
                     myExpression[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-                                    "sub_tree" : $parsed);
+                                    "sub_tree" :  myparsed);
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "MULTIPLE_PARAM_PARENTHESIS":
                 // some parameters
-                    $parsed = this.processExpressionList(strippedToken);
+                     myparsed = this.processExpressionList(strippedToken);
 
-                    $last = array_pop(myExpression);
-                    $subTree = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-                                     "sub_tree" : $parsed];
+                     mylast = array_pop(myExpression);
+                     mysubTree = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+                                     "sub_tree" :  myparsed];
 
                     if (this.options.getConsistentSubtrees()) {
-                        $subTree = [$subTree];
+                         mysubTree = [ mysubTree];
                     }
 
-                    $last["sub_tree"] = $subTree;
-                    myExpression[] = $last;
+                     mylast["sub_tree"] =  mysubTree;
+                    myExpression[] =  mylast;
                     currentCategory = myPrevousCategory;
                     break;
 
@@ -399,8 +399,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         }
 
         if (!myExpression.isSet("till")) {
-            // end of $tokens array
-            myExpression = this.buildColDef(myExpression, baseExpression.strip, $options, $refs, -1);
+            // end of  mytokens array
+            myExpression = this.buildColDef(myExpression, baseExpression.strip,  myoptions,  myrefs, -1);
         }
         return myExpression;
     }

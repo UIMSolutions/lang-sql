@@ -12,32 +12,32 @@ class FromBuilder : ISqlBuilder {
     string build(Json parsedSql) {
         auto string mySql = "";
         if (array_key_exists("UNION ALL", parsedSql) || array_key_exists("UNION", parsedSql)) {
-            foreach ($union_type : resulter_v; parsedSql) {
-                $first = true;
+            foreach ( myunion_type : resulter_v; parsedSql) {
+                 myfirst = true;
 
-                foreach ($item; resulter_v) {
-                    if (!$first) {
-                        mySql ~= " $union_type ";
+                foreach ( myitem; resulter_v) {
+                    if (! myfirst) {
+                        mySql ~= "  myunion_type ";
                     } else {
-                        $first = false;
+                         myfirst = false;
                     }
 
-                    $select_builder = new SelectStatementBuilder();
+                     myselect_builder = new SelectStatementBuilder();
 
                     size_t oldSqlLength = mySql.length;
-                    mySql ~= $select_builder.build($item);
+                    mySql ~=  myselect_builder.build( myitem);
 
                     if (oldSqlLength == mySql.length) { // No change
-                        throw new UnableToCreateSQLException("FROM", $union_type, resulter_v, "expr_type");
+                        throw new UnableToCreateSQLException("FROM",  myunion_type, resulter_v, "expr_type");
                     }
                 }
             }
         } else {
             foreach (myKey, myValue; parsedSql) {
                 size_t oldSqlLength = mySql.length;
-                mySql ~= this.buildTable(myValue, $k);
-                mySql ~= this.buildTableExpression(myValue, $k);
-                mySql ~= this.buildSubquery(myValue, $k);
+                mySql ~= this.buildTable(myValue,  myk);
+                mySql ~= this.buildTableExpression(myValue,  myk);
+                mySql ~= this.buildSubquery(myValue,  myk);
 
                 if (oldSqlLength == mySql.length) { // No change
                     throw new UnableToCreateSQLException("FROM", myKey, myValue, "expr_type");

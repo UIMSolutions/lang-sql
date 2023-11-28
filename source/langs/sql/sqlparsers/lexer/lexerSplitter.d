@@ -20,7 +20,7 @@ class LexerSplitter {
      * It initializes some fields.
      */
     this() {
-        this.splitterPattern = this.convertSplittersToRegexPattern( this.$splitters );
+        this.splitterPattern = this.convertSplittersToRegexPattern( this. mysplitters );
     }
 
 	// Get the regex pattern string of all the splitters
@@ -31,10 +31,10 @@ class LexerSplitter {
 	/**
 	 * Convert an array of splitter tokens to a regex pattern string.
 	 *
-	 * @param array $splitters
+	 * @param array  mysplitters
 	 */
-    string convertSplittersToRegexPattern( $splitters ) {
-	    $regex_parts = [];
+    string convertSplittersToRegexPattern(  mysplitters ) {
+	     myregex_parts = [];
 	    foreach (myPart; splitters) {
 		    myPart = preg_quote( myPart );
 
@@ -62,11 +62,11 @@ class LexerSplitter {
 				    break;
 		    }
 
-		    $regex_parts[] = myPart;
+		     myregex_parts[] = myPart;
 	    }
 
-	    $pattern = implode( "|", $regex_parts );
+	     mypattern = implode( "|",  myregex_parts );
 
-	    return "/(" . $pattern . ")/";
+	    return "/(" .  mypattern . ")/";
     }
 }

@@ -5,14 +5,14 @@ import lang.sql;
 @safe:
 final class Options {
 
-  private $options;
+  private  myoptions;
 
   const string CONSISTENT_SUB_TREES = "consistent_sub_trees";
 
   const string ANSI_QUOTES = "ansi_quotes";
 
-  this(array $options) {
-    this.options = $options;
+  this(array  myoptions) {
+    this.options =  myoptions;
   }
 
   bool getConsistentSubtrees() {
