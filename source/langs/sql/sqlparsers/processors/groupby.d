@@ -1,39 +1,39 @@
 
 module langs.sql.sqlparsers.processors.groupby;
+import lang.sql;
 
-/**
- * This file : the processor for the GROUP-BY statements.
- * This class processes the GROUP-BY statements.
- */
+@safe:
+// This class processes the GROUP-BY statements.
 class GroupByProcessor : OrderByProcessor {
 
-    auto process($tokens, $select = []) {
-        $out = [];
+    auto process(tokens, $select = []) {
+        result = [];
         $parseInfo = this.initParseInfo();
 
-        if (!$tokens) {
+        if (!tokens) {
             return false;
         }
 
-        foreach (myToken; $tokens) {
+        foreach (myToken; tokens) {
             auto strippedToken = myToken.strip.toUpper;
             switch (strippedToken) {
             case ",":
                 $parsed = this.processOrderExpression($parseInfo, $select);
                 unset($parsed["direction"]);
 
-                $out[] = $parsed;
+                result[] = $parsed;
                 $parseInfo = this.initParseInfo();
                 break;
             default:
                 $parseInfo.baseExpression ~= myToken;
+                break;
             }
         }
 
         $parsed = this.processOrderExpression($parseInfo, $select);
         unset($parsed["direction"]);
-        $out[] = $parsed;
+        result[] = $parsed;
 
-        return $out;
+        return result;
     }
 }

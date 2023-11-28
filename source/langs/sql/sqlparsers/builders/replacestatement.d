@@ -1,5 +1,7 @@
 module langs.sql.sqlparsers.builders.replacestatement;
+import lang.sql;
 
+@safe:
 // Builds the REPLACE statement 
 class ReplaceStatementBuilder : ISqlBuilder {
 

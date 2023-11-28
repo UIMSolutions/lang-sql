@@ -24,12 +24,14 @@ class BracketProcessor : AbstractProcessor {
 
         if (subtree.isSet("SELECT")) {
             subtree = [
-                    createExpression("QUERY", myToken), "sub_tree" : subtree]];
+                    createExpression("QUERY", myToken), "sub_tree" : subtree];
         }
 
-        return [
-                createExpression("BRACKET_EXPRESSION"), "base_expr" : $tokens[0].trim,
-                        "sub_tree" : subtree, "remaining_expressions" : $remainingExpressions]];
+        Json result = createExpression("BRACKET_EXPRESSION", $tokens[0].trim);
+        result["sub_tree"] = subtree;
+        result["remaining_expressions"] = $remainingExpressions;
+
+        return [result];
     }
 
     private auto getRemainingNotBracketExpression(subtree) {

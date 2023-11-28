@@ -13,53 +13,55 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto initParseInfo() {
-        return ["base_expr" : "", "dir" : "ASC", "expr_type" : expressionType("EXPRESSION")];
+        Json result = createExpression("EXPRESSION", "");
+        result["dir"] = "ASC";
+        return result;
     }
 
-    protected auto processOrderExpression(&$parseInfo, $select) {
-        $parseInfo.baseExpression = $parseInfo.baseExpression.strip;
+    protected auto processOrderExpression( & Json parseInfo, $select) {
+        parseInfo.baseExpression = parseInfo.baseExpression.strip;
 
-        if ($parseInfo.baseExpression.isEmpty) {
+        if (parseInfo.baseExpression.isEmpty) {
             return false;
         }
 
-        if ($parseInfo.baseExpression.isNumeric) {
-            $parseInfo["expr_type"] = expressionType("POSITION");
+        if (parseInfo.baseExpression.isNumeric) {
+            parseInfo["expr_type"] = expressionType("POSITION");
         } else {
-            $parseInfo["no_quotes"] = this.revokeQuotation($parseInfo.baseExpression);
+            parseInfo["no_quotes"] = this.revokeQuotation(parseInfo.baseExpression);
             // search to see if the expression matches an alias
             foreach (myClause; $select) {
                 if (myClause["alias"].isEmpty) {
                     continue;
                 }
 
-                if (myClause["alias"]["no_quotes"] == $parseInfo["no_quotes"]) {
-                    $parseInfo["expr_type"] = expressionType("ALIAS");
+                if (myClause["alias"]["no_quotes"] == parseInfo["no_quotes"]) {
+                    parseInfo["expr_type"] = expressionType("ALIAS");
                     break;
                 }
             }
         }
 
-        if ($parseInfo["expr_type"] = expressionType("EXPRESSION")) {
-            myExpression = this.processSelectExpression($parseInfo.baseExpression);
-            myExpression["direction"] = $parseInfo["dir"];
+        if (parseInfo.isExpressionType("EXPRESSION")) {
+            myExpression = this.processSelectExpression(parseInfo.baseExpression);
+            myExpression["direction"] = parseInfo["dir"];
             unset(myExpression["alias"]);
             return myExpression;
         }
 
-        $result = [];
-        $result["expr_type"] = $parseInfo["expr_type"];
-        $result.baseExpression = $parseInfo.baseExpression;
-        if ($parseInfoisSet("no_quotes")) {
-            $result["no_quotes"] = $parseInfo["no_quotes"];
+        Json result = Json.emptyObject;
+        result["expr_type"] = parseInfo["expr_type"];
+        result["base_expr"] = parseInfo.baseExpression;
+        if (parseInfo.isSet("no_quotes")) {
+            result["no_quotes"] = parseInfo["no_quotes"];
         }
-        $result["direction"] = $parseInfo["dir"];
-        return $result;
+        result["direction"] = parseInfo["dir"];
+        return result;
     }
 
     auto process($tokens, $select = []) {
-        $out = [];
-        $parseInfo = this.initParseInfo();
+        $out  = [];
+        parseInfo = this.initParseInfo();
 
         if (!$tokens) {
             return false;
@@ -68,30 +70,22 @@ class OrderByProcessor : AbstractProcessor {
         foreach (myToken; $tokens) {
             auto upperToken = myToken.strip.toUpper;
             switch (upperToken) {
-            case ",":
-                $out[] = this.processOrderExpression($parseInfo, $select);
-                $parseInfo = this.initParseInfo();
+            case "," : $out [] = this.processOrderExpression(parseInfo, $select);
+                parseInfo = this.initParseInfo();
                 break;
 
-            case "DESC":
-                $parseInfo["dir"] = "DESC";
+            case "DESC" : parseInfo["dir"] = "DESC";
                 break;
 
-            case "ASC":
-                $parseInfo["dir"] = "ASC";
+            case "ASC" : parseInfo["dir"] = "ASC";
                 break;
 
-            default:
-                if (this.isCommentToken(myToken)) {
-                    $out[] = super.processComment(myToken];
-                    break;
+            default : if (this.isCommentToken(myToken)) {
+                    $out [] = super.processComment(myToken]; break;}
+
+                    parseInfo.baseExpression ~= myToken;}
                 }
 
-                $parseInfo.baseExpression ~= myToken;
+                $out [] = this.processOrderExpression(parseInfo, $select); return $out ;
             }
         }
-
-        $out[] = this.processOrderExpression($parseInfo, $select);
-        return $out;
-    }
-}

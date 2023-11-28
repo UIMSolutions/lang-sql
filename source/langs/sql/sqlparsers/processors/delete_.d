@@ -24,14 +24,13 @@ class DeleteProcessor : AbstractProcessor {
             unset($tokens["USING"]);
         }
 
-        $options = [];
+        auto $options = [];
         if ($tokens.isSet("OPTIONS")) {
             $options = $tokens["OPTIONS"];
             $tokens.unSet("OPTIONS");
         }
 
-        $tokens["DELETE"] = ["options" : ($options.isEmpty ? false : $options),
-                                  "tables" : ($tables.isEmpty ? false : $tables)];
+        $tokens["DELETE"] = ["options" : ($options.isEmpty ? false : $options), "tables" : ($tables.isEmpty ? false : $tables)];
         return $tokens;
     }
 }

@@ -35,8 +35,8 @@ class RenameStatementBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 
-  protected auto processSourceAndDestTable(auto[string] myValue) {
-    if (myValue.isSet("source") || !myValue.isSet("destination")) {
+  protected auto processSourceAndDestTable(Json myValue) {
+    if (!myValue.isSet("source") || !myValue.isSet("destination")) {
       return "";
     }
 

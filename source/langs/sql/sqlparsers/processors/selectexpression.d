@@ -4,9 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This class processes the SELECT expressions.
- * */
+// Processes the SELECT expressions.
 class SelectExpressionProcessor : AbstractProcessor {
 
     protected auto processExpressionList($unparsed) {

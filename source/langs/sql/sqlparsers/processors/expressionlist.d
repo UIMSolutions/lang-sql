@@ -7,12 +7,12 @@ import lang.sql;
 // This class processes expression lists.
 class ExpressionListProcessor : AbstractProcessor {
 
-    auto process($tokens) {
+    auto process(tokens) {
         $resultList = [];
         bool isSkipNext = false;
         $prev = new ExpressionToken();
 
-        foreach (myKey, myValue; $tokens) {
+        foreach (myKey, myValue; tokens) {
 
 
             if (this.isCommentToken(myValue)) {
@@ -332,7 +332,7 @@ class ExpressionListProcessor : AbstractProcessor {
             if (!$curr.isOperator() && !$curr.isInList() && !$curr.isFunction() && !$curr.isAggregateFunction()
                 && !$curr.isCustomFunction() && SqlParserConstants::getInstance().isReserved($curr.getUpper())) {
 
-	            $next = $tokens.isSet( $k + 1 ) ? new ExpressionToken( $k + 1, $tokens[ $k + 1 ] ) : new ExpressionToken();
+	            $next = tokens.isSet( $k + 1 ) ? new ExpressionToken( $k + 1, tokens[ $k + 1 ] ) : new ExpressionToken();
                 $isEnclosedWithinParenthesis = $next.isEnclosedWithinParenthesis();
 	            if ($isEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction($curr.getUpper())) {
                     $curr.setTokenType(expressionType("CUSTOM_FUNCTION"));
