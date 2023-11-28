@@ -60,7 +60,7 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     auto process($tokens, $select = []) {
-        $out  = [];
+        result  = [];
         parseInfo = this.initParseInfo();
 
         if (!$tokens) {
@@ -70,7 +70,7 @@ class OrderByProcessor : AbstractProcessor {
         foreach (myToken; $tokens) {
             auto upperToken = myToken.strip.toUpper;
             switch (upperToken) {
-            case "," : $out [] = this.processOrderExpression(parseInfo, $select);
+            case "," : result [] = this.processOrderExpression(parseInfo, $select);
                 parseInfo = this.initParseInfo();
                 break;
 
@@ -81,11 +81,11 @@ class OrderByProcessor : AbstractProcessor {
                 break;
 
             default : if (this.isCommentToken(myToken)) {
-                    $out [] = super.processComment(myToken]; break;}
+                    result [] = super.processComment(myToken]; break;}
 
                     parseInfo.baseExpression ~= myToken;}
                 }
 
-                $out [] = this.processOrderExpression(parseInfo, $select); return $out ;
+                result [] = this.processOrderExpression(parseInfo, $select); return result ;
             }
         }

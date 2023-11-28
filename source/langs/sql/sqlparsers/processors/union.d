@@ -16,10 +16,10 @@ class UnionProcessor : AbstractProcessor {
         return myProcessor.process(myToken);
     }
 
-    static auto isUnion($queries) {
+    static auto isUnion(queries) {
         string[] unionTypes = ["UNION", "UNION ALL"];
         foreach (myUnionType; unionTypes) {
-            if (!empty($queries[myUnionType])) {
+            if (!queries[myUnionType].isEmpty)) {
                 return true;
             }
         }
@@ -36,15 +36,16 @@ class UnionProcessor : AbstractProcessor {
      * is supported in each UNION block. (select)(select)union(select) is not legal.
      * The extra queries will be silently ignored.
      */
-    protected auto processMySQLUnion($queries) {
+    protected auto processMySQLUnion(queries) {
         $unionTypes = ["UNION", "UNION ALL"];
         foreach (myUnionType; $unionTypes) {
 
-            if (empty($queries[myUnionType])) {
+            if (queries[myUnionType].isEmpty) {
                 continue;
             }
 
-            foreach (myKey, $tokenList; $queries[myUnionType]) {
+            auto myUnionTypeQuery = queries[myUnionType];
+            foreach (myKey, $tokenList; myUnionTypeQuery) {
                 foreach ($z, myToken; $tokenList) {
                     myToken = myToken.strip;
                     if (myToken.isEmpty) {
@@ -53,19 +54,19 @@ class UnionProcessor : AbstractProcessor {
 
                     // starts with "(select"
                     if (preg_match("/^\\(\\s*select\\s*/i", myToken)) {
-                        $queries[myUnionType][myKey] = this.processDefault(
+                        myUnionTypeQuery[myKey] = this.processDefault(
                             this.removeParenthesisFromStart(myToken));
                         break;
                     }
-                    $queries[myUnionType][myKey] = this.processSQL(
-                        $queries[myUnionType][myKey]);
+                    myUnionTypeQuery[myKey] = this.processSQL(
+                        myUnionTypeQuery[myKey]);
                     break;
                 }
             }
         }
 
         // it can be parsed or not
-        return $queries;
+        return queries;
     }
 
     /**
@@ -73,24 +74,24 @@ class UnionProcessor : AbstractProcessor {
      * be processed separately.
      */
     protected auto splitUnionRemainder(
-        $queries, isUnionType, $outputArray) {
+        queries, isUnionType, resultputArray) {
         $finalQuery = []; //If this token contains a matching pair of brackets at the start and end, use it as the final query
         $finalQueryFound = false;
-        if ($outputArray.length == 1) {
-            $tokenAsArray = $outputArray[0].strip.split;
-            if ($tokenAsArray[0] == "(" && $tokenAsArray[$tokenAsArray.length - 1] == ")") {
-                $queries[isUnionType][] = $outputArray;
+        if (resultputArray.length == 1) {
+            string[] tokenArray = resultputArray[0].strip.split;
+            if (tokenArray[0] == "(" && tokenArray[tokenArray.length - 1] == ")") {
+                queries[isUnionType][] = resultputArray;
                 $finalQueryFound = true;
             }
         }
 
         if (!$finalQueryFound) {
-            foreach (myKey, myToken; $outputArray) {
+            foreach (myKey, myToken; resultputArray) {
                 if (myToken.toUpper == "ORDER") {
                     break;
                 } else {
                     $finalQuery[] = myToken;
-                    unset($outputArray[myKey]);
+                    unset(resultputArray[myKey]);
                 }
             }
         }
@@ -98,25 +99,23 @@ class UnionProcessor : AbstractProcessor {
         $finalQueryString = implode($finalQuery).strip;
 
         if (!$finalQuery.isEmpty && $finalQueryString != "") {
-            $queries[isUnionType][] = $finalQuery;
+            queries[isUnionType][] = $finalQuery;
         }
 
         $defaultProcessor = new DefaultProcessor(
             this.options);
-        $rePrepareSqlString = implode(
-            $outputArray).strip;
-        if (
-            !empty($rePrepareSqlString)) {
+        string rePrepareSqlString = implode(resultputArray).strip;
+        if (!rePrepareSqlString.isEmpty) {
             $remainingQueries = $defaultProcessor.process(
-                $rePrepareSqlString);
-            $queries[] = $remainingQueries;
+                rePrepareSqlString);
+            queries[] = $remainingQueries;
         }
 
-        return $queries;
+        return queries;
     }
 
     auto process($inputArray) {
-        $outputArray = []; // ometimes the parser needs to skip ahead until a particular
+        auto resultputArray = []; // ometimes the parser needs to skip ahead until a particular
         // oken is found
         bool isSkipUntilToken = false;
 
@@ -125,7 +124,7 @@ class UnionProcessor : AbstractProcessor {
         // b) the type of union if this is the first or last query
         bool isUnionType = false; // ometimes a "query" consists of more than one query (like a UNION query)
         // his array holds all the queries
-        $queries = [];
+        auto queries = [];
         foreach (myKey, myToken; $inputArray) {
             auto strippedToken = myToken.strip;
 
@@ -142,7 +141,7 @@ class UnionProcessor : AbstractProcessor {
             }
 
             if (strippedToken.toUpper != "UNION") {
-                $outputArray[] = myToken; // here we get empty tokens, if we remove these, we get problems in parse_sql()
+                resultputArray[] = myToken; // here we get empty tokens, if we remove these, we get problems in parse_sql()
                 continue;
             }
 
@@ -165,20 +164,20 @@ class UnionProcessor : AbstractProcessor {
             }
 
             // store the tokens related to the unionType
-            $queries[isUnionType][] = $outputArray;
-            $outputArray = [];
+            queries[isUnionType][] = resultputArray;
+            resultputArray = [];
         }
 
         // the query tokens after the last UNION or UNION ALL
         // or we don"t have an UNION/UNION ALL
-        if (!empty($outputArray)) {
+        if (!resultputArray.isEmpty) {
             if (isUnionType) {
-                $queries = this.splitUnionRemainder($queries, isUnionType, $outputArray);
+                queries = this.splitUnionRemainder(queries, isUnionType, resultputArray);
             } else {
-                $queries[] = $outputArray;
+                queries[] = resultputArray;
             }
         }
 
-        return this.processMySQLUnion($queries);
+        return this.processMySQLUnion(queries);
     }
 }

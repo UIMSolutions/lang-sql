@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.processors.record;
 import lang.sql;
 
 @safe:
-/**
- * This file : a processor, which processes records of data for an INSERT statement.
- * This class processes records of an INSERT statement.
- */
+// This class processes records of an INSERT statement.
 class RecordProcessor : AbstractProcessor {
 
   protected auto processExpressionList($unparsed) {

@@ -1,10 +1,8 @@
 module lang.sql.parsers.utils;
+import lang.sql;
 
-/**
- * Defines all values, which are possible for the [expr_type] field within the parser output. */
- * This class defines all values, which are possible for the [expr_type] field 
- * within the parser output.
- */
+@safe:
+// Defines all values, which are possible for the [expr_type] field within the parser output. */
 class ExpressionType {
 
     const USER_VARIABLE = "user_variable";

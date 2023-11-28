@@ -3,9 +3,7 @@ module langs.sql.sqlparsers.processors.select;
 import lang.sql;
 
 @safe:
-/**
- * This class processes the SELECT statements.
- */
+// This class processes the SELECT statements.
 class SelectProcessor : SelectExpressionProcessor {
 
     auto process($tokens) {

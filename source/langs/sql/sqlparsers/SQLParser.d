@@ -1,16 +1,10 @@
-module langs.sql.sqlparsers.sqlParser;
+module langs.sql.sqlparsers.sqlparser;
 
 import lang.sql;
 
 @safe:
 
-/**
- * A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
- * This class : the parser functionality.
- *
- * @author  Justin Swanhart <greenlion@gmail.com>
- * @author  André Rothe <arothe@phosco.info>
-  */
+// A pure PHP SQL (non validating) parser w/ focus on MySQL dialect of SQL
 class SqlParser {
 
     $parsed;
@@ -21,15 +15,14 @@ class SqlParser {
      * Constructor. It simply calls the parse() function.
      * Use the variable $parsed to get the output.
      *
-     * @param String|bool  $sql           The SQL statement.
-     * @param bool $calcPositions True, if the output should contain [position], false otherwise.
+     * @param bool calcPositions True, if the output should contain [position], false otherwise.
      * @param array $options
      */
-    this($sql = false, $calcPositions = false, array $options = []) {
+    this(string sqlStatement = null, bool calcPositions = false, array $options = []) {
         this.options = new Options($options);
 
-        if ($sql) {
-            this.parse($sql, $calcPositions);
+        if (sqlStatement !is null) {
+            this.parse(sqlStatement, calcPositions);
         }
     }
 
@@ -41,24 +34,23 @@ class SqlParser {
      * of the positions needs some time, if you don"t need positions in
      * your application, set the parameter to false.
      *
-     * @param String  $sql           The SQL statement.
-     * @param boolean $calcPositions True, if the output should contain [position], false otherwise.
+     * @param boolean calcPositions True, if the output should contain [position], false otherwise.
      *
      * @return array An associative array with all meta information about the SQL statement.
      */
-    auto parse($sql, $calcPositions = false) {
+    auto parse(string sqlStatement, bool calcPositions = false) {
 
         auto myProcessor = new DefaultProcessor(this.options);
-        $queries = $processor.process($sql);
+        auto queries = $processor.process(sqlStatement);
 
         // calc the positions of some important tokens
-        if ($calcPositions) {
+        if (calcPositions) {
             $calculator = new PositionCalculator();
-            $queries = $calculator.setPositionsWithinSQL($sql, $queries);
+            queries = $calculator.setPositionsWithinSQL(sqlStatement, queries);
         }
 
         // store the parsed queries
-        this.parsed = $queries;
+        this.parsed = queries;
         return this.parsed;
     }
 

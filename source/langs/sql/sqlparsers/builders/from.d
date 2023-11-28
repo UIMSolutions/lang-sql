@@ -12,10 +12,10 @@ class FromBuilder : ISqlBuilder {
     string build(Json parsedSql) {
         auto string mySql = "";
         if (array_key_exists("UNION ALL", parsedSql) || array_key_exists("UNION", parsedSql)) {
-            foreach ($union_type : $outer_v; parsedSql) {
+            foreach ($union_type : resulter_v; parsedSql) {
                 $first = true;
 
-                foreach ($item; $outer_v) {
+                foreach ($item; resulter_v) {
                     if (!$first) {
                         mySql ~= " $union_type ";
                     } else {
@@ -28,7 +28,7 @@ class FromBuilder : ISqlBuilder {
                     mySql ~= $select_builder.build($item);
 
                     if (oldSqlLength == mySql.length) { // No change
-                        throw new UnableToCreateSQLException("FROM", $union_type, $outer_v, "expr_type");
+                        throw new UnableToCreateSQLException("FROM", $union_type, resulter_v, "expr_type");
                     }
                 }
             }

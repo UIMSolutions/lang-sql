@@ -207,44 +207,44 @@ abstract class DProcessor {
                 && ((myToken[0] == "-" && myToken[1] == "-") || (myToken[0] == "/" && myToken[1] == "*"));
     }
 
-    protected auto isColumnReference($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("COLREF");
+    protected auto isColumnReference(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("COLREF");
     }
 
-    protected auto isReserved($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("RESERVED");
+    protected auto isReserved(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("RESERVED");
     }
 
-    protected auto isConstant($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("CONSTANT");
+    protected auto isConstant(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("CONSTANT");
     }
 
-    protected auto isAggregateFunction($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("AGGREGATE_FUNCTION");
+    protected auto isAggregateFunction(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("AGGREGATE_FUNCTION");
     }
 
-    protected auto isCustomFunction($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("CUSTOM_FUNCTION");
+    protected auto isCustomFunction(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("CUSTOM_FUNCTION");
     }
 
-    protected auto isFunction($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("SIMPLE_FUNCTION");
+    protected auto isFunction(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("SIMPLE_FUNCTION");
     }
 
-    protected auto isExpression($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("EXPRESSION");
+    protected auto isExpression(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("EXPRESSION");
     }
 
-    protected auto isBracketExpression($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("BRACKET_EXPRESSION");
+    protected auto isBracketExpression(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("BRACKET_EXPRESSION");
     }
 
-    protected auto isSubQuery($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("SUBQUERY");
+    protected auto isSubQuery(result) {
+        return (result.isSet("expr_type") && result["expr_type"].isExpressionType("SUBQUERY");
     }
 
-    protected auto isComment($out) {
-        return $out.isSet("expr_type") && $out["expr_type"].isExpressionType("COMMENT");
+    protected auto isComment(result) {
+        return result.isSet("expr_type") && result["expr_type"].isExpressionType("COMMENT");
     }
 
     auto processComment($expression) {

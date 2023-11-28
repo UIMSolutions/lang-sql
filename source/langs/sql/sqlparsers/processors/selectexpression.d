@@ -40,7 +40,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             upperToken = myToken.toUpper;
 
             if (upperToken == "AS") {
-                $alias = ["as" : true, "name":  "", "base_expr":  myToken];
+                $alias = ["as": true, "name": "", "base_expr": myToken];
                 tokens[i] = "";
                 $capture = true;
                 continue;
@@ -87,12 +87,13 @@ class SelectExpressionProcessor : AbstractProcessor {
             $prev = array_pop($stripped);
 
             if (this.isReserved($prev) || this.isConstant($prev) || this.isAggregateFunction($prev)
-                    || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
-                    || this.isColumnReference($prev) || this.isBracketExpression($prev)|| this.isCustomFunction($prev)) {
+                || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
+                || this.isColumnReference($prev) || this.isBracketExpression($prev) || this.isCustomFunction(
+                    $prev)) {
 
-                $alias = ["as" : false, "name" : $last.baseExpression.strip),
-                               "no_quotes" : this.revokeQuotation($last.baseExpression),
-                               "base_expr":  $last.baseExpression.strip];
+                $alias = ["as": false, "name": $last.baseExpression.strip),
+                    "no_quotes": this.revokeQuotation($last.baseExpression),
+                    "base_expr": $last.baseExpression.strip];
                 // remove the last token
                 array_pop(tokens);
             }
@@ -105,7 +106,7 @@ class SelectExpressionProcessor : AbstractProcessor {
 
         // if there is only one part, we copy the expr_type
         // in all other cases we use "EXPRESSION" as global type
-        $type .isExpressionType("EXPRESSION");
+        $type.isExpressionType("EXPRESSION");
         if (count($processed) == 1) {
             if (!this.isSubQuery($processed[0])) {
                 $type = $processed[0]["expr_type"];

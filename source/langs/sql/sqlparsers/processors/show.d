@@ -31,7 +31,7 @@ class ShowProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case "FROM":
-                $resultList[] = ["expr_type":  expressionType("RESERVED"), "base_expr":  myToken.strip];
+                $resultList[] = createExpression("RESERVED"), "base_expr":  myToken.strip];
                 if (myPrevious == "INDEX" || myPrevious == "COLUMNS") {
                     break;
                 }
@@ -73,14 +73,14 @@ class ShowProcessor : AbstractProcessor {
             case "CHARACTER":
             case "SET":
             case "COLLATION":
-                $resultList[] = ["expr_type":  expressionType("RESERVED"), "base_expr":  myToken.strip];
+                $resultList[] = createExpression("RESERVED"), "base_expr":  myToken.strip];
                 myCategory = upperToken;
                 break;
 
             default:
                 switch (myPrevious) {
                 case "LIKE":
-                    $resultList[] = ["expr_type":  expressionType("CONSTANT"), "base_expr":  myToken];
+                    $resultList[] = createExpression("CONSTANT"), "base_expr":  myToken];
                     break;
                 case "LIMIT":
                     $limit = array_pop($resultList);
@@ -90,7 +90,7 @@ class ShowProcessor : AbstractProcessor {
                 case "FROM":
                 case "SCHEMA":
                 case "DATABASE":
-                    $resultList[] = ["expr_type":  expressionType("DATABASE"), "name" : myToken,
+                    $resultList[] = createExpression("DATABASE"), "name" : myToken,
                         "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case "FOR":
@@ -114,11 +114,12 @@ class ShowProcessor : AbstractProcessor {
                                           "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case "PROCEDURE":
-                    $resultList[] = ["expr_type":  expressionType("PROCEDURE"), "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
+                    $resultList[] = createExpression("PROCEDURE", myToken);
+                    , "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), ];
                     break;
                 case "ENGINE":
-                    $resultList[] = ["expr_type":  expressionType("ENGINE"), "name" : myToken,
+                    $resultList[] = createExpression("ENGINE"), "name" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 default:

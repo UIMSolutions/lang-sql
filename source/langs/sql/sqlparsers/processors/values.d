@@ -20,7 +20,7 @@ class ValuesProcessor : AbstractProcessor {
 	        }
 
 	        baseExpression ~= myToken;
-	        strippedToken = myToken.strip;
+	        auto strippedToken = myToken.strip;
 
             if (this.isWhitespaceToken(myToken)) {
                 continue;
@@ -33,12 +33,13 @@ class ValuesProcessor : AbstractProcessor {
                 if (currentCategory.isEmpty) {
 
                     baseExpression = substr(baseExpression, 0, -myToken.length).strip;
-                    $parsed[] = createExpression("RECORD"), "base_expr" : baseExpression,
-                                      "data" : this.processRecord(baseExpression), "delim" : false];
+                    parsed = createExpression("RECORD", baseExpression);
+                    parsed["data"] = this.processRecord(baseExpression);
+                    parsed["delim"] = false;
                     baseExpression = "";
 
                     currentCategory = "DUPLICATE";
-                    $parsed[] = createExpression("RESERVED", strippedToken];
+                    parsed = createExpression("RESERVED", strippedToken);
                 }
                 // else ?
                 break;

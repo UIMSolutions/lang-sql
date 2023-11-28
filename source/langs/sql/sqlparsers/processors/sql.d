@@ -14,7 +14,7 @@ class SQLProcessor : SQLChunkProcessor {
         string previousCategory = "";
         string tokenCategory = "";
         $skip_next = 0;
-        $out  = [];
+        result  = [];
 
         // $tokens may come as a numeric indexed array starting with an index greater than 0 (or as a boolean)
         $tokenCount = count($tokens);
@@ -45,7 +45,7 @@ class SQLProcessor : SQLChunkProcessor {
             if ($skip_next > 0) {
                 if (strippedToken.isEmpty) {
                     if (tokenCategory != "") { // is this correct??
-                        $out [tokenCategory][] = $token;
+                        result [tokenCategory][] = $token;
                     }
                     continue;
                 }
@@ -137,7 +137,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "INTO" : // prevent wrong handling of CACHE within LOAD INDEX INTO CACHE...
                 if (previousCategory == "LOAD") {
-                    $out [previousCategory][] = strippedToken;
+                    result [previousCategory][] = strippedToken;
                     continue 2;
                 }
                 tokenCategory = previousCategory = upperToken;
@@ -163,48 +163,48 @@ class SQLProcessor : SQLChunkProcessor {
                     : case "UNINSTALL" : case "ANALZYE" : case "BACKUP" : case "CHECKSUM"
                     : case "REPAIR" : case "RESTORE" : case "HELP" : tokenCategory = upperToken;
                 // set the category in case these get subclauses in a future version of MySQL
-                $out [upperToken][0] = strippedToken;
+                result [upperToken][0] = strippedToken;
                 continue 2;
 
             case "TRUNCATE" : if (previousCategory.isEmpty) {
                     // set the category in case these get subclauses in a future version of MySQL
                     tokenCategory = upperToken;
-                    $out [upperToken][0] = strippedToken;
+                    result [upperToken][0] = strippedToken;
                     continue 2;
                 }
                 // part of the CREATE TABLE statement or a function
-                $out [previousCategory][] = strippedToken;
+                result [previousCategory][] = strippedToken;
                 continue 2;
 
             case "REPLACE" : if (previousCategory.isEmpty) {
                     // set the category in case these get subclauses in a future version of MySQL
                     tokenCategory = upperToken;
-                    $out [upperToken][0] = strippedToken;
+                    result [upperToken][0] = strippedToken;
                     continue 2;
                 }
                 // part of the CREATE TABLE statement or a function
-                $out [previousCategory][] = strippedToken;
+                result [previousCategory][] = strippedToken;
                 continue 2;
 
             case "IGNORE" : if (previousCategory == "TABLE") {
                     // part of the CREATE TABLE statement
-                    $out [previousCategory][] = strippedToken;
+                    result [previousCategory][] = strippedToken;
                     continue 2;
                 }
                 if (tokenCategory == "FROM") {
                     // part of the FROM statement (index hint)
-                    $out [tokenCategory][] = strippedToken;
+                    result [tokenCategory][] = strippedToken;
                     continue 2;
                 }
-                $out ["OPTIONS"][] = upperToken;
+                result ["OPTIONS"][] = upperToken;
                 continue 2;
 
             case "CHECK" : if (previousCategory == "TABLE") {
-                    $out [previousCategory][] = strippedToken;
+                    result [previousCategory][] = strippedToken;
                     continue 2;
                 }
                 tokenCategory = upperToken;
-                $out [upperToken][0] = strippedToken;
+                result [upperToken][0] = strippedToken;
                 continue 2;
 
             case "CREATE" : if (previousCategory == "SHOW") {
@@ -215,23 +215,23 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "INDEX" : if (in_array(previousCategory, ["CREATE", "DROP"))
                             ) {
-                                $out [previousCategory][] = strippedToken;
+                                result [previousCategory][] = strippedToken;
                                 tokenCategory = upperToken;
                             }
                             break;
 
             case "TABLE": if (previousCategory == "CREATE") {
-                                $out [previousCategory][] = strippedToken;
+                                result [previousCategory][] = strippedToken;
                                 tokenCategory = upperToken;
                             }
                             if (previousCategory == "TRUNCATE") {
-                                $out [previousCategory][] = strippedToken;
+                                result [previousCategory][] = strippedToken;
                                 tokenCategory = upperToken;
                             }
                             break;
 
             case "TEMPORARY": if (previousCategory == "CREATE") {
-                                $out [previousCategory][] = strippedToken;
+                                result [previousCategory][] = strippedToken;
                                 tokenCategory = previousCategory;
                                 continue 2;
                             }
@@ -239,9 +239,9 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "IF": if (previousCategory == "TABLE") {
                                 tokenCategory = "CREATE";
-                                $out [tokenCategory] = array_merge($out [tokenCategory], $out [previousCategory]);
-                                $out [previousCategory] = [];
-                                $out [tokenCategory][] = strippedToken;
+                                result [tokenCategory] = array_merge(result [tokenCategory], result [previousCategory]);
+                                result [previousCategory] = [];
+                                result [tokenCategory][] = strippedToken;
                                 previousCategory = tokenCategory;
                                 continue 2;
                             }
@@ -249,13 +249,13 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "NOT": if (previousCategory == "CREATE") {
                                 tokenCategory = previousCategory;
-                                $out [previousCategory][] = strippedToken;
+                                result [previousCategory][] = strippedToken;
                                 continue 2;
                             }
                             break;
 
             case "EXISTS": if (previousCategory == "CREATE") {
-                                $out [previousCategory][] = strippedToken;
+                                result [previousCategory][] = strippedToken;
                                 previousCategory = tokenCategory = "TABLE";
                                 continue 2;
                             }
@@ -271,13 +271,13 @@ class SQLProcessor : SQLChunkProcessor {
                             /* This is either LOCK TABLES or SELECT ... LOCK IN SHARE MODE */
             case "LOCK": if (tokenCategory.isEmpty) {
                                 tokenCategory = upperToken;
-                                $out [upperToken][0] = strippedToken;
+                                result [upperToken][0] = strippedToken;
                             } else if (tokenCategory == "INDEX") {
                                 break;
                             } else {
                                 strippedToken = "LOCK IN SHARE MODE";
                                 $skip_next = 3;
-                                $out ["OPTIONS"][] = strippedToken;
+                                result ["OPTIONS"][] = strippedToken;
                             }
                             continue 2;
 
@@ -286,7 +286,7 @@ class SQLProcessor : SQLChunkProcessor {
                                 tokenCategory = upperToken;
                                 continue 2;
                             }
-                            if (tokenCategory == "FROM" && !empty($out ["DELETE"])) {
+                            if (tokenCategory == "FROM" && !empty(result ["DELETE"])) {
                                 tokenCategory = upperToken;
                                 continue 2;
                             }
@@ -303,7 +303,7 @@ class SQLProcessor : SQLChunkProcessor {
                                 break;
                             }
                             $skip_next = 1;
-                            $out ["OPTIONS"][] = "FOR UPDATE"; // TODO: this could be generate problems within the position calculator
+                            result ["OPTIONS"][] = "FOR UPDATE"; // TODO: this could be generate problems within the position calculator
                             continue 2;
 
             case "UPDATE": if (tokenCategory.isEmpty) {
@@ -316,7 +316,7 @@ class SQLProcessor : SQLChunkProcessor {
                             break;
 
             case "START": strippedToken = "BEGIN";
-                            $out [upperToken][0] = upperToken; // TODO: this could be generate problems within the position calculator
+                            result [upperToken][0] = upperToken; // TODO: this could be generate problems within the position calculator
                             $skip_next = 1;
                             break;
 
@@ -341,30 +341,30 @@ class SQLProcessor : SQLChunkProcessor {
                             break;
 
                             /* These tokens set particular options for the statement. */
-            case "LOW_PRIORITY": case "DELAYED": case "QUICK": case "HIGH_PRIORITY": $out ["OPTIONS"][] = strippedToken;
+            case "LOW_PRIORITY": case "DELAYED": case "QUICK": case "HIGH_PRIORITY": result ["OPTIONS"][] = strippedToken;
                             continue 2;
 
             case "USE": if (tokenCategory == "FROM") {
                                 // index hint within FROM clause
-                                $out [tokenCategory][] = strippedToken;
+                                result [tokenCategory][] = strippedToken;
                                 continue 2;
                             }
                             // set the category in case these get subclauses in a future version of MySQL
                             tokenCategory = upperToken;
-                            $out [upperToken][0] = strippedToken;
+                            result [upperToken][0] = strippedToken;
                             continue 2;
 
             case "FORCE": if (tokenCategory == "FROM") {
                                 // index hint within FROM clause
-                                $out [tokenCategory][] = strippedToken;
+                                result [tokenCategory][] = strippedToken;
                                 continue 2;
                             }
-                            $out ["OPTIONS"][] = strippedToken;
+                            result ["OPTIONS"][] = strippedToken;
                             continue 2;
 
             case "WITH": if (tokenCategory == "GROUP") {
                                 $skip_next = 1;
-                                $out ["OPTIONS"][] = "WITH ROLLUP"; // TODO: this could be generate problems within the position calculator
+                                result ["OPTIONS"][] = "WITH ROLLUP"; // TODO: this could be generate problems within the position calculator
                                 continue 2;
                             }
                             if (tokenCategory.isEmpty) {
@@ -382,16 +382,16 @@ class SQLProcessor : SQLChunkProcessor {
                             // remove obsolete category after union (empty category because of
                             // empty token before select)
                             if (tokenCategory != "" && (previousCategory == tokenCategory)) {
-                                $out [tokenCategory][] = $token;
+                                result [tokenCategory][] = $token;
                             }
 
                             previousCategory = tokenCategory;
                             }
 
-                            if (count($out ) == 0) {
+                            if (count(result ) == 0) {
                                 return false;
                             }
 
-                            return super.process($out );
+                            return super.process(result );
                             }
                             }
