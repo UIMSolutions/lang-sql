@@ -37,16 +37,16 @@ class UnionProcessor : AbstractProcessor {
      * The extra queries will be silently ignored.
      */
     protected auto processMySQLUnion(queries) {
-        $unionTypes = ["UNION", "UNION ALL"];
-        foreach (myUnionType; $unionTypes) {
+         myunionTypes = ["UNION", "UNION ALL"];
+        foreach (myUnionType;  myunionTypes) {
 
             if (queries[myUnionType].isEmpty) {
                 continue;
             }
 
             auto myUnionTypeQuery = queries[myUnionType];
-            foreach (myKey, $tokenList; myUnionTypeQuery) {
-                foreach ($z, myToken; $tokenList) {
+            foreach (myKey,  mytokenList; myUnionTypeQuery) {
+                foreach ( myz, myToken;  mytokenList) {
                     myToken = myToken.strip;
                     if (myToken.isEmpty) {
                         continue;
@@ -75,46 +75,46 @@ class UnionProcessor : AbstractProcessor {
      */
     protected auto splitUnionRemainder(
         queries, isUnionType, resultputArray) {
-        $finalQuery = []; //If this token contains a matching pair of brackets at the start and end, use it as the final query
-        $finalQueryFound = false;
+         myfinalQuery = []; //If this token contains a matching pair of brackets at the start and end, use it as the final query
+         myfinalQueryFound = false;
         if (resultputArray.length == 1) {
             string[] tokenArray = resultputArray[0].strip.split;
             if (tokenArray[0] == "(" && tokenArray[tokenArray.length - 1] == ")") {
                 queries[isUnionType][] = resultputArray;
-                $finalQueryFound = true;
+                 myfinalQueryFound = true;
             }
         }
 
-        if (!$finalQueryFound) {
+        if (! myfinalQueryFound) {
             foreach (myKey, myToken; resultputArray) {
                 if (myToken.toUpper == "ORDER") {
                     break;
                 } else {
-                    $finalQuery[] = myToken;
+                     myfinalQuery[] = myToken;
                     unset(resultputArray[myKey]);
                 }
             }
         }
 
-        $finalQueryString = implode($finalQuery).strip;
+         myfinalQueryString = implode( myfinalQuery).strip;
 
-        if (!$finalQuery.isEmpty && $finalQueryString != "") {
-            queries[isUnionType][] = $finalQuery;
+        if (! myfinalQuery.isEmpty &&  myfinalQueryString != "") {
+            queries[isUnionType][] =  myfinalQuery;
         }
 
-        $defaultProcessor = new DefaultProcessor(
+         mydefaultProcessor = new DefaultProcessor(
             this.options);
         string rePrepareSqlString = implode(resultputArray).strip;
         if (!rePrepareSqlString.isEmpty) {
-            $remainingQueries = $defaultProcessor.process(
+             myremainingQueries =  mydefaultProcessor.process(
                 rePrepareSqlString);
-            queries[] = $remainingQueries;
+            queries[] =  myremainingQueries;
         }
 
         return queries;
     }
 
-    auto process($inputArray) {
+    auto process( myinputArray) {
         auto resultputArray = []; // ometimes the parser needs to skip ahead until a particular
         // oken is found
         bool isSkipUntilToken = false;
@@ -125,7 +125,7 @@ class UnionProcessor : AbstractProcessor {
         bool isUnionType = false; // ometimes a "query" consists of more than one query (like a UNION query)
         // his array holds all the queries
         auto queries = [];
-        foreach (myKey, myToken; $inputArray) {
+        foreach (myKey, myToken;  myinputArray) {
             auto strippedToken = myToken.strip;
 
             // overread all tokens till that given token
@@ -148,14 +148,14 @@ class UnionProcessor : AbstractProcessor {
             isUnionType = "UNION";
 
             // we are looking for an ALL token right after UNION
-            for ($i = myKey + 1; $i < count($inputArray); ++$i) {
+            for ( myi = myKey + 1;  myi < count( myinputArray); ++ myi) {
                 if (
-                    $inputArray[$i].strip
+                     myinputArray[ myi].strip
                     .isEmpty) {
                     continue;
                 }
                 if (
-                    $inputArray[$i].toUpper != "ALL") {
+                     myinputArray[ myi].toUpper != "ALL") {
                     break;
                 }
                 // the other for-loop should overread till "ALL"

@@ -6,10 +6,10 @@ module langs.sql.sqlparsers.utils.SQLParserConstants;
 
 class SqlParserConstants {
 
-    private static $inst = null;
+    private static  myinst = null;
 
-    protected $customFunctions = [];
-    protected $reserved = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
+    protected  mycustomFunctions = [];
+    protected  myreserved = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
                                 "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND", "BIT_OR", "BITCOUNT",
                                 "BITLENGTH", "CAST", "CEILING", "CHAR", "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET",
                                 "COALESCE", "COERCIBILITY", "COLLATION", "COMPRESS", "CONCAT", "CONCAT_WS",
@@ -68,7 +68,7 @@ class SqlParserConstants {
                                 "UTC_TIME", "UTC_TIMESTAMP", "VALUES", "VARBINARY", "VARCHAR", "VARCHARACTER",
                                 "VARYING", "WHEN", "WHERE", "WHILE", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL");
 
-    protected $parameterizedFunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT",
+    protected  myparameterizedFunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT",
                                               "AGAINST", "ASCII", "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND",
                                               "BIT_OR", "BITCOUNT", "BITLENGTH", "CAST", "CEILING", "CHAR",
                                               "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET", "COALESCE", "COERCIBILITY",
@@ -97,7 +97,7 @@ class SqlParserConstants {
                                               "UPPER", "VAR_POP", "VAR_SAMP", "VARIANCE", "WEEK", "WEEKDAY",
                                               "WEEKOFYEAR", "YEAR", "YEARWEEK");
 
-    protected $functions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
+    protected  myfunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
                                  "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND", "BIT_OR", "BITCOUNT",
                                  "BITLENGTH", "CAST", "CEILING", "CHAR", "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET",
                                  "COALESCE", "COERCIBILITY", "COLLATION", "COMPRESS", "CONCAT", "CONCAT_WS",
@@ -125,7 +125,7 @@ class SqlParserConstants {
                                  "UTC_TIME", "UTC_TIMESTAMP", "UUID", "VAR_POP", "VAR_SAMP", "VARIANCE", "VERSION",
                                  "WEEK", "WEEKDAY", "WEEKOFYEAR", "YEAR", "YEARWEEK");
 
-    protected $aggregateFunctions = ["AVG", "SUM", "COUNT", "MIN", "MAX", "STD", "STDDEV", "STDDEV_SAMP",
+    protected  myaggregateFunctions = ["AVG", "SUM", "COUNT", "MIN", "MAX", "STD", "STDDEV", "STDDEV_SAMP",
                                           "STDDEV_POP", "VARIANCE", "VAR_SAMP", "VAR_POP", "GROUP_CONCAT", "BIT_AND",
                                           "BIT_OR", "BIT_XOR");
 
@@ -135,10 +135,10 @@ class SqlParserConstants {
      * @return SqlParserConstants
      */
     static auto getInstance() {
-        if (!isset(this.$inst)) {
-            this.$inst = new SqlParserConstants();
+        if (!isset(this. myinst)) {
+            this. myinst = new SqlParserConstants();
         }
-        return this.$inst;
+        return this. myinst;
     }
 
     /**
@@ -155,34 +155,34 @@ class SqlParserConstants {
     private auto __clone() {
     }
 
-    auto isAggregateFunction($token) {
-        return aggregateFunctions.isSet($token);
+    auto isAggregateFunction( mytoken) {
+        return aggregateFunctions.isSet( mytoken);
     }
 
-    auto isReserved($token) {
-        return reserved.isSet($token);
+    auto isReserved( mytoken) {
+        return reserved.isSet( mytoken);
     }
 
-    auto isFunction($token) {
-        return functions.isSet($token);
+    auto isFunction( mytoken) {
+        return functions.isSet( mytoken);
     }
 
-    auto isParameterizedFunction($token) {
-        return parameterizedFunctions.isSet($token);
+    auto isParameterizedFunction( mytoken) {
+        return parameterizedFunctions.isSet( mytoken);
     }
 
-    auto isCustomFunction($token) {
-        return customFunctions.isSet($token);
+    auto isCustomFunction( mytoken) {
+        return customFunctions.isSet( mytoken);
     }
 
-    auto addCustomFunction($token) {
-        $token = $token.strip.toUpper;
-        this.customFunctions[$token] = true;
+    auto addCustomFunction( mytoken) {
+         mytoken =  mytoken.strip.toUpper;
+        this.customFunctions[ mytoken] = true;
     }
 
-    auto removeCustomFunction($token) {
-        $token = $token.strip.toUpper;
-        unset(this.customFunctions[$token]);
+    auto removeCustomFunction( mytoken) {
+         mytoken =  mytoken.strip.toUpper;
+        unset(this.customFunctions[ mytoken]);
     }
 
     auto getCustomFunctions() {

@@ -8,14 +8,14 @@ import lang.sql;
 
 class ExpressionToken {
 
-    private $subTree;
+    private  mysubTree;
     private string _expression;
     private string _key;
     private _token;
-    private $tokenType;
+    private  mytokenType;
     private _trimmedToken;
     private upperToken;
-    private $noQuotes;
+    private  mynoQuotes;
 
     this(string aKey = "", string aToken = "") {
         this.subTree = false;
@@ -28,16 +28,16 @@ class ExpressionToken {
     }
 
     # TODO: we could replace it with a constructor new ExpressionToken(this, "*")
-    auto addToken($string) {
-        this.token ~= $string;
+    auto addToken( mystring) {
+        this.token ~=  mystring;
     }
 
     auto isEnclosedWithinParenthesis() {
         return (!empty( this.upper ) && this.upper[0] == "(" && substr(this.upper, -1) == ")");
     }
 
-    auto setSubTree($tree) {
-        this.subTree = $tree;
+    auto setSubTree( mytree) {
+        this.subTree =  mytree;
     }
 
     auto getSubTree() {
@@ -56,22 +56,22 @@ class ExpressionToken {
         return anIndex.isNull ? this.token : this.token[anIndex];
     }
 
-    auto setNoQuotes(_token, $qchars, Options $options) {
-        this.noQuotes = (_token == null) ? null : this.revokeQuotation(_token, $options);
+    auto setNoQuotes(_token,  myqchars, Options  myoptions) {
+        this.noQuotes = (_token == null) ? null : this.revokeQuotation(_token,  myoptions);
     }
 
-    auto setTokenType($type) {
-        this.tokenType = $type;
+    auto setTokenType( mytype) {
+        this.tokenType =  mytype;
     }
 
-    auto endsWith($needle) {
-        size_t myLength = $needle.length;
+    auto endsWith( myneedle) {
+        size_t myLength =  myneedle.length;
         if (myLength == 0) {
             return true;
         }
 
-        $start = myLength * -1;
-        return (substr(this.token, $start) == $needle);
+         mystart = myLength * -1;
+        return (substr(this.token,  mystart) ==  myneedle);
     }
 
     auto isWhitespaceToken() {
@@ -142,9 +142,9 @@ class ExpressionToken {
         return this.tokenType =.isExpressionType(SUBQUERY;
     }
 
-    private auto revokeQuotation(_token, Options $options) {
-        $defProc = new DefaultProcessor($options);
-        return $defProc.revokeQuotation(_token];
+    private auto revokeQuotation(_token, Options  myoptions) {
+         mydefProc = new DefaultProcessor( myoptions);
+        return  mydefProc.revokeQuotation(_token];
     }
 
     auto toArray() {

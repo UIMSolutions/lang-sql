@@ -7,15 +7,15 @@ import lang.sql;
 // This class processes the VALUES statements.
 class ValuesProcessor : AbstractProcessor {
 
-    auto process($tokens) {
+    auto process( mytokens) {
 
         string currentCategory = "";
-        $parsed = [];
+         myparsed = [];
         string baseExpression = "";
 
-        foreach (myKey, myToken; $tokens["VALUES"]) {
+        foreach (myKey, myToken;  mytokens["VALUES"]) {
 	        if (this.isCommentToken(myToken)) {
-		        $parsed[] = super.processComment(myToken);
+		         myparsed[] = super.processComment(myToken);
 		        continue;
 	        }
 
@@ -48,7 +48,7 @@ class ValuesProcessor : AbstractProcessor {
             case "KEY":
             case "UPDATE":
                 if (currentCategory == "DUPLICATE") {
-                    $parsed[] = createExpression("RESERVED"), "base_expr": strippedToken];
+                     myparsed[] = createExpression("RESERVED"), "base_expr": strippedToken];
                     baseExpression = "";
                 }
                 // else ?
@@ -58,14 +58,14 @@ class ValuesProcessor : AbstractProcessor {
                 if (currentCategory == "DUPLICATE") {
 
                     baseExpression = substr(baseExpression, 0, -strlen(myToken)).strip;
-                    $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                    $parsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression,
-                                      "sub_tree" : (empty($res) ? false : $res), "delim": strippedToken];
+                     myres = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+                     myparsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression,
+                                      "sub_tree" : (empty( myres) ? false :  myres), "delim": strippedToken];
                     baseExpression = "";
                     continue 2;
                 }
 
-                $parsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
+                 myparsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
                                   "data" : this.processRecord(baseExpression.strip), "delim": strippedToken];
                 baseExpression = "";
                 break;
@@ -78,28 +78,28 @@ class ValuesProcessor : AbstractProcessor {
 
         if (!baseExpression.strip.isEmpty) {
             if (currentCategory.isEmpty) {
-                $parsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
+                 myparsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
                                   "data" : this.processRecord(baseExpression.strip), "delim" : false];
             }
             if (currentCategory == "DUPLICATE") {
-                $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                $parsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
-                                  "sub_tree" : ($res.isEmpty ? false : $res), "delim" : false];
+                 myres = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+                 myparsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
+                                  "sub_tree" : ( myres.isEmpty ? false :  myres), "delim" : false];
             }
         }
 
-        $tokens["VALUES"] = $parsed;
-        return $tokens;
+         mytokens["VALUES"] =  myparsed;
+        return  mytokens;
     }
 
-    protected auto processExpressionList($unparsed) {
+    protected auto processExpressionList( myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process($unparsed);
+        return myProcessor.process( myunparsed);
     }
 
-    protected auto processRecord($unparsed) {
+    protected auto processRecord( myunparsed) {
         auto myProcessor = new RecordProcessor(this.options);
-        return myProcessor.process($unparsed);
+        return myProcessor.process( myunparsed);
     }
 
 }

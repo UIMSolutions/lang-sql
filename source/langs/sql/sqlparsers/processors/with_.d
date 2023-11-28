@@ -6,23 +6,23 @@ import lang.sql;
 // This class processes Oracle"s WITH statements.
 class WithProcessor : AbstractProcessor {
 
-    protected auto processTopLevel($sql) {
+    protected auto processTopLevel( mysql) {
     	auto myProcessor = new DefaultProcessor(this.options);
-    	return myProcessor.process($sql);
+    	return myProcessor.process( mysql);
     }
 
     protected string buildTableName(aToken) {
     	return createExpression("TEMPORARY_TABLE"), "name":aToken, "base_expr" : aToken, "no_quotes" : this.revokeQuotation(aToken)];
     }
 
-    auto process($tokens) {
+    auto process( mytokens) {
     	auto result = [];
-        auto $resultList = [];
+        auto  myresultList = [];
         string myCategory = "";
         string baseExpression = "";
         string myPrevious = "";
 
-        foreach (myToken; $tokens) {
+        foreach (myToken;  mytokens) {
         	baseExpression ~= myToken;
 			auto strippedToken = myToken.strip;
             upperToken = strippedToken.toUpper;
@@ -36,12 +36,12 @@ class WithProcessor : AbstractProcessor {
             case "AS":
             	if (myPrevious != "TABLENAME") {
             		// error or tablename is AS
-            		$resultList[] = this.buildTableName(strippedToken);
+            		 myresultList[] = this.buildTableName(strippedToken);
             		myCategory = "TABLENAME";
             		break;
             	}
 
-            	$resultList[] = createExpression("RESERVED", strippedToken];
+            	 myresultList[] = createExpression("RESERVED", strippedToken];
             	myCategory = upperToken;
                 break;
 
@@ -54,17 +54,17 @@ class WithProcessor : AbstractProcessor {
                 switch (myPrevious) {
                 	case "AS":
                 		// it follows a parentheses pair
-                		$subtree = this.processTopLevel(this.removeParenthesisFromStart(myToken));
-                		$resultList[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" : $subtree];
+                		 mysubtree = this.processTopLevel(this.removeParenthesisFromStart(myToken));
+                		 myresultList[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" :  mysubtree];
 
-                		result[] = createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" : $resultList];
-                		$resultList = [];
+                		result[] = createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" :  myresultList];
+                		 myresultList = [];
                 		myCategory = "";
                 	break;
 
                 	case "":
                 		// we have the name of the table
-                		$resultList[] = this.buildTableName(strippedToken);
+                		 myresultList[] = this.buildTableName(strippedToken);
                 		myCategory = "TABLENAME";
                 		break;
 
