@@ -8,7 +8,7 @@ import lang.sql;
 class TableProcessor : AbstractProcessor {
 
     protected auto getReservedType(myToken) {
-        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token];
+        return createExpression("RESERVED"), "base_expr" : $token];
     }
 
     protected auto getConstantType($token) {
@@ -16,7 +16,7 @@ class TableProcessor : AbstractProcessor {
     }
 
     protected auto getOperatorType($token) {
-        return ["expr_type" : expressionType("OPERATOR"), "base_expr" : $token];
+        return createExpression("OPERATOR"), "base_expr" : $token];
     }
 
     protected auto processPartitionOptions($tokens) {
@@ -194,7 +194,7 @@ class TableProcessor : AbstractProcessor {
                 if ($prevCategory == "TABLE_OPTION") {
                     // all assignments with the keywords
                     myExpression[] = this.getReservedType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
+                    $result["options"][] = createExpression("EXPRESSION"),
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                 }
@@ -233,7 +233,7 @@ class TableProcessor : AbstractProcessor {
                 case "CHARSET":
                 // the charset name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType("CHARSET"),
+                    $result["options"][] = createExpression("CHARSET"),
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;
@@ -249,7 +249,7 @@ class TableProcessor : AbstractProcessor {
                 case "DATA_DIRECTORY":
                 // we have the directory name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType("DIRECTORY"), "kind" : "DATA",
+                    $result["options"][] = createExpression("DIRECTORY"), "kind" : "DATA",
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, $prevCategory);
                     continue 3;
@@ -294,9 +294,9 @@ class TableProcessor : AbstractProcessor {
                 // we must change the DefaultProcessor
 
                     $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
-                    myExpression[] = ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+                    myExpression[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
                                     "sub_tree" : "***TODO***");
-                    $result["options"][] = ["expr_type" : expressionType(UNION, "base_expr" : baseExpression.strip,
+                    $result["options"][] = createExpression(UNION, "base_expr" : baseExpression.strip,
                                                  "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;
@@ -304,7 +304,7 @@ class TableProcessor : AbstractProcessor {
                 default:
                 // strings and numeric constants
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType("EXPRESSION"),
+                    $result["options"][] = createExpression("EXPRESSION"),
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;

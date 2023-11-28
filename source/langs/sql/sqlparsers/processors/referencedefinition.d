@@ -17,7 +17,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
     auto process($tokens) {
 
-        myExpression = ["expr_type" : expressionType("REFERENCE"), "base_expr" : false, "sub_tree" : []];
+        myExpression = createExpression("REFERENCE"), "base_expr" : false, "sub_tree" : []];
         baseExpression = "";
 
         foreach (myKey : myToken; $tokens) {
@@ -46,7 +46,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case "MATCH":
                 if (currentCategory == "REF_COL_LIST") {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     currentCategory = "REF_MATCH";
                     continue 2;
                 }
@@ -57,7 +57,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case "PARTIAL":
             case "SIMPLE":
                 if (currentCategory == "REF_MATCH") {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     myExpression["match"] = upperToken;
                     currentCategory = "REF_COL_LIST";
                     continue 2;
@@ -67,7 +67,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case "ON":
                 if (currentCategory == "REF_COL_LIST") {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     currentCategory = "REF_ACTION";
                     continue 2;
                 }
@@ -77,7 +77,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case "UPDATE":
             case "DELETE":
                 if (currentCategory == "REF_ACTION") {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     currentCategory = "REF_OPTION_" . upperToken;
                     continue 2;
                 }
@@ -87,7 +87,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case "RESTRICT":
             case "CASCADE":
                 if (strpos(currentCategory, "REF_OPTION_") == 0) {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_"  ~ strtolower(substr(currentCategory, -6))] = upperToken;
                     continue 2;
                 }
@@ -108,7 +108,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case "NULL":
             case "ACTION":
                 if (strpos(currentCategory, "SEC_REF_OPTION_") == 0) {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_" ~ substr(currentCategory, -6).toLower] ~= " " ~ upperToken;
                     currentCategory = "REF_COL_LIST";
                     continue 2;

@@ -52,7 +52,7 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if (baseExpression != "") {
-            $tablePair["destination"] = ["expr_type" : expressionType("TABLE"), "table" : baseExpression.strip,
+            $tablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
                                               "no_quotes" : this.revokeQuotation(baseExpression),
                                               "base_expr" : baseExpression];
             $resultList[] = $tablePair;

@@ -61,7 +61,7 @@ class FromProcessor : AbstractProcessor {
             if (parseInfo["ref_type"] == "USING") {
             	// unparsed has only one entry, the column list
             	$ref = this.processColumnList(this.removeParenthesisFromStart($unparsed[0]));
-            	$ref = [["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : $unparsed[0], "sub_tree" : $ref]];
+            	$ref = [createExpression("COLUMN_LIST"), "base_expr" : $unparsed[0], "sub_tree" : $ref]];
             } else {
                 $ref = this.processExpressionList($unparsed);
             }

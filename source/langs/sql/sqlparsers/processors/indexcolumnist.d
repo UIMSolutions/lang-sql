@@ -37,7 +37,7 @@ class IndexColumnListProcessor : AbstractProcessor {
 
             case ",":
             # the next column
-                $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression),
+                $result[] = array_merge(createExpression(INDEX_COLUMN, "base_expr" : baseExpression),
                         myExpression);
                 myExpression = this.initExpression();
                 baseExpression = "";
@@ -55,7 +55,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result[] = array_merge(["expr_type" : expressionType(INDEX_COLUMN, "base_expr" : baseExpression), myExpression);
+        $result[] = array_merge(createExpression(INDEX_COLUMN, "base_expr" : baseExpression), myExpression);
         return $result;
     }
 }

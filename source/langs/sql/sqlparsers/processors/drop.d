@@ -57,7 +57,7 @@ class DropProcessor : AbstractProcessor {
             case "CASCADE":
                 $option = upperToken;
                 if (!empty($objectList)) {
-                    $subTree[] = ["expr_type" : expressionType("EXPRESSION"),
+                    $subTree[] = createExpression("EXPRESSION"),
                                        "base_expr" : substr(baseExpression, 0, -$token.length).strip,
                                        "sub_tree" : $objectList);
                     $objectList = [];
@@ -87,11 +87,11 @@ class DropProcessor : AbstractProcessor {
                 continue 2;
             }
 
-            $subTree[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+            $subTree[] = createExpression("RESERVED"), "base_expr" : strippedToken);
         }
 
         if (!empty($objectList)) {
-            $subTree[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
+            $subTree[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
                                "sub_tree" : $objectList];
         }
 

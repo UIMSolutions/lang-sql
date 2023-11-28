@@ -15,7 +15,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected Json getConstantType(myToken) {
-        return ["expr_type" : expressionType("CONSTANT"), "base_expr" : myToken];
+        return createExpression("CONSTANT"), "base_expr" : myToken];
     }
 
     protected Json getOperatorType(myToken) {
@@ -59,7 +59,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case "SUBPARTITION":
                 if (currentCategory.isEmpty) {
                     myExpression[] = this.getReservedType(strippedToken);
-                    $parsed = ["expr_type" : expressionType("SUBPARTITION_DEF"), "base_expr" : baseExpression.strip,
+                    $parsed = createExpression("SUBPARTITION_DEF"), "base_expr" : baseExpression.strip,
                                     "sub_tree" : false];
                     currentCategory = upperToken;
                     continue 2;
@@ -69,7 +69,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
 
             case "COMMENT":
                 if (previousCategory == "SUBPARTITION") {
-                    myExpression[] = ["expr_type" : expressionType("SUBPARTITION_COMMENT"), "base_expr" : false,
+                    myExpression[] = createExpression("SUBPARTITION_COMMENT"), "base_expr" : false,
                                     "sub_tree" : false, "storage" : substr(baseExpression, 0, -myToken.length)];
 
                     $parsed["sub_tree"] = myExpression;
@@ -85,7 +85,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             case "STORAGE":
                 if (previousCategory == "SUBPARTITION") {
                     // followed by ENGINE
-                    myExpression[] = ["expr_type" : expressionType("ENGINE"), "base_expr" : false, "sub_tree" : false,
+                    myExpression[] = createExpression("ENGINE"), "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -myToken.length)];
 
                     $parsed["sub_tree"] = myExpression;
@@ -105,7 +105,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     continue 2;
                 }
                 if (previousCategory == "SUBPARTITION") {
-                    myExpression[] = ["expr_type" : expressionType("ENGINE"), "base_expr" : false, "sub_tree" : false,
+                    myExpression[] = createExpression("ENGINE"), "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -myToken.length)];
 
                     $parsed["sub_tree"] = myExpression;

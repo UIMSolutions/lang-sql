@@ -37,13 +37,13 @@ class CreateProcessor : AbstractProcessor {
                 // CREATE TABLE
                 $result["expr_type"] =  expressionType("TABLE");
                 $result["not-exists"] = false;
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case "INDEX":
                 // CREATE INDEX
                 $result["expr_type"] .isExpressionType(INDEX;
-                myExpression[] = ["expr_type" : expressionType("RESERVED", "base_expr" : strippedToken);
+                myExpression[] = createExpression("RESERVED", "base_expr" : strippedToken);
                 break;
 
             case "UNIQUE":
@@ -52,23 +52,23 @@ class CreateProcessor : AbstractProcessor {
                 // options of CREATE INDEX
                 $result.baseExpression = $result["expr_type"] = false;
                 $result["constraint"] = upperToken; 
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;                
                                 
             case "IF":
                 // option of CREATE TABLE
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case "NOT":
                 // option of CREATE TABLE
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case "EXISTS":
                 // option of CREATE TABLE
                 $result["not-exists"] = true;
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             default:

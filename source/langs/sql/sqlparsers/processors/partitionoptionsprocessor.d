@@ -28,7 +28,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
     }
 
     protected auto getReservedType($token) {
-        return ["expr_type" : expressionType("RESERVED"), "base_expr" : $token];
+        return createExpression("RESERVED"), "base_expr" : $token];
     }
 
     protected auto getConstantType($token) {
@@ -36,7 +36,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
     }
 
     protected auto getOperatorType($token) {
-        return ["expr_type" : expressionType("OPERATOR"), "base_expr" : $token];
+        return createExpression("OPERATOR"), "base_expr" : $token];
     }
 
     protected auto getBracketExpressionType($token) {
@@ -84,7 +84,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
             case "SUBPARTITION":
                 currentCategory = upperToken;
                 myExpression[] = this.getReservedType(strippedToken);
-                $parsed[] = ["expr_type" : expressionType("SUBPARTITION"), "base_expr" : baseExpression.strip,
+                $parsed[] = createExpression("SUBPARTITION"), "base_expr" : baseExpression.strip,
                                   "sub_tree" : false];
                 break;
 
@@ -262,7 +262,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 case "RANGE_COLUMNS":
                 case "KEY":
                 // the columnlist
-                    myExpression[] = ["expr_type" : expressionType("COLUMN_LIST"), "base_expr" : strippedToken,
+                    myExpression[] = createExpression("COLUMN_LIST"), "base_expr" : strippedToken,
                                     "sub_tree" : this.processColumnList(strippedToken));
 
                     $last = array_pop($parsed);

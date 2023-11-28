@@ -64,7 +64,7 @@ class ValuesProcessor : AbstractProcessor {
                     continue 2;
                 }
 
-                $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression.strip,
+                $parsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
                                   "data" : this.processRecord(baseExpression.strip), "delim": strippedToken];
                 baseExpression = "";
                 break;
@@ -77,12 +77,12 @@ class ValuesProcessor : AbstractProcessor {
 
         if (!baseExpression.strip.isEmpty) {
             if (currentCategory.isEmpty) {
-                $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression.strip,
+                $parsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
                                   "data" : this.processRecord(baseExpression.strip), "delim" : false];
             }
             if (currentCategory == "DUPLICATE") {
                 $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
+                $parsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
                                   "sub_tree" : ($res.isEmpty ? false : $res), "delim" : false];
             }
         }

@@ -28,7 +28,7 @@ class BracketProcessor : AbstractProcessor {
         }
 
         return [
-                ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $tokens[0].trim,
+                createExpression("BRACKET_EXPRESSION"), "base_expr" : $tokens[0].trim,
                         "sub_tree" : subtree, "remaining_expressions" : $remainingExpressions]];
     }
 

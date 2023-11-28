@@ -38,13 +38,13 @@ class ExplainProcessor : AbstractProcessor {
 
                 case "EXTENDED":
                 case "PARTITIONS":
-                    return ["expr_type" : expressionType("RESERVED"), "base_expr" : myToken];
+                    return createExpression("RESERVED"), "base_expr" : myToken];
                     break;
 
                 case "FORMAT":
                     if (currentCategory.isEmpty) {
                         currentCategory = upperToken;
-                        myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                        myExpression[] = createExpression("RESERVED"), "base_expr": strippedToken];
                     }
                     // else?
                     break;
@@ -59,8 +59,8 @@ class ExplainProcessor : AbstractProcessor {
                 case "TRADITIONAL":
                 case "JSON":
                     if (currentCategory == "FORMAT") {
-                        myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
-                        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
+                        myExpression[] = createExpression("RESERVED"), "base_expr": strippedToken];
+                        return createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
                                      "sub_tree" : myExpression];
                     }
                     // else?
@@ -82,13 +82,13 @@ class ExplainProcessor : AbstractProcessor {
 
             case "TABLENAME":
                 currentCategory = "WILD";
-                myExpression[] = ["expr_type" : expressionType("COLREF"), "base_expr" : strippedToken,
+                myExpression[] = createExpression("COLREF"), "base_expr" : strippedToken,
                     "no_quotes" : this.revokeQuotation(strippedToken));
                 break;
 
             case "":
                 currentCategory = "TABLENAME";
-                myExpression[] = ["expr_type" : expressionType("TABLE"), "table" : strippedToken,
+                myExpression[] = createExpression("TABLE"), "table" : strippedToken,
                     "no_quotes" : this.revokeQuotation(strippedToken), "alias" : false, "base_expr": strippedToken];
                 break;
 
