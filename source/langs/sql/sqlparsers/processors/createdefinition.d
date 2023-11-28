@@ -126,7 +126,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             case "KEY":
             // the next one is an index name
                 if (currentCategory == "PRIMARY" || currentCategory == "FOREIGN" || currentCategory == "UNIQUE") {
-                    myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression[] = createExpression("RESERVED", "base_expr": strippedToken];
                     continue 2;
                 }
                 myExpression[] = ["expr_type" : expressionType("INDEX"), "base_expr": strippedToken];

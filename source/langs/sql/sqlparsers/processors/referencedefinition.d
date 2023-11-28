@@ -40,7 +40,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                 break 2;
 
             case "REFERENCES":
-                myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                myExpression["sub_tree"][] = createExpression("RESERVED", strippedToken];
                 currentCategory = upperToken;
                 break;
 

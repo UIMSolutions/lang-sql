@@ -38,7 +38,7 @@ class ValuesProcessor : AbstractProcessor {
                     baseExpression = "";
 
                     currentCategory = "DUPLICATE";
-                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    $parsed[] = createExpression("RESERVED", strippedToken];
                 }
                 // else ?
                 break;

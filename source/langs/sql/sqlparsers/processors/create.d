@@ -30,7 +30,7 @@ class CreateProcessor : AbstractProcessor {
                 // CREATE TEMPORARY TABLE
                 $result["expr_type"] .isExpressionType("TEMPORARY_TABLE");
                 $result["not-exists"] = false;
-                myExpression[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken];
+                myExpression[] = createExpression("RESERVED", "base_expr" : strippedToken];
                 break;
 
             case "TABLE":

@@ -32,7 +32,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
     }
 
     protected auto getConstantType($token) {
-        return ["expr_type" : expressionType("CONSTANT"), "base_expr" : $token];
+        return createExpression("CONSTANT"), "base_expr" : $token];
     }
 
     protected auto getOperatorType($token) {

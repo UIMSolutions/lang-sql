@@ -269,7 +269,7 @@ class TableProcessor : AbstractProcessor {
                     break;
 
                 case "LIKE":
-                    $result["like"] = ["expr_type" : expressionType("TABLE"), "table" : strippedToken,
+                    $result["like"] = createExpression("TABLE"), "table" : strippedToken,
                                             "base_expr" : strippedToken, "no_quotes" : this.revokeQuotation(strippedToken));
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;

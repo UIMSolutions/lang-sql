@@ -109,14 +109,14 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                         break;
                     }
                 }
-	            $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+	            $options["sub_tree"][] = createExpression("RESERVED", strippedToken];
                 continue 2;
 
             case "ZEROFILL":
                 $last = array_pop(myExpression);
                 $last["zerofill"] = true;
                 myExpression[] = $last;
-	            $options["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+	            $options["sub_tree"][] = createExpression("RESERVED", strippedToken);
                 continue 2;
 
             case "BIT":
@@ -144,7 +144,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 if (currentCategory == "TEXT") {
                     $last = array_pop(myExpression);
                     $last["binary"] = true;
-                    $last["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    $last["sub_tree"][] = createEXpression("RESERVED", strippedToken);
                     myExpression[] = $last;
                     continue 2;
                 }

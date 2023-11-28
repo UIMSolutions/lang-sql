@@ -14,7 +14,7 @@ class InsertProcessor : AbstractProcessor {
         }
         $result = [];
         foreach ($tokenList["OPTIONS"] as $token) {
-            $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : $token.strip);
+            $result[] = createExpression("RESERVED", "base_expr" : $token.strip);
         }
         return $result;
     }
@@ -38,7 +38,7 @@ class InsertProcessor : AbstractProcessor {
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
             case "INTO":
-                $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                $result[] = createExpression("RESERVED", strippedToken];
                 break;
 
             case "INSERT":

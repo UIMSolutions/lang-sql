@@ -12,7 +12,7 @@ class WithProcessor : AbstractProcessor {
     }
 
     protected string buildTableName(aToken) {
-    	return ["expr_type" : expressionType("TEMPORARY_TABLE"), "name":aToken, "base_expr" : aToken, "no_quotes" : this.revokeQuotation(aToken)];
+    	return createExpression("TEMPORARY_TABLE"), "name":aToken, "base_expr" : aToken, "no_quotes" : this.revokeQuotation(aToken)];
     }
 
     auto process($tokens) {
@@ -41,7 +41,7 @@ class WithProcessor : AbstractProcessor {
             		break;
             	}
 
-            	$resultList[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+            	$resultList[] = createExpression("RESERVED", strippedToken];
             	myCategory = upperToken;
                 break;
 
