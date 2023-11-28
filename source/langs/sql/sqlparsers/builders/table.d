@@ -17,7 +17,7 @@ class TableBuilder : ISqlBuilder {
     mySql ~= this.buildAlias(parsedSql);
     mySql ~= this.buildIndexHintList(parsedSql);
 
-    if (index != 0) {
+    if (index > 0) {
       mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
       mySql ~= this.buildRefType(parsedSql["ref_type"]);
       mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);

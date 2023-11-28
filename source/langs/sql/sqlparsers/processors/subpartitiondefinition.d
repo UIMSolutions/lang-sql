@@ -23,7 +23,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected Json getBracketExpressionType(myToken) {
-        return ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : myToken, "sub_tree" : false];
+        return createExpression("BRACKET_EXPRESSION"), "base_expr" : myToken, "sub_tree" : false];
     }
 
     auto process($tokens) {

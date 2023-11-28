@@ -33,7 +33,7 @@ class ValuesProcessor : AbstractProcessor {
                 if (currentCategory.isEmpty) {
 
                     baseExpression = substr(baseExpression, 0, -myToken.length).strip;
-                    $parsed[] = ["expr_type" : expressionType("RECORD"), "base_expr" : baseExpression,
+                    $parsed[] = createExpression("RECORD"), "base_expr" : baseExpression,
                                       "data" : this.processRecord(baseExpression), "delim" : false];
                     baseExpression = "";
 

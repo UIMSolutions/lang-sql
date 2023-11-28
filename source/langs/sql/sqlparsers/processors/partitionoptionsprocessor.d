@@ -77,7 +77,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
             case "PARTITION":
                 currentCategory = upperToken;
                 myExpression[] = this.getReservedType(strippedToken);
-                $parsed[] = ["expr_type" : expressionType("PARTITION"), "base_expr" : baseExpression.strip,
+                $parsed[] = createExpression("PARTITION"), "base_expr" : baseExpression.strip,
                                   "sub_tree" : false];
                 break;
 

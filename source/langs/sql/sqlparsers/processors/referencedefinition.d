@@ -97,7 +97,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
             case "SET":
             case "NO":
                 if (strpos(currentCategory, "REF_OPTION_") == 0) {
-                    myExpression["sub_tree"][] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    myExpression["sub_tree"][] = createExpression("RESERVED"), "base_expr": strippedToken];
                     myExpression["on_" ~ substr(currentCategory, -6).toLower] = upperToken;
                     currentCategory = "SEC_" . currentCategory;
                     continue 2;

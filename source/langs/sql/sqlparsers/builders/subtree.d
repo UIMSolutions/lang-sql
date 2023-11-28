@@ -37,7 +37,7 @@ class SubTreeBuilder : ISqlBuilder {
     result ~= mySign;
 
     if (result.isEmpty) { // No change
-      throw new UnableToCreateSQLException("expression subtree", myKey, aValue.toString, "expr_type");
+      throw new UnableToCreateSQLException("expression subtree", aKey, aValue.toString, "expr_type");
     }
 
     // We don"t need whitespace between a sign and the following part.

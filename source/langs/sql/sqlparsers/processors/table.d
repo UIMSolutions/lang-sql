@@ -241,7 +241,7 @@ class TableProcessor : AbstractProcessor {
                 case "COLLATE":
                 // the collate name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType("COLLATE"),
+                    $result["options"][] = createExpression("COLLATE"),
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, currentCategory);
                     break;

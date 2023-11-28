@@ -7,7 +7,7 @@ import lang.sql;
 // Builds the statements for sub-queries. 
 class SubQueryBuilder : ISqlBuilder {
 
-  string build(Json parsedSql, $index = 0) {
+  string build(Json parsedSql, size_t index = 0) {
     if (!parsedSql.isExpressionType("SUBQUERY")) {
       return "";
     }
@@ -17,12 +17,12 @@ class SubQueryBuilder : ISqlBuilder {
     mySql = "(" ~ mySql ~ ")";
     mySql ~= this.buildAlias(parsedSql);
 
-    if ($index != 0) {
+    if (index != 0) {
       mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
       mySql ~= this.buildRefType(parsedSql["ref_type"]);
-      mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(
-        parsedSql["ref_clause"]);
+      mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);
     }
+    
     return mySql;
   }
   protected string buildRefClause(Json parsedSql) {

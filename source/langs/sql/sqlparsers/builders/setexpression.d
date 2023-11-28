@@ -22,6 +22,7 @@ class SetExpressionBuilder : ISqlBuilder {
   protected string buildKeyValue(string aKey, Json aValue) {
     string myDelim = " ";
     string result;
+    
     result ~= this.buildColRef(aValue);
     result ~= this.buildConstant(aValue);
     result ~= this.buildOperator(aValue);
@@ -43,6 +44,7 @@ class SetExpressionBuilder : ISqlBuilder {
     result ~= myDelim;
     return result;
   }
+
   protected string buildColRef(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);
