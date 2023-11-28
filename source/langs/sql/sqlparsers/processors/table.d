@@ -12,7 +12,7 @@ class TableProcessor : AbstractProcessor {
     }
 
     protected auto getConstantType($token) {
-        return ["expr_type" : expressionType("CONSTANT"), "base_expr" : $token];
+        return createExpression("CONSTANT"), "base_expr" : $token];
     }
 
     protected auto getOperatorType($token) {
@@ -279,7 +279,7 @@ class TableProcessor : AbstractProcessor {
                     if ($prevCategory == "TABLE_NAME" && upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         $unparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
                         $coldef = this.processCreateDefinition($unparsed);
-                        $result["create-def"] = ["expr_type" : expressionType("BRACKET_EXPRESSION"),
+                        $result["create-def"] = createExpression("BRACKET_EXPRESSION"),
                                                       "base_expr" : baseExpression, "sub_tree" : $coldef["create-def"]);
                         myExpression = [];
                         baseExpression = "";

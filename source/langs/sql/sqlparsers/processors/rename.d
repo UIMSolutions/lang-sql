@@ -24,7 +24,7 @@ class RenameProcessor : AbstractProcessor {
             switch (myToken.getUpper()) {
             case "TO":
             // separate source table from destination
-                $tablePair["source"] = ["expr_type" : expressionType("TABLE"), "table" : baseExpression.strip,
+                $tablePair["source"] = createExpression("TABLE"), "table" : baseExpression.strip,
                                              "no_quotes" : this.revokeQuotation(baseExpression),
                                              "base_expr" : baseExpression];
                 baseExpression = "";

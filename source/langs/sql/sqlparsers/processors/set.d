@@ -23,7 +23,7 @@ class SetProcessor : AbstractProcessor {
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
-        return ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression.strip,
+        return createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
                      "sub_tree" : (empty(isAssignment) ? false : isAssignment)];
     }
 

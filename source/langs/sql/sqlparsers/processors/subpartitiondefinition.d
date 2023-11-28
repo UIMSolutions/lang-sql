@@ -19,7 +19,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected Json getOperatorType(myToken) {
-        return ["expr_type" : expressionType("OPERATOR"), "base_expr" : myToken];
+        return createExpression("OPERATOR"), "base_expr" : myToken];
     }
 
     protected Json getBracketExpressionType(myToken) {

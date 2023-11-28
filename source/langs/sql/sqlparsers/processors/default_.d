@@ -1,16 +1,14 @@
-module langs.sql.sqlparsers.processors.default;
+module langs.sql.sqlparsers.processors.default_;
 
 import lang.sql;
 
 @safe:
 
-/**
- * This class processes the incoming sql string.
- */
+// This class processes the incoming sql string.
 class DefaultProcessor : AbstractProcessor {
 
   protected auto isUnion($tokens) {
-    return UnionProcessor : : isUnion($tokens);
+    return UnionProcessor::isUnion($tokens);
   }
 
   protected auto processUnion($tokens) {

@@ -47,7 +47,7 @@ class ValuesProcessor : AbstractProcessor {
             case "KEY":
             case "UPDATE":
                 if (currentCategory == "DUPLICATE") {
-                    $parsed[] = ["expr_type" : expressionType("RESERVED"), "base_expr": strippedToken];
+                    $parsed[] = createExpression("RESERVED"), "base_expr": strippedToken];
                     baseExpression = "";
                 }
                 // else ?

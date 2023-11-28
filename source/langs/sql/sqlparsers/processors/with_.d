@@ -57,7 +57,7 @@ class WithProcessor : AbstractProcessor {
                 		$subtree = this.processTopLevel(this.removeParenthesisFromStart(myToken));
                 		$resultList[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" : $subtree];
 
-                		$out[] = ["expr_type" : expressionType("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" : $resultList];
+                		$out[] = createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" : $resultList];
                 		$resultList = [];
                 		myCategory = "";
                 	break;

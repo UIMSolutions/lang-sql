@@ -22,7 +22,7 @@ class UnableToCreateSQLException : Exception {
         this.entry = $entry;
         this.entrykey = $entrykey;
         super(
-            "unknown [" ~ $entrykey ~ "] = " ~ $entry[$entrykey] . " in \"" ~ $part ~ "\" [" ~ $partkey ~ "] ", 15);
+            "unknown [" ~ $entrykey ~ "] = " ~ $entry[$entrykey] ~ " in \"" ~ $part ~ "\" [" ~ $partkey ~ "] ", 15);
     }
 
     auto getEntry() {

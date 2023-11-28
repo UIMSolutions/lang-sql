@@ -8,13 +8,12 @@ import lang.sql;
 class ColumnListProcessor : AbstractProcessor {
   auto process(string stringWithTokens) {
     string[] tokenNames = stringWithTokens.split(",");
-    auto myColumns = [];
+    Json myColumns = Json.emptyArray;
     foreach (myKey, myTokenName; tokenNames) {
-      myColumns = [
-        "expr_type": expressionType("COLREF"),
-        "base_expr": myTokenName.strip,
-        "no_quotes": this.revokeQuotation(myTokenName)
-      ];
+      Json myColumn = createExpression("COLREF", myTokenName.strip);
+      myColumn["no_quotes"] = this.revokeQuotation(myTokenName);
+      
+      myColumns ~= myColumn;
     }
     return myColumns;
   }
