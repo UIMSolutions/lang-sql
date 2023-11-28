@@ -102,7 +102,7 @@ class FromProcessor : AbstractProcessor {
         result["join_type"] = parseInfo["join_type"];
         result["ref_type"] = parseInfo["ref_type"];
         result["ref_clause"] = parseInfo["ref_expr"];
-        result.baseExpression = parseInfo["expression"].strip;
+        result["base_expr"] = parseInfo["expression"].strip;
         result["sub_tree"] = parseInfo["sub_tree"];
         return result;
     }
@@ -201,7 +201,7 @@ class FromProcessor : AbstractProcessor {
                 }
                 parseInfo["alias"]["name"] = $str;
                 parseInfo["alias"]["no_quotes"] = this.revokeQuotation($str);
-                parseInfo["alias"].baseExpression = parseInfo["alias"].baseExpression.strip;
+                parseInfo["alias"]["base_expr"] = parseInfo["alias"].baseExpression.strip;
                 break;
 
             case "IGNORE":

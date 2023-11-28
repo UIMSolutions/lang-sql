@@ -18,8 +18,8 @@ class SelectExpressionProcessor : AbstractProcessor {
      * is provided, and we set the type of expression.
      */
     auto process($expression) {
-        auto $tokens = this.splitSQLIntoTokens($expression);
-        size_t numberOfTokens = $tokens.length;
+        string[] tokens = this.splitSQLIntoTokens($expression);
+        size_t numberOfTokens = tokens.length;
         if (numberOfTokens == 0) {
             return null;
         }
@@ -29,47 +29,47 @@ class SelectExpressionProcessor : AbstractProcessor {
          * If AS is found, then the next non-whitespace token is captured as the alias.
          * The tokens after (and including) the AS are removed.
          */
-        baseExpression = "";
+        string baseExpression = "";
         $stripped = [];
         $capture = false;
         $alias = false;
         $processed = false;
 
-        for ($i = 0; $i < numberOfTokens; ++$i) {
-            $token = $tokens[$i];
-            upperToken = $token.toUpper;
+        for (i = 0; i < numberOfTokens; ++i) {
+            myToken = tokens[i];
+            upperToken = myToken.toUpper;
 
             if (upperToken == "AS") {
-                $alias = ["as" : true, "name":  "", "base_expr":  $token];
-                $tokens[$i] = "";
+                $alias = ["as" : true, "name":  "", "base_expr":  myToken];
+                tokens[i] = "";
                 $capture = true;
                 continue;
             }
 
             if (!this.isWhitespaceToken(upperToken)) {
-                $stripped[] = $token;
+                $stripped[] = myToken;
             }
 
             // we have an explicit AS, next one can be the alias
             // but also a comment!
             if ($capture) {
                 if (!this.isWhitespaceToken(upperToken) && !this.isCommentToken(upperToken)) {
-                    $alias["name"] ~= $token;
+                    $alias["name"] ~= myToken;
                     array_pop($stripped);
                 }
-                $alias.baseExpression ~= $token;
-                $tokens[$i] = "";
+                $alias.baseExpression ~= myToken;
+                tokens[i] = "";
                 continue;
             }
 
-            baseExpression ~= $token;
+            baseExpression ~= myToken;
         }
 
         if ($alias) {
             // remove quotation from the alias
             $alias["no_quotes"] = this.revokeQuotation($alias["name"]);
             $alias["name"] = $alias["name"].strip;
-            $alias.baseExpression = $alias.baseExpression.strip;
+            $alias["base_expr"] = $alias.baseExpression.strip;
         }
 
         $stripped = this.processExpressionList($stripped);
@@ -94,14 +94,14 @@ class SelectExpressionProcessor : AbstractProcessor {
                                "no_quotes" : this.revokeQuotation($last.baseExpression),
                                "base_expr":  $last.baseExpression.strip];
                 // remove the last token
-                array_pop($tokens);
+                array_pop(tokens);
             }
         }
 
         baseExpression = $expression;
 
         // TODO: this is always done with $stripped, how we do it twice?
-        $processed = this.processExpressionList($tokens);
+        $processed = this.processExpressionList(tokens);
 
         // if there is only one part, we copy the expr_type
         // in all other cases we use "EXPRESSION" as global type
@@ -118,7 +118,7 @@ class SelectExpressionProcessor : AbstractProcessor {
         auto result = [];
         result["expr_type"] = $type;
         result["alias"] = $alias;
-        result.baseExpression = baseExpression.strip;
+        result["base_expr"] = baseExpression.strip;
         if (!$no_quotes.isEmpty) {
             result["no_quotes"] = $no_quotes;
         }

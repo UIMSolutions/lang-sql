@@ -128,7 +128,7 @@ class IndexProcessor : AbstractProcessor {
           myCurrentCategory = "COLUMN_DEF";
           continue 3;
 
-        case "INDEX_NAME" : $result.baseExpression = $result["name"] = strippedToken;
+        case "INDEX_NAME" : $result["base_expr"] = $result["name"] = strippedToken;
           $result["no_quotes"] = this.revokeQuotation(strippedToken);
 
           myExpression = [];

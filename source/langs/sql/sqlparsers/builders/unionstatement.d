@@ -12,17 +12,17 @@ class UnionStatementBuilder : ISqlBuilder {
 
 	string build(Json parsedSql) {
 		string mySql = "";
-		$select_builder = new SelectStatementBuilder();
-		$first = true;
+		auto selectBuilder = new SelectStatementBuilder();
+		bool first = true;
 		foreach ($clause; parsedSql["UNION"]) {
-			if (!$first) {
+			if (!first) {
 				mySql ~= " UNION ";
 			}
 			else {
-				$first = false;
+				first = false;
 			}
 
-			mySql ~= $select_builder.build($clause);
+			mySql ~= selectBuilder.build($clause);
 		}
 		return mySql;
 	}

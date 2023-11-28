@@ -205,12 +205,12 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
 
                     $last = array_pop($parsed["sub_tree"]);
                     $last["sub_tree"] = myExpression;
-                    $last.baseExpression = baseExpression.strip;
+                    $last["base_expr"] = baseExpression.strip;
                     baseExpression = $last["storage"] ~ baseExpression;
                     unset($last["storage"]);
 
                     $parsed["sub_tree"][] = $last;
-                    $parsed.baseExpression = baseExpression.strip;
+                    $parsed["base_expr"] = baseExpression.strip;
                     myExpression = $parsed["sub_tree"];
                     unset($last);
 
@@ -224,7 +224,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                     myExpression[] = $last;
                     myExpression[] = this.getConstantType(strippedToken);
                     $parsed["sub_tree"] = myExpression;
-                    $parsed.baseExpression = baseExpression.strip;
+                    $parsed["base_expr"] = baseExpression.strip;
                     break;
 
                 default:

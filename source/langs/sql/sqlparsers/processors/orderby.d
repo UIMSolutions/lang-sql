@@ -19,7 +19,7 @@ class OrderByProcessor : AbstractProcessor {
     }
 
     protected auto processOrderExpression( & Json parseInfo, $select) {
-        parseInfo.baseExpression = parseInfo.baseExpression.strip;
+        parseInfo["base_expr"] = parseInfo.baseExpression.strip;
 
         if (parseInfo.baseExpression.isEmpty) {
             return false;

@@ -11,28 +11,28 @@ import lang.sql;
 class DropProcessor : AbstractProcessor {
 
     auto process($tokenList) {
-        $exists = false;
+        bool exists = false;
         string baseExpression = "";
         auto objectType = "";
-        $subTree = [];
+        Json subTree;
         $option = false;
 
-        foreach ($tokenList as $token) {
-            baseExpression ~= $token;
-            strippedToken = $token.strip;
+        foreach (myToken; $tokenList) {
+            baseExpression ~= myToken;
+            string strippedToken = myToken.strip;
 
             if (strippedToken.isEmpty) {
                 continue;
             }
 
-            upperToken = strippedToken.toUpper;
+            string upperToken = strippedToken.toUpper;
             switch (upperToken) {
             case "VIEW":
             case "SCHEMA":
             case "DATABASE":
             case "TABLE":
                 if (objectType.isEmpty) {
-                    objectType = constant("SqlParser\utils\expressionType(" . upperToken);
+                    objectType = constant("SqlParser\utils\expressionType(" ~ upperToken);
                 }
                 baseExpression = "";
                 break;
@@ -44,7 +44,7 @@ class DropProcessor : AbstractProcessor {
 	            break;
             case "IF":
             case "EXISTS":
-                $exists = true;
+                exists = true;
                 baseExpression = "";
                 break;
 
@@ -57,9 +57,8 @@ class DropProcessor : AbstractProcessor {
             case "CASCADE":
                 $option = upperToken;
                 if (!empty($objectList)) {
-                    $subTree[] = createExpression("EXPRESSION"),
-                                       "base_expr" : substr(baseExpression, 0, -$token.length).strip,
-                                       "sub_tree" : $objectList);
+                    subTree = createExpression("EXPRESSION", substr(baseExpression, 0, -myToken.length).strip);
+                    subTree["sub_tree"] = $objectList;
                     $objectList = [];
                 }
                 baseExpression = "";
@@ -79,7 +78,7 @@ class DropProcessor : AbstractProcessor {
                     $object["no_quotes"] = false;
                     $object["alias"] = false;
                 }
-                $object.baseExpression = strippedToken;
+                $object["base_expr"] = strippedToken;
                 $object["no_quotes"] = this.revokeQuotation(strippedToken);
                 $object["delim"] = false;
 
@@ -95,6 +94,6 @@ class DropProcessor : AbstractProcessor {
                                "sub_tree" : $objectList];
         }
 
-        return ["expr_type" : objectType, "option" : $option, "if-exists" : $exists, "sub_tree" : $subTree);
+        return ["expr_type" : objectType, "option" : $option, "if-exists" : exists, "sub_tree" : $subTree);
     }
 }

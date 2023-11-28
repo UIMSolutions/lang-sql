@@ -150,7 +150,7 @@ class ExpressionToken {
     auto toArray() {
         STRINGAA result;
         result["expr_type"] = this.tokenType;
-        result.baseExpression = this.token;
+        result["base_expr"] = this.token;
         if (!noQuotes.isEmpty) {
             result["no_quotes"] = this.noQuotes;
         }

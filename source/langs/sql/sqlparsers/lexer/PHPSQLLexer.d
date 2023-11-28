@@ -50,9 +50,9 @@ class SQLLexer {
 
     protected auto concatNegativeNumbers($tokens) {
 
-    	$i = 0;
+    	size_t $i = 0;
     	numberOfTokens = count($tokens);
-    	isPossibleSign = true;
+    	bool isPossibleSign = true;
 
     	while ($i < numberOfTokens) {
 

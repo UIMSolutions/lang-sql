@@ -11,7 +11,7 @@ class LimitProcessor : AbstractProcessor {
         string offset = "";
 
         $comma = -1;
-        isExchange = false;
+        bool isExchange = false;
         
         $comments = [];
         
@@ -35,19 +35,19 @@ class LimitProcessor : AbstractProcessor {
             }
         }
 
-        for ($i = 0; $i < $comma; ++$i) {
+        for (i = 0; i < $comma; ++i) {
             if (isExchange) {
-                countRows ~= $tokens[$i];
+                countRows ~= $tokens[i];
             } else {
-                offset ~= $tokens[$i];
+                offset ~= $tokens[i];
             }
         }
 
-        for ($i = $comma + 1; $i < $tokens.length; ++$i) {
+        for (i = $comma + 1; i < $tokens.length; ++i) {
             if (isExchange) {
-                offset ~= $tokens[$i];
+                offset ~= $tokens[i];
             } else {
-                countRows ~= $tokens[$i];
+                countRows ~= $tokens[i];
             }
         }
 

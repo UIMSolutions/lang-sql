@@ -213,7 +213,7 @@ class TableProcessor : AbstractProcessor {
                     $result["select-option"]["duplicates"] = false;
                 }
                 $result["select-option"]["as"] = true;
-                $result["select-option"].baseExpression = baseExpression.strip;
+                $result["select-option"]["base_expr"] = baseExpression.strip;
                 $result["select-option"]["sub_tree"] = myExpression;
                 continue 2;
 
@@ -263,7 +263,7 @@ class TableProcessor : AbstractProcessor {
                     continue 3;
 
                 case "TABLE_NAME":
-                    $result.baseExpression = $result["name"] = strippedToken;
+                    $result["base_expr"] = $result["name"] = strippedToken;
                     $result["no_quotes"] = this.revokeQuotation(strippedToken);
                     this.clear(myExpression, baseExpression, $prevCategory);
                     break;

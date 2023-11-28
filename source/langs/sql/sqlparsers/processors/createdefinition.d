@@ -306,7 +306,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case "CONSTRAINT":
                 // constraint name
                     $last = array_pop(myExpression);
-                    $last.baseExpression = baseExpression;
+                    $last["base_expr"] = baseExpression;
                     $last["sub_tree"] = createExpression("CONSTANT"), "base_expr": strippedToken];
                     myExpression[] = $last;
                     continue 3;
