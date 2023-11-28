@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.processors.union;
 import lang.sql;
 
 @safe:
-/**
- * This file : the processor for the UNION statements.
- * This class processes the UNION statements.
- */
+// This class processes the UNION statements.
 class UnionProcessor : AbstractProcessor {
 
     protected auto processDefault(myToken) {

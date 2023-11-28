@@ -5,7 +5,7 @@ module langs.sql.sqlparsers.builders.unionstatement;
  * This class : the builder for the whole Union statement. You can overwrite
  * all functions to achieve another handling.
  *
- * @author  George Schneeloch <george_schneeloch@hms.harvard.edu>
+
  
  * */
 class UnionStatementBuilder : ISqlBuilder {

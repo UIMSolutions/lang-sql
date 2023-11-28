@@ -7,6 +7,37 @@ import lang.sql;
 // Builds the WHERE part.
 class WhereBuilder : ISqlBuilder {
 
+  string build(Json parsedSql) {
+    auto mySql = "WHERE ";
+    parsedSql.byKeyValue
+      .map!(kv => buildKeyValue(kv.key, kv.value))
+      .join;
+
+    return substr(mySql, 0, -1);
+  }
+
+  protected string buildKeyValue(string aKey, Json aValue) {
+    string result;
+
+    result ~= this.buildOperator(aValue);
+    result ~= this.buildConstant(aValue);
+    result ~= this.buildColRef(aValue);
+    result ~= this.buildSubQuery(aValue);
+    result ~= this.buildInList(aValue);
+    result ~= this.buildFunction(aValue);
+    result ~= this.buildWhereExpression(aValue);
+    result ~= this.buildWhereBracketExpression(aValue);
+    result ~= this.buildUserVariable(aValue);
+    result ~= this.buildReserved(aValue);
+
+    if (result.isEmpty) {
+      throw new UnableToCreateSQLException("WHERE", aKey, aValue, "expr_type");
+    }
+
+    result ~= " ";
+    return result;
+  }
+
   protected string buildColRef(Json parsedSql) {
     auto myBuilder = new ColumnReferenceBuilder();
     return myBuilder.build(parsedSql);
@@ -56,34 +87,4 @@ class WhereBuilder : ISqlBuilder {
     auto myBuilder = new ReservedBuilder();
     return myBuilder.build(parsedSql);
   }
-
-  string build(Json parsedSql) {
-    auto mySql = "WHERE ";
-    parsedSql.byKeyValue
-      .map!(kv => buildKeyValue(kv.key, kv.value))
-      .join;
-
-    return substr(mySql, 0, -1);
-  }
-
-  protected string buildKeyValue(string aKey, Json aValue) {
-    string result;
-
-    result ~= this.buildOperator(aValue);
-    result ~= this.buildConstant(aValue);
-    result ~= this.buildColRef(aValue);
-    result ~= this.buildSubQuery(aValue);
-    result ~= this.buildInList(aValue);
-    result ~= this.buildFunction(aValue);
-    result ~= this.buildWhereExpression(aValue);
-    result ~= this.buildWhereBracketExpression(aValue);
-    result ~= this.buildUserVariable(aValue);
-    result ~= this.buildReserved(aValue);
-
-    if (result.isEmpty) {
-      throw new UnableToCreateSQLException("WHERE", aKey, aValue, "expr_type");
-    }
-
-    result ~= " ";
-    return result;
-  }
+}

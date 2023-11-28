@@ -22,3 +22,10 @@ string baseExpression(Json parsedSql) {
 
   return parsedSql.baseExpression;
 }
+
+Json createExpression(string type, string base) {
+  Json result = Json.emptyObject;
+  result["expr_type"] = expressionType(type);
+  result["base_expr"] = base;
+  return result;
+}

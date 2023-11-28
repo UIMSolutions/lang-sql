@@ -11,7 +11,7 @@ class ValuesProcessor : AbstractProcessor {
 
         string currentCategory = "";
         $parsed = [];
-        auto baseExpression = "";
+        string baseExpression = "";
 
         foreach (myKey, myToken; $tokens["VALUES"]) {
 	        if (this.isCommentToken(myToken)) {
@@ -26,7 +26,7 @@ class ValuesProcessor : AbstractProcessor {
                 continue;
             }
 
-            auto upperToken = strippedToken.toUpper;
+            string upperToken = strippedToken.toUpper;
             switch (upperToken) {
 
             case "ON":

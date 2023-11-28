@@ -11,7 +11,7 @@ class WhereExpressionBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("EXPRESSION")) {
       return "";
     }
-    
+
     string mySql = parsedSql["sub_tree"].byKeyValue
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
@@ -22,6 +22,7 @@ class WhereExpressionBuilder : ISqlBuilder {
 
   protected string buildKeyValue(string aKey, Json aValue) {
     string result;
+
     result ~= this.buildColRef(aValue);
     result ~= this.buildConstant(aValue);
     result ~= this.buildOperator(aValue);
