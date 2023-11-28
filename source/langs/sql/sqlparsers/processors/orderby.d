@@ -7,9 +7,9 @@ import lang.sql;
 // This class processes the ORDER-BY statements.
 class OrderByProcessor : AbstractProcessor {
 
-    protected auto processSelectExpression($unparsed) {
+    protected auto processSelectExpression( myunparsed) {
         auto myProcessor = new SelectExpressionProcessor(this.options);
-        return myProcessor.process($unparsed);
+        return myProcessor.process( myunparsed);
     }
 
     protected auto initParseInfo() {
@@ -18,7 +18,7 @@ class OrderByProcessor : AbstractProcessor {
         return result;
     }
 
-    protected auto processOrderExpression( & Json parseInfo, $select) {
+    protected auto processOrderExpression( & Json parseInfo,  myselect) {
         parseInfo["base_expr"] = parseInfo.baseExpression.strip;
 
         if (parseInfo.baseExpression.isEmpty) {
@@ -30,7 +30,7 @@ class OrderByProcessor : AbstractProcessor {
         } else {
             parseInfo["no_quotes"] = this.revokeQuotation(parseInfo.baseExpression);
             // search to see if the expression matches an alias
-            foreach (myClause; $select) {
+            foreach (myClause;  myselect) {
                 if (myClause["alias"].isEmpty) {
                     continue;
                 }
@@ -59,18 +59,18 @@ class OrderByProcessor : AbstractProcessor {
         return result;
     }
 
-    auto process($tokens, $select = []) {
+    auto process( mytokens,  myselect = []) {
         result  = [];
         parseInfo = this.initParseInfo();
 
-        if (!$tokens) {
+        if (! mytokens) {
             return false;
         }
 
-        foreach (myToken; $tokens) {
+        foreach (myToken;  mytokens) {
             auto upperToken = myToken.strip.toUpper;
             switch (upperToken) {
-            case "," : result [] = this.processOrderExpression(parseInfo, $select);
+            case "," : result [] = this.processOrderExpression(parseInfo,  myselect);
                 parseInfo = this.initParseInfo();
                 break;
 
@@ -86,6 +86,6 @@ class OrderByProcessor : AbstractProcessor {
                     parseInfo.baseExpression ~= myToken;}
                 }
 
-                result [] = this.processOrderExpression(parseInfo, $select); return result ;
+                result [] = this.processOrderExpression(parseInfo,  myselect); return result ;
             }
         }

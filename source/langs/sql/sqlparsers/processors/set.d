@@ -4,14 +4,12 @@ import lang.sql;
 
 @safe:
 
-/**
- * This class processes the SET statements.
- * */
+// Processes the SET statements.
 class SetProcessor : AbstractProcessor {
 
-    protected auto processExpressionList($tokens) {
+    protected auto processExpressionList(tokens) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process($tokens);
+        return myProcessor.process(tokens);
     }
 
     /**
@@ -19,21 +17,21 @@ class SetProcessor : AbstractProcessor {
      * This auto produces a list of the key/value expressions.
      */
     protected auto processAssignment(baseExpression) {
-        isAssignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+        anAssignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
         return createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
-                     "sub_tree" : (empty(isAssignment) ? false : isAssignment)];
+        "sub_tree" : (empty(anAssignment) ? false : anAssignment)];
     }
 
-    auto process($tokens, bool isUpdate = false) {
-        $result = [];
+    auto process(string[] tokens, bool isUpdate = false) {
+        Json result;
         string baseExpression = "";
-        bool isAssignment = false;
+        bool anAssignment = false;
         bool isVarType = false;
 
-        foreach (myToken; $tokens) {
+        foreach (myToken; tokens) {
             auto strippedToken = myToken.strip;
             auto upperToken = strippedToken.toUpper;
 
@@ -42,7 +40,7 @@ class SetProcessor : AbstractProcessor {
             case "SESSION":
             case "GLOBAL":
                 if (!isUpdate) {
-                    $result[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+                    result = createExpression("RESERVED", strippedToken);
                     isVarType = this.getVariableType("@@" ~ upperToken ~ ".");
                     baseExpression = "";
                     continue 2;
@@ -50,11 +48,14 @@ class SetProcessor : AbstractProcessor {
                 break;
 
             case ",":
-                isAssignment = this.processAssignment(baseExpression);
+                auto anAssignment = this.processAssignment(baseExpression);
                 if (!isUpdate && isVarType != false) {
-                    isAssignment["sub_tree"][0]["expr_type"] = isVarType;
+                    Json assignItem = Json.emptyObject;
+                    assignItem["expr_type"] = isVarType;
+                    anAssignment["sub_tree"] = Json.emptyArray;
+                    anAssignment["sub_tree"] ~= assignItem;
                 }
-                $result[] = isAssignment;
+                result = anAssignment;
                 baseExpression = "";
                 isVarType = false;
                 continue 2;
@@ -65,14 +66,14 @@ class SetProcessor : AbstractProcessor {
         }
 
         if (baseExpression.strip != "") {
-            isAssignment = this.processAssignment(baseExpression);
+            anAssignment = this.processAssignment(baseExpression);
             if (!isUpdate && isVarType != false) {
-                isAssignment["sub_tree"][0]["expr_type"] = isVarType;
+                anAssignment["sub_tree"][0]["expr_type"] = isVarType;
             }
-            $result[] = isAssignment;
+             myresult[] = anAssignment;
         }
 
-        return $result;
+        return  myresult;
     }
 
 }

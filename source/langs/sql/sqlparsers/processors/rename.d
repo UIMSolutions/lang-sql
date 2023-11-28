@@ -4,17 +4,15 @@ import lang.sql;
 
 @safe:
 
-/**
- * This class processes the RENAME statements.
- */
+// Processes the RENAME statements.
 class RenameProcessor : AbstractProcessor {
 
-    auto process($tokenList) {
+    auto process( mytokenList) {
         string baseExpression = "";
-        $resultList = [];
-        $tablePair = [];
+         myresultList = [];
+         mytablePair = [];
 
-        foreach (myKey, myValue; $tokenList) {
+        foreach (myKey, myValue;  mytokenList) {
             auto myToken = new ExpressionToken(myKey, myValue);
 
             if (myToken.isWhitespaceToken()) {
@@ -24,25 +22,27 @@ class RenameProcessor : AbstractProcessor {
             switch (myToken.getUpper()) {
             case "TO":
             // separate source table from destination
-                $tablePair["source"] = createExpression("TABLE"), "table" : baseExpression.strip,
-                                             "no_quotes" : this.revokeQuotation(baseExpression),
-                                             "base_expr" : baseExpression];
+                 mytablePair["source"] = createExpression("TABLE", baseExpression);
+                 mytablePair["table"] = baseExpression.strip;
+                 mytablePair["no_quotes"] = this.revokeQuotation(baseExpression);
+                                      
                 baseExpression = "";
                 break;
 
             case ",":
             // split rename operations
-                $tablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
-                                                  "no_quotes" : this.revokeQuotation(baseExpression),
-                                                  "base_expr" : baseExpression];
-                $resultList[] = $tablePair;
-                $tablePair = [];
+                 mytablePair["destination"] = createExpression("TABLE", baseExpression);
+                 mytablePair["table"] = baseExpression.strip,
+                 mytablePair["no_quotes"] = this.revokeQuotation(baseExpression),
+                    
+                 myresultList[] =  mytablePair;
+                 mytablePair = [];
                 baseExpression = "";
                 break;
 
             case "TABLE":
-                $objectType .isExpressionType(TABLE;
-                $resultList[] = ["expr_type":expressionType("RESERVED"), "base_expr":myToken.getTrim()];   
+                 myobjectType .isExpressionType(TABLE;
+                 myresultList[] = ["expr_type":expressionType("RESERVED", myToken.strip)];   
                 continue 2; 
                 
             default:
@@ -52,13 +52,13 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if (baseExpression != "") {
-            $tablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
+             mytablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
                                               "no_quotes" : this.revokeQuotation(baseExpression),
                                               "base_expr" : baseExpression];
-            $resultList[] = $tablePair;
+             myresultList[] =  mytablePair;
         }
 
-        return ["expr_type" : $objectType, "sub_tree":$resultList];
+        return ["expr_type" :  myobjectType, "sub_tree": myresultList];
     }
 
 }

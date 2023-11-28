@@ -6,17 +6,17 @@ import lang.sql;
 // This class processes the SELECT statements.
 class SelectProcessor : SelectExpressionProcessor {
 
-    auto process($tokens) {
+    auto process( mytokens) {
         string expression = "";
-        $expressionList = [];
-        foreach (myToken; $tokens) {
+         myexpressionList = [];
+        foreach (myToken;  mytokens) {
             if (this.isCommaToken(myToken)) {
                 expression = super.process(expression.strip);
                 expression["delim"] = ",";
-                $expressionList[] = expression;
+                 myexpressionList[] = expression;
                 expression = "";
             } else if (this.isCommentToken(myToken)) {
-                $expressionList[] = super.processComment(myToken];
+                 myexpressionList[] = super.processComment(myToken];
             } else {
                 switch (myToken.toUpper) {
 
@@ -33,7 +33,7 @@ class SelectProcessor : SelectExpressionProcessor {
                 case "SQL_BUFFER_RESULT":
                     expression = super.process(myToken.strip);
                     expression["delim"] = " ";
-                    $expressionList[] = expression;
+                     myexpressionList[] = expression;
                     expression = "";
                     break;
 
@@ -45,8 +45,8 @@ class SelectProcessor : SelectExpressionProcessor {
         if (expression) {
             expression = super.process(expression.strip);
             expression["delim"] = false;
-            $expressionList[] = expression;
+             myexpressionList[] = expression;
         }
-        return $expressionList;
+        return  myexpressionList;
     }
 }

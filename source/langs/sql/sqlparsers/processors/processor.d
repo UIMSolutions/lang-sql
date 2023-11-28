@@ -7,21 +7,21 @@ import lang.sql;
 // This class contains some general functions for a processor.
 abstract class DProcessor {
 
-    protected $options;
+    protected  myoptions;
 
     /**
-     * @param Options $options
+     * @param Options  myoptions
      */
-    this(Options $options = null)
+    this(Options  myoptions = null)
     {
-        this.options = $options;
+        this.options =  myoptions;
     }
 
     /**
      * This auto : the main functionality of a processor class.
      * Always use default valuses for additional parameters within overridden functions.
      */
-    abstract auto process($tokens);
+    abstract auto process( mytokens);
 
     /**
      * this auto splits up a SQL statement into easy to "parse"
@@ -118,20 +118,20 @@ abstract class DProcessor {
      * It removes also the associated closing parenthesis.
      */
     protected auto removeParenthesisFromStart(myToken) {
-        $parenthesisRemoved = 0;
+         myparenthesisRemoved = 0;
 
         auto strippedToken = myToken.strip;
         if (strippedToken != "" && strippedToken[0] == "(") { // remove only one parenthesis pair now!
-            $parenthesisRemoved++;
+             myparenthesisRemoved++;
             strippedToken[0] = " ";
             strippedToken = strippedToken.strip;
         }
 
-        $parenthesis = $parenthesisRemoved;
+         myparenthesis =  myparenthesisRemoved;
         myPos = 0;
-        $string = 0;
+         mystring = 0;
         // Whether a string was opened or not, and with which character it was open (" or ")
-        $stringOpened = "";
+         mystringOpened = "";
         while (myPos < strippedToken.length) {
 
             if (strippedToken[myPos] == "\\") {
@@ -140,58 +140,58 @@ abstract class DProcessor {
             }
 
             if (strippedToken[myPos] == """) {
-                if ($stringOpened.isEmpty) {
-                    $stringOpened = """;
-                } else if ($stringOpened == """) {
-                    $stringOpened = "";
+                if ( mystringOpened.isEmpty) {
+                     mystringOpened = """;
+                } else if ( mystringOpened == """) {
+                     mystringOpened = "";
                 }
             }
 
             if (strippedToken[myPos] == """) {
-                if ($stringOpened.isEmpty) {
-                    $stringOpened = """;
-                } else if ($stringOpened == """) {
-                    $stringOpened = "";
+                if ( mystringOpened.isEmpty) {
+                     mystringOpened = """;
+                } else if ( mystringOpened == """) {
+                     mystringOpened = "";
                 }
             }
 
-            if (($stringOpened.isEmpty) && (strippedToken[myPos] == "(")) {
-                $parenthesis++;
+            if (( mystringOpened.isEmpty) && (strippedToken[myPos] == "(")) {
+                 myparenthesis++;
             }
 
-            if (($stringOpened.isEmpty) && (strippedToken[myPos] == ")")) {
-                if ($parenthesis == $parenthesisRemoved) {
+            if (( mystringOpened.isEmpty) && (strippedToken[myPos] == ")")) {
+                if ( myparenthesis ==  myparenthesisRemoved) {
                     strippedToken[myPos] = " ";
-                    $parenthesisRemoved--;
+                     myparenthesisRemoved--;
                 }
-                $parenthesis--;
+                 myparenthesis--;
             }
             myPos++;
         }
         return strippedToken.strip;
     }
 
-    protected auto getVariableType($expression) {
-        // $expression must contain only upper-case characters
-        if ($expression[1] != "@") {
+    protected auto getVariableType( myexpression) {
+        //  myexpression must contain only upper-case characters
+        if ( myexpression[1] != "@") {
             return expressionType("USER_VARIABLE");
         }
 
-        $type = substr($expression, 2, strpos($expression, ".", 2));
+         mytype = substr( myexpression, 2, strpos( myexpression, ".", 2));
 
-        switch ($type) {
+        switch ( mytype) {
         case "GLOBAL":
-            $type = expressionType("GLOBAL_VARIABLE");
+             mytype = expressionType("GLOBAL_VARIABLE");
             break;
         case "LOCAL":
-            $type = expressionType("LOCAL_VARIABLE");
+             mytype = expressionType("LOCAL_VARIABLE");
             break;
         case "SESSION":
         default:
-            $type = expressionType("SESSION_VARIABLE");
+             mytype = expressionType("SESSION_VARIABLE");
             break;
         }
-        return $type;
+        return  mytype;
     }
 
     protected auto isCommaToken(myToken) {
@@ -247,28 +247,28 @@ abstract class DProcessor {
         return result.isSet("expr_type") && result["expr_type"].isExpressionType("COMMENT");
     }
 
-    auto processComment($expression) {
+    auto processComment( myexpression) {
         auto results = [];
         results["expr_type"] = expressionType("COMMENT");
-        results["value"] = $expression;
+        results["value"] =  myexpression;
         return results;
     }
 
     /**
      * translates an array of objects into an associative array
      */
-    auto toArray($tokenList) {
+    auto toArray( mytokenList) {
         auto myExpression = [];
 
-        $tokenList.each!(token => myExpresson = cast(ExpressionToken)token ? token.toArray() : token);
+         mytokenList.each!(token => myExpresson = cast(ExpressionToken)token ? token.toArray() : token);
 
         return myExpression;
     }
 
-    protected auto array_insert_after($array, string aKey, $entry) {
-        $idx = array_search(aKey, array_keys($array));
-        $array = array_slice($array, 0, $idx + 1, true) + $entry
-                + array_slice($array, $idx + 1, count($array) - 1, true);
-        return $array;
+    protected auto array_insert_after( myarray, string aKey,  myentry) {
+         myidx = array_search(aKey, array_keys( myarray));
+         myarray = array_slice( myarray, 0,  myidx + 1, true) +  myentry
+                + array_slice( myarray,  myidx + 1, count( myarray) - 1, true);
+        return  myarray;
     }
 }

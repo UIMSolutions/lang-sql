@@ -7,9 +7,9 @@ import lang.sql;
 // Processes the SELECT expressions.
 class SelectExpressionProcessor : AbstractProcessor {
 
-    protected auto processExpressionList($unparsed) {
+    protected auto processExpressionList( myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return $processor.process($unparsed);
+        return  myprocessor.process( myunparsed);
     }
 
     /**
@@ -17,8 +17,8 @@ class SelectExpressionProcessor : AbstractProcessor {
      * We determine what (if any) alias
      * is provided, and we set the type of expression.
      */
-    auto process($expression) {
-        string[] tokens = this.splitSQLIntoTokens($expression);
+    auto process( myexpression) {
+        string[] tokens = this.splitSQLIntoTokens( myexpression);
         size_t numberOfTokens = tokens.length;
         if (numberOfTokens == 0) {
             return null;
@@ -30,34 +30,34 @@ class SelectExpressionProcessor : AbstractProcessor {
          * The tokens after (and including) the AS are removed.
          */
         string baseExpression = "";
-        $stripped = [];
-        $capture = false;
-        $alias = false;
-        $processed = false;
+         mystripped = [];
+         mycapture = false;
+         myalias = false;
+         myprocessed = false;
 
         for (i = 0; i < numberOfTokens; ++i) {
             myToken = tokens[i];
             upperToken = myToken.toUpper;
 
             if (upperToken == "AS") {
-                $alias = ["as": true, "name": "", "base_expr": myToken];
+                 myalias = ["as": true, "name": "", "base_expr": myToken];
                 tokens[i] = "";
-                $capture = true;
+                 mycapture = true;
                 continue;
             }
 
             if (!this.isWhitespaceToken(upperToken)) {
-                $stripped[] = myToken;
+                 mystripped[] = myToken;
             }
 
             // we have an explicit AS, next one can be the alias
             // but also a comment!
-            if ($capture) {
+            if ( mycapture) {
                 if (!this.isWhitespaceToken(upperToken) && !this.isCommentToken(upperToken)) {
-                    $alias["name"] ~= myToken;
-                    array_pop($stripped);
+                     myalias["name"] ~= myToken;
+                    array_pop( mystripped);
                 }
-                $alias.baseExpression ~= myToken;
+                 myalias.baseExpression ~= myToken;
                 tokens[i] = "";
                 continue;
             }
@@ -65,65 +65,65 @@ class SelectExpressionProcessor : AbstractProcessor {
             baseExpression ~= myToken;
         }
 
-        if ($alias) {
+        if ( myalias) {
             // remove quotation from the alias
-            $alias["no_quotes"] = this.revokeQuotation($alias["name"]);
-            $alias["name"] = $alias["name"].strip;
-            $alias["base_expr"] = $alias.baseExpression.strip;
+             myalias["no_quotes"] = this.revokeQuotation( myalias["name"]);
+             myalias["name"] =  myalias["name"].strip;
+             myalias["base_expr"] =  myalias.baseExpression.strip;
         }
 
-        $stripped = this.processExpressionList($stripped);
+         mystripped = this.processExpressionList( mystripped);
 
         // TODO: the last part can also be a comment, don"t use array_pop
 
         // we remove the last token, if it is a colref,
         // it can be an alias without an AS
-        $last = array_pop($stripped);
-        if (!$alias && this.isColumnReference($last)) {
+         mylast = array_pop( mystripped);
+        if (! myalias && this.isColumnReference( mylast)) {
 
             // TODO: it can be a comment, don"t use array_pop
 
             // check the token before the colref
-            $prev = array_pop($stripped);
+             myprev = array_pop( mystripped);
 
-            if (this.isReserved($prev) || this.isConstant($prev) || this.isAggregateFunction($prev)
-                || this.isFunction($prev) || this.isExpression($prev) || this.isSubQuery($prev)
-                || this.isColumnReference($prev) || this.isBracketExpression($prev) || this.isCustomFunction(
-                    $prev)) {
+            if (this.isReserved( myprev) || this.isConstant( myprev) || this.isAggregateFunction( myprev)
+                || this.isFunction( myprev) || this.isExpression( myprev) || this.isSubQuery( myprev)
+                || this.isColumnReference( myprev) || this.isBracketExpression( myprev) || this.isCustomFunction(
+                     myprev)) {
 
-                $alias = ["as": false, "name": $last.baseExpression.strip),
-                    "no_quotes": this.revokeQuotation($last.baseExpression),
-                    "base_expr": $last.baseExpression.strip];
+                 myalias = ["as": false, "name":  mylast.baseExpression.strip),
+                    "no_quotes": this.revokeQuotation( mylast.baseExpression),
+                    "base_expr":  mylast.baseExpression.strip];
                 // remove the last token
                 array_pop(tokens);
             }
         }
 
-        baseExpression = $expression;
+        baseExpression =  myexpression;
 
-        // TODO: this is always done with $stripped, how we do it twice?
-        $processed = this.processExpressionList(tokens);
+        // TODO: this is always done with  mystripped, how we do it twice?
+         myprocessed = this.processExpressionList(tokens);
 
         // if there is only one part, we copy the expr_type
         // in all other cases we use "EXPRESSION" as global type
-        $type.isExpressionType("EXPRESSION");
-        if (count($processed) == 1) {
-            if (!this.isSubQuery($processed[0])) {
-                $type = $processed[0]["expr_type"];
-                baseExpression = $processed[0].baseExpression;
-                $no_quotes = $processed[0].isSet("no_quotes") ? $processed[0]["no_quotes"] : null;
-                $processed = $processed[0]["sub_tree"]; // it can be FALSE
+         mytype.isExpressionType("EXPRESSION");
+        if (count( myprocessed) == 1) {
+            if (!this.isSubQuery( myprocessed[0])) {
+                 mytype =  myprocessed[0]["expr_type"];
+                baseExpression =  myprocessed[0].baseExpression;
+                 myno_quotes =  myprocessed[0].isSet("no_quotes") ?  myprocessed[0]["no_quotes"] : null;
+                 myprocessed =  myprocessed[0]["sub_tree"]; // it can be FALSE
             }
         }
 
         auto result = [];
-        result["expr_type"] = $type;
-        result["alias"] = $alias;
+        result["expr_type"] =  mytype;
+        result["alias"] =  myalias;
         result["base_expr"] = baseExpression.strip;
-        if (!$no_quotes.isEmpty) {
-            result["no_quotes"] = $no_quotes;
+        if (! myno_quotes.isEmpty) {
+            result["no_quotes"] =  myno_quotes;
         }
-        result["sub_tree"] = ($processed.isEmpty ? false : $processed);
+        result["sub_tree"] = ( myprocessed.isEmpty ? false :  myprocessed);
         return result;
     }
 

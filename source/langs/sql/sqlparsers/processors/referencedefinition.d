@@ -15,12 +15,12 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         return myExpression;
     }
 
-    auto process($tokens) {
+    auto process( mytokens) {
 
         myExpression = createExpression("REFERENCE"), "base_expr" : false, "sub_tree" : []];
         baseExpression = "";
 
-        foreach (myKey : myToken; $tokens) {
+        foreach (myKey : myToken;  mytokens) {
 
             auto strippedToken = myToken.strip;
             baseExpression ~= myToken;
@@ -35,7 +35,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
 
             case ",":
             // we stop on a single comma
-            //  or at the end of the array $tokens
+            //  or at the end of the array  mytokens
                 myExpression = this.buildReferenceDef(myExpression, substr(baseExpression, 0, -myToken.length).strip, myKey - 1);
                 break 2;
 
@@ -123,11 +123,11 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         // index_col_name list
                         auto myProcessor = new IndexColumnListProcessor(this.options);
-                        $cols = $processor.process(this.removeParenthesisFromStart(strippedToken));
+                         mycols =  myprocessor.process(this.removeParenthesisFromStart(strippedToken));
                         myExpression["sub_tree"][] = [
                             "expr_type" : expressionType("COLUMN_LIST"), 
                             "base_expr" : strippedToken,
-                            "sub_tree" : $cols];
+                            "sub_tree" :  mycols];
                         currentCategory = "REF_COL_LIST";
                         continue 3;
                     }
