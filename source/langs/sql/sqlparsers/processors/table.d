@@ -257,7 +257,7 @@ class TableProcessor : AbstractProcessor {
                 case "INDEX_DIRECTORY":
                 // we have the directory name
                     myExpression[] = this.getConstantType(strippedToken);
-                    $result["options"][] = ["expr_type" : expressionType("DIRECTORY"), "kind" : "INDEX",
+                    $result["options"][] = createExpression("DIRECTORY"), "kind" : "INDEX",
                                                  "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
                     this.clear(myExpression, baseExpression, $prevCategory);
                     continue 3;

@@ -58,7 +58,7 @@ class ValuesProcessor : AbstractProcessor {
 
                     baseExpression = substr(baseExpression, 0, -strlen(myToken)).strip;
                     $res = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                    $parsed[] = ["expr_type" : expressionType("EXPRESSION"), "base_expr" : baseExpression,
+                    $parsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression,
                                       "sub_tree" : (empty($res) ? false : $res), "delim": strippedToken];
                     baseExpression = "";
                     continue 2;

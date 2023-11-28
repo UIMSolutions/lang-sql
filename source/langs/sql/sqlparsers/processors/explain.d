@@ -51,7 +51,7 @@ class ExplainProcessor : AbstractProcessor {
 
                 case "=":
                     if (currentCategory == "FORMAT") {
-                        myExpression[] = ["expr_type" : expressionType("OPERATOR"), "base_expr": strippedToken];
+                        myExpression[] = createExpression("OPERATOR"), "base_expr": strippedToken];
                     }
                     // else?
                     break;

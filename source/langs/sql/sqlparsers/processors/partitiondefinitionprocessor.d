@@ -34,7 +34,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
     }
 
     protected auto getBracketExpressionType($token) {
-        return ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $token, "sub_tree" : false];
+        return createExpression("BRACKET_EXPRESSION"), "base_expr" : $token, "sub_tree" : false];
     }
 
     auto process($tokens) {
@@ -156,7 +156,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
             case "STORAGE":
                 if (myPreviousCategory == "PARTITION") {
                     // followed by ENGINE
-                    myExpression[] = ["expr_type" : expressionType(ENGINE, "base_expr" : false, "sub_tree" : false,
+                    myExpression[] = ["expr_type" : expressionType("ENGINE"), "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -$token.length));
 
                     $parsed["sub_tree"] = myExpression;

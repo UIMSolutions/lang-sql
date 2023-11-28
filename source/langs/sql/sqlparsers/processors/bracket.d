@@ -24,7 +24,7 @@ class BracketProcessor : AbstractProcessor {
 
         if ($subtree.isSet("SELECT")) {
             $subtree = [
-                    ["expr_type" : expressionType("QUERY"), "base_expr" : myToken, "sub_tree" : $subtree]];
+                    createExpression("QUERY"), "base_expr" : myToken, "sub_tree" : $subtree]];
         }
 
         return [

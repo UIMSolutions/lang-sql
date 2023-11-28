@@ -40,7 +40,7 @@ class PartitionOptionsProcessor : AbstractProcessor {
     }
 
     protected auto getBracketExpressionType($token) {
-        return ["expr_type" : expressionType("BRACKET_EXPRESSION"), "base_expr" : $token, "sub_tree" : false];
+        return createExpression("BRACKET_EXPRESSION"), "base_expr" : $token, "sub_tree" : false];
     }
 
     auto process($tokens) {

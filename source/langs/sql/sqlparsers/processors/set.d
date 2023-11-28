@@ -42,7 +42,7 @@ class SetProcessor : AbstractProcessor {
             case "SESSION":
             case "GLOBAL":
                 if (!isUpdate) {
-                    $result[] = ["expr_type" : expressionType("RESERVED"), "base_expr" : strippedToken);
+                    $result[] = createExpression("RESERVED"), "base_expr" : strippedToken);
                     isVarType = this.getVariableType("@@" ~ upperToken ~ ".");
                     baseExpression = "";
                     continue 2;
