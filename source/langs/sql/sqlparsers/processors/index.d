@@ -7,24 +7,24 @@ import lang.sql;
 // This class processes the INDEX statements.
 class IndexProcessor : AbstractProcessor {
 
-  auto process($tokens) {
+  auto process( mytokens) {
 
     string myCurrentCategory = "INDEX_NAME";
     auto result = ["base_expr": false, "name": false, "no_quotes": false, "index-type": false, "on": false, "options": []];
     auto myExpression = [];
     baseExpression = "";
-    $skip = 0;
+     myskip = 0;
 
-    foreach ($tokenKey : myToken; $tokens) {
+    foreach ( mytokenKey : myToken;  mytokens) {
       auto strippedToken = myToken.strip;
       baseExpression ~= myToken;
 
-      if ($skip > 0) {
-        $skip--;
+      if ( myskip > 0) {
+         myskip--;
         continue;
       }
 
-      if ($skip < 0) {
+      if ( myskip < 0) {
         break;
       }
 
@@ -35,12 +35,12 @@ class IndexProcessor : AbstractProcessor {
       upperToken = strippedToken.toUpper;
       switch (upperToken) {
 
-      case "USING" : if ($prevCategory == "CREATE_DEF") {
+      case "USING" : if ( myprevCategory == "CREATE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = "TYPE_OPTION";
           continue 2;
         }
-        if ($prevCategory == "TYPE_DEF") {
+        if ( myprevCategory == "TYPE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = "INDEX_TYPE";
           continue 2;
@@ -48,7 +48,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "KEY_BLOCK_SIZE" : if ($prevCategory == "CREATE_DEF") {
+      case "KEY_BLOCK_SIZE" : if ( myprevCategory == "CREATE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = "INDEX_OPTION";
           continue 2;
@@ -56,7 +56,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "WITH" : if ($prevCategory == "CREATE_DEF") {
+      case "WITH" : if ( myprevCategory == "CREATE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = "INDEX_PARSER";
           continue 2;
@@ -71,7 +71,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "COMMENT" : if ($prevCategory == "CREATE_DEF") {
+      case "COMMENT" : if ( myprevCategory == "CREATE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = "INDEX_COMMENT";
           continue 2;
@@ -79,7 +79,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "ALGORITHM" : case "LOCK" : if ($prevCategory == "CREATE_DEF") {
+      case "ALGORITHM" : case "LOCK" : if ( myprevCategory == "CREATE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = upperToken."_OPTION";
           continue 2;
@@ -95,7 +95,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "ON" : if ($prevCategory == "CREATE_DEF" || $prevCategory == "TYPE_DEF") {
+      case "ON" : if ( myprevCategory == "CREATE_DEF" ||  myprevCategory == "TYPE_DEF") {
           myExpression[] = this.getReservedType(strippedToken);
           myCurrentCategory = "TABLE_DEF";
           continue 2;
@@ -106,10 +106,10 @@ class IndexProcessor : AbstractProcessor {
       default : switch (myCurrentCategory) {
 
         case "COLUMN_DEF" : if (upperToken[0] == "(" && substr(upperToken,  - 1) == ")") {
-            $cols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
-            $result["on"].baseExpression ~= baseExpression;
-            $result["on"]["sub_tree"] = ["expr_type": expressionType("COLUMN_LIST"),
-              "base_expr": strippedToken, "sub_tree": $cols];
+             mycols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
+             myresult["on"].baseExpression ~= baseExpression;
+             myresult["on"]["sub_tree"] = ["expr_type": expressionType("COLUMN_LIST"),
+              "base_expr": strippedToken, "sub_tree":  mycols];
           }
 
           myExpression = [];
@@ -120,7 +120,7 @@ class IndexProcessor : AbstractProcessor {
         case "TABLE_DEF" :  // the table name
           myExpression[] = this.getConstantType(strippedToken);
           // TODO: the base_expr should contain the column-def too
-          $result["on"] = ["expr_type": expressionType("TABLE"), "base_expr": baseExpression,
+           myresult["on"] = ["expr_type": expressionType("TABLE"), "base_expr": baseExpression,
             "name": strippedToken, "no_quotes": this.revokeQuotation(strippedToken),
             "sub_tree": false];
           myExpression = [];
@@ -128,8 +128,8 @@ class IndexProcessor : AbstractProcessor {
           myCurrentCategory = "COLUMN_DEF";
           continue 3;
 
-        case "INDEX_NAME" : $result["base_expr"] = $result["name"] = strippedToken;
-          $result["no_quotes"] = this.revokeQuotation(strippedToken);
+        case "INDEX_NAME" :  myresult["base_expr"] =  myresult["name"] = strippedToken;
+           myresult["no_quotes"] = this.revokeQuotation(strippedToken);
 
           myExpression = [];
           baseExpression = "";
@@ -138,7 +138,7 @@ class IndexProcessor : AbstractProcessor {
 
         case "INDEX_PARSER" :  // the parser name
           myExpression[] = this.getConstantType(strippedToken);
-          $result["options"][] = ["expr_type": expressionType("INDEX_PARSER"),
+           myresult["options"][] = ["expr_type": expressionType("INDEX_PARSER"),
             "base_expr": baseExpression.strip, "sub_tree": myExpression];
           myExpression = [];
           baseExpression = "";
@@ -148,7 +148,7 @@ class IndexProcessor : AbstractProcessor {
 
         case "INDEX_COMMENT" :  // the index comment
           myExpression[] = this.getConstantType(strippedToken);
-          $result["options"][] = ["expr_type": expressionType("COMMENT"),
+           myresult["options"][] = ["expr_type": expressionType("COMMENT"),
             "base_expr": baseExpression.strip, "sub_tree": myExpression];
           myExpression = [];
           baseExpression = "";
@@ -158,7 +158,7 @@ class IndexProcessor : AbstractProcessor {
 
         case "INDEX_OPTION" :  // the key_block_size
           myExpression[] = this.getConstantType(strippedToken);
-          $result["options"][] = ["expr_type": expressionType("INDEX_SIZE"),
+           myresult["options"][] = ["expr_type": expressionType("INDEX_SIZE"),
             "base_expr": baseExpression.strip, "size": upperToken,
             "sub_tree": myExpression];
           myExpression = [];
@@ -171,11 +171,11 @@ class IndexProcessor : AbstractProcessor {
           myExpression[] = this.getReservedType(
             strippedToken);
           if (myCurrentCategory == "INDEX_TYPE") {
-            $result["index-type"] = ["expr_type": expressionType("INDEX_TYPE"),
+             myresult["index-type"] = ["expr_type": expressionType("INDEX_TYPE"),
               "base_expr": baseExpression.strip, "using": upperToken,
               "sub_tree": myExpression];
           } else {
-            $result["options"][] = ["expr_type": expressionType("INDEX_TYPE"),
+             myresult["options"][] = ["expr_type": expressionType("INDEX_TYPE"),
               "base_expr": baseExpression.strip, "using": upperToken,
               "sub_tree": myExpression];
           }
@@ -187,7 +187,7 @@ class IndexProcessor : AbstractProcessor {
 
         case "LOCK_OPTION" :  // DEFAULT|NONE|SHARED|EXCLUSIVE
           myExpression[] = this.getReservedType(strippedToken);
-          $result["options"][] = ["expr_type": expressionType("INDEX_LOCK"),
+           myresult["options"][] = ["expr_type": expressionType("INDEX_LOCK"),
             "base_expr": baseExpression.strip, "lock": upperToken,
             "sub_tree": myExpression];
 
@@ -198,7 +198,7 @@ class IndexProcessor : AbstractProcessor {
 
         case "ALGORITHM_OPTION" :  // DEFAULT|INPLACE|COPY
           myExpression[] = this.getReservedType(strippedToken);
-          $result["options"][] = ["expr_type": expressionType("INDEX_ALGORITHM"),
+           myresult["options"][] = ["expr_type": expressionType("INDEX_ALGORITHM"),
             "base_expr": baseExpression.strip, "algorithm": upperToken,
             "sub_tree": myExpression];
 
@@ -214,14 +214,14 @@ class IndexProcessor : AbstractProcessor {
         break;
       }
 
-      $prevCategory = myCurrentCategory;
+       myprevCategory = myCurrentCategory;
       myCurrentCategory = "";
     }
 
-    if ($result["options"] == []) {
-      $result["options"] = false;
+    if ( myresult["options"] == []) {
+       myresult["options"] = false;
     }
-    return $result;
+    return  myresult;
   }
 
   protected auto getReservedType(myToken) {
@@ -236,8 +236,8 @@ class IndexProcessor : AbstractProcessor {
     return ["expr_type": expressionType("OPERATOR"), "base_expr": myToken];
   }
 
-  protected auto processIndexColumnList($parsed) {
+  protected auto processIndexColumnList( myparsed) {
     auto myProcessor = new IndexColumnListProcessor(this.options);
-    return myProcessor.process($parsed);
+    return myProcessor.process( myparsed);
   }
 }

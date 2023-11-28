@@ -10,19 +10,19 @@ import lang.sql;
  * */
 class FromProcessor : AbstractProcessor {
 
-    protected auto processExpressionList($unparsed) {
+    protected auto processExpressionList( myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process($unparsed);
+        return myProcessor.process( myunparsed);
     }
 
-    protected auto processColumnList($unparsed) {
+    protected auto processColumnList( myunparsed) {
         auto myProcessor = new ColumnListProcessor(this.options);
-        return myProcessor.process($unparsed);
+        return myProcessor.process( myunparsed);
     }
 
-    protected auto processSQLDefault($unparsed) {
+    protected auto processSQLDefault( myunparsed) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return myProcessor.process($unparsed);
+        return myProcessor.process( myunparsed);
     }
 
     protected auto initParseInfo(parseInfo = false) {
@@ -50,22 +50,22 @@ class FromProcessor : AbstractProcessor {
 
         // we have a reg_expr, so we have to parse it
         if (parseInfo["ref_expr"] != false) {
-            $unparsed = this.splitSQLIntoTokens(parseInfo["ref_expr"].strip);
+             myunparsed = this.splitSQLIntoTokens(parseInfo["ref_expr"].strip);
 
             // here we can get a comma separated list
-            foreach (myKey, myValue; $unparsed) {
+            foreach (myKey, myValue;  myunparsed) {
                 if (this.isCommaToken(myValue)) {
-                    $unparsed[$k] = "";
+                     myunparsed[ myk] = "";
                 }
             }
             if (parseInfo["ref_type"] == "USING") {
             	// unparsed has only one entry, the column list
-            	$ref = this.processColumnList(this.removeParenthesisFromStart($unparsed[0]));
-            	$ref = [createExpression("COLUMN_LIST"), "base_expr" : $unparsed[0], "sub_tree" : $ref]];
+            	 myref = this.processColumnList(this.removeParenthesisFromStart( myunparsed[0]));
+            	 myref = [createExpression("COLUMN_LIST"), "base_expr" :  myunparsed[0], "sub_tree" :  myref]];
             } else {
-                $ref = this.processExpressionList($unparsed);
+                 myref = this.processExpressionList( myunparsed);
             }
-            parseInfo["ref_expr"] = (empty($ref) ? false : $ref);
+            parseInfo["ref_expr"] = (empty( myref) ? false :  myref);
         }
 
         // there is an expression, we have to parse it
@@ -76,19 +76,19 @@ class FromProcessor : AbstractProcessor {
                 parseInfo["sub_tree"] = this.processSQLDefault(parseInfo["expression"]);
                 result["expr_type"] .isExpressionType(SUBQUERY;
             } else {
-                $tmp = this.splitSQLIntoTokens(parseInfo["expression"]);
-                $unionProcessor = new UnionProcessor(this.options);
-                $unionQueries = $unionProcessor.process($tmp);
+                 mytmp = this.splitSQLIntoTokens(parseInfo["expression"]);
+                 myunionProcessor = new UnionProcessor(this.options);
+                 myunionQueries =  myunionProcessor.process( mytmp);
 
                 // If there was no UNION or UNION ALL in the query, then the query is
-                // stored at $queries[0].
-                if (!empty($unionQueries) && !UnionProcessor::isUnion($unionQueries)) {
-                    $sub_tree = this.process($unionQueries[0]);
+                // stored at  myqueries[0].
+                if (!empty( myunionQueries) && !UnionProcessor::isUnion( myunionQueries)) {
+                     mysub_tree = this.process( myunionQueries[0]);
                 }
                 else {
-                    $sub_tree = $unionQueries;
+                     mysub_tree =  myunionQueries;
                 }
-                parseInfo["sub_tree"] = $sub_tree;
+                parseInfo["sub_tree"] =  mysub_tree;
                 result["expr_type"] = expressionType("TABLE_EXPRESSION");
             }
         } else {
@@ -107,24 +107,24 @@ class FromProcessor : AbstractProcessor {
         return result;
     }
 
-    auto process($tokens) {
+    auto process( mytokens) {
         auto parseInfo = this.initParseInfo();
         auto myExpression = [];
         string tokenCategory = "";
         string previousToken = "";
 
-        $skip_next = false;
-        $i = 0;
+         myskip_next = false;
+         myi = 0;
 
-        foreach (myToken; $tokens) {
+        foreach (myToken;  mytokens) {
             upperToken = myToken.strip.toUpper;
 
-            if ($skip_next && myToken != "") {
+            if ( myskip_next && myToken != "") {
                 parseInfo["token_count"]++;
-                $skip_next = false;
+                 myskip_next = false;
                 continue;
             } else {
-                if ($skip_next) {
+                if ( myskip_next) {
                     continue;
                 }
             }
@@ -159,7 +159,7 @@ class FromProcessor : AbstractProcessor {
             case "NATURAL":
                 tokenCategory = upperToken;
                 previousToken = myToken;
-                $i++;
+                 myi++;
                 continue 2;
 
             default:
@@ -184,7 +184,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (upperToken.isEmpty) {
-                $i++;
+                 myi++;
                 continue;
             }
 
@@ -192,15 +192,15 @@ class FromProcessor : AbstractProcessor {
             case "AS":
                 parseInfo["alias"] = ["as" : true, "name" : "", "base_expr" : myToken];
                 parseInfo["token_count"]++;
-                $n = 1;
-                $str = "";
-                while ($str.isEmpty && $tokens.isSet($i + $n)) {
-                    parseInfo["alias"].baseExpression ~= ($tokens[$i + $n].isEmpty ? " " : $tokens[$i + $n]);
-                    $str = $tokens[$i + $n].strip;
-                    ++$n;
+                 myn = 1;
+                 mystr = "";
+                while ( mystr.isEmpty &&  mytokens.isSet( myi +  myn)) {
+                    parseInfo["alias"].baseExpression ~= ( mytokens[ myi +  myn].isEmpty ? " " :  mytokens[ myi +  myn]);
+                     mystr =  mytokens[ myi +  myn].strip;
+                    ++ myn;
                 }
-                parseInfo["alias"]["name"] = $str;
-                parseInfo["alias"]["no_quotes"] = this.revokeQuotation($str);
+                parseInfo["alias"]["name"] =  mystr;
+                parseInfo["alias"]["no_quotes"] = this.revokeQuotation( mystr);
                 parseInfo["alias"]["base_expr"] = parseInfo["alias"].baseExpression.strip;
                 break;
 
@@ -218,8 +218,8 @@ class FromProcessor : AbstractProcessor {
                     continue 2;
                 }
                 if (tokenCategory == "IDX_HINT") {
-                    $cur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
+                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
                 break;
@@ -238,13 +238,13 @@ class FromProcessor : AbstractProcessor {
 
             case "FOR":
                 if (tokenCategory == "IDX_HINT") {
-                    $cur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
+                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
                 parseInfo["token_count"]++;
-                $skip_next = true;
+                 myskip_next = true;
                 break;
 
             case "STRAIGHT_JOIN":
@@ -263,8 +263,8 @@ class FromProcessor : AbstractProcessor {
 
             case "JOIN":
                 if (tokenCategory == "IDX_HINT") {
-                    $cur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
+                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -279,8 +279,8 @@ class FromProcessor : AbstractProcessor {
 
             case "GROUP BY":
                 if (tokenCategory == "IDX_HINT") {
-                    $cur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][$cur_hint]["hint_type"] ~= " " ~ upperToken;
+                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -289,8 +289,8 @@ class FromProcessor : AbstractProcessor {
                 // build a subtree under "hints"
                 if (tokenCategory == "IDX_HINT") {
                     tokenCategory = "";
-                    $cur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][$cur_hint]["hint_list"] = myToken;
+                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    parseInfo["hints"][ mycur_hint]["hint_list"] = myToken;
                     break;
                 }
 
@@ -307,7 +307,7 @@ class FromProcessor : AbstractProcessor {
                 parseInfo["token_count"]++;
                 break;
             }
-            $i++;
+             myi++;
         }
 
         myExpression[] = this.processFromExpression(parseInfo);

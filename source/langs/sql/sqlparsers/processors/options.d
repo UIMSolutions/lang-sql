@@ -8,25 +8,25 @@ import lang.sql;
 // This class processes the statement options.
 class OptionsProcessor : AbstractProcessor {
 
-  auto process($tokens) {
-    $resultList = [];
+  auto process( mytokens) {
+     myresultList = [];
 
-    foreach (myToken; $tokens) {
+    foreach (myToken;  mytokens) {
 
-      $tokenList = this.splitSQLIntoTokens(myToken);
-      $result = [];
+       mytokenList = this.splitSQLIntoTokens(myToken);
+       myresult = [];
 
-      foreach (myReserved; $tokenList) {
+      foreach (myReserved;  mytokenList) {
         auto strippedToken = myReserved.strip;
         if (strippedToken.isEmpty) {
           continue;
         }
 
-        $result[] = ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
+         myresult[] = ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
       }
-      $resultList[] = ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree": $result];
+       myresultList[] = ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree":  myresult];
     }
 
-    return $resultList;
+    return  myresultList;
   }
 }

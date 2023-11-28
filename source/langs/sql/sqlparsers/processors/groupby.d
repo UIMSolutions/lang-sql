@@ -6,9 +6,9 @@ import lang.sql;
 // This class processes the GROUP-BY statements.
 class GroupByProcessor : OrderByProcessor {
 
-    auto process(tokens, $select = []) {
+    auto process(tokens,  myselect = []) {
         result = [];
-        $parseInfo = this.initParseInfo();
+         myparseInfo = this.initParseInfo();
 
         if (!tokens) {
             return false;
@@ -18,21 +18,21 @@ class GroupByProcessor : OrderByProcessor {
             auto strippedToken = myToken.strip.toUpper;
             switch (strippedToken) {
             case ",":
-                $parsed = this.processOrderExpression($parseInfo, $select);
-                unset($parsed["direction"]);
+                 myparsed = this.processOrderExpression( myparseInfo,  myselect);
+                unset( myparsed["direction"]);
 
-                result[] = $parsed;
-                $parseInfo = this.initParseInfo();
+                result[] =  myparsed;
+                 myparseInfo = this.initParseInfo();
                 break;
             default:
-                $parseInfo.baseExpression ~= myToken;
+                 myparseInfo.baseExpression ~= myToken;
                 break;
             }
         }
 
-        $parsed = this.processOrderExpression($parseInfo, $select);
-        unset($parsed["direction"]);
-        result[] = $parsed;
+         myparsed = this.processOrderExpression( myparseInfo,  myselect);
+        unset( myparsed["direction"]);
+        result[] =  myparsed;
 
         return result;
     }

@@ -7,10 +7,10 @@ import lang.sql;
 // This class processes the EXPLAIN statements.
 class ExplainProcessor : AbstractProcessor {
 
-  protected auto isStatement(myKeys, $needle = "EXPLAIN") {
-    $pos = array_search($needle, myKeys);
-    if (myKeys.isSet($pos + 1)) {
-      return in_array(myKeys[$pos + 1], ["SELECT", "DELETE", "INSERT", "REPLACE", "UPDATE"], true);
+  protected auto isStatement(myKeys,  myneedle = "EXPLAIN") {
+     mypos = array_search( myneedle, myKeys);
+    if (myKeys.isSet( mypos + 1)) {
+      return in_array(myKeys[ mypos + 1], ["SELECT", "DELETE", "INSERT", "REPLACE", "UPDATE"], true);
     }
 
     return false;

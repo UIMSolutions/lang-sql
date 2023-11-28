@@ -10,14 +10,14 @@ import lang.sql;
  */
 class DropProcessor : AbstractProcessor {
 
-    auto process($tokenList) {
+    auto process( mytokenList) {
         bool exists = false;
         string baseExpression = "";
         auto objectType = "";
         Json subTree;
-        $option = false;
+         myoption = false;
 
-        foreach (myToken; $tokenList) {
+        foreach (myToken;  mytokenList) {
             baseExpression ~= myToken;
             string strippedToken = myToken.strip;
 
@@ -55,45 +55,45 @@ class DropProcessor : AbstractProcessor {
 
             case "RESTRICT":
             case "CASCADE":
-                $option = upperToken;
-                if (!empty($objectList)) {
+                 myoption = upperToken;
+                if (!empty( myobjectList)) {
                     subTree = createExpression("EXPRESSION", substr(baseExpression, 0, -myToken.length).strip);
-                    subTree["sub_tree"] = $objectList;
-                    $objectList = [];
+                    subTree["sub_tree"] =  myobjectList;
+                     myobjectList = [];
                 }
                 baseExpression = "";
                 break;
 
             case ",":
-                $last = array_pop($objectList);
-                $last["delim"] = strippedToken;
-                $objectList[] = $last;
+                 mylast = array_pop( myobjectList);
+                 mylast["delim"] = strippedToken;
+                 myobjectList[] =  mylast;
                 continue 2;
 
             default:
-                $object = [];
-                $object["expr_type"] = objectType;
+                 myobject = [];
+                 myobject["expr_type"] = objectType;
                 if (objectType.isExpressionType("TABLE") || objectType.isExpressionType("TEMPORARY_TABLE")) {
-                    $object["table"] = strippedToken;
-                    $object["no_quotes"] = false;
-                    $object["alias"] = false;
+                     myobject["table"] = strippedToken;
+                     myobject["no_quotes"] = false;
+                     myobject["alias"] = false;
                 }
-                $object["base_expr"] = strippedToken;
-                $object["no_quotes"] = this.revokeQuotation(strippedToken);
-                $object["delim"] = false;
+                 myobject["base_expr"] = strippedToken;
+                 myobject["no_quotes"] = this.revokeQuotation(strippedToken);
+                 myobject["delim"] = false;
 
-                $objectList[] = $object;
+                 myobjectList[] =  myobject;
                 continue 2;
             }
 
-            $subTree[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+             mysubTree[] = createExpression("RESERVED"), "base_expr" : strippedToken);
         }
 
-        if (!empty($objectList)) {
-            $subTree[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
-                               "sub_tree" : $objectList];
+        if (!empty( myobjectList)) {
+             mysubTree[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
+                               "sub_tree" :  myobjectList];
         }
 
-        return ["expr_type" : objectType, "option" : $option, "if-exists" : exists, "sub_tree" : $subTree);
+        return ["expr_type" : objectType, "option" :  myoption, "if-exists" : exists, "sub_tree" :  mysubTree);
     }
 }

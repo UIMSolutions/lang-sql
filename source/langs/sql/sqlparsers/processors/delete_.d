@@ -5,32 +5,32 @@ import lang.sql;
 // Processes the DELETE statement parts and splits multi-table deletes.
 class DeleteProcessor : AbstractProcessor {
 
-    auto process($tokens) {
-        $tables = [];
-        $del = $tokens["DELETE"];
+    auto process( mytokens) {
+         mytables = [];
+         mydel =  mytokens["DELETE"];
 
-        foreach (myExpression; $tokens["DELETE"]) {
+        foreach (myExpression;  mytokens["DELETE"]) {
             if (myExpression.toUpper != "DELETE" && (myExpression, " \t\n\r\0\x0B.*").strip != ""
                 && !this.isCommaToken(myExpression)) {
-                $tables[] = (myExpression, " \t\n\r\0\x0B.*").strip;
+                 mytables[] = (myExpression, " \t\n\r\0\x0B.*").strip;
             }
         }
 
-        if ($tables.isEmpty &&  $tokens.isSet("USING")) {
-            foreach (myTable; $tokens["FROM"] ) {
-                $tables[] = (myTable["table"], " \t\n\r\0\x0B.*").strip;
+        if ( mytables.isEmpty &&   mytokens.isSet("USING")) {
+            foreach (myTable;  mytokens["FROM"] ) {
+                 mytables[] = (myTable["table"], " \t\n\r\0\x0B.*").strip;
             }
-            $tokens["FROM"] = $tokens["USING"];
-            unset($tokens["USING"]);
+             mytokens["FROM"] =  mytokens["USING"];
+            unset( mytokens["USING"]);
         }
 
-        auto $options = [];
-        if ($tokens.isSet("OPTIONS")) {
-            $options = $tokens["OPTIONS"];
-            $tokens.unSet("OPTIONS");
+        auto  myoptions = [];
+        if ( mytokens.isSet("OPTIONS")) {
+             myoptions =  mytokens["OPTIONS"];
+             mytokens.unSet("OPTIONS");
         }
 
-        $tokens["DELETE"] = ["options" : ($options.isEmpty ? false : $options), "tables" : ($tables.isEmpty ? false : $tables)];
-        return $tokens;
+         mytokens["DELETE"] = ["options" : ( myoptions.isEmpty ? false :  myoptions), "tables" : ( mytables.isEmpty ? false :  mytables)];
+        return  mytokens;
     }
 }

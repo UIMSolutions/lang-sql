@@ -6,54 +6,54 @@ module langs.sql.sqlparsers.processors.limit;
   */
 class LimitProcessor : AbstractProcessor {
 
-    auto process($tokens) {
+    auto process( mytokens) {
         string countRows = "";
         string offset = "";
 
-        $comma = -1;
+         mycomma = -1;
         bool isExchange = false;
         
-        $comments = [];
+         mycomments = [];
         
-        foreach (myToken; $tokens) {
+        foreach (myToken;  mytokens) {
             if (this.isCommentToken(myToken)) {
-                 $comments[] = super.processComment(myToken);
+                  mycomments[] = super.processComment(myToken);
                  myToken = "";
             }
         }
         
-        for (myPos = 0; myPos < $tokens.length; ++myPos) {
-            auto trimmedToken = $tokens[myPos].strip.toUpper;
+        for (myPos = 0; myPos <  mytokens.length; ++myPos) {
+            auto trimmedToken =  mytokens[myPos].strip.toUpper;
             if (trimmedToken == ",") {
-                $comma = myPos;
+                 mycomma = myPos;
                 break;
             }
             if (trimmedToken == "OFFSET") {
-                $comma = myPos;
+                 mycomma = myPos;
                 isExchange = true;
                 break;
             }
         }
 
-        for (i = 0; i < $comma; ++i) {
+        for (i = 0; i <  mycomma; ++i) {
             if (isExchange) {
-                countRows ~= $tokens[i];
+                countRows ~=  mytokens[i];
             } else {
-                offset ~= $tokens[i];
+                offset ~=  mytokens[i];
             }
         }
 
-        for (i = $comma + 1; i < $tokens.length; ++i) {
+        for (i =  mycomma + 1; i <  mytokens.length; ++i) {
             if (isExchange) {
-                offset ~= $tokens[i];
+                offset ~=  mytokens[i];
             } else {
-                countRows ~= $tokens[i];
+                countRows ~=  mytokens[i];
             }
         }
 
         auto results = ["offset" : offset.strip, "rowcount" : countRows.strip];
-        if (count($comments)) {
-            results["comments"] = $comments;
+        if (count( mycomments)) {
+            results["comments"] =  mycomments;
         }
         return results;
     }

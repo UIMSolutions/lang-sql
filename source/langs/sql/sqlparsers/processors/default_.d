@@ -7,25 +7,25 @@ import lang.sql;
 // This class processes the incoming sql string.
 class DefaultProcessor : AbstractProcessor {
 
-  protected auto isUnion($tokens) {
-    return UnionProcessor::isUnion($tokens);
+  protected auto isUnion( mytokens) {
+    return UnionProcessor::isUnion( mytokens);
   }
 
-  protected auto processUnion($tokens) {
+  protected auto processUnion( mytokens) {
     // this is the highest level lexical analysis. This is the part of the
     // code which finds UNION and UNION ALL query parts
     auto myProcessor = new UnionProcessor(this.options);
-    return myProcessor.process($tokens);
+    return myProcessor.process( mytokens);
   }
 
-  protected auto processSQL($tokens) {
+  protected auto processSQL( mytokens) {
     auto myProcessor = new SQLProcessor(this.options);
-    return myProcessor.process($tokens);
+    return myProcessor.process( mytokens);
   }
 
-  auto process($sql) {
+  auto process( mysql) {
 
-    auto myInputArray = this.splitSQLIntoTokens($sql);
+    auto myInputArray = this.splitSQLIntoTokens( mysql);
     auto myQueries = this.processUnion(myInputArray);
 
     // If there was no UNION or UNION ALL in the query, then the query is
@@ -37,8 +37,8 @@ class DefaultProcessor : AbstractProcessor {
     return myQueries;
   }
 
-  auto revokeQuotation($sql) {
-    return super.revokeQuotation($sql);
+  auto revokeQuotation( mysql) {
+    return super.revokeQuotation( mysql);
   }
 }
 

@@ -7,28 +7,28 @@ import lang.sql;
 // This class processes the INSERT statements.
 class InsertProcessor : AbstractProcessor {
 
-    protected auto processOptions($tokenList) {
-        if (!$tokenList.isSet("OPTIONS")) {
+    protected auto processOptions( mytokenList) {
+        if (! mytokenList.isSet("OPTIONS")) {
             return [];
         }
         }
-        $result = [];
-        foreach ($tokenList["OPTIONS"] as $token) {
-            $result[] = createExpression("RESERVED", "base_expr" : $token.strip);
+         myresult = [];
+        foreach ( mytokenList["OPTIONS"] as  mytoken) {
+             myresult[] = createExpression("RESERVED", "base_expr" :  mytoken.strip);
         }
-        return $result;
+        return  myresult;
     }
 
-    protected auto processKeyword(myKeyword, $tokenList) {
-        if (!$tokenList.isSet(myKeyword)) {
+    protected auto processKeyword(myKeyword,  mytokenList) {
+        if (! mytokenList.isSet(myKeyword)) {
             return ["", false, []);
         }
 
         string myTable = "";
-        $cols = false;
-        $result = [];
+         mycols = false;
+         myresult = [];
 
-        foreach ($token; $tokenList[myKeyword]) {
+        foreach ( mytoken;  mytokenList[myKeyword]) {
             auto strippedToken = myToken.strip;
 
             if (strippedToken.isEmpty) {
@@ -38,7 +38,7 @@ class InsertProcessor : AbstractProcessor {
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
             case "INTO":
-                $result[] = createExpression("RESERVED", strippedToken];
+                 myresult[] = createExpression("RESERVED", strippedToken];
                 break;
 
             case "INSERT":
@@ -51,76 +51,76 @@ class InsertProcessor : AbstractProcessor {
                     break;
                 }
 
-                if ($cols == false) {
-                    $cols = strippedToken;
+                if ( mycols == false) {
+                     mycols = strippedToken;
                 }
                 break;
             }
         }
-        return [myTable, $cols, $result);
+        return [myTable,  mycols,  myresult);
     }
 
-    protected auto processColumns($cols) {
-        if ($cols == false) {
-            return $cols;
+    protected auto processColumns( mycols) {
+        if ( mycols == false) {
+            return  mycols;
         }
-        if ($cols[0] == "(" && substr($cols, -1) == ")") {
-            $parsed = createExpression("BRACKET_EXPRESSION"), "base_expr" : $cols,
+        if ( mycols[0] == "(" && substr( mycols, -1) == ")") {
+             myparsed = createExpression("BRACKET_EXPRESSION"), "base_expr" :  mycols,
                             "sub_tree" : false];
         }
-        $cols = this.removeParenthesisFromStart($cols);
-        if (stripos($cols, "SELECT") == 0) {
+         mycols = this.removeParenthesisFromStart( mycols);
+        if (stripos( mycols, "SELECT") == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
-            $parsed["sub_tree"] = [
-                    createExpression("QUERY"), "base_expr" : $cols,
-                            "sub_tree" : $processor.process($cols)));
+             myparsed["sub_tree"] = [
+                    createExpression("QUERY"), "base_expr" :  mycols,
+                            "sub_tree" :  myprocessor.process( mycols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
-            $parsed["sub_tree"] = $processor.process($cols);
-            $parsed["expr_type"] .isExpressionType("COLUMN_LIST");
+             myparsed["sub_tree"] =  myprocessor.process( mycols);
+             myparsed["expr_type"] .isExpressionType("COLUMN_LIST");
         }
-        return $parsed;
+        return  myparsed;
     }
 
-    auto process($tokenList, $token_category = "INSERT") {
+    auto process( mytokenList,  mytoken_category = "INSERT") {
         string myTable = "";
-        $cols = false;
-        $comments = [];
+         mycols = false;
+         mycomments = [];
 
-        foreach (myKey : &$token; $tokenList) {
+        foreach (myKey : & mytoken;  mytokenList) {
             if (myKey == "VALUES") {
                 continue;
             }
-            foreach (&$value; $token as ) {
-                if (this.isCommentToken($value)) {
-                     $comments[] = super.processComment($value);
-                     $value = "";
+            foreach (& myvalue;  mytoken as ) {
+                if (this.isCommentToken( myvalue)) {
+                      mycomments[] = super.processComment( myvalue);
+                      myvalue = "";
                 }
             }
         }
 
-        $parsed = this.processOptions($tokenList);
-        unset($tokenList["OPTIONS"]);
+         myparsed = this.processOptions( mytokenList);
+        unset( mytokenList["OPTIONS"]);
 
-        list(myTable, $cols, myKey) = this.processKeyword("INTO", $tokenList);
-        $parsed = array_merge($parsed, myKey);
-        unset($tokenList["INTO"]);
+        list(myTable,  mycols, myKey) = this.processKeyword("INTO",  mytokenList);
+         myparsed = array_merge( myparsed, myKey);
+        unset( mytokenList["INTO"]);
 
-        if (myTable.isEmpty && in_array($token_category, ["INSERT", "REPLACE"))) {
-            list(myTable, $cols, myKey) = this.processKeyword($token_category, $tokenList);
+        if (myTable.isEmpty && in_array( mytoken_category, ["INSERT", "REPLACE"))) {
+            list(myTable,  mycols, myKey) = this.processKeyword( mytoken_category,  mytokenList);
         }
 
-        $parsed[] = createExpression(TABLE, "table" : myTable,
+         myparsed[] = createExpression(TABLE, "table" : myTable,
                           "no_quotes" : this.revokeQuotation(myTable), "alias" : false, "base_expr" : myTable);
 
-        $cols = this.processColumns($cols);
-        if ($cols != false) {
-            $parsed[] = $cols;
+         mycols = this.processColumns( mycols);
+        if ( mycols != false) {
+             myparsed[] =  mycols;
         }
 
-        $parsed = array_merge($parsed, $comments);
+         myparsed = array_merge( myparsed,  mycomments);
 
-        $tokenList[$token_category] = $parsed;
-        return $tokenList;
+         mytokenList[ mytoken_category] =  myparsed;
+        return  mytokenList;
     }
 }

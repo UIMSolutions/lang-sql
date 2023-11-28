@@ -9,17 +9,17 @@ class IndexColumnListProcessor : AbstractProcessor {
         return ["name" : false, "no_quotes" : false, "length" : false, "dir" : false];
     }
 
-    auto process($sql) {
-        $tokens = this.splitSQLIntoTokens($sql);
+    auto process( mysql) {
+         mytokens = this.splitSQLIntoTokens( mysql);
 
         myExpression = this.initExpression();
-        $result = [];
+         myresult = [];
         baseExpression = "";
 
-        foreach ($tokens as $k : $token) {
+        foreach ( mytokens as  myk :  mytoken) {
 
-            auto strippedToken = $token.strip;
-            baseExpression ~= $token;
+            auto strippedToken =  mytoken.strip;
+            baseExpression ~=  mytoken;
 
             if (strippedToken.isEmpty) {
                 continue;
@@ -37,7 +37,7 @@ class IndexColumnListProcessor : AbstractProcessor {
 
             case ",":
             # the next column
-                $result[] = array_merge(createExpression(INDEX_COLUMN, "base_expr" : baseExpression),
+                 myresult[] = array_merge(createExpression(INDEX_COLUMN, "base_expr" : baseExpression),
                         myExpression);
                 myExpression = this.initExpression();
                 baseExpression = "";
@@ -55,7 +55,7 @@ class IndexColumnListProcessor : AbstractProcessor {
                 break;
             }
         }
-        $result[] = array_merge(createExpression(INDEX_COLUMN, "base_expr" : baseExpression), myExpression);
-        return $result;
+         myresult[] = array_merge(createExpression(INDEX_COLUMN, "base_expr" : baseExpression), myExpression);
+        return  myresult;
     }
 }
