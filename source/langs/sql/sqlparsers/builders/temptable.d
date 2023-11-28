@@ -4,13 +4,8 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the temporary table name/join options. 
- * This class : the builder for the temporary table name and join options. 
- */
+// Builds the temporary table name/join options. 
 class TempTableBuilder : ISqlBuilder {
-
-
 
   string build(Json parsedSql, size_t index = 0) {
     if (!parsedSql.isExpressionType("TEMPORARY_TABLE")) {
@@ -28,7 +23,7 @@ class TempTableBuilder : ISqlBuilder {
     return mySql;
   }
 
-    protected string buildAlias(Json parsedSql) {
+  protected string buildAlias(Json parsedSql) {
     auto myBuilder = new AliasBuilder();
     return myBuilder.build(parsedSql);
   }

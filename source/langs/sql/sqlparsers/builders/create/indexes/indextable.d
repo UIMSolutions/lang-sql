@@ -6,20 +6,20 @@ import lang.sql;
 // Builds the table part of a CREATE INDEX statement
 class CreateIndexTableBuilder : ISqlBuilder {
 
-    protected string buildColumnList(Json parsedSql) {
-        auto myBuilder = new ColumnListBuilder();
-        return myBuilder.build(parsedSql);
-    }
+
 
     string build(Json parsedSql) {
         if (parsedSql.isSet("on") || parsedSql["on"] == false) {
             return "";
         }
-        $table = parsedSql["on"];
-        if (!$table.isExpressionType("TABLE")) {
+        auto tableSql = parsedSql["on"];
+        if (!tableSql.isExpressionType("TABLE")) {
             return "";
         }
-        return "ON " ~ $table["name"] ~ " " ~ this.buildColumnList($table["sub_tree"]);
+        return "ON %s %s".format(tableSql["name"], this.buildColumnList(tableSql["sub_tree"]));
     }
-
+    protected string buildColumnList(Json parsedSql) {
+        auto myBuilder = new ColumnListBuilder();
+        return myBuilder.build(parsedSql);
+    }
 }

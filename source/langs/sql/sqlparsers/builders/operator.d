@@ -9,7 +9,7 @@ class OperatorBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     if (!parsedSql.isExpressionType("OPERATOR")) {
-      return null;
+      return "";
     }
     return parsedSql.baseExpression;
   }

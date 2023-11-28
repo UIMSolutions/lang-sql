@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : an abstract processor, which : some helper functions.
- * This class contains some general functions for a processor.
- */
+// This class contains some general functions for a processor.
 abstract class DProcessor {
 
     protected $options;
@@ -30,9 +27,9 @@ abstract class DProcessor {
      * this auto splits up a SQL statement into easy to "parse"
      * tokens for the SQL processor
      */
-    auto splitSQLIntoTokens(sqlString) {
-        PHPSQLLexer myLexer = new PHPSQLLexer();
-        return myLexer.split(sqlString);
+    auto splitSQLIntoTokens(string sql) {
+        SQLLexer myLexer = new SQLLexer();
+        return myLexer.split(sql);
     }
 
     /**
@@ -53,7 +50,7 @@ abstract class DProcessor {
      */
     protected auto revokeQuotation(string sqlString) {
         string mySqlBuffer = sqlString.strip;
-        $result = [];
+        auto results = [];
 
         bool isQuote = false;
         size_t myStart = 0;
@@ -65,9 +62,9 @@ abstract class DProcessor {
             auto myChar = mySqlBuffer[myPos];
             switch (myChar) {
             case "`":
+            case "\'":
             case "\"":
-            case "\"":
-                if (isQuote == false) {
+                if (!isQuote) {
                     // start
                     isQuote = myChar;
                     myStart = myPos + 1;
@@ -83,7 +80,7 @@ abstract class DProcessor {
                 }
                 // end
                 myChar = substr(mySqlBuffer, myStart, myPos - myStart);
-                $result[] = str_replace(isQuote ~ isQuote, isQuote, myChar);
+                results[] = str_replace(isQuote ~ isQuote, isQuote, myChar);
                 myStart = myPos + 1;
                 isQuote = false;
                 break;
@@ -93,7 +90,7 @@ abstract class DProcessor {
                     // we have found a separator
                     myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
                     if (myChar != "") {
-                        $result[] = myChar;
+                        results[] = myChar;
                     }
                     myStart = myPos + 1;
                 }
@@ -109,11 +106,11 @@ abstract class DProcessor {
         if (isQuote == false && (myStart < bufferLength)) {
             myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
             if (myChar != "") {
-                $result[] = myChar;
+                results[] = myChar;
             }
         }
 
-        return ["delim" : (count($result) == 1 ? false : "."), "parts" : $result);
+        return ["delim" : (count(results) == 1 ? false : "."), "parts" : results);
     }
 
     /**
@@ -247,14 +244,14 @@ abstract class DProcessor {
     }
 
     protected auto isComment($out) {
-        return ($out.isSet("expr_type") && $out["expr_type"].isExpressionType("COMMENT");
+        return $out.isSet("expr_type") && $out["expr_type"].isExpressionType("COMMENT");
     }
 
     auto processComment($expression) {
-        $result = [];
-        $result["expr_type"] = expressionType("COMMENT");
-        $result["value"] = $expression;
-        return $result;
+        auto results = [];
+        results["expr_type"] = expressionType("COMMENT");
+        results["value"] = $expression;
+        return results;
     }
 
     /**

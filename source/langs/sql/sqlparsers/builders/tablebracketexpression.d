@@ -7,7 +7,41 @@ import lang.sql;
 // Builds the table expressions within the create definitions of CREATE TABLE. 
 class TableBracketExpressionBuilder : ISqlBuilder {
 
-    protected string buildColDef(Json parsedSql) {
+
+
+    string build(Json parsedSql) {
+        if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
+            return "";
+        }
+        string mySql = parsedSql["sub_tree"].byKeyValue
+            .map!(kv => buildKeyValue(kv.key, kv.value))
+            .join;
+
+        mySql = " (" ~ substr(mySql, 0, -2) ~ ")";
+        return mySql;
+    }
+
+    protected string buildKeyValue(string aKey, Json aValue) {
+        string result;
+
+        result ~= this.buildColDef(aValue);
+        result ~= this.buildPrimaryKey(aValue);
+        result ~= this.buildCheck(aValue);
+        result ~= this.buildLikeExpression(aValue);
+        result ~= this.buildForeignKey(aValue);
+        result ~= this.buildIndexKey(aValue);
+        result ~= this.buildUniqueIndex(aValue);
+        result ~= this.buildFulltextIndex(aValue);
+
+        if (result.isEmpty) { // No change
+            throw new UnableToCreateSQLException("CREATE TABLE create-def expression subtree", aKey, aValue, "expr_type");
+        }
+
+        result ~= ", ";
+        return result;
+    }
+
+        protected string buildColDef(Json parsedSql) {
         auto myBuilder = new ColumnDefinitionBuilder();
         return myBuilder.build(parsedSql);
     }
@@ -45,37 +79,5 @@ class TableBracketExpressionBuilder : ISqlBuilder {
     protected string buildFulltextIndex(Json parsedSql) {
         auto myBuilder = new FulltextIndexBuilder();
         return myBuilder.build(parsedSql);
-    }
-
-    string build(Json parsedSql) {
-        if (!parsedSql.isExpressionType("BRACKET_EXPRESSION")) {
-            return "";
-        }
-        string mySql = parsedSql["sub_tree"].byKeyValue
-            .map!(kv => buildKeyValue(kv.key, kv.value))
-            .join;
-
-        mySql = " (" ~ substr(mySql, 0, -2) ~ ")";
-        return mySql;
-    }
-
-    protected string buildKeyValue(string aKey, Json aValue) {
-        string result;
-
-        result ~= this.buildColDef(aValue);
-        result ~= this.buildPrimaryKey(aValue);
-        result ~= this.buildCheck(aValue);
-        result ~= this.buildLikeExpression(aValue);
-        result ~= this.buildForeignKey(aValue);
-        result ~= this.buildIndexKey(aValue);
-        result ~= this.buildUniqueIndex(aValue);
-        result ~= this.buildFulltextIndex(aValue);
-
-        if (result.isEmpty) { // No change
-            throw new UnableToCreateSQLException("CREATE TABLE create-def expression subtree", aKey, aValue, "expr_type");
-        }
-
-        result ~= ", ";
-        return result;
     }
 }

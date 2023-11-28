@@ -7,7 +7,7 @@ class TruncateBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     string mySql = "TRUNCATE TABLE ";
-    auto myRight =  - 1;
+    auto myRight = -1;
 
     // works for one table only
     parsedSql["tables"] = [parsedSql["TABLE"].baseExpression];
@@ -15,7 +15,7 @@ class TruncateBuilder : ISqlBuilder {
     if (parsedSql["tables"] != false) {
       foreach (myKey, myValue; parsedSql["tables"]) {
         mySql ~= myValue ~ ", ";
-        myRight =  - 2;
+        myRight = -2;
       }
     }
 

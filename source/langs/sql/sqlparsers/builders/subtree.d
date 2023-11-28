@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the statements for [sub_tree] fields.
- * This class : the builder for [sub_tree] fields.
- */
+// Builds the statements for [sub_tree] fields.
 class SubTreeBuilder : ISqlBuilder {
 
   string build(Json parsedSql, string delim = " ") {
