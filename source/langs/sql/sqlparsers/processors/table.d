@@ -319,7 +319,7 @@ class TableProcessor : AbstractProcessor {
         if ($result["like"] == false) {
             unset($result["like"]);
         }
-        if ($result["select-option"] == false) {
+        if ($result["select-option"].isEmpty) {
             unset($result["select-option"]);
         }
         if ($result["options"] == []) {

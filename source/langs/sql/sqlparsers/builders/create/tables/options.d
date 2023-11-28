@@ -18,7 +18,7 @@ class CreateTableOptionsBuilder : IBuilder {
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter(Json parsedSql) {
-        return (parsedSql["delim"] == false ? "" : (parsedSql["delim"])." ").strip;
+        return (parsedSql["delim"].isEmpty ? "" : (parsedSql["delim"])~" ").strip;
     }
 
     string build(Json parsedSql) {

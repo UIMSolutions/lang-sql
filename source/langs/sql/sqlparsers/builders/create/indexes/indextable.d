@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.builders.create.indexes.indextable;
 import lang.sql;
 
 @safe:
-/**
- * Builds the table part of a CREATE INDEX statement */
- * This class : the builder for the table part of a CREATE INDEX statement. 
- */
+// Builds the table part of a CREATE INDEX statement
 class CreateIndexTableBuilder : ISqlBuilder {
 
     protected string buildColumnList(Json parsedSql) {
@@ -19,7 +16,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
             return "";
         }
         $table = parsedSql["on"];
-        if (!$table.isExpressionType("TABLE") {
+        if (!$table.isExpressionType("TABLE")) {
             return "";
         }
         return "ON " ~ $table["name"] ~ " " ~ this.buildColumnList($table["sub_tree"]);

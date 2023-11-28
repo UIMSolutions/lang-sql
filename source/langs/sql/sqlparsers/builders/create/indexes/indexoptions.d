@@ -7,7 +7,7 @@ import lang.sql;
 class CreateIndexOptionsBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (parsedSql["options"] == false) {
+    if (parsedSql["options"].isEmpty) {
       return "";
     }
 

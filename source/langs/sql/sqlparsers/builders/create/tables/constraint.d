@@ -11,7 +11,7 @@ class ConstraintBuilder : ISqlBuilder {
         if (!parsedSql.isExpressionType("CONSTRAINT")) {
             return "";
         }
-        string mySql = parsedSql["sub_tree"] == false ? "" : this.buildConstant(
+        string mySql = parsedSql["sub_tree"].isEmpty ? "" : this.buildConstant(
             parsedSql["sub_tree"]);
         return "CONSTRAINT" ~ (mySql.isEmpty ? "" : (" " ~ mySql));
     }

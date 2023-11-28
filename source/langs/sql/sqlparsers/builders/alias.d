@@ -10,13 +10,13 @@ class AliasBuilder : ISqlBuilder {
   }
 
   string build(Json parsedSql) {
-    if ("alias" !in parsed || parsedSql["alias"] == false) {
+    if (parsedisSet("alias") || parsedSql["alias"].isEmpty) {
       return "";
     }
 
     string mySql = "";
     auto subParsed = parsedSql["alias"];
-    if ("as" in subParsed) {
+    if (subParsed.isSet("as")) {
       mySql ~= " AS";
     }
     mySql ~= " " ~ subParsed["name"];

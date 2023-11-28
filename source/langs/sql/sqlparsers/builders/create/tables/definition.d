@@ -7,7 +7,7 @@ import lang.sql;
 class CreateTableDefinitionBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!isset(parsedSql) || parsedSql["create-def"] == false) {
+    if (!isset(parsedSql) || parsedSql["create-def"].isEmpty) {
       return "";
     }
     return this.buildTableBracketExpression(parsedSql["create-def"]);

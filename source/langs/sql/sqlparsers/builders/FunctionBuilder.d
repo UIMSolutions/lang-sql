@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds auto statements. 
- * This class : the builder for auto calls. 
- *    */
+// Builds auto statements. 
 class FunctionBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
