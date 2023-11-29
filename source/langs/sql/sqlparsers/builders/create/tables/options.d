@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * Builds the table-options statement part of CREATE TABLE.
- * This class : the builder for the table-options statement part of CREATE TABLE. 
- */
+// Builds the table-options statement part of CREATE TABLE.
 class CreateTableOptionsBuilder : IBuilder {
 
     /**
@@ -27,7 +24,7 @@ class CreateTableOptionsBuilder : IBuilder {
         }
          myoptions = parsedSql["options"];
         string mySql = "";
-        foreach ( myoptions as myKey, myValue) {
+        foreach (myKey, myValue; myoptions) {
             size_t oldSqlLength = mySql.length;
             mySql ~= this.buildExpression(myValue);
             mySql ~= this.buildCharacterSet(myValue);
