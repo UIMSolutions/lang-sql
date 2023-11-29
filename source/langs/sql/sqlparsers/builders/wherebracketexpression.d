@@ -13,7 +13,7 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
     }
     string mySql = parsedSql["sub_tree"].byKeyValue
       .map!(kv => buildKeyValue(kv.key, kv.value))
-      .join;
+      .join(" ");
 
     mySql = "(" ~ substr(mySql, 0, -1) ~ ")";
     return mySql;
@@ -38,7 +38,6 @@ class WhereBracketExpressionBuilder : ISqlBuilder {
       throw new UnableToCreateSQLException("WHERE expression subtree", aKey, aValue, "expr_type");
     }
 
-    result ~= " ";
     return result;
   }
 

@@ -4,12 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the UnsupportedFeatureException class which is used within the SqlParser package.
- * This exception will occur in the PHPSQLCreator, if the creator finds
- * a field name, which is unknown. The developers have created some 
- * additional output of the parser, but the creator class has not been 
- * enhanced. Please open an issue in such a case. */
+// Exception will occur in the SqlCreator, if the creator finds a field name, which is unknown.  */
 class UnsupportedFeatureException : Exception {
 
     protected string _key;

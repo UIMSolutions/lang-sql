@@ -11,9 +11,9 @@ class WhereBuilder : ISqlBuilder {
     auto mySql = "WHERE ";
     parsedSql.byKeyValue
       .map!(kv => buildKeyValue(kv.key, kv.value))
-      .join;
+      .join(" ");
 
-    return substr(mySql, 0, -1);
+    return mySql;
   }
 
   protected string buildKeyValue(string aKey, Json aValue) {
@@ -34,7 +34,6 @@ class WhereBuilder : ISqlBuilder {
       throw new UnableToCreateSQLException("WHERE", aKey, aValue, "expr_type");
     }
 
-    result ~= " ";
     return result;
   }
 

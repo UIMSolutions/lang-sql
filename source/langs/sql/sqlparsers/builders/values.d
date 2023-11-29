@@ -7,17 +7,12 @@ import lang.sql;
 // Builds the VALUES part of the INSERT statement.
 class ValuesBuilder : ISqlBuilder {
 
-    protected string buildRecord(Json parsedSql) {
-        auto myBuilder = new RecordBuilder();
-        return myBuilder.build(parsedSql);
-    }
-
     string build(Json parsedSql) {
         string mySql = parsedSql.byKeyValue
             .map!(kv => buildKeyValue(kv.key, kv.value))
             .join;
 
-        return "VALUES "~mySql.strip;
+        return "VALUES " ~ mySql.strip;
     }
 
     protected string buildKeyValue(string aKey, Json aValue) {
@@ -28,11 +23,16 @@ class ValuesBuilder : ISqlBuilder {
             throw new UnableToCreateSQLException("VALUES", aKey, aValue, "expr_type");
         }
 
-        result ~= this.getRecordDelimiter(aValue);
+        result ~= recordDelimiter(aValue);
         return result;
     }
 
-    protected auto getRecordDelimiter(Json parsedSql) {
-        return empty(parsedSql["delim"]) ? " " : parsedSql["delim"]." ";
+    protected auto recordDelimiter(Json parsedSql) {
+        return parsedSql["delim"].isEmpty ? " " : parsedSql["delim"] ~ " ";
+    }
+
+    protected string buildRecord(Json parsedSql) {
+        auto myBuilder = new RecordBuilder();
+        return myBuilder.build(parsedSql);
     }
 }

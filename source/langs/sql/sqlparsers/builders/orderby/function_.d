@@ -1,4 +1,4 @@
-module lang.sql.parsers.builders;
+module langs.sql.sqlparsers.builders.orderby.function_;
 
 import lang.sql;
 
