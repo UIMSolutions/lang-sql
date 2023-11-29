@@ -1,14 +1,14 @@
-module lang.sql.parsers.builders;
+module langs.sql.sqlparsers.builders.index.locks;
 
 import lang.sql;
 
 @safe:
 
-// Builds index key part of a CREATE TABLE statement.
-class IndexKeyBuilder : ISqlBuilder {
+// Builds index lock part of a CREATE INDEX statement.
+class IndexLockBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!parsedSql.isExpressionType("INDEX")) {
+    if (!parsedSql.isExpressionType("INDEX_LOCK")) {
       return null;
     }
 
@@ -22,12 +22,11 @@ class IndexKeyBuilder : ISqlBuilder {
   protected string buildKeyValue(string aKey, Json aValue) {
     string result;
     result ~= this.buildReserved(aValue);
-    result ~= this.buildColumnList(aValue);
     result ~= this.buildConstant(aValue);
-    result ~= this.buildIndexType(aValue);
+    result ~= this.buildOperator(aValue);
 
     if (result.isEmpty) { // No change
-      throw new UnableToCreateSQLException("CREATE TABLE index key subtree", aKey, aValue, "expr_type");
+      throw new UnableToCreateSQLException("CREATE INDEX lock subtree", aKey, aValue, "expr_type");
     }
 
     result ~= " ";
@@ -44,13 +43,8 @@ class IndexKeyBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 
-  protected string buildIndexType(Json parsedSql) {
-    auto myBuilder = new IndexTypeBuilder();
-    return myBuilder.build(parsedSql);
-  }
-
-  protected string buildColumnList(Json parsedSql) {
-    auto myBuilder = new ColumnListBuilder();
+  protected string buildOperator(Json parsedSql) {
+    auto myBuilder = new OperatorBuilder();
     return myBuilder.build(parsedSql);
   }
 }

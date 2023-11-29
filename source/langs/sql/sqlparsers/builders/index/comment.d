@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.index.comment;
+module langs.sql.sqlparsers.builders.index.comments;
 
 import lang.sql;
 
