@@ -45,7 +45,7 @@ class SQLProcessor : SQLChunkProcessor {
             if ( myskip_next > 0) {
                 if (strippedToken.isEmpty) {
                     if (tokenCategory != "") { // is this correct??
-                        result [tokenCategory][] =  mytoken;
+                        result [tokenCategory] ~=  mytoken;
                     }
                     continue;
                 }
@@ -137,7 +137,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "INTO" : // prevent wrong handling of CACHE within LOAD INDEX INTO CACHE...
                 if (previousCategory == "LOAD") {
-                    result [previousCategory][] = strippedToken;
+                    result [previousCategory] ~= strippedToken;
                     continue 2;
                 }
                 tokenCategory = previousCategory = upperToken;
@@ -173,7 +173,7 @@ class SQLProcessor : SQLChunkProcessor {
                     continue 2;
                 }
                 // part of the CREATE TABLE statement or a function
-                result [previousCategory][] = strippedToken;
+                result [previousCategory] ~= strippedToken;
                 continue 2;
 
             case "REPLACE" : if (previousCategory.isEmpty) {
@@ -183,24 +183,24 @@ class SQLProcessor : SQLChunkProcessor {
                     continue 2;
                 }
                 // part of the CREATE TABLE statement or a function
-                result [previousCategory][] = strippedToken;
+                result [previousCategory] ~= strippedToken;
                 continue 2;
 
             case "IGNORE" : if (previousCategory == "TABLE") {
                     // part of the CREATE TABLE statement
-                    result [previousCategory][] = strippedToken;
+                    result [previousCategory] ~= strippedToken;
                     continue 2;
                 }
                 if (tokenCategory == "FROM") {
                     // part of the FROM statement (index hint)
-                    result [tokenCategory][] = strippedToken;
+                    result [tokenCategory] ~= strippedToken;
                     continue 2;
                 }
-                result ["OPTIONS"][] = upperToken;
+                result ["OPTIONS"] ~= upperToken;
                 continue 2;
 
             case "CHECK" : if (previousCategory == "TABLE") {
-                    result [previousCategory][] = strippedToken;
+                    result [previousCategory] ~= strippedToken;
                     continue 2;
                 }
                 tokenCategory = upperToken;
@@ -215,23 +215,23 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "INDEX" : if (in_array(previousCategory, ["CREATE", "DROP"))
                             ) {
-                                result [previousCategory][] = strippedToken;
+                                result [previousCategory] ~= strippedToken;
                                 tokenCategory = upperToken;
                             }
                             break;
 
             case "TABLE": if (previousCategory == "CREATE") {
-                                result [previousCategory][] = strippedToken;
+                                result [previousCategory] ~= strippedToken;
                                 tokenCategory = upperToken;
                             }
                             if (previousCategory == "TRUNCATE") {
-                                result [previousCategory][] = strippedToken;
+                                result [previousCategory] ~= strippedToken;
                                 tokenCategory = upperToken;
                             }
                             break;
 
             case "TEMPORARY": if (previousCategory == "CREATE") {
-                                result [previousCategory][] = strippedToken;
+                                result [previousCategory] ~= strippedToken;
                                 tokenCategory = previousCategory;
                                 continue 2;
                             }
@@ -241,7 +241,7 @@ class SQLProcessor : SQLChunkProcessor {
                                 tokenCategory = "CREATE";
                                 result [tokenCategory] = array_merge(result [tokenCategory], result [previousCategory]);
                                 result [previousCategory] = [];
-                                result [tokenCategory][] = strippedToken;
+                                result [tokenCategory] ~= strippedToken;
                                 previousCategory = tokenCategory;
                                 continue 2;
                             }
@@ -249,13 +249,13 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "NOT": if (previousCategory == "CREATE") {
                                 tokenCategory = previousCategory;
-                                result [previousCategory][] = strippedToken;
+                                result [previousCategory] ~= strippedToken;
                                 continue 2;
                             }
                             break;
 
             case "EXISTS": if (previousCategory == "CREATE") {
-                                result [previousCategory][] = strippedToken;
+                                result [previousCategory] ~= strippedToken;
                                 previousCategory = tokenCategory = "TABLE";
                                 continue 2;
                             }
@@ -277,7 +277,7 @@ class SQLProcessor : SQLChunkProcessor {
                             } else {
                                 strippedToken = "LOCK IN SHARE MODE";
                                  myskip_next = 3;
-                                result ["OPTIONS"][] = strippedToken;
+                                result ["OPTIONS"] ~= strippedToken;
                             }
                             continue 2;
 
@@ -303,7 +303,7 @@ class SQLProcessor : SQLChunkProcessor {
                                 break;
                             }
                              myskip_next = 1;
-                            result ["OPTIONS"][] = "FOR UPDATE"; // TODO: this could be generate problems within the position calculator
+                            result ["OPTIONS"] ~= "FOR UPDATE"; // TODO: this could be generate problems within the position calculator
                             continue 2;
 
             case "UPDATE": if (tokenCategory.isEmpty) {
@@ -341,12 +341,12 @@ class SQLProcessor : SQLChunkProcessor {
                             break;
 
                             /* These tokens set particular options for the statement. */
-            case "LOW_PRIORITY": case "DELAYED": case "QUICK": case "HIGH_PRIORITY": result ["OPTIONS"][] = strippedToken;
+            case "LOW_PRIORITY": case "DELAYED": case "QUICK": case "HIGH_PRIORITY": result ["OPTIONS"] ~= strippedToken;
                             continue 2;
 
             case "USE": if (tokenCategory == "FROM") {
                                 // index hint within FROM clause
-                                result [tokenCategory][] = strippedToken;
+                                result [tokenCategory] ~= strippedToken;
                                 continue 2;
                             }
                             // set the category in case these get subclauses in a future version of MySQL
@@ -356,15 +356,15 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "FORCE": if (tokenCategory == "FROM") {
                                 // index hint within FROM clause
-                                result [tokenCategory][] = strippedToken;
+                                result [tokenCategory] ~= strippedToken;
                                 continue 2;
                             }
-                            result ["OPTIONS"][] = strippedToken;
+                            result ["OPTIONS"] ~= strippedToken;
                             continue 2;
 
             case "WITH": if (tokenCategory == "GROUP") {
                                  myskip_next = 1;
-                                result ["OPTIONS"][] = "WITH ROLLUP"; // TODO: this could be generate problems within the position calculator
+                                result ["OPTIONS"] ~= "WITH ROLLUP"; // TODO: this could be generate problems within the position calculator
                                 continue 2;
                             }
                             if (tokenCategory.isEmpty) {
@@ -382,7 +382,7 @@ class SQLProcessor : SQLChunkProcessor {
                             // remove obsolete category after union (empty category because of
                             // empty token before select)
                             if (tokenCategory != "" && (previousCategory == tokenCategory)) {
-                                result [tokenCategory][] =  mytoken;
+                                result [tokenCategory] ~=  mytoken;
                             }
 
                             previousCategory = tokenCategory;

@@ -47,7 +47,7 @@ class SelectExpressionProcessor : AbstractProcessor {
             }
 
             if (!this.isWhitespaceToken(upperToken)) {
-                 mystripped[] = myToken;
+                 mystripped ~= myToken;
             }
 
             // we have an explicit AS, next one can be the alias

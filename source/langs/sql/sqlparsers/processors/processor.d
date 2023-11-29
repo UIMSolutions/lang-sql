@@ -80,7 +80,7 @@ abstract class DProcessor {
                 }
                 // end
                 myChar = substr(mySqlBuffer, myStart, myPos - myStart);
-                results[] = str_replace(isQuote ~ isQuote, isQuote, myChar);
+                results ~= str_replace(isQuote ~ isQuote, isQuote, myChar);
                 myStart = myPos + 1;
                 isQuote = false;
                 break;
@@ -90,7 +90,7 @@ abstract class DProcessor {
                     // we have found a separator
                     myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
                     if (myChar != "") {
-                        results[] = myChar;
+                        results ~= myChar;
                     }
                     myStart = myPos + 1;
                 }
@@ -106,7 +106,7 @@ abstract class DProcessor {
         if (isQuote == false && (myStart < bufferLength)) {
             myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
             if (myChar != "") {
-                results[] = myChar;
+                results ~= myChar;
             }
         }
 

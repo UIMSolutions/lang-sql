@@ -15,7 +15,7 @@ class ValuesProcessor : AbstractProcessor {
 
         foreach (myKey, myToken;  mytokens["VALUES"]) {
 	        if (this.isCommentToken(myToken)) {
-		         myparsed[] = super.processComment(myToken);
+		         myparsed ~= super.processComment(myToken);
 		        continue;
 	        }
 
@@ -48,7 +48,7 @@ class ValuesProcessor : AbstractProcessor {
             case "KEY":
             case "UPDATE":
                 if (currentCategory == "DUPLICATE") {
-                     myparsed[] = createExpression("RESERVED"), "base_expr": strippedToken];
+                     myparsed ~= createExpression("RESERVED"), "base_expr": strippedToken];
                     baseExpression = "";
                 }
                 // else ?
@@ -59,13 +59,13 @@ class ValuesProcessor : AbstractProcessor {
 
                     baseExpression = substr(baseExpression, 0, -strlen(myToken)).strip;
                      myres = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                     myparsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression,
+                     myparsed ~= createExpression("EXPRESSION"), "base_expr" : baseExpression,
                                       "sub_tree" : (empty( myres) ? false :  myres), "delim": strippedToken];
                     baseExpression = "";
                     continue 2;
                 }
 
-                 myparsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
+                 myparsed ~= createExpression("RECORD"), "base_expr" : baseExpression.strip,
                                   "data" : this.processRecord(baseExpression.strip), "delim": strippedToken];
                 baseExpression = "";
                 break;
@@ -78,12 +78,12 @@ class ValuesProcessor : AbstractProcessor {
 
         if (!baseExpression.strip.isEmpty) {
             if (currentCategory.isEmpty) {
-                 myparsed[] = createExpression("RECORD"), "base_expr" : baseExpression.strip,
+                 myparsed ~= createExpression("RECORD"), "base_expr" : baseExpression.strip,
                                   "data" : this.processRecord(baseExpression.strip), "delim" : false];
             }
             if (currentCategory == "DUPLICATE") {
                  myres = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
-                 myparsed[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
+                 myparsed ~= createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
                                   "sub_tree" : ( myres.isEmpty ? false :  myres), "delim" : false];
             }
         }

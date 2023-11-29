@@ -35,14 +35,14 @@ class RenameProcessor : AbstractProcessor {
                  mytablePair["table"] = baseExpression.strip,
                  mytablePair["no_quotes"] = this.revokeQuotation(baseExpression),
                     
-                 myresultList[] =  mytablePair;
+                 myresultList ~=  mytablePair;
                  mytablePair = [];
                 baseExpression = "";
                 break;
 
             case "TABLE":
                  myobjectType .isExpressionType(TABLE;
-                 myresultList[] = ["expr_type":expressionType("RESERVED", myToken.strip)];   
+                 myresultList ~= ["expr_type":expressionType("RESERVED", myToken.strip)];   
                 continue 2; 
                 
             default:
@@ -55,7 +55,7 @@ class RenameProcessor : AbstractProcessor {
              mytablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
                                               "no_quotes" : this.revokeQuotation(baseExpression),
                                               "base_expr" : baseExpression];
-             myresultList[] =  mytablePair;
+             myresultList ~=  mytablePair;
         }
 
         return ["expr_type" :  myobjectType, "sub_tree": myresultList];

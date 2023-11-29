@@ -70,7 +70,7 @@ class SetProcessor : AbstractProcessor {
             if (!isUpdate && isVarType != false) {
                 anAssignment["sub_tree"][0]["expr_type"] = isVarType;
             }
-             myresult[] = anAssignment;
+             myresult ~= anAssignment;
         }
 
         return  myresult;

@@ -36,12 +36,12 @@ class WithProcessor : AbstractProcessor {
             case "AS":
             	if (myPrevious != "TABLENAME") {
             		// error or tablename is AS
-            		 myresultList[] = this.buildTableName(strippedToken);
+            		 myresultList ~= this.buildTableName(strippedToken);
             		myCategory = "TABLENAME";
             		break;
             	}
 
-            	 myresultList[] = createExpression("RESERVED", strippedToken];
+            	 myresultList ~= createExpression("RESERVED", strippedToken];
             	myCategory = upperToken;
                 break;
 
@@ -55,16 +55,16 @@ class WithProcessor : AbstractProcessor {
                 	case "AS":
                 		// it follows a parentheses pair
                 		 mysubtree = this.processTopLevel(this.removeParenthesisFromStart(myToken));
-                		 myresultList[] = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" :  mysubtree];
+                		 myresultList ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" :  mysubtree];
 
-                		result[] = createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" :  myresultList];
+                		result ~= createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" :  myresultList];
                 		 myresultList = [];
                 		myCategory = "";
                 	break;
 
                 	case "":
                 		// we have the name of the table
-                		 myresultList[] = this.buildTableName(strippedToken);
+                		 myresultList ~= this.buildTableName(strippedToken);
                 		myCategory = "TABLENAME";
                 		break;
 

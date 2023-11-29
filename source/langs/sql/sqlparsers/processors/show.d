@@ -31,7 +31,7 @@ class ShowProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case "FROM":
-                 myresultList[] = createExpression("RESERVED"), "base_expr":  myToken.strip];
+                 myresultList ~= createExpression("RESERVED"), "base_expr":  myToken.strip];
                 if (myPrevious == "INDEX" || myPrevious == "COLUMNS") {
                     break;
                 }
@@ -73,34 +73,34 @@ class ShowProcessor : AbstractProcessor {
             case "CHARACTER":
             case "SET":
             case "COLLATION":
-                 myresultList[] = createExpression("RESERVED", myToken.strip);
+                 myresultList ~= createExpression("RESERVED", myToken.strip);
                 myCategory = upperToken;
                 break;
 
             default:
                 switch (myPrevious) {
                 case "LIKE":
-                     myresultList[] = createExpression("CONSTANT", myToken);
+                     myresultList ~= createExpression("CONSTANT", myToken);
                     break;
                 case "LIMIT":
                      mylimit = array_pop( myresultList);
                      mylimit["sub_tree"] = this.limitProcessor.process(array_slice( mytokens,  myk));
-                     myresultList[] =  mylimit;
+                     myresultList ~=  mylimit;
                     break;
                 case "FROM":
                 case "SCHEMA":
                 case "DATABASE":
-                     myresultList[] = createExpression("DATABASE"), "name" : myToken,
+                     myresultList ~= createExpression("DATABASE"), "name" : myToken,
                         "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case "FOR":
-                     myresultList[] = ["expr_type":  expressionType("USER"), "name" : myToken,
+                     myresultList ~= ["expr_type":  expressionType("USER"), "name" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case "INDEX":
                 case "COLUMNS":
                 case "TABLE":
-                     myresultList[] = ["expr_type":  expressionType("TABLE"), "table" : myToken,
+                     myresultList ~= ["expr_type":  expressionType("TABLE"), "table" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     myCategory = "TABLENAME";
                     break;
@@ -110,16 +110,16 @@ class ShowProcessor : AbstractProcessor {
                     } else {
                          myexpr_type = expressionType("SIMPLE_FUNCTION");
                     }
-                     myresultList[] = ["expr_type":   myexpr_type, "name" : myToken,
+                     myresultList ~= ["expr_type":   myexpr_type, "name" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 case "PROCEDURE":
-                     myresultList[] = createExpression("PROCEDURE", myToken);
+                     myresultList ~= createExpression("PROCEDURE", myToken);
                     , "name" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), ];
                     break;
                 case "ENGINE":
-                     myresultList[] = createExpression("ENGINE"), "name" : myToken,
+                     myresultList ~= createExpression("ENGINE"), "name" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
                     break;
                 default:

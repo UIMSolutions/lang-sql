@@ -80,7 +80,7 @@ class UnionProcessor : AbstractProcessor {
         if (resultputArray.length == 1) {
             string[] tokenArray = resultputArray[0].strip.split;
             if (tokenArray[0] == "(" && tokenArray[tokenArray.length - 1] == ")") {
-                queries[isUnionType][] = resultputArray;
+                queries[isUnionType] ~= resultputArray;
                  myfinalQueryFound = true;
             }
         }
@@ -90,7 +90,7 @@ class UnionProcessor : AbstractProcessor {
                 if (myToken.toUpper == "ORDER") {
                     break;
                 } else {
-                     myfinalQuery[] = myToken;
+                     myfinalQuery ~= myToken;
                     unset(resultputArray[myKey]);
                 }
             }
@@ -99,7 +99,7 @@ class UnionProcessor : AbstractProcessor {
          myfinalQueryString = implode( myfinalQuery).strip;
 
         if (! myfinalQuery.isEmpty &&  myfinalQueryString != "") {
-            queries[isUnionType][] =  myfinalQuery;
+            queries[isUnionType] ~=  myfinalQuery;
         }
 
          mydefaultProcessor = new DefaultProcessor(
@@ -108,7 +108,7 @@ class UnionProcessor : AbstractProcessor {
         if (!rePrepareSqlString.isEmpty) {
              myremainingQueries =  mydefaultProcessor.process(
                 rePrepareSqlString);
-            queries[] =  myremainingQueries;
+            queries ~=  myremainingQueries;
         }
 
         return queries;
@@ -141,7 +141,7 @@ class UnionProcessor : AbstractProcessor {
             }
 
             if (strippedToken.toUpper != "UNION") {
-                resultputArray[] = myToken; // here we get empty tokens, if we remove these, we get problems in parse_sql()
+                resultputArray ~= myToken; // here we get empty tokens, if we remove these, we get problems in parse_sql()
                 continue;
             }
 
@@ -164,7 +164,7 @@ class UnionProcessor : AbstractProcessor {
             }
 
             // store the tokens related to the unionType
-            queries[isUnionType][] = resultputArray;
+            queries[isUnionType] ~= resultputArray;
             resultputArray = [];
         }
 
@@ -174,7 +174,7 @@ class UnionProcessor : AbstractProcessor {
             if (isUnionType) {
                 queries = this.splitUnionRemainder(queries, isUnionType, resultputArray);
             } else {
-                queries[] = resultputArray;
+                queries ~= resultputArray;
             }
         }
 
