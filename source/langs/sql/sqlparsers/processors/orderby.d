@@ -70,7 +70,7 @@ class OrderByProcessor : AbstractProcessor {
         foreach (myToken;  mytokens) {
             auto upperToken = myToken.strip.toUpper;
             switch (upperToken) {
-            case "," : result [] = this.processOrderExpression(parseInfo,  myselect);
+            case "," : result  ~= this.processOrderExpression(parseInfo,  myselect);
                 parseInfo = this.initParseInfo();
                 break;
 
@@ -81,11 +81,11 @@ class OrderByProcessor : AbstractProcessor {
                 break;
 
             default : if (this.isCommentToken(myToken)) {
-                    result [] = super.processComment(myToken]; break;}
+                    result  ~= super.processComment(myToken]; break;}
 
                     parseInfo.baseExpression ~= myToken;}
                 }
 
-                result [] = this.processOrderExpression(parseInfo,  myselect); return result ;
+                result  ~= this.processOrderExpression(parseInfo,  myselect); return result ;
             }
         }

@@ -20,33 +20,33 @@ class PositionCalculator {
     protected static  mybacktrackingTypes = [expressionType("EXPRESSION"), expressionType("SUBQUERY"),
                                                 expressionType("BRACKET_EXPRESSION"), expressionType("TABLE_EXPRESSION"),
                                                 expressionType("RECORD"), expressionType("IN_LIST"),
-                                                expressionType("MATCH_ARGUMENTS", expressionType("TABLE",
-                                                expressionType("TEMPORARY_TABLE", expressionType("COLUMN_TYPE",
-                                                expressionType("COLDEF", expressionType("PRIMARY_KEY",
+                                                expressionType("MATCH_ARGUMENTS"), expressionType("TABLE"), 
+                                                expressionType("TEMPORARY_TABLE"), expressionType("COLUMN_TYPE"), 
+                                                expressionType("COLDEF"), expressionType("PRIMARY_KEY"), 
                                                 expressionType("CONSTRAINT"), expressionType("COLUMN_LIST"),
-                                                expressionType("CHECK", expressionType("COLLATE", expressionType("LIKE",
-                                                expressionType("INDEX", expressionType("INDEX_TYPE",
-                                                expressionType("INDEX_SIZE", expressionType("INDEX_PARSER",
-                                                expressionType("FOREIGN_KEY", expressionType("REFERENCE",
-                                                expressionType("PARTITION", expressionType("PARTITION_HASH",
-                                                expressionType("PARTITION_COUNT", expressionType("PARTITION_KEY",
-                                                expressionType("PARTITION_KEY_ALGORITHM",
-                                                expressionType("PARTITION_RANGE", expressionType("PARTITION_LIST",
-                                                expressionType("PARTITION_DEF", expressionType("PARTITION_VALUES",
-                                                expressionType("SUBPARTITION_DEF", expressionType("PARTITION_DATA_DIR",
-                                                expressionType("PARTITION_INDEX_DIR", expressionType("PARTITION_COMMENT",
-                                                expressionType("PARTITION_MAX_ROWS", expressionType("PARTITION_MIN_ROWS",
-                                                expressionType("SUBPARTITION_COMMENT",
-                                                expressionType("SUBPARTITION_DATA_DIR",
-                                                expressionType("SUBPARTITION_INDEX_DIR",
-                                                expressionType("SUBPARTITION_KEY",
-                                                expressionType("SUBPARTITION_KEY_ALGORITHM",
-                                                expressionType("SUBPARTITION_MAX_ROWS",
-                                                expressionType("SUBPARTITION_MIN_ROWS"), expressionType("SUBPARTITION",
-                                                expressionType("SUBPARTITION_HASH", expressionType("SUBPARTITION_COUNT",
-                                                expressionType("CHARSET", expressionType("ENGINE", expressionType("QUERY",
-                                                expressionType("INDEX_ALGORITHM", expressionType("INDEX_LOCK",
-    											expressionType("SUBQUERY_FACTORING"), expressionType("CUSTOM_FUNCTION",
+                                                expressionType("CHECK"), expressionType("COLLATE"), expressionType("LIKE"), 
+                                                expressionType("INDEX"), expressionType("INDEX_TYPE"), 
+                                                expressionType("INDEX_SIZE"), expressionType("INDEX_PARSER"), 
+                                                expressionType("FOREIGN_KEY"), expressionType("REFERENCE"), 
+                                                expressionType("PARTITION"), expressionType("PARTITION_HASH"), 
+                                                expressionType("PARTITION_COUNT"), expressionType("PARTITION_KEY"), 
+                                                expressionType("PARTITION_KEY_ALGORITHM"), 
+                                                expressionType("PARTITION_RANGE"), expressionType("PARTITION_LIST"), 
+                                                expressionType("PARTITION_DEF"), expressionType("PARTITION_VALUES"), 
+                                                expressionType("SUBPARTITION_DEF"), expressionType("PARTITION_DATA_DIR"), 
+                                                expressionType("PARTITION_INDEX_DIR"), expressionType("PARTITION_COMMENT"), 
+                                                expressionType("PARTITION_MAX_ROWS"), expressionType("PARTITION_MIN_ROWS"), 
+                                                expressionType("SUBPARTITION_COMMENT"), 
+                                                expressionType("SUBPARTITION_DATA_DIR"), 
+                                                expressionType("SUBPARTITION_INDEX_DIR"), 
+                                                expressionType("SUBPARTITION_KEY"), 
+                                                expressionType("SUBPARTITION_KEY_ALGORITHM"), 
+                                                expressionType("SUBPARTITION_MAX_ROWS"), 
+                                                expressionType("SUBPARTITION_MIN_ROWS"), expressionType("SUBPARTITION"), 
+                                                expressionType("SUBPARTITION_HASH"), expressionType("SUBPARTITION_COUNT"), 
+                                                expressionType("CHARSET"), expressionType("ENGINE"), expressionType("QUERY"), 
+                                                expressionType("INDEX_ALGORITHM"), expressionType("INDEX_LOCK"), 
+    											expressionType("SUBQUERY_FACTORING"), expressionType("CUSTOM_FUNCTION"), 
                                                 expressionType("SIMPLE_FUNCTION")
     );
 
@@ -88,11 +88,11 @@ class PositionCalculator {
             return false;
         }
 
-         myoffset = 0;
+        size_t myOffset = 0;
         bool isOK = false;
         while (true) {
 
-             mypos = strpos( mysql, myValue,  myoffset);
+             mypos = strpos( mysql, myValue,  myOffset);
             // error_log("pos: mypos value:myValue sql: mysql");
             
             if ( mypos == false) {
@@ -126,7 +126,7 @@ class PositionCalculator {
                         || ( myafter.toLower >= "a" &&  myafter.toLower <= "z"));
 
                 if (!isOK) {
-                     myoffset =  mypos + 1;
+                     myOffset =  mypos + 1;
                     continue;
                 }
 
@@ -146,7 +146,7 @@ class PositionCalculator {
                 break;
             }
 
-             myoffset =  mypos + 1;
+             myOffset =  mypos + 1;
         }
 
         return  mypos;
@@ -160,22 +160,22 @@ class PositionCalculator {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record
                 // and we have to look into it too
-                 mybacktracking[] =  mycharPos;
+                 mybacktracking ~=  mycharPos;
 
             } else if ((myKey == "ref_clause" || myKey == "columns") &&  myparsed != false) {
                 // we hold the current position and come back after n base_expr(s)
                 // there is an array of sub-elements before (!) the base_expr clause of the current element
                 // so we go through the sub-elements and must come at the end
-                 mybacktracking[] =  mycharPos;
+                 mybacktracking ~=  mycharPos;
                 for ( myi = 1;  myi < count( myparsed);  myi++) {
-                     mybacktracking[] = false; // backtracking only after n base_expr!
+                     mybacktracking ~= false; // backtracking only after n base_expr!
                 }
             } else if ((myKey == "sub_tree" &&  myparsed != false) || (myKey == "options" &&  myparsed != false)) {
                 // we prevent wrong backtracking on subtrees (too much array_pop())
                 // there is an array of sub-elements after(!) the base_expr clause of the current element
                 // so we go through the sub-elements and must not come back at the end
                 for ( myi = 1;  myi < count( myparsed);  myi++) {
-                     mybacktracking[] = false;
+                     mybacktracking ~= false;
                 }
             } else if ((myKey == "TABLE") || (myKey == "create-def" &&  myparsed != false)) {
                 // do nothing

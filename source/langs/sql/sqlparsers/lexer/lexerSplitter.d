@@ -62,7 +62,7 @@ class LexerSplitter {
 				    break;
 		    }
 
-		     myregex_parts[] = myPart;
+		     myregex_parts ~= myPart;
 	    }
 
 	     mypattern = implode( "|",  myregex_parts );

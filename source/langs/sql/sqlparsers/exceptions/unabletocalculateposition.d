@@ -11,20 +11,20 @@ import lang.sql;
  * an issue in such a case, it is an application error. */
 class UnableToCalculatePositionException : Exception {
 
-    protected _needle;
-    protected _haystack;
+    protected string _needle;
+    protected string _haystack;
 
-    this(aNeedle, aHaystack) {
+    this(string aNeedle, string aHaystack) {
         _needle = aNeedle;
         _haystack = aHaystack;
-        super("cannot calculate position of " ~ _needle ~ " within " ~ _haystack, 5);
+        super("cannot calculate position of " ~ _needle ~ " within " ~ _haystack); //, 5);
     }
 
-    auto getNeedle() {
+    @property auto getNeedle() {
         return _needle;
     }
 
-    auto getHaystack() {
+    @property auto getHaystack() {
         return _haystack;
     }
 }

@@ -67,7 +67,7 @@ class DropProcessor : AbstractProcessor {
             case ",":
                  mylast = array_pop( myobjectList);
                  mylast["delim"] = strippedToken;
-                 myobjectList[] =  mylast;
+                 myobjectList ~=  mylast;
                 continue 2;
 
             default:
@@ -82,15 +82,15 @@ class DropProcessor : AbstractProcessor {
                  myobject["no_quotes"] = this.revokeQuotation(strippedToken);
                  myobject["delim"] = false;
 
-                 myobjectList[] =  myobject;
+                 myobjectList ~=  myobject;
                 continue 2;
             }
 
-             mysubTree[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+             mysubTree ~= createExpression("RESERVED"), "base_expr" : strippedToken);
         }
 
         if (!empty( myobjectList)) {
-             mysubTree[] = createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
+             mysubTree ~= createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
                                "sub_tree" :  myobjectList];
         }
 

@@ -16,7 +16,7 @@ class ExpressionListProcessor : AbstractProcessor {
 
 
             if (this.isCommentToken(myValue)) {
-                 myresultList[] = super.processComment(myValue);
+                 myresultList ~= super.processComment(myValue);
                 continue;
             }
 
@@ -83,7 +83,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     if (matchModeToken != false) {
                         ExpressionToken matchModeToken = new ExpressionToken(0, matchModeToken);
                         matchModeToken.setTokenType(expressionType("MATCH_MODE"));
-                        tempToken[] = matchModeToken.toArray();
+                        tempToken ~= matchModeToken.toArray();
                     }
 
                      mycurr.setSubTree(tempToken);
@@ -106,7 +106,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         ExpressionToken tempToken = new ExpressionToken(myKey, myValue);
                         if (!tempToken.isCommaToken()) {
                             localExpressionToken.addToken(myValue);
-                             mytmpExprList[] = myValue;
+                             mytmpExprList ~= myValue;
                         } else {
                             // an expression could have multiple parts split by operands
                             // if we have a comma, it is a split-point for expressions
@@ -384,7 +384,7 @@ class ExpressionListProcessor : AbstractProcessor {
                  mycurr.setSubTree(this.process(this.splitSQLIntoTokens( mycurr.getTrim())));
             }
 
-             myresultList[] =  mycurr;
+             myresultList ~=  mycurr;
              myprev =  mycurr;
         } // end of for-loop
 

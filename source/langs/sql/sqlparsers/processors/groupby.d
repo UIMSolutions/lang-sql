@@ -21,7 +21,7 @@ class GroupByProcessor : OrderByProcessor {
                  myparsed = this.processOrderExpression( myparseInfo,  myselect);
                 unset( myparsed["direction"]);
 
-                result[] =  myparsed;
+                result ~=  myparsed;
                  myparseInfo = this.initParseInfo();
                 break;
             default:
@@ -32,7 +32,7 @@ class GroupByProcessor : OrderByProcessor {
 
          myparsed = this.processOrderExpression( myparseInfo,  myselect);
         unset( myparsed["direction"]);
-        result[] =  myparsed;
+        result ~=  myparsed;
 
         return result;
     }

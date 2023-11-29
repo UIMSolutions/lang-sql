@@ -45,7 +45,7 @@ class ExplainProcessor : AbstractProcessor {
         case "FORMAT":
           if (currentCategory.isEmpty) {
             currentCategory = upperToken;
-            myExpression[] = createExpression("RESERVED", strippedToken);
+            myExpression ~= createExpression("RESERVED", strippedToken);
           }
           // else?
           break;

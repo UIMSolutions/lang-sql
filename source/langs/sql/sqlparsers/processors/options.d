@@ -22,9 +22,9 @@ class OptionsProcessor : AbstractProcessor {
           continue;
         }
 
-         myresult[] = ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
+         myresult ~= ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
       }
-       myresultList[] = ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree":  myresult];
+       myresultList ~= ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree":  myresult];
     }
 
     return  myresultList;

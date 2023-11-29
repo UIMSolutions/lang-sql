@@ -14,7 +14,7 @@ class InsertProcessor : AbstractProcessor {
         }
          myresult = [];
         foreach ( mytokenList["OPTIONS"] as  mytoken) {
-             myresult[] = createExpression("RESERVED", "base_expr" :  mytoken.strip);
+             myresult ~= createExpression("RESERVED", "base_expr" :  mytoken.strip);
         }
         return  myresult;
     }
@@ -38,7 +38,7 @@ class InsertProcessor : AbstractProcessor {
             upperToken = strippedToken.toUpper;
             switch (upperToken) {
             case "INTO":
-                 myresult[] = createExpression("RESERVED", strippedToken];
+                 myresult ~= createExpression("RESERVED", strippedToken];
                 break;
 
             case "INSERT":
@@ -93,7 +93,7 @@ class InsertProcessor : AbstractProcessor {
             }
             foreach (& myvalue;  mytoken as ) {
                 if (this.isCommentToken( myvalue)) {
-                      mycomments[] = super.processComment( myvalue);
+                      mycomments ~= super.processComment( myvalue);
                       myvalue = "";
                 }
             }
@@ -110,12 +110,12 @@ class InsertProcessor : AbstractProcessor {
             list(myTable,  mycols, myKey) = this.processKeyword( mytoken_category,  mytokenList);
         }
 
-         myparsed[] = createExpression(TABLE, "table" : myTable,
+         myparsed ~= createExpression(TABLE, "table" : myTable,
                           "no_quotes" : this.revokeQuotation(myTable), "alias" : false, "base_expr" : myTable);
 
          mycols = this.processColumns( mycols);
         if ( mycols != false) {
-             myparsed[] =  mycols;
+             myparsed ~=  mycols;
         }
 
          myparsed = array_merge( myparsed,  mycomments);

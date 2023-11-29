@@ -17,7 +17,7 @@ class LimitProcessor : AbstractProcessor {
         
         foreach (myToken;  mytokens) {
             if (this.isCommentToken(myToken)) {
-                  mycomments[] = super.processComment(myToken);
+                  mycomments ~= super.processComment(myToken);
                  myToken = "";
             }
         }

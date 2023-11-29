@@ -12,13 +12,13 @@ class DeleteProcessor : AbstractProcessor {
         foreach (myExpression;  mytokens["DELETE"]) {
             if (myExpression.toUpper != "DELETE" && (myExpression, " \t\n\r\0\x0B.*").strip != ""
                 && !this.isCommaToken(myExpression)) {
-                 mytables[] = (myExpression, " \t\n\r\0\x0B.*").strip;
+                 mytables ~= (myExpression, " \t\n\r\0\x0B.*").strip;
             }
         }
 
         if ( mytables.isEmpty &&   mytokens.isSet("USING")) {
             foreach (myTable;  mytokens["FROM"] ) {
-                 mytables[] = (myTable["table"], " \t\n\r\0\x0B.*").strip;
+                 mytables ~= (myTable["table"], " \t\n\r\0\x0B.*").strip;
             }
              mytokens["FROM"] =  mytokens["USING"];
             unset( mytokens["USING"]);

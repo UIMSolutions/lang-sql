@@ -4,40 +4,36 @@ import lang.sql;
 
 @safe:
 
-/**
- * This exception will occur within the PHPSQLCreator, if the creator can not find a
- * method, which can handle the current expr_type field. It could be an error within the parser
- * output or a special case has not been modelled within the creator. Please create an issue
- * in such a case. */
+// Exception will occur within the SqlCreator, if the creator can not find a method, which can handle the current expr_type field. 
 class UnableToCreateSQLException : Exception {
 
-    protected  mypart;
-    protected  mypartkey;
-    protected  myentry;
-    protected  myentrykey;
+  protected string _sqlPart;
+  protected string _sqlPartKey;
+  protected Json _entry;
+  protected string _entryKey;
 
-    this( mypart,  mypartkey,  myentry,  myentrykey) {
-        this.part =  mypart;
-        this.partkey =  mypartkey;
-        this.entry =  myentry;
-        this.entrykey =  myentrykey;
-        super(
-            "unknown [" ~  myentrykey ~ "] = " ~  myentry[ myentrykey] ~ " in \"" ~  mypart ~ "\" [" ~  mypartkey ~ "] ", 15);
-    }
+  this(string aSqlPart, string aSqlPartKey, Json anEntry, string anEntryKey) {
+    _sqlPart = aSqlPart;
+    _sqlPartKey = aSqlPartKey;
+    _entry = anEntry;
+    _entryKey = anEntryKey;
+    super(
+      "unknown [%s] = %s in \"%s\" [%s] ".format(_entryKey, anEntry[_entryKey], aSqlPart, _sqlPartKey)); // ), 15);
+  }
 
-    auto getEntry() {
-        return this.entry;
-    }
+  @property Json getEntry() {
+    return _entry;
+  }
 
-    auto getEntryKey() {
-        return this.entrykey;
-    }
+  @property string entryKey() {
+    return _entryKey;
+  }
 
-    auto getSQLPart() {
-        return this.part;
-    }
+  @property string sqlPart() {
+    return _sqlPart;
+  }
 
-    auto getSQLPartKey() {
-        return this.partkey;
-    }
+  @property string sqlPartKey() {
+    return _sqlPartKey;
+  }
 }

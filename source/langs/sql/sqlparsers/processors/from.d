@@ -130,7 +130,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (this.isCommentToken(myToken)) {
-                myExpression[] = super.processComment(myToken];
+                myExpression ~= super.processComment(myToken];
                 continue;
             }
 
@@ -254,7 +254,7 @@ class FromProcessor : AbstractProcessor {
                     parseInfo["expression"] = parseInfo["subquery"];
                 }
 
-                myExpression[] = this.processFromExpression(parseInfo);
+                myExpression ~= this.processFromExpression(parseInfo);
                 parseInfo = this.initParseInfo(parseInfo);
                 break;
 
@@ -273,7 +273,7 @@ class FromProcessor : AbstractProcessor {
                     parseInfo["expression"] = parseInfo["subquery"];
                 }
 
-                myExpression[] = this.processFromExpression(parseInfo);
+                myExpression ~= this.processFromExpression(parseInfo);
                 parseInfo = this.initParseInfo(parseInfo);
                 break;
 
@@ -310,7 +310,7 @@ class FromProcessor : AbstractProcessor {
              myi++;
         }
 
-        myExpression[] = this.processFromExpression(parseInfo);
+        myExpression ~= this.processFromExpression(parseInfo);
         return myExpression;
     }
 

@@ -184,11 +184,11 @@ class SQLLexer {
                 if (!empty( mybackTicks)) {
                      mylastBacktick = array_pop( mybackTicks);
                     if ( mylastBacktick !=  mytoken) {
-                         mybackTicks[] =  mylastBacktick; // Re-add last back tick
-                         mybackTicks[] =  mytoken;
+                         mybackTicks ~=  mylastBacktick; // Re-add last back tick
+                         mybackTicks ~=  mytoken;
                     }
                 } else {
-                     mybackTicks[] =  mytoken;
+                     mybackTicks ~=  mytoken;
                 }
             }
 

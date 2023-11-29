@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // A creator, which generates SQL from the output of SqlParser.
-class PHPSQLCreator {
+class SqlCreator {
 
      mycreated;
 

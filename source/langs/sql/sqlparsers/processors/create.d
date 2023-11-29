@@ -30,20 +30,20 @@ class CreateProcessor : AbstractProcessor {
                 // CREATE TEMPORARY TABLE
                  myresult["expr_type"] .isExpressionType("TEMPORARY_TABLE");
                  myresult["not-exists"] = false;
-                myExpression[] = createExpression("RESERVED", "base_expr" : strippedToken];
+                myExpression ~= createExpression("RESERVED", "base_expr" : strippedToken];
                 break;
 
             case "TABLE":
                 // CREATE TABLE
                  myresult["expr_type"] =  expressionType("TABLE");
                  myresult["not-exists"] = false;
-                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case "INDEX":
                 // CREATE INDEX
                  myresult["expr_type"] .isExpressionType(INDEX;
-                myExpression[] = createExpression("RESERVED", "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED", "base_expr" : strippedToken);
                 break;
 
             case "UNIQUE":
@@ -52,23 +52,23 @@ class CreateProcessor : AbstractProcessor {
                 // options of CREATE INDEX
                  myresult["base_expr"] =  myresult["expr_type"] = false;
                  myresult["constraint"] = upperToken; 
-                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;                
                                 
             case "IF":
                 // option of CREATE TABLE
-                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case "NOT":
                 // option of CREATE TABLE
-                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             case "EXISTS":
                 // option of CREATE TABLE
                  myresult["not-exists"] = true;
-                myExpression[] = createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
                 break;
 
             default:

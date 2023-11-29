@@ -11,7 +11,7 @@ class UnsupportedFeatureException : Exception {
 
     this(string aKey) {
         _key = aKey;
-        super(_key ~ " not implemented.", 20);
+        super(_key ~ " not implemented.");// , 20);
     }
 
     auto getKey() {
