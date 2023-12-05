@@ -12,7 +12,7 @@ class ColumnReferenceBuilder : ISqlBuilder {
     }
 
     string mySql = parsedSql.baseExpression;
-    mySql ~= this.buildAlias(parsedSql);
+   mySql ~= this.buildAlias(parsedSql);
     return mySql;
   }
 

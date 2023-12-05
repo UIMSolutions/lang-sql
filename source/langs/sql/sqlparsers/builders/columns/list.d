@@ -19,7 +19,7 @@ class ColumnListBuilder : ISqlBuilder {
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
-    return "(" ~ mySql[0 ..  my - delim.length] ~ ")";
+    return "(" ~ mySql[0 .. my - delim.length] ~ ")";
   }
 
   protected string buildKeyValue(string aKey, Json aValue, string delim) {

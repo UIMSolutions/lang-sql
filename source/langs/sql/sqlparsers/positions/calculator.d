@@ -11,13 +11,13 @@ import lang.sql;
  * base_expr elements within the output of the SqlParser. */
 class PositionCalculator {
 
-    protected static  myallowedOnOperator = ["\t", "\n", "\r", " ", ",", "(", ")", "_", """, "\"", "?", "@", "0",
+    protected static myallowedOnOperator = ["\t", "\n", "\r", " ", ",", "(", ")", "_", """, "\"", "?", "@", "0",
                                                 "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    protected static  myallowedOnOther = ["\t", "\n", "\r", " ", ",", "(", ")", "<", ">", "*", "+", "-", "/", "|",
+    protected static myallowedOnOther = ["\t", "\n", "\r", " ", ",", "(", ")", "<", ">", "*", "+", "-", "/", "|",
                                              "&", "=", "!", ";");
 
-    protected  myflippedBacktrackingTypes;
-    protected static  mybacktrackingTypes = [expressionType("EXPRESSION"), expressionType("SUBQUERY"),
+    protected myflippedBacktrackingTypes;
+    protected static mybacktrackingTypes = [expressionType("EXPRESSION"), expressionType("SUBQUERY"),
                                                 expressionType("BRACKET_EXPRESSION"), expressionType("TABLE_EXPRESSION"),
                                                 expressionType("RECORD"), expressionType("IN_LIST"),
                                                 expressionType("MATCH_ARGUMENTS"), expressionType("TABLE"), 
@@ -59,31 +59,31 @@ class PositionCalculator {
         this.flippedBacktrackingTypes = array_flip(this. mybacktrackingTypes);
     }
 
-    protected auto printPos( mytext,  mysql,  mycharPos, myKey,  myparsed,  mybacktracking) {
+    protected auto printPos( mytext, mysql, mycharPos, myKey, myparsed, mybacktracking) {
         if (!isset( my_SERVER["DEBUG"])) {
             return;
         }
 
         string mySpaces = "";
-         mycaller = debug_backtrace();
-         myi = 1;
+        mycaller = debug_backtrace();
+        myi = 1;
         while ( mycaller[ myi]["function"] == "lookForBaseExpression") {
-            mySpaces ~= "   ";
-             myi++;
+           mySpaces ~= "   ";
+            myi++;
         }
-         myholdem = substr( mysql, 0,  mycharPos) . "^" . substr( mysql,  mycharPos);
-        echo mySpaces .  mytext . " key:" . myKey . "  parsed:" .  myparsed . " back:" . serialize( mybacktracking) . " "
-            .  myholdem . "\n";
+        myholdem = substr( mysql, 0, mycharPos) . "^" . substr( mysql, mycharPos);
+        echo mySpaces . mytext . " key:" . myKey . "  parsed:" . myparsed . " back:" . serialize( mybacktracking) . " "
+            . myholdem . "\n";
     }
 
-    auto setPositionsWithinSQL( mysql,  myparsed) {
-         mycharPos = 0;
-         mybacktracking = [];
-        this.lookForBaseExpression( mysql,  mycharPos,  myparsed, 0,  mybacktracking);
-        return  myparsed;
+    auto setPositionsWithinSQL( mysql, myparsed) {
+        mycharPos = 0;
+        mybacktracking = [];
+        this.lookForBaseExpression( mysql, mycharPos, myparsed, 0, mybacktracking);
+        return myparsed;
     }
 
-    protected auto findPositionWithinString( mysql, myValue,  myexpr_type) {
+    protected auto findPositionWithinString( mysql, myValue, myexpr_type) {
         if (myValue.isEmpty) {
             return false;
         }
@@ -92,25 +92,25 @@ class PositionCalculator {
         bool isOK = false;
         while (true) {
 
-             mypos = strpos( mysql, myValue,  myOffset);
+            mypos = strpos( mysql, myValue, myOffset);
             // error_log("pos: mypos value:myValue sql: mysql");
             
             if ( mypos == false) {
                 break;
             }
 
-             mybefore = "";
+            mybefore = "";
             if ( mypos > 0) {
-                 mybefore =  mysql[ mypos - 1];
+                mybefore = mysql[ mypos - 1];
             }
 
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
-             myquotedBefore = in_array( mysql[ mypos], ["`", "("), true);
-             myquotedAfter = in_array( mysql[ mypos + strlen(myValue) - 1], ["`", ")"), true);
-             myafter = "";
+            myquotedBefore = in_array( mysql[ mypos], ["`", "("), true);
+            myquotedAfter = in_array( mysql[ mypos + strlen(myValue) - 1], ["`", ")"), true);
+            myafter = "";
             if (isset( mysql[ mypos + strlen(myValue)])) {
-                 myafter =  mysql[ mypos + strlen(myValue)];
+                myafter = mysql[ mypos + strlen(myValue)];
             }
 
             // if we have an operator, it should be surrounded by
@@ -120,13 +120,13 @@ class PositionCalculator {
             if (in_array( myexpr_type,["operator","column-list"),true)) {
 
                 isOK = ( mybefore.isEmpty || in_array( mybefore, this. myallowedOnOperator, true))
-                    || ( mybefore.toLower >= "a" &&  mybefore.toLower <= "z");
+                    || ( mybefore.toLower >= "a" && mybefore.toLower <= "z");
                 isOK = isOK
                     && ( myafter.isEmpty || in_array( myafter, this. myallowedOnOperator, true)
-                        || ( myafter.toLower >= "a" &&  myafter.toLower <= "z"));
+                        || ( myafter.toLower >= "a" && myafter.toLower <= "z"));
 
                 if (!isOK) {
-                     myOffset =  mypos + 1;
+                    myOffset = mypos + 1;
                     continue;
                 }
 
@@ -137,54 +137,54 @@ class PositionCalculator {
             // whitespace, comma, operators, parenthesis and end_of_string
 
             isOK = ( mybefore.isEmpty || in_array( mybefore, this. myallowedOnOther, true)
-                || ( myquotedBefore && ( mybefore.toLower >= "a" &&  mybefore.toLower <= "z")));
+                || ( myquotedBefore && ( mybefore.toLower >= "a" && mybefore.toLower <= "z")));
             isOK = isOK
                 && ( myafter.isEmpty || in_array( myafter, this. myallowedOnOther, true)
-                    || ( myquotedAfter && ( myafter.toLower >= "a" &&  myafter.toLower <= "z")));
+                    || ( myquotedAfter && ( myafter.toLower >= "a" && myafter.toLower <= "z")));
 
             if (isOK) {
                 break;
             }
 
-             myOffset =  mypos + 1;
+            myOffset = mypos + 1;
         }
 
-        return  mypos;
+        return mypos;
     }
 
     protected auto lookForBaseExpression( mysql, & mycharPos, & myparsed, myKey, & mybacktracking) {
         if (!is_numeric(myKey)) {
             if ((myKey == "UNION" || myKey == "UNION ALL")
                 || (myKey == "expr_type" && isset(this.flippedBacktrackingTypes[ myparsed]))
-                || (myKey == "select-option" &&  myparsed != false) || (myKey == "alias" &&  myparsed != false)) {
+                || (myKey == "select-option" && myparsed != false) || (myKey == "alias" && myparsed != false)) {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record
                 // and we have to look into it too
-                 mybacktracking ~=  mycharPos;
+                mybacktracking ~= mycharPos;
 
-            } else if ((myKey == "ref_clause" || myKey == "columns") &&  myparsed != false) {
+            } else if ((myKey == "ref_clause" || myKey == "columns") && myparsed != false) {
                 // we hold the current position and come back after n base_expr(s)
                 // there is an array of sub-elements before (!) the base_expr clause of the current element
                 // so we go through the sub-elements and must come at the end
-                 mybacktracking ~=  mycharPos;
-                for ( myi = 1;  myi < count( myparsed);  myi++) {
-                     mybacktracking ~= false; // backtracking only after n base_expr!
+                mybacktracking ~= mycharPos;
+                for ( myi = 1; myi < count( myparsed); myi++) {
+                    mybacktracking ~= false; // backtracking only after n base_expr!
                 }
-            } else if ((myKey == "sub_tree" &&  myparsed != false) || (myKey == "options" &&  myparsed != false)) {
+            } else if ((myKey == "sub_tree" && myparsed != false) || (myKey == "options" && myparsed != false)) {
                 // we prevent wrong backtracking on subtrees (too much array_pop())
                 // there is an array of sub-elements after(!) the base_expr clause of the current element
                 // so we go through the sub-elements and must not come back at the end
-                for ( myi = 1;  myi < count( myparsed);  myi++) {
-                     mybacktracking ~= false;
+                for ( myi = 1; myi < count( myparsed); myi++) {
+                    mybacktracking ~= false;
                 }
-            } else if ((myKey == "TABLE") || (myKey == "create-def" &&  myparsed != false)) {
+            } else if ((myKey == "TABLE") || (myKey == "create-def" && myparsed != false)) {
                 // do nothing
             } else {
                 // move the current pos after the keyword
                 // SELECT, WHERE, INSERT etc.
                 if (SqlParserConstants::getInstance().isReserved(myKey)) {
-                     mycharPos = stripos( mysql, myKey,  mycharPos);
-                     mycharPos += strlen(myKey);
+                    mycharPos = stripos( mysql, myKey, mycharPos);
+                    mycharPos += strlen(myKey);
                 }
             }
         }
@@ -193,32 +193,32 @@ class PositionCalculator {
             return;
         }
 
-        foreach (myKey : myValue;  myparsed) {
+        foreach (myKey : myValue; myparsed) {
             if (myKey == "base_expr") {
 
-                //this.printPos("0",  mysql,  mycharPos, myKey, myValue,  mybacktracking);
+                //this.printPos("0", mysql, mycharPos, myKey, myValue, mybacktracking);
 
-                 mysubject = substr( mysql,  mycharPos);
-                 mypos = this.findPositionWithinString( mysubject, myValue,
-                    isset( myparsed["expr_type"]) ?  myparsed["expr_type"] : "alias");
+                mysubject = substr( mysql, mycharPos);
+                mypos = this.findPositionWithinString( mysubject, myValue,
+                    isset( myparsed["expr_type"]) ? myparsed["expr_type"] : "alias");
                 if ( mypos == false) {
-                    throw new UnableToCalculatePositionException(myValue,  mysubject);
+                    throw new UnableToCalculatePositionException(myValue, mysubject);
                 }
 
-                 myparsed["position"] =  mycharPos +  mypos;
-                 mycharPos +=  mypos + strlen(myValue);
+                myparsed["position"] = mycharPos + mypos;
+                mycharPos += mypos + strlen(myValue);
 
-                //this.printPos("1",  mysql,  mycharPos, myKey, myValue,  mybacktracking);
+                //this.printPos("1", mysql, mycharPos, myKey, myValue, mybacktracking);
 
-                 myoldPos = array_pop( mybacktracking);
-                if (isset( myoldPos) &&  myoldPos != false) {
-                     mycharPos =  myoldPos;
+                myoldPos = array_pop( mybacktracking);
+                if (isset( myoldPos) && myoldPos != false) {
+                    mycharPos = myoldPos;
                 }
 
-                //this.printPos("2",  mysql,  mycharPos, myKey, myValue,  mybacktracking);
+                //this.printPos("2", mysql, mycharPos, myKey, myValue, mybacktracking);
 
             } else {
-                this.lookForBaseExpression( mysql,  mycharPos,  myparsed[myKey], myKey,  mybacktracking);
+                this.lookForBaseExpression( mysql, mycharPos, myparsed[myKey], myKey, mybacktracking);
             }
         }
     }

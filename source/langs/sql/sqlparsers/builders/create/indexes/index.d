@@ -26,11 +26,11 @@ class CreateIndexBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
         string mySql = parsedSql["name"];
-        mySql ~= " " ~ this.buildIndexType(parsedSql);
-        mySql = mySql.strip;
-        mySql ~= " " ~ this.buildIndexTable(parsedSql);
-        mySql = mySql.strip;
-        mySql ~= this.buildIndexOptions(parsedSql);
+       mySql ~= " " ~ this.buildIndexType(parsedSql);
+       mySql = mySql.strip;
+       mySql ~= " " ~ this.buildIndexTable(parsedSql);
+       mySql = mySql.strip;
+       mySql ~= this.buildIndexOptions(parsedSql);
         return mySql.strip;
     }
 

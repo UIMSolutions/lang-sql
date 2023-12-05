@@ -31,42 +31,42 @@ class LexerSplitter {
 	/**
 	 * Convert an array of splitter tokens to a regex pattern string.
 	 *
-	 * @param array  mysplitters
+	 * @param array mysplitters
 	 */
-    string convertSplittersToRegexPattern(  mysplitters ) {
-	     myregex_parts = [];
+    string convertSplittersToRegexPattern( mysplitters ) {
+	    myregex_parts = [];
 	    foreach (myPart; splitters) {
-		    myPart = preg_quote( myPart );
+		   myPart = preg_quote( myPart );
 
 		    switch ( myPart ) {
 			    case "\r\n":
-				    mypart = "\r\n";
+				   mypart = "\r\n";
 				    break;
 			    case "\t":
-				    mypart = "\t";
+				   mypart = "\t";
 				    break;
 			    case "\n":
-				    myPart = "\n";
+				   myPart = "\n";
 				    break;
 			    case " ":
-				    myPart = "\s";
+				   myPart = "\s";
 				    break;
 			    case "/":
-				    myPart = "\/";
+				   myPart = "\/";
 				    break;
 			    case "/\*":
-				    myPart = "\/\*";
+				   myPart = "\/\*";
 				    break;
 			    case "\*/":
-				    myPart = "\*\/";
+				   myPart = "\*\/";
 				    break;
 		    }
 
-		     myregex_parts ~= myPart;
+		    myregex_parts ~= myPart;
 	    }
 
-	     mypattern = implode( "|",  myregex_parts );
+	    mypattern = implode( "|", myregex_parts );
 
-	    return "/(" .  mypattern . ")/";
+	    return "/(" . mypattern . ")/";
     }
 }

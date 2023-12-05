@@ -17,11 +17,11 @@ class IndexParserBuilder : ISqlBuilder {
 
                 string mySql = ""; foreach (myKey, myValie; parsedSql["sub_tree"]) {
                     size_t oldSqlLength = mySql.length; mySql ~= this.buildReserved(myValue);
-                        mySql ~= this.buildConstant(myValue); if (oldSqlLength == mySql.length) { // No change
+                       mySql ~= this.buildConstant(myValue); if (oldSqlLength == mySql.length) { // No change
                             throw new UnableToCreateSQLException("CREATE TABLE primary key index parser subtree", myKey, myValue, "expr_type");
                         }
 
-                    mySql ~= " "; }
+                   mySql ~= " "; }
                     return substr(mySql, 0,  - 1); }
                     protected string buildReserved(Json parsedSql) {
                         auto myBuilder = new ReservedBuilder(); return myBuilder.build(parsedSql);

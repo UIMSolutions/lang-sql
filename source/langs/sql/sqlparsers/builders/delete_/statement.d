@@ -9,7 +9,7 @@ class DeleteStatementBuilder : ISqlBuilder {
   string build(Json parsedSql) {
     string mySql = this.buildDelete(parsedSql["DELETE"]) ~ " " ~ this.buildFrom(parsedSql["FROM"]);
     if (parsedSql.isSet("WHERE")) {
-      mySql ~= " " ~ this.buildWhere(parsedSql["WHERE"]);
+     mySql ~= " " ~ this.buildWhere(parsedSql["WHERE"]);
     }
     return mySql;
   }

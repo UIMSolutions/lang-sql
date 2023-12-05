@@ -11,7 +11,7 @@ class ColumnTypeBracketExpressionBuilder : ISqlBuilder {
       return "";
     }
     string mySql = this.buildSubTree(parsedSql, ",");
-    mySql = "(" ~ mySql ~ ")";
+   mySql = "(" ~ mySql ~ ")";
     return mySql;
   }
 

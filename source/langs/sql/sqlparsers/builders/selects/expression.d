@@ -13,7 +13,7 @@ class SelectExpressionBuilder : ISqlBuilder {
     }
 
     string mySql = this.buildSubTree(parsedSql, " ");
-    mySql ~= this.buildAlias(parsedSql);
+   mySql ~= this.buildAlias(parsedSql);
     return mySql;
   }
 

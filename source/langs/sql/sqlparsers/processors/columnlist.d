@@ -11,9 +11,9 @@ class ColumnListProcessor : AbstractProcessor {
     Json myColumns = Json.emptyArray;
     foreach (myKey, myTokenName; tokenNames) {
       Json myColumn = createExpression("COLREF", myTokenName.strip);
-      myColumn["no_quotes"] = this.revokeQuotation(myTokenName);
+     myColumn["no_quotes"] = this.revokeQuotation(myTokenName);
       
-      myColumns ~= myColumn;
+     myColumns ~= myColumn;
     }
     return myColumns;
   }

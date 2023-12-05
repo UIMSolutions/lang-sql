@@ -18,10 +18,10 @@ class CreateBuilder : ISqlBuilder {
 
     if (myCreate.isExpressionType("TABLE")
       || myCreate.isExpressionType("TEMPORARY_TABLE")) {
-      mySql ~= " " ~ this.buildCreateTable(parsedSql["TABLE"]);
+     mySql ~= " " ~ this.buildCreateTable(parsedSql["TABLE"]);
     }
     if (myCreate.isExpressionType("INDEX")) {
-      mySql ~= " " ~ this.buildCreateIndex(parsedSql["INDEX"]);
+     mySql ~= " " ~ this.buildCreateIndex(parsedSql["INDEX"]);
     }
 
     // TODO: add more expr_types here (like VIEW), if available in parser output

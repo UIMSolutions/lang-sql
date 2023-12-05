@@ -13,8 +13,8 @@ class IndexColumnBuilder : ISqlBuilder {
     }
 
     string mySql = parsedSql["name"];
-    mySql ~= this.buildLength(parsedSql["length"]);
-    mySql ~= this.buildDirection(parsedSql["dir"]);
+   mySql ~= this.buildLength(parsedSql["length"]);
+   mySql ~= this.buildDirection(parsedSql["dir"]);
     return mySql;
   }
 

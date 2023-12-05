@@ -12,13 +12,13 @@ class InsertStatementBuilder : ISqlBuilder {
     string mySql = this.buildINSERT(parsedSql["INSERT"]);
 
     if (parsedSql.isSet("VALUES")) {
-      mySql ~= " " ~ this.buildValues(parsedSql["VALUES"]);
+     mySql ~= " " ~ this.buildValues(parsedSql["VALUES"]);
     }
     if (parsedSql.isSet("SET")) {
-      mySql ~= " " ~ this.buildSet(parsedSql["SET"]);
+     mySql ~= " " ~ this.buildSet(parsedSql["SET"]);
     }
     if (parsedSql.isSet("SELECT")) {
-      mySql ~= " " ~ this.buildSelect(parsedSql);
+     mySql ~= " " ~ this.buildSelect(parsedSql);
     }
 
     return mySql;

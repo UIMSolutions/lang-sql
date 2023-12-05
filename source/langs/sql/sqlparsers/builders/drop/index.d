@@ -13,7 +13,7 @@ class DropIndexBuilder : IBuilder {
     }
 
     string mySql = parsedSql["name"].strip;
-    mySql ~= " " ~ this.buildIndexTable(parsedSql);
+   mySql ~= " " ~ this.buildIndexTable(parsedSql);
     return mySql.strip;
   }
 

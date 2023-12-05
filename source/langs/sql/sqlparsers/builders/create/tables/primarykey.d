@@ -33,7 +33,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
       throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", aKey, aValue, "expr_type");
     }
 
-    mySql ~= " ";
+   mySql ~= " ";
     return result;
   }
 

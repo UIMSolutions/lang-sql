@@ -23,18 +23,18 @@ class SelectBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildSelectBracketExpression(myValue);
-            mySql ~= this.buildSelectExpression(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildReserved(myValue);
+           mySql ~= this.buildColRef(myValue);
+           mySql ~= this.buildSelectBracketExpression(myValue);
+           mySql ~= this.buildSelectExpression(myValue);
+           mySql ~= this.buildFunction(myValue);
+           mySql ~= this.buildConstant(myValue);
+           mySql ~= this.buildReserved(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException("SELECT", myKey, myValue, "expr_type");
             }
 
-            mySql ~= this.getDelimiter(myValue);
+           mySql ~= this.getDelimiter(myValue);
         }
         return "SELECT " ~ mySql;
     }

@@ -9,7 +9,7 @@ class OrderByFunctionBuilder : FunctionBuilder {
   string build(Json parsedSql) {
     auto mySql = super.build(parsedSql);
     if (!mySql.isEmpty) {
-      mySql ~= this.buildDirection(parsedSql);
+     mySql ~= this.buildDirection(parsedSql);
     }
     return mySql;
   }

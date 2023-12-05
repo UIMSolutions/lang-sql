@@ -9,8 +9,8 @@ class CreateStatementBuilder : ISqlBuilder {
     string build(Json parsedSql) {
         string mySql = this.buildCreate(parsedSql);
 
-        mySql ~= parsedSql.isSet("LIKE") ? " " ~ this.buildLike(parsedSql["LIKE"]) : "";
-        mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSelectStatement(parsedSql) : "";
+       mySql ~= parsedSql.isSet("LIKE") ? " " ~ this.buildLike(parsedSql["LIKE"]) : "";
+       mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSelectStatement(parsedSql) : "";
 
         return mySql;
     }

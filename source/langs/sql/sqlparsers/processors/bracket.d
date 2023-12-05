@@ -19,12 +19,12 @@ class BracketProcessor : AbstractProcessor {
     Json myRemainingExpressions = this.getRemainingNotBracketExpression(myProcessTopLevel);
 
     if (myProcessTopLevel.isSet("BRACKET")) {
-      myProcessTopLevel = myProcessTopLevel["BRACKET"];
+     myProcessTopLevel = myProcessTopLevel["BRACKET"];
     }
 
     if (myProcessTopLevel.isSet("SELECT")) {
-      myProcessTopLevel = createExpression("QUERY", myToken);
-      myProcessTopLevel["sub_tree"] = myProcessTopLevel;
+     myProcessTopLevel = createExpression("QUERY", myToken);
+     myProcessTopLevel["sub_tree"] = myProcessTopLevel;
     }
 
     Json result = createExpression("BRACKET_EXPRESSION", someTokens[0].strip);
@@ -48,7 +48,7 @@ class BracketProcessor : AbstractProcessor {
 
     foreach (myKey; mySubtreeKeys) {
       if (!ignoredKeys.has(myKey)) {
-        myRemainingExpressions[myKey] = subtree[myKey];
+       myRemainingExpressions[myKey] = subtree[myKey];
       }
     }
 

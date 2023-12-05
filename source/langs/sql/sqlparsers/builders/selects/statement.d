@@ -6,31 +6,31 @@ class SelectStatementBuilder : ISqlBuilder {
   string build(Json parsedSql) {
     string mySql = "";
     if (parsedSql.isSet("SELECT")) {
-      mySql ~= this.buildSELECT(parsedSql["SELECT"]);
+     mySql ~= this.buildSELECT(parsedSql["SELECT"]);
     }
     if (parsedSql.isSet("FROM")) {
-      mySql ~= " " ~ this.buildFROM(parsedSql["FROM"]);
+     mySql ~= " " ~ this.buildFROM(parsedSql["FROM"]);
     }
     if (parsedSql.isSet("WHERE")) {
-      mySql ~= " " ~ this.buildWHERE(parsedSql["WHERE"]);
+     mySql ~= " " ~ this.buildWHERE(parsedSql["WHERE"]);
     }
     if (parsedSql.isSet("GROUP")) {
-      mySql ~= " " ~ this.buildGROUP(parsedSql["GROUP"]);
+     mySql ~= " " ~ this.buildGROUP(parsedSql["GROUP"]);
     }
     if (parsedSql.isSet("HAVING")) {
-      mySql ~= " " ~ this.buildHAVING(parsedSql["HAVING"]);
+     mySql ~= " " ~ this.buildHAVING(parsedSql["HAVING"]);
     }
     if (parsedSql.isSet("ORDER")) {
-      mySql ~= " " ~ this.buildORDER(parsedSql["ORDER"]);
+     mySql ~= " " ~ this.buildORDER(parsedSql["ORDER"]);
     }
     if (parsedSql.isSet("LIMIT")) {
-      mySql ~= " " ~ this.buildLIMIT(parsedSql["LIMIT"]);
+     mySql ~= " " ~ this.buildLIMIT(parsedSql["LIMIT"]);
     }
     if (parsedSql.isSet("UNION")) {
-      mySql ~= " " ~ this.buildUNION(parsedSql);
+     mySql ~= " " ~ this.buildUNION(parsedSql);
     }
     if (parsedSql.isSet("UNION ALL")) {
-      mySql ~= " " ~ this.buildUNIONALL(parsedSql);
+     mySql ~= " " ~ this.buildUNIONALL(parsedSql);
     }
     return mySql;
   }

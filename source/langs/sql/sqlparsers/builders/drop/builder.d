@@ -12,7 +12,7 @@ class DropBuilder : ISqlBuilder {
     string mySql = this.buildSubTree(dropSql);
 
     if (dropSql.isExpressionType("INDEX")) {
-      mySql ~= "" ~ this.buildDropIndex(parsedSql["INDEX"]) ~ " ";
+     mySql ~= "" ~ this.buildDropIndex(parsedSql["INDEX"]) ~ " ";
     }
 
     return "DROP " ~ substr(mySql, 0, -1);

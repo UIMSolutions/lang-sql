@@ -13,9 +13,9 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
     protected auto processExpressionList( myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        myExpression = this.removeParenthesisFromStart( myparsed);
-        myExpression = this.splitSQLIntoTokens(myExpression);
-        myExpression = this.removeComma(myExpression);
+       myExpression = this.removeParenthesisFromStart( myparsed);
+       myExpression = this.splitSQLIntoTokens(myExpression);
+       myExpression = this.removeComma(myExpression);
         return myProcessor.process(myExpression);
     }
 
@@ -26,7 +26,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
     protected auto removeComma( mytokens) {
         auto result = [];
-        foreach (myToken;  mytokens) {
+        foreach (myToken; mytokens) {
             if (myToken.strip != ",") {
                 result ~= myToken;
             }
@@ -34,39 +34,39 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         return result;
     }
 
-    protected string buildColDef(myExpression, baseExpression,  myoptions,  myrefs, myKey) {
-        myExpression = createExpression("COLUMN_TYPE"), "base_expr" : baseExpression, "sub_tree" : myExpression];
+    protected string buildColDef(myExpression, baseExpression, myoptions, myrefs, myKey) {
+       myExpression = createExpression("COLUMN_TYPE"), "base_expr" : baseExpression, "sub_tree" : myExpression];
 
         // add options first
-        myExpression["sub_tree"] = array_merge(myExpression["sub_tree"],  myoptions["sub_tree"]);
+       myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], myoptions["sub_tree"]);
         unset( myoptions["sub_tree"]);
-        myExpression = array_merge(myExpression,  myoptions);
+       myExpression = array_merge(myExpression, myoptions);
 
         // followed by references
         if (sizeof( myrefs) != 0) {
-            myExpression["sub_tree"] = array_merge(myExpression["sub_tree"],  myrefs);
+           myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], myrefs);
         }
 
-        myExpression["till"] = myKey;
+       myExpression["till"] = myKey;
         return myExpression;
     }
 
     auto process( mytokens) {
         string baseExpression = "";
         string currentCategory = "";
-        myExpression = [];
-         myrefs = [];
-         myoptions = ["unique" : false, "nullable" : true, "auto_inc" : false, "primary" : false,
+       myExpression = [];
+        myrefs = [];
+        myoptions = ["unique" : false, "nullable" : true, "auto_inc" : false, "primary" : false,
                          "sub_tree" : []];
-         myskip = 0;
+        myskip = 0;
 
-        foreach (myKey, myToken;  mytokens) {
+        foreach (myKey, myToken; mytokens) {
 
             string strippedToken = myToken.strip;
             baseExpression ~= myToken;
 
             if ( myskip > 0) {
-                 myskip--;
+                myskip--;
                 continue;
             }
 
@@ -85,38 +85,38 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case ",":
             // we stop on a single comma and return
             // the myExpression entry and the index myKey
-                myExpression = this.buildColDef(myExpression, (substr(baseExpression, 0, -myToken.length)).strip,  myoptions,  myrefs,
-                    myKey - 1);
+               myExpression = this.buildColDef(myExpression, (substr(baseExpression, 0, -myToken.length)).strip, myoptions, myrefs,
+                   myKey - 1);
                 break 2;
 
             case "VARCHAR":
             case "VARCHARACTER": // Alias for VARCHAR
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
-                myPrevousCategory = "TEXT";
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
+               myPrevousCategory = "TEXT";
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
                 continue 2;
 
             case "VARBINARY":
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
-                myPrevousCategory = upperToken;
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
+               myPrevousCategory = upperToken;
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
                 continue 2;
 
             case "UNSIGNED":
-                foreach (array_reverse(array_keys(myExpression)) as  myi) {
+                foreach (array_reverse(array_keys(myExpression)) as myi) {
                     if (myExpression[ myi].isSet("expr_type") && (expressionType("DATA_TYPE") == myExpression[ myi]["expr_type"])) {
-                        myExpression[ myi]["unsigned"] = true;
+                       myExpression[ myi]["unsigned"] = true;
                         break;
                     }
                 }
-	             myoptions["sub_tree"] ~= createExpression("RESERVED", strippedToken];
+	            myoptions["sub_tree"] ~= createExpression("RESERVED", strippedToken];
                 continue 2;
 
             case "ZEROFILL":
-                 mylast = array_pop(myExpression);
-                 mylast["zerofill"] = true;
-                myExpression ~=  mylast;
-	             myoptions["sub_tree"] ~= createExpression("RESERVED", strippedToken);
+                mylast = array_pop(myExpression);
+                mylast["zerofill"] = true;
+               myExpression ~= mylast;
+	            myoptions["sub_tree"] ~= createExpression("RESERVED", strippedToken);
                 continue 2;
 
             case "BIT":
@@ -134,30 +134,30 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "INT8":       // Alias of BIGINT
             case "BOOL":
             case "BOOLEAN":
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
                                 "zerofill" : false, "length" : false];
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
-                myPrevousCategory = upperToken;
+               myPrevousCategory = upperToken;
                 continue 2;
 
             case "BINARY":
                 if (currentCategory == "TEXT") {
-                     mylast = array_pop(myExpression);
-                     mylast["binary"] = true;
-                     mylast["sub_tree"] ~= createEXpression("RESERVED", strippedToken);
-                    myExpression ~=  mylast;
+                    mylast = array_pop(myExpression);
+                    mylast["binary"] = true;
+                    mylast["sub_tree"] ~= createEXpression("RESERVED", strippedToken);
+                   myExpression ~= mylast;
                     continue 2;
                 }
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
-                myPrevousCategory = upperToken;
+               myPrevousCategory = upperToken;
                 continue 2;
 
             case "CHAR":
             case "CHARACTER":  // Alias for CHAR
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
-                myPrevousCategory = "TEXT";
+               myPrevousCategory = "TEXT";
                 continue 2;
 
             case "REAL":
@@ -165,24 +165,24 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "FLOAT8":     // Alias for DOUBLE
             case "FLOAT":
             case "FLOAT4":     // Alias for FLOAT
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
                                 "zerofill" : false];
                 currentCategory = "TWO_PARAM_PARENTHESIS";
-                myPrevousCategory = upperToken;
+               myPrevousCategory = upperToken;
                 continue 2;
 
             case "DECIMAL":
             case "NUMERIC":
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
                                 "zerofill" : false];
                 currentCategory = "TWO_PARAM_PARENTHESIS";
-                myPrevousCategory = upperToken;
+               myPrevousCategory = upperToken;
                 continue 2;
 
             case "YEAR":
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
-                myPrevousCategory = upperToken;
+               myPrevousCategory = upperToken;
                 continue 2;
 
             case "DATE":
@@ -193,8 +193,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "BLOB":
             case "MEDIUMBLOB":
             case "LONGBLOB":
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr": strippedToken];
-                myPrevousCategory = currentCategory = upperToken;
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr": strippedToken];
+               myPrevousCategory = currentCategory = upperToken;
                 continue 2;
 
             // the next token can be BINARY
@@ -202,14 +202,14 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "TEXT":
             case "MEDIUMTEXT":
             case "LONGTEXT":
-                myPrevousCategory = currentCategory = "TEXT";
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "binary" : false];
+               myPrevousCategory = currentCategory = "TEXT";
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "binary" : false];
                 continue 2;
 
             case "ENUM":
                 currentCategory = "MULTIPLE_PARAM_PARENTHESIS";
-                myPrevousCategory = "TEXT";
-                myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false];
+               myPrevousCategory = "TEXT";
+               myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false];
                 continue 2;
 
             case "GEOMETRY":
@@ -220,79 +220,79 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "MULTILINESTRING":
             case "MULTIPOLYGON":
             case "GEOMETRYCOLLECTION":
-                myExpression ~= createExpression("DATA_TYPE"), "base_expr": strippedToken];
-                myPrevousCategory = currentCategory = upperToken;
+               myExpression ~= createExpression("DATA_TYPE"), "base_expr": strippedToken];
+               myPrevousCategory = currentCategory = upperToken;
                 // TODO: is it right?
                 // spatial types
                 continue 2;
 
             case "CHARACTER":
                 currentCategory = "CHARSET";
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "SET":
 				if (currentCategory == "CHARSET") {
-    	             myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+    	            myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
 				} else {
 	                currentCategory = "MULTIPLE_PARAM_PARENTHESIS";
-    	            myPrevousCategory = "TEXT";
-        	        myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false];
+    	           myPrevousCategory = "TEXT";
+        	       myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken, "sub_tree" : false];
 				}
                 continue 2;
 
             case "COLLATE":
                 currentCategory = upperToken;
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "NOT":
             case "NULL":
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 if ( myoptions["nullable"]) {
-                     myoptions["nullable"] = (upperToken == "NOT" ? false : true);
+                    myoptions["nullable"] = (upperToken == "NOT" ? false : true);
                 }
                 continue 2;
 
             case "DEFAULT":
             case "COMMENT":
                 currentCategory = upperToken;
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "AUTO_INCREMENT":
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
-                 myoptions["auto_inc"] = true;
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["auto_inc"] = true;
                 continue 2;
 
             case "COLUMN_FORMAT":
             case "STORAGE":
                 currentCategory = upperToken;
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "UNIQUE":
             // it can follow a KEY word
                 currentCategory = upperToken;
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
-                 myoptions["unique"] = true;
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["unique"] = true;
                 continue 2;
 
             case "PRIMARY":
             // it must follow a KEY word
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 continue 2;
 
             case "KEY":
-                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
                 if (currentCategory != "UNIQUE") {
-                     myoptions["primary"] = true;
+                    myoptions["primary"] = true;
                 }
                 continue 2;
 
             case "REFERENCES":
-                 myrefs = this.processReferenceDefinition(array_splice( mytokens, myKey - 1, null, true));
-                 myskip =  myrefs["till"] - myKey;
+                myrefs = this.processReferenceDefinition(array_splice( mytokens, myKey - 1, null, true));
+                myskip = myrefs["till"] - myKey;
                 unset( myrefs["till"]);
                 // TODO: check this, we need the last comma
                 continue 2;
@@ -302,8 +302,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case "STORAGE":
                     if (upperToken == "DISK" || upperToken == "MEMORY" || upperToken == "DEFAULT") {
-                         myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
-                         myoptions["storage"] = strippedToken;
+                        myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                        myoptions["storage"] = strippedToken;
                         continue 3;
                     }
                     // else ?
@@ -311,8 +311,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case "COLUMN_FORMAT":
                     if (upperToken == "FIXED" || upperToken == "DYNAMIC" || upperToken == "DEFAULT") {
-                         myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
-                         myoptions["col_format"] = strippedToken;
+                        myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
+                        myoptions["col_format"] = strippedToken;
                         continue 3;
                     }
                     // else ?
@@ -320,72 +320,72 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                 case "COMMENT":
                 // this is the comment string
-                     myoptions["sub_tree"] ~= createExpression("COMMENT"), "base_expr": strippedToken];
-                     myoptions["comment"] = strippedToken;
+                    myoptions["sub_tree"] ~= createExpression("COMMENT"), "base_expr": strippedToken];
+                    myoptions["comment"] = strippedToken;
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "DEFAULT":
                 // this is the default value
-                     myoptions["sub_tree"] ~= createExpression("DEF_VALUE"), "base_expr": strippedToken];
-                     myoptions["default"] = strippedToken;
+                    myoptions["sub_tree"] ~= createExpression("DEF_VALUE"), "base_expr": strippedToken];
+                    myoptions["default"] = strippedToken;
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "COLLATE":
                 // this is the collation name
-                     myoptions["sub_tree"] ~= createExpression("COLLATE"), "base_expr": strippedToken];
-                     myoptions["collate"] = strippedToken;
+                    myoptions["sub_tree"] ~= createExpression("COLLATE"), "base_expr": strippedToken];
+                    myoptions["collate"] = strippedToken;
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "CHARSET":
                 // this is the character set name
-                     myoptions["sub_tree"] ~= createExpression("CHARSET"), "base_expr": strippedToken];
-                     myoptions["charset"] = strippedToken;
+                    myoptions["sub_tree"] ~= createExpression("CHARSET"), "base_expr": strippedToken];
+                    myoptions["charset"] = strippedToken;
                     currentCategory = myPrevousCategory;
                   break;
 
                 case "SINGLE_PARAM_PARENTHESIS":
-                     myparsed = this.removeParenthesisFromStart(strippedToken);
-                     myparsed = createExpression("CONSTANT"), "base_expr" :  myparsed.strip);
-                     mylast = array_pop(myExpression);
-                     mylast["length"] =  myparsed.baseExpression;
+                    myparsed = this.removeParenthesisFromStart(strippedToken);
+                    myparsed = createExpression("CONSTANT"), "base_expr" : myparsed.strip);
+                    mylast = array_pop(myExpression);
+                    mylast["length"] = myparsed.baseExpression;
 
-                    myExpression ~=  mylast;
-                    myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+                   myExpression ~= mylast;
+                   myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
                                     "sub_tree" : [ myparsed));
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "TWO_PARAM_PARENTHESIS":
                 // maximum of two parameters
-                     myparsed = this.processExpressionList(strippedToken);
+                    myparsed = this.processExpressionList(strippedToken);
 
-                     mylast = array_pop(myExpression);
-                     mylast["length"] =  myparsed[0].baseExpression;
-                     mylast["decimals"] = isset( myparsed[1]) ?  myparsed[1].baseExpression : false;
+                    mylast = array_pop(myExpression);
+                    mylast["length"] = myparsed[0].baseExpression;
+                    mylast["decimals"] = isset( myparsed[1]) ? myparsed[1].baseExpression : false;
 
-                    myExpression ~=  mylast;
-                    myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-                                    "sub_tree" :  myparsed);
+                   myExpression ~= mylast;
+                   myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+                                    "sub_tree" : myparsed);
                     currentCategory = myPrevousCategory;
                     break;
 
                 case "MULTIPLE_PARAM_PARENTHESIS":
                 // some parameters
-                     myparsed = this.processExpressionList(strippedToken);
+                    myparsed = this.processExpressionList(strippedToken);
 
-                     mylast = array_pop(myExpression);
-                     mysubTree = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-                                     "sub_tree" :  myparsed];
+                    mylast = array_pop(myExpression);
+                    mysubTree = createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+                                     "sub_tree" : myparsed];
 
-                    if (this.options.getConsistentSubtrees()) {
-                         mysubTree = [ mysubTree];
+                    if (this.options.hasConsistentSubtrees()) {
+                        mysubTree = [ mysubTree];
                     }
 
-                     mylast["sub_tree"] =  mysubTree;
-                    myExpression ~=  mylast;
+                    mylast["sub_tree"] = mysubTree;
+                   myExpression ~= mylast;
                     currentCategory = myPrevousCategory;
                     break;
 
@@ -394,13 +394,13 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 }
 
             }
-            myPrevousCategory = currentCategory;
+           myPrevousCategory = currentCategory;
             currentCategory = "";
         }
 
         if (!myExpression.isSet("till")) {
-            // end of  mytokens array
-            myExpression = this.buildColDef(myExpression, baseExpression.strip,  myoptions,  myrefs, -1);
+            // end of mytokens array
+           myExpression = this.buildColDef(myExpression, baseExpression.strip, myoptions, myrefs, -1);
         }
         return myExpression;
     }
