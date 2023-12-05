@@ -85,7 +85,7 @@ class UnionProcessor : Processor {
             }
         }
 
-        if (! myfinalQueryFound) {
+        if (!myfinalQueryFound) {
             foreach (myKey, myToken; resultputArray) {
                 if (myToken.toUpper == "ORDER") {
                     break;
@@ -98,7 +98,7 @@ class UnionProcessor : Processor {
 
         myfinalQueryString = implode(myfinalQuery).strip;
 
-        if (! myfinalQuery.isEmpty && myfinalQueryString != "") {
+        if (!myfinalQuery.isEmpty && myfinalQueryString != "") {
             queries[isUnionType] ~= myfinalQuery;
         }
 

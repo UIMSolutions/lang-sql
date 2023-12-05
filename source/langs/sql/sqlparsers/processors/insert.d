@@ -8,7 +8,7 @@ import lang.sql;
 class InsertProcessor : Processor {
 
     protected auto processOptions(mytokenList) {
-        if (! mytokenList.isSet("OPTIONS")) {
+        if (!mytokenList.isSet("OPTIONS")) {
             return [];
         }
         }
@@ -20,7 +20,7 @@ class InsertProcessor : Processor {
     }
 
     protected auto processKeyword(myKeyword, mytokenList) {
-        if (! mytokenList.isSet(myKeyword)) {
+        if (!mytokenList.isSet(myKeyword)) {
             return ["", false, []);
         }
 

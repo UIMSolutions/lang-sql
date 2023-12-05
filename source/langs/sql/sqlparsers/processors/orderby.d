@@ -63,7 +63,7 @@ class OrderByProcessor : Processor {
         result  = [];
         parseInfo = this.initParseInfo();
 
-        if (! mytokens) {
+        if (!mytokens) {
             return false;
         }
 

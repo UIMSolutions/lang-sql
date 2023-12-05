@@ -56,7 +56,7 @@ class SQLLexer {
 
     	while (myTokenCounter < numberOfTokens) {
 
-    		if (! mytokens.iSet(myTokenCounter)) {
+    		if (!mytokens.iSet(myTokenCounter)) {
     			 myTokenCounter++;
     			continue;
     		}
@@ -94,7 +94,7 @@ class SQLLexer {
 
         while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.isSet(myTokenCounter)) {
+            if (!mytokens.isSet(myTokenCounter)) {
                 myTokenCounter++;
                 continue;
             }
@@ -133,7 +133,7 @@ class SQLLexer {
 
         while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myTokenCounter)) {
+            if (!mytokens.iSet(myTokenCounter)) {
                 myTokenCounter++;
                 continue;
             }
@@ -169,7 +169,7 @@ class SQLLexer {
 
         while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myTokenCounter)) {
+            if (!mytokens.iSet(myTokenCounter)) {
                 myTokenCounter++;
                 continue;
             }
@@ -193,9 +193,9 @@ class SQLLexer {
             }
 
             if(mycomment == false && (mytoken == "\"" || mytoken == "'")) {
-                myin_string = ! myin_string;
+                myin_string = !myin_string;
             }
-            if(! myin_string) {
+            if(!myin_string) {
                 if (mycomment != false) {
                     if (myinline == true && (mytoken == "\n" || mytoken == "\r\n")) {
                         mycomment = false;
@@ -239,7 +239,7 @@ class SQLLexer {
         numberOfTokens = count(mytokens);
         while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myTokenCounter)) {
+            if (!mytokens.iSet(myTokenCounter)) {
                 myTokenCounter++;
                 continue;
             }
@@ -264,7 +264,7 @@ class SQLLexer {
         size_t myTokenCounter = myidx + 1;
         while (myTokenCounter < mytoken_count) {
 
-            if (! mytokens.iSet(myTokenCounter)) {
+            if (!mytokens.iSet(myTokenCounter)) {
                 myTokenCounter++;
                 continue;
             }
@@ -296,7 +296,7 @@ class SQLLexer {
         size_t myTokenCounter = 0;
         while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myTokenCounter)) {
+            if (!mytokens.iSet(myTokenCounter)) {
                 myTokenCounter++;
                 continue;
             }

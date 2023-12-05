@@ -79,7 +79,7 @@ class SelectExpressionProcessor : Processor {
         // we remove the last token, if it is a colref,
         // it can be an alias without an AS
         mylast = array_pop(mystripped);
-        if (! myalias && this.isColumnReference(mylast)) {
+        if (!myalias && this.isColumnReference(mylast)) {
 
             // TODO: it can be a comment, don"t use array_pop
 
@@ -120,7 +120,7 @@ class SelectExpressionProcessor : Processor {
         result["expr_type"] = mytype;
         result["alias"] = myalias;
         result["base_expr"] = baseExpression.strip;
-        if (! myno_quotes.isEmpty) {
+        if (!myno_quotes.isEmpty) {
             result["no_quotes"] = myno_quotes;
         }
         result["sub_tree"] = (myprocessed.isEmpty ? false : myprocessed);

@@ -121,8 +121,8 @@ class ExpressionListProcessor : Processor {
                                 mylocalExprList = [mylocalExprList);
                             }
 
-                            if (! mycurr.getSubTree()) {
-                                if (! mylocalExprList.isEmpty) {
+                            if (!mycurr.getSubTree()) {
+                                if (!mylocalExprList.isEmpty) {
                                     mycurr.setSubTree(mylocalExprList);
                                 }
                             } else {
@@ -146,7 +146,7 @@ class ExpressionListProcessor : Processor {
                         mylocalExprList = [mylocalExprList];
                     }
 
-                    if (! mycurr.getSubTree()) {
+                    if (!mycurr.getSubTree()) {
                         if (!mylocalExprList.isEmpty) {
                             mycurr.setSubTree(mylocalExprList);
                         }
@@ -175,7 +175,7 @@ class ExpressionListProcessor : Processor {
                     mylocalExprList = this.process(mytmpExprList);
 
                     mycurr.setTokenType(expressionType("BRACKET_EXPRESSION"));
-                    if (! mycurr.getSubTree()) {
+                    if (!mycurr.getSubTree()) {
                         if (!mylocalExprList.isEmpty) {
                             mycurr.setSubTree(mylocalExprList);
                         }
@@ -211,13 +211,13 @@ class ExpressionListProcessor : Processor {
                     // then * is an operator
                     // but if the previous colref ends with a dot, the * is the all-columns-alias
                     if (
-                        ! myprev.isColumnReference()
-                        && ! myprev.isConstant()
-                        && ! myprev.isExpression()
-                        && ! myprev.isBracketExpression()
-                        && ! myprev.isAggregateFunction()
-                        && ! myprev.isVariable()
-                        && ! myprev.isFunction()
+                        !myprev.isColumnReference()
+                        && !myprev.isConstant()
+                        && !myprev.isExpression()
+                        && !myprev.isBracketExpression()
+                        && !myprev.isAggregateFunction()
+                        && !myprev.isVariable()
+                        && !myprev.isFunction()
                     ) {
                         mycurr.setTokenType(expressionType("COLREF"));
                         break;
@@ -329,8 +329,8 @@ class ExpressionListProcessor : Processor {
             }
 
             /* is a reserved word? */
-            if (! mycurr.isOperator() && ! mycurr.isInList() && ! mycurr.isFunction() && ! mycurr.isAggregateFunction()
-                && ! mycurr.isCustomFunction() && SqlParserConstants::getInstance().isReserved(mycurr.getUpper())) {
+            if (!mycurr.isOperator() && !mycurr.isInList() && !mycurr.isFunction() && !mycurr.isAggregateFunction()
+                && !mycurr.isCustomFunction() && SqlParserConstants::getInstance().isReserved(mycurr.getUpper())) {
 
 	            mynext = tokens.isSet(myk + 1 ) ? new ExpressionToken(myk + 1, tokens[myk + 1 ] ) : new ExpressionToken();
                 myisEnclosedWithinParenthesis = mynext.isEnclosedWithinParenthesis();
@@ -357,7 +357,7 @@ class ExpressionListProcessor : Processor {
                         mycurr.setTokenType(expressionType("SIMPLE_FUNCTION"));
                         mycurr.setNoQuotes(null, null, this.options);
 
-                    }  else if (! myisEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction(mycurr.getUpper())) {
+                    }  else if (!myisEnclosedWithinParenthesis && SqlParserConstants::getInstance().isFunction(mycurr.getUpper())) {
 	                    // Colname using auto name.
                     	 mycurr.setTokenType(expressionType("COLREF"));
                     } else {
