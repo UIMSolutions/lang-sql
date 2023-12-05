@@ -16,10 +16,9 @@ class SqlParser {
      * Use the variable  _parsed to get the output.
      *
      * @param bool calcPositions True, if the output should contain [position], false otherwise.
-     * @param array myoptions
      */
     this(string sqlStatement = null, bool calcPositions = false, Json someOptions = Json(null)) {
-        _options = new Options(myoptions);
+        _options = new Options(someOptions);
 
         if (!sqlStatement.isNull) {
             this.parse(sqlStatement, calcPositions);

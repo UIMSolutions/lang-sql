@@ -340,7 +340,7 @@ class TableProcessor : Processor {
       currentCategory = "";
     }
 
-    if (myResult["like"] == false) {
+    if (myResult["like"].isEmpty) {
       unset(myResult["like"]);
     }
     if (myResult["select-option"].isEmpty) {

@@ -3,10 +3,7 @@ module langs.sql.sqlparsers.builders.create.index;
 import lang.sql;
 
 @safe:
-/**
- * Builds the CREATE INDEX statement
- * This class : the builder for the CREATE INDEX statement. You can overwrite
- * all functions to achieve another handling. */
+// Builds the CREATE INDEX statement
 class CreateIndexBuilder : ISqlBuilder {
 
     protected string buildIndexType(Json parsedSql) {
@@ -25,12 +22,12 @@ class CreateIndexBuilder : ISqlBuilder {
     }
 
     string build(Json parsedSql) {
-        string mySql = parsedSql["name"];
-       mySql ~= " " ~ this.buildIndexType(parsedSql);
-       mySql = mySql.strip;
-       mySql ~= " " ~ this.buildIndexTable(parsedSql);
-       mySql = mySql.strip;
-       mySql ~= this.buildIndexOptions(parsedSql);
+        string mySql = parsedSql["name"].get!string;
+        mySql ~= " " ~ this.buildIndexType(parsedSql);
+        mySql = mySql.strip;
+        mySql ~= " " ~ this.buildIndexTable(parsedSql);
+        mySql = mySql.strip;
+        mySql ~= this.buildIndexOptions(parsedSql);
         return mySql.strip;
     }
 

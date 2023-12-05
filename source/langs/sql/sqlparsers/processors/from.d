@@ -25,22 +25,32 @@ class FromProcessor : Processor {
         return myProcessor.process(myunparsed);
     }
 
-    protected auto initParseInfo(parseInfo = false) {
-        // first init
-        if (parseInfo == false) {
-            parseInfo = ["join_type" : "", "saved_join_type" : "JOIN");
-        }
+    protected auto initParseInfo(Json parseInfo = Json(null)) {
+        Json newParseInfo = parseInfo.isNull
+            ? Json(["join_type" : "", "saved_join_type" : "JOIN"]);
+            : parseInfo;
+
         // loop init
-        return ["expression" : "", "token_count" : 0, "table" : "", "no_quotes" : "", "alias" : false,
-                     "hints" : [], "join_type" : "", "next_join_type" : "",
-                     "saved_join_type" : parseInfo["saved_join_type"], "ref_type" : false, "ref_expr" : false,
-                     "base_expr" : false, "sub_tree" : false, "subquery" : "");
+        Json result = createExpression("", false);
+        result["token_count"] = 0;
+        result["table"] = "";
+        result["no_quotes"] = "";
+        result["alias"] = false;
+        result["hints"] = Json.emptyArray;
+        result["join_type"] = "";
+        result["next_join_type"] = "";
+        result["saved_join_type"] = newParseInfo["saved_join_type"];
+        result["ref_type"] = false;
+        result["ref_expr"] = false;
+        result["sub_tree"] = false;
+        result["subquery"] = "";
+        return result;
     }
 
     protected auto processFromExpression(&parseInfo) {
         result = [];
 
-        if (parseInfo["hints"] == []) {
+        if (parseInfo["hints"].isEmpty) {
             parseInfo["hints"] = false;
         }
 
@@ -53,15 +63,16 @@ class FromProcessor : Processor {
             myunparsed = this.splitSQLIntoTokens(parseInfo["ref_expr"].strip);
 
             // here we can get a comma separated list
-            foreach (myKey, myValue; myunparsed) {
-                if (this.isCommaToken(myValue)) {
-                    myunparsed[myk] = "";
-                }
-            }
+            myunparsed.byKeyValue
+                .filter!(kv => this.isCommaToken(kv.value)) {
+                .each!(kv => myunparsed[kv.key] = "");
+
             if (parseInfo["ref_type"] == "USING") {
             	// unparsed has only one entry, the column list
             	 myref = this.processColumnList(this.removeParenthesisFromStart(myunparsed[0]));
-            	 myref = [createExpression("COLUMN_LIST"), "base_expr" : myunparsed[0], "sub_tree" : myref]];
+                 Json newExpression = createExpression("COLUMN_LIST", myunparsed[0]);
+                 newExpression["sub_tree"] = myref;
+            	 myref = [newExpression];
             } else {
                 myref = this.processExpressionList(myunparsed);
             }
