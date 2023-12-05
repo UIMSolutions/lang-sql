@@ -144,13 +144,13 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case "USER" : // prevent wrong processing as keyword
-                if (previousCategory == "CREATE" || previousCategory == "RENAME" || previousCategory == "DROP") {
+                if (previousCategory.any!(["CREATE", "RENAME", "DROP"]) {
                     tokenCategory = upperToken;
                 }
                 break;
 
             case "VIEW" : // prevent wrong processing as keyword
-                if (previousCategory == "CREATE" || previousCategory == "ALTER" || previousCategory == "DROP") {
+                if (previousCategory.any!(["CREATE", "ALTER", "DROP"]) {
                     tokenCategory = upperToken;
                 }
                 break;
@@ -213,8 +213,7 @@ class SQLProcessor : SQLChunkProcessor {
                 tokenCategory = upperToken;
                 break;
 
-            case "INDEX" : if (in_array(previousCategory, ["CREATE", "DROP"))
-                            ) {
+            case "INDEX" : if (previousCategory.any!(["CREATE", "DROP"])) {
                                 result [previousCategory] ~= strippedToken;
                                 tokenCategory = upperToken;
                             }

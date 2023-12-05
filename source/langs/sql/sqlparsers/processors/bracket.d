@@ -16,7 +16,7 @@ class BracketProcessor : AbstractProcessor {
     string myToken = this.removeParenthesisFromStart(someTokens[0]);
     Json myProcessTopLevel = this.processTopLevel(myToken);
 
-    Json myRemainingExpressions = this.getRemainingNotBracketExpression(myProcessTopLevel);
+    Json myRemainingExpressions = getRemainingNotBracketExpression(myProcessTopLevel);
 
     if (myProcessTopLevel.isSet("BRACKET")) {
      myProcessTopLevel = myProcessTopLevel["BRACKET"];

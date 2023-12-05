@@ -131,9 +131,10 @@ class PartitionOptionsProcessor : AbstractProcessor {
 
             case "ALGORITHM":
                 if (currentCategory == "KEY") {
-                   myExpression ~= ["expr_type" : constant("SqlParser\utils\expressionType(" ~ previousCategory ~ "_KEY_ALGORITHM"),
-                                    "base_expr" : false, "sub_tree" : false,
-                                    "storage" : substr(baseExpression, 0, - mytoken.length));
+                    Json newExpression = createExpression(constant("SqlParser\utils\expressionType(" ~ previousCategory ~ "_KEY_ALGORITHM"), false);
+                    newExpression["sub_tree"] = false;
+                    newExpression["storage"] = baseExpression[0..$-mytoken.length];
+                    myExpression ~= newExpression;
 
                     mylast = array_pop(myparsed);
                     mysubtree = array_pop(mylast["sub_tree"]);
@@ -162,13 +163,13 @@ class PartitionOptionsProcessor : AbstractProcessor {
                 unset(mylast);
 
                 baseExpression = mytoken;
-               myExpression = [this.getReservedType(strippedToken));
+               myExpression = [this.getReservedType(strippedToken)];
 
                 currentCategory = upperToken . "_EXPR";
                 continue 2;
 
             case "COLUMNS":
-                if (currentCategory == "RANGE_EXPR" || currentCategory == "LIST_EXPR") {
+                if (currentCategory.any!(["RANGE_EXPR", "LIST_EXPR"]) {
                    myExpression ~= this.getReservedType(strippedToken);
                     currentCategory = substr(currentCategory, 0, -4) ~ upperToken;
                     continue 2;

@@ -7,14 +7,10 @@ import lang.sql;
 // This class contains some general functions for a processor.
 abstract class DProcessor {
 
-    protected myoptions;
+    protected Options _options;
 
-    /**
-     * @param Options myoptions
-     */
-    this(Options myoptions = null)
-    {
-        this.options = myoptions;
+    this(Options someOptions = null) {
+        _options = someOptions;
     }
 
     /**

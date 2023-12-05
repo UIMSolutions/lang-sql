@@ -1,15 +1,16 @@
 module langs.sql.sqlparsers.utils.SQLParserConstants;
 
-/**
- * Some constants for the SqlParser.
- */
+import lang.sql;
 
+@safe:
+
+// Some constants for the SqlParser.
 class SqlParserConstants {
 
-    private static myinst = null;
+    private static _inst = null;
 
-    protected mycustomFunctions = [];
-    protected myreserved = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
+    protected string[] _customFunctions;
+    protected string[] _reserved = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
                                 "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND", "BIT_OR", "BITCOUNT",
                                 "BITLENGTH", "CAST", "CEILING", "CHAR", "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET",
                                 "COALESCE", "COERCIBILITY", "COLLATION", "COMPRESS", "CONCAT", "CONCAT_WS",
@@ -66,9 +67,9 @@ class SqlParserConstants {
                                 "TINYINT", "TINYTEXT", "TO", "TRAILING", "UNDO", "UNION", "UNIQUE", "UNLOCK",
                                 "UNSIGNED", "UPDATE", "USAGE", "USE", "USER_RESOURCES", "USING", "UTC_DATE",
                                 "UTC_TIME", "UTC_TIMESTAMP", "VALUES", "VARBINARY", "VARCHAR", "VARCHARACTER",
-                                "VARYING", "WHEN", "WHERE", "WHILE", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL");
+                                "VARYING", "WHEN", "WHERE", "WHILE", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL"];
 
-    protected myparameterizedFunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT",
+    protected string[] _parameterizedFunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT",
                                               "AGAINST", "ASCII", "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND",
                                               "BIT_OR", "BITCOUNT", "BITLENGTH", "CAST", "CEILING", "CHAR",
                                               "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET", "COALESCE", "COERCIBILITY",
@@ -95,9 +96,9 @@ class SqlParserConstants {
                                               "TIMESTAMPDIFF", "TIME_FORMAT", "TIME_TO_SEC", "TO_DAYS", "TRIM",
                                               "TRUNCATE", "UCASE", "UNCOMPRESS", "UNCOMPRESSED_LENGTH", "UNHEX",
                                               "UPPER", "VAR_POP", "VAR_SAMP", "VARIANCE", "WEEK", "WEEKDAY",
-                                              "WEEKOFYEAR", "YEAR", "YEARWEEK");
+                                              "WEEKOFYEAR", "YEAR", "YEARWEEK"];
 
-    protected myfunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
+    protected string[] _functions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
                                  "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND", "BIT_OR", "BITCOUNT",
                                  "BITLENGTH", "CAST", "CEILING", "CHAR", "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET",
                                  "COALESCE", "COERCIBILITY", "COLLATION", "COMPRESS", "CONCAT", "CONCAT_WS",
@@ -123,11 +124,11 @@ class SqlParserConstants {
                                  "TIME_FORMAT", "TIME_TO_SEC", "TO_DAYS", "TRIM", "TRUNCATE", "UCASE", "UNCOMPRESS",
                                  "UNCOMPRESSED_LENGTH", "UNHEX", "UNIX_TIMESTAMP", "UPPER", "USER", "UTC_DATE",
                                  "UTC_TIME", "UTC_TIMESTAMP", "UUID", "VAR_POP", "VAR_SAMP", "VARIANCE", "VERSION",
-                                 "WEEK", "WEEKDAY", "WEEKOFYEAR", "YEAR", "YEARWEEK");
+                                 "WEEK", "WEEKDAY", "WEEKOFYEAR", "YEAR", "YEARWEEK"];
 
-    protected myaggregateFunctions = ["AVG", "SUM", "COUNT", "MIN", "MAX", "STD", "STDDEV", "STDDEV_SAMP",
+    protected string[] _aggregateFunctions = ["AVG", "SUM", "COUNT", "MIN", "MAX", "STD", "STDDEV", "STDDEV_SAMP",
                                           "STDDEV_POP", "VARIANCE", "VAR_SAMP", "VAR_POP", "GROUP_CONCAT", "BIT_AND",
-                                          "BIT_OR", "BIT_XOR");
+                                          "BIT_OR", "BIT_XOR"];
 
     /**
      * Call this method to get singleton
@@ -135,15 +136,14 @@ class SqlParserConstants {
      * @return SqlParserConstants
      */
     static auto getInstance() {
-        if (!isset(this. myinst)) {
-            this. myinst = new SqlParserConstants();
+        if (!isset(_inst)) {
+            _inst = new SqlParserConstants();
         }
-        return this. myinst;
+        return this. _inst;
     }
 
     /**
      * Private ctor so nobody else can instance it
-     *
      */
     private this() {
         this.reserved = array_flip(this.reserved);
@@ -155,24 +155,24 @@ class SqlParserConstants {
     private auto __clone() {
     }
 
-    auto isAggregateFunction(mytoken) {
-        return aggregateFunctions.isSet(mytoken);
+    auto isAggregateFunction(string aToken) {
+        return aggregateFunctions.has(aToken);
     }
 
     auto isReserved(mytoken) {
-        return reserved.isSet(mytoken);
+        return reserved.has(aToken);
     }
 
     auto isFunction(mytoken) {
-        return functions.isSet(mytoken);
+        return functions.has(aToken);
     }
 
     auto isParameterizedFunction(mytoken) {
-        return parameterizedFunctions.isSet(mytoken);
+        return parameterizedFunctions.has(aToken);
     }
 
     auto isCustomFunction(mytoken) {
-        return customFunctions.isSet(mytoken);
+        return customFunctions.has(aToken);
     }
 
     auto addCustomFunction(mytoken) {

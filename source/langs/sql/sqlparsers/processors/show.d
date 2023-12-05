@@ -32,7 +32,7 @@ class ShowProcessor : AbstractProcessor {
 
             case "FROM":
                 myresultList ~= createExpression("RESERVED"), "base_expr": myToken.strip];
-                if (myPrevious == "INDEX" || myPrevious == "COLUMNS") {
+                if (myPrevious.any!(["INDEX", "COLUMNS"]) {
                     break;
                 }
                myCategory = upperToken;
@@ -74,7 +74,7 @@ class ShowProcessor : AbstractProcessor {
             case "SET":
             case "COLLATION":
                 myresultList ~= createExpression("RESERVED", myToken.strip);
-               myCategory = upperToken;
+                myCategory = upperToken;
                 break;
 
             default:
@@ -90,8 +90,10 @@ class ShowProcessor : AbstractProcessor {
                 case "FROM":
                 case "SCHEMA":
                 case "DATABASE":
-                    myresultList ~= createExpression("DATABASE"), "name" : myToken,
-                        "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
+                    Json newExpression = createExpression("DATABASE", myToken)
+                    newExpression["name"] = myToken;
+                    newExpression["no_quotes"] = this.revokeQuotation(myToken);
+                    myresultList ~= newExpression;                    , ,
                     break;
                 case "FOR":
                     myresultList ~= ["expr_type":  expressionType("USER"), "name" : myToken,
@@ -100,27 +102,32 @@ class ShowProcessor : AbstractProcessor {
                 case "INDEX":
                 case "COLUMNS":
                 case "TABLE":
-                    myresultList ~= ["expr_type":  expressionType("TABLE"), "table" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
-                   myCategory = "TABLENAME";
+                    Json newExpression = createExpression("TABLE", myToken);
+                    newExpression["table"] = myToken;
+                    newExpression["no_quotes"] = this.revokeQuotation(myToken);
+                    myresultList ~= newExpression;
+                    myCategory = "TABLENAME";
                     break;
                 case "FUNCTION":
-                    if (SqlParserConstants::getInstance().isAggregateFunction(upperToken)) {
-                        myexpr_type = expressionType("AGGREGATE_FUNCTION");
-                    } else {
-                        myexpr_type = expressionType("SIMPLE_FUNCTION");
-                    }
-                    myresultList ~= ["expr_type":  myexpr_type, "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
+                    Json newExpression = SqlParserConstants::getInstance().isAggregateFunction(upperToken) 
+                        ? createExpression("AGGREGATE_FUNCTION", myToken);
+                        : createExpression("SIMPLE_FUNCTION", myToken);
+
+                    newExpression["name"] = myToken;
+                    newExpression["no_quotes"] = this.revokeQuotation(myToken);
+                    myresultList ~= newExpression;
                     break;
                 case "PROCEDURE":
-                    myresultList ~= createExpression("PROCEDURE", myToken);
-                    , "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), ];
+                    Json newExpression = createExpression("PROCEDURE", myToken);
+                    newExpression["name"] = myToken;
+                    newExpression["no_quotes"] = this.revokeQuotation(myToken);
+                    myresultList ~= newExpression;
                     break;
                 case "ENGINE":
-                    myresultList ~= createExpression("ENGINE"), "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
+                    Json newExpression = createExpression("ENGINE", myToken);
+                    newExpression["name"] = myToken;
+                    newExpression["no_quotes"] = this.revokeQuotation(myToken);
+                    myresultList ~= newExpression;
                     break;
                 default:
                 // ignore

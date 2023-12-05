@@ -64,14 +64,14 @@ class ExpressionToken {
         this.tokenType = mytype;
     }
 
-    auto endsWith(myneedle) {
-        size_t myLength = myneedle.length;
+    auto endsWith(string aNeedle) {
+        size_t myLength = aNeedle.length;
         if (myLength == 0) {
             return true;
         }
 
-        mystart = myLength * -1;
-        return (substr(this.token, mystart) == myneedle);
+        auto mystart = -myLength;
+        return (substr(this.token, mystart) == aNeedle);
     }
 
     auto isWhitespaceToken() {

@@ -1,26 +1,26 @@
 {
 	"name": "lang-sql",
 	"description": "D library for Fortran projects",
-  "authors": [
-    "Sicherheitsschmiede",
-    "Ozan Nurettin Süel"
-  ],
-  "copyright": "Copyright © 2015-2023, Ozan Nurettin Süel",	
-  "license": "Apache-2.0",
+	"authors": [
+		"Sicherheitsschmiede",
+		"Ozan Nurettin Süel"
+	],
+	"copyright": "Copyright © 2015-2023, Ozan Nurettin Süel",
+	"license": "Apache-2.0",
 	"targetType": "library",
 	"dependencies": {
-			"vibe-d": " ~>0.9.6"
+		"vibe-d": " ~>0.9.6"
 	},
 	"sourcePaths": [
-			"../../LIBS/uim-core",
-			"../../LIBS/uim-oop",
-			"../../LIBS/uim-compilers",
-			"./"
+		"../../LIBS/uim-core",
+		"../../LIBS/uim-oop",
+		"../../LIBS/uim-compilers",
+		"./"
 	],
 	"importPaths": [
-			"../../LIBS/uim-core",
-			"../../LIBS/uim-oop",
-			"../../LIBS/uim-compilers",
-			"./"
+		"../../LIBS/uim-core",
+		"../../LIBS/uim-oop",
+		"../../LIBS/uim-compilers",
+		"./"
 	]
 }
