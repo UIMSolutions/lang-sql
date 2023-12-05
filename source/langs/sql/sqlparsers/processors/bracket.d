@@ -42,15 +42,12 @@ class BracketProcessor : AbstractProcessor {
       subtree = [];
     }
 
-    Json myRemainingExpressions = [];
+    Json myRemainingExpressions = Json.emptyObject;
     string[] ignoredKeys = ["BRACKET", "SELECT", "FROM"];
-    string[] mySubtreeKeys = subtree.keys;
 
-    foreach (myKey; mySubtreeKeys) {
-      if (!ignoredKeys.has(myKey)) {
-       myRemainingExpressions[myKey] = subtree[myKey];
-      }
-    }
+    subtree.keys
+      .filter!(key => !ignoredKeys.has(key))
+      .each!(key => myRemainingExpressions[key] = subtree[key]);
 
     return myRemainingExpressions;
   }

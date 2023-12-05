@@ -91,12 +91,16 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case "VARCHAR":
             case "VARCHARACTER": // Alias for VARCHAR
-               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
-               myPrevousCategory = "TEXT";
+                Json newExpresion = createExpression("DATA_TYPE", strippedToken);
+                newExpresion["length"] = false;
+                myExpression ~= newExpression;
+
+                myPrevousCategory = "TEXT";
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
                 continue 2;
 
             case "VARBINARY":
+                Json newExpresion = createExpression(
                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
                myPrevousCategory = upperToken;
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
@@ -134,6 +138,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "INT8":       // Alias of BIGINT
             case "BOOL":
             case "BOOLEAN":
+            Json newExpresion = createExpression(
                myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
                                 "zerofill" : false, "length" : false];
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
