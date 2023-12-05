@@ -65,11 +65,7 @@ class SqlParser {
         SqlParserConstants::getInstance().removeCustomFunction(tokenName);
     }
 
-    /**
-     * Returns the list of custom functions
-     *
-     * @return array Returns an array of all custom functions
-     */
+    // Returns the list of custom functions
     auto getCustomFunctions() {
         return SqlParserConstants::getInstance().getCustomFunctions();
     }

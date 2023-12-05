@@ -12,7 +12,7 @@ interface IProcessor {
     auto process(mytokens);
 
     // this auto splits up a SQL statement into easy to "parse" tokens for the SQL processor
-    auto splitSQLIntoTokens(sqlString);
+    auto splitSQLIntoTokens(string sqlString);
 
 
     auto processComment(myexpression);

@@ -12,7 +12,7 @@ class SelectStatementBuilder : ISqlBuilder {
      mySql ~= " " ~ this.buildFROM(parsedSql["FROM"]);
     }
     if (parsedSql.isSet("WHERE")) {
-     mySql ~= " " ~ this.buildWHERE(parsedSql["WHERE"]);
+     mySql ~= " " ~ this.buildWhere(parsedSql["WHERE"]);
     }
     if (parsedSql.isSet("GROUP")) {
      mySql ~= " " ~ this.buildGROUP(parsedSql["GROUP"]);
@@ -45,7 +45,7 @@ class SelectStatementBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 
-  protected string buildWHERE(Json parsedSql) {
+  protected string buildWhere(Json parsedSql) {
     auto myBuilder = new WhereBuilder();
     return myBuilder.build(parsedSql);
   }

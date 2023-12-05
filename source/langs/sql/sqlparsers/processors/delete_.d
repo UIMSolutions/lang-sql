@@ -5,11 +5,11 @@ import lang.sql;
 // Processes the DELETE statement parts and splits multi-table deletes.
 class DeleteProcessor : Processor {
 
-    auto process(mytokens) {
+    auto process(Json someTokens) {
         mytables = [];
-        mydel = mytokens["DELETE"];
+        Json myDelete = someTokens["DELETE"];
 
-        foreach (myExpression; mytokens["DELETE"]) {
+        foreach (myExpression; myDelete) {
             if (myExpression.toUpper != "DELETE" && (myExpression, " \t\n\r\0\x0B.*").strip != ""
                 && !this.isCommaToken(myExpression)) {
                 mytables ~= (myExpression, " \t\n\r\0\x0B.*").strip;
@@ -17,11 +17,9 @@ class DeleteProcessor : Processor {
         }
 
         if (mytables.isEmpty &&  mytokens.isSet("USING")) {
-            foreach (myTable; mytokens["FROM"] ) {
-                mytables ~= (myTable["table"], " \t\n\r\0\x0B.*").strip;
-            }
+            mytokens["FROM"].each!(token => mytables ~= (myTable["table"], " \t\n\r\0\x0B.*").strip);
             mytokens["FROM"] = mytokens["USING"];
-            unset(mytokens["USING"]);
+            mytokens.remove("USING");
         }
 
         auto myoptions = [];

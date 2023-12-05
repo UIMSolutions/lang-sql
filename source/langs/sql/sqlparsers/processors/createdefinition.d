@@ -4,10 +4,7 @@ import lang.sql;
 
 @safe:
 
-/**
- * This file : the processor for the create definition within the TABLE statements.
- * This class processes the create definition of the TABLE statements.
- */
+// This class processes the create definition of the TABLE statements.
 class CreateDefinitionProcessor : Processor {
 
     protected auto processExpressionList(myparsed) {

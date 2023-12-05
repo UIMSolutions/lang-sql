@@ -19,7 +19,7 @@ class UnionProcessor : Processor {
     static auto isUnion(queries) {
         string[] unionTypes = ["UNION", "UNION ALL"];
         foreach (myUnionType; unionTypes) {
-            if (!queries[myUnionType].isEmpty)) {
+            if (!queries[myUnionType].isEmpty) {
                 return true;
             }
         }

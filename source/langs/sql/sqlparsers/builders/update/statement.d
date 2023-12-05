@@ -9,12 +9,12 @@ class UpdateStatementBuilder : ISqlBuilder {
         string mySql = this.buildUPDATE(parsedSql["UPDATE"]) ~ " " ~ this.buildSET(
             parsedSql["SET"]);
         if ("WHERE" in parsedSql["WHERE"]) {
-           mySql ~= " " ~ this.buildWHERE(parsedSql["WHERE"]);
+           mySql ~= " " ~ this.buildWhere(parsedSql["WHERE"]);
         }
         return mySql;
     }
 
-    protected string buildWHERE(Json parsedSql) {
+    protected string buildWhere(Json parsedSql) {
         auto myBuilder = new WhereBuilder();
         return myBuilder.build(parsedSql);
     }
