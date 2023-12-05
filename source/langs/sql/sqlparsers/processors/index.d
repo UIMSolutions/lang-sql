@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the INDEX statements.
 class IndexProcessor : AbstractProcessor {
 
-  auto process( mytokens) {
+  auto process(mytokens) {
 
     string myCurrentCategory = "INDEX_NAME";
     auto result = ["base_expr": false, "name": false, "no_quotes": false, "index-type": false, "on": false, "options": []];
@@ -15,16 +15,16 @@ class IndexProcessor : AbstractProcessor {
     baseExpression = "";
     myskip = 0;
 
-    foreach ( mytokenKey : myToken; mytokens) {
+    foreach (mytokenKey : myToken; mytokens) {
       auto strippedToken = myToken.strip;
       baseExpression ~= myToken;
 
-      if ( myskip > 0) {
+      if (myskip > 0) {
         myskip--;
         continue;
       }
 
-      if ( myskip < 0) {
+      if (myskip < 0) {
         break;
       }
 
@@ -35,12 +35,12 @@ class IndexProcessor : AbstractProcessor {
       upperToken = strippedToken.toUpper;
       switch (upperToken) {
 
-      case "USING" : if ( myprevCategory == "CREATE_DEF") {
+      case "USING" : if (myprevCategory == "CREATE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = "TYPE_OPTION";
           continue 2;
         }
-        if ( myprevCategory == "TYPE_DEF") {
+        if (myprevCategory == "TYPE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = "INDEX_TYPE";
           continue 2;
@@ -48,7 +48,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "KEY_BLOCK_SIZE" : if ( myprevCategory == "CREATE_DEF") {
+      case "KEY_BLOCK_SIZE" : if (myprevCategory == "CREATE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = "INDEX_OPTION";
           continue 2;
@@ -56,7 +56,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "WITH" : if ( myprevCategory == "CREATE_DEF") {
+      case "WITH" : if (myprevCategory == "CREATE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = "INDEX_PARSER";
           continue 2;
@@ -71,7 +71,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "COMMENT" : if ( myprevCategory == "CREATE_DEF") {
+      case "COMMENT" : if (myprevCategory == "CREATE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = "INDEX_COMMENT";
           continue 2;
@@ -79,7 +79,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "ALGORITHM" : case "LOCK" : if ( myprevCategory == "CREATE_DEF") {
+      case "ALGORITHM" : case "LOCK" : if (myprevCategory == "CREATE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = upperToken."_OPTION";
           continue 2;
@@ -95,7 +95,7 @@ class IndexProcessor : AbstractProcessor {
         // else ?
         break;
 
-      case "ON" : if ( myprevCategory == "CREATE_DEF" || myprevCategory == "TYPE_DEF") {
+      case "ON" : if (myprevCategory == "CREATE_DEF" || myprevCategory == "TYPE_DEF") {
          myExpression ~= this.getReservedType(strippedToken);
          myCurrentCategory = "TABLE_DEF";
           continue 2;
@@ -218,7 +218,7 @@ class IndexProcessor : AbstractProcessor {
      myCurrentCategory = "";
     }
 
-    if ( myresult["options"] == []) {
+    if (myresult["options"] == []) {
       myresult["options"] = false;
     }
     return myresult;
@@ -236,8 +236,8 @@ class IndexProcessor : AbstractProcessor {
     return ["expr_type": expressionType("OPERATOR"), "base_expr": myToken];
   }
 
-  protected auto processIndexColumnList( myparsed) {
+  protected auto processIndexColumnList(myparsed) {
     auto myProcessor = new IndexColumnListProcessor(this.options);
-    return myProcessor.process( myparsed);
+    return myProcessor.process(myparsed);
   }
 }

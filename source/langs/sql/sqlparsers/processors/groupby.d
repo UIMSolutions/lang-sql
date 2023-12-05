@@ -18,8 +18,8 @@ class GroupByProcessor : OrderByProcessor {
             auto strippedToken = myToken.strip.toUpper;
             switch (strippedToken) {
             case ",":
-                myparsed = this.processOrderExpression( myparseInfo, myselect);
-                unset( myparsed["direction"]);
+                myparsed = this.processOrderExpression(myparseInfo, myselect);
+                unset(myparsed["direction"]);
 
                 result ~= myparsed;
                 myparseInfo = this.initParseInfo();
@@ -30,8 +30,8 @@ class GroupByProcessor : OrderByProcessor {
             }
         }
 
-        myparsed = this.processOrderExpression( myparseInfo, myselect);
-        unset( myparsed["direction"]);
+        myparsed = this.processOrderExpression(myparseInfo, myselect);
+        unset(myparsed["direction"]);
         result ~= myparsed;
 
         return result;

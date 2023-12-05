@@ -8,8 +8,8 @@ import lang.sql;
 class ExplainProcessor : AbstractProcessor {
 
   protected auto isStatement(myKeys, myneedle = "EXPLAIN") {
-    mypos = array_search( myneedle, myKeys);
-    if (myKeys.isSet( mypos + 1)) {
+    mypos = array_search(myneedle, myKeys);
+    if (myKeys.isSet(mypos + 1)) {
       return in_array(myKeys[ mypos + 1], ["SELECT", "DELETE", "INSERT", "REPLACE", "UPDATE"], true);
     }
 

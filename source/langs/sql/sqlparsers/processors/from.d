@@ -10,19 +10,19 @@ import lang.sql;
  * */
 class FromProcessor : AbstractProcessor {
 
-    protected auto processExpressionList( myunparsed) {
+    protected auto processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process( myunparsed);
+        return myProcessor.process(myunparsed);
     }
 
-    protected auto processColumnList( myunparsed) {
+    protected auto processColumnList(myunparsed) {
         auto myProcessor = new ColumnListProcessor(this.options);
-        return myProcessor.process( myunparsed);
+        return myProcessor.process(myunparsed);
     }
 
-    protected auto processSQLDefault( myunparsed) {
+    protected auto processSQLDefault(myunparsed) {
         auto myProcessor = new DefaultProcessor(this.options);
-        return myProcessor.process( myunparsed);
+        return myProcessor.process(myunparsed);
     }
 
     protected auto initParseInfo(parseInfo = false) {
@@ -60,12 +60,12 @@ class FromProcessor : AbstractProcessor {
             }
             if (parseInfo["ref_type"] == "USING") {
             	// unparsed has only one entry, the column list
-            	 myref = this.processColumnList(this.removeParenthesisFromStart( myunparsed[0]));
+            	 myref = this.processColumnList(this.removeParenthesisFromStart(myunparsed[0]));
             	 myref = [createExpression("COLUMN_LIST"), "base_expr" : myunparsed[0], "sub_tree" : myref]];
             } else {
-                myref = this.processExpressionList( myunparsed);
+                myref = this.processExpressionList(myunparsed);
             }
-            parseInfo["ref_expr"] = (empty( myref) ? false : myref);
+            parseInfo["ref_expr"] = (myref.isEmpty ? false : myref);
         }
 
         // there is an expression, we have to parse it
@@ -74,16 +74,16 @@ class FromProcessor : AbstractProcessor {
 
             if (preg_match("/^\\s*(-- [\\w\\s]+\\n)?\\s*SELECT/i", parseInfo["expression"])) {
                 parseInfo["sub_tree"] = this.processSQLDefault(parseInfo["expression"]);
-                result["expr_type"] .isExpressionType(SUBQUERY;
+                result["expr_type"].isExpressionType("SUBQUERY")
             } else {
                 mytmp = this.splitSQLIntoTokens(parseInfo["expression"]);
                 myunionProcessor = new UnionProcessor(this.options);
-                myunionQueries = myunionProcessor.process( mytmp);
+                myunionQueries = myunionProcessor.process(mytmp);
 
                 // If there was no UNION or UNION ALL in the query, then the query is
                 // stored at myqueries[0].
-                if (!empty( myunionQueries) && !UnionProcessor::isUnion( myunionQueries)) {
-                    mysub_tree = this.process( myunionQueries[0]);
+                if (!myunionQueries.isEmpty && !UnionProcessor::isUnion(myunionQueries)) {
+                    mysub_tree = this.process(myunionQueries[0]);
                 }
                 else {
                     mysub_tree = myunionQueries;
@@ -107,7 +107,7 @@ class FromProcessor : AbstractProcessor {
         return result;
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
         auto parseInfo = this.initParseInfo();
         auto myExpression = [];
         string tokenCategory = "";
@@ -119,12 +119,12 @@ class FromProcessor : AbstractProcessor {
         foreach (myToken; mytokens) {
             upperToken = myToken.strip.toUpper;
 
-            if ( myskip_next && myToken != "") {
+            if (myskip_next && myToken != "") {
                 parseInfo["token_count"]++;
                 myskip_next = false;
                 continue;
             } else {
-                if ( myskip_next) {
+                if (myskip_next) {
                     continue;
                 }
             }
@@ -194,13 +194,13 @@ class FromProcessor : AbstractProcessor {
                 parseInfo["token_count"]++;
                 myn = 1;
                 mystr = "";
-                while ( mystr.isEmpty && mytokens.isSet( myi + myn)) {
-                    parseInfo["alias"].baseExpression ~= ( mytokens[ myi + myn].isEmpty ? " " : mytokens[ myi + myn]);
+                while (mystr.isEmpty && mytokens.isSet(myi + myn)) {
+                    parseInfo["alias"].baseExpression ~= (mytokens[ myi + myn].isEmpty ? " " : mytokens[ myi + myn]);
                     mystr = mytokens[ myi + myn].strip;
                     ++ myn;
                 }
                 parseInfo["alias"]["name"] = mystr;
-                parseInfo["alias"]["no_quotes"] = this.revokeQuotation( mystr);
+                parseInfo["alias"]["no_quotes"] = this.revokeQuotation(mystr);
                 parseInfo["alias"]["base_expr"] = parseInfo["alias"].baseExpression.strip;
                 break;
 

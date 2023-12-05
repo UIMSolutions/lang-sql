@@ -10,7 +10,7 @@ SQL provides the **CREATE TABLE** statement to create a new table in a given dat
 
 Following is the basic syntax of a SQL CREATE TABLE statement −
 
-CREATE TABLE table_name(   column1 datatype,   column2 datatype,   column3 datatype,   .....   columnN datatype,   PRIMARY KEY( one or more columns ) );
+CREATE TABLE table_name(  column1 datatype,   column2 datatype,   column3 datatype,   .....   columnN datatype,   PRIMARY KEY(one or more columns ) );
 
 CREATE TABLE is the keyword telling the database system what you want to do. In this case, you want to create a new table. The unique name or identifier for the table follows the CREATE TABLE statement.
 
@@ -20,7 +20,7 @@ Then in brackets comes the list defining each column in the table and what sort 
 
 The following code block is an example, which creates a CUSTOMERS table with an ID as a primary key and NOT NULL are the constraints showing that these fields cannot be NULL while creating records in this table −
 
-CREATE TABLE CUSTOMERS(   ID          INT NOT NULL,   NAME        VARCHAR (20) NOT NULL,   AGE         INT NOT NULL,   ADDRESS     CHAR (25),   SALARY      DECIMAL (18, 2),   PRIMARY KEY (ID) );
+CREATE TABLE CUSTOMERS(  ID          INT NOT NULL,   NAME        VARCHAR (20) NOT NULL,   AGE         INT NOT NULL,   ADDRESS     CHAR (25),   SALARY      DECIMAL (18, 2),   PRIMARY KEY (ID) );
 
 ### Verification
 
@@ -52,13 +52,13 @@ So to avoid such error we can use SQL command **CREATE TABLE IF NOT EXISTS** to 
 
 Following is the basic syntax of a CREATE TABLE IF NOT EXISTS statement −
 
-CREATE TABLE IF NOT EXISTS table_name(   column1 datatype,   column2 datatype,   column3 datatype,   .....   columnN datatype,   PRIMARY KEY( one or more columns ) );
+CREATE TABLE IF NOT EXISTS table_name(  column1 datatype,   column2 datatype,   column3 datatype,   .....   columnN datatype,   PRIMARY KEY(one or more columns ) );
 
 ### Example
 
 The following SQL command will create the **CUSTOMERS** table only when there is no table exists with the same name otherwise it will exit without any error.
 
-CREATE TABLE IF NOT EXISTS CUSTOMERS(   ID          INT NOT NULL,   NAME        VARCHAR (20) NOT NULL,   AGE         INT NOT NULL,   ADDRESS     CHAR (25),   SALARY      DECIMAL (18, 2),   PRIMARY KEY (ID) );
+CREATE TABLE IF NOT EXISTS CUSTOMERS(  ID          INT NOT NULL,   NAME        VARCHAR (20) NOT NULL,   AGE         INT NOT NULL,   ADDRESS     CHAR (25),   SALARY      DECIMAL (18, 2),   PRIMARY KEY (ID) );
 
 ## Creating a Table from an Existing Table
 

@@ -9,14 +9,14 @@ class IndexColumnListProcessor : AbstractProcessor {
         return ["name" : false, "no_quotes" : false, "length" : false, "dir" : false];
     }
 
-    auto process( mysql) {
-        mytokens = this.splitSQLIntoTokens( mysql);
+    auto process(mysql) {
+        mytokens = this.splitSQLIntoTokens(mysql);
 
        myExpression = this.initExpression();
         myresult = [];
         baseExpression = "";
 
-        foreach ( mytokens as myk : mytoken) {
+        foreach (mytokens as myk : mytoken) {
 
             auto strippedToken = mytoken.strip;
             baseExpression ~= mytoken;

@@ -10,24 +10,24 @@ import lang.sql;
  */
 class CreateDefinitionProcessor : AbstractProcessor {
 
-    protected auto processExpressionList( myparsed) {
+    protected auto processExpressionList(myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process( myparsed);
+        return myProcessor.process(myparsed);
     }
 
-    protected auto processIndexColumnList( myparsed) {
+    protected auto processIndexColumnList(myparsed) {
         auto myProcessor = new IndexColumnListProcessor(this.options);
-        return myProcessor.process( myparsed);
+        return myProcessor.process(myparsed);
     }
 
-    protected auto processColumnDefinition( myparsed) {
+    protected auto processColumnDefinition(myparsed) {
         auto myProcessor = new ColumnDefinitionProcessor(this.options);
-        return myProcessor.process( myparsed);
+        return myProcessor.process(myparsed);
     }
 
-    protected auto processReferenceDefinition( myparsed) {
+    protected auto processReferenceDefinition(myparsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
-        return myProcessorr.process( myparsed);
+        return myProcessorr.process(myparsed);
     }
 
     protected auto correctExpressionType(&myExpression) {
@@ -57,7 +57,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
         return mytype;
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
 
         string baseExpression = "";
         string prevCategory = "";
@@ -71,7 +71,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
             auto strippedToken = myToken.strip;
             baseExpression ~= myToken;
 
-            if ( myskip != 0) {
+            if (myskip != 0) {
                 myskip--;
                 continue;
             }
@@ -198,9 +198,9 @@ class CreateDefinitionProcessor : AbstractProcessor {
 
             case "REFERENCES":
                 if (currentCategory == "INDEX_COL_LIST" && prevCategory == "FOREIGN") {
-                    myrefs = this.processReferenceDefinition(array_slice( mytokens, myKey - 1, null, true));
+                    myrefs = this.processReferenceDefinition(array_slice(mytokens, myKey - 1, null, true));
                     myskip = myrefs["till"] - myKey;
-                    unset( myrefs["till"]);
+                    unset(myrefs["till"]);
                    myExpression ~= myrefs;
                     currentCategory = upperToken;
                 }
@@ -334,7 +334,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case "CHECK":
                     if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                         myparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
-                        myparsed = this.processExpressionList( myparsed);
+                        myparsed = this.processExpressionList(myparsed);
                        myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
                                         "sub_tree" : myparsed);
                     }
@@ -352,9 +352,9 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 case "COLUMN_NAME":
                 // the column-definition
                 // it stops on a comma or on a parenthesis
-                    myparsed = this.processColumnDefinition(array_slice( mytokens, myKey, null, true));
+                    myparsed = this.processColumnDefinition(array_slice(mytokens, myKey, null, true));
                     myskip = myparsed["till"] - myKey;
-                    unset( myparsed["till"]);
+                    unset(myparsed["till"]);
                    myExpression ~= myparsed;
                     currentCategory = "";
                     break;

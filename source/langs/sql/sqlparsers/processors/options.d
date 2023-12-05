@@ -8,7 +8,7 @@ import lang.sql;
 // This class processes the statement options.
 class OptionsProcessor : AbstractProcessor {
 
-  auto process( mytokens) {
+  auto process(mytokens) {
     myresultList = [];
 
     foreach (myToken; mytokens) {

@@ -11,20 +11,20 @@ import lang.sql;
  * */
 class ColumnDefinitionProcessor : AbstractProcessor {
 
-    protected auto processExpressionList( myparsed) {
+    protected auto processExpressionList(myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-       myExpression = this.removeParenthesisFromStart( myparsed);
+       myExpression = this.removeParenthesisFromStart(myparsed);
        myExpression = this.splitSQLIntoTokens(myExpression);
        myExpression = this.removeComma(myExpression);
         return myProcessor.process(myExpression);
     }
 
-    protected auto processReferenceDefinition( myparsed) {
+    protected auto processReferenceDefinition(myparsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
-        return myProcessor.process( myparsed);
+        return myProcessor.process(myparsed);
     }
 
-    protected auto removeComma( mytokens) {
+    protected auto removeComma(mytokens) {
         auto result = [];
         foreach (myToken; mytokens) {
             if (myToken.strip != ",") {
@@ -39,11 +39,11 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
         // add options first
        myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], myoptions["sub_tree"]);
-        unset( myoptions["sub_tree"]);
+        unset(myoptions["sub_tree"]);
        myExpression = array_merge(myExpression, myoptions);
 
         // followed by references
-        if (sizeof( myrefs) != 0) {
+        if (sizeof(myrefs) != 0) {
            myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], myrefs);
         }
 
@@ -51,7 +51,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
         return myExpression;
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
         string baseExpression = "";
         string currentCategory = "";
        myExpression = [];
@@ -65,12 +65,12 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             string strippedToken = myToken.strip;
             baseExpression ~= myToken;
 
-            if ( myskip > 0) {
+            if (myskip > 0) {
                 myskip--;
                 continue;
             }
 
-            if ( myskip < 0) {
+            if (myskip < 0) {
                 break;
             }
 
@@ -249,7 +249,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
             case "NOT":
             case "NULL":
                 myoptions["sub_tree"] ~= createExpression("RESERVED"), "base_expr": strippedToken];
-                if ( myoptions["nullable"]) {
+                if (myoptions["nullable"]) {
                     myoptions["nullable"] = (upperToken == "NOT" ? false : true);
                 }
                 continue 2;
@@ -291,9 +291,9 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                 continue 2;
 
             case "REFERENCES":
-                myrefs = this.processReferenceDefinition(array_splice( mytokens, myKey - 1, null, true));
+                myrefs = this.processReferenceDefinition(array_splice(mytokens, myKey - 1, null, true));
                 myskip = myrefs["till"] - myKey;
-                unset( myrefs["till"]);
+                unset(myrefs["till"]);
                 // TODO: check this, we need the last comma
                 continue 2;
 
@@ -364,7 +364,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                     mylast = array_pop(myExpression);
                     mylast["length"] = myparsed[0].baseExpression;
-                    mylast["decimals"] = isset( myparsed[1]) ? myparsed[1].baseExpression : false;
+                    mylast["decimals"] = isset(myparsed[1]) ? myparsed[1].baseExpression : false;
 
                    myExpression ~= mylast;
                    myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,

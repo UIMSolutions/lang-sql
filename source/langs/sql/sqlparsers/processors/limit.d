@@ -6,7 +6,7 @@ module langs.sql.sqlparsers.processors.limit;
   */
 class LimitProcessor : AbstractProcessor {
 
-    auto process( mytokens) {
+    auto process(mytokens) {
         string countRows = "";
         string offset = "";
 
@@ -52,7 +52,7 @@ class LimitProcessor : AbstractProcessor {
         }
 
         auto results = ["offset" : offset.strip, "rowcount" : countRows.strip];
-        if (count( mycomments)) {
+        if (count(mycomments)) {
             results["comments"] = mycomments;
         }
         return results;

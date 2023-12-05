@@ -10,14 +10,14 @@ class IntoProcessor : AbstractProcessor {
     * TODO: This is a dummy function, we cannot parse INTO as part of SELECT
     * at the moment
     */
-  auto process( mytokenList) {
+  auto process(mytokenList) {
     myunparsed = mytokenList["INTO"];
     foreach (myKey, myToken; myunparsed) {
       if (this.isWhitespaceToken(myToken) || this.isCommaToken(myToken)) {
-        unset( myunparsed[myKey]);
+        unset(myunparsed[myKey]);
       }
     }
-    mytokenList["INTO"] = array_values( myunparsed);
+    mytokenList["INTO"] = array_values(myunparsed);
     return mytokenList;
   }
 }

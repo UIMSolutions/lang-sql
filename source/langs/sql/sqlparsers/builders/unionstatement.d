@@ -14,7 +14,7 @@ class UnionStatementBuilder : ISqlBuilder {
 		string mySql = "";
 		auto selectBuilder = new SelectStatementBuilder();
 		bool first = true;
-		foreach ( myclause; parsedSql["UNION"]) {
+		foreach (myclause; parsedSql["UNION"]) {
 			if (!first) {
 				mySql ~= " UNION ";
 			}
@@ -22,7 +22,7 @@ class UnionStatementBuilder : ISqlBuilder {
 				first = false;
 			}
 
-			mySql ~= selectBuilder.build( myclause);
+			mySql ~= selectBuilder.build(myclause);
 		}
 		return mySql;
 	}

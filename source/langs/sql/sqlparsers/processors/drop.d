@@ -10,7 +10,7 @@ import lang.sql;
  */
 class DropProcessor : AbstractProcessor {
 
-    auto process( mytokenList) {
+    auto process(mytokenList) {
         bool exists = false;
         string baseExpression = "";
         auto objectType = "";
@@ -37,8 +37,8 @@ class DropProcessor : AbstractProcessor {
                 baseExpression = "";
                 break;
             case "INDEX":
-	            if ( objectType.isEmpty ) {
-		            objectType = constant( "SqlParser\utils\expressionType(" ~ upperToken );
+	            if (objectType.isEmpty ) {
+		            objectType = constant("SqlParser\utils\expressionType(" ~ upperToken );
 	            }
 	            baseExpression = "";
 	            break;
@@ -56,7 +56,7 @@ class DropProcessor : AbstractProcessor {
             case "RESTRICT":
             case "CASCADE":
                 myoption = upperToken;
-                if (!empty( myobjectList)) {
+                if (!myobjectList.isEmpty) {
                     mySubTree = createExpression("EXPRESSION", substr(baseExpression, 0, -myToken.length).strip);
                     mySubTree["sub_tree"] = myobjectList;
                     myobjectList = [];
@@ -65,7 +65,7 @@ class DropProcessor : AbstractProcessor {
                 break;
 
             case ",":
-                mylast = array_pop( myobjectList);
+                mylast = array_pop(myobjectList);
                 mylast["delim"] = strippedToken;
                 myobjectList ~= mylast;
                 continue 2;

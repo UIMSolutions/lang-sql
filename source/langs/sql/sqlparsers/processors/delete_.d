@@ -5,7 +5,7 @@ import lang.sql;
 // Processes the DELETE statement parts and splits multi-table deletes.
 class DeleteProcessor : AbstractProcessor {
 
-    auto process( mytokens) {
+    auto process(mytokens) {
         mytables = [];
         mydel = mytokens["DELETE"];
 
@@ -16,21 +16,21 @@ class DeleteProcessor : AbstractProcessor {
             }
         }
 
-        if ( mytables.isEmpty &&  mytokens.isSet("USING")) {
+        if (mytables.isEmpty &&  mytokens.isSet("USING")) {
             foreach (myTable; mytokens["FROM"] ) {
                 mytables ~= (myTable["table"], " \t\n\r\0\x0B.*").strip;
             }
             mytokens["FROM"] = mytokens["USING"];
-            unset( mytokens["USING"]);
+            unset(mytokens["USING"]);
         }
 
         auto myoptions = [];
-        if ( mytokens.isSet("OPTIONS")) {
+        if (mytokens.isSet("OPTIONS")) {
             myoptions = mytokens["OPTIONS"];
             mytokens.unSet("OPTIONS");
         }
 
-        mytokens["DELETE"] = ["options" : ( myoptions.isEmpty ? false : myoptions), "tables" : ( mytables.isEmpty ? false : mytables)];
+        mytokens["DELETE"] = ["options" : (myoptions.isEmpty ? false : myoptions), "tables" : (mytables.isEmpty ? false : mytables)];
         return mytokens;
     }
 }

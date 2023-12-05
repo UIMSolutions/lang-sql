@@ -19,7 +19,7 @@ class SqlParser {
      * @param array myoptions
      */
     this(string sqlStatement = null, bool calcPositions = false, Json someOptions = Json(null)) {
-        _options = new Options( myoptions);
+        _options = new Options(myoptions);
 
         if (!sqlStatement.isNull) {
             this.parse(sqlStatement, calcPositions);
@@ -55,7 +55,7 @@ class SqlParser {
      * tokenName The name of the auto to add
      */
     void addCustomFunction(string tokenName) {
-        SqlParserConstants::getInstance().addCustomFunction( tokenName);
+        SqlParserConstants::getInstance().addCustomFunction(tokenName);
     }
 
     /**
