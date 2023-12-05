@@ -46,7 +46,7 @@ class UnionProcessor : AbstractProcessor {
 
             auto myUnionTypeQuery = queries[myUnionType];
             foreach (myKey, mytokenList; myUnionTypeQuery) {
-                foreach ( myz, myToken; mytokenList) {
+                foreach (myz, myToken; mytokenList) {
                    myToken = myToken.strip;
                     if (myToken.isEmpty) {
                         continue;
@@ -96,7 +96,7 @@ class UnionProcessor : AbstractProcessor {
             }
         }
 
-        myfinalQueryString = implode( myfinalQuery).strip;
+        myfinalQueryString = implode(myfinalQuery).strip;
 
         if (! myfinalQuery.isEmpty && myfinalQueryString != "") {
             queries[isUnionType] ~= myfinalQuery;
@@ -114,7 +114,7 @@ class UnionProcessor : AbstractProcessor {
         return queries;
     }
 
-    auto process( myinputArray) {
+    auto process(myinputArray) {
         auto resultputArray = []; // ometimes the parser needs to skip ahead until a particular
         // oken is found
         bool isSkipUntilToken = false;
@@ -148,7 +148,7 @@ class UnionProcessor : AbstractProcessor {
             isUnionType = "UNION";
 
             // we are looking for an ALL token right after UNION
-            for ( myi = myKey + 1; myi < count( myinputArray); ++ myi) {
+            for (myi = myKey + 1; myi < count(myinputArray); ++ myi) {
                 if (
                     myinputArray[ myi].strip
                     .isEmpty) {

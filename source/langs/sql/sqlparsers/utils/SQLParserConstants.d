@@ -155,32 +155,32 @@ class SqlParserConstants {
     private auto __clone() {
     }
 
-    auto isAggregateFunction( mytoken) {
-        return aggregateFunctions.isSet( mytoken);
+    auto isAggregateFunction(mytoken) {
+        return aggregateFunctions.isSet(mytoken);
     }
 
-    auto isReserved( mytoken) {
-        return reserved.isSet( mytoken);
+    auto isReserved(mytoken) {
+        return reserved.isSet(mytoken);
     }
 
-    auto isFunction( mytoken) {
-        return functions.isSet( mytoken);
+    auto isFunction(mytoken) {
+        return functions.isSet(mytoken);
     }
 
-    auto isParameterizedFunction( mytoken) {
-        return parameterizedFunctions.isSet( mytoken);
+    auto isParameterizedFunction(mytoken) {
+        return parameterizedFunctions.isSet(mytoken);
     }
 
-    auto isCustomFunction( mytoken) {
-        return customFunctions.isSet( mytoken);
+    auto isCustomFunction(mytoken) {
+        return customFunctions.isSet(mytoken);
     }
 
-    auto addCustomFunction( mytoken) {
+    auto addCustomFunction(mytoken) {
         mytoken = mytoken.strip.toUpper;
         this.customFunctions[ mytoken] = true;
     }
 
-    auto removeCustomFunction( mytoken) {
+    auto removeCustomFunction(mytoken) {
         mytoken = mytoken.strip.toUpper;
         unset(this.customFunctions[ mytoken]);
     }

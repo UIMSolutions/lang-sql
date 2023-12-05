@@ -15,7 +15,7 @@ class ReferenceDefinitionProcessor : AbstractProcessor {
         return myExpression;
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
 
        myExpression = createExpression("REFERENCE"), "base_expr" : false, "sub_tree" : []];
         baseExpression = "";

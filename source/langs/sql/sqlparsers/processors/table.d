@@ -29,7 +29,7 @@ class TableProcessor : AbstractProcessor {
     return myProcessor.process(mytokens);
   }
 
-  protected auto clear( & myExpression,  & baseExpression,  & mycategory) {
+  protected auto clear(& myExpression,  & baseExpression,  & mycategory) {
     Json myExpression = [];
     baseExpression = "";
    mycategory = "CREATE_DEF";

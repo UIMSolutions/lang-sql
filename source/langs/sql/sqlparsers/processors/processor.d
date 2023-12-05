@@ -21,7 +21,7 @@ abstract class DProcessor {
      * This auto : the main functionality of a processor class.
      * Always use default valuses for additional parameters within overridden functions.
      */
-    abstract auto process( mytokens);
+    abstract auto process(mytokens);
 
     /**
      * this auto splits up a SQL statement into easy to "parse"
@@ -140,27 +140,27 @@ abstract class DProcessor {
             }
 
             if (strippedToken[myPos] == """) {
-                if ( mystringOpened.isEmpty) {
+                if (mystringOpened.isEmpty) {
                     mystringOpened = """;
-                } else if ( mystringOpened == """) {
+                } else if (mystringOpened == """) {
                     mystringOpened = "";
                 }
             }
 
             if (strippedToken[myPos] == """) {
-                if ( mystringOpened.isEmpty) {
+                if (mystringOpened.isEmpty) {
                     mystringOpened = """;
-                } else if ( mystringOpened == """) {
+                } else if (mystringOpened == """) {
                     mystringOpened = "";
                 }
             }
 
-            if (( mystringOpened.isEmpty) && (strippedToken[myPos] == "(")) {
+            if ((mystringOpened.isEmpty) && (strippedToken[myPos] == "(")) {
                 myparenthesis++;
             }
 
-            if (( mystringOpened.isEmpty) && (strippedToken[myPos] == ")")) {
-                if ( myparenthesis == myparenthesisRemoved) {
+            if ((mystringOpened.isEmpty) && (strippedToken[myPos] == ")")) {
+                if (myparenthesis == myparenthesisRemoved) {
                     strippedToken[myPos] = " ";
                     myparenthesisRemoved--;
                 }
@@ -171,15 +171,15 @@ abstract class DProcessor {
         return strippedToken.strip;
     }
 
-    protected auto getVariableType( myexpression) {
+    protected auto getVariableType(myexpression) {
         // myexpression must contain only upper-case characters
-        if ( myexpression[1] != "@") {
+        if (myexpression[1] != "@") {
             return expressionType("USER_VARIABLE");
         }
 
-        mytype = substr( myexpression, 2, strpos( myexpression, ".", 2));
+        mytype = substr(myexpression, 2, strpos(myexpression, ".", 2));
 
-        switch ( mytype) {
+        switch (mytype) {
         case "GLOBAL":
             mytype = expressionType("GLOBAL_VARIABLE");
             break;
@@ -247,7 +247,7 @@ abstract class DProcessor {
         return result.isSet("expr_type") && result["expr_type"].isExpressionType("COMMENT");
     }
 
-    auto processComment( myexpression) {
+    auto processComment(myexpression) {
         auto results = [];
         results["expr_type"] = expressionType("COMMENT");
         results["value"] = myexpression;
@@ -257,7 +257,7 @@ abstract class DProcessor {
     /**
      * translates an array of objects into an associative array
      */
-    auto toArray( mytokenList) {
+    auto toArray(mytokenList) {
         auto myExpression = [];
 
         mytokenList.each!(token => myExpresson = cast(ExpressionToken)token ? token.toArray() : token);
@@ -265,10 +265,10 @@ abstract class DProcessor {
         return myExpression;
     }
 
-    protected auto array_insert_after( myarray, string aKey, myentry) {
-        myidx = array_search(aKey, array_keys( myarray));
-        myarray = array_slice( myarray, 0, myidx + 1, true) + myentry
-                + array_slice( myarray, myidx + 1, count( myarray) - 1, true);
+    protected auto array_insert_after(myarray, string aKey, myentry) {
+        myidx = array_search(aKey, array_keys(myarray));
+        myarray = array_slice(myarray, 0, myidx + 1, true) + myentry
+                + array_slice(myarray, myidx + 1, count(myarray) - 1, true);
         return myarray;
     }
 }

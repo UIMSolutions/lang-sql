@@ -10,24 +10,24 @@ class SQLProcessor : SQLChunkProcessor {
      * This auto breaks up the SQL statement into logical sections. 
      * Some sections are delegated to specialized processors.
      */
-    auto process( mytokens) {
+    auto process(mytokens) {
         string previousCategory = "";
         string tokenCategory = "";
         myskip_next = 0;
         result  = [];
 
         // mytokens may come as a numeric indexed array starting with an index greater than 0 (or as a boolean)
-        mytokenCount = count( mytokens);
-        if (is_array( mytokens)) {
-            mytokens = array_values( mytokens);
+        mytokenCount = count(mytokens);
+        if (is_array(mytokens)) {
+            mytokens = array_values(mytokens);
         }
 
-        for ( mytokenNumber = 0; mytokenNumber < mytokenCount; ++ mytokenNumber) {
+        for (mytokenNumber = 0; mytokenNumber < mytokenCount; ++ mytokenNumber) {
 
             // https://github.com/greenlion/PHP-SQL-Parser/issues/279
             // https://github.com/sinri/PHP-SQL-Parser/commit/eac592a0e19f1df6f420af3777a6d5504837faa7
             // as there is no pull request for 279 by the user. His solution works and tested.
-            if (! mytokens.isSet( mytokenNumber)) {
+            if (! mytokens.isSet(mytokenNumber)) {
                 continue;
             } // as a fix by Sinri 20180528
            myToken = mytokens[ mytokenNumber];
@@ -42,7 +42,7 @@ class SQLProcessor : SQLChunkProcessor {
             /*
              * If it isn"t obvious, when myskip_next is set, then we ignore the next real token, that is we ignore whitespace.
              */
-            if ( myskip_next > 0) {
+            if (myskip_next > 0) {
                 if (strippedToken.isEmpty) {
                     if (tokenCategory != "") { // is this correct??
                         result [tokenCategory] ~= mytoken;
@@ -53,7 +53,7 @@ class SQLProcessor : SQLChunkProcessor {
                 strippedToken = "";
                myToken = "";
                 myskip_next--;
-                if ( myskip_next > 0) {
+                if (myskip_next > 0) {
                     continue;
                 }
             }

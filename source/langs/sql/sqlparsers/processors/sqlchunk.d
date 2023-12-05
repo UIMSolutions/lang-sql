@@ -30,7 +30,7 @@ class SQLChunkProcessor : AbstractProcessor {
       ];
       unset(myprocessedBracket[0]["remaining_expressions"]);
 
-      if (!empty(myremainingExpressions)) {
+      if (!myremainingExpressions.isEmpty) {
         foreach (myKey, myexpression; myremainingExpressions) {
          myprocessedBracket[][myKey] = myexpression;
         }
@@ -75,7 +75,7 @@ class SQLChunkProcessor : AbstractProcessor {
       auto myProcessor = new UsingProcessor(this.options);
       sqlOut["USING"] = myProcessor.process(sqlOut["USING"]);
     }
-    if (!empty(sqlOut["UPDATE"])) {
+    if (!sqlOut["UPDATE"].isEmpty) {
       auto myProcessor = new UpdateProcessor(this.options);
       sqlOut["UPDATE"] = myProcessor.process(sqlOut["UPDATE"]);
     }

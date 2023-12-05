@@ -28,15 +28,15 @@ class ExpressionToken {
     }
 
     # TODO: we could replace it with a constructor new ExpressionToken(this, "*")
-    auto addToken( mystring) {
+    auto addToken(mystring) {
         this.token ~= mystring;
     }
 
     auto isEnclosedWithinParenthesis() {
-        return (!empty( this.upper ) && this.upper[0] == "(" && substr(this.upper, -1) == ")");
+        return (!this.upper.isEmpty && this.upper[0] == "(" && substr(this.upper, -1) == ")");
     }
 
-    auto setSubTree( mytree) {
+    auto setSubTree(mytree) {
         this.subTree = mytree;
     }
 
@@ -60,11 +60,11 @@ class ExpressionToken {
         this.noQuotes = (_token == null) ? null : this.revokeQuotation(_token, myoptions);
     }
 
-    auto setTokenType( mytype) {
+    auto setTokenType(mytype) {
         this.tokenType = mytype;
     }
 
-    auto endsWith( myneedle) {
+    auto endsWith(myneedle) {
         size_t myLength = myneedle.length;
         if (myLength == 0) {
             return true;
@@ -143,7 +143,7 @@ class ExpressionToken {
     }
 
     private auto revokeQuotation(_token, Options myoptions) {
-        mydefProc = new DefaultProcessor( myoptions);
+        mydefProc = new DefaultProcessor(myoptions);
         return mydefProc.revokeQuotation(_token];
     }
 

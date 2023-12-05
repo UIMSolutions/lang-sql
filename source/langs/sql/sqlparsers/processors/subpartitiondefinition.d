@@ -26,7 +26,7 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
         return createExpression("BRACKET_EXPRESSION"), "base_expr" : myToken, "sub_tree" : false];
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
 
         auto myresult = [];
         string previousCategory = "";
@@ -40,12 +40,12 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
             auto strippedToken = myToken.strip;
             baseExpression ~= myToken;
 
-            if ( myskip > 0) {
+            if (myskip > 0) {
                 myskip--;
                 continue;
             }
 
-            if ( myskip < 0) {
+            if (myskip < 0) {
                 break;
             }
 
@@ -203,16 +203,16 @@ class SubpartitionDefinitionProcessor : AbstractProcessor {
                 case "COMMENT":
                    myExpression ~= this.getConstantType(strippedToken);
 
-                    mylast = array_pop( myparsed["sub_tree"]);
+                    mylast = array_pop(myparsed["sub_tree"]);
                     mylast["sub_tree"] = myExpression;
                     mylast["base_expr"] = baseExpression.strip;
                     baseExpression = mylast["storage"] ~ baseExpression;
-                    unset( mylast["storage"]);
+                    unset(mylast["storage"]);
 
                     myparsed["sub_tree"] ~= mylast;
                     myparsed["base_expr"] = baseExpression.strip;
                    myExpression = myparsed["sub_tree"];
-                    unset( mylast);
+                    unset(mylast);
 
                     currentCategory = previousCategory;
                     break;

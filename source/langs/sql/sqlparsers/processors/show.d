@@ -12,11 +12,11 @@ class ShowProcessor : AbstractProcessor {
     private LimitProcessor _limitProcessor;
 
     this(Options myoptions) {
-        super( myoptions);
-        _limitProcessor = new LimitProcessor( myoptions);
+        super(myoptions);
+        _limitProcessor = new LimitProcessor(myoptions);
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
         auto myresultList = [];
         auto myCategory = "";
         auto myPrevious = "";
@@ -83,8 +83,8 @@ class ShowProcessor : AbstractProcessor {
                     myresultList ~= createExpression("CONSTANT", myToken);
                     break;
                 case "LIMIT":
-                    mylimit = array_pop( myresultList);
-                    mylimit["sub_tree"] = this.limitProcessor.process(array_slice( mytokens, myk));
+                    mylimit = array_pop(myresultList);
+                    mylimit["sub_tree"] = this.limitProcessor.process(array_slice(mytokens, myk));
                     myresultList ~= mylimit;
                     break;
                 case "FROM":

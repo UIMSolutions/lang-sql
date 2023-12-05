@@ -7,9 +7,9 @@ import lang.sql;
 // This class processes the ORDER-BY statements.
 class OrderByProcessor : AbstractProcessor {
 
-    protected auto processSelectExpression( myunparsed) {
+    protected auto processSelectExpression(myunparsed) {
         auto myProcessor = new SelectExpressionProcessor(this.options);
-        return myProcessor.process( myunparsed);
+        return myProcessor.process(myunparsed);
     }
 
     protected auto initParseInfo() {
@@ -18,7 +18,7 @@ class OrderByProcessor : AbstractProcessor {
         return result;
     }
 
-    protected auto processOrderExpression( & Json parseInfo, myselect) {
+    protected auto processOrderExpression(& Json parseInfo, myselect) {
         parseInfo["base_expr"] = parseInfo.baseExpression.strip;
 
         if (parseInfo.baseExpression.isEmpty) {
@@ -59,7 +59,7 @@ class OrderByProcessor : AbstractProcessor {
         return result;
     }
 
-    auto process( mytokens, myselect = []) {
+    auto process(mytokens, myselect = []) {
         result  = [];
         parseInfo = this.initParseInfo();
 

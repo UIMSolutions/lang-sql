@@ -7,7 +7,7 @@ import lang.sql;
 // Processes the RENAME statements.
 class RenameProcessor : AbstractProcessor {
 
-    auto process( mytokenList) {
+    auto process(mytokenList) {
         string baseExpression = "";
         myresultList = [];
         mytablePair = [];

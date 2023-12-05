@@ -6,16 +6,16 @@ import lang.sql;
 // This class processes Oracle"s WITH statements.
 class WithProcessor : AbstractProcessor {
 
-    protected auto processTopLevel( mysql) {
+    protected auto processTopLevel(mysql) {
     	auto myProcessor = new DefaultProcessor(this.options);
-    	return myProcessor.process( mysql);
+    	return myProcessor.process(mysql);
     }
 
     protected string buildTableName(aToken) {
     	return createExpression("TEMPORARY_TABLE"), "name":aToken, "base_expr" : aToken, "no_quotes" : this.revokeQuotation(aToken)];
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
     	auto result = [];
         auto myresultList = [];
         string myCategory = "";

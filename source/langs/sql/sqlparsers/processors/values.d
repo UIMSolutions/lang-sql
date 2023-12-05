@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the VALUES statements.
 class ValuesProcessor : AbstractProcessor {
 
-    auto process( mytokens) {
+    auto process(mytokens) {
 
         string currentCategory = "";
         myparsed = [];
@@ -60,7 +60,7 @@ class ValuesProcessor : AbstractProcessor {
                     baseExpression = substr(baseExpression, 0, -strlen(myToken)).strip;
                     myres = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
                     myparsed ~= createExpression("EXPRESSION"), "base_expr" : baseExpression,
-                                      "sub_tree" : (empty( myres) ? false : myres), "delim": strippedToken];
+                                      "sub_tree" : (myres.isEmpty ? false : myres), "delim": strippedToken];
                     baseExpression = "";
                     continue 2;
                 }
@@ -84,7 +84,7 @@ class ValuesProcessor : AbstractProcessor {
             if (currentCategory == "DUPLICATE") {
                 myres = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
                 myparsed ~= createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
-                                  "sub_tree" : ( myres.isEmpty ? false : myres), "delim" : false];
+                                  "sub_tree" : (myres.isEmpty ? false : myres), "delim" : false];
             }
         }
 
@@ -92,14 +92,14 @@ class ValuesProcessor : AbstractProcessor {
         return mytokens;
     }
 
-    protected auto processExpressionList( myunparsed) {
+    protected auto processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-        return myProcessor.process( myunparsed);
+        return myProcessor.process(myunparsed);
     }
 
-    protected auto processRecord( myunparsed) {
+    protected auto processRecord(myunparsed) {
         auto myProcessor = new RecordProcessor(this.options);
-        return myProcessor.process( myunparsed);
+        return myProcessor.process(myunparsed);
     }
 
 }

@@ -7,37 +7,37 @@ import lang.sql;
 // This class processes the PARTITION statements within CREATE TABLE.
 class PartitionDefinitionProcessor : AbstractProcessor {
 
-    protected auto processExpressionList( myunparsed) {
+    protected auto processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
-       myExpression = this.removeParenthesisFromStart( myunparsed);
+       myExpression = this.removeParenthesisFromStart(myunparsed);
         auto myTokens = this.splitSQLIntoTokens(myExpression);
         return myProcessor.process(myTokens);
     }
 
-    protected auto processSubpartitionDefinition( myunparsed) {
+    protected auto processSubpartitionDefinition(myunparsed) {
         auto myProcessor = new SubpartitionDefinitionProcessor(this.options);
-       myExpression = this.removeParenthesisFromStart( myunparsed);
+       myExpression = this.removeParenthesisFromStart(myunparsed);
         auto myTokens = this.splitSQLIntoTokens(myExpression);
         return myProcessor.process(myTokens);
     }
 
-    protected auto getReservedType( mytoken) {
+    protected auto getReservedType(mytoken) {
         return createExpression("RESERVED"), "base_expr" : mytoken];
     }
 
-    protected auto getConstantType( mytoken) {
+    protected auto getConstantType(mytoken) {
         return createExpression("CONSTANT"), "base_expr" : mytoken];
     }
 
-    protected auto getOperatorType( mytoken) {
+    protected auto getOperatorType(mytoken) {
         return createExpression("OPERATOR"), "base_expr" : mytoken];
     }
 
-    protected auto getBracketExpressionType( mytoken) {
+    protected auto getBracketExpressionType(mytoken) {
         return createExpression("BRACKET_EXPRESSION"), "base_expr" : mytoken, "sub_tree" : false];
     }
 
-    auto process( mytokens) {
+    auto process(mytokens) {
 
         myresult = [];
         string myPreviousCategory = "";
@@ -47,16 +47,16 @@ class PartitionDefinitionProcessor : AbstractProcessor {
         string baseExpression = "";
         myskip = 0;
 
-        foreach ( mytokenKey, mytoken; mytokens) {
+        foreach (mytokenKey, mytoken; mytokens) {
             auto strippedToken = mytoken.strip;
             baseExpression ~= mytoken;
 
-            if ( myskip > 0) {
+            if (myskip > 0) {
                 myskip--;
                 continue;
             }
 
-            if ( myskip < 0) {
+            if (myskip < 0) {
                 break;
             }
 
@@ -114,17 +114,17 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 if (myCurrentCategory == "VALUES") {
                    myExpression ~= this.getConstantType(strippedToken);
 
-                    mylast = array_pop( myparsed["sub_tree"]);
+                    mylast = array_pop(myparsed["sub_tree"]);
                     mylast["base_expr"] = baseExpression;
                     mylast["sub_tree"] = myExpression;
 
                     baseExpression = mylast["storage"] . baseExpression;
-                    unset( mylast["storage"]);
+                    unset(mylast["storage"]);
                     myparsed["sub_tree"] ~= mylast;
                     myparsed["base_expr"] = baseExpression.strip;
 
                    myExpression = myparsed["sub_tree"];
-                    unset( mylast);
+                    unset(mylast);
                    myCurrentCategory = myPreviousCategory;
                 }
                 // else ?
@@ -261,17 +261,17 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                 case "COMMENT":
                    myExpression ~= this.getConstantType(strippedToken);
 
-                    mylast = array_pop( myparsed["sub_tree"]);
+                    mylast = array_pop(myparsed["sub_tree"]);
                     mylast["sub_tree"] = myExpression;
                     mylast["base_expr"] = baseExpression.strip;
                     baseExpression = mylast["storage"] . baseExpression;
-                    unset( mylast["storage"]);
+                    unset(mylast["storage"]);
 
                     myparsed["sub_tree"] ~= mylast;
                     myparsed["base_expr"] = baseExpression.strip;
 
                    myExpression = myparsed["sub_tree"];
-                    unset( mylast);
+                    unset(mylast);
 
                    myCurrentCategory = myPreviousCategory;
                     break;
@@ -294,17 +294,17 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     mylast["sub_tree"] = (myres.isEmpty ? false : myres);
                    myExpression ~= mylast;
 
-                    mylast = array_pop( myparsed["sub_tree"]);
+                    mylast = array_pop(myparsed["sub_tree"]);
                     mylast["base_expr"] = baseExpression;
                     mylast["sub_tree"] = myExpression;
 
                     baseExpression = mylast["storage"] . baseExpression;
-                    unset( mylast["storage"]);
+                    unset(mylast["storage"]);
                     myparsed["sub_tree"] ~= mylast;
                     myparsed["base_expr"] = baseExpression.strip;
 
                    myExpression = myparsed["sub_tree"];
-                    unset( mylast);
+                    unset(mylast);
 
                    myCurrentCategory = myPreviousCategory;
                     break;
@@ -316,7 +316,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                             mylast = this.getBracketExpressionType(strippedToken);
                             mylast["sub_tree"] = this.processSubpartitionDefinition(strippedToken);
                            myExpression ~= mylast;
-                            unset( mylast);
+                            unset(mylast);
 
                             myparsed["base_expr"] = baseExpression.strip;
                             myparsed["sub_tree"] = myExpression;
