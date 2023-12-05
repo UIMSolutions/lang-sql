@@ -9,24 +9,24 @@ import lang.sql;
 class OptionsProcessor : AbstractProcessor {
 
   auto process( mytokens) {
-     myresultList = [];
+    myresultList = [];
 
-    foreach (myToken;  mytokens) {
+    foreach (myToken; mytokens) {
 
-       mytokenList = this.splitSQLIntoTokens(myToken);
-       myresult = [];
+      mytokenList = this.splitSQLIntoTokens(myToken);
+      myresult = [];
 
-      foreach (myReserved;  mytokenList) {
+      foreach (myReserved; mytokenList) {
         auto strippedToken = myReserved.strip;
         if (strippedToken.isEmpty) {
           continue;
         }
 
-         myresult ~= ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
+        myresult ~= ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
       }
-       myresultList ~= ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree":  myresult];
+      myresultList ~= ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree": myresult];
     }
 
-    return  myresultList;
+    return myresultList;
   }
 }

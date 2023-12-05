@@ -11,13 +11,13 @@ class IntoProcessor : AbstractProcessor {
     * at the moment
     */
   auto process( mytokenList) {
-     myunparsed =  mytokenList["INTO"];
-    foreach (myKey, myToken;  myunparsed) {
+    myunparsed = mytokenList["INTO"];
+    foreach (myKey, myToken; myunparsed) {
       if (this.isWhitespaceToken(myToken) || this.isCommaToken(myToken)) {
         unset( myunparsed[myKey]);
       }
     }
-     mytokenList["INTO"] = array_values( myunparsed);
-    return  mytokenList;
+    mytokenList["INTO"] = array_values( myunparsed);
+    return mytokenList;
   }
 }

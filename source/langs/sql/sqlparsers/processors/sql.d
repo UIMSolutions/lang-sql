@@ -13,16 +13,16 @@ class SQLProcessor : SQLChunkProcessor {
     auto process( mytokens) {
         string previousCategory = "";
         string tokenCategory = "";
-         myskip_next = 0;
+        myskip_next = 0;
         result  = [];
 
-        //  mytokens may come as a numeric indexed array starting with an index greater than 0 (or as a boolean)
-         mytokenCount = count( mytokens);
+        // mytokens may come as a numeric indexed array starting with an index greater than 0 (or as a boolean)
+        mytokenCount = count( mytokens);
         if (is_array( mytokens)) {
-             mytokens = array_values( mytokens);
+            mytokens = array_values( mytokens);
         }
 
-        for ( mytokenNumber = 0;  mytokenNumber <  mytokenCount; ++ mytokenNumber) {
+        for ( mytokenNumber = 0; mytokenNumber < mytokenCount; ++ mytokenNumber) {
 
             // https://github.com/greenlion/PHP-SQL-Parser/issues/279
             // https://github.com/sinri/PHP-SQL-Parser/commit/eac592a0e19f1df6f420af3777a6d5504837faa7
@@ -30,8 +30,8 @@ class SQLProcessor : SQLChunkProcessor {
             if (! mytokens.isSet( mytokenNumber)) {
                 continue;
             } // as a fix by Sinri 20180528
-            myToken =  mytokens[ mytokenNumber];
-            auto strippedToken =  mytoken.strip; // this removes also \n and \t!
+           myToken = mytokens[ mytokenNumber];
+            auto strippedToken = mytoken.strip; // this removes also \n and \t!
 
             // if it starts with an "(", it should follow a SELECT
             if (strippedToken != "" && strippedToken[0] == "(" && tokenCategory.isEmpty) {
@@ -40,19 +40,19 @@ class SQLProcessor : SQLChunkProcessor {
             }
 
             /*
-             * If it isn"t obvious, when  myskip_next is set, then we ignore the next real token, that is we ignore whitespace.
+             * If it isn"t obvious, when myskip_next is set, then we ignore the next real token, that is we ignore whitespace.
              */
             if ( myskip_next > 0) {
                 if (strippedToken.isEmpty) {
                     if (tokenCategory != "") { // is this correct??
-                        result [tokenCategory] ~=  mytoken;
+                        result [tokenCategory] ~= mytoken;
                     }
                     continue;
                 }
                 // to skip the token we replace it with whitespace
                 strippedToken = "";
-                myToken = "";
-                 myskip_next--;
+               myToken = "";
+                myskip_next--;
                 if ( myskip_next > 0) {
                     continue;
                 }
@@ -69,7 +69,7 @@ class SQLProcessor : SQLChunkProcessor {
                 break;
 
             case "DEALLOCATE" : if (strippedToken == "DEALLOCATE") {
-                     myskip_next = 1;
+                    myskip_next = 1;
                 }
                 tokenCategory = upperToken;
                 break;
@@ -276,7 +276,7 @@ class SQLProcessor : SQLChunkProcessor {
                                 break;
                             } else {
                                 strippedToken = "LOCK IN SHARE MODE";
-                                 myskip_next = 3;
+                                myskip_next = 3;
                                 result ["OPTIONS"] ~= strippedToken;
                             }
                             continue 2;
@@ -302,7 +302,7 @@ class SQLProcessor : SQLChunkProcessor {
             case "FOR": if (previousCategory == "SHOW" || tokenCategory == "FROM") {
                                 break;
                             }
-                             myskip_next = 1;
+                            myskip_next = 1;
                             result ["OPTIONS"] ~= "FOR UPDATE"; // TODO: this could be generate problems within the position calculator
                             continue 2;
 
@@ -317,7 +317,7 @@ class SQLProcessor : SQLChunkProcessor {
 
             case "START": strippedToken = "BEGIN";
                             result [upperToken][0] = upperToken; // TODO: this could be generate problems within the position calculator
-                             myskip_next = 1;
+                            myskip_next = 1;
                             break;
 
                             // This token is ignored, except within RENAME
@@ -363,7 +363,7 @@ class SQLProcessor : SQLChunkProcessor {
                             continue 2;
 
             case "WITH": if (tokenCategory == "GROUP") {
-                                 myskip_next = 1;
+                                myskip_next = 1;
                                 result ["OPTIONS"] ~= "WITH ROLLUP"; // TODO: this could be generate problems within the position calculator
                                 continue 2;
                             }
@@ -382,7 +382,7 @@ class SQLProcessor : SQLChunkProcessor {
                             // remove obsolete category after union (empty category because of
                             // empty token before select)
                             if (tokenCategory != "" && (previousCategory == tokenCategory)) {
-                                result [tokenCategory] ~=  mytoken;
+                                result [tokenCategory] ~= mytoken;
                             }
 
                             previousCategory = tokenCategory;

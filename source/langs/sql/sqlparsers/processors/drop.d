@@ -15,9 +15,9 @@ class DropProcessor : AbstractProcessor {
         string baseExpression = "";
         auto objectType = "";
         Json subTree;
-         myoption = false;
+        myoption = false;
 
-        foreach (myToken;  mytokenList) {
+        foreach (myToken; mytokenList) {
             baseExpression ~= myToken;
             string strippedToken = myToken.strip;
 
@@ -55,45 +55,45 @@ class DropProcessor : AbstractProcessor {
 
             case "RESTRICT":
             case "CASCADE":
-                 myoption = upperToken;
+                myoption = upperToken;
                 if (!empty( myobjectList)) {
                     subTree = createExpression("EXPRESSION", substr(baseExpression, 0, -myToken.length).strip);
-                    subTree["sub_tree"] =  myobjectList;
-                     myobjectList = [];
+                    subTree["sub_tree"] = myobjectList;
+                    myobjectList = [];
                 }
                 baseExpression = "";
                 break;
 
             case ",":
-                 mylast = array_pop( myobjectList);
-                 mylast["delim"] = strippedToken;
-                 myobjectList ~=  mylast;
+                mylast = array_pop( myobjectList);
+                mylast["delim"] = strippedToken;
+                myobjectList ~= mylast;
                 continue 2;
 
             default:
-                 myobject = [];
-                 myobject["expr_type"] = objectType;
+                myobject = [];
+                myobject["expr_type"] = objectType;
                 if (objectType.isExpressionType("TABLE") || objectType.isExpressionType("TEMPORARY_TABLE")) {
-                     myobject["table"] = strippedToken;
-                     myobject["no_quotes"] = false;
-                     myobject["alias"] = false;
+                    myobject["table"] = strippedToken;
+                    myobject["no_quotes"] = false;
+                    myobject["alias"] = false;
                 }
-                 myobject["base_expr"] = strippedToken;
-                 myobject["no_quotes"] = this.revokeQuotation(strippedToken);
-                 myobject["delim"] = false;
+                myobject["base_expr"] = strippedToken;
+                myobject["no_quotes"] = this.revokeQuotation(strippedToken);
+                myobject["delim"] = false;
 
-                 myobjectList ~=  myobject;
+                myobjectList ~= myobject;
                 continue 2;
             }
 
-             mysubTree ~= createExpression("RESERVED"), "base_expr" : strippedToken);
+            mysubTree ~= createExpression("RESERVED"), "base_expr" : strippedToken);
         }
 
         if (!empty( myobjectList)) {
-             mysubTree ~= createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
-                               "sub_tree" :  myobjectList];
+            mysubTree ~= createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
+                               "sub_tree" : myobjectList];
         }
 
-        return ["expr_type" : objectType, "option" :  myoption, "if-exists" : exists, "sub_tree" :  mysubTree);
+        return ["expr_type" : objectType, "option" : myoption, "if-exists" : exists, "sub_tree" : mysubTree);
     }
 }

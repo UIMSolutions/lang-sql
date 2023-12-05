@@ -9,10 +9,10 @@ class RenameProcessor : AbstractProcessor {
 
     auto process( mytokenList) {
         string baseExpression = "";
-         myresultList = [];
-         mytablePair = [];
+        myresultList = [];
+        mytablePair = [];
 
-        foreach (myKey, myValue;  mytokenList) {
+        foreach (myKey, myValue; mytokenList) {
             auto myToken = new ExpressionToken(myKey, myValue);
 
             if (myToken.isWhitespaceToken()) {
@@ -22,27 +22,27 @@ class RenameProcessor : AbstractProcessor {
             switch (myToken.getUpper()) {
             case "TO":
             // separate source table from destination
-                 mytablePair["source"] = createExpression("TABLE", baseExpression);
-                 mytablePair["table"] = baseExpression.strip;
-                 mytablePair["no_quotes"] = this.revokeQuotation(baseExpression);
+                mytablePair["source"] = createExpression("TABLE", baseExpression);
+                mytablePair["table"] = baseExpression.strip;
+                mytablePair["no_quotes"] = this.revokeQuotation(baseExpression);
                                       
                 baseExpression = "";
                 break;
 
             case ",":
             // split rename operations
-                 mytablePair["destination"] = createExpression("TABLE", baseExpression);
-                 mytablePair["table"] = baseExpression.strip,
-                 mytablePair["no_quotes"] = this.revokeQuotation(baseExpression),
+                mytablePair["destination"] = createExpression("TABLE", baseExpression);
+                mytablePair["table"] = baseExpression.strip,
+                mytablePair["no_quotes"] = this.revokeQuotation(baseExpression),
                     
-                 myresultList ~=  mytablePair;
-                 mytablePair = [];
+                myresultList ~= mytablePair;
+                mytablePair = [];
                 baseExpression = "";
                 break;
 
             case "TABLE":
-                 myobjectType .isExpressionType(TABLE;
-                 myresultList ~= ["expr_type":expressionType("RESERVED", myToken.strip)];   
+                myobjectType .isExpressionType(TABLE;
+                myresultList ~= ["expr_type":expressionType("RESERVED", myToken.strip)];   
                 continue 2; 
                 
             default:
@@ -52,13 +52,13 @@ class RenameProcessor : AbstractProcessor {
         }
 
         if (baseExpression != "") {
-             mytablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
+            mytablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
                                               "no_quotes" : this.revokeQuotation(baseExpression),
                                               "base_expr" : baseExpression];
-             myresultList ~=  mytablePair;
+            myresultList ~= mytablePair;
         }
 
-        return ["expr_type" :  myobjectType, "sub_tree": myresultList];
+        return ["expr_type" : myobjectType, "sub_tree": myresultList];
     }
 
 }

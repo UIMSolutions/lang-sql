@@ -32,22 +32,22 @@ class TableProcessor : AbstractProcessor {
   protected auto clear( & myExpression,  & baseExpression,  & mycategory) {
     Json myExpression = [];
     baseExpression = "";
-    mycategory = "CREATE_DEF";
+   mycategory = "CREATE_DEF";
   }
 
   auto process(mytokens) {
 
     currentCategory = "TABLE_NAME";
     Json myResult = Json.emptyObject;
-    myResult["base_expr"] = false;
-    myResult["name"] = false;
-    myResult["no_quotes"] = false;
-    myResult["create-def"] = false;
-    myResult["options"] = [];
-    myResult["like"] = false;
-    myResult["select-option"] = fals;
+   myResult["base_expr"] = false;
+   myResult["name"] = false;
+   myResult["no_quotes"] = false;
+   myResult["create-def"] = false;
+   myResult["options"] = [];
+   myResult["like"] = false;
+   myResult["select-option"] = fals;
 
-    myExpression = [];
+   myExpression = [];
     baseExpression = "";
     int mySkip = 0;
 
@@ -56,7 +56,7 @@ class TableProcessor : AbstractProcessor {
       baseExpression ~= myToken;
 
       if (mySkip > 0) {
-        mySkip--;
+       mySkip--;
         continue;
       }
 
@@ -74,16 +74,16 @@ class TableProcessor : AbstractProcessor {
       case ",":
         // it is possible to separate the table options with comma!
         if (myprevCategory == "CREATE_DEF") {
-          mylast = array_pop(myResult["options"]);
-          mylast["delim"] = ",";
-          myResult["options"] ~= mylast;
+         mylast = array_pop(myResult["options"]);
+         mylast["delim"] = ",";
+         myResult["options"] ~= mylast;
           baseExpression = "";
         }
         continue 2;
 
       case "UNION":
         if (myprevCategory == "CREATE_DEF") {
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "UNION";
           continue 2;
         }
@@ -100,19 +100,19 @@ class TableProcessor : AbstractProcessor {
       case "=":
         // the optional operator
         if (myprevCategory == "TABLE_OPTION") {
-          myExpression ~= this.getOperatorType(strippedToken);
+         myExpression ~= this.getOperatorType(strippedToken);
           continue 2; // don"t change the category
         }
         break;
 
       case "CHARACTER":
         if (myprevCategory == "CREATE_DEF") {
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "TABLE_OPTION";
         }
         if (myprevCategory == "TABLE_OPTION") {
           // add it to the previous DEFAULT
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           continue 2;
         }
         break;
@@ -121,7 +121,7 @@ class TableProcessor : AbstractProcessor {
       case "CHARSET":
         if (myprevCategory == "TABLE_OPTION") {
           // add it to a previous CHARACTER
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "CHARSET";
           continue 2;
         }
@@ -130,7 +130,7 @@ class TableProcessor : AbstractProcessor {
       case "COLLATE":
         if (myprevCategory == "TABLE_OPTION" || myprevCategory == "CREATE_DEF") {
           // add it to the previous DEFAULT
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "COLLATE";
           continue 2;
         }
@@ -139,14 +139,14 @@ class TableProcessor : AbstractProcessor {
       case "DIRECTORY":
         if (currentCategory == "INDEX_DIRECTORY" || currentCategory == "DATA_DIRECTORY") {
           // after INDEX or DATA
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           continue 2;
         }
         break;
 
       case "INDEX":
         if (myprevCategory == "CREATE_DEF") {
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "INDEX_DIRECTORY";
           continue 2;
         }
@@ -154,7 +154,7 @@ class TableProcessor : AbstractProcessor {
 
       case "DATA":
         if (myprevCategory == "CREATE_DEF") {
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "DATA_DIRECTORY";
           continue 2;
         }
@@ -178,7 +178,7 @@ class TableProcessor : AbstractProcessor {
       case "STATS_PERSISTENT":
       case "KEY_BLOCK_SIZE":
         if (myprevCategory == "CREATE_DEF") {
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = myprevCategory = "TABLE_OPTION";
           continue 2;
         }
@@ -195,13 +195,13 @@ class TableProcessor : AbstractProcessor {
       case "DEFAULT":
         if (myprevCategory == "CREATE_DEF") {
           // DEFAULT before CHARACTER SET and COLLATE
-          myExpression ~= this.getReservedType(strippedToken);
+         myExpression ~= this.getReservedType(strippedToken);
           currentCategory = "TABLE_OPTION";
         }
         if (myprevCategory == "TABLE_OPTION") {
           // all assignments with the keywords
-          myExpression ~= this.getReservedType(strippedToken);
-          myResult["options"] ~= createExpression("EXPRESSION"),
+         myExpression ~= this.getReservedType(strippedToken);
+         myResult["options"] ~= createExpression("EXPRESSION"),
           "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
           this.clear(myExpression, baseExpression, currentCategory);
         }
@@ -209,8 +209,8 @@ class TableProcessor : AbstractProcessor {
 
       case "IGNORE":
       case "REPLACE":
-        myExpression ~= this.getReservedType(strippedToken);
-        myResult["select-option"] = [
+       myExpression ~= this.getReservedType(strippedToken);
+       myResult["select-option"] = [
           "base_expr": baseExpression.strip,
           "duplicates": strippedToken,
           "as": false,
@@ -219,20 +219,20 @@ class TableProcessor : AbstractProcessor {
         continue 2;
 
       case "AS":
-        myExpression ~= this.getReservedType(strippedToken);
+       myExpression ~= this.getReservedType(strippedToken);
         if (!isset(myResult["select-option"]["duplicates"])) {
-          myResult["select-option"]["duplicates"] = false;
+         myResult["select-option"]["duplicates"] = false;
         }
-        myResult["select-option"]["as"] = true;
-        myResult["select-option"]["base_expr"] = baseExpression.strip;
-        myResult["select-option"]["sub_tree"] = myExpression;
+       myResult["select-option"]["as"] = true;
+       myResult["select-option"]["base_expr"] = baseExpression.strip;
+       myResult["select-option"]["sub_tree"] = myExpression;
         continue 2;
 
       case "PARTITION":
         if (myprevCategory == "CREATE_DEF") {
-          mypart = this.processPartitionOptions(array_slice(mytokens, mytokenKey - 1, null, true));
-          mySkip = mypart["last-parsed"] - mytokenKey;
-          myResult["partition-options"] = mypart["partition-options"];
+         mypart = this.processPartitionOptions(array_slice(mytokens, mytokenKey - 1, null, true));
+         mySkip = mypart["last-parsed"] - mytokenKey;
+         myResult["partition-options"] = mypart["partition-options"];
           continue 2;
         }
         // else
@@ -243,50 +243,50 @@ class TableProcessor : AbstractProcessor {
 
         case "CHARSET":
           // the charset name
-          myExpression ~= this.getConstantType(strippedToken);
+         myExpression ~= this.getConstantType(strippedToken);
           Json newOption = createExpression("CHARSET", baseExpression.strip);
           newOption["delim"] = " ";
           newOption["sub_tree"] = myExpression;
 
-          myResult["options"] ~= newOption;
+         myResult["options"] ~= newOption;
           this.clear(myExpression, baseExpression, currentCategory);
           break;
 
         case "COLLATE":
           // the collate name
-          myExpression ~= this.getConstantType(strippedToken);
+         myExpression ~= this.getConstantType(strippedToken);
           Json optionExpression = createExpression("COLLATE", baseExpression.strip);
           optionExpression["delim"] = " ";
           optionExpression["sub_tree"] = myExpression;
-          myResult["options"] ~= optionExpression;
+         myResult["options"] ~= optionExpression;
           this.clear(myExpression, baseExpression, currentCategory);
           break;
 
         case "DATA_DIRECTORY":
           // we have the directory name
-          myExpression ~= this.getConstantType(strippedToken);
+         myExpression ~= this.getConstantType(strippedToken);
           Json optionExpression = createExpression("DIRECTORY", baseExpression.strip);
           optionExpression["kind"] = "DATA";
           optionExpression["delim"] = " ";
           optionExpression["sub_tree"] = myExpression;
-          myResult["options"] ~= optionExpression;
+         myResult["options"] ~= optionExpression;
           this.clear(myExpression, baseExpression, myprevCategory);
           continue 3;
 
         case "INDEX_DIRECTORY":
           // we have the directory name
-          myExpression ~= this.getConstantType(strippedToken);
+         myExpression ~= this.getConstantType(strippedToken);
           Json optionExpression = createExpression("DIRECTORY", baseExpression.strip);
           optionExpression["kind"] = "INDEX";
           optionExpression["delim"] = " ";
           optionExpression["sub_tree"] = myExpression;
-          myResult["options"] ~= optionExpression;
+         myResult["options"] ~= optionExpression;
           this.clear(myExpression, baseExpression, myprevCategory);
           continue 3;
 
         case "TABLE_NAME":
-          myResult["base_expr"] = myResult["name"] = strippedToken;
-          myResult["no_quotes"] = this.revokeQuotation(strippedToken);
+         myResult["base_expr"] = myResult["name"] = strippedToken;
+         myResult["no_quotes"] = this.revokeQuotation(strippedToken);
           this.clear(myExpression, baseExpression, myprevCategory);
           break;
 
@@ -294,18 +294,18 @@ class TableProcessor : AbstractProcessor {
           Json likeExpression = createExpression("TABLE", strippedToken);
           likeExpression["table"] = strippedToken;
           likeExpression["no_quotes"] = this.revokeQuotation(strippedToken);
-          myResult["like"] = likeExpression;
+         myResult["like"] = likeExpression;
           this.clear(myExpression, baseExpression, currentCategory);
           break;
 
         case "":
           // after table name
           if (myprevCategory == "TABLE_NAME" && upperToken[0] == "(" && substr(upperToken, -1) == ")") {
-            myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
-            mycoldef = this.processCreateDefinition(myunparsed);
-            myResult["create-def"] = createExpression("BRACKET_EXPRESSION"),
+           myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
+           mycoldef = this.processCreateDefinition(myunparsed);
+           myResult["create-def"] = createExpression("BRACKET_EXPRESSION"),
             "base_expr" : baseExpression, "sub_tree" : mycoldef["create-def"]);
-            myExpression = [];
+           myExpression = [];
             baseExpression = "";
             currentCategory = "CREATE_DEF";
           }
@@ -317,18 +317,18 @@ class TableProcessor : AbstractProcessor {
           // split the token and add the list as subtree
           // we must change the DefaultProcessor
 
-          myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
-          myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
+         myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
+         myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
           "sub_tree" : "***TODO***");
-          myResult["options"] ~= createExpression(UNION, "base_expr" : baseExpression.strip,
+         myResult["options"] ~= createExpression(UNION, "base_expr" : baseExpression.strip,
             "delim" : " ", "sub_tree" : myExpression];
           this.clear(myExpression, baseExpression, currentCategory);
           break;
 
         default:
           // strings and numeric constants
-          myExpression ~= this.getConstantType(strippedToken);
-          myResult["options"] ~= createExpression("EXPRESSION"),
+         myExpression ~= this.getConstantType(strippedToken);
+         myResult["options"] ~= createExpression("EXPRESSION"),
           "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
           this.clear(myExpression, baseExpression, currentCategory);
           break;
@@ -336,7 +336,7 @@ class TableProcessor : AbstractProcessor {
         break;
       }
 
-      myprevCategory = currentCategory;
+     myprevCategory = currentCategory;
       currentCategory = "";
     }
 
@@ -347,7 +347,7 @@ class TableProcessor : AbstractProcessor {
       unset(myResult["select-option"]);
     }
     if (myResult["options"] == []) {
-      myResult["options"] = false;
+     myResult["options"] = false;
     }
 
     return myResult;

@@ -18,7 +18,7 @@ class OrderByProcessor : AbstractProcessor {
         return result;
     }
 
-    protected auto processOrderExpression( & Json parseInfo,  myselect) {
+    protected auto processOrderExpression( & Json parseInfo, myselect) {
         parseInfo["base_expr"] = parseInfo.baseExpression.strip;
 
         if (parseInfo.baseExpression.isEmpty) {
@@ -30,7 +30,7 @@ class OrderByProcessor : AbstractProcessor {
         } else {
             parseInfo["no_quotes"] = this.revokeQuotation(parseInfo.baseExpression);
             // search to see if the expression matches an alias
-            foreach (myClause;  myselect) {
+            foreach (myClause; myselect) {
                 if (myClause["alias"].isEmpty) {
                     continue;
                 }
@@ -43,8 +43,8 @@ class OrderByProcessor : AbstractProcessor {
         }
 
         if (parseInfo.isExpressionType("EXPRESSION")) {
-            myExpression = this.processSelectExpression(parseInfo.baseExpression);
-            myExpression["direction"] = parseInfo["dir"];
+           myExpression = this.processSelectExpression(parseInfo.baseExpression);
+           myExpression["direction"] = parseInfo["dir"];
             unset(myExpression["alias"]);
             return myExpression;
         }
@@ -59,7 +59,7 @@ class OrderByProcessor : AbstractProcessor {
         return result;
     }
 
-    auto process( mytokens,  myselect = []) {
+    auto process( mytokens, myselect = []) {
         result  = [];
         parseInfo = this.initParseInfo();
 
@@ -67,10 +67,10 @@ class OrderByProcessor : AbstractProcessor {
             return false;
         }
 
-        foreach (myToken;  mytokens) {
+        foreach (myToken; mytokens) {
             auto upperToken = myToken.strip.toUpper;
             switch (upperToken) {
-            case "," : result  ~= this.processOrderExpression(parseInfo,  myselect);
+            case "," : result  ~= this.processOrderExpression(parseInfo, myselect);
                 parseInfo = this.initParseInfo();
                 break;
 
@@ -86,6 +86,6 @@ class OrderByProcessor : AbstractProcessor {
                     parseInfo.baseExpression ~= myToken;}
                 }
 
-                result  ~= this.processOrderExpression(parseInfo,  myselect); return result ;
+                result  ~= this.processOrderExpression(parseInfo, myselect); return result ;
             }
         }

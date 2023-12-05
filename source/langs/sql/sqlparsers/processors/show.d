@@ -11,17 +11,17 @@ class ShowProcessor : AbstractProcessor {
 
     private LimitProcessor _limitProcessor;
 
-    this(Options  myoptions) {
+    this(Options myoptions) {
         super( myoptions);
         _limitProcessor = new LimitProcessor( myoptions);
     }
 
     auto process( mytokens) {
-        auto  myresultList = [];
+        auto myresultList = [];
         auto myCategory = "";
         auto myPrevious = "";
 
-        foreach (myKey, myToken;  mytokens) {
+        foreach (myKey, myToken; mytokens) {
             auto upperToken = myToken.strip.toUpper;
 
             if (this.isWhitespaceToken(myToken)) {
@@ -31,11 +31,11 @@ class ShowProcessor : AbstractProcessor {
             switch (upperToken) {
 
             case "FROM":
-                 myresultList ~= createExpression("RESERVED"), "base_expr":  myToken.strip];
+                myresultList ~= createExpression("RESERVED"), "base_expr": myToken.strip];
                 if (myPrevious == "INDEX" || myPrevious == "COLUMNS") {
                     break;
                 }
-                myCategory = upperToken;
+               myCategory = upperToken;
                 break;
 
             case "CREATE":
@@ -73,54 +73,54 @@ class ShowProcessor : AbstractProcessor {
             case "CHARACTER":
             case "SET":
             case "COLLATION":
-                 myresultList ~= createExpression("RESERVED", myToken.strip);
-                myCategory = upperToken;
+                myresultList ~= createExpression("RESERVED", myToken.strip);
+               myCategory = upperToken;
                 break;
 
             default:
                 switch (myPrevious) {
                 case "LIKE":
-                     myresultList ~= createExpression("CONSTANT", myToken);
+                    myresultList ~= createExpression("CONSTANT", myToken);
                     break;
                 case "LIMIT":
-                     mylimit = array_pop( myresultList);
-                     mylimit["sub_tree"] = this.limitProcessor.process(array_slice( mytokens,  myk));
-                     myresultList ~=  mylimit;
+                    mylimit = array_pop( myresultList);
+                    mylimit["sub_tree"] = this.limitProcessor.process(array_slice( mytokens, myk));
+                    myresultList ~= mylimit;
                     break;
                 case "FROM":
                 case "SCHEMA":
                 case "DATABASE":
-                     myresultList ~= createExpression("DATABASE"), "name" : myToken,
-                        "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
+                    myresultList ~= createExpression("DATABASE"), "name" : myToken,
+                        "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
                     break;
                 case "FOR":
-                     myresultList ~= ["expr_type":  expressionType("USER"), "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
+                    myresultList ~= ["expr_type":  expressionType("USER"), "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
                     break;
                 case "INDEX":
                 case "COLUMNS":
                 case "TABLE":
-                     myresultList ~= ["expr_type":  expressionType("TABLE"), "table" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
-                    myCategory = "TABLENAME";
+                    myresultList ~= ["expr_type":  expressionType("TABLE"), "table" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
+                   myCategory = "TABLENAME";
                     break;
                 case "FUNCTION":
                     if (SqlParserConstants::getInstance().isAggregateFunction(upperToken)) {
-                         myexpr_type = expressionType("AGGREGATE_FUNCTION");
+                        myexpr_type = expressionType("AGGREGATE_FUNCTION");
                     } else {
-                         myexpr_type = expressionType("SIMPLE_FUNCTION");
+                        myexpr_type = expressionType("SIMPLE_FUNCTION");
                     }
-                     myresultList ~= ["expr_type":   myexpr_type, "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
+                    myresultList ~= ["expr_type":  myexpr_type, "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
                     break;
                 case "PROCEDURE":
-                     myresultList ~= createExpression("PROCEDURE", myToken);
+                    myresultList ~= createExpression("PROCEDURE", myToken);
                     , "name" : myToken,
                                           "no_quotes" : this.revokeQuotation(myToken), ];
                     break;
                 case "ENGINE":
-                     myresultList ~= createExpression("ENGINE"), "name" : myToken,
-                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr":  myToken];
+                    myresultList ~= createExpression("ENGINE"), "name" : myToken,
+                                          "no_quotes" : this.revokeQuotation(myToken), "base_expr": myToken];
                     break;
                 default:
                 // ignore
@@ -128,8 +128,8 @@ class ShowProcessor : AbstractProcessor {
                 }
                 break;
             }
-            myPrevious = myCategory;
+           myPrevious = myCategory;
         }
-        return  myresultList;
+        return myresultList;
     }
 }

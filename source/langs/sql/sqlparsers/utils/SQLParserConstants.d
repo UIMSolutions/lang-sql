@@ -6,10 +6,10 @@ module langs.sql.sqlparsers.utils.SQLParserConstants;
 
 class SqlParserConstants {
 
-    private static  myinst = null;
+    private static myinst = null;
 
-    protected  mycustomFunctions = [];
-    protected  myreserved = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
+    protected mycustomFunctions = [];
+    protected myreserved = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
                                 "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND", "BIT_OR", "BITCOUNT",
                                 "BITLENGTH", "CAST", "CEILING", "CHAR", "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET",
                                 "COALESCE", "COERCIBILITY", "COLLATION", "COMPRESS", "CONCAT", "CONCAT_WS",
@@ -68,7 +68,7 @@ class SqlParserConstants {
                                 "UTC_TIME", "UTC_TIMESTAMP", "VALUES", "VARBINARY", "VARCHAR", "VARCHARACTER",
                                 "VARYING", "WHEN", "WHERE", "WHILE", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL");
 
-    protected  myparameterizedFunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT",
+    protected myparameterizedFunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT",
                                               "AGAINST", "ASCII", "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND",
                                               "BIT_OR", "BITCOUNT", "BITLENGTH", "CAST", "CEILING", "CHAR",
                                               "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET", "COALESCE", "COERCIBILITY",
@@ -97,7 +97,7 @@ class SqlParserConstants {
                                               "UPPER", "VAR_POP", "VAR_SAMP", "VARIANCE", "WEEK", "WEEKDAY",
                                               "WEEKOFYEAR", "YEAR", "YEARWEEK");
 
-    protected  myfunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
+    protected myfunctions = ["ABS", "ACOS", "ADDDATE", "ADDTIME", "AES_ENCRYPT", "AES_DECRYPT", "AGAINST", "ASCII",
                                  "ASIN", "ATAN", "AVG", "BENCHMARK", "BIN", "BIT_AND", "BIT_OR", "BITCOUNT",
                                  "BITLENGTH", "CAST", "CEILING", "CHAR", "CHAR_LENGTH", "CHARACTER_LENGTH", "CHARSET",
                                  "COALESCE", "COERCIBILITY", "COLLATION", "COMPRESS", "CONCAT", "CONCAT_WS",
@@ -125,7 +125,7 @@ class SqlParserConstants {
                                  "UTC_TIME", "UTC_TIMESTAMP", "UUID", "VAR_POP", "VAR_SAMP", "VARIANCE", "VERSION",
                                  "WEEK", "WEEKDAY", "WEEKOFYEAR", "YEAR", "YEARWEEK");
 
-    protected  myaggregateFunctions = ["AVG", "SUM", "COUNT", "MIN", "MAX", "STD", "STDDEV", "STDDEV_SAMP",
+    protected myaggregateFunctions = ["AVG", "SUM", "COUNT", "MIN", "MAX", "STD", "STDDEV", "STDDEV_SAMP",
                                           "STDDEV_POP", "VARIANCE", "VAR_SAMP", "VAR_POP", "GROUP_CONCAT", "BIT_AND",
                                           "BIT_OR", "BIT_XOR");
 
@@ -176,12 +176,12 @@ class SqlParserConstants {
     }
 
     auto addCustomFunction( mytoken) {
-         mytoken =  mytoken.strip.toUpper;
+        mytoken = mytoken.strip.toUpper;
         this.customFunctions[ mytoken] = true;
     }
 
     auto removeCustomFunction( mytoken) {
-         mytoken =  mytoken.strip.toUpper;
+        mytoken = mytoken.strip.toUpper;
         unset(this.customFunctions[ mytoken]);
     }
 

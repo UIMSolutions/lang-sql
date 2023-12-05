@@ -10,50 +10,50 @@ class LimitProcessor : AbstractProcessor {
         string countRows = "";
         string offset = "";
 
-         mycomma = -1;
+        mycomma = -1;
         bool isExchange = false;
         
-         mycomments = [];
+        mycomments = [];
         
-        foreach (myToken;  mytokens) {
+        foreach (myToken; mytokens) {
             if (this.isCommentToken(myToken)) {
-                  mycomments ~= super.processComment(myToken);
-                 myToken = "";
+                 mycomments ~= super.processComment(myToken);
+                myToken = "";
             }
         }
         
-        for (myPos = 0; myPos <  mytokens.length; ++myPos) {
-            auto trimmedToken =  mytokens[myPos].strip.toUpper;
+        for (myPos = 0; myPos < mytokens.length; ++myPos) {
+            auto trimmedToken = mytokens[myPos].strip.toUpper;
             if (trimmedToken == ",") {
-                 mycomma = myPos;
+                mycomma = myPos;
                 break;
             }
             if (trimmedToken == "OFFSET") {
-                 mycomma = myPos;
+                mycomma = myPos;
                 isExchange = true;
                 break;
             }
         }
 
-        for (i = 0; i <  mycomma; ++i) {
+        for (i = 0; i < mycomma; ++i) {
             if (isExchange) {
-                countRows ~=  mytokens[i];
+                countRows ~= mytokens[i];
             } else {
-                offset ~=  mytokens[i];
+                offset ~= mytokens[i];
             }
         }
 
-        for (i =  mycomma + 1; i <  mytokens.length; ++i) {
+        for (i = mycomma + 1; i < mytokens.length; ++i) {
             if (isExchange) {
-                offset ~=  mytokens[i];
+                offset ~= mytokens[i];
             } else {
-                countRows ~=  mytokens[i];
+                countRows ~= mytokens[i];
             }
         }
 
         auto results = ["offset" : offset.strip, "rowcount" : countRows.strip];
         if (count( mycomments)) {
-            results["comments"] =  mycomments;
+            results["comments"] = mycomments;
         }
         return results;
     }

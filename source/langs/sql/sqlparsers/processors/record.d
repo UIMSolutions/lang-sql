@@ -15,7 +15,7 @@ class RecordProcessor : AbstractProcessor {
     auto unparsedCorrected = this.removeParenthesisFromStart(unparsed);
     auto myTokens = this.splitSQLIntoTokens(unparsedCorrected);
 
-    myTokens.byKeyValue
+   myTokens.byKeyValue
       .filter!(kv => this.isCommaToken(kv.value))
       .each!(kv => myTokens[kv.key] = "");
 

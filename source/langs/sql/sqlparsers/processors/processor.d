@@ -7,14 +7,14 @@ import lang.sql;
 // This class contains some general functions for a processor.
 abstract class DProcessor {
 
-    protected  myoptions;
+    protected myoptions;
 
     /**
-     * @param Options  myoptions
+     * @param Options myoptions
      */
-    this(Options  myoptions = null)
+    this(Options myoptions = null)
     {
-        this.options =  myoptions;
+        this.options = myoptions;
     }
 
     /**
@@ -67,7 +67,7 @@ abstract class DProcessor {
                 if (!isQuote) {
                     // start
                     isQuote = myChar;
-                    myStart = myPos + 1;
+                   myStart = myPos + 1;
                     break;
                 }
                 if (isQuote != myChar) {
@@ -75,24 +75,24 @@ abstract class DProcessor {
                 }
                 if (mySqlBuffer.isSet(myPos + 1) && isQuote == mySqlBuffer[myPos + 1]) {
                     // escaped
-                    myPos++;
+                   myPos++;
                     break;
                 }
                 // end
-                myChar = substr(mySqlBuffer, myStart, myPos - myStart);
+               myChar = substr(mySqlBuffer, myStart, myPos - myStart);
                 results ~= str_replace(isQuote ~ isQuote, isQuote, myChar);
-                myStart = myPos + 1;
+               myStart = myPos + 1;
                 isQuote = false;
                 break;
 
             case ".":
                 if (isQuote == false) {
                     // we have found a separator
-                    myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
+                   myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
                     if (myChar != "") {
                         results ~= myChar;
                     }
-                    myStart = myPos + 1;
+                   myStart = myPos + 1;
                 }
                 break;
 
@@ -100,11 +100,11 @@ abstract class DProcessor {
             // ignore
                 break;
             }
-            myPos++;
+           myPos++;
         }
 
         if (isQuote == false && (myStart < bufferLength)) {
-            myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
+           myChar = substr(mySqlBuffer, myStart, myPos - myStart).strip;
             if (myChar != "") {
                 results ~= myChar;
             }
@@ -118,80 +118,80 @@ abstract class DProcessor {
      * It removes also the associated closing parenthesis.
      */
     protected auto removeParenthesisFromStart(myToken) {
-         myparenthesisRemoved = 0;
+        myparenthesisRemoved = 0;
 
         auto strippedToken = myToken.strip;
         if (strippedToken != "" && strippedToken[0] == "(") { // remove only one parenthesis pair now!
-             myparenthesisRemoved++;
+            myparenthesisRemoved++;
             strippedToken[0] = " ";
             strippedToken = strippedToken.strip;
         }
 
-         myparenthesis =  myparenthesisRemoved;
-        myPos = 0;
-         mystring = 0;
+        myparenthesis = myparenthesisRemoved;
+       myPos = 0;
+        mystring = 0;
         // Whether a string was opened or not, and with which character it was open (" or ")
-         mystringOpened = "";
+        mystringOpened = "";
         while (myPos < strippedToken.length) {
 
             if (strippedToken[myPos] == "\\") {
-                myPos += 2; // an escape character, the next character is irrelevant
+               myPos += 2; // an escape character, the next character is irrelevant
                 continue;
             }
 
             if (strippedToken[myPos] == """) {
                 if ( mystringOpened.isEmpty) {
-                     mystringOpened = """;
+                    mystringOpened = """;
                 } else if ( mystringOpened == """) {
-                     mystringOpened = "";
+                    mystringOpened = "";
                 }
             }
 
             if (strippedToken[myPos] == """) {
                 if ( mystringOpened.isEmpty) {
-                     mystringOpened = """;
+                    mystringOpened = """;
                 } else if ( mystringOpened == """) {
-                     mystringOpened = "";
+                    mystringOpened = "";
                 }
             }
 
             if (( mystringOpened.isEmpty) && (strippedToken[myPos] == "(")) {
-                 myparenthesis++;
+                myparenthesis++;
             }
 
             if (( mystringOpened.isEmpty) && (strippedToken[myPos] == ")")) {
-                if ( myparenthesis ==  myparenthesisRemoved) {
+                if ( myparenthesis == myparenthesisRemoved) {
                     strippedToken[myPos] = " ";
-                     myparenthesisRemoved--;
+                    myparenthesisRemoved--;
                 }
-                 myparenthesis--;
+                myparenthesis--;
             }
-            myPos++;
+           myPos++;
         }
         return strippedToken.strip;
     }
 
     protected auto getVariableType( myexpression) {
-        //  myexpression must contain only upper-case characters
+        // myexpression must contain only upper-case characters
         if ( myexpression[1] != "@") {
             return expressionType("USER_VARIABLE");
         }
 
-         mytype = substr( myexpression, 2, strpos( myexpression, ".", 2));
+        mytype = substr( myexpression, 2, strpos( myexpression, ".", 2));
 
         switch ( mytype) {
         case "GLOBAL":
-             mytype = expressionType("GLOBAL_VARIABLE");
+            mytype = expressionType("GLOBAL_VARIABLE");
             break;
         case "LOCAL":
-             mytype = expressionType("LOCAL_VARIABLE");
+            mytype = expressionType("LOCAL_VARIABLE");
             break;
         case "SESSION":
         default:
-             mytype = expressionType("SESSION_VARIABLE");
+            mytype = expressionType("SESSION_VARIABLE");
             break;
         }
-        return  mytype;
+        return mytype;
     }
 
     protected auto isCommaToken(myToken) {
@@ -250,7 +250,7 @@ abstract class DProcessor {
     auto processComment( myexpression) {
         auto results = [];
         results["expr_type"] = expressionType("COMMENT");
-        results["value"] =  myexpression;
+        results["value"] = myexpression;
         return results;
     }
 
@@ -260,15 +260,15 @@ abstract class DProcessor {
     auto toArray( mytokenList) {
         auto myExpression = [];
 
-         mytokenList.each!(token => myExpresson = cast(ExpressionToken)token ? token.toArray() : token);
+        mytokenList.each!(token => myExpresson = cast(ExpressionToken)token ? token.toArray() : token);
 
         return myExpression;
     }
 
-    protected auto array_insert_after( myarray, string aKey,  myentry) {
-         myidx = array_search(aKey, array_keys( myarray));
-         myarray = array_slice( myarray, 0,  myidx + 1, true) +  myentry
-                + array_slice( myarray,  myidx + 1, count( myarray) - 1, true);
-        return  myarray;
+    protected auto array_insert_after( myarray, string aKey, myentry) {
+        myidx = array_search(aKey, array_keys( myarray));
+        myarray = array_slice( myarray, 0, myidx + 1, true) + myentry
+                + array_slice( myarray, myidx + 1, count( myarray) - 1, true);
+        return myarray;
     }
 }

@@ -37,29 +37,29 @@ class UnionProcessor : AbstractProcessor {
      * The extra queries will be silently ignored.
      */
     protected auto processMySQLUnion(queries) {
-         myunionTypes = ["UNION", "UNION ALL"];
-        foreach (myUnionType;  myunionTypes) {
+        myunionTypes = ["UNION", "UNION ALL"];
+        foreach (myUnionType; myunionTypes) {
 
             if (queries[myUnionType].isEmpty) {
                 continue;
             }
 
             auto myUnionTypeQuery = queries[myUnionType];
-            foreach (myKey,  mytokenList; myUnionTypeQuery) {
-                foreach ( myz, myToken;  mytokenList) {
-                    myToken = myToken.strip;
+            foreach (myKey, mytokenList; myUnionTypeQuery) {
+                foreach ( myz, myToken; mytokenList) {
+                   myToken = myToken.strip;
                     if (myToken.isEmpty) {
                         continue;
                     }
 
                     // starts with "(select"
                     if (preg_match("/^\\(\\s*select\\s*/i", myToken)) {
-                        myUnionTypeQuery[myKey] = this.processDefault(
+                       myUnionTypeQuery[myKey] = this.processDefault(
                             this.removeParenthesisFromStart(myToken));
                         break;
                     }
-                    myUnionTypeQuery[myKey] = this.processSQL(
-                        myUnionTypeQuery[myKey]);
+                   myUnionTypeQuery[myKey] = this.processSQL(
+                       myUnionTypeQuery[myKey]);
                     break;
                 }
             }
@@ -75,13 +75,13 @@ class UnionProcessor : AbstractProcessor {
      */
     protected auto splitUnionRemainder(
         queries, isUnionType, resultputArray) {
-         myfinalQuery = []; //If this token contains a matching pair of brackets at the start and end, use it as the final query
-         myfinalQueryFound = false;
+        myfinalQuery = []; //If this token contains a matching pair of brackets at the start and end, use it as the final query
+        myfinalQueryFound = false;
         if (resultputArray.length == 1) {
             string[] tokenArray = resultputArray[0].strip.split;
             if (tokenArray[0] == "(" && tokenArray[tokenArray.length - 1] == ")") {
                 queries[isUnionType] ~= resultputArray;
-                 myfinalQueryFound = true;
+                myfinalQueryFound = true;
             }
         }
 
@@ -90,25 +90,25 @@ class UnionProcessor : AbstractProcessor {
                 if (myToken.toUpper == "ORDER") {
                     break;
                 } else {
-                     myfinalQuery ~= myToken;
+                    myfinalQuery ~= myToken;
                     unset(resultputArray[myKey]);
                 }
             }
         }
 
-         myfinalQueryString = implode( myfinalQuery).strip;
+        myfinalQueryString = implode( myfinalQuery).strip;
 
-        if (! myfinalQuery.isEmpty &&  myfinalQueryString != "") {
-            queries[isUnionType] ~=  myfinalQuery;
+        if (! myfinalQuery.isEmpty && myfinalQueryString != "") {
+            queries[isUnionType] ~= myfinalQuery;
         }
 
-         mydefaultProcessor = new DefaultProcessor(
+        mydefaultProcessor = new DefaultProcessor(
             this.options);
         string rePrepareSqlString = implode(resultputArray).strip;
         if (!rePrepareSqlString.isEmpty) {
-             myremainingQueries =  mydefaultProcessor.process(
+            myremainingQueries = mydefaultProcessor.process(
                 rePrepareSqlString);
-            queries ~=  myremainingQueries;
+            queries ~= myremainingQueries;
         }
 
         return queries;
@@ -125,7 +125,7 @@ class UnionProcessor : AbstractProcessor {
         bool isUnionType = false; // ometimes a "query" consists of more than one query (like a UNION query)
         // his array holds all the queries
         auto queries = [];
-        foreach (myKey, myToken;  myinputArray) {
+        foreach (myKey, myToken; myinputArray) {
             auto strippedToken = myToken.strip;
 
             // overread all tokens till that given token
@@ -148,14 +148,14 @@ class UnionProcessor : AbstractProcessor {
             isUnionType = "UNION";
 
             // we are looking for an ALL token right after UNION
-            for ( myi = myKey + 1;  myi < count( myinputArray); ++ myi) {
+            for ( myi = myKey + 1; myi < count( myinputArray); ++ myi) {
                 if (
-                     myinputArray[ myi].strip
+                    myinputArray[ myi].strip
                     .isEmpty) {
                     continue;
                 }
                 if (
-                     myinputArray[ myi].toUpper != "ALL") {
+                    myinputArray[ myi].toUpper != "ALL") {
                     break;
                 }
                 // the other for-loop should overread till "ALL"

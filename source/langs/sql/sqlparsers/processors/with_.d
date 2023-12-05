@@ -17,12 +17,12 @@ class WithProcessor : AbstractProcessor {
 
     auto process( mytokens) {
     	auto result = [];
-        auto  myresultList = [];
+        auto myresultList = [];
         string myCategory = "";
         string baseExpression = "";
         string myPrevious = "";
 
-        foreach (myToken;  mytokens) {
+        foreach (myToken; mytokens) {
         	baseExpression ~= myToken;
 			auto strippedToken = myToken.strip;
             upperToken = strippedToken.toUpper;
@@ -55,9 +55,9 @@ class WithProcessor : AbstractProcessor {
                 	case "AS":
                 		// it follows a parentheses pair
                 		 mysubtree = this.processTopLevel(this.removeParenthesisFromStart(myToken));
-                		 myresultList ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" :  mysubtree];
+                		 myresultList ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken, "sub_tree" : mysubtree];
 
-                		result ~= createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" :  myresultList];
+                		result ~= createExpression("SUBQUERY_FACTORING"), "base_expr" : baseExpression.strip, "sub_tree" : myresultList];
                 		 myresultList = [];
                 		myCategory = "";
                 	break;
@@ -74,7 +74,7 @@ class WithProcessor : AbstractProcessor {
                 }
                 break;
             }
-            myPrevious = myCategory;
+           myPrevious = myCategory;
         }
         return result;
     }

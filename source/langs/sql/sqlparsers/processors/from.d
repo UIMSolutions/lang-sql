@@ -50,22 +50,22 @@ class FromProcessor : AbstractProcessor {
 
         // we have a reg_expr, so we have to parse it
         if (parseInfo["ref_expr"] != false) {
-             myunparsed = this.splitSQLIntoTokens(parseInfo["ref_expr"].strip);
+            myunparsed = this.splitSQLIntoTokens(parseInfo["ref_expr"].strip);
 
             // here we can get a comma separated list
-            foreach (myKey, myValue;  myunparsed) {
+            foreach (myKey, myValue; myunparsed) {
                 if (this.isCommaToken(myValue)) {
-                     myunparsed[ myk] = "";
+                    myunparsed[ myk] = "";
                 }
             }
             if (parseInfo["ref_type"] == "USING") {
             	// unparsed has only one entry, the column list
             	 myref = this.processColumnList(this.removeParenthesisFromStart( myunparsed[0]));
-            	 myref = [createExpression("COLUMN_LIST"), "base_expr" :  myunparsed[0], "sub_tree" :  myref]];
+            	 myref = [createExpression("COLUMN_LIST"), "base_expr" : myunparsed[0], "sub_tree" : myref]];
             } else {
-                 myref = this.processExpressionList( myunparsed);
+                myref = this.processExpressionList( myunparsed);
             }
-            parseInfo["ref_expr"] = (empty( myref) ? false :  myref);
+            parseInfo["ref_expr"] = (empty( myref) ? false : myref);
         }
 
         // there is an expression, we have to parse it
@@ -76,19 +76,19 @@ class FromProcessor : AbstractProcessor {
                 parseInfo["sub_tree"] = this.processSQLDefault(parseInfo["expression"]);
                 result["expr_type"] .isExpressionType(SUBQUERY;
             } else {
-                 mytmp = this.splitSQLIntoTokens(parseInfo["expression"]);
-                 myunionProcessor = new UnionProcessor(this.options);
-                 myunionQueries =  myunionProcessor.process( mytmp);
+                mytmp = this.splitSQLIntoTokens(parseInfo["expression"]);
+                myunionProcessor = new UnionProcessor(this.options);
+                myunionQueries = myunionProcessor.process( mytmp);
 
                 // If there was no UNION or UNION ALL in the query, then the query is
-                // stored at  myqueries[0].
+                // stored at myqueries[0].
                 if (!empty( myunionQueries) && !UnionProcessor::isUnion( myunionQueries)) {
-                     mysub_tree = this.process( myunionQueries[0]);
+                    mysub_tree = this.process( myunionQueries[0]);
                 }
                 else {
-                     mysub_tree =  myunionQueries;
+                    mysub_tree = myunionQueries;
                 }
-                parseInfo["sub_tree"] =  mysub_tree;
+                parseInfo["sub_tree"] = mysub_tree;
                 result["expr_type"] = expressionType("TABLE_EXPRESSION");
             }
         } else {
@@ -113,15 +113,15 @@ class FromProcessor : AbstractProcessor {
         string tokenCategory = "";
         string previousToken = "";
 
-         myskip_next = false;
-         myi = 0;
+        myskip_next = false;
+        myi = 0;
 
-        foreach (myToken;  mytokens) {
+        foreach (myToken; mytokens) {
             upperToken = myToken.strip.toUpper;
 
             if ( myskip_next && myToken != "") {
                 parseInfo["token_count"]++;
-                 myskip_next = false;
+                myskip_next = false;
                 continue;
             } else {
                 if ( myskip_next) {
@@ -130,7 +130,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (this.isCommentToken(myToken)) {
-                myExpression ~= super.processComment(myToken];
+               myExpression ~= super.processComment(myToken];
                 continue;
             }
 
@@ -159,7 +159,7 @@ class FromProcessor : AbstractProcessor {
             case "NATURAL":
                 tokenCategory = upperToken;
                 previousToken = myToken;
-                 myi++;
+                myi++;
                 continue 2;
 
             default:
@@ -184,7 +184,7 @@ class FromProcessor : AbstractProcessor {
             }
 
             if (upperToken.isEmpty) {
-                 myi++;
+                myi++;
                 continue;
             }
 
@@ -192,14 +192,14 @@ class FromProcessor : AbstractProcessor {
             case "AS":
                 parseInfo["alias"] = ["as" : true, "name" : "", "base_expr" : myToken];
                 parseInfo["token_count"]++;
-                 myn = 1;
-                 mystr = "";
-                while ( mystr.isEmpty &&  mytokens.isSet( myi +  myn)) {
-                    parseInfo["alias"].baseExpression ~= ( mytokens[ myi +  myn].isEmpty ? " " :  mytokens[ myi +  myn]);
-                     mystr =  mytokens[ myi +  myn].strip;
+                myn = 1;
+                mystr = "";
+                while ( mystr.isEmpty && mytokens.isSet( myi + myn)) {
+                    parseInfo["alias"].baseExpression ~= ( mytokens[ myi + myn].isEmpty ? " " : mytokens[ myi + myn]);
+                    mystr = mytokens[ myi + myn].strip;
                     ++ myn;
                 }
-                parseInfo["alias"]["name"] =  mystr;
+                parseInfo["alias"]["name"] = mystr;
                 parseInfo["alias"]["no_quotes"] = this.revokeQuotation( mystr);
                 parseInfo["alias"]["base_expr"] = parseInfo["alias"].baseExpression.strip;
                 break;
@@ -218,7 +218,7 @@ class FromProcessor : AbstractProcessor {
                     continue 2;
                 }
                 if (tokenCategory == "IDX_HINT") {
-                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    mycur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
@@ -238,13 +238,13 @@ class FromProcessor : AbstractProcessor {
 
             case "FOR":
                 if (tokenCategory == "IDX_HINT") {
-                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    mycur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
                 parseInfo["token_count"]++;
-                 myskip_next = true;
+                myskip_next = true;
                 break;
 
             case "STRAIGHT_JOIN":
@@ -254,7 +254,7 @@ class FromProcessor : AbstractProcessor {
                     parseInfo["expression"] = parseInfo["subquery"];
                 }
 
-                myExpression ~= this.processFromExpression(parseInfo);
+               myExpression ~= this.processFromExpression(parseInfo);
                 parseInfo = this.initParseInfo(parseInfo);
                 break;
 
@@ -263,7 +263,7 @@ class FromProcessor : AbstractProcessor {
 
             case "JOIN":
                 if (tokenCategory == "IDX_HINT") {
-                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    mycur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
@@ -273,13 +273,13 @@ class FromProcessor : AbstractProcessor {
                     parseInfo["expression"] = parseInfo["subquery"];
                 }
 
-                myExpression ~= this.processFromExpression(parseInfo);
+               myExpression ~= this.processFromExpression(parseInfo);
                 parseInfo = this.initParseInfo(parseInfo);
                 break;
 
             case "GROUP BY":
                 if (tokenCategory == "IDX_HINT") {
-                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    mycur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
@@ -289,7 +289,7 @@ class FromProcessor : AbstractProcessor {
                 // build a subtree under "hints"
                 if (tokenCategory == "IDX_HINT") {
                     tokenCategory = "";
-                     mycur_hint = (count(parseInfo["hints"]) - 1);
+                    mycur_hint = (count(parseInfo["hints"]) - 1);
                     parseInfo["hints"][ mycur_hint]["hint_list"] = myToken;
                     break;
                 }
@@ -307,10 +307,10 @@ class FromProcessor : AbstractProcessor {
                 parseInfo["token_count"]++;
                 break;
             }
-             myi++;
+            myi++;
         }
 
-        myExpression ~= this.processFromExpression(parseInfo);
+       myExpression ~= this.processFromExpression(parseInfo);
         return myExpression;
     }
 

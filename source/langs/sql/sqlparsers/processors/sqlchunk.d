@@ -24,15 +24,15 @@ class SQLChunkProcessor : AbstractProcessor {
       // TODO: this field should be a global STATEMENT field within the output
       // we could add all other categories as sub_tree, it could also work with multipe UNIONs
       auto myProcessor = new BracketProcessor(this.options);
-      myprocessedBracket = myprocessor.process(sqlOut["BRACKET"]);
-      myremainingExpressions = myprocessedBracket[0][
+     myprocessedBracket = myprocessor.process(sqlOut["BRACKET"]);
+     myremainingExpressions = myprocessedBracket[0][
         "remaining_expressions"
       ];
       unset(myprocessedBracket[0]["remaining_expressions"]);
 
       if (!empty(myremainingExpressions)) {
         foreach (myKey, myexpression; myremainingExpressions) {
-          myprocessedBracket[][myKey] = myexpression;
+         myprocessedBracket[][myKey] = myexpression;
         }
       }
 

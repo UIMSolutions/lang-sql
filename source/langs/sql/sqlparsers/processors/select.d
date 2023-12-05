@@ -8,15 +8,15 @@ class SelectProcessor : SelectExpressionProcessor {
 
     auto process( mytokens) {
         string expression = "";
-         myexpressionList = [];
-        foreach (myToken;  mytokens) {
+        myexpressionList = [];
+        foreach (myToken; mytokens) {
             if (this.isCommaToken(myToken)) {
                 expression = super.process(expression.strip);
                 expression["delim"] = ",";
-                 myexpressionList ~= expression;
+                myexpressionList ~= expression;
                 expression = "";
             } else if (this.isCommentToken(myToken)) {
-                 myexpressionList ~= super.processComment(myToken];
+                myexpressionList ~= super.processComment(myToken];
             } else {
                 switch (myToken.toUpper) {
 
@@ -33,7 +33,7 @@ class SelectProcessor : SelectExpressionProcessor {
                 case "SQL_BUFFER_RESULT":
                     expression = super.process(myToken.strip);
                     expression["delim"] = " ";
-                     myexpressionList ~= expression;
+                    myexpressionList ~= expression;
                     expression = "";
                     break;
 
@@ -45,8 +45,8 @@ class SelectProcessor : SelectExpressionProcessor {
         if (expression) {
             expression = super.process(expression.strip);
             expression["delim"] = false;
-             myexpressionList ~= expression;
+            myexpressionList ~= expression;
         }
-        return  myexpressionList;
+        return myexpressionList;
     }
 }

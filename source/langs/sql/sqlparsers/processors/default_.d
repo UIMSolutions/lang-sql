@@ -31,7 +31,7 @@ class DefaultProcessor : AbstractProcessor {
     // If there was no UNION or UNION ALL in the query, then the query is
     // stored at myQueries[0].
     if (!empty(myQueries) && !this.isUnion(myQueries)) {
-      myQueries = this.processSQL(myQueries[0]);
+     myQueries = this.processSQL(myQueries[0]);
     }
 
     return myQueries;
