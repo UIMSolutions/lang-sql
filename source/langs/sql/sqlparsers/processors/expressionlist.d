@@ -147,7 +147,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     }
 
                     if (! mycurr.getSubTree()) {
-                        if (!empty( mylocalExprList)) {
+                        if (!mylocalExprList.isEmpty) {
                             mycurr.setSubTree( mylocalExprList);
                         }
                     } else {

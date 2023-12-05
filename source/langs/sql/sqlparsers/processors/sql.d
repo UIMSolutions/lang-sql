@@ -286,7 +286,7 @@ class SQLProcessor : SQLChunkProcessor {
                                 tokenCategory = upperToken;
                                 continue 2;
                             }
-                            if (tokenCategory == "FROM" && !empty(result ["DELETE"])) {
+                            if (tokenCategory == "FROM" && !result ["DELETE"].isEmpty) {
                                 tokenCategory = upperToken;
                                 continue 2;
                             }

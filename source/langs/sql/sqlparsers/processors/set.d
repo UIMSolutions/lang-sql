@@ -17,12 +17,13 @@ class SetProcessor : AbstractProcessor {
      * This auto produces a list of the key/value expressions.
      */
     protected auto processAssignment(baseExpression) {
-        anAssignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
+        auto myAssignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
-        return createExpression("EXPRESSION"), "base_expr" : baseExpression.strip,
-        "sub_tree" : (empty(anAssignment) ? false : anAssignment)];
+        Json newExpression = createExpression("EXPRESSION", baseExpression.strip);
+        newExpression["sub_tree"] = myAssignment.isEmpty ? false : myAssignment;
+        return newExpression; 
     }
 
     auto process(string[] tokens, bool isUpdate = false) {
@@ -48,14 +49,14 @@ class SetProcessor : AbstractProcessor {
                 break;
 
             case ",":
-                auto anAssignment = this.processAssignment(baseExpression);
+                auto myAssignment = this.processAssignment(baseExpression);
                 if (!isUpdate && isVarType != false) {
                     Json assignItem = Json.emptyObject;
                     assignItem["expr_type"] = isVarType;
-                    anAssignment["sub_tree"] = Json.emptyArray;
-                    anAssignment["sub_tree"] ~= assignItem;
+                    myAssignment["sub_tree"] = Json.emptyArray;
+                    myAssignment["sub_tree"] ~= assignItem;
                 }
-                result = anAssignment;
+                result = myAssignment;
                 baseExpression = "";
                 isVarType = false;
                 continue 2;
@@ -66,11 +67,11 @@ class SetProcessor : AbstractProcessor {
         }
 
         if (baseExpression.strip != "") {
-            anAssignment = this.processAssignment(baseExpression);
+            auto myAssignment = this.processAssignment(baseExpression);
             if (!isUpdate && isVarType != false) {
-                anAssignment["sub_tree"][0]["expr_type"] = isVarType;
+                myAssignment["sub_tree"][0]["expr_type"] = isVarType;
             }
-            myresult ~= anAssignment;
+            myresult ~= myAssignment;
         }
 
         return myresult;

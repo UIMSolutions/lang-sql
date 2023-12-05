@@ -291,7 +291,7 @@ class PartitionDefinitionProcessor : AbstractProcessor {
                     mylast = this.getBracketExpressionType(strippedToken);
 
                     myres = this.processExpressionList(strippedToken);
-                    mylast["sub_tree"] = (empty( myres) ? false : myres);
+                    mylast["sub_tree"] = (myres.isEmpty ? false : myres);
                    myExpression ~= mylast;
 
                     mylast = array_pop( myparsed["sub_tree"]);

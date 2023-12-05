@@ -192,7 +192,7 @@ class SQLLexer {
                 }
             }
 
-            if( mycomment == false && ( mytoken == "\"" || mytoken == """)) {
+            if( mycomment == false && ( mytoken == "\"" || mytoken == "'")) {
                 myin_string = ! myin_string;
             }
             if(! myin_string) {
