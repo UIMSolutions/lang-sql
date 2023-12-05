@@ -4,7 +4,7 @@ import lang.sql;
 
 @safe: 
 // This class processes Oracle"s WITH statements.
-class WithProcessor : AbstractProcessor {
+class WithProcessor : Processor {
 
     protected auto processTopLevel(mysql) {
     	auto myProcessor = new DefaultProcessor(this.options);

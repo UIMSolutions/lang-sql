@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the parentheses around the statement.
-class BracketProcessor : AbstractProcessor {
+class BracketProcessor : Processor {
 
   protected auto processTopLevel(mysql) {
     auto myProcessor = new DefaultProcessor(this.options);

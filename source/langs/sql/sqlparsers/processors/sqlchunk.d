@@ -3,7 +3,7 @@ import lang.sql;
 
 @safe:
 // This class processes the SQL chunks.
-class SQLChunkProcessor : AbstractProcessor {
+class SQLChunkProcessor : Processor {
 
   protected auto moveLIKE(ref sqlOut) {
     if (!isSet(sqlOut["TABLE"]["like"])) {

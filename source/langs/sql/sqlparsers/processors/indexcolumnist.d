@@ -4,7 +4,7 @@ import lang.sql;
 
 @safe:
 // Processor for index column lists.
-class IndexColumnListProcessor : AbstractProcessor {
+class IndexColumnListProcessor : Processor {
     protected auto initExpression() {
         return ["name" : false, "no_quotes" : false, "length" : false, "dir" : false];
     }

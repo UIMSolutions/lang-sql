@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes expression lists.
-class ExpressionListProcessor : AbstractProcessor {
+class ExpressionListProcessor : Processor {
 
     auto process(tokens) {
         myresultList = [];

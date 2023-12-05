@@ -4,7 +4,7 @@ module langs.sql.sqlparsers.processors.limit;
  * This file : the processor for the LIMIT statements.
  * This class processes the LIMIT statements.
   */
-class LimitProcessor : AbstractProcessor {
+class LimitProcessor : Processor {
 
     auto process(mytokens) {
         string countRows = "";

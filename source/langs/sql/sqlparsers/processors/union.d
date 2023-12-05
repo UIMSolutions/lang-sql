@@ -4,7 +4,7 @@ import lang.sql;
 
 @safe:
 // This class processes the UNION statements.
-class UnionProcessor : AbstractProcessor {
+class UnionProcessor : Processor {
 
     protected auto processDefault(myToken) {
         auto myProcessor = new DefaultProcessor(this.options);

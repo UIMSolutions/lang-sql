@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * This class processes the reference definition part of the CREATE TABLE statements.
 */
-class ReferenceDefinitionProcessor : AbstractProcessor {
+class ReferenceDefinitionProcessor : Processor {
 
     protected string buildReferenceDef(myExpression, baseExpression, myKey) {
        myExpression["till"] = myKey;

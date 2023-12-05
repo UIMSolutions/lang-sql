@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // Processes the SET statements.
-class SetProcessor : AbstractProcessor {
+class SetProcessor : Processor {
 
     protected auto processExpressionList(tokens) {
         auto myProcessor = new ExpressionListProcessor(this.options);

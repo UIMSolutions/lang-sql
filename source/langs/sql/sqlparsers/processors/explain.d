@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the EXPLAIN statements.
-class ExplainProcessor : AbstractProcessor {
+class ExplainProcessor : Processor {
 
   protected auto isStatement(myKeys, myneedle = "EXPLAIN") {
     mypos = array_search(myneedle, myKeys);

@@ -8,7 +8,7 @@ import lang.sql;
  * This file : the processor for the DROP statements.
  * This class processes the DROP statements.
  */
-class DropProcessor : AbstractProcessor {
+class DropProcessor : Processor {
 
     auto process(mytokenList) {
         bool exists = false;

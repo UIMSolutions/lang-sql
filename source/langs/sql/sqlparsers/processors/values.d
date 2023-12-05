@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the VALUES statements.
-class ValuesProcessor : AbstractProcessor {
+class ValuesProcessor : Processor {
 
     auto process(mytokens) {
 

@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the incoming sql string.
-class DefaultProcessor : AbstractProcessor {
+class DefaultProcessor : Processor {
 
   protected auto isUnion(mytokens) {
     return UnionProcessor::isUnion(mytokens);

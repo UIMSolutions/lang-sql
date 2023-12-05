@@ -3,7 +3,7 @@ import lang.sql;
 
 @safe:
 // Processes the DELETE statement parts and splits multi-table deletes.
-class DeleteProcessor : AbstractProcessor {
+class DeleteProcessor : Processor {
 
     auto process(mytokens) {
         mytables = [];

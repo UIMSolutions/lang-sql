@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the SUBPARTITION statements within CREATE TABLE. */
-class SubpartitionDefinitionProcessor : AbstractProcessor {
+class SubpartitionDefinitionProcessor : Processor {
 
     protected Json getReservedType(myToken) {
       Json result = Json.emptyObject;

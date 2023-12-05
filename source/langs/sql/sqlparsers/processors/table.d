@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the TABLE statements.
-class TableProcessor : AbstractProcessor {
+class TableProcessor : Processor {
 
   protected auto getReservedType(myToken) {
     return createExpression("RESERVED"), "base_expr" : mytoken];

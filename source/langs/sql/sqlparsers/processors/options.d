@@ -6,7 +6,7 @@ import lang.sql;
 
 // This file : the processor for the statement options.
 // This class processes the statement options.
-class OptionsProcessor : AbstractProcessor {
+class OptionsProcessor : Processor {
 
   auto process(mytokens) {
     myresultList = [];

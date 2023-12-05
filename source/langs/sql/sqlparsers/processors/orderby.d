@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the ORDER-BY statements.
-class OrderByProcessor : AbstractProcessor {
+class OrderByProcessor : Processor {
 
     protected auto processSelectExpression(myunparsed) {
         auto myProcessor = new SelectExpressionProcessor(this.options);

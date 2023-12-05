@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // Processes the RENAME statements.
-class RenameProcessor : AbstractProcessor {
+class RenameProcessor : Processor {
 
     auto process(mytokenList) {
         string baseExpression = "";

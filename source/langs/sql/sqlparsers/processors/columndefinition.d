@@ -9,7 +9,7 @@ import lang.sql;
  * This file : the processor for column definition part of a CREATE TABLE statement.
  * This class processes the column definition part of a CREATE TABLE statement.
  * */
-class ColumnDefinitionProcessor : AbstractProcessor {
+class ColumnDefinitionProcessor : Processor {
 
     protected auto processExpressionList(myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);

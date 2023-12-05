@@ -4,7 +4,7 @@ import lang.sql;
 
 @safe:
 // This class processes records of an INSERT statement.
-class RecordProcessor : AbstractProcessor {
+class RecordProcessor : Processor {
 
   protected auto processExpressionList(Json unparsed) {
     auto myProcessor = new ExpressionListProcessor(this.options);

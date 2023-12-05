@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // Processes the SELECT expressions.
-class SelectExpressionProcessor : AbstractProcessor {
+class SelectExpressionProcessor : Processor {
 
     protected auto processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);

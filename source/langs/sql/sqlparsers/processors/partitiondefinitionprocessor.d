@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the PARTITION statements within CREATE TABLE.
-class PartitionDefinitionProcessor : AbstractProcessor {
+class PartitionDefinitionProcessor : Processor {
 
     protected auto processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);

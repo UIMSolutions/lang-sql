@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the INSERT statements.
-class InsertProcessor : AbstractProcessor {
+class InsertProcessor : Processor {
 
     protected auto processOptions(mytokenList) {
         if (! mytokenList.isSet("OPTIONS")) {

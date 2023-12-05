@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes column-lists.
-class ColumnListProcessor : AbstractProcessor {
+class ColumnListProcessor : Processor {
   auto process(string stringWithTokens) {
     string[] tokenNames = stringWithTokens.split(",");
     Json myColumns = Json.emptyArray;

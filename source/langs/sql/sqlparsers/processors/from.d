@@ -8,7 +8,7 @@ import lang.sql;
  * This file : the processor for the FROM statement.
  * This class processes the FROM statement.
  * */
-class FromProcessor : AbstractProcessor {
+class FromProcessor : Processor {
 
     protected auto processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);

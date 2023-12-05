@@ -7,7 +7,7 @@ import lang.sql;
 /**
  * This class processes the SHOW statements.
  * */
-class ShowProcessor : AbstractProcessor {
+class ShowProcessor : Processor {
 
     private LimitProcessor _limitProcessor;
 

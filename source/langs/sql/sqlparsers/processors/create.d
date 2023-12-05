@@ -8,7 +8,7 @@ import lang.sql;
  * This file : the processor for the CREATE statements.
  * This class processes the CREATE statements.
  */
-class CreateProcessor : AbstractProcessor {
+class CreateProcessor : Processor {
 
     auto process(mytokens) {
         myresult = myExpression = [];

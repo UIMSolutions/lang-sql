@@ -5,7 +5,7 @@ import lang.sql;
 @safe:
 
 // This class processes the INDEX statements.
-class IndexProcessor : AbstractProcessor {
+class IndexProcessor : Processor {
 
   auto process(mytokens) {
 
