@@ -8,7 +8,7 @@ import lang.sql;
 class DropIndexTableBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!parsedSql.isSet("on") || parsedSql["on"] == false) {
+    if (!parsedSql.isSet("on") || parsedSql["on"].isEmpty) {
       return null;
     }
     auto onSql = parsedSql["on"];

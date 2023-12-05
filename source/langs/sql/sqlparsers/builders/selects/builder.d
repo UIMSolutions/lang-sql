@@ -15,7 +15,7 @@ class SelectBuilder : ISqlBuilder {
      * @return a string, which is added right after the expression
      */
     protected auto getDelimiter(Json parsedSql) {
-        return (!parsedSql.isSet("delim") || parsedSql["delim"] == false ? "" : (
+        return (!parsedSql.isSet("delim") || parsedSql["delim"].isEmpty ? "" : (
                 parsedSql["delim"]) ~ " ").strip;
     }
 

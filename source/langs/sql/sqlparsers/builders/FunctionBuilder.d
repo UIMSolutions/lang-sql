@@ -14,7 +14,7 @@ class FunctionBuilder : ISqlBuilder {
             return "";
         }
 
-        if (parsedSql["sub_tree"] == false) {
+        if (parsedSql["sub_tree"].isEmpty) {
             return parsedSql.baseExpression ~ "()" ~ this.buildAlias(parsedSql);
         }
 

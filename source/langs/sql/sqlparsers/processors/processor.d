@@ -106,7 +106,10 @@ abstract class DProcessor {
             }
         }
 
-        return ["delim" : (count(results) == 1 ? false : "."), "parts" : results);
+        Json result = Json.emptyObject:
+        result["delim"] = count(results) == 1 ? false : ".";
+        result["parts"] = results;
+        return result;
     }
 
     /**

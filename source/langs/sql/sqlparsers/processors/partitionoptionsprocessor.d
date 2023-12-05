@@ -310,7 +310,7 @@ class PartitionOptionsProcessor : Processor {
         }
 
         myresult["partition-options"] = myparsed;
-        if (myresult["last-parsed"] == false) {
+        if (myresult["last-parsed"].isEmpty) {
             myresult["last-parsed"] = mytokenKey;
         }
         return myresult;

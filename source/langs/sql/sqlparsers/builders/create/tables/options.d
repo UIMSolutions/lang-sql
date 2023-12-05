@@ -19,7 +19,7 @@ class CreateTableOptionsBuilder : IBuilder {
     }
 
     string build(Json parsedSql) {
-        if (!isset(parsedSql["options"]) || parsedSql["options"] == false) {
+        if (!isset(parsedSql["options"]) || parsedSql["options"].isEmpty) {
             return "";
         }
         myoptions = parsedSql["options"];

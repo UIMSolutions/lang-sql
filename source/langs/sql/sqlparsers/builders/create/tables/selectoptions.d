@@ -7,14 +7,14 @@ import lang.sql;
 class CreateTableSelectOptionBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!parsedSql.isSet("select-option") || parsedSql["select-option"] == false) {
+    if (!parsedSql.isSet("select-option") || parsedSql["select-option"].isEmpty) {
       return "";
     }
 
     auto selectOption = parsedSql["select-option"];
 
-    string mySql = (selectOption["duplicates"] == false ? "" : (" " ~ selectOption["duplicates"]));
-   mySql ~= (selectOption["as"] == false ? "" : " AS");
+    string mySql = (selectOption["duplicates"].isEmpty ? "" : (" " ~ selectOption["duplicates"]));
+   mySql ~= (selectOption["as"].isEmpty ? "" : " AS");
     return mySql;
   }
 }

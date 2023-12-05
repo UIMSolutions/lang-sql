@@ -59,7 +59,7 @@ class PositionCalculator {
         this.flippedBacktrackingTypes = array_flip(this. mybacktrackingTypes);
     }
 
-    protected auto printPos(mytext, mysql, mycharPos, myKey, myparsed, mybacktracking) {
+    protected auto printPos(mytext, aSql, mycharPos, myKey, myparsed, mybacktracking) {
         if (!isset(my_SERVER["DEBUG"])) {
             return;
         }
@@ -71,19 +71,19 @@ class PositionCalculator {
            mySpaces ~= "   ";
             myi++;
         }
-        myholdem = substr(mysql, 0, mycharPos) . "^" . substr(mysql, mycharPos);
+        myholdem = substr(aSql, 0, mycharPos) . "^" . substr(aSql, mycharPos);
         echo mySpaces . mytext . " key:" . myKey . "  parsed:" . myparsed . " back:" . serialize(mybacktracking) . " "
             . myholdem . "\n";
     }
 
-    auto setPositionsWithinSQL(mysql, myparsed) {
+    auto setPositionsWithinSQL(aSql, myparsed) {
         mycharPos = 0;
         mybacktracking = [];
-        this.lookForBaseExpression(mysql, mycharPos, myparsed, 0, mybacktracking);
+        this.lookForBaseExpression(aSql, mycharPos, myparsed, 0, mybacktracking);
         return myparsed;
     }
 
-    protected auto findPositionWithinString(mysql, myValue, myexpr_type) {
+    protected auto findPositionWithinString(string aSql, myValue, myexpr_type) {
         if (myValue.isEmpty) {
             return false;
         }
@@ -92,25 +92,25 @@ class PositionCalculator {
         bool isOK = false;
         while (true) {
 
-            mypos = strpos(mysql, myValue, myOffset);
-            // error_log("pos: mypos value:myValue sql: mysql");
+            size_t myPos = strpos(aSql, myValue, myOffset);
+            // error_log("pos: mypos value:myValue sql: aSql");
             
-            if (mypos == false) {
+            if (myPos == -1) {
                 break;
             }
 
             mybefore = "";
-            if (mypos > 0) {
-                mybefore = mysql[mypos - 1];
+            if (myPos > 0) {
+                mybefore = aSql[myPos - 1];
             }
 
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
-            myquotedBefore = in_array(mysql[mypos], ["`", "("), true);
-            myquotedAfter = in_array(mysql[mypos + strlen(myValue) - 1], ["`", ")"), true);
+            myquotedBefore = in_array(aSql[mypos], ["`", "("), true);
+            myquotedAfter = in_array(aSql[mypos + strlen(myValue) - 1], ["`", ")"), true);
             myafter = "";
-            if (isset(mysql[mypos + strlen(myValue)])) {
-                myafter = mysql[mypos + strlen(myValue)];
+            if (isset(aSql[mypos + strlen(myValue)])) {
+                myafter = aSql[mypos + strlen(myValue)];
             }
 
             // if we have an operator, it should be surrounded by
@@ -152,7 +152,7 @@ class PositionCalculator {
         return mypos;
     }
 
-    protected auto lookForBaseExpression(mysql, & mycharPos, & myparsed, myKey, & mybacktracking) {
+    protected auto lookForBaseExpression(string aSql, & mycharPos, & myparsed, myKey, & mybacktracking) {
         if (!is_numeric(myKey)) {
             if ((myKey == "UNION" || myKey == "UNION ALL")
                 || (myKey == "expr_type" && isset(this.flippedBacktrackingTypes[myparsed]))
@@ -183,7 +183,7 @@ class PositionCalculator {
                 // move the current pos after the keyword
                 // SELECT, WHERE, INSERT etc.
                 if (SqlParserConstants::getInstance().isReserved(myKey)) {
-                    mycharPos = stripos(mysql, myKey, mycharPos);
+                    mycharPos = stripos(aSql, myKey, mycharPos);
                     mycharPos += strlen(myKey);
                 }
             }
@@ -196,9 +196,9 @@ class PositionCalculator {
         foreach (myKey : myValue; myparsed) {
             if (myKey == "base_expr") {
 
-                //this.printPos("0", mysql, mycharPos, myKey, myValue, mybacktracking);
+                //this.printPos("0", aSql, mycharPos, myKey, myValue, mybacktracking);
 
-                mysubject = substr(mysql, mycharPos);
+                mysubject = substr(aSql, mycharPos);
                 mypos = this.findPositionWithinString(mysubject, myValue,
                     isset(myparsed["expr_type"]) ? myparsed["expr_type"] : "alias");
                 if (mypos == false) {
@@ -208,17 +208,17 @@ class PositionCalculator {
                 myparsed["position"] = mycharPos + mypos;
                 mycharPos += mypos + strlen(myValue);
 
-                //this.printPos("1", mysql, mycharPos, myKey, myValue, mybacktracking);
+                //this.printPos("1", aSql, mycharPos, myKey, myValue, mybacktracking);
 
                 myoldPos = array_pop(mybacktracking);
                 if (isset(myoldPos) && myoldPos != false) {
                     mycharPos = myoldPos;
                 }
 
-                //this.printPos("2", mysql, mycharPos, myKey, myValue, mybacktracking);
+                //this.printPos("2", aSql, mycharPos, myKey, myValue, mybacktracking);
 
             } else {
-                this.lookForBaseExpression(mysql, mycharPos, myparsed[myKey], myKey, mybacktracking);
+                this.lookForBaseExpression(aSql, mycharPos, myparsed[myKey], myKey, mybacktracking);
             }
         }
     }

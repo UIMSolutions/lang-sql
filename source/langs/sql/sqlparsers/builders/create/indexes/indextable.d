@@ -9,7 +9,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
 
 
     string build(Json parsedSql) {
-        if (parsedSql.isSet("on") || parsedSql["on"] == false) {
+        if (parsedSql.isSet("on") || parsedSql["on"].isEmpty) {
             return "";
         }
         auto tableSql = parsedSql["on"];
