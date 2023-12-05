@@ -49,7 +49,7 @@ class ExpressionListProcessor : AbstractProcessor {
                     foreach (myKey, myValue; mylocalTokenList) {
                         tempToken = new ExpressionToken(myKey, myValue);
                         if (tempToken.isCommaToken()) {
-                            unset(mylocalTokenList[ myk]);
+                            unset(mylocalTokenList[myk]);
                         }
                     }
 
@@ -74,7 +74,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         }
 
                         if (matchModeToken != false) {
-                            unset(mylocalTokenList[ myk]);
+                            unset(mylocalTokenList[myk]);
                         }
                     }
 
@@ -118,7 +118,7 @@ class ExpressionListProcessor : AbstractProcessor {
                                 localExpressionToken.setTokenType(expressionType("EXPRESSION"));
                                 mylocalExprList = localExpressionToken.toArray();
                                 mylocalExprList["alias"] = false;
-                                mylocalExprList = [ mylocalExprList);
+                                mylocalExprList = [mylocalExprList);
                             }
 
                             if (! mycurr.getSubTree()) {
@@ -143,7 +143,7 @@ class ExpressionListProcessor : AbstractProcessor {
                         localExpressionToken.setTokenType(expressionType("EXPRESSION"));
                         mylocalExprList = localExpressionToken.toArray();
                         mylocalExprList["alias"] = false;
-                        mylocalExprList = [ mylocalExprList];
+                        mylocalExprList = [mylocalExprList];
                     }
 
                     if (! mycurr.getSubTree()) {
@@ -332,7 +332,7 @@ class ExpressionListProcessor : AbstractProcessor {
             if (! mycurr.isOperator() && ! mycurr.isInList() && ! mycurr.isFunction() && ! mycurr.isAggregateFunction()
                 && ! mycurr.isCustomFunction() && SqlParserConstants::getInstance().isReserved(mycurr.getUpper())) {
 
-	            mynext = tokens.isSet(myk + 1 ) ? new ExpressionToken(myk + 1, tokens[ myk + 1 ] ) : new ExpressionToken();
+	            mynext = tokens.isSet(myk + 1 ) ? new ExpressionToken(myk + 1, tokens[myk + 1 ] ) : new ExpressionToken();
                 myisEnclosedWithinParenthesis = mynext.isEnclosedWithinParenthesis();
 	            if (myisEnclosedWithinParenthesis && SqlParserConstants::getInstance().isCustomFunction(mycurr.getUpper())) {
                     mycurr.setTokenType(expressionType("CUSTOM_FUNCTION"));

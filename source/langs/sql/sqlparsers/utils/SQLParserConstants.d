@@ -177,12 +177,12 @@ class SqlParserConstants {
 
     auto addCustomFunction(mytoken) {
         mytoken = mytoken.strip.toUpper;
-        this.customFunctions[ mytoken] = true;
+        this.customFunctions[mytoken] = true;
     }
 
     auto removeCustomFunction(mytoken) {
         mytoken = mytoken.strip.toUpper;
-        unset(this.customFunctions[ mytoken]);
+        unset(this.customFunctions[mytoken]);
     }
 
     auto getCustomFunctions() {

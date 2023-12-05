@@ -163,7 +163,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     myoption = createExpression("RESERVED"), "base_expr": strippedToken];
                    myExpression ~= createExpression("INDEX_PARSER"),
                                     "base_expr" : substr(baseExpression, 0, -myToken.length),
-                                    "sub_tree" : [ myoption)];
+                                    "sub_tree" : [myoption)];
                     baseExpression = myToken;
                     currentCategory = "INDEX_PARSER";
                     continue 2;
@@ -176,7 +176,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                     myoption = createExpression("RESERVED"), "base_expr": strippedToken];
                    myExpression ~= createExpression("INDEX_SIZE"),
                                     "base_expr" : substr(baseExpression, 0, -myToken.length),
-                                    "sub_tree" : [ myoption)];
+                                    "sub_tree" : [myoption)];
                     baseExpression = myToken;
                     currentCategory = "INDEX_SIZE";
                     continue 2;
@@ -188,7 +188,7 @@ class CreateDefinitionProcessor : AbstractProcessor {
                 if (currentCategory == "INDEX_COL_LIST" || currentCategory == "PRIMARY") {
                     myoption = createExpression("RESERVED"), "base_expr": strippedToken];
                    myExpression ~= ["base_expr" : substr(baseExpression, 0, -myToken.length), "trim" : strippedToken,
-                                    "category" : currentCategory, "sub_tree" : [ myoption));
+                                    "category" : currentCategory, "sub_tree" : [myoption));
                     baseExpression = myToken;
                     currentCategory = "INDEX_TYPE";
                     continue 2;

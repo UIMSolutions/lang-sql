@@ -37,38 +37,38 @@ class SQLLexer {
             throw new InvalidParameterException(aSql);
         }
         auto myTokens = preg_split(this.splitters.getSplittersRegexPattern(), aSql, 0, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-       myTokens = this.concatComments(myTokens);
-       myTokens = this.concatEscapeSequences(myTokens);
-       myTokens = this.balanceBackticks(myTokens);
-       myTokens = this.concatColReferences(myTokens);
-       myTokens = this.balanceParenthesis(myTokens);
-       myTokens = this.concatUserDefinedVariables(myTokens);
-       myTokens = this.concatScientificNotations(myTokens);
-       myTokens = this.concatNegativeNumbers(myTokens);
+        myTokens = this.concatComments(myTokens);
+        myTokens = this.concatEscapeSequences(myTokens);
+        myTokens = this.balanceBackticks(myTokens);
+        myTokens = this.concatColReferences(myTokens);
+        myTokens = this.balanceParenthesis(myTokens);
+        myTokens = this.concatUserDefinedVariables(myTokens);
+        myTokens = this.concatScientificNotations(myTokens);
+        myTokens = this.concatNegativeNumbers(myTokens);
         return myTokens;
     }
 
     protected auto concatNegativeNumbers(mytokens) {
 
-    	size_t myi = 0;
-    	numberOfTokens = count(mytokens);
+    	size_t myTokenCounter = 0;
+    	size_t numberOfTokens = count(mytokens);
     	bool isPossibleSign = true;
 
-    	while (myi < numberOfTokens) {
+    	while (myTokenCounter < numberOfTokens) {
 
-    		if (! mytokens.iSet(myi)) {
-    			 myi++;
+    		if (! mytokens.iSet(myTokenCounter)) {
+    			 myTokenCounter++;
     			continue;
     		}
 
-    		 mytoken = mytokens[ myi];
+    		 mytoken = mytokens[myTokenCounter];
 
     		// a sign is also possible on the first position of the tokenlist
     		if (isPossibleSign == true) {
 				if (mytoken == "-" || mytoken == "+") {
-					if (is_numeric(mytokens[ myi + 1])) {
-						 mytokens[ myi + 1] = mytoken . mytokens[ myi + 1];
-						unset(mytokens[ myi]);
+					if (is_numeric(mytokens[myTokenCounter + 1])) {
+						 mytokens[myTokenCounter + 1] = mytoken . mytokens[myTokenCounter + 1];
+						unset(mytokens[myTokenCounter]);
 					}
 				}
 				isPossibleSign = false;
@@ -80,7 +80,7 @@ class SQLLexer {
     			isPossibleSign = true;
     		}
 
-    		 myi++;
+    		 myTokenCounter++;
    		}
 
    		return array_values(mytokens);
@@ -99,18 +99,18 @@ class SQLLexer {
                 continue;
             }
 
-            mytoken = mytokens[ myTokenCounter];
+            mytoken = mytokens[myTokenCounter];
 
             if (myscientific == true) {
                 if (mytoken == "-" || mytoken == "+") {
-                    mytokens[ myTokenCounter - 1] ~= mytokens[ myTokenCounter];
-                    mytokens[ myTokenCounter - 1] ~= mytokens[ myTokenCounter + 1];
-                    unset(mytokens[ myTokenCounter]);
-                    unset(mytokens[ myTokenCounter + 1]);
+                    mytokens[myTokenCounter - 1] ~= mytokens[myTokenCounter];
+                    mytokens[myTokenCounter - 1] ~= mytokens[myTokenCounter + 1];
+                    unset(mytokens[myTokenCounter]);
+                    unset(mytokens[myTokenCounter + 1]);
 
                 } else if (is_numeric(mytoken)) {
-                    mytokens[ myTokenCounter - 1] ~= mytokens[ myTokenCounter];
-                    unset(mytokens[ myTokenCounter]);
+                    mytokens[myTokenCounter - 1] ~= mytokens[myTokenCounter];
+                    unset(mytokens[myTokenCounter]);
                 }
                 myscientific = false;
                 continue;
@@ -127,32 +127,32 @@ class SQLLexer {
     }
 
     protected auto concatUserDefinedVariables(mytokens) {
-        myi = 0;
+        size_t myTokenCounter = 0;
         numberOfTokens = count(mytokens);
         myuserdef = false;
 
-        while (myi < numberOfTokens) {
+        while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myi)) {
-                myi++;
+            if (! mytokens.iSet(myTokenCounter)) {
+                myTokenCounter++;
                 continue;
             }
 
-            mytoken = mytokens[ myi];
+            mytoken = mytokens[myTokenCounter];
 
             if (myuserdef != false) {
-                mytokens[ myuserdef] ~= mytoken;
-                unset(mytokens[ myi]);
+                mytokens[myuserdef] ~= mytoken;
+                unset(mytokens[myTokenCounter]);
                 if (mytoken != "@") {
                     myuserdef = false;
                 }
             }
 
             if (myuserdef == false && mytoken == "@") {
-                myuserdef = myi;
+                myuserdef = myTokenCounter;
             }
 
-            myi++;
+            myTokenCounter++;
         }
 
         return array_values(mytokens);
@@ -160,21 +160,21 @@ class SQLLexer {
 
     protected auto concatComments(mytokens) {
 
-        myi = 0;
+        auto myTokenCounter = 0;
         numberOfTokens = count(mytokens);
         mycomment = false;
         mybackTicks = [];
         myin_string = false;
         myinline = false;
 
-        while (myi < numberOfTokens) {
+        while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myi)) {
-                myi++;
+            if (! mytokens.iSet(myTokenCounter)) {
+                myTokenCounter++;
                 continue;
             }
 
-            mytoken = mytokens[ myi];
+            mytoken = mytokens[myTokenCounter];
 
             /*
              * Check to see if we"re inside a value (i.e. back ticks).
@@ -200,8 +200,8 @@ class SQLLexer {
                     if (myinline == true && (mytoken == "\n" || mytoken == "\r\n")) {
                         mycomment = false;
                     } else {
-                        unset(mytokens[ myi]);
-                        mytokens[ mycomment] ~= mytoken;
+                        unset(mytokens[myTokenCounter]);
+                        mytokens[mycomment] ~= mytoken;
                     }
                     if (myinline == false && (mytoken == "*/")) {
                         mycomment = false;
@@ -209,22 +209,22 @@ class SQLLexer {
                 }
 
                 if ((mycomment == false) && (mytoken == "--") && mybackTicks.isEmpty) {
-                    mycomment = myi;
+                    mycomment = myTokenCounter;
                     myinline = true;
                 }
 
                 if ((mycomment == false) && (substr(mytoken, 0, 1) == "#") && mybackTicks.isEmpty) {
-                    mycomment = myi;
+                    mycomment = myTokenCounter;
                     myinline = true;
                 }
 
                 if ((mycomment == false) && (mytoken == "/*")) {
-                    mycomment = myi;
+                    mycomment = myTokenCounter;
                     myinline = false;
                 }
             }
 
-            myi++;
+            myTokenCounter++;
         }
 
         return array_values(mytokens);
@@ -235,22 +235,22 @@ class SQLLexer {
     }
 
     protected auto balanceBackticks(mytokens) {
-        myi = 0;
+        size_t myTokenCounter = 0;
         numberOfTokens = count(mytokens);
-        while (myi < numberOfTokens) {
+        while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myi)) {
-                myi++;
+            if (! mytokens.iSet(myTokenCounter)) {
+                myTokenCounter++;
                 continue;
             }
 
-            auto myToken = mytokens[ myi];
+            auto myToken = mytokens[myTokenCounter];
 
             if (this.isBacktick(mytoken)) {
-                mytokens = this.balanceCharacter(mytokens, myi, myToken);
+                mytokens = this.balanceCharacter(mytokens, myTokenCounter, myToken);
             }
 
-            myi++;
+            myTokenCounter++;
         }
 
         return mytokens;
@@ -261,23 +261,23 @@ class SQLLexer {
     protected auto balanceCharacter(mytokens, myidx, mychar) {
 
         mytoken_count = count(mytokens);
-        myi = myidx + 1;
-        while (myi < mytoken_count) {
+        size_t myTokenCounter = myidx + 1;
+        while (myTokenCounter < mytoken_count) {
 
-            if (! mytokens.iSet(myi)) {
-                myi++;
+            if (! mytokens.iSet(myTokenCounter)) {
+                myTokenCounter++;
                 continue;
             }
 
-            auto myToken = mytokens[ myi];
-            mytokens[ myidx] ~= myToken;
-            unset(mytokens[ myi]);
+            auto myToken = mytokens[myTokenCounter];
+            mytokens[myidx] ~= myToken;
+            unset(mytokens[myTokenCounter]);
 
             if (myToken == mychar) {
                 break;
             }
 
-            myi++;
+            myTokenCounter++;
         }
         return array_values(mytokens);
     }
@@ -293,47 +293,47 @@ class SQLLexer {
     protected auto concatColReferences(mytokens) {
 
         numberOfTokens = count(mytokens);
-        myi = 0;
-        while (myi < numberOfTokens) {
+        size_t myTokenCounter = 0;
+        while (myTokenCounter < numberOfTokens) {
 
-            if (! mytokens.iSet(myi)) {
-                myi++;
+            if (! mytokens.iSet(myTokenCounter)) {
+                myTokenCounter++;
                 continue;
             }
 
-            if (mytokens[ myi][0] == ".") {
+            if (mytokens[myTokenCounter][0] == ".") {
 
                 // concat the previous tokens, till the token has been changed
-                myk = myi - 1;
-                mylen = strlen(mytokens[ myi]);
-                while ((myk >= 0) && (mylen == strlen(mytokens[ myi]))) {
-                    if (!isset(mytokens[ myk])) { // FIXME: this can be wrong if we have schema . table . column
+                myk = myTokenCounter - 1;
+                mylen = strlen(mytokens[myTokenCounter]);
+                while ((myk >= 0) && (mylen == strlen(mytokens[myTokenCounter]))) {
+                    if (!isset(mytokens[myk])) { // FIXME: this can be wrong if we have schema . table . column
                         myk--;
                         continue;
                     }
-                    mytokens[ myi] = mytokens[ myk] . mytokens[ myi];
-                    unset(mytokens[ myk]);
+                    mytokens[myTokenCounter] = mytokens[myk] . mytokens[myTokenCounter];
+                    unset(mytokens[myk]);
                     myk--;
                 }
             }
 
-            if (this.endsWith(mytokens[ myi], ".") && !is_numeric(mytokens[ myi])) {
+            if (this.endsWith(mytokens[myTokenCounter], ".") && !is_numeric(mytokens[myTokenCounter])) {
 
                 // concat the next tokens, till the token has been changed
-                myk = myi + 1;
-                mylen = strlen(mytokens[ myi]);
-                while ((myk < numberOfTokens) && (mylen == strlen(mytokens[ myi]))) {
-                    if (!isset(mytokens[ myk])) {
+                myk = myTokenCounter + 1;
+                mylen = strlen(mytokens[myTokenCounter]);
+                while ((myk < numberOfTokens) && (mylen == strlen(mytokens[myTokenCounter]))) {
+                    if (!isset(mytokens[myk])) {
                         myk++;
                         continue;
                     }
-                    mytokens[ myi] ~= mytokens[ myk];
-                    unset(mytokens[ myk]);
+                    mytokens[myTokenCounter] ~= mytokens[myk];
+                    unset(mytokens[myk]);
                     myk++;
                 }
             }
 
-            myi++;
+            myTokenCounter++;
         }
 
         return array_values(mytokens);
@@ -341,46 +341,46 @@ class SQLLexer {
 
     protected auto concatEscapeSequences(mytokens) {
         mytokenCount = count(mytokens);
-        myi = 0;
-        while (myi < mytokenCount) {
+        size_t myTokenCounter = 0;
+        while (myTokenCounter < mytokenCount) {
 
-            if (this.endsWith(mytokens[ myi], "\\")) {
-                myi++;
-                if (mytokens.iSet(myi)) {
-                    mytokens[ myi - 1] ~= mytokens[ myi];
-                    unset(mytokens[ myi]);
+            if (this.endsWith(mytokens[myTokenCounter], "\\")) {
+                myTokenCounter++;
+                if (mytokens.iSet(myTokenCounter)) {
+                    mytokens[myTokenCounter - 1] ~= mytokens[myTokenCounter];
+                    unset(mytokens[myTokenCounter]);
                 }
             }
-            myi++;
+            myTokenCounter++;
         }
         return array_values(mytokens);
     }
 
     protected auto balanceParenthesis(mytokens) {
         mytoken_count = count(mytokens);
-        myi = 0;
-        while (myi < mytoken_count) {
-            if (mytokens[ myi] != "(") {
-                myi++;
+        myTokenCounter = 0;
+        while (myTokenCounter < mytoken_count) {
+            if (mytokens[myTokenCounter] != "(") {
+                myTokenCounter++;
                 continue;
             }
             mycount = 1;
-            for (myn = myi + 1; myn < mytoken_count; myn++) {
-                mytoken = mytokens[ myn];
+            for (myn = myTokenCounter + 1; myn < mytoken_count; myn++) {
+                mytoken = mytokens[myn];
                 if (mytoken == "(") {
                     mycount++;
                 }
                 if (mytoken == ")") {
                     mycount--;
                 }
-                mytokens[ myi] ~= mytoken;
-                unset(mytokens[ myn]);
+                mytokens[myTokenCounter] ~= mytoken;
+                unset(mytokens[myn]);
                 if (mycount == 0) {
                     myn++;
                     break;
                 }
             }
-            myi = myn;
+            myTokenCounter = myn;
         }
         return array_values(mytokens);
     }

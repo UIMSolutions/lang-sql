@@ -104,8 +104,8 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
             case "UNSIGNED":
                 foreach (array_reverse(array_keys(myExpression)) as myi) {
-                    if (myExpression[ myi].isSet("expr_type") && (expressionType("DATA_TYPE") == myExpression[ myi]["expr_type"])) {
-                       myExpression[ myi]["unsigned"] = true;
+                    if (myExpression[myi].isSet("expr_type") && (expressionType("DATA_TYPE") == myExpression[myi]["expr_type"])) {
+                       myExpression[myi]["unsigned"] = true;
                         break;
                     }
                 }
@@ -354,7 +354,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
 
                    myExpression ~= mylast;
                    myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-                                    "sub_tree" : [ myparsed));
+                                    "sub_tree" : [myparsed));
                     currentCategory = myPrevousCategory;
                     break;
 
@@ -381,7 +381,7 @@ class ColumnDefinitionProcessor : AbstractProcessor {
                                      "sub_tree" : myparsed];
 
                     if (this.options.hasConsistentSubtrees()) {
-                        mysubTree = [ mysubTree];
+                        mysubTree = [mysubTree];
                     }
 
                     mylast["sub_tree"] = mysubTree;

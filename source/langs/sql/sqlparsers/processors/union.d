@@ -150,12 +150,12 @@ class UnionProcessor : AbstractProcessor {
             // we are looking for an ALL token right after UNION
             for (myi = myKey + 1; myi < count(myinputArray); ++ myi) {
                 if (
-                    myinputArray[ myi].strip
+                    myinputArray[myi].strip
                     .isEmpty) {
                     continue;
                 }
                 if (
-                    myinputArray[ myi].toUpper != "ALL") {
+                    myinputArray[myi].toUpper != "ALL") {
                     break;
                 }
                 // the other for-loop should overread till "ALL"

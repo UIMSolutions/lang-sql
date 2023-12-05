@@ -67,7 +67,7 @@ class PositionCalculator {
         string mySpaces = "";
         mycaller = debug_backtrace();
         myi = 1;
-        while (mycaller[ myi]["function"] == "lookForBaseExpression") {
+        while (mycaller[myi]["function"] == "lookForBaseExpression") {
            mySpaces ~= "   ";
             myi++;
         }
@@ -101,16 +101,16 @@ class PositionCalculator {
 
             mybefore = "";
             if (mypos > 0) {
-                mybefore = mysql[ mypos - 1];
+                mybefore = mysql[mypos - 1];
             }
 
             // if we have a quoted string, we every character is allowed after it
             // see issues 137 and 361
-            myquotedBefore = in_array(mysql[ mypos], ["`", "("), true);
-            myquotedAfter = in_array(mysql[ mypos + strlen(myValue) - 1], ["`", ")"), true);
+            myquotedBefore = in_array(mysql[mypos], ["`", "("), true);
+            myquotedAfter = in_array(mysql[mypos + strlen(myValue) - 1], ["`", ")"), true);
             myafter = "";
-            if (isset(mysql[ mypos + strlen(myValue)])) {
-                myafter = mysql[ mypos + strlen(myValue)];
+            if (isset(mysql[mypos + strlen(myValue)])) {
+                myafter = mysql[mypos + strlen(myValue)];
             }
 
             // if we have an operator, it should be surrounded by
@@ -155,7 +155,7 @@ class PositionCalculator {
     protected auto lookForBaseExpression(mysql, & mycharPos, & myparsed, myKey, & mybacktracking) {
         if (!is_numeric(myKey)) {
             if ((myKey == "UNION" || myKey == "UNION ALL")
-                || (myKey == "expr_type" && isset(this.flippedBacktrackingTypes[ myparsed]))
+                || (myKey == "expr_type" && isset(this.flippedBacktrackingTypes[myparsed]))
                 || (myKey == "select-option" && myparsed != false) || (myKey == "alias" && myparsed != false)) {
                 // we hold the current position and come back after the next base_expr
                 // we do this, because the next base_expr contains the complete expression/subquery/record

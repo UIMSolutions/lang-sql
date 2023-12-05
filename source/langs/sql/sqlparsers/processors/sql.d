@@ -30,7 +30,7 @@ class SQLProcessor : SQLChunkProcessor {
             if (! mytokens.isSet(mytokenNumber)) {
                 continue;
             } // as a fix by Sinri 20180528
-           myToken = mytokens[ mytokenNumber];
+           myToken = mytokens[mytokenNumber];
             auto strippedToken = mytoken.strip; // this removes also \n and \t!
 
             // if it starts with an "(", it should follow a SELECT

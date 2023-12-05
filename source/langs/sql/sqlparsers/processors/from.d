@@ -55,7 +55,7 @@ class FromProcessor : AbstractProcessor {
             // here we can get a comma separated list
             foreach (myKey, myValue; myunparsed) {
                 if (this.isCommaToken(myValue)) {
-                    myunparsed[ myk] = "";
+                    myunparsed[myk] = "";
                 }
             }
             if (parseInfo["ref_type"] == "USING") {
@@ -195,8 +195,8 @@ class FromProcessor : AbstractProcessor {
                 myn = 1;
                 mystr = "";
                 while (mystr.isEmpty && mytokens.isSet(myi + myn)) {
-                    parseInfo["alias"].baseExpression ~= (mytokens[ myi + myn].isEmpty ? " " : mytokens[ myi + myn]);
-                    mystr = mytokens[ myi + myn].strip;
+                    parseInfo["alias"].baseExpression ~= (mytokens[myi + myn].isEmpty ? " " : mytokens[myi + myn]);
+                    mystr = mytokens[myi + myn].strip;
                     ++ myn;
                 }
                 parseInfo["alias"]["name"] = mystr;
@@ -219,7 +219,7 @@ class FromProcessor : AbstractProcessor {
                 }
                 if (tokenCategory == "IDX_HINT") {
                     mycur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
+                    parseInfo["hints"][mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
                 break;
@@ -239,7 +239,7 @@ class FromProcessor : AbstractProcessor {
             case "FOR":
                 if (tokenCategory == "IDX_HINT") {
                     mycur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
+                    parseInfo["hints"][mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -264,7 +264,7 @@ class FromProcessor : AbstractProcessor {
             case "JOIN":
                 if (tokenCategory == "IDX_HINT") {
                     mycur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
+                    parseInfo["hints"][mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -280,7 +280,7 @@ class FromProcessor : AbstractProcessor {
             case "GROUP BY":
                 if (tokenCategory == "IDX_HINT") {
                     mycur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][ mycur_hint]["hint_type"] ~= " " ~ upperToken;
+                    parseInfo["hints"][mycur_hint]["hint_type"] ~= " " ~ upperToken;
                     continue 2;
                 }
 
@@ -290,7 +290,7 @@ class FromProcessor : AbstractProcessor {
                 if (tokenCategory == "IDX_HINT") {
                     tokenCategory = "";
                     mycur_hint = (count(parseInfo["hints"]) - 1);
-                    parseInfo["hints"][ mycur_hint]["hint_list"] = myToken;
+                    parseInfo["hints"][mycur_hint]["hint_list"] = myToken;
                     break;
                 }
 

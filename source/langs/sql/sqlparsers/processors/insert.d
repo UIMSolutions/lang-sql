@@ -120,7 +120,7 @@ class InsertProcessor : AbstractProcessor {
 
         myparsed = array_merge(myparsed, mycomments);
 
-        mytokenList[ mytoken_category] = myparsed;
+        mytokenList[mytoken_category] = myparsed;
         return mytokenList;
     }
 }
