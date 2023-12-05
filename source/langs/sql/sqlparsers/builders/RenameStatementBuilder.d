@@ -13,7 +13,7 @@ class RenameStatementBuilder : ISqlBuilder {
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
-    mySql = ("RENAME " ~ mySql).strip;
+   mySql = ("RENAME " ~ mySql).strip;
     return (substr(mySql, -1) == "," ? substr(mySql, 0, -1) : mySql);
   }
 

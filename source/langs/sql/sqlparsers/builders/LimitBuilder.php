@@ -11,7 +11,7 @@
 class LimitBuilder : ISqlBuilder {
 
     string build(Json parsedSql) {
-        mySql = (parsedSql["rowcount"]) . (parsedSql["offset"] ? " OFFSET " . parsedSql["offset"] : "");
+       mySql = (parsedSql["rowcount"]) . (parsedSql["offset"] ? " OFFSET " . parsedSql["offset"] : "");
         if (mySql.isEmpty) {
             throw new UnableToCreateSQLException("LIMIT", "rowcount", parsedSql, "rowcount");
         }

@@ -17,7 +17,7 @@ class TableBracketExpressionBuilder : ISqlBuilder {
             .map!(kv => buildKeyValue(kv.key, kv.value))
             .join;
 
-        mySql = " (" ~ substr(mySql, 0, -2) ~ ")";
+       mySql = " (" ~ substr(mySql, 0, -2) ~ ")";
         return mySql;
     }
 

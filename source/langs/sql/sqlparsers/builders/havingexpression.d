@@ -16,7 +16,7 @@ class HavingExpressionBuilder : WhereExpressionBuilder {
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
-    mySql = substr(mySql, 0, -1);
+   mySql = substr(mySql, 0, -1);
     return mySql;
   }
 

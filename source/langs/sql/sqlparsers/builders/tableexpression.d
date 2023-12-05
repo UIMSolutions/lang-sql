@@ -13,13 +13,13 @@ class TableExpressionBuilder : ISqlBuilder {
         }
 
         string mySql = substr(this.buildFrom(parsedSql["sub_tree"]), 5); // remove FROM keyword
-        mySql = "(" ~ mySql ~ ")";
-        mySql ~= this.buildAlias(parsedSql);
+       mySql = "(" ~ mySql ~ ")";
+       mySql ~= this.buildAlias(parsedSql);
 
         if (index != 0) {
-            mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
-            mySql ~= this.buildRefType(parsedSql["ref_type"]);
-            mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(
+           mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
+           mySql ~= this.buildRefType(parsedSql["ref_type"]);
+           mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(
                 parsedSql["ref_clause"]);
         }
         return mySql;

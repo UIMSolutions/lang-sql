@@ -38,9 +38,9 @@ class LikeExpressionBuilder : ISqlBuilder {
     return result;
   }
 
-  protected string buildTable(parsedSql,  myindex) {
+  protected string buildTable(parsedSql, myindex) {
     auto myBuilder = new TableBuilder();
-    return myBuilder.build(parsedSql,  myindex);
+    return myBuilder.build(parsedSql, myindex);
   }
 
   protected string buildReserved(Json parsedSql) {

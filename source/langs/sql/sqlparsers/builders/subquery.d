@@ -14,13 +14,13 @@ class SubQueryBuilder : ISqlBuilder {
 
     // TODO: should we add a numeric level (0) between sub_tree and SELECT?
     string mySql = this.buildSelectStatement(parsedSql["sub_tree"]);
-    mySql = "(" ~ mySql ~ ")";
-    mySql ~= this.buildAlias(parsedSql);
+   mySql = "(" ~ mySql ~ ")";
+   mySql ~= this.buildAlias(parsedSql);
 
     if (index != 0) {
-      mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
-      mySql ~= this.buildRefType(parsedSql["ref_type"]);
-      mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);
+     mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
+     mySql ~= this.buildRefType(parsedSql["ref_type"]);
+     mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);
     }
     
     return mySql;

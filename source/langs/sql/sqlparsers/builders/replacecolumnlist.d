@@ -16,13 +16,13 @@ class ReplaceColumnListBuilder : ISqlBuilder {
         string mySql = "";
         foreach (myKey, myValue; parsedSql["sub_tree"]) {
             size_t oldSqlLength = mySql.length;
-            mySql ~= this.buildColumn(myValue);
+           mySql ~= this.buildColumn(myValue);
 
             if (oldSqlLength == mySql.length) { // No change
                 throw new UnableToCreateSQLException("REPLACE column-list subtree", myKey, myValue, "expr_type");
             }
 
-            mySql ~= ", ";
+           mySql ~= ", ";
         }
         return "(" ~ substr(mySql, 0, -2) ~ ")";
     }

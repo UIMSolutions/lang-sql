@@ -8,9 +8,9 @@ class ReplaceStatementBuilder : ISqlBuilder {
   string build(Json parsedSql) {
     // TODO: are there more than one tables possible (like [REPLACE][1])
     string mySql = this.buildREPLACE(parsedSql["REPLACE"]);
-    mySql ~= parsedSql.isSet("VALUES") ? " " ~ this.buildVALUES(parsedSql["VALUES"]) : "";
-    mySql ~= parsedSql.isSet("SET") ? " " ~ this.buildSET(parsedSql["SET"]) : "";
-    mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSELECT(parsedSql) : "";
+   mySql ~= parsedSql.isSet("VALUES") ? " " ~ this.buildVALUES(parsedSql["VALUES"]) : "";
+   mySql ~= parsedSql.isSet("SET") ? " " ~ this.buildSET(parsedSql["SET"]) : "";
+   mySql ~= parsedSql.isSet("SELECT") ? " " ~ this.buildSELECT(parsedSql) : "";
 
     return mySql;
   }

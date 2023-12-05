@@ -13,12 +13,12 @@ class TempTableBuilder : ISqlBuilder {
     }
 
     auto mySql = parsedSql["table"];
-    mySql ~= this.buildAlias(parsedSql);
+   mySql ~= this.buildAlias(parsedSql);
 
     if (index != 0) {
-      mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
-      mySql ~= this.buildRefType(parsedSql["ref_type"]);
-      mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);
+     mySql = this.buildJoin(parsedSql["join_type"]) ~ mySql;
+     mySql ~= this.buildRefType(parsedSql["ref_type"]);
+     mySql ~= parsedSql["ref_clause"].isEmpty ? "" : this.buildRefClause(parsedSql["ref_clause"]);
     }
     return mySql;
   }

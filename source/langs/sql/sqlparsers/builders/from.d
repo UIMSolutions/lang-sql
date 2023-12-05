@@ -11,19 +11,19 @@ class FromBuilder : ISqlBuilder {
     auto string mySql = "";
     if (parsedSql.has("UNION ALL") || parsedSql.has("UNION")) {
       foreach (myunion_type, resulter_v; parsedSql) {
-        myfirst = true;
+       myfirst = true;
 
         foreach (myitem; resulter_v) {
           if (!myfirst) {
-            mySql ~= "  myunion_type ";
+           mySql ~= " myunion_type ";
           } else {
-            myfirst = false;
+           myfirst = false;
           }
 
-          myselect_builder = new SelectStatementBuilder();
+         myselect_builder = new SelectStatementBuilder();
 
           size_t oldSqlLength = mySql.length;
-          mySql ~= myselect_builder.build(myitem);
+         mySql ~= myselect_builder.build(myitem);
 
           if (oldSqlLength == mySql.length) { // No change
             throw new UnableToCreateSQLException("FROM", myunion_type, resulter_v, "expr_type");
@@ -33,9 +33,9 @@ class FromBuilder : ISqlBuilder {
     } else {
       foreach (myKey, myValue; parsedSql) {
         size_t oldSqlLength = mySql.length;
-        mySql ~= this.buildTable(myValue, myk);
-        mySql ~= this.buildTableExpression(myValue, myk);
-        mySql ~= this.buildSubquery(myValue, myk);
+       mySql ~= this.buildTable(myValue, myk);
+       mySql ~= this.buildTableExpression(myValue, myk);
+       mySql ~= this.buildSubquery(myValue, myk);
 
         if (oldSqlLength == mySql.length) { // No change
           throw new UnableToCreateSQLException("FROM", myKey, myValue, "expr_type");

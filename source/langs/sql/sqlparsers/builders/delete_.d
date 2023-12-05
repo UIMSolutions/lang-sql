@@ -10,11 +10,11 @@ class DeleteBuilder : ISqlBuilder {
     string mySql = "DELETE ";
 
     if (!parsedSql["options"].isEmpty) {
-      mySql ~= parsedSql["options"].byKeyValue.map!(kv => kv.value ~ " ").join(" ");
+     mySql ~= parsedSql["options"].byKeyValue.map!(kv => kv.value ~ " ").join(" ");
     }
 
     if (!parsedSql["tables"].isEmpty) {
-      mySql ~= parsedSql["tables"].byKeyValue.map!(kv => kv.value).join(", ");
+     mySql ~= parsedSql["tables"].byKeyValue.map!(kv => kv.value).join(", ");
     }
 
     return mySql;

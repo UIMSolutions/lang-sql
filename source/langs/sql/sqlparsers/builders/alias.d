@@ -17,9 +17,9 @@ class AliasBuilder : ISqlBuilder {
     string mySql = "";
     auto subParsed = parsedSql["alias"];
     if (subParsed.isSet("as")) {
-      mySql ~= " AS";
+     mySql ~= " AS";
     }
-    mySql ~= " " ~ subParsed["name"];
+   mySql ~= " " ~ subParsed["name"];
     return mySql;
   }
 }

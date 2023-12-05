@@ -14,8 +14,8 @@ class TruncateBuilder : ISqlBuilder {
 
     if (parsedSql["tables"] != false) {
       foreach (myKey, myValue; parsedSql["tables"]) {
-        mySql ~= myValue ~ ", ";
-        myRight = -2;
+       mySql ~= myValue ~ ", ";
+       myRight = -2;
       }
     }
 

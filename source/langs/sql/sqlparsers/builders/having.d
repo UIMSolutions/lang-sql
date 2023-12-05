@@ -15,22 +15,22 @@ class HavingBuilder : WhereBuilder {
         foreach (myKey, myValue; parsedSql) {
             size_t oldSqlLength = mySql.length;
 
-            mySql ~= this.buildAliasReference(myValue);
-            mySql ~= this.buildOperator(myValue);
-            mySql ~= this.buildConstant(myValue);
-            mySql ~= this.buildColRef(myValue);
-            mySql ~= this.buildSubQuery(myValue);
-            mySql ~= this.buildInList(myValue);
-            mySql ~= this.buildFunction(myValue);
-            mySql ~= this.buildHavingExpression(myValue);
-            mySql ~= this.buildHavingBracketExpression(myValue);
-            mySql ~= this.buildUserVariable(myValue);
+           mySql ~= this.buildAliasReference(myValue);
+           mySql ~= this.buildOperator(myValue);
+           mySql ~= this.buildConstant(myValue);
+           mySql ~= this.buildColRef(myValue);
+           mySql ~= this.buildSubQuery(myValue);
+           mySql ~= this.buildInList(myValue);
+           mySql ~= this.buildFunction(myValue);
+           mySql ~= this.buildHavingExpression(myValue);
+           mySql ~= this.buildHavingBracketExpression(myValue);
+           mySql ~= this.buildUserVariable(myValue);
 
             if (mySql.length == oldSqlLength) {
                 throw new UnableToCreateSQLException("HAVING", myKey, myValue, "expr_type");
             }
 
-            mySql ~= " ";
+           mySql ~= " ";
         }
         return substr(mySql, 0, -1);
     }

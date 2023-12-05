@@ -15,7 +15,7 @@ class SetExpressionBuilder : ISqlBuilder {
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
 
-    mySql = substr(mySql, 0, -1);
+   mySql = substr(mySql, 0, -1);
     return mySql;
   }
 
@@ -32,7 +32,7 @@ class SetExpressionBuilder : ISqlBuilder {
     // we don"t need whitespace between the sign and 
     // the following part
     if (this.buildSign(aValue) != "") {
-      myDelim = "";
+     myDelim = "";
     }
 
     result ~= this.buildSign(aValue);

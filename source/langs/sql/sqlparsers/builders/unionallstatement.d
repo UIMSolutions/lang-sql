@@ -11,12 +11,12 @@ class UnionAllStatementBuilder : ISqlBuilder {
     bool first = true;
     foreach (myClause; parsedSql["UNION ALL"]) {
       if (!first) {
-        mySql ~= " UNION ALL ";
+       mySql ~= " UNION ALL ";
       } else {
         first = false;
       }
 
-      mySql ~= select_builder.build(myClause);
+     mySql ~= select_builder.build(myClause);
     }
     return mySql;
   }
