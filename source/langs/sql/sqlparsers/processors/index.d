@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the INDEX statements.
 class IndexProcessor : Processor {
 
-  Json process(mytokens) {
+  Json process(strig[] tokens) {
 
     string myCurrentCategory = "INDEX_NAME";
     auto result = ["base_expr": false, "name": false, "no_quotes": false, "index-type": false, "on": false, "options": []];

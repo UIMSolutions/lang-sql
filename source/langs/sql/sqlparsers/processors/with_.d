@@ -15,7 +15,7 @@ class WithProcessor : Processor {
     	return createExpression("TEMPORARY_TABLE"), "name":aToken, "base_expr" : aToken, "no_quotes" : this.revokeQuotation(aToken)];
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
     	auto result = [];
         auto myresultList = [];
         string myCategory = "";

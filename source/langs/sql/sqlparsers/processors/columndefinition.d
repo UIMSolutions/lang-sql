@@ -51,7 +51,7 @@ class ColumnDefinitionProcessor : Processor {
         return myExpression;
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
         string baseExpression = "";
         string currentCategory = "";
        myExpression = [];

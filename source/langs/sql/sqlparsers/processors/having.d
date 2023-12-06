@@ -8,7 +8,7 @@ import lang.sql;
 class HavingProcessor : ExpressionListProcessor {
 
   Json process(mytokens, myselect = []) {
-    Json parsed = super.process(mytokens);
+    Json parsed = super.process(strig[] tokens);
 
     parsed.byKeyValue
       .each!(kv => processKeyValue(aKey, aValue));

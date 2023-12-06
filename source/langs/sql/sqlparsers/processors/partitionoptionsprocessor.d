@@ -43,7 +43,7 @@ class PartitionOptionsProcessor : Processor {
         return createExpression("BRACKET_EXPRESSION", mytoken, "sub_tree" : false];
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
 
         Json result = Json.emptyObject;
         result["partition-options"] = Json.emptyArray;

@@ -118,7 +118,7 @@ class FromProcessor : Processor {
         return result;
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
         auto parseInfo = this.initParseInfo();
         auto myExpression = [];
         string tokenCategory = "";

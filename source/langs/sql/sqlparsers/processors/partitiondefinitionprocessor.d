@@ -37,7 +37,7 @@ class PartitionDefinitionProcessor : Processor {
         return createExpression("BRACKET_EXPRESSION"), "base_expr" : mytoken, "sub_tree" : false];
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
 
         myresult = [];
         string myPreviousCategory = "";

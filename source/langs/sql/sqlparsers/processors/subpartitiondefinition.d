@@ -26,7 +26,7 @@ class SubpartitionDefinitionProcessor : Processor {
         return createExpression("BRACKET_EXPRESSION"), "base_expr" : myToken, "sub_tree" : false];
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
 
         auto myresult = [];
         string previousCategory = "";

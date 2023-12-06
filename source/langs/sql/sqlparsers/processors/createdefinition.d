@@ -54,7 +54,7 @@ class CreateDefinitionProcessor : Processor {
         return mytype;
     }
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
 
         string baseExpression = "";
         string prevCategory = "";

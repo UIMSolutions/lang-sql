@@ -6,7 +6,7 @@ import lang.sql;
 // This class processes the SELECT statements.
 class SelectProcessor : SelectExpressionProcessor {
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
         Json expression;
         Json myexpressionList = Json.emptyArray;
         foreach (myToken; mytokens) {

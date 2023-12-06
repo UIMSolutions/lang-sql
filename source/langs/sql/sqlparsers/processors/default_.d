@@ -15,12 +15,12 @@ class DefaultProcessor : Processor {
     // this is the highest level lexical analysis. This is the part of the
     // code which finds UNION and UNION ALL query parts
     auto myProcessor = new UnionProcessor(this.options);
-    return myProcessor.process(mytokens);
+    return myProcessor.process(strig[] tokens);
   }
 
   protected Json processSQL(mytokens) {
     auto myProcessor = new SQLProcessor(this.options);
-    return myProcessor.process(mytokens);
+    return myProcessor.process(strig[] tokens);
   }
 
   Json process(mysql) {

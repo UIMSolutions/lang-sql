@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the VALUES statements.
 class ValuesProcessor : Processor {
 
-    Json process(mytokens) {
+    Json process(strig[] tokens) {
 
         string currentCategory = "";
         myparsed = [];
