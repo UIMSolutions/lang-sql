@@ -6,8 +6,6 @@ import lang.sql;
 // Builds the table part of a CREATE INDEX statement
 class CreateIndexTableBuilder : ISqlBuilder {
 
-
-
     string build(Json parsedSql) {
         if (parsedSql.isSet("on") || parsedSql["on"].isEmpty) {
             return "";
@@ -18,6 +16,7 @@ class CreateIndexTableBuilder : ISqlBuilder {
         }
         return "ON %s %s".format(tableSql["name"], this.buildColumnList(tableSql["sub_tree"]));
     }
+
     protected string buildColumnList(Json parsedSql) {
         auto myBuilder = new ColumnListBuilder();
         return myBuilder.build(parsedSql);

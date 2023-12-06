@@ -317,19 +317,23 @@ class TableProcessor : Processor {
           // split the token and add the list as subtree
           // we must change the DefaultProcessor
 
-         myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
-         myExpression ~= createExpression("BRACKET_EXPRESSION"), "base_expr" : strippedToken,
-          "sub_tree" : "***TODO***");
-         myResult["options"] ~= createExpression(UNION, "base_expr" : baseExpression.strip,
-            "delim" : " ", "sub_tree" : myExpression];
+          myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
+          Json newExpression = createExpression("BRACKET_EXPRESSION", strippedToken);
+          // ?? newExpression["sub_tree"] = "***TODO***";
+          newExpression["delim"] = " ";
+          newExpression["sub_tree"] = myExpression;
+          myExpression ~= 
+          myResult["options"] ~= createExpression(UNION, "base_expr" : baseExpression.strip,
           this.clear(myExpression, baseExpression, currentCategory);
           break;
 
         default:
           // strings and numeric constants
+         Json newExpression = createExpression("EXPRESSION", baseExpression.strip);
+         newExpression["delim"] = " ";
+         newExpression["sub_tree"] = newExpression;
          myExpression ~= this.getConstantType(strippedToken);
-         myResult["options"] ~= createExpression("EXPRESSION"),
-          "base_expr" : baseExpression.strip, "delim" : " ", "sub_tree" : myExpression];
+         myResult["options"] ~= 
           this.clear(myExpression, baseExpression, currentCategory);
           break;
         }

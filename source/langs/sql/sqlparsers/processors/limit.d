@@ -6,11 +6,11 @@ module langs.sql.sqlparsers.processors.limit;
   */
 class LimitProcessor : Processor {
 
-    Json process(mytokens) {
+    Json process(string[] mytokens) {
         string countRows = "";
         string offset = "";
 
-        mycomma = -1;
+        auto mycomma = -1;
         bool isExchange = false;
         
         mycomments = [];
@@ -51,10 +51,12 @@ class LimitProcessor : Processor {
             }
         }
 
-        auto results = ["offset" : offset.strip, "rowcount" : countRows.strip];
+        auto result = Json.emptyObject;
+        result["offset"] = offset.strip;
+        result["rowcount"] = countRows.strip;
         if (count(mycomments)) {
-            results["comments"] = mycomments;
+            result["comments"] = mycomments;
         }
-        return results;
+        return result;
     }
 }

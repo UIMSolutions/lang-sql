@@ -8,9 +8,8 @@ import lang.sql;
 class ReservedBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
-    if (!this.isReserved(parsedSql)) {
-      return "";
-    }
+    if (!this.isReserved(parsedSql)) { return ""; }
+
     return parsedSql.baseExpression;
   }
 

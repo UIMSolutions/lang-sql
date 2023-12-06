@@ -7,40 +7,10 @@ import lang.sql;
 class SelectProcessor : SelectExpressionProcessor {
 
     Json process(mytokens) {
-        string expression = "";
-        myexpressionList = [];
+        Json expression;
+        Json myexpressionList = Json.emptyArray;
         foreach (myToken; mytokens) {
-            if (this.isCommaToken(myToken)) {
-                expression = super.process(expression.strip);
-                expression["delim"] = ",";
-                myexpressionList ~= expression;
-                expression = "";
-            } else if (this.isCommentToken(myToken)) {
-                myexpressionList ~= super.processComment(myToken];
-            } else {
-                switch (myToken.toUpper) {
-
-                // add more SELECT options here
-                case "DISTINCT":
-                case "DISTINCTROW":
-                case "HIGH_PRIORITY":
-                case "SQL_CACHE":
-                case "SQL_NO_CACHE":
-                case "SQL_CALC_FOUND_ROWS":
-                case "STRAIGHT_JOIN":
-                case "SQL_SMALL_RESULT":
-                case "SQL_BIG_RESULT":
-                case "SQL_BUFFER_RESULT":
-                    expression = super.process(myToken.strip);
-                    expression["delim"] = " ";
-                    myexpressionList ~= expression;
-                    expression = "";
-                    break;
-
-                default:
-                    expression ~= myToken;
-                }
-            }
+            processToken
         }
         if (expression) {
             expression = super.process(expression.strip);
@@ -48,5 +18,42 @@ class SelectProcessor : SelectExpressionProcessor {
             myexpressionList ~= expression;
         }
         return myexpressionList;
+    }
+
+    protected Json processToken(string token, Json expressionList = Json.emptyArray) {
+        Json expression;
+
+        if (this.isCommaToken(token)) {
+            expression = super.process(token.strip);
+            expression["delim"] = ",";
+            myexpressionList ~= expression;
+        } else if (this.isCommentToken(token)) {
+            myexpressionList ~= super.processComment(token);
+        } else {
+            switch (token.toUpper) {
+
+            // add more SELECT options here
+            case "DISTINCT":
+            case "DISTINCTROW":
+            case "HIGH_PRIORITY":
+            case "SQL_CACHE":
+            case "SQL_NO_CACHE":
+            case "SQL_CALC_FOUND_ROWS":
+            case "STRAIGHT_JOIN":
+            case "SQL_SMALL_RESULT":
+            case "SQL_BIG_RESULT":
+            case "SQL_BUFFER_RESULT":
+                expression = super.process(token.strip);
+                expression["delim"] = " ";
+                myexpressionList ~= expression;
+                break;
+
+            default:
+                expression ~= myToken;
+                break;
+            }
+        }
+
+        return expressionList;
     }
 }

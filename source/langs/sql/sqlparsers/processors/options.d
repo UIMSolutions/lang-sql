@@ -4,7 +4,6 @@ import lang.sql;
 
 @safe:
 
-// This file : the processor for the statement options.
 // This class processes the statement options.
 class OptionsProcessor : Processor {
 

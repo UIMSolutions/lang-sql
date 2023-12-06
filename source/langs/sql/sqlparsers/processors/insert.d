@@ -7,16 +7,14 @@ import lang.sql;
 // This class processes the INSERT statements.
 class InsertProcessor : Processor {
 
-    protected Json processOptions(mytokenList) {
-        if (!mytokenList.isSet("OPTIONS")) {
-            return [];
+    protected Json processOptions(Json tokenList) {
+        Json result = Json.emptyArray;
+        if (!tokenList.isSet("OPTIONS")) { return result; }
+        
+        tokenList["OPTIONS"]
+            .each!(result ~= createExpression("RESERVED", mytoken.strip));
         }
-        }
-        myresult = [];
-        foreach (mytokenList["OPTIONS"] as mytoken) {
-            myresult ~= createExpression("RESERVED", "base_expr" : mytoken.strip);
-        }
-        return myresult;
+        return result;
     }
 
     protected Json processKeyword(myKeyword, mytokenList) {

@@ -11,6 +11,7 @@ class PositionBuilder : ISqlBuilder {
     if (!parsedSql.isExpressionType("POSITION")) {
       return "";
     }
+    
     return parsedSql.baseExpression;
   }
 }

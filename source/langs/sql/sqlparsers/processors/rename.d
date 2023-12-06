@@ -9,8 +9,8 @@ class RenameProcessor : Processor {
 
     Json process(mytokenList) {
         string baseExpression = "";
-        myresultList = [];
-        mytablePair = [];
+        Json myresultList = Json.emptyArray;
+        Json mytablePair = Json.emptyObject;
 
         foreach (myKey, myValue; mytokenList) {
             auto myToken = new ExpressionToken(myKey, myValue);
@@ -21,8 +21,8 @@ class RenameProcessor : Processor {
 
             switch (myToken.getUpper()) {
             case "TO":
-            // separate source table from destination
-                mytablePair["source"] = createExpression("TABLE", baseExpression);
+                // separate source table from destination
+                Json mytablePair["source"] = createExpression("TABLE", baseExpression);
                 mytablePair["table"] = baseExpression.strip;
                 mytablePair["no_quotes"] = this.revokeQuotation(baseExpression);
                                       
@@ -30,8 +30,8 @@ class RenameProcessor : Processor {
                 break;
 
             case ",":
-            // split rename operations
-                mytablePair["destination"] = createExpression("TABLE", baseExpression);
+                // split rename operations
+                Json mytablePair["destination"] = createExpression("TABLE", baseExpression);
                 mytablePair["table"] = baseExpression.strip,
                 mytablePair["no_quotes"] = this.revokeQuotation(baseExpression),
                     
@@ -41,8 +41,8 @@ class RenameProcessor : Processor {
                 break;
 
             case "TABLE":
-                myobjectType .isExpressionType(TABLE;
-                myresultList ~= ["expr_type":expressionType("RESERVED", myToken.strip)];   
+                myobjectType = expressionType("TABLE");
+                myresultList ~= createExpression("RESERVED", myToken.strip);   
                 continue 2; 
                 
             default:
@@ -52,13 +52,17 @@ class RenameProcessor : Processor {
         }
 
         if (baseExpression != "") {
-            mytablePair["destination"] = createExpression("TABLE"), "table" : baseExpression.strip,
-                                              "no_quotes" : this.revokeQuotation(baseExpression),
-                                              "base_expr" : baseExpression];
+            Json newExpression = createExpression("TABLE", baseExpression);
+            newExpression["table"] = baseExpression.strip;
+            newExpression["no_quotes"] = this.revokeQuotation(baseExpression);
+            Json mytablePair["destination"] = newExpression;
             myresultList ~= mytablePair;
         }
 
-        return ["expr_type" : myobjectType, "sub_tree": myresultList];
+        Json result = Json.emptyObject;
+        result["expr_type"] = myobjectType;
+        result["sub_tree"] = myresultList;
+        return result; 
     }
 
 }

@@ -14,7 +14,6 @@ interface IProcessor {
     // this auto splits up a SQL statement into easy to "parse" tokens for the SQL processor
     auto splitSQLIntoTokens(string sqlString);
 
-
     Json processComment(myexpression);
 
     // translates an array of objects into an associative array
