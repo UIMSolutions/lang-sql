@@ -6,12 +6,12 @@ import lang.sql;
 // This class processes the UNION statements.
 class UnionProcessor : Processor {
 
-    protected auto processDefault(myToken) {
+    protected Json processDefault(myToken) {
         auto myProcessor = new DefaultProcessor(this.options);
         return myProcessor.process(myToken);
     }
 
-    protected auto processSQL(myToken) {
+    protected Json processSQL(myToken) {
         auto myProcessor = new SQLProcessor(this.options);
         return myProcessor.process(myToken);
     }
@@ -36,7 +36,7 @@ class UnionProcessor : Processor {
      * is supported in each UNION block. (select)(select)union(select) is not legal.
      * The extra queries will be silently ignored.
      */
-    protected auto processMySQLUnion(queries) {
+    protected Json processMySQLUnion(queries) {
         myunionTypes = ["UNION", "UNION ALL"];
         foreach (myUnionType; myunionTypes) {
 
@@ -113,7 +113,7 @@ class UnionProcessor : Processor {
         return queries;
     }
 
-    auto process(myinputArray) {
+    Json process(myinputArray) {
         auto resultputArray = []; // ometimes the parser needs to skip ahead until a particular
         // oken is found
         bool isSkipUntilToken = false;

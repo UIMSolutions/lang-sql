@@ -19,12 +19,12 @@ class TableProcessor : Processor {
     return createExpression("OPERATOR"), "base_expr" : mytoken];
   }
 
-  protected auto processPartitionOptions(mytokens) {
+  protected Json processPartitionOptions(mytokens) {
     auto myProcessor = new PartitionOptionsProcessor(this.options);
     return myProcessor.process(mytokens);
   }
 
-  protected auto processCreateDefinition(mytokens) {
+  protected Json processCreateDefinition(mytokens) {
     auto myProcessor = new CreateDefinitionProcessor(this.options);
     return myProcessor.process(mytokens);
   }
@@ -35,7 +35,7 @@ class TableProcessor : Processor {
    mycategory = "CREATE_DEF";
   }
 
-  auto process(mytokens) {
+  Json process(mytokens) {
 
     currentCategory = "TABLE_NAME";
     Json myResult = Json.emptyObject;

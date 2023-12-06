@@ -7,7 +7,7 @@ import lang.sql;
 // Processes the SELECT expressions.
 class SelectExpressionProcessor : Processor {
 
-    protected auto processExpressionList(myunparsed) {
+    protected Json processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         return myprocessor.process(myunparsed);
     }
@@ -17,7 +17,7 @@ class SelectExpressionProcessor : Processor {
      * We determine what (if any) alias
      * is provided, and we set the type of expression.
      */
-    auto process(myexpression) {
+    Json process(myexpression) {
         string[] tokens = this.splitSQLIntoTokens(myexpression);
         size_t numberOfTokens = tokens.length;
         if (numberOfTokens == 0) {

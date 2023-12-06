@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the VALUES statements.
 class ValuesProcessor : Processor {
 
-    auto process(mytokens) {
+    Json process(mytokens) {
 
         string currentCategory = "";
         myparsed = [];
@@ -92,12 +92,12 @@ class ValuesProcessor : Processor {
         return mytokens;
     }
 
-    protected auto processExpressionList(myunparsed) {
+    protected Json processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         return myProcessor.process(myunparsed);
     }
 
-    protected auto processRecord(myunparsed) {
+    protected Json processRecord(myunparsed) {
         auto myProcessor = new RecordProcessor(this.options);
         return myProcessor.process(myunparsed);
     }

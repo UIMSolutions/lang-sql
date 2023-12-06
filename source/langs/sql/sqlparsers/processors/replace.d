@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the REPLACE statements. 
 class ReplaceProcessor : InsertProcessor {
 
-  auto process(mytokenList, string aTokenCategory = "REPLACE") {
+  Json process(mytokenList, string aTokenCategory = "REPLACE") {
     return super.process(mytokenList, aTokenCategory);
   }
 

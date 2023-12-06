@@ -15,7 +15,7 @@ class ReferenceDefinitionProcessor : Processor {
         return myExpression;
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
 
        myExpression = createExpression("REFERENCE"), "base_expr" : false, "sub_tree" : []];
         baseExpression = "";

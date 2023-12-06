@@ -15,7 +15,7 @@ class SQLChunkProcessor : Processor {
     sqlOut["TABLE"].remove("like");
   }
 
-  auto process(sqlOut) {
+  Json process(sqlOut) {
     if (!sqlOut) { return false; }
 
     if (!sqlOut["BRACKET"].isEmpty) {

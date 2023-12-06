@@ -6,7 +6,7 @@ import lang.sql;
 // This class processes Oracle"s WITH statements.
 class WithProcessor : Processor {
 
-    protected auto processTopLevel(mysql) {
+    protected Json processTopLevel(mysql) {
     	auto myProcessor = new DefaultProcessor(this.options);
     	return myProcessor.process(mysql);
     }
@@ -15,7 +15,7 @@ class WithProcessor : Processor {
     	return createExpression("TEMPORARY_TABLE"), "name":aToken, "base_expr" : aToken, "no_quotes" : this.revokeQuotation(aToken)];
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
     	auto result = [];
         auto myresultList = [];
         string myCategory = "";

@@ -7,7 +7,7 @@ import lang.sql;
 // Processes the SET statements.
 class SetProcessor : Processor {
 
-    protected auto processExpressionList(tokens) {
+    protected Json processExpressionList(tokens) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         return myProcessor.process(tokens);
     }
@@ -16,7 +16,7 @@ class SetProcessor : Processor {
      * A SET list is simply a list of key = value expressions separated by comma (,).
      * This auto produces a list of the key/value expressions.
      */
-    protected auto processAssignment(baseExpression) {
+    protected Json processAssignment(baseExpression) {
         auto myAssignment = this.processExpressionList(this.splitSQLIntoTokens(baseExpression));
 
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
@@ -26,7 +26,7 @@ class SetProcessor : Processor {
         return newExpression; 
     }
 
-    auto process(string[] tokens, bool isUpdate = false) {
+    Json process(string[] tokens, bool isUpdate = false) {
         Json result;
         string baseExpression = "";
         bool anAssignment = false;

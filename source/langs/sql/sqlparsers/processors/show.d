@@ -16,7 +16,7 @@ class ShowProcessor : Processor {
         _limitProcessor = new LimitProcessor(myoptions);
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
         auto myresultList = [];
         auto myCategory = "";
         auto myPrevious = "";
