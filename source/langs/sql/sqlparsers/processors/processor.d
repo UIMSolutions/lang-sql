@@ -17,7 +17,7 @@ abstract class DProcessor {
      * This auto : the main functionality of a processor class.
      * Always use default valuses for additional parameters within overridden functions.
      */
-    abstract auto process(mytokens);
+    abstract Json process(mytokens);
 
     /**
      * this auto splits up a SQL statement into easy to "parse"
@@ -246,7 +246,7 @@ abstract class DProcessor {
         return result.isSet("expr_type") && result["expr_type"].isExpressionType("COMMENT");
     }
 
-    auto processComment(myexpression) {
+    Json processComment(myexpression) {
         auto results = [];
         results["expr_type"] = expressionType("COMMENT");
         results["value"] = myexpression;

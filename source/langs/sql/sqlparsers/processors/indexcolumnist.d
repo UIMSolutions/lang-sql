@@ -9,7 +9,7 @@ class IndexColumnListProcessor : Processor {
         return ["name" : false, "no_quotes" : false, "length" : false, "dir" : false];
     }
 
-    auto process(mysql) {
+    Json process(mysql) {
         mytokens = this.splitSQLIntoTokens(mysql);
 
        myExpression = this.initExpression();

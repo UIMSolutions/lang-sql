@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the INSERT statements.
 class InsertProcessor : Processor {
 
-    protected auto processOptions(mytokenList) {
+    protected Json processOptions(mytokenList) {
         if (!mytokenList.isSet("OPTIONS")) {
             return [];
         }
@@ -19,7 +19,7 @@ class InsertProcessor : Processor {
         return myresult;
     }
 
-    protected auto processKeyword(myKeyword, mytokenList) {
+    protected Json processKeyword(myKeyword, mytokenList) {
         if (!mytokenList.isSet(myKeyword)) {
             return ["", false, []);
         }
@@ -60,7 +60,7 @@ class InsertProcessor : Processor {
         return [myTable, mycols, myresult);
     }
 
-    protected auto processColumns(mycols) {
+    protected Json processColumns(mycols) {
         if (mycols == false) {
             return mycols;
         }
@@ -82,7 +82,7 @@ class InsertProcessor : Processor {
         return myparsed;
     }
 
-    auto process(mytokenList, mytoken_category = "INSERT") {
+    Json process(mytokenList, mytoken_category = "INSERT") {
         string myTable = "";
         mycols = false;
         mycomments = [];

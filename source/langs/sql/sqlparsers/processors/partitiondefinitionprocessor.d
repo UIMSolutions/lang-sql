@@ -7,14 +7,14 @@ import lang.sql;
 // This class processes the PARTITION statements within CREATE TABLE.
 class PartitionDefinitionProcessor : Processor {
 
-    protected auto processExpressionList(myunparsed) {
+    protected Json processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
        myExpression = this.removeParenthesisFromStart(myunparsed);
         auto myTokens = this.splitSQLIntoTokens(myExpression);
         return myProcessor.process(myTokens);
     }
 
-    protected auto processSubpartitionDefinition(myunparsed) {
+    protected Json processSubpartitionDefinition(myunparsed) {
         auto myProcessor = new SubpartitionDefinitionProcessor(this.options);
        myExpression = this.removeParenthesisFromStart(myunparsed);
         auto myTokens = this.splitSQLIntoTokens(myExpression);
@@ -37,7 +37,7 @@ class PartitionDefinitionProcessor : Processor {
         return createExpression("BRACKET_EXPRESSION"), "base_expr" : mytoken, "sub_tree" : false];
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
 
         myresult = [];
         string myPreviousCategory = "";

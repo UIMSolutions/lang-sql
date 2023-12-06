@@ -6,7 +6,7 @@ module langs.sql.sqlparsers.processors.limit;
   */
 class LimitProcessor : Processor {
 
-    auto process(mytokens) {
+    Json process(mytokens) {
         string countRows = "";
         string offset = "";
 

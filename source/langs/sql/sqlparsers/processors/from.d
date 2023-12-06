@@ -10,17 +10,17 @@ import lang.sql;
  * */
 class FromProcessor : Processor {
 
-    protected auto processExpressionList(myunparsed) {
+    protected Json processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         return myProcessor.process(myunparsed);
     }
 
-    protected auto processColumnList(myunparsed) {
+    protected Json processColumnList(myunparsed) {
         auto myProcessor = new ColumnListProcessor(this.options);
         return myProcessor.process(myunparsed);
     }
 
-    protected auto processSQLDefault(myunparsed) {
+    protected Json processSQLDefault(myunparsed) {
         auto myProcessor = new DefaultProcessor(this.options);
         return myProcessor.process(myunparsed);
     }
@@ -47,7 +47,7 @@ class FromProcessor : Processor {
         return result;
     }
 
-    protected auto processFromExpression(&parseInfo) {
+    protected Json processFromExpression(&parseInfo) {
         result = [];
 
         if (parseInfo["hints"].isEmpty) {
@@ -118,7 +118,7 @@ class FromProcessor : Processor {
         return result;
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
         auto parseInfo = this.initParseInfo();
         auto myExpression = [];
         string tokenCategory = "";

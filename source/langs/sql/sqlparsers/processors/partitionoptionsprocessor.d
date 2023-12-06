@@ -7,20 +7,20 @@ import lang.sql;
 // This class processes the PARTITION BY statements within CREATE TABLE.
 class PartitionOptionsProcessor : Processor {
 
-    protected auto processExpressionList(myunparsed) {
+    protected Json processExpressionList(myunparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         auto myExpression = this.removeParenthesisFromStart(myunparsed);
        myExpression = this.splitSQLIntoTokens(myExpression);
         return myProcessor.process(myExpression);
     }
 
-    protected auto processColumnList(myunparsed) {
+    protected Json processColumnList(myunparsed) {
         auto myProcessor = new ColumnListProcessor(this.options);
        myExpression = this.removeParenthesisFromStart(myunparsed);
         return myProcessor.process(myExpression);
     }
 
-    protected auto processPartitionDefinition(myunparsed) {
+    protected Json processPartitionDefinition(myunparsed) {
         auto myProcessor = new PartitionDefinitionProcessor(this.options);
         auto myExpression = this.removeParenthesisFromStart(myunparsed);
        myExpression = this.splitSQLIntoTokens(myExpression);
@@ -43,7 +43,7 @@ class PartitionOptionsProcessor : Processor {
         return createExpression("BRACKET_EXPRESSION", mytoken, "sub_tree" : false];
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
 
         Json result = Json.emptyObject;
         result["partition-options"] = Json.emptyArray;

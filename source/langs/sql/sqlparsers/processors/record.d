@@ -6,12 +6,12 @@ import lang.sql;
 // This class processes records of an INSERT statement.
 class RecordProcessor : Processor {
 
-  protected auto processExpressionList(Json unparsed) {
+  protected Json processExpressionList(Json unparsed) {
     auto myProcessor = new ExpressionListProcessor(this.options);
     return myProcessor.process(unparsed);
   }
 
-  auto process(Json unparsed) {
+  Json process(Json unparsed) {
     auto unparsedCorrected = this.removeParenthesisFromStart(unparsed);
     auto myTokens = this.splitSQLIntoTokens(unparsedCorrected);
 

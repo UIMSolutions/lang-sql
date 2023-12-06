@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the parentheses around the statement.
 class BracketProcessor : Processor {
 
-  auto process(string[] someTokens) {
+  Json process(string[] someTokens) {
     string myToken = this.removeParenthesisFromStart(someTokens[0]);
     Json myProcessTopLevel = this.processTopLevel(myToken);
 
@@ -29,7 +29,7 @@ class BracketProcessor : Processor {
     return [result];
   }
 
-  protected auto processTopLevel(mysql) {
+  protected Json processTopLevel(mysql) {
     auto myProcessor = new DefaultProcessor(this.options);
     return myProcessor.process(mysql);
   }

@@ -7,22 +7,22 @@ import lang.sql;
 // This class processes the create definition of the TABLE statements.
 class CreateDefinitionProcessor : Processor {
 
-    protected auto processExpressionList(myparsed) {
+    protected Json processExpressionList(myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
         return myProcessor.process(myparsed);
     }
 
-    protected auto processIndexColumnList(myparsed) {
+    protected Json processIndexColumnList(myparsed) {
         auto myProcessor = new IndexColumnListProcessor(this.options);
         return myProcessor.process(myparsed);
     }
 
-    protected auto processColumnDefinition(myparsed) {
+    protected Json processColumnDefinition(myparsed) {
         auto myProcessor = new ColumnDefinitionProcessor(this.options);
         return myProcessor.process(myparsed);
     }
 
-    protected auto processReferenceDefinition(myparsed) {
+    protected Json processReferenceDefinition(myparsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
         return myProcessorr.process(myparsed);
     }
@@ -54,7 +54,7 @@ class CreateDefinitionProcessor : Processor {
         return mytype;
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
 
         string baseExpression = "";
         string prevCategory = "";

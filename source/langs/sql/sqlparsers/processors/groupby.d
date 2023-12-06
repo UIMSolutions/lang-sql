@@ -6,7 +6,7 @@ import lang.sql;
 // This class processes the GROUP-BY statements.
 class GroupByProcessor : OrderByProcessor {
 
-    auto process(tokens, myselect = []) {
+    Json process(tokens, myselect = []) {
         result = [];
         myparseInfo = this.initParseInfo();
 

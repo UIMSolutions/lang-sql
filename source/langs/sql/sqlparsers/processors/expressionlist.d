@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes expression lists.
 class ExpressionListProcessor : Processor {
 
-    auto process(tokens) {
+    Json process(tokens) {
         myresultList = [];
         bool isSkipNext = false;
         myprev = new ExpressionToken();

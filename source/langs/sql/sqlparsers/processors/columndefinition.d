@@ -11,7 +11,7 @@ import lang.sql;
  * */
 class ColumnDefinitionProcessor : Processor {
 
-    protected auto processExpressionList(myparsed) {
+    protected Json processExpressionList(myparsed) {
         auto myProcessor = new ExpressionListProcessor(this.options);
        myExpression = this.removeParenthesisFromStart(myparsed);
        myExpression = this.splitSQLIntoTokens(myExpression);
@@ -19,7 +19,7 @@ class ColumnDefinitionProcessor : Processor {
         return myProcessor.process(myExpression);
     }
 
-    protected auto processReferenceDefinition(myparsed) {
+    protected Json processReferenceDefinition(myparsed) {
         auto myProcessor = new ReferenceDefinitionProcessor(this.options);
         return myProcessor.process(myparsed);
     }
@@ -51,7 +51,7 @@ class ColumnDefinitionProcessor : Processor {
         return myExpression;
     }
 
-    auto process(mytokens) {
+    Json process(mytokens) {
         string baseExpression = "";
         string currentCategory = "";
        myExpression = [];

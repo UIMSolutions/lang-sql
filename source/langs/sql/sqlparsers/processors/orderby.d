@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the ORDER-BY statements.
 class OrderByProcessor : Processor {
 
-    protected auto processSelectExpression(myunparsed) {
+    protected Json processSelectExpression(myunparsed) {
         auto myProcessor = new SelectExpressionProcessor(this.options);
         return myProcessor.process(myunparsed);
     }
@@ -18,7 +18,7 @@ class OrderByProcessor : Processor {
         return result;
     }
 
-    protected auto processOrderExpression(& Json parseInfo, myselect) {
+    protected Json processOrderExpression(& Json parseInfo, myselect) {
         parseInfo["base_expr"] = parseInfo.baseExpression.strip;
 
         if (parseInfo.baseExpression.isEmpty) {
@@ -59,7 +59,7 @@ class OrderByProcessor : Processor {
         return result;
     }
 
-    auto process(mytokens, myselect = []) {
+    Json process(mytokens, myselect = []) {
         result  = [];
         parseInfo = this.initParseInfo();
 

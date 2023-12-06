@@ -17,7 +17,7 @@ class ExplainProcessor : Processor {
   }
 
   // TODO: refactor that function
-  auto process(tokens, myKeys = []) {
+  Json process(tokens, myKeys = []) {
 
     string baseExpression = "";
     Json myExpression;

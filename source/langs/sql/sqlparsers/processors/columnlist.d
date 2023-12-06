@@ -6,7 +6,7 @@ import lang.sql;
 
 // This class processes column-lists.
 class ColumnListProcessor : Processor {
-  auto process(string stringWithTokens) {
+  Json process(string stringWithTokens) {
     string[] tokenNames = stringWithTokens.split(",");
     Json myColumns = Json.emptyArray;
     foreach (myKey, myTokenName; tokenNames) {

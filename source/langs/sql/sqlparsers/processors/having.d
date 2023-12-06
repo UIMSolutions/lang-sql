@@ -7,7 +7,7 @@ import lang.sql;
 // Parses the HAVING statements. 
 class HavingProcessor : ExpressionListProcessor {
 
-  auto process(mytokens, myselect = []) {
+  Json process(mytokens, myselect = []) {
     Json parsed = super.process(mytokens);
 
     parsed.byKeyValue

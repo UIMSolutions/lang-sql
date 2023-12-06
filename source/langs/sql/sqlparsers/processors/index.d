@@ -7,7 +7,7 @@ import lang.sql;
 // This class processes the INDEX statements.
 class IndexProcessor : Processor {
 
-  auto process(mytokens) {
+  Json process(mytokens) {
 
     string myCurrentCategory = "INDEX_NAME";
     auto result = ["base_expr": false, "name": false, "no_quotes": false, "index-type": false, "on": false, "options": []];
@@ -236,7 +236,7 @@ class IndexProcessor : Processor {
     return ["expr_type": expressionType("OPERATOR"), "base_expr": myToken];
   }
 
-  protected auto processIndexColumnList(myparsed) {
+  protected Json processIndexColumnList(myparsed) {
     auto myProcessor = new IndexColumnListProcessor(this.options);
     return myProcessor.process(myparsed);
   }

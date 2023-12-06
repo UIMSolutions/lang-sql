@@ -10,7 +10,7 @@ import lang.sql;
  */
 class CreateProcessor : Processor {
 
-    auto process(mytokens) {
+    Json process(mytokens) {
         myresult = myExpression = [];
         string baseExpression = "";
 

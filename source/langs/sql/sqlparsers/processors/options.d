@@ -8,7 +8,7 @@ import lang.sql;
 // This class processes the statement options.
 class OptionsProcessor : Processor {
 
-  auto process(mytokens) {
+  Json process(mytokens) {
     Json results = Json.emptyArray;
 
     foreach (myToken; mytokens) {

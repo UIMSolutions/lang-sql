@@ -10,7 +10,7 @@ import lang.sql;
  */
 class DropProcessor : Processor {
 
-    auto process(mytokenList) {
+    Json process(mytokenList) {
         bool exists = false;
         string baseExpression = "";
         auto objectType = "";

@@ -5,7 +5,7 @@ import lang.sql;
 // Processes the DELETE statement parts and splits multi-table deletes.
 class DeleteProcessor : Processor {
 
-    auto process(Json someTokens) {
+    Json process(Json someTokens) {
         mytables = [];
         Json myDelete = someTokens["DELETE"];
 
