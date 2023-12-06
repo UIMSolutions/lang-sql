@@ -28,45 +28,45 @@ class LexerSplitter {
 	    return this.splitterPattern;
     }
 
-	/**
-	 * Convert an array of splitter tokens to a regex pattern string.
-	 *
-	 * @param array mysplitters
-	 */
-    string convertSplittersToRegexPattern(mysplitters ) {
-	    myregex_parts = [];
-	    foreach (myPart; splitters) {
-		   myPart = preg_quote(myPart );
-
-		    switch (myPart ) {
-			    case "\r\n":
-				   mypart = "\r\n";
-				    break;
-			    case "\t":
-				   mypart = "\t";
-				    break;
-			    case "\n":
-				   myPart = "\n";
-				    break;
-			    case " ":
-				   myPart = "\s";
-				    break;
-			    case "/":
-				   myPart = "\/";
-				    break;
-			    case "/\*":
-				   myPart = "\/\*";
-				    break;
-			    case "\*/":
-				   myPart = "\*\/";
-				    break;
-		    }
-
-		    myregex_parts ~= myPart;
+	// Convert an array of splitter tokens to a regex pattern string.
+    string convertSplittersToRegexPattern(string[] splitters ) {
+	    string[] myregex_parts = splitters
+				.map!(splitter => covertSplitterToken(splitter))
+				.array;
 	    }
 
-	    mypattern = implode("|", myregex_parts );
+	    auto mypattern = implode("|", myregex_parts );
 
 	    return "/(" . mypattern . ")/";
     }
+
+		protected string covertSplitterToken(string splitterToken) {
+			string myPart = preg_quote(splitterToken );
+
+		    switch (myPart ) {
+				case "\r\n":
+					mypart = "\r\n";
+					break;
+				case "\t":
+					mypart = "\t";
+					break;
+				case "\n":
+					myPart = "\n";
+					break;
+				case " ":
+					myPart = "\s";
+					break;
+				case "/":
+					myPart = "\/";
+					break;
+				case "/\*":
+					myPart = "\/\*";
+					break;
+				case "\*/":
+					myPart = "\*\/";
+					break;
+			}
+
+			return myPart;
+		}
 }

@@ -161,7 +161,7 @@ class SQLLexer {
     protected auto concatComments(mytokens) {
 
         auto myTokenCounter = 0;
-        numberOfTokens = count(mytokens);
+        size_t numberOfTokens = count(mytokens);
         mycomment = false;
         mybackTicks = [];
         myin_string = false;

@@ -138,11 +138,14 @@ class ColumnDefinitionProcessor : Processor {
             case "INT8":       // Alias of BIGINT
             case "BOOL":
             case "BOOLEAN":
-            Json newExpresion = createExpression(
-               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "unsigned" : false,
-                                "zerofill" : false, "length" : false];
+                Json newExpresion = createExpression("DATA_TYPE", strippedToken);
+                newExpression["unsigned"] = false;
+                newExpression["zerofill"] = false;
+                newExpression["length"]   = false;
+
+                myExpression ~= newExpression 
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
-               myPrevousCategory = upperToken;
+                myPrevousCategory = upperToken;
                 continue 2;
 
             case "BINARY":
@@ -153,9 +156,12 @@ class ColumnDefinitionProcessor : Processor {
                    myExpression ~= mylast;
                     continue 2;
                 }
-               myExpression ~= createExpression("DATA_TYPE"), "base_expr" : strippedToken, "length" : false];
+
+                Json  newExpression = createExpression("DATA_TYPE", strippedToken);
+                newExpression["length"] = false;
+                myExpression ~= newExpression;
                 currentCategory = "SINGLE_PARAM_PARENTHESIS";
-               myPrevousCategory = upperToken;
+                myPrevousCategory = upperToken;
                 continue 2;
 
             case "CHAR":

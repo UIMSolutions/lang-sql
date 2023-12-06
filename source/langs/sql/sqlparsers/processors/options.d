@@ -9,24 +9,23 @@ import lang.sql;
 class OptionsProcessor : Processor {
 
   auto process(mytokens) {
-    myresultList = [];
+    Json results = Json.emptyArray;
 
     foreach (myToken; mytokens) {
 
-      mytokenList = this.splitSQLIntoTokens(myToken);
-      myresult = [];
+      auto myTokenList = this.splitSQLIntoTokens(myToken);
+      auto myresult =  mytokenList
+        .map!(token => token.strip)
+        .filter!(token => !token.isEmpty)
+        .map!(token => createExpression("RESERVED", token))
+        .array;
 
-      foreach (myReserved; mytokenList) {
-        auto strippedToken = myReserved.strip;
-        if (strippedToken.isEmpty) {
-          continue;
-        }
+      Json newExpression = createExpression("EXPRESSION", myToken.strip);
+      newExpression["sub_tree"] = myresult;
 
-        myresult ~= ["expr_type": expressionType("RESERVED"), "base_expr": strippedToken];
-      }
-      myresultList ~= ["expr_type": expressionType("EXPRESSION"), "base_expr": myToken.strip, "sub_tree": myresult];
+      results ~= newExpression;
     }
 
-    return myresultList;
+    return results;
   }
 }

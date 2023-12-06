@@ -7,11 +7,6 @@ import lang.sql;
 // This class processes the parentheses around the statement.
 class BracketProcessor : Processor {
 
-  protected auto processTopLevel(mysql) {
-    auto myProcessor = new DefaultProcessor(this.options);
-    return myProcessor.process(mysql);
-  }
-
   auto process(string[] someTokens) {
     string myToken = this.removeParenthesisFromStart(someTokens[0]);
     Json myProcessTopLevel = this.processTopLevel(myToken);
@@ -32,6 +27,11 @@ class BracketProcessor : Processor {
     result["remaining_expressions"] = myRemainingExpressions;
 
     return [result];
+  }
+
+  protected auto processTopLevel(mysql) {
+    auto myProcessor = new DefaultProcessor(this.options);
+    return myProcessor.process(mysql);
   }
 
   private auto getRemainingNotBracketExpression(subtree) {

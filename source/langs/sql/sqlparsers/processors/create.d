@@ -30,20 +30,20 @@ class CreateProcessor : Processor {
                 // CREATE TEMPORARY TABLE
                 myresult["expr_type"] .isExpressionType("TEMPORARY_TABLE");
                 myresult["not-exists"] = false;
-               myExpression ~= createExpression("RESERVED", "base_expr" : strippedToken];
+                myExpression ~= createExpression("RESERVED", strippedToken);
                 break;
 
             case "TABLE":
                 // CREATE TABLE
                 myresult["expr_type"] =  expressionType("TABLE");
                 myresult["not-exists"] = false;
-               myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED", strippedToken);
                 break;
 
             case "INDEX":
                 // CREATE INDEX
-                myresult["expr_type"] .isExpressionType(INDEX;
-               myExpression ~= createExpression("RESERVED", "base_expr" : strippedToken);
+                myresult["expr_type"].isExpressionType("INDEX");
+                myExpression ~= createExpression("RESERVED", strippedToken);
                 break;
 
             case "UNIQUE":
@@ -52,17 +52,19 @@ class CreateProcessor : Processor {
                 // options of CREATE INDEX
                 myresult["base_expr"] = myresult["expr_type"] = false;
                 myresult["constraint"] = upperToken; 
-               myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
+                myExpression ~= createExpression("RESERVED", strippedToken);
                 break;                
                                 
             case "IF":
                 // option of CREATE TABLE
-               myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
+                Json newExpression = createExpression("RESERVED", strippedToken);
+                myExpression ~= newExpression;                  
                 break;
 
             case "NOT":
                 // option of CREATE TABLE
-               myExpression ~= createExpression("RESERVED"), "base_expr" : strippedToken);
+                Json newExpression = createExpression("RESERVED", strippedToken);
+                myExpression ~= newExpression;
                 break;
 
             case "EXISTS":

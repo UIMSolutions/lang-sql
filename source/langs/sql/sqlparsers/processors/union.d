@@ -73,8 +73,7 @@ class UnionProcessor : Processor {
      * Moves the final union query into a separate output, so the remainder (such as ORDER BY) can
      * be processed separately.
      */
-    protected auto splitUnionRemainder(
-        queries, isUnionType, resultputArray) {
+    protected auto splitUnionRemainder(queries, isUnionType, resultputArray) {
         myfinalQuery = []; //If this token contains a matching pair of brackets at the start and end, use it as the final query
         myfinalQueryFound = false;
         if (resultputArray.length == 1) {

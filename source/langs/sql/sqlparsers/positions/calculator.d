@@ -5,8 +5,6 @@ import lang.sql;
 @safe:
 
 /**
- *  * This class : the calculator for the string positions of the 
- * base_expr elements within the output of the SqlParser.
  This class : the calculator for the string positions of the 
  * base_expr elements within the output of the SqlParser. */
 class PositionCalculator {

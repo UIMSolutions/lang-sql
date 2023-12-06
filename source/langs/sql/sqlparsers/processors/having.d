@@ -20,11 +20,7 @@ class HavingProcessor : ExpressionListProcessor {
     if (myValue.isExpressionType("COLREF")) {
       foreach (myClause; aValue) {
         auto aliasClause = myClause.get("alias", null);
-        if (aliasClause.isNull) {
-          continue;
-        }
-
-        if (!aliasClause) {
+        if (aliasClause.isNull || !aliasClause) {
           continue;
         }
         
