@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.join;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the JOIN statement parts (within FROM).

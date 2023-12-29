@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.optionsx;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 final class Options {

@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.sqlcreator;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

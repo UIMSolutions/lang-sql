@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.direction;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds direction (e.g. of the order-by clause).

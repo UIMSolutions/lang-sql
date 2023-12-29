@@ -1,6 +1,6 @@
 module langs.sql.interfaces.processor;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 
