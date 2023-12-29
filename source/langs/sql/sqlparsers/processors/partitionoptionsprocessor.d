@@ -80,14 +80,14 @@ class PartitionOptionsProcessor : Processor {
                 currentCategory = upperToken;
                myExpression ~= this.getReservedType(strippedToken);
                 parsed = createExpression("PARTITION", baseExpression.strip);
-                parsed["sub_tree"] = false;
+                parsed["sub_tree"] ~= false;
                 break;
 
             case "SUBPARTITION":
                 currentCategory = upperToken;
                myExpression ~= this.getReservedType(strippedToken);
                 parsed = createExpression("SUBPARTITION", baseExpression.strip);
-                parsed["sub_tree"] = false;
+                parsed["sub_tree"] ~= false;
                 break;
 
             case "BY":
@@ -120,7 +120,7 @@ class PartitionOptionsProcessor : Processor {
 
                 mylast = array_pop(myparsed);
                 mylast["by"] = (currentCategory . " " ~ upperToken).strip; // currentCategory will be empty or LINEAR!
-                mylast["sub_tree"] = myExpression;
+                mylast["sub_tree"] ~= myExpression;
                 myparsed ~= mylast;
 
                 baseExpression = mytoken;
@@ -132,13 +132,13 @@ class PartitionOptionsProcessor : Processor {
             case "ALGORITHM":
                 if (currentCategory == "KEY") {
                     Json newExpression = createExpression(constant("SqlParser\utils\expressionType(" ~ previousCategory ~ "_KEY_ALGORITHM"), false);
-                    newExpression["sub_tree"] = false;
+                    newExpression["sub_tree"] ~= false;
                     newExpression["storage"] = baseExpression[0..$-mytoken.length];
                     myExpression ~= newExpression;
 
                     mylast = array_pop(myparsed);
                     mysubtree = array_pop(mylast["sub_tree"]);
-                    mysubtree["sub_tree"] = myExpression;
+                    mysubtree["sub_tree"] ~= myExpression;
                     mylast["sub_tree"] ~= mysubtree;
                     myparsed ~= mylast;
                     unset(mysubtree);
@@ -158,7 +158,7 @@ class PartitionOptionsProcessor : Processor {
 
                 mylast = array_pop(myparsed);
                 mylast["by"] = upperToken;
-                mylast["sub_tree"] = myExpression;
+                mylast["sub_tree"] ~= myExpression;
                 myparsed ~= mylast;
                 unset(mylast);
 
@@ -214,7 +214,7 @@ class PartitionOptionsProcessor : Processor {
                     mysubtree = array_pop(mylast["sub_tree"]);
                    myKey = array_pop(mysubtree["sub_tree"]);
 
-                   myKey["sub_tree"] = myExpression;
+                   myKey["sub_tree"] ~= myExpression;
                    myKey["base_expr"] = baseExpression.strip;
 
                     baseExpression = myKey["storage"] . baseExpression;
@@ -224,7 +224,7 @@ class PartitionOptionsProcessor : Processor {
                     unset(myKey);
 
                    myExpression = mysubtree["sub_tree"];
-                    mysubtree["sub_tree"] = false;
+                    mysubtree["sub_tree"] ~= false;
                     mysubtree["algorithm"] = strippedToken;
                     mylast["sub_tree"] ~= mysubtree;
                     unset(mysubtree);
@@ -240,13 +240,13 @@ class PartitionOptionsProcessor : Processor {
                 // parenthesis around an expression
                     mylast = this.getBracketExpressionType(strippedToken);
                     myres = this.processExpressionList(strippedToken);
-                    mylast["sub_tree"] = (myres.isEmpty ? false : myres);
+                    mylast["sub_tree"] ~= (myres.isEmpty ? false : myres);
                    myExpression ~= mylast;
 
                     mylast = array_pop(myparsed);
                     mysubtree = array_pop(mylast["sub_tree"]);
                     mysubtree["base_expr"] = baseExpression;
-                    mysubtree["sub_tree"] = myExpression;
+                    mysubtree["sub_tree"] ~= myExpression;
 
                     baseExpression = mysubtree["storage"] ~ baseExpression;
                     unset(mysubtree["storage"]);
@@ -266,12 +266,12 @@ class PartitionOptionsProcessor : Processor {
                 case "KEY":
                 // the columnlist
                    myExpression = createExpression("COLUMN_LIST", strippedToken);
-                   myExpression["sub_tree"] = this.processColumnList(strippedToken);
+                   myExpression["sub_tree"] ~= this.processColumnList(strippedToken);
 
                     mylast = array_pop(myparsed);
                     mysubtree = array_pop(mylast["sub_tree"]);
                     mysubtree["base_expr"] = baseExpression;
-                    mysubtree["sub_tree"] = myExpression;
+                    mysubtree["sub_tree"] ~= myExpression;
 
                     baseExpression = mysubtree["storage"].get!string ~ baseExpression;
                     mysubtree.remove("storage");
@@ -291,7 +291,7 @@ class PartitionOptionsProcessor : Processor {
                         if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                             // last part to process, it is only one token!
                             mylast = this.getBracketExpressionType(strippedToken);
-                            mylast["sub_tree"] = this.processPartitionDefinition(strippedToken);
+                            mylast["sub_tree"] ~= this.processPartitionDefinition(strippedToken);
                             myparsed ~= mylast;
                             break;
                         }

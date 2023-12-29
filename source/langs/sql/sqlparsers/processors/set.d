@@ -22,7 +22,7 @@ class SetProcessor : Processor {
         // TODO: if the left side of the assignment is a reserved keyword, it should be changed to colref
 
         Json newExpression = createExpression("EXPRESSION", baseExpression.strip);
-        newExpression["sub_tree"] = myAssignment.isEmpty ? false : myAssignment;
+        newExpression["sub_tree"] ~= myAssignment.isEmpty ? false : myAssignment;
         return newExpression; 
     }
 
@@ -53,7 +53,7 @@ class SetProcessor : Processor {
                 if (!isUpdate && isVarType != false) {
                     Json assignItem = Json.emptyObject;
                     assignItem["expr_type"] = isVarType;
-                    myAssignment["sub_tree"] = Json.emptyArray;
+                    myAssignment["sub_tree"] ~= Json.emptyArray;
                     myAssignment["sub_tree"] ~= assignItem;
                 }
                 result = myAssignment;

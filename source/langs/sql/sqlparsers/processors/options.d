@@ -20,7 +20,7 @@ class OptionsProcessor : Processor {
         .array;
 
       Json newExpression = createExpression("EXPRESSION", myToken.strip);
-      newExpression["sub_tree"] = myresult;
+      newExpression["sub_tree"] ~= myresult;
 
       results ~= newExpression;
     }

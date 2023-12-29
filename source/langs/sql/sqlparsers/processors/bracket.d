@@ -19,11 +19,11 @@ class BracketProcessor : Processor {
 
     if (myProcessTopLevel.isSet("SELECT")) {
      myProcessTopLevel = createExpression("QUERY", myToken);
-     myProcessTopLevel["sub_tree"] = myProcessTopLevel;
+     myProcessTopLevel["sub_tree"] ~= myProcessTopLevel;
     }
 
     Json result = createExpression("BRACKET_EXPRESSION", someTokens[0].strip);
-    result["sub_tree"] = myProcessTopLevel;
+    result["sub_tree"] ~= myProcessTopLevel;
     result["remaining_expressions"] = myRemainingExpressions;
 
     return [result];

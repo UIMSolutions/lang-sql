@@ -61,7 +61,7 @@ class RenameProcessor : Processor {
 
         Json result = Json.emptyObject;
         result["expr_type"] = myobjectType;
-        result["sub_tree"] = myresultList;
+        result["sub_tree"] ~= myresultList;
         return result; 
     }
 

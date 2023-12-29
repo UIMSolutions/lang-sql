@@ -78,7 +78,7 @@ class CreateProcessor : Processor {
             }
         }
         myresult["base_expr"] = baseExpression.strip;
-        myresult["sub_tree"] = myExpression;
+        myresult["sub_tree"] ~= myExpression;
         return myresult;
     }
 }

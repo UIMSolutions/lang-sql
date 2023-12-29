@@ -304,7 +304,7 @@ class CreateDefinitionProcessor : Processor {
                 // constraint name
                     mylast = array_pop(myExpression);
                     mylast["base_expr"] = baseExpression;
-                    mylast["sub_tree"] = createExpression("CONSTANT"), "base_expr": strippedToken];
+                    mylast["sub_tree"] ~= createExpression("CONSTANT"), "base_expr": strippedToken];
                    myExpression ~= mylast;
                     continue 3;
 

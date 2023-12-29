@@ -108,7 +108,7 @@ class IndexProcessor : Processor {
         case "COLUMN_DEF" : if (upperToken[0] == "(" && substr(upperToken,  - 1) == ")") {
             mycols = this.processIndexColumnList(this.removeParenthesisFromStart(strippedToken));
             myresult["on"].baseExpression ~= baseExpression;
-            myresult["on"]["sub_tree"] = ["expr_type": expressionType("COLUMN_LIST"),
+            myresult["on"]["sub_tree"] ~= ["expr_type": expressionType("COLUMN_LIST"),
               "base_expr": strippedToken, "sub_tree": mycols];
           }
 

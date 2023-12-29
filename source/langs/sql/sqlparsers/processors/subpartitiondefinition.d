@@ -72,7 +72,7 @@ class SubpartitionDefinitionProcessor : Processor {
                    myExpression ~= createExpression("SUBPARTITION_COMMENT"), "base_expr" : false,
                                     "sub_tree" : false, "storage" : substr(baseExpression, 0, -myToken.length)];
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = myToken;
                    myExpression = [this.getReservedType(strippedToken)];
 
@@ -88,7 +88,7 @@ class SubpartitionDefinitionProcessor : Processor {
                    myExpression ~= createExpression("ENGINE"), "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -myToken.length)];
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = myToken;
                    myExpression = [this.getReservedType(strippedToken)];
 
@@ -108,7 +108,7 @@ class SubpartitionDefinitionProcessor : Processor {
                    myExpression ~= createExpression("ENGINE"), "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -myToken.length)];
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = myToken;
                    myExpression = [this.getReservedType(strippedToken)];
                     
@@ -144,7 +144,7 @@ class SubpartitionDefinitionProcessor : Processor {
                                     "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -myToken.length)];
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = myToken;
                    myExpression = [this.getReservedType(strippedToken)];
 
@@ -170,7 +170,7 @@ class SubpartitionDefinitionProcessor : Processor {
                                     "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, -myToken.length)];
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = myToken;
                    myExpression = [this.getReservedType(strippedToken)];
 
@@ -204,7 +204,7 @@ class SubpartitionDefinitionProcessor : Processor {
                    myExpression ~= this.getConstantType(strippedToken);
 
                     mylast = array_pop(myparsed["sub_tree"]);
-                    mylast["sub_tree"] = myExpression;
+                    mylast["sub_tree"] ~= myExpression;
                     mylast["base_expr"] = baseExpression.strip;
                     baseExpression = mylast["storage"] ~ baseExpression;
                     unset(mylast["storage"]);
@@ -223,7 +223,7 @@ class SubpartitionDefinitionProcessor : Processor {
                     mylast["name"] = strippedToken;
                    myExpression ~= mylast;
                    myExpression ~= this.getConstantType(strippedToken);
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     myparsed["base_expr"] = baseExpression.strip;
                     break;
 

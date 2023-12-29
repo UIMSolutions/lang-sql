@@ -69,12 +69,12 @@ class InsertProcessor : Processor {
         mycols = this.removeParenthesisFromStart(mycols);
         if (stripos(mycols, "SELECT") == 0) {
             auto myProcessor = new DefaultProcessor(this.options);
-            myparsed["sub_tree"] = [
+            myparsed["sub_tree"] ~= [
                     createExpression("QUERY"), "base_expr" : mycols,
                             "sub_tree" : myprocessor.process(mycols)));
         } else {
             auto myProcessor = new ColumnListProcessor(this.options);
-            myparsed["sub_tree"] = myprocessor.process(mycols);
+            myparsed["sub_tree"] ~= myprocessor.process(mycols);
             myparsed["expr_type"] .isExpressionType("COLUMN_LIST");
         }
         return myparsed;

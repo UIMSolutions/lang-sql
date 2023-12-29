@@ -123,7 +123,7 @@ class SelectExpressionProcessor : Processor {
         if (!myno_quotes.isEmpty) {
             result["no_quotes"] = myno_quotes;
         }
-        result["sub_tree"] = (myprocessed.isEmpty ? false : myprocessed);
+        result["sub_tree"] ~= (myprocessed.isEmpty ? false : myprocessed);
         return result;
     }
 

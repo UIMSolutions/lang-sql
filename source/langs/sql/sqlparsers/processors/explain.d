@@ -64,7 +64,7 @@ class ExplainProcessor : Processor {
 
             Json result = createExpression("EXPRESSION", baseExpression
                 .strip);
-            result["sub_tree"] = myExpression;
+            result["sub_tree"] ~= myExpression;
             return result;
           }
           // else?

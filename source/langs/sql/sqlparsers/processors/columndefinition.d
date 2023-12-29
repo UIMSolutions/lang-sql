@@ -38,13 +38,13 @@ class ColumnDefinitionProcessor : Processor {
        myExpression = createExpression("COLUMN_TYPE"), "base_expr" : baseExpression, "sub_tree" : myExpression];
 
         // add options first
-       myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], myoptions["sub_tree"]);
+       myExpression["sub_tree"] ~= array_merge(myExpression["sub_tree"], myoptions["sub_tree"]);
         unset(myoptions["sub_tree"]);
        myExpression = array_merge(myExpression, myoptions);
 
         // followed by references
         if (sizeof(myrefs) != 0) {
-           myExpression["sub_tree"] = array_merge(myExpression["sub_tree"], myrefs);
+           myExpression["sub_tree"] ~= array_merge(myExpression["sub_tree"], myrefs);
         }
 
        myExpression["till"] = myKey;
@@ -395,7 +395,7 @@ class ColumnDefinitionProcessor : Processor {
                         mysubTree = [mysubTree];
                     }
 
-                    mylast["sub_tree"] = mysubTree;
+                    mylast["sub_tree"] ~= mysubTree;
                    myExpression ~= mylast;
                     currentCategory = myPrevousCategory;
                     break;

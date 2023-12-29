@@ -84,7 +84,7 @@ class ShowProcessor : Processor {
                     break;
                 case "LIMIT":
                     mylimit = array_pop(myresultList);
-                    mylimit["sub_tree"] = this.limitProcessor.process(array_slice(mytokens, myk));
+                    mylimit["sub_tree"] ~= this.limitProcessor.process(array_slice(mytokens, myk));
                     myresultList ~= mylimit;
                     break;
                 case "FROM":

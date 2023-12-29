@@ -154,7 +154,7 @@ class ExpressionToken {
         if (!noQuotes.isEmpty) {
             result["no_quotes"] = this.noQuotes;
         }
-        result["sub_tree"] = this.subTree;
+        result["sub_tree"] ~= this.subTree;
         return result;
     }
 }

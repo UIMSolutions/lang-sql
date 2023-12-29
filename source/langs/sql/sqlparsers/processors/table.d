@@ -225,7 +225,7 @@ class TableProcessor : Processor {
         }
        myResult["select-option"]["as"] = true;
        myResult["select-option"]["base_expr"] = baseExpression.strip;
-       myResult["select-option"]["sub_tree"] = myExpression;
+       myResult["select-option"]["sub_tree"] ~= myExpression;
         continue 2;
 
       case "PARTITION":
@@ -246,7 +246,7 @@ class TableProcessor : Processor {
          myExpression ~= this.getConstantType(strippedToken);
           Json newOption = createExpression("CHARSET", baseExpression.strip);
           newOption["delim"] = " ";
-          newOption["sub_tree"] = myExpression;
+          newOption["sub_tree"] ~= myExpression;
 
          myResult["options"] ~= newOption;
           this.clear(myExpression, baseExpression, currentCategory);
@@ -257,7 +257,7 @@ class TableProcessor : Processor {
          myExpression ~= this.getConstantType(strippedToken);
           Json optionExpression = createExpression("COLLATE", baseExpression.strip);
           optionExpression["delim"] = " ";
-          optionExpression["sub_tree"] = myExpression;
+          optionExpression["sub_tree"] ~= myExpression;
          myResult["options"] ~= optionExpression;
           this.clear(myExpression, baseExpression, currentCategory);
           break;
@@ -268,7 +268,7 @@ class TableProcessor : Processor {
           Json optionExpression = createExpression("DIRECTORY", baseExpression.strip);
           optionExpression["kind"] = "DATA";
           optionExpression["delim"] = " ";
-          optionExpression["sub_tree"] = myExpression;
+          optionExpression["sub_tree"] ~= myExpression;
          myResult["options"] ~= optionExpression;
           this.clear(myExpression, baseExpression, myprevCategory);
           continue 3;
@@ -279,7 +279,7 @@ class TableProcessor : Processor {
           Json optionExpression = createExpression("DIRECTORY", baseExpression.strip);
           optionExpression["kind"] = "INDEX";
           optionExpression["delim"] = " ";
-          optionExpression["sub_tree"] = myExpression;
+          optionExpression["sub_tree"] ~= myExpression;
          myResult["options"] ~= optionExpression;
           this.clear(myExpression, baseExpression, myprevCategory);
           continue 3;
@@ -319,9 +319,9 @@ class TableProcessor : Processor {
 
           myunparsed = this.splitSQLIntoTokens(this.removeParenthesisFromStart(strippedToken));
           Json newExpression = createExpression("BRACKET_EXPRESSION", strippedToken);
-          // ?? newExpression["sub_tree"] = "***TODO***";
+          // ?? newExpression["sub_tree"] ~= "***TODO***";
           newExpression["delim"] = " ";
-          newExpression["sub_tree"] = myExpression;
+          newExpression["sub_tree"] ~= myExpression;
           myExpression ~= 
           myResult["options"] ~= createExpression(UNION, "base_expr" : baseExpression.strip,
           this.clear(myExpression, baseExpression, currentCategory);
@@ -331,7 +331,7 @@ class TableProcessor : Processor {
           // strings and numeric constants
          Json newExpression = createExpression("EXPRESSION", baseExpression.strip);
          newExpression["delim"] = " ";
-         newExpression["sub_tree"] = newExpression;
+         newExpression["sub_tree"] ~= newExpression;
          myExpression ~= this.getConstantType(strippedToken);
          myResult["options"] ~= 
           this.clear(myExpression, baseExpression, currentCategory);

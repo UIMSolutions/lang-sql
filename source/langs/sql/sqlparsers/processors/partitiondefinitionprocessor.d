@@ -82,7 +82,7 @@ class PartitionDefinitionProcessor : Processor {
                 if (myPreviousCategory == "PARTITION") {
                    myExpression ~= createExpression("PARTITION_VALUES"), "base_expr" : false,
                                     "sub_tree" : false, "storage" : substr(baseExpression, 0, - mytoken.length));
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
 
                     baseExpression = mytoken;
                    myExpression = [this.getReservedType(strippedToken));
@@ -116,7 +116,7 @@ class PartitionDefinitionProcessor : Processor {
 
                     mylast = array_pop(myparsed["sub_tree"]);
                     mylast["base_expr"] = baseExpression;
-                    mylast["sub_tree"] = myExpression;
+                    mylast["sub_tree"] ~= myExpression;
 
                     baseExpression = mylast["storage"] . baseExpression;
                     unset(mylast["storage"]);
@@ -143,7 +143,7 @@ class PartitionDefinitionProcessor : Processor {
                    myExpression ~= createExpression(PARTITION_COMMENT, "base_expr" : false,
                                     "sub_tree" : false, "storage" : substr(baseExpression, 0, - mytoken.length));
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = mytoken;
                    myExpression = [this.getReservedType(strippedToken));
 
@@ -159,7 +159,7 @@ class PartitionDefinitionProcessor : Processor {
                    myExpression ~= createExpression("ENGINE"), "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, - mytoken.length));
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = mytoken;
                    myExpression = [this.getReservedType(strippedToken));
 
@@ -179,7 +179,7 @@ class PartitionDefinitionProcessor : Processor {
                    myExpression ~= createExpression(ENGINE, "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, - mytoken.length));
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = mytoken;
                    myExpression = [this.getReservedType(strippedToken));
 
@@ -215,7 +215,7 @@ class PartitionDefinitionProcessor : Processor {
                                     "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, - mytoken.length));
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = mytoken;
                    myExpression = [this.getReservedType(strippedToken));
 
@@ -241,7 +241,7 @@ class PartitionDefinitionProcessor : Processor {
                                     "base_expr" : false, "sub_tree" : false,
                                     "storage" : substr(baseExpression, 0, - mytoken.length));
 
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     baseExpression = mytoken;
                    myExpression = [this.getReservedType(strippedToken));
 
@@ -262,7 +262,7 @@ class PartitionDefinitionProcessor : Processor {
                    myExpression ~= this.getConstantType(strippedToken);
 
                     mylast = array_pop(myparsed["sub_tree"]);
-                    mylast["sub_tree"] = myExpression;
+                    mylast["sub_tree"] ~= myExpression;
                     mylast["base_expr"] = baseExpression.strip;
                     baseExpression = mylast["storage"] . baseExpression;
                     unset(mylast["storage"]);
@@ -282,7 +282,7 @@ class PartitionDefinitionProcessor : Processor {
                     mylast["name"] = strippedToken;
                    myExpression ~= mylast;
                    myExpression ~= this.getConstantType(strippedToken);
-                    myparsed["sub_tree"] = myExpression;
+                    myparsed["sub_tree"] ~= myExpression;
                     myparsed["base_expr"] = baseExpression.strip;
                     break;
 
@@ -291,12 +291,12 @@ class PartitionDefinitionProcessor : Processor {
                     mylast = this.getBracketExpressionType(strippedToken);
 
                     myres = this.processExpressionList(strippedToken);
-                    mylast["sub_tree"] = (myres.isEmpty ? false : myres);
+                    mylast["sub_tree"] ~= (myres.isEmpty ? false : myres);
                    myExpression ~= mylast;
 
                     mylast = array_pop(myparsed["sub_tree"]);
                     mylast["base_expr"] = baseExpression;
-                    mylast["sub_tree"] = myExpression;
+                    mylast["sub_tree"] ~= myExpression;
 
                     baseExpression = mylast["storage"] . baseExpression;
                     unset(mylast["storage"]);
@@ -314,12 +314,12 @@ class PartitionDefinitionProcessor : Processor {
                         // last part to process, it is only one token!
                         if (upperToken[0] == "(" && substr(upperToken, -1) == ")") {
                             mylast = this.getBracketExpressionType(strippedToken);
-                            mylast["sub_tree"] = this.processSubpartitionDefinition(strippedToken);
+                            mylast["sub_tree"] ~= this.processSubpartitionDefinition(strippedToken);
                            myExpression ~= mylast;
                             unset(mylast);
 
                             myparsed["base_expr"] = baseExpression.strip;
-                            myparsed["sub_tree"] = myExpression;
+                            myparsed["sub_tree"] ~= myExpression;
 
                            myCurrentCategory = myPreviousCategory;
                             break;

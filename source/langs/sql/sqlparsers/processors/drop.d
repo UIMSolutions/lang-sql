@@ -58,7 +58,7 @@ class DropProcessor : Processor {
                 myoption = upperToken;
                 if (!myobjectList.isEmpty) {
                     mySubTree = createExpression("EXPRESSION", substr(baseExpression, 0, -myToken.length).strip);
-                    mySubTree["sub_tree"] = myobjectList;
+                    mySubTree["sub_tree"] ~= myobjectList;
                     myobjectList = [];
                 }
                 baseExpression = "";
@@ -91,7 +91,7 @@ class DropProcessor : Processor {
 
         if (!myobjectList.isEmpty) {
             Json newExpression = createExpression("EXPRESSION", baseExpression.strip);
-            newExpression["sub_tree"] = myobjectList;
+            newExpression["sub_tree"] ~= myobjectList;
             mySubTree ~= newExpression;
         }
 

@@ -42,7 +42,7 @@ class FromProcessor : Processor {
         result["saved_join_type"] = newParseInfo["saved_join_type"];
         result["ref_type"] = false;
         result["ref_expr"] = false;
-        result["sub_tree"] = false;
+        result["sub_tree"] ~= false;
         result["subquery"] = "";
         return result;
     }
@@ -71,7 +71,7 @@ class FromProcessor : Processor {
             	// unparsed has only one entry, the column list
             	 myref = this.processColumnList(this.removeParenthesisFromStart(myunparsed[0]));
                  Json newExpression = createExpression("COLUMN_LIST", myunparsed[0]);
-                 newExpression["sub_tree"] = myref;
+                 newExpression["sub_tree"] ~= myref;
             	 myref = [newExpression];
             } else {
                 myref = this.processExpressionList(myunparsed);
@@ -84,7 +84,7 @@ class FromProcessor : Processor {
             parseInfo["expression"] = this.removeParenthesisFromStart(parseInfo["table"]);
 
             if (preg_match("/^\\s*(-- [\\w\\s]+\\n)?\\s*SELECT/i", parseInfo["expression"])) {
-                parseInfo["sub_tree"] = this.processSQLDefault(parseInfo["expression"]);
+                parseInfo["sub_tree"] ~= this.processSQLDefault(parseInfo["expression"]);
                 result["expr_type"].isExpressionType("SUBQUERY")
             } else {
                 mytmp = this.splitSQLIntoTokens(parseInfo["expression"]);
@@ -99,7 +99,7 @@ class FromProcessor : Processor {
                 else {
                     mysub_tree = myunionQueries;
                 }
-                parseInfo["sub_tree"] = mysub_tree;
+                parseInfo["sub_tree"] ~= mysub_tree;
                 result["expr_type"] = expressionType("TABLE_EXPRESSION");
             }
         } else {
@@ -114,7 +114,7 @@ class FromProcessor : Processor {
         result["ref_type"] = parseInfo["ref_type"];
         result["ref_clause"] = parseInfo["ref_expr"];
         result["base_expr"] = parseInfo["expression"].strip;
-        result["sub_tree"] = parseInfo["sub_tree"];
+        result["sub_tree"] ~= parseInfo["sub_tree"];
         return result;
     }
 
@@ -261,7 +261,7 @@ class FromProcessor : Processor {
             case "STRAIGHT_JOIN":
                 parseInfo["next_join_type"] = "STRAIGHT_JOIN";
                 if (parseInfo["subquery"]) {
-                    parseInfo["sub_tree"] = this.parse(this.removeParenthesisFromStart(parseInfo["subquery"]));
+                    parseInfo["sub_tree"] ~= this.parse(this.removeParenthesisFromStart(parseInfo["subquery"]));
                     parseInfo["expression"] = parseInfo["subquery"];
                 }
 
@@ -280,7 +280,7 @@ class FromProcessor : Processor {
                 }
 
                 if (parseInfo["subquery"]) {
-                    parseInfo["sub_tree"] = this.parse(this.removeParenthesisFromStart(parseInfo["subquery"]));
+                    parseInfo["sub_tree"] ~= this.parse(this.removeParenthesisFromStart(parseInfo["subquery"]));
                     parseInfo["expression"] = parseInfo["subquery"];
                 }
 
