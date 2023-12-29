@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.rename;
+module langs.sql.parsers.processors.rename;
 
 import langs.sql;
 

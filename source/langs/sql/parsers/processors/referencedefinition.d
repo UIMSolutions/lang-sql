@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.referencedefinition;
+module langs.sql.parsers.processors.referencedefinition;
 
 import langs.sql;
 

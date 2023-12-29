@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.subpartitiondefinition;
+module langs.sql.parsers.processors.subpartitiondefinition;
 
 import langs.sql;
 

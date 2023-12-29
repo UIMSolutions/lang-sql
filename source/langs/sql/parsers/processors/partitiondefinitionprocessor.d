@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.partitiondefinitionprocessor;
+module langs.sql.parsers.processors.partitiondefinitionprocessor;
 
 import langs.sql;
 

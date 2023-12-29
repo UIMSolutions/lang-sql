@@ -1,2 +1,2 @@
-module langs.sql.sqlparsers.utils;
+module langs.sql.parsers.utils;
 

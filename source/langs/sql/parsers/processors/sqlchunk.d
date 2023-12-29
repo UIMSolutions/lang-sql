@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.sqlchunk;
+module langs.sql.parsers.processors.sqlchunk;
 import langs.sql;
 
 @safe:

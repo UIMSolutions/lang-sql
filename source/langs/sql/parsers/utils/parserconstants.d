@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.utils.SQLParserConstants;
+module langs.sql.parsers.utils.SQLParserConstants;
 
 import langs.sql;
 

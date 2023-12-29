@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.selectexpression;
+module langs.sql.parsers.processors.selectexpression;
 
 import langs.sql;
 
