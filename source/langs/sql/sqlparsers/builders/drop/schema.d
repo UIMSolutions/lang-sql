@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.drop.schema;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the schema within the DROP statement. 

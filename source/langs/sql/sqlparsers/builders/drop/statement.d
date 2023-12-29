@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.drop.statement;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the DROP statement

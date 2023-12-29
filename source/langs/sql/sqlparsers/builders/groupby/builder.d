@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.groupby.builder;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

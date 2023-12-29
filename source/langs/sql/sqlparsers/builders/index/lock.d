@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.index.locks;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

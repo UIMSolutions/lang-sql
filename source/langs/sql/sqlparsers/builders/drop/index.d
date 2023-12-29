@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.drop.index;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // This class : the builder for the DROP INDEX statement.

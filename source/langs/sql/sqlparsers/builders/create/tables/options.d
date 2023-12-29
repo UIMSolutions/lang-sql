@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.create.tables.options;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

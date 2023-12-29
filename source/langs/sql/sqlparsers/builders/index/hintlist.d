@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.index.hintlist;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the index hint list of a table.

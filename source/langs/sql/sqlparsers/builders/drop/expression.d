@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.drop.expression;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the object list of a DROP statement. 

@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.delete_.statement;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builder for the whole Delete statement. 

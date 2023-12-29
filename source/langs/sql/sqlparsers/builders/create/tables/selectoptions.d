@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.create.tables.selectoptions;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the select-options statement part of CREATE TABLE. 

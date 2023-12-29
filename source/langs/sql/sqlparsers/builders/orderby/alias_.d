@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.orderby.alias_;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 
