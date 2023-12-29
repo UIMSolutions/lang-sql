@@ -3,17 +3,14 @@ module langs.sql.sqlparsers.builders.create.tables.table;
 import langs.sql;
 
 @safe:
-/**
- * Builds the CREATE TABLE statement
- * This class : the builder for the CREATE TABLE statement. You can overwrite
- * all functions to achieve another handling.   */
+// Builds the CREATE TABLE statement
 class CreateTableBuilder : ISqlBuilder {
 
   string build(Json parsedSql) {
     string mySql = parsedSql["name"].get!string;
-   mySql ~= this.buildCreateTableDefinition(parsedSql);
-   mySql ~= this.buildCreateTableOptions(parsedSql);
-   mySql ~= this.buildCreateTableSelectOption(parsedSql);
+    mySql ~= this.buildCreateTableDefinition(parsedSql);
+    mySql ~= this.buildCreateTableOptions(parsedSql);
+    mySql ~= this.buildCreateTableSelectOption(parsedSql);
     return mySql;
   }
 

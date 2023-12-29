@@ -1,10 +1,11 @@
 ﻿module langs.sql.tables;
 
-public import langs.sql.tables.altertable;
-public import langs.sql.tables.altercolumn;
-public import langs.sql.tables.dropcolumn;
-
-public import langs.sql.tables.insert;
-public import langs.sql.tables.update;
-public import langs.sql.tables.select;
-public import langs.sql.tables.delete_;
+public {
+    import langs.sql.tables.altertable;
+    import langs.sql.tables.altercolumn;
+    import langs.sql.tables.dropcolumn;
+    import langs.sql.tables.insert;
+    import langs.sql.tables.update;
+    import langs.sql.tables.select;
+    import langs.sql.tables.delete_;
+}
