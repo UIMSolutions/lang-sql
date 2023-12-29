@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.orderby.function_;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds functions within the ORDER-BY part. 

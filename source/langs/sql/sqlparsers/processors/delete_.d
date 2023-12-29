@@ -1,5 +1,5 @@
 module langs.sql.sqlparsers.processors.delete_;
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Processes the DELETE statement parts and splits multi-table deletes.

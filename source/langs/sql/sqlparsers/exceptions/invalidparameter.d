@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.exceptions.invalidparameter;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

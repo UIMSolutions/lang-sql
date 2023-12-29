@@ -1,6 +1,6 @@
-module lang.sql.parsers.lexer;
+module langs.sql.parsers.lexer;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

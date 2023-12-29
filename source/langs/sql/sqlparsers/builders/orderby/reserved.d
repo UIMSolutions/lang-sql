@@ -1,6 +1,6 @@
-module lang.sql.parsers.builders;
+module langs.sql.parsers.builders;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds reserved keywords within the ORDER-BY part. 

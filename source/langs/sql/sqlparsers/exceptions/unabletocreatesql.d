@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.exceptions.unabletocreatesql;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

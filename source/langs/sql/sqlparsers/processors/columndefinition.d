@@ -1,7 +1,7 @@
 
 module langs.sql.sqlparsers.processors.columndefinition;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 
