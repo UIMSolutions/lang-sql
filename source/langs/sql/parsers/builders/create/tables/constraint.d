@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.constraint;
+module langs.sql.parsers.builders.create.tables.constraint;
 
 import langs.sql;
 

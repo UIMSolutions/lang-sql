@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.check;
+module langs.sql.parsers.builders.create.tables.check;
 
 import langs.sql;
 

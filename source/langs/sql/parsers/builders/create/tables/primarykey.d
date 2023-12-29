@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.primarykey;
+module langs.sql.parsers.builders.create.tables.primarykey;
 
 import langs.sql;
 

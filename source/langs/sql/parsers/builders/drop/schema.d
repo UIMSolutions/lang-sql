@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.drop.schema;
+module langs.sql.parsers.builders.drop.schema;
 
 import langs.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.like;
+module langs.sql.parsers.builders.create.tables.like;
 
 import langs.sql;
 

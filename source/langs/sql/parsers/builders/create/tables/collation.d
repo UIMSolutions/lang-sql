@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.collation;
+module langs.sql.parsers.builders.create.tables.collation;
 
 import langs.sql;
 

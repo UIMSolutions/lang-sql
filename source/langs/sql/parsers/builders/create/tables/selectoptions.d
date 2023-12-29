@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.selectoptions;
+module langs.sql.parsers.builders.create.tables.selectoptions;
 
 import langs.sql;
 

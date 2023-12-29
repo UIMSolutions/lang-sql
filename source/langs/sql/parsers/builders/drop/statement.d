@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.drop.statement;
+module langs.sql.parsers.builders.drop.statement;
 
 import langs.sql;
 

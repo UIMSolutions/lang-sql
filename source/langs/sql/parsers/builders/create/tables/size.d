@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.size;
+module langs.sql.parsers.builders.create.tables.size;
 
 import langs.sql;
 

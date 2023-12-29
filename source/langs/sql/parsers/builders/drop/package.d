@@ -1,10 +1,10 @@
-module langs.sql.sqlparsers.builders.drop;
+module langs.sql.parsers.builders.drop;
 
 public {
-  import langs.sql.sqlparsers.builders.drop.builder;
-  import langs.sql.sqlparsers.builders.drop.expression;
-  import langs.sql.sqlparsers.builders.drop.index;
-  import langs.sql.sqlparsers.builders.drop.indextable;
-  import langs.sql.sqlparsers.builders.drop.schema;
-  import langs.sql.sqlparsers.builders.drop.statement;
+  import langs.sql.parsers.builders.drop.builder;
+  import langs.sql.parsers.builders.drop.expression;
+  import langs.sql.parsers.builders.drop.index;
+  import langs.sql.parsers.builders.drop.indextable;
+  import langs.sql.parsers.builders.drop.schema;
+  import langs.sql.parsers.builders.drop.statement;
 }

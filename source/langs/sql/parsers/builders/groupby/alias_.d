@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.groupby.alias_;
+module langs.sql.parsers.builders.groupby.alias_;
 
 import langs.sql;
 

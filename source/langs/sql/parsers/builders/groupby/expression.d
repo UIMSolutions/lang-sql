@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.groupby.expression;
+module langs.sql.parsers.builders.groupby.expression;
 
 import langs.sql;
 

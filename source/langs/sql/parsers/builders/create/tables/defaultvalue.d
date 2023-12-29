@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.defaulvalue;
+module langs.sql.parsers.builders.create.tables.defaulvalue;
 
 import langs.sql;
 

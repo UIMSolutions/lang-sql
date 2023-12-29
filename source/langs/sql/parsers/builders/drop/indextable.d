@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.drop.indextable;
+module langs.sql.parsers.builders.drop.indextable;
 
 import langs.sql;
 

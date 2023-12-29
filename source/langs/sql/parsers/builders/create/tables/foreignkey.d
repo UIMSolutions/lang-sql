@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.foreignkey;
+module langs.sql.parsers.builders.create.tables.foreignkey;
 
 import langs.sql;
 

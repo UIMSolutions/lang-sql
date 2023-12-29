@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.fulltextindex;
+module langs.sql.parsers.builders.create.tables.fulltextindex;
 
 import langs.sql;
 
