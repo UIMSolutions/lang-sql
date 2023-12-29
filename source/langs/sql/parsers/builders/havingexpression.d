@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.havingexpression;
+module langs.sql.parsers.builders.havingexpression;
 
 import langs.sql;
 

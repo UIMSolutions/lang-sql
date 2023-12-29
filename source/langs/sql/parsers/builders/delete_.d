@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.delete_;
+module langs.sql.parsers.builders.delete_;
 
 import langs.sql;
 

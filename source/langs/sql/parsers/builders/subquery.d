@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.subquery;
+module langs.sql.parsers.builders.subquery;
 
 import langs.sql;
 

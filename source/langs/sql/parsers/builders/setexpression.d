@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.setexpression;
+module langs.sql.parsers.builders.setexpression;
 
 import langs.sql;
 

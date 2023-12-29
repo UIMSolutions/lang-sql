@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.replacecolumnlist;
+module langs.sql.parsers.builders.replacecolumnlist;
 import langs.sql;
 
 @safe:

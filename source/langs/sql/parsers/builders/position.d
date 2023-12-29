@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.position;
+module langs.sql.parsers.builders.position;
 
 import langs.sql;
 

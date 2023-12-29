@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.replacestatement;
+module langs.sql.parsers.builders.replacestatement;
 import langs.sql;
 
 @safe:

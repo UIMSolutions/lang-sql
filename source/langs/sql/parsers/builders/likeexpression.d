@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.likeexpression;
+module langs.sql.parsers.builders.likeexpression;
 
 import langs.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.refclause;
+module langs.sql.parsers.builders.refclause;
 
 import langs.sql;
 
