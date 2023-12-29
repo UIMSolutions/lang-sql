@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.helpers.json;
+module langs.sql.parsers.helpers.json;
 
 import langs.sql;
 

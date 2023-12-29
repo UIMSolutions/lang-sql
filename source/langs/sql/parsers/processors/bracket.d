@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.bracket;
+module langs.sql.parsers.processors.bracket;
 
 import langs.sql;
 

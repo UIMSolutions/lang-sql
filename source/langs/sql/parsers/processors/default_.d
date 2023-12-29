@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.default_;
+module langs.sql.parsers.processors.default_;
 
 import langs.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.exceptions.unsupportedfeature;
+module langs.sql.parsers.exceptions.unsupportedfeature;
 
 import langs.sql;
 

@@ -1,5 +1,5 @@
-module langs.sql.sqlparsers.helpers;
+module langs.sql.parsers.helpers;
 
 public {
-  import langs.sql.sqlparsers.helpers.json;
+  import langs.sql.parsers.helpers.json;
 }

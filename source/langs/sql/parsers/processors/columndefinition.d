@@ -1,5 +1,5 @@
 
-module langs.sql.sqlparsers.processors.columndefinition;
+module langs.sql.parsers.processors.columndefinition;
 
 import langs.sql;
 

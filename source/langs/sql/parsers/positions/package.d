@@ -1,2 +1,2 @@
-module langs.sql.sqlparsers.positions;
+module langs.sql.parsers.positions;
 

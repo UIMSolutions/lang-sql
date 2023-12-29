@@ -1,5 +1,5 @@
 
-module langs.sql.sqlparsers.processors.groupby;
+module langs.sql.parsers.processors.groupby;
 import langs.sql;
 
 @safe:

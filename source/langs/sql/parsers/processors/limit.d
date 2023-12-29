@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.limit;
+module langs.sql.parsers.processors.limit;
 
 /**
  * This file : the processor for the LIMIT statements.

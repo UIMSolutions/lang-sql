@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.delete_;
+module langs.sql.parsers.processors.delete_;
 import langs.sql;
 
 @safe:

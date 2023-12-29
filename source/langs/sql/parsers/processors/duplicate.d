@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.duplicate;
+module langs.sql.parsers.processors.duplicate;
 
 // This class processes the DUPLICATE statements.
 class DuplicateProcessor : SetProcessor {

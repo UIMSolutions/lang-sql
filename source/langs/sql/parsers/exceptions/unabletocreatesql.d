@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.exceptions.unabletocreatesql;
+module langs.sql.parsers.exceptions.unabletocreatesql;
 
 import langs.sql;
 

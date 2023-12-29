@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.processors.into;
+module langs.sql.parsers.processors.into;
 
 /**
  * This file : the processor for the INTO statements.

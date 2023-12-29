@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.exceptions.unabletocalculateposition;
+module langs.sql.parsers.exceptions.unabletocalculateposition;
 
 import langs.sql;
 
