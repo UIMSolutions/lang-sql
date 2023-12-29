@@ -1,6 +1,6 @@
 module source.langs.sql.sqlparsers.builders.temptable;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

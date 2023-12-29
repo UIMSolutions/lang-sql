@@ -1,5 +1,5 @@
 module langs.sql.sqlparsers.builders.replacecolumnlist;
-import lang.sql;
+import langs.sql;
 
 @safe:
 

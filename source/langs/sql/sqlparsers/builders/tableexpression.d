@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.tableexpression;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

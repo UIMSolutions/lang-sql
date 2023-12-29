@@ -1,5 +1,5 @@
 module langs.sql.sqlparsers.builders.unionallstatement;
-import lang.sql;
+import langs.sql;
 
 @safe:
 

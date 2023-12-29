@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.refclause;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 
