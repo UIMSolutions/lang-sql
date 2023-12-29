@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.wherebracketexpression;
+module langs.sql.parsers.builders.wherebracketexpression;
 
 import langs.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.columns.reference;
+module langs.sql.parsers.builders.columns.reference;
 
 import langs.sql;
 

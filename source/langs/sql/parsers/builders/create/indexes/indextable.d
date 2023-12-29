@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.indexes.indextable;
+module langs.sql.parsers.builders.create.indexes.indextable;
 
 import langs.sql;
 

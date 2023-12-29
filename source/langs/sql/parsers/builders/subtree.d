@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.subtree;
+module langs.sql.parsers.builders.subtree;
 
 import langs.sql;
 

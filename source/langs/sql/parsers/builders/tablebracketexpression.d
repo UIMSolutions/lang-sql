@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.tablebracketexpression;
+module langs.sql.parsers.builders.tablebracketexpression;
 
 import langs.sql;
 

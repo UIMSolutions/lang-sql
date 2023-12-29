@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.uniqueindex;
+module langs.sql.parsers.builders.uniqueindex;
 
 import langs.sql;
 

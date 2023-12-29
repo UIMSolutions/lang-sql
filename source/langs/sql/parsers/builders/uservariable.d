@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.uservariable;
+module langs.sql.parsers.builders.uservariable;
 
 import langs.sql;
 

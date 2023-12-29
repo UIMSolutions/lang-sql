@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.truncate;
+module langs.sql.parsers.builders.truncate;
 import langs.sql;
 
 @safe:

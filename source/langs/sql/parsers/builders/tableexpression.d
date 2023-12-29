@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.tableexpression;
+module langs.sql.parsers.builders.tableexpression;
 
 import langs.sql;
 

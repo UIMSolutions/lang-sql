@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.create.tables.characterset;
+module langs.sql.parsers.builders.create.tables.characterset;
 
 import langs.sql;
 

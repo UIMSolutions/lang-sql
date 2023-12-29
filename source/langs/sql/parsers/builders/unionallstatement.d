@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.unionallstatement;
+module langs.sql.parsers.builders.unionallstatement;
 import langs.sql;
 
 @safe:

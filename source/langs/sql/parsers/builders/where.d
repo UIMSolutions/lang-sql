@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.where;
+module langs.sql.parsers.builders.where;
 
 import langs.sql;
 

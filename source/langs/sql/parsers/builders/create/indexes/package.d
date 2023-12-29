@@ -1,8 +1,8 @@
-module langs.sql.sqlparsers.builders.create.indexes;
+module langs.sql.parsers.builders.create.indexes;
 
 public {
-    import langs.sql.sqlparsers.builders.create.indexes.index;
-    import langs.sql.sqlparsers.builders.create.indexes.indexoptions;
-    import langs.sql.sqlparsers.builders.create.indexes.indextable;
-    import langs.sql.sqlparsers.builders.create.indexes.indextype;
+    import langs.sql.parsers.builders.create.indexes.index;
+    import langs.sql.parsers.builders.create.indexes.indexoptions;
+    import langs.sql.parsers.builders.create.indexes.indextable;
+    import langs.sql.parsers.builders.create.indexes.indextype;
 }

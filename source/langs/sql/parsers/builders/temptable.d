@@ -1,4 +1,4 @@
-module source.langs.sql.sqlparsers.builders.temptable;
+module source.langs.sql.parsers.builders.temptable;
 
 import langs.sql;
 
