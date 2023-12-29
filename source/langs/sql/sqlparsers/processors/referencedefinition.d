@@ -1,12 +1,10 @@
 module langs.sql.sqlparsers.processors.referencedefinition;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 
-/**
- * This class processes the reference definition part of the CREATE TABLE statements.
-*/
+// This class processes the reference definition part of the CREATE TABLE statements.
 class ReferenceDefinitionProcessor : Processor {
 
     protected string buildReferenceDef(myExpression, baseExpression, myKey) {

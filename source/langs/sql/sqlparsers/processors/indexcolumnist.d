@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.indexcolumnist;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Processor for index column lists.

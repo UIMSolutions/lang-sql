@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.show;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

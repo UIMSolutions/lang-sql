@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.union;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // This class processes the UNION statements.

@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.record;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // This class processes records of an INSERT statement.

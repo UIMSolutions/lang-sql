@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.update;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // This class processes the UPDATE statements.

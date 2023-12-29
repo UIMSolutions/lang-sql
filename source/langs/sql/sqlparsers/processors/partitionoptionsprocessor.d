@@ -1,6 +1,6 @@
-module lang.sql.parsers.processors;
+module langs.sql.parsers.processors;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

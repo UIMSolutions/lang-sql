@@ -1,6 +1,6 @@
-module lang.sql.parsers.processors;
+module langs.sql.sqlparsers.processors.partitiondefinitionprocessor;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 
@@ -22,24 +22,24 @@ class PartitionDefinitionProcessor : Processor {
     }
 
     protected auto getReservedType(mytoken) {
-        return createExpression("RESERVED"), "base_expr" : mytoken];
+        return createExpression("RESERVED", mytoken);
     }
 
     protected auto getConstantType(mytoken) {
-        return createExpression("CONSTANT"), "base_expr" : mytoken];
+        return createExpression("CONSTANT", mytoken);
     }
 
     protected auto getOperatorType(mytoken) {
-        return createExpression("OPERATOR"), "base_expr" : mytoken];
+        return createExpression("OPERATOR", mytoken);
     }
 
     protected auto getBracketExpressionType(mytoken) {
-        return createExpression("BRACKET_EXPRESSION"), "base_expr" : mytoken, "sub_tree" : false];
+        auto newExpression =  createExpression("BRACKET_EXPRESSION", mytoken);
+        newExpression["sub_tree"] = Json.emptyArray;
     }
 
     Json process(strig[] tokens) {
-
-        myresult = [];
+auto myresult = [];
         string myPreviousCategory = "";
         string myCurrentCategory = "";
         myparsed = [];
@@ -70,7 +70,7 @@ class PartitionDefinitionProcessor : Processor {
             case "PARTITION":
                 if (myCurrentCategory.isEmpty) {
                    myExpression ~= this.getReservedType(strippedToken);
-                    myparsed = createExpression("PARTITION_DEF"), "base_expr" : baseExpression.strip,
+                    myparsed = createExpression("PARTITION_DEF", baseExpression.strip);
                                     "sub_tree" : false];
                    myCurrentCategory = upperToken;
                     continue 2;
@@ -80,8 +80,9 @@ class PartitionDefinitionProcessor : Processor {
 
             case "VALUES":
                 if (myPreviousCategory == "PARTITION") {
-                   myExpression ~= createExpression("PARTITION_VALUES"), "base_expr" : false,
-                                    "sub_tree" : false, "storage" : substr(baseExpression, 0, - mytoken.length));
+                   auto myExpression = createExpression("PARTITION_VALUES", "");
+                  myExpression["sub_tree"] = Json.emptyArray;
+                  myExpression["storage"] = substr(baseExpression, 0, - mytoken.length);
                     myparsed["sub_tree"] ~= myExpression;
 
                     baseExpression = mytoken;

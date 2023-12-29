@@ -1,5 +1,5 @@
 module langs.sql.sqlparsers.processors.sqlchunk;
-import lang.sql;
+import langs.sql;
 
 @safe:
 // This class processes the SQL chunks.
