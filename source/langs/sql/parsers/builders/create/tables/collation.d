@@ -45,3 +45,8 @@ class CollationBuilder : ISqlBuilder {
         return myBuilder.build(parsedSql);
     }
 }
+
+unittest {
+  auto builder = new CollationBuilder;
+  assert(builder, "Can not create CollationBuilder");
+}

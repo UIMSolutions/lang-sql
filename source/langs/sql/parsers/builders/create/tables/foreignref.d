@@ -48,3 +48,8 @@ class ForeignRefBuilder : ISqlBuilder {
         return result;
     }
 }
+
+unittest {
+  auto builder = new ForeignRefBuilder;
+  assert(builder, "Can not create ForeignRefBuilder");
+}

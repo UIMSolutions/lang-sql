@@ -44,3 +44,8 @@ class CheckBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new CheckBuilder;
+  assert(builder, "Can not create CheckBuilder");
+}

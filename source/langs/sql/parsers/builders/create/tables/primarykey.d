@@ -15,7 +15,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
     string mySql = parsedSql["sub_tree"].byKeyValue
       .map!(kv => buildKeyValue(kv.key, kv.value))
       .join;
-      
+
     return substr(mySql, 0, -1);
   }
 
@@ -33,7 +33,7 @@ class PrimaryKeyBuilder : ISqlBuilder {
       throw new UnableToCreateSQLException("CREATE TABLE primary key subtree", aKey, aValue, "expr_type");
     }
 
-   mySql ~= " ";
+    mySql ~= " ";
     return result;
   }
 

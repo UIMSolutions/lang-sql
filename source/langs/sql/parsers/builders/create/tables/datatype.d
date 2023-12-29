@@ -18,3 +18,8 @@ class DataTypeBuilder : IBuilder {
     return parsedSql.baseExpression;
   }
 }
+
+unittest {
+  auto builder = new DataTypeBuilder;
+  assert(builder, "Can not create DataTypeBuilder");
+}

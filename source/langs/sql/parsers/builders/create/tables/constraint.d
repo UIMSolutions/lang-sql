@@ -21,3 +21,8 @@ class ConstraintBuilder : ISqlBuilder {
         return myBuilder.build(parsedSql);
     }
 }
+
+unittest {
+  auto builder = new ConstraintBuilder;
+  assert(builder, "Can not create ConstraintBuilder");
+}

@@ -14,3 +14,8 @@ class DefaultValueBuilder : ISqlBuilder {
         return parsedSql.baseExpression;
     }
 }
+
+unittest {
+  auto builder = new DefaultValueBuilder;
+  assert(builder, "Can not create DefaultValueBuilder");
+}

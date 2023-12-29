@@ -55,3 +55,8 @@ class ForeignKeyBuilder : IBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new ForeignKeyBuilder;
+  assert(builder, "Can not create ForeignKeyBuilder");
+}

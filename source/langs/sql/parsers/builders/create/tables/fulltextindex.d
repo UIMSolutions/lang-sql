@@ -57,3 +57,8 @@ class FulltextIndexBuilder : IBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new FulltextIndexBuilder;
+  assert(builder, "Can not create FulltextIndexBuilder");
+}

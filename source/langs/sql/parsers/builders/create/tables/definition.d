@@ -18,3 +18,8 @@ class CreateTableDefinitionBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new CreateTableDefinitionBuilder;
+  assert(builder, "Can not create CreateTableDefinitionBuilder");
+}
