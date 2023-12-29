@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.uservariable;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

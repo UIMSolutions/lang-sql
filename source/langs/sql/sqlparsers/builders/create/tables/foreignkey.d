@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.create.tables.foreignkey;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.create.tables.definition;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the create definitions of CREATE TABLE.

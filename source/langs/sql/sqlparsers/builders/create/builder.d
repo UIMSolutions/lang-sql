@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.create.builder;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds the CREATE statement

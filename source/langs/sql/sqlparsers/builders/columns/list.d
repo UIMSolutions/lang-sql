@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.columns.list;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

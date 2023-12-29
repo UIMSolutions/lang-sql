@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.builders.create.indexes.indexoptions;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // Builds index options part of a CREATE INDEX statement.
