@@ -1,8 +1,8 @@
 
 
-module lang.sql.parsers.utils;
+module langs.sql.parsers.utils;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 

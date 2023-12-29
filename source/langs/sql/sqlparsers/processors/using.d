@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.using;
 
-import lang.sql;
+import langs.sql;
 
 @safe:
 // This class processes the USING statements.

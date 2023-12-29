@@ -1,6 +1,6 @@
 module langs.sql.sqlparsers.processors.with_;
 
-import lang.sql;
+import langs.sql;
 
 @safe: 
 // This class processes Oracle"s WITH statements.
