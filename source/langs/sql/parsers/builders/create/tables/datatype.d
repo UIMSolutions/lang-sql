@@ -21,5 +21,5 @@ class DataTypeBuilder : IBuilder {
 
 unittest {
   auto builder = new DataTypeBuilder;
-  assert(builder, "Can not create DataTypeBuilder");
+  assert(builder, "Could not create DataTypeBuilder");
 }

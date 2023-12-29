@@ -18,3 +18,8 @@ class CreateTableSelectOptionBuilder : ISqlBuilder {
     return mySql;
   }
 }
+
+unittest {
+  auto builder = new CreateTableSelectOptionBuilder;
+  assert(builder, "Could not create CreateTableSelectOptionBuilder");
+}

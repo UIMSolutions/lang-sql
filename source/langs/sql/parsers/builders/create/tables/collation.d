@@ -48,5 +48,5 @@ class CollationBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new CollationBuilder;
-  assert(builder, "Can not create CollationBuilder");
+  assert(builder, "Could not create CollationBuilder");
 }

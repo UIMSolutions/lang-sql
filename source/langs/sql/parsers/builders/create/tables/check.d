@@ -47,5 +47,5 @@ class CheckBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new CheckBuilder;
-  assert(builder, "Can not create CheckBuilder");
+  assert(builder, "Could not create CheckBuilder");
 }

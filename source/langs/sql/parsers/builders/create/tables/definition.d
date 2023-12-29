@@ -21,5 +21,5 @@ class CreateTableDefinitionBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new CreateTableDefinitionBuilder;
-  assert(builder, "Can not create CreateTableDefinitionBuilder");
+  assert(builder, "Could not create CreateTableDefinitionBuilder");
 }

@@ -55,3 +55,8 @@ class CreateTableOptionsBuilder : IBuilder {
     }
 
 }
+
+unittest {
+  auto builder = new CreateTableOptionsBuilder;
+  assert(builder, "Could not create CreateTableOptionsBuilder");
+}

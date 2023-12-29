@@ -36,3 +36,8 @@ class IndexParserBuilder : ISqlBuilder {
         return myBuilder.build(parsedSql);
     }
 }
+
+unittest {
+  auto builder = new IndexParserBuilder;
+  assert(builder, "Could not create IndexParserBuilder");
+}

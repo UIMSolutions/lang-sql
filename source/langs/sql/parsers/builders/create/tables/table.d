@@ -32,3 +32,8 @@ class CreateTableBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new CreateTableBuilder;
+  assert(builder, "Could not create CreateTableBuilder");
+}

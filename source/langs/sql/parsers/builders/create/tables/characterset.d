@@ -52,5 +52,5 @@ class CharacterSetBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new CharacterSetBuilder;
-  assert(builder, "Can not create CharacterSetBuilder");
+  assert(builder, "Could not create CharacterSetBuilder");
 }

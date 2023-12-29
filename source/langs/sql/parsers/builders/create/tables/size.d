@@ -42,3 +42,8 @@ class IndexSizeBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new IndexSizeBuilder;
+  assert(builder, "Could not create IndexSizeBuilder");
+}

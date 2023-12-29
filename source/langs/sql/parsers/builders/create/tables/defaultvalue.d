@@ -17,5 +17,5 @@ class DefaultValueBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new DefaultValueBuilder;
-  assert(builder, "Can not create DefaultValueBuilder");
+  assert(builder, "Could not create DefaultValueBuilder");
 }

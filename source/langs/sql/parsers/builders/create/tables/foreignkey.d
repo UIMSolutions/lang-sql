@@ -58,5 +58,5 @@ class ForeignKeyBuilder : IBuilder {
 
 unittest {
   auto builder = new ForeignKeyBuilder;
-  assert(builder, "Can not create ForeignKeyBuilder");
+  assert(builder, "Could not create ForeignKeyBuilder");
 }

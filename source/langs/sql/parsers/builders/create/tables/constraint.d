@@ -24,5 +24,5 @@ class ConstraintBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new ConstraintBuilder;
-  assert(builder, "Can not create ConstraintBuilder");
+  assert(builder, "Could not create ConstraintBuilder");
 }

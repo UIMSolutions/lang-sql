@@ -20,3 +20,8 @@ class LikeBuilder : ISqlBuilder {
         return "LIKE " ~ mySql;
     }
 }
+
+unittest {
+  auto builder = new LikeBuilder;
+  assert(builder, "Could not create LikeBuilder");
+}

@@ -67,3 +67,8 @@ class PrimaryKeyBuilder : ISqlBuilder {
     return myBuilder.build(parsedSql);
   }
 }
+
+unittest {
+  auto builder = new PrimaryKeyBuilder;
+  assert(builder, "Could not create PrimaryKeyBuilder");
+}

@@ -60,5 +60,5 @@ class FulltextIndexBuilder : IBuilder {
 
 unittest {
   auto builder = new FulltextIndexBuilder;
-  assert(builder, "Can not create FulltextIndexBuilder");
+  assert(builder, "Could not create FulltextIndexBuilder");
 }

@@ -51,5 +51,5 @@ class ForeignRefBuilder : ISqlBuilder {
 
 unittest {
   auto builder = new ForeignRefBuilder;
-  assert(builder, "Can not create ForeignRefBuilder");
+  assert(builder, "Could not create ForeignRefBuilder");
 }
