@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.insert.columnlist;
+module langs.sql.parsers.builders.insert.columnlist;
 
 import langs.sql;
 

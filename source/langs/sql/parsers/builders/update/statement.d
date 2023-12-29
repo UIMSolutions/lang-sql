@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.update.updatestatement;
+module langs.sql.parsers.builders.update.updatestatement;
 import langs.sql;
 
 @safe:

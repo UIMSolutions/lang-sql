@@ -1,2 +1,2 @@
-module langs.sql.sqlparsers.builders.update;
+module langs.sql.parsers.builders.update;
 

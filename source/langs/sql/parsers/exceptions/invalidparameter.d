@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.exceptions.invalidparameter;
+module langs.sql.parsers.exceptions.invalidparameter;
 
 import langs.sql;
 

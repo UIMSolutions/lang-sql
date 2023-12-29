@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.index.locks;
+module langs.sql.parsers.builders.index.locks;
 
 import langs.sql;
 

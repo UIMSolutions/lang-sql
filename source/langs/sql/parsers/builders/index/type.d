@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.index.type;
+module langs.sql.parsers.builders.index.type;
 
 import langs.sql;
 

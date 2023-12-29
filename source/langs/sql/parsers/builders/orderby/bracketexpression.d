@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.orderby.bracketexpression;
+module langs.sql.parsers.builders.orderby.bracketexpression;
 
 // Builds bracket-expressions within the ORDER-BY part.
 class OrderByBracketExpressionBuilder : WhereBracketExpressionBuilder {

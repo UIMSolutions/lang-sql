@@ -1,2 +1,2 @@
-module langs.sql.sqlparsers.builders.show;
+module langs.sql.parsers.builders.show;
 

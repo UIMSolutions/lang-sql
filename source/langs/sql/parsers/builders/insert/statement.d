@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.insert.statement;
+module langs.sql.parsers.builders.insert.statement;
 
 import langs.sql;
 

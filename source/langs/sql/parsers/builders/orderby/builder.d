@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.orderby.builder;
+module langs.sql.parsers.builders.orderby.builder;
 
 import langs.sql;
 

@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.index.hintlist;
+module langs.sql.parsers.builders.index.hintlist;
 
 import langs.sql;
 

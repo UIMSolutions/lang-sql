@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.selects.builder;
+module langs.sql.parsers.builders.selects.builder;
 
 import langs.sql;
 

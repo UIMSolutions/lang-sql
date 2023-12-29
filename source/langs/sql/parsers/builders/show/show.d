@@ -1,4 +1,4 @@
-module langs.sql.sqlparsers.builders.show.show;
+module langs.sql.parsers.builders.show.show;
 
 import langs.sql;
 
