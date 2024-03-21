@@ -1,4 +1,4 @@
-# Package 📦 langs.parsers
+# Package 📦 langs.sql.parsers
 
 ## Packages
 
