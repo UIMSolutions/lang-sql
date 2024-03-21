@@ -1,4 +1,4 @@
-# Package 📦 Lang's
+# Package 📦 langs.parsers
 
 ## Packages
 
