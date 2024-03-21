@@ -5,12 +5,11 @@ import langs.sql;
 @safe:
 
 // Builds the view within the DROP statement. 
-class ViewBuilder : ISqlBuilder {
-
+class DViewBuilder : ISqlBuilder {
   string build(Json parsedSql) {
-    if (!parsedSql.isExpressionType("VIEW")) {
-      return "";
-    }
-    return parsedSql.baseExpression;
-  }
+    return parsedSql.isExpressionType("VIEW")
+? parsedSql.baseExpression 
+: null;
+
 }
+auto ViewBuilder() { return new DViewBuilder; }
